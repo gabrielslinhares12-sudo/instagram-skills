@@ -1,4 +1,4 @@
-# Sub-skill: Generate an illustration for a Instagram post
+# Sub-skill: Generate an illustration for an Instagram post
 
 Adds an optional image to a draft (feed image, carousel slide, or quote-card) and
 attaches it on publish. Uses the Pixfaro image layer through `lib.illustrate`,
@@ -8,7 +8,7 @@ agent (Claude Code, Codex, OpenClaw).
 ## When this runs
 
 - User says "add an image", "make an illustration", "make a quote-card", or
-  "make a carousel" for a Instagram post.
+  "make a carousel" for an Instagram post.
 - Offer it once after a draft is approved, when a visual would lift reach.
 
 ## Backends (mirrors the publish layer)

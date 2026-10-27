@@ -91,7 +91,7 @@ cd instagram-skills
    For any Instagram task, read the relevant skills/*/SKILL.md first.
    Use lib/url_parser.py for URL parsing and lib/publora_client.py for publishing.
    ```
-4. Done. Ask OpenClaw to write a Instagram post.
+4. Done. Ask OpenClaw to write an Instagram post.
 
 ### Hermes Agent
 
