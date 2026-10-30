@@ -196,11 +196,85 @@ class FacebookPosterTests(unittest.TestCase):
                 result = main(["--check"])
         self.assertEqual(result, 0)
         self.assertEqual(errors.getvalue(), "")
-        self.assertEqual(json.loads(output.getvalue())["instagram_user_id"], "456")
+        checked = json.loads(output.getvalue())
+        self.assertEqual(checked["instagram_user_id"], "456")
+        self.assertNotIn("diagnostics", checked)
         self.assertEqual([call.args[0] for call in self.session.request.call_args_list], ["GET", "GET"])
         stdin.read.assert_not_called()
         for secret in (USER_TOKEN, PAGE_TOKEN, IG_TOKEN):
             self.assertNotIn(secret, output.getvalue())
+
+    def test_failed_check_identifies_which_credential_was_used_without_leaking_it(self):
+        raw_url = f"https://untrusted.example.test/?access_token={USER_TOKEN}"
+        rejected = response({"error": {"code": 190,
+                                       "message": f"{USER_TOKEN} {PAGE_TOKEN} {IG_TOKEN} {raw_url}"}}, 401)
+        cases = [([rejected], "discovery_user_token"),
+                 ([pages(page()), rejected], "relationship_page_token")]
+        for replies, stage in cases:
+            with self.subTest(stage=stage):
+                self.session.reset_mock()
+                self.session.request.side_effect = replies
+                output, errors, stdin = io.StringIO(), io.StringIO(), Mock()
+                with patch.dict("os.environ", ENV, clear=True), \
+                        patch("meta_poster.UrllibTransport", return_value=self.session), \
+                        patch("sys.stdin", stdin), redirect_stdout(output), redirect_stderr(errors):
+                    result = main(["--check"])
+                self.assertEqual(result, 1)
+                self.assertEqual(output.getvalue(), "")
+                public = json.loads(errors.getvalue())
+                self.assertEqual(public["code"], 190)
+                self.assertEqual(public["diagnostics"]["stage"], stage)
+                self.assertEqual(public["diagnostics"]["user_token"]["characters"], len(USER_TOKEN))
+                self.assertEqual([call.args[0] for call in self.session.request.call_args_list],
+                                 ["GET"] * len(replies))
+                stdin.read.assert_not_called()
+                for secret in (USER_TOKEN, PAGE_TOKEN, IG_TOKEN, raw_url):
+                    self.assertNotIn(secret, errors.getvalue())
+
+    def test_failed_check_reports_copy_errors_but_never_enforces_token_prefixes(self):
+        cases = [
+            (str(10**15), "digits_only", False, False, False),
+            ("EAA" + USER_TOKEN, "facebook_like", False, False, False),
+            ("IG" + IG_TOKEN, "instagram_like", False, False, False),
+            ('"' + USER_TOKEN + '"', "other", True, False, False),
+            (" " + "EAA" + USER_TOKEN + "\n", "facebook_like", False, True, False),
+            ("opaque_" + USER_TOKEN + "\n" + PAGE_TOKEN, "other", False, False, True),
+        ]
+        for value, shape, quoted, outer_space, inner_space in cases:
+            with self.subTest(shape=shape, quoted=quoted, outer_space=outer_space, inner_space=inner_space):
+                self.session.reset_mock()
+                self.session.request.side_effect = None
+                self.session.request.return_value = response({"error": {"code": 190, "message": value}}, 401)
+                configured = dict(ENV, FACEBOOK_USER_ACCESS_TOKEN=value)
+                output, errors = io.StringIO(), io.StringIO()
+                with patch.dict("os.environ", configured, clear=True), \
+                        patch("meta_poster.UrllibTransport", return_value=self.session), \
+                        redirect_stdout(output), redirect_stderr(errors):
+                    self.assertEqual(main(["--check"]), 1)
+                public = json.loads(errors.getvalue())
+                self.assertEqual(public["diagnostics"], {
+                    "stage": "configuration" if inner_space else "discovery_user_token",
+                    "user_token": {"characters": len(value.strip()), "shape": shape,
+                                   "wrapped_in_quotes": quoted, "has_outer_whitespace": outer_space,
+                                   "has_internal_whitespace": inner_space},
+                })
+                self.assertEqual(self.session.request.call_count, 0 if inner_space else 1)
+                for secret in (value, USER_TOKEN, PAGE_TOKEN, IG_TOKEN):
+                    self.assertNotIn(secret, errors.getvalue())
+                self.assertEqual(output.getvalue(), "")
+
+    def test_failed_publication_does_not_emit_check_diagnostics(self):
+        self.session.request.return_value = response({"error": {"code": 190, "message": USER_TOKEN}}, 401)
+        output, errors = io.StringIO(), io.StringIO()
+        with patch.dict("os.environ", ENV, clear=True), \
+                patch("meta_poster.UrllibTransport", return_value=self.session), \
+                patch("sys.stdin", io.StringIO(json.dumps(payload()))), \
+                redirect_stdout(output), redirect_stderr(errors):
+            self.assertEqual(main(["post", TARGET]), 1)
+        self.assertNotIn("diagnostics", json.loads(errors.getvalue()))
+        self.assertNotIn(USER_TOKEN, errors.getvalue())
+        self.assertEqual(output.getvalue(), "")
+        self.assertEqual([call.args[0] for call in self.session.request.call_args_list], ["GET"])
 
     def test_config_never_falls_back_to_instagram_login_token(self):
         with self.assertRaises(MetaError):

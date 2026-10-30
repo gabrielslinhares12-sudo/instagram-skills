@@ -50,20 +50,14 @@ Na tentativa de correção, um novo token de usuário Facebook foi gerado. As
 consultas somente de leitura `me?fields=permissions` e
 `me/accounts?fields=id,name,instagram_business_account{id,username}` tiveram
 sucesso com esse novo token, confirmando as mesmas concessões e os ativos
-esperados. A substituição do Secret existente ainda não foi salva: o GitHub
-exigiu **Confirm access**, uma reautenticação do proprietário por passkey ou
-código de segurança.
+esperados. As tentativas automatizadas de substituir o Secret foram bloqueadas
+pelo **Confirm access** do GitHub. A criação de um marcador temporário e o
+salvamento do perfil de sessão não transferiram essa confirmação à automação.
 
-O proprietário criou o Secret temporário `INSTAGRAM_SETUP_CHECK` e salvou o
-perfil de sessão, mas isso não disponibilizou a confirmação de segurança para
-a automação. O marcador foi confirmado no repositório, atualizado em
-2026-10-30 às 13:52 UTC; o Secret `FACEBOOK_USER_ACCESS_TOKEN` continuava com a
-atualização anterior, às 10:29 UTC. Uma nova tentativa de salvar o token válido
-voltou a exigir **Confirm access**. Nenhuma substituição da credencial foi
-salva e não houve nova execução do workflow. A remoção do marcador temporário
-também foi bloqueada por **Confirm access**; a conferência posterior mostrou
-que ambos os Secrets continuam presentes. Não é necessário criar outro
-marcador nem repetir a transferência do perfil de sessão.
+O proprietário concluiu a atualização diretamente no próprio navegador. O
+horário do Secret `FACEBOOK_USER_ACCESS_TOKEN` foi conferido como
+**2026-10-30 às 14:15 UTC**. A ausência do Secret temporário
+`INSTAGRAM_SETUP_CHECK` também foi confirmada: a limpeza está concluída.
 
 A opção **Extend Access Token** do Access Token Debugger exigiu uma nova
 autenticação na Meta com senha. Essa extensão opcional não foi concluída; a
@@ -80,10 +74,15 @@ CI, dos 27 testes e do scanner. As quatro Variables do GitHub foram salvas e
 conferidas. A [primeira execução real do adaptador no Actions](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41059291942)
 passou nos 27 testes offline, mas a consulta à API falhou com HTTP `401`, código
 `190`. O Secret estava presente no ambiente, com o valor oculto nos logs.
-Ainda não houve uma execução bem-sucedida do teste real; a validação anterior
-no Explorer não substitui essa execução. Após gerar o novo token, o workflow
-não foi executado novamente porque a atualização do Secret ficou pendente da
-confirmação de segurança do GitHub.
+
+Após a atualização manual, a [nova execução somente de leitura](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41070580125),
+iniciada às **14:17 UTC** no commit
+`5ed8ee8551a813b8ea172710c55448b6eb370878`, passou nos 27 testes offline, mas a
+consulta voltou a falhar com HTTP `401`, código `190`, sem subcódigo informado.
+Nenhuma publicação foi realizada. O cadastro do Secret e a limpeza do marcador
+estão concluídos; a conexão do executor ainda não foi validada com sucesso.
+O código `190` isolado não comprova erro de cópia, expiração ou tipo incorreto
+de token. A validação no Explorer não substitui o resultado do executor.
 
 O protótipo verifica identidade e publica somente uma imagem por vez, após
 aprovação explícita. Reels, carrosséis, Stories e agendamento ainda não estão
@@ -112,9 +111,17 @@ repositório:
 Os dois filtros numéricos restringem a seleção aos ativos já confirmados pela
 API. O cliente também confere o username esperado antes de prosseguir.
 
-Para concluir o cadastro da credencial, o proprietário precisa salvar o token
-e realizar o **Confirm access** diretamente no mesmo navegador próprio, sem
-depender da transferência do perfil de sessão para a automação:
+O cadastro da credencial e a remoção do marcador já foram conferidos. A próxima
+validação está sendo preparada para identificar com segurança a etapa da falha
+do `--check`: configuração, descoberta com token de usuário ou confirmação do
+vínculo com token de Página. Os diagnósticos não devem exibir caracteres de
+credenciais nem mensagens brutas da API. Informações de formato, quantidade
+de caracteres, aspas e espaços são apenas pistas; não comprovam a validade de
+um token. A conexão permanece pendente até o teste retornar `ok: true`,
+`mode: check` e os ativos esperados.
+
+Se for necessário substituir a credencial novamente durante o diagnóstico,
+o procedimento é feito pelo proprietário no mesmo navegador próprio:
 
 1. Abrir o [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
    e selecionar **Tem uma Explicação**, App ID `1132499782513526`, versão
@@ -127,18 +134,12 @@ depender da transferência do perfil de sessão para a automação:
 3. Clicar em **Update secret**, concluir a autenticação de **Confirm access**
    nessa mesma sessão e aguardar o retorno à lista de Secrets. Conferir que o
    horário de atualização desse Secret passou a ser o atual.
-4. Ainda autenticado nesse mesmo navegador, voltar à lista de Secrets e
-   excluir **somente `INSTAGRAM_SETUP_CHECK`**, conferindo o nome exato antes
-   de confirmar. Preservar `FACEBOOK_USER_ACCESS_TOKEN` e as Variables da
-   integração.
-5. Informar ao assistente apenas que o token foi salvo e o marcador removido.
+4. Informar ao assistente apenas que o token foi salvo.
    Não enviar token, código de autenticação ou senha pelo chat.
 
-Depois da confirmação do cadastro, o assistente executará **Verificar conexão
-Instagram via Facebook** e consultará os logs de forma independente. Também
-conferirá o horário atualizado do Secret de integração e a ausência do
-marcador. O teste deve retornar `ok: true`, `mode: check` e os ativos esperados,
-sem publicar. Até esse resultado, a conexão do executor permanece pendente.
+Depois de uma alteração relevante, executar **Verificar conexão Instagram via
+Facebook** e conferir os logs de forma independente, sem publicar. Não repetir
+o cadastro nem criar novos marcadores apenas porque o teste anterior falhou.
 
 Os Secrets de Actions não são transferidos ao ambiente do Codex. Para execução
 local, configurar as variáveis no ambiente de lançamento. O comando de teste
@@ -196,7 +197,8 @@ Com a Página vinculada:
 A Meta ainda pode exigir outras etapas ou aplicar restrições à conta recente.
 O vínculo da Página, as concessões do token e a descoberta da conta pela API
 foram confirmados no Explorer. A primeira execução do adaptador pelo Actions
-foi recusada por autenticação; uma execução bem-sucedida ainda está pendente.
+e a nova tentativa após a atualização manual foram recusadas por autenticação;
+uma execução bem-sucedida ainda está pendente.
 
 As seções numeradas 2 a 4 abaixo descrevem apenas o protótipo
 Instagram Login. Só devem ser usadas se esse fluxo for confirmado como

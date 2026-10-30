@@ -23,6 +23,30 @@ MAX_PAGE_BATCHES = 20
 PAGE_BATCH_SIZE = 100
 PAGE_FIELDS = "id,name,access_token,instagram_business_account{id,username}"
 RELATIONSHIP_FIELDS = "id,instagram_business_account{id,username}"
+CHECK_STAGES = frozenset({"configuration", "discovery_user_token", "relationship_page_token"})
+
+
+def credential_summary(value: str) -> dict[str, Any]:
+    """Describe common copy errors without returning any credential characters.
+
+    Prefix families are diagnostic hints only: access tokens are opaque, so
+    these heuristics never decide whether a credential may be used.
+    """
+    token = value.strip()
+    if not token:
+        shape = "empty"
+    elif token.isascii() and token.isdigit():
+        shape = "digits_only"
+    elif token.startswith("EAA"):
+        shape = "facebook_like"
+    elif token.startswith("IG"):
+        shape = "instagram_like"
+    else:
+        shape = "other"
+    return {"characters": len(token), "shape": shape,
+            "has_outer_whitespace": value != token,
+            "has_internal_whitespace": any(character.isspace() for character in token),
+            "wrapped_in_quotes": len(token) >= 2 and token[0] == token[-1] and token[0] in "\"'"}
 
 
 @dataclass(frozen=True)
@@ -70,6 +94,7 @@ class FacebookPoster(MetaPoster):
     def __init__(self, facebook_config: FacebookConfig, session: Any = None) -> None:
         self.facebook_config = facebook_config
         self.page_id: str | None = None
+        self.check_stage = "configuration"
         super().__init__(self._user_config(), session)
 
     def _user_config(self) -> Config:
@@ -141,9 +166,11 @@ class FacebookPoster(MetaPoster):
         self.page_id = None
         # Always discover with the user token, including when an object is reused.
         self.config = self._user_config()
+        self.check_stage = "discovery_user_token"
         selected = self._discover()
         self.config = Config(selected.access_token, selected.instagram_user_id,
                              self.facebook_config.version, selected.username)
+        self.check_stage = "relationship_page_token"
         relationship = self._request("GET", selected.page_id,
                                      params={"fields": RELATIONSHIP_FIELDS})
         account = relationship.get("instagram_business_account")
@@ -169,6 +196,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("kind", nargs="?")
     parser.add_argument("target_url", nargs="?")
     args = parser.parse_args(argv)
+    poster: FacebookPoster | None = None
     try:
         poster = FacebookPoster(FacebookConfig.from_env())
         if args.check:
@@ -186,7 +214,14 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(result, ensure_ascii=False))
         return 0
     except MetaError as error:
-        print(json.dumps(error.public(), ensure_ascii=False), file=sys.stderr)
+        public = error.public()
+        if args.check:
+            stage = poster.check_stage if poster is not None else "configuration"
+            public["diagnostics"] = {
+                "stage": stage if stage in CHECK_STAGES else "unknown",
+                "user_token": credential_summary(os.environ.get("FACEBOOK_USER_ACCESS_TOKEN", "")),
+            }
+        print(json.dumps(public, ensure_ascii=False), file=sys.stderr)
         return 1
 
 
