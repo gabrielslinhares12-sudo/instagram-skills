@@ -3,10 +3,28 @@
 Conta: `@temumaexplicacao`, tipo Criador. App ID informado:
 `1132499782513526`.
 
-## Conexão validada
+## Situação atual: token expirado
+
+A integração já comprovou a leitura da conta pela API, mas a credencial atual
+expirou. A [verificação mais recente no Actions](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41104067516),
+executada em **2026-10-30 às 18:07 UTC** no commit
+`d927f00a7afdb2808d152c60a3b6f8e03536a899`, passou nos **30 testes offline** e
+falhou na consulta com HTTP `401`, código `190`, **subcódigo `463` (Expired)**.
+A etapa identificada foi `discovery_user_token`, na descoberta inicial com o
+token de usuário. A conexão não está disponível com essa credencial expirada.
+
+Os metadados atuais informaram 293 caracteres e formato compatível com um
+token Facebook, sem aspas ou espaços. O formato não comprova validade;
+o subcódigo de expiração
+retornado pela Meta determina a ação necessária. É preciso obter um token
+novo, estendê-lo para longa duração e substituir o Secret existente antes de
+validar novamente. A extensão e a renovação automática ainda não estão
+configuradas. Nenhuma publicação foi realizada.
+
+## Comprovação anterior de leitura
 
 A conexão de leitura do executor com **@temumaexplicacao** foi validada pela
-API oficial com Facebook Login, versão `v26.0`. A
+API oficial com Facebook Login, versão `v26.0`, antes da expiração. A
 [execução 41074008740 no GitHub Actions](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41074008740),
 no commit `c13daee69eb789bee22f6f80952df7f14013129c`, terminou com sucesso.
 Os logs foram conferidos de forma independente: os **30 testes offline**
@@ -57,10 +75,17 @@ de usuário. A confirmação **Confirm access** do GitHub foi concluída pelo
 proprietário no próprio navegador; salvar o perfil de sessão não substituiu
 essa confirmação para a automação.
 
-A validade do token continua desconhecida. A opção **Extend Access Token**
-exigiu nova autenticação na Meta e não foi concluída. Não há extensão para
-longa duração nem renovação automática configurada; acompanhe validade e
-revogação no painel.
+A validade exata não havia sido conferida na configuração inicial; a
+verificação das 18:07 UTC confirmou que a credencial já estava expirada. A
+opção **Extend Access Token** exigiu nova autenticação na Meta e ainda não
+foi concluída. O token expirado não pode ser usado para obter um token de
+longa duração: é necessário gerar um token novo primeiro.
+
+A [documentação oficial da Meta](https://developers.facebook.com/documentation/facebook-login/guides/access-tokens/get-long-lived)
+informa que um token de usuário de longa duração geralmente vale cerca de
+**60 dias**. Esse prazo não é garantia: o token pode ser invalidado antes.
+Conferir a data efetiva de expiração no Debugger e acompanhar revogação;
+a extensão não configura renovação automática neste projeto.
 
 ## Caminho selecionado: Facebook Login
 
@@ -85,44 +110,50 @@ repositório:
 Os dois filtros numéricos restringem a seleção aos ativos já confirmados pela
 API. O cliente também confere o username esperado antes de prosseguir.
 
-O Secret, as Variables e a conexão de leitura do executor foram validados.
+O Secret e as Variables estão cadastrados; a leitura foi comprovada às
+14:42 UTC e deixou de funcionar com a expiração detectada às 18:07 UTC.
 O workflow **Verificar conexão Instagram via Facebook** está na branch padrão,
 é iniciado manualmente e executa os 30 testes offline seguidos da consulta de
 identidade. Um resultado `ok: true`, `mode: check` confirma a conexão naquele
 momento; não autoriza publicações nem comprova que um envio de mídia terá
 sucesso.
 
-### Renovar a credencial ou investigar uma falha futura
+### Concluir o token de longa duração
 
-Se uma nova consulta indicar que a credencial precisa ser substituída, o
-proprietário deve copiar o valor completo do campo **Token de acesso** e
-salvá-lo diretamente no mesmo navegador próprio:
+O proprietário precisa concluir a extensão na interface oficial da Meta e
+salvar o valor estendido no GitHub, no mesmo navegador próprio:
 
 1. Abrir o [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
    e selecionar **Tem uma Explicação**, App ID `1132499782513526`, versão
-   `v26.0`, e gerar um novo token de **usuário Facebook**. Confirmar as
-   permissões já concedidas e que as consultas de leitura retornam os ativos
-   esperados.
-2. No painel à direita, localizar o campo **Token de acesso**. Usar o ícone ao
-   lado dele, com rótulo **Copy Token**, para copiar o valor completo localmente.
-   O seletor deve indicar **Token do usuário**. Os IDs numéricos do aplicativo,
-   da Página e da conta Instagram são identificadores, não o conteúdo desse
-   campo. Não copiar esses IDs para o Secret de autenticação.
-3. Abrir a
+   `v26.0`. Gerar um novo token de **usuário Facebook** e confirmar as permissões
+   necessárias; o token expirado não serve para a extensão.
+2. No painel à direita, localizar **Token de acesso**. Usar o ícone **Copy
+   Token** ao lado do campo para copiar o valor completo. O seletor deve
+   indicar **Token do usuário**.
+3. Abrir o [Access Token Debugger oficial](https://developers.facebook.com/tools/debug/accesstoken/),
+   colar o novo token no campo da ferramenta e clicar em **Debug**. Conferir
+   o app e o tipo de token exibidos.
+4. Clicar em **Extend Access Token** e concluir a autenticação solicitada
+   diretamente na Meta. Copiar o **token estendido** retornado pela ferramenta
+   e conferir sua data de expiração. Não reutilizar o valor curto original.
+5. Abrir a
    [edição do Secret existente no repositório](https://github.com/gabrielslinhares12-sudo/instagram-skills/settings/secrets/actions/FACEBOOK_USER_ACCESS_TOKEN).
-   Colar o token completo no campo do Secret `FACEBOOK_USER_ACCESS_TOKEN`, sem
+   Colar o token estendido completo em `FACEBOOK_USER_ACCESS_TOKEN`, sem
    acrescentar aspas ou o prefixo `Bearer`.
-4. Clicar em **Update secret**, concluir a autenticação de **Confirm access**
-   nessa mesma sessão e aguardar o retorno à lista de Secrets. Conferir que o
-   horário de atualização desse Secret passou a ser o atual.
-5. Informar ao assistente apenas que o token foi salvo.
-   Não enviar token, código de autenticação ou senha pelo chat.
+6. Clicar em **Update secret**, concluir **Confirm access** nessa mesma sessão
+   e aguardar o retorno à lista de Secrets. Conferir o horário de atualização.
+7. Informar ao assistente apenas que o token estendido foi salvo e a data de
+   expiração exibida. O assistente executará uma nova verificação somente de
+   leitura e conferirá os logs de forma independente. Não enviar token, App
+   Secret, código de autenticação ou senha pelo chat.
 
 Depois de uma alteração relevante, executar **Verificar conexão Instagram via
 Facebook** e conferir os logs de forma independente, sem publicar. Em caso de
 falha, o `--check` informa a etapa e metadados de formato, sem caracteres da
 credencial nem mensagens brutas da API. Tokens são opacos: tamanho, prefixo,
 aspas e espaços ajudam na investigação, mas não comprovam validade ou tipo.
+Se houver uma falha futura de cópia, conferir se foi copiado o campo **Token de
+acesso**, em vez dos IDs do aplicativo, Página ou conta Instagram.
 Não repetir o cadastro nem criar novos marcadores sem um diagnóstico que
 justifique a ação.
 
@@ -134,8 +165,8 @@ faz somente leituras e retorna IDs e username, sem expor credenciais:
 python3 scripts/facebook_poster.py --check
 ```
 
-Para usar o cliente validado nas skills, configurá-lo no ambiente de
-lançamento, nunca por `.env`:
+Depois de restabelecer a credencial válida, usar o cliente nas skills pelo
+ambiente de lançamento, nunca por `.env`:
 
 ```bash
 export INSTAGRAM_SKILLS_CUSTOM_POSTER='python3 scripts/facebook_poster.py'
@@ -175,9 +206,10 @@ Com a Página vinculada:
    Facebook não deve ser colocado no adaptador Instagram Login existente.
 
 O vínculo da Página, as concessões do token e a descoberta da conta pela API
-foram confirmados no Explorer. A conexão de leitura do adaptador também foi
-validada no Actions, conforme o resultado registrado acima. A Meta ainda pode
-aplicar requisitos ou restrições a operações futuras.
+foram confirmados no Explorer. A conexão de leitura do adaptador foi validada
+no Actions às 14:42 UTC; a consulta das 18:07 UTC confirmou a expiração do
+token. É necessário substituí-lo e validar novamente antes de usar a
+integração. A Meta ainda pode aplicar requisitos a operações futuras.
 
 As seções numeradas 2 a 4 abaixo descrevem apenas o protótipo
 Instagram Login. Só devem ser usadas se esse fluxo for confirmado como
@@ -187,8 +219,8 @@ O App ID pode ser compartilhado para configurar a integração. Token, App Secre
 e códigos de autorização não devem ser publicados no repositório nem no chat.
 Para testar a própria conta, o administrador deve possuir a função adequada no
 app e acesso aos ativos autorizados. As permissões preparadas no painel ainda
-precisam ser concedidas a cada token; as concessões deste token foram
-confirmadas em `me/permissions`. Acesso a outras contas pode exigir análise do
+precisam ser concedidas a cada token; os tokens usados anteriormente foram
+conferidos em `me/permissions`. Acesso a outras contas pode exigir análise do
 app, verificação e permissões adicionais; não é uma exigência universal para
 testes dos próprios administradores. Criar o app não publica nada no Instagram.
 
