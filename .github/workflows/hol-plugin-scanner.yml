@@ -16,6 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: HOL Plugin Scanner
+        id: hol_scan
         uses: hashgraph-online/ai-plugin-scanner-action@4a44de6c18b68ec258fcc3e0cec5261fc8ea63fd # v1.2.792
         with:
           plugin_dir: "."
@@ -23,4 +24,42 @@ jobs:
           min_score: 80
           fail_on_severity: high
           format: sarif
+          output: ai-plugin-scanner.sarif
           upload_sarif: true
+      - name: Show scanner finding locations
+        if: ${{ always() }}
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = Path("ai-plugin-scanner.sarif")
+          if not report.is_file():
+              print("The scanner did not produce a SARIF report.")
+          else:
+              payload = json.loads(report.read_text(encoding="utf-8"))
+              for run in payload.get("runs", []):
+                  for finding in run.get("results", []):
+                      rule = finding.get("ruleId", "unknown")
+                      level = finding.get("level", "unknown")
+                      locations = finding.get("locations", [])
+                      for location in locations or [{}]:
+                          physical = location.get("physicalLocation", {})
+                          path = physical.get("artifactLocation", {}).get("uri", "unknown")
+                          line = physical.get("region", {}).get("startLine", "?")
+                          print(f"{level}: {rule} at {path}:{line}")
+          PY
+      - name: Preserve scanner report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: hol-plugin-scanner-report
+          path: ai-plugin-scanner.sarif
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Upload SARIF after a failed scan
+        if: ${{ always() && steps.hol_scan.outcome == 'failure' && hashFiles('ai-plugin-scanner.sarif') != '' }}
+        uses: github/codeql-action/upload-sarif@e46ed2cbd01164d986452f91f178727624ae40d7
+        with:
+          sarif_file: ai-plugin-scanner.sarif
+          category: ai-plugin-scanner
