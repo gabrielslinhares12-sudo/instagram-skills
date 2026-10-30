@@ -52,8 +52,18 @@ consultas somente de leitura `me?fields=permissions` e
 sucesso com esse novo token, confirmando as mesmas concessões e os ativos
 esperados. A substituição do Secret existente ainda não foi salva: o GitHub
 exigiu **Confirm access**, uma reautenticação do proprietário por passkey ou
-código de segurança. O proprietário precisa concluir essa confirmação no
-navegador e salvar o perfil de sessão para que a configuração prossiga.
+código de segurança.
+
+O proprietário criou o Secret temporário `INSTAGRAM_SETUP_CHECK` e salvou o
+perfil de sessão, mas isso não disponibilizou a confirmação de segurança para
+a automação. O marcador foi confirmado no repositório, atualizado em
+2026-10-30 às 13:52 UTC; o Secret `FACEBOOK_USER_ACCESS_TOKEN` continuava com a
+atualização anterior, às 10:29 UTC. Uma nova tentativa de salvar o token válido
+voltou a exigir **Confirm access**. Nenhuma substituição da credencial foi
+salva e não houve nova execução do workflow. A remoção do marcador temporário
+também foi bloqueada por **Confirm access**; a conferência posterior mostrou
+que ambos os Secrets continuam presentes. Não é necessário criar outro
+marcador nem repetir a transferência do perfil de sessão.
 
 A opção **Extend Access Token** do Access Token Debugger exigiu uma nova
 autenticação na Meta com senha. Essa extensão opcional não foi concluída; a
@@ -102,10 +112,32 @@ repositório:
 Os dois filtros numéricos restringem a seleção aos ativos já confirmados pela
 API. O cliente também confere o username esperado antes de prosseguir.
 
-Para concluir a validação do executor, o proprietário precisa concluir o
-**Confirm access** do GitHub. Depois, é necessário salvar a credencial validada
-no Secret existente e executar novamente **Verificar conexão Instagram via
-Facebook**. O teste deve retornar `ok: true`, `mode: check` e os ativos esperados,
+Para concluir o cadastro da credencial, o proprietário precisa salvar o token
+e realizar o **Confirm access** diretamente no mesmo navegador próprio, sem
+depender da transferência do perfil de sessão para a automação:
+
+1. Abrir o [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+   e selecionar **Tem uma Explicação**, App ID `1132499782513526`, versão
+   `v26.0`, e gerar um novo token de **usuário Facebook**, pois a validade do
+   anterior é desconhecida. Confirmar as permissões já concedidas e que as
+   consultas de leitura retornam os ativos esperados.
+2. Copiar o token válido completo localmente e abrir a
+   [edição do Secret existente no repositório](https://github.com/gabrielslinhares12-sudo/instagram-skills/settings/secrets/actions/FACEBOOK_USER_ACCESS_TOKEN).
+   Colar o token no campo do Secret `FACEBOOK_USER_ACCESS_TOKEN`.
+3. Clicar em **Update secret**, concluir a autenticação de **Confirm access**
+   nessa mesma sessão e aguardar o retorno à lista de Secrets. Conferir que o
+   horário de atualização desse Secret passou a ser o atual.
+4. Ainda autenticado nesse mesmo navegador, voltar à lista de Secrets e
+   excluir **somente `INSTAGRAM_SETUP_CHECK`**, conferindo o nome exato antes
+   de confirmar. Preservar `FACEBOOK_USER_ACCESS_TOKEN` e as Variables da
+   integração.
+5. Informar ao assistente apenas que o token foi salvo e o marcador removido.
+   Não enviar token, código de autenticação ou senha pelo chat.
+
+Depois da confirmação do cadastro, o assistente executará **Verificar conexão
+Instagram via Facebook** e consultará os logs de forma independente. Também
+conferirá o horário atualizado do Secret de integração e a ausência do
+marcador. O teste deve retornar `ok: true`, `mode: check` e os ativos esperados,
 sem publicar. Até esse resultado, a conexão do executor permanece pendente.
 
 Os Secrets de Actions não são transferidos ao ambiente do Codex. Para execução
