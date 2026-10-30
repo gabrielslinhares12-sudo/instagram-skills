@@ -58,11 +58,14 @@ falhou com HTTP `401`, código `190`, subcódigo `463` (Expired), na etapa
 substituição da credencial, conforme o sucesso das 18:47 UTC.
 
 O proprietário informou ter concluído as instruções de extensão e salvamento
-do token. A nova consulta confirma que a credencial funcionava naquele
-momento, mas não verificou sua duração. **A data efetiva de expiração ainda
-não foi informada; a validade de longa duração não está comprovada.** Não há
-renovação automática configurada. A confirmação **Confirm access** do GitHub
-é realizada pelo proprietário no próprio navegador quando solicitada.
+do token e informou a expiração em **29 de dezembro de 2026**. O ano foi
+inferido a partir da data desta configuração, 30 de outubro de 2026; horário
+e fuso da expiração não foram informados. O prazo é compatível com um token
+de longa duração. Essa data foi relatada pelo proprietário; a consulta GET
+confirmou a conexão naquele momento, sem verificar a expiração no Debugger.
+Não há renovação automática configurada: renovar a credencial antes dessa
+data. A confirmação **Confirm access** do GitHub é realizada pelo proprietário
+no próprio navegador quando solicitada.
 
 A [documentação oficial da Meta](https://developers.facebook.com/documentation/facebook-login/guides/access-tokens/get-long-lived)
 informa que um token de usuário de longa duração geralmente vale cerca de
@@ -104,9 +107,10 @@ sucesso.
 ### Renovação futura da credencial
 
 As instruções abaixo servem para uma renovação futura, quando necessária.
-A conexão atual já passou no teste de leitura; falta informar a data de
-expiração exibida pela Meta, sem enviar o token. Para renovar, o proprietário
-conclui a extensão e salva o valor estendido no mesmo navegador próprio:
+A conexão atual já passou no teste de leitura. A expiração informada pelo
+proprietário é **29 de dezembro de 2026**; planejar a renovação antes dessa
+data. Para renovar, o proprietário conclui a extensão e salva o valor estendido
+no mesmo navegador próprio:
 
 1. Abrir o [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
    e selecionar **Tem uma Explicação**, App ID `1132499782513526`, versão
@@ -193,8 +197,9 @@ Com a Página vinculada:
 O vínculo da Página, as concessões do token e a descoberta da conta pela API
 foram confirmados no Explorer. A conexão de leitura do adaptador foi
 restabelecida no Actions às 18:47 UTC, após a substituição do token expirado.
-A duração da nova credencial ainda não foi confirmada. A Meta pode aplicar
-requisitos a operações futuras.
+A expiração informada pelo proprietário é 29 de dezembro de 2026; ela não foi
+verificada de forma independente no Debugger. A Meta pode aplicar requisitos
+a operações futuras.
 
 As seções numeradas 2 a 4 abaixo descrevem apenas o protótipo
 Instagram Login. Só devem ser usadas se esse fluxo for confirmado como
