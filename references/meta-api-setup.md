@@ -3,104 +3,64 @@
 Conta: `@temumaexplicacao`, tipo Criador. App ID informado:
 `1132499782513526`.
 
-## Situação confirmada no painel da Meta
+## Conexão validada
 
-As capturas do aplicativo mostram dois caminhos: **API setup with Unified
-login**, recomendado pela Meta, e **Configuração da API com login do Facebook**,
-marcado como legado. Não foi encontrada uma opção separada de Instagram Login.
+A conexão de leitura do executor com **@temumaexplicacao** foi validada pela
+API oficial com Facebook Login, versão `v26.0`. A
+[execução 41074008740 no GitHub Actions](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41074008740),
+no commit `c13daee69eb789bee22f6f80952df7f14013129c`, terminou com sucesso.
+Os logs foram conferidos de forma independente: os **30 testes offline**
+passaram e, em **2026-10-30 às 14:42:38 UTC**, o comando `--check` retornou:
 
-O Unified login exige selecionar um portfólio empresarial. Na tentativa
-anterior, a criação do portfólio foi recusada porque a conta do Facebook era
-recente; o aviso orientava tentar novamente em uma hora. O caminho selecionado
-é Facebook Login, usando a Página e a conta profissional que o usuário
-administra. A autorização e a descoberta dos ativos foram validadas no Graph
-API Explorer, usando a versão `v26.0`.
+```json
+{
+  "ok": true,
+  "mode": "check",
+  "login": "facebook",
+  "page_id": "1385407341325017",
+  "instagram_user_id": "17841433004716815",
+  "username": "temumaexplicacao"
+}
+```
 
-A sessão do Facebook está autenticada no perfil de navegador TinyFish usado
-para a configuração. A Página **Tem uma Explicação** está disponível em
-https://www.facebook.com/61595789771857/. O painel também informou o
-identificador de ativo `1385407341325017`. A consulta `me/accounts` confirmou
-esse último valor como ID da Página na API, com o nome **Tem uma Explicação**,
-e a conta Instagram vinculada `17841433004716815`, username
-`temumaexplicacao`. O identificador presente na URL pública da Página não deve
-ser usado como substituto do ID retornado pela API.
+Esse teste fez somente consultas GET. Nenhuma publicação foi realizada;
+a publicação ainda não foi testada nem aprovada. Cada publicação exige
+aprovação explícita da imagem final, legenda e destino.
 
-O vínculo da Página com **@temumaexplicacao** foi concluído e confirmado por
-uma mensagem de sucesso e pelo estado final **Conectado / Habilitado** no
-painel. O fluxo de conexão também habilitou o acesso às mensagens pela Caixa
-de Entrada da Página. Essa opção da interface não comprova configuração de
-permissões, tokens ou webhooks da API de mensagens.
+A Página **Tem uma Explicação**, disponível em
+https://www.facebook.com/61595789771857/, está vinculada à conta profissional
+Instagram esperada. O ID da Página retornado pela API é `1385407341325017`;
+o identificador da URL pública não deve substituí-lo. A conta Instagram
+vinculada tem ID `17841433004716815` e username `temumaexplicacao`.
 
-O usuário autorizou o assistente a executar a configuração. No aplicativo Meta
-**Tem uma Explicação**, ID `1132499782513526`, as permissões principais de
-conteúdo foram confirmadas como prontas para testes no painel. O recurso
-**Business Asset User Profile Access** também foi adicionado. Permissões de
-mensagens já apareciam na lista do app, mas não foram solicitadas concessões
-de mensagens neste trabalho. Um token de usuário Facebook foi gerado e a
-consulta `me/permissions` confirmou as concessões `instagram_basic`,
-`instagram_content_publish`, `pages_show_list`, `pages_read_engagement`,
-`business_management` e `public_profile`. O token foi salvo no Secret
-criptografado `FACEBOOK_USER_ACCESS_TOKEN` do repositório, sem ser incluído no
-código ou neste documento. A validade do token não foi exibida no Explorer.
-A existência do Secret não comprova que seu conteúdo continua utilizável: a
-primeira execução real no Actions foi recusada pela Meta com HTTP `401`, código
-`190`.
+Durante a configuração do app **Tem uma Explicação**, ID `1132499782513526`,
+as consultas de permissões no Graph API Explorer confirmaram as concessões
+`instagram_basic`, `instagram_content_publish`, `pages_show_list`,
+`pages_read_engagement`, `business_management` e `public_profile` nos tokens
+então usados. O recurso **Business Asset User Profile Access** foi adicionado.
+O `--check` bem-sucedido no Actions não consulta `me/permissions`: ele validou
+a autenticação, a descoberta e a identidade Página-Instagram, sem confirmar
+as concessões do token final para publicação nem exercê-las. Nenhuma concessão
+de mensagens foi solicitada neste trabalho; o acesso habilitado na Caixa de
+Entrada da Página não comprova uma integração com a API de mensagens.
 
-Na tentativa de correção, um novo token de usuário Facebook foi gerado. As
-consultas somente de leitura `me?fields=permissions` e
-`me/accounts?fields=id,name,instagram_business_account{id,username}` tiveram
-sucesso com esse novo token, confirmando as mesmas concessões e os ativos
-esperados. As tentativas automatizadas de substituir o Secret foram bloqueadas
-pelo **Confirm access** do GitHub. A criação de um marcador temporário e o
-salvamento do perfil de sessão não transferiram essa confirmação à automação.
+O proprietário substituiu manualmente a credencial no Secret criptografado
+`FACEBOOK_USER_ACCESS_TOKEN`, copiando o campo **Token de acesso** completo.
+O teste bem-sucedido confirma que a credencial do executor era utilizável
+naquele momento. O Secret temporário `INSTAGRAM_SETUP_CHECK` foi removido e
+sua ausência foi conferida. Token, App Secret, senha e códigos de autenticação
+não foram incluídos no código nem neste documento.
 
-O proprietário concluiu a atualização diretamente no próprio navegador. O
-horário do Secret `FACEBOOK_USER_ACCESS_TOKEN` foi conferido como
-**2026-10-30 às 14:15 UTC**. A ausência do Secret temporário
-`INSTAGRAM_SETUP_CHECK` também foi confirmada: a limpeza está concluída.
+Os erros anteriores HTTP `401` / código `190` foram resolvidos após essa
+substituição. O diagnóstico seguro permitiu localizar a falha na credencial
+de usuário. A confirmação **Confirm access** do GitHub foi concluída pelo
+proprietário no próprio navegador; salvar o perfil de sessão não substituiu
+essa confirmação para a automação.
 
-A opção **Extend Access Token** do Access Token Debugger exigiu uma nova
-autenticação na Meta com senha. Essa extensão opcional não foi concluída; a
-validade do novo token continua desconhecida. Nenhuma senha ou credencial deve
-ser enviada pelo chat.
-
-O adaptador inicial `scripts/meta_poster.py` foi preparado para Instagram Login
-em `graph.instagram.com`. Ainda não foi validado com o fluxo exibido neste app.
-Ele não aceita automaticamente tokens do Facebook Login nem do Unified login.
-O [PR de configuração #1](https://github.com/gabrielslinhares12-sudo/instagram-skills/pull/1)
-foi integrado à `main` no commit
-`e96cecdec1cfaf4212319d8871d35b0e3d43936b`, após aprovação das verificações de
-CI, dos 27 testes e do scanner. As quatro Variables do GitHub foram salvas e
-conferidas. A [primeira execução real do adaptador no Actions](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41059291942)
-passou nos 27 testes offline, mas a consulta à API falhou com HTTP `401`, código
-`190`. O Secret estava presente no ambiente, com o valor oculto nos logs.
-
-Após a atualização manual, a [nova execução somente de leitura](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41070580125),
-iniciada às **14:17 UTC** no commit
-`5ed8ee8551a813b8ea172710c55448b6eb370878`, passou nos 27 testes offline, mas a
-consulta voltou a falhar com HTTP `401`, código `190`, sem subcódigo informado.
-Nenhuma publicação foi realizada. O cadastro do Secret e a limpeza do marcador
-estão concluídos; a conexão do executor ainda não foi validada com sucesso.
-O código `190` isolado não comprova erro de cópia, expiração ou tipo incorreto
-de token. A validação no Explorer não substitui o resultado do executor.
-
-O diagnóstico seguro foi incorporado à `main` no commit
-`0d74cd52cdcd98cc0b6c2d1807bc4af8863151f9`, com CI e scanner aprovados. A
-[execução de diagnóstico somente de leitura](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41072009927)
-passou nos **30 testes offline**, mas retornou novamente HTTP `401`, código
-`190`. O resultado identificou a etapa **`discovery_user_token`**: a falha
-ocorre na descoberta inicial com a credencial de usuário, antes da confirmação
-do vínculo com token de Página.
-
-Os metadados seguros informaram **18 caracteres, todos numéricos**, sem aspas
-nem espaços internos ou externos. Nenhum caractere da credencial foi exibido.
-A Meta recusou esse valor. O formato sugere conferir se um identificador foi
-copiado no lugar do token, mas não comprova o tipo do valor nem expiração:
-tokens são opacos, e tamanho ou prefixo não provam sua validade.
-
-O protótipo verifica identidade e publica somente uma imagem por vez, após
-aprovação explícita. Reels, carrosséis, Stories e agendamento ainda não estão
-implementados nele.
+A validade do token continua desconhecida. A opção **Extend Access Token**
+exigiu nova autenticação na Meta e não foi concluída. Não há extensão para
+longa duração nem renovação automática configurada; acompanhe validade e
+revogação no painel.
 
 ## Caminho selecionado: Facebook Login
 
@@ -125,21 +85,24 @@ repositório:
 Os dois filtros numéricos restringem a seleção aos ativos já confirmados pela
 API. O cliente também confere o username esperado antes de prosseguir.
 
-O cadastro do Secret e a remoção do marcador já foram conferidos. O diagnóstico
-do `--check` identificou a falha na descoberta com a credencial de usuário
-(`discovery_user_token`). Ele informa somente a etapa e metadados de formato,
-sem caracteres da credencial nem mensagens brutas da API. Essas informações
-são pistas, não testes de validade. A conexão permanece pendente até o teste
-retornar `ok: true`, `mode: check` e os ativos esperados.
+O Secret, as Variables e a conexão de leitura do executor foram validados.
+O workflow **Verificar conexão Instagram via Facebook** está na branch padrão,
+é iniciado manualmente e executa os 30 testes offline seguidos da consulta de
+identidade. Um resultado `ok: true`, `mode: check` confirma a conexão naquele
+momento; não autoriza publicações nem comprova que um envio de mídia terá
+sucesso.
 
-Para corrigir a credencial salva, o proprietário deve copiar o valor completo
-do campo **Token de acesso** e salvá-lo diretamente no mesmo navegador próprio:
+### Renovar a credencial ou investigar uma falha futura
+
+Se uma nova consulta indicar que a credencial precisa ser substituída, o
+proprietário deve copiar o valor completo do campo **Token de acesso** e
+salvá-lo diretamente no mesmo navegador próprio:
 
 1. Abrir o [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
    e selecionar **Tem uma Explicação**, App ID `1132499782513526`, versão
-   `v26.0`, e gerar um novo token de **usuário Facebook**, pois a validade do
-   anterior é desconhecida. Confirmar as permissões já concedidas e que as
-   consultas de leitura retornam os ativos esperados.
+   `v26.0`, e gerar um novo token de **usuário Facebook**. Confirmar as
+   permissões já concedidas e que as consultas de leitura retornam os ativos
+   esperados.
 2. No painel à direita, localizar o campo **Token de acesso**. Usar o ícone ao
    lado dele, com rótulo **Copy Token**, para copiar o valor completo localmente.
    O seletor deve indicar **Token do usuário**. Os IDs numéricos do aplicativo,
@@ -156,8 +119,12 @@ do campo **Token de acesso** e salvá-lo diretamente no mesmo navegador próprio
    Não enviar token, código de autenticação ou senha pelo chat.
 
 Depois de uma alteração relevante, executar **Verificar conexão Instagram via
-Facebook** e conferir os logs de forma independente, sem publicar. Não repetir
-o cadastro nem criar novos marcadores apenas porque o teste anterior falhou.
+Facebook** e conferir os logs de forma independente, sem publicar. Em caso de
+falha, o `--check` informa a etapa e metadados de formato, sem caracteres da
+credencial nem mensagens brutas da API. Tokens são opacos: tamanho, prefixo,
+aspas e espaços ajudam na investigação, mas não comprovam validade ou tipo.
+Não repetir o cadastro nem criar novos marcadores sem um diagnóstico que
+justifique a ação.
 
 Os Secrets de Actions não são transferidos ao ambiente do Codex. Para execução
 local, configurar as variáveis no ambiente de lançamento. O comando de teste
@@ -167,21 +134,16 @@ faz somente leituras e retorna IDs e username, sem expor credenciais:
 python3 scripts/facebook_poster.py --check
 ```
 
-O novo workflow **Verificar conexão Instagram via Facebook** executa testes
-offline e essa consulta, sem publicar. Ele já está integrado à branch padrão e
-disponível na interface de Actions. A configuração e a execução desse teste
-não autorizam publicações.
-
-Depois de validar a conexão, selecionar o cliente nas skills pelo ambiente de
+Para usar o cliente validado nas skills, configurá-lo no ambiente de
 lançamento, nunca por `.env`:
 
 ```bash
 export INSTAGRAM_SKILLS_CUSTOM_POSTER='python3 scripts/facebook_poster.py'
 ```
 
-O exemplo de `publish()` mais abaixo é compatível com esse cliente após a
-validação, sempre com imagem e legenda aprovadas. O comando publica
-imediatamente; não o usar para testar credenciais. O cliente do Facebook também
+O exemplo de `publish()` mais abaixo é compatível com esse cliente, sempre
+com imagem e legenda aprovadas. O comando publica imediatamente; não o usar
+para testar credenciais. O cliente do Facebook também
 suporta apenas imagem única, sem agendamento, Reels, carrosséis ou Stories.
 
 ## 1. Escolher a autenticação disponível
@@ -212,11 +174,10 @@ Com a Página vinculada:
 5. Use o cliente `scripts/facebook_poster.py` para esse fluxo. O token do
    Facebook não deve ser colocado no adaptador Instagram Login existente.
 
-A Meta ainda pode exigir outras etapas ou aplicar restrições à conta recente.
 O vínculo da Página, as concessões do token e a descoberta da conta pela API
-foram confirmados no Explorer. A primeira execução do adaptador pelo Actions
-e a nova tentativa após a atualização manual foram recusadas por autenticação;
-uma execução bem-sucedida ainda está pendente.
+foram confirmados no Explorer. A conexão de leitura do adaptador também foi
+validada no Actions, conforme o resultado registrado acima. A Meta ainda pode
+aplicar requisitos ou restrições a operações futuras.
 
 As seções numeradas 2 a 4 abaixo descrevem apenas o protótipo
 Instagram Login. Só devem ser usadas se esse fluxo for confirmado como
