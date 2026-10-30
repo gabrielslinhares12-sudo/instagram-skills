@@ -13,14 +13,17 @@ O Unified login exige selecionar um portfólio empresarial. Na tentativa
 anterior, a criação do portfólio foi recusada porque a conta do Facebook era
 recente; o aviso orientava tentar novamente em uma hora. O caminho selecionado
 é Facebook Login, usando a Página e a conta profissional que o usuário
-administra. Nenhum token de API foi configurado ou validado.
+administra. A autorização e a descoberta dos ativos foram validadas no Graph
+API Explorer, usando a versão `v26.0`.
 
 A sessão do Facebook está autenticada no perfil de navegador TinyFish usado
 para a configuração. A Página **Tem uma Explicação** está disponível em
 https://www.facebook.com/61595789771857/. O painel também informou o
-identificador de ativo `1385407341325017`. Esses valores ainda não foram
-confirmados pela Graph API; os filtros opcionais do cliente devem usar os IDs
-retornados pela descoberta e validados com o username esperado.
+identificador de ativo `1385407341325017`. A consulta `me/accounts` confirmou
+esse último valor como ID da Página na API, com o nome **Tem uma Explicação**,
+e a conta Instagram vinculada `17841433004716815`, username
+`temumaexplicacao`. O identificador presente na URL pública da Página não deve
+ser usado como substituto do ID retornado pela API.
 
 O vínculo da Página com **@temumaexplicacao** foi concluído e confirmado por
 uma mensagem de sucesso e pelo estado final **Conectado / Habilitado** no
@@ -33,14 +36,21 @@ O usuário autorizou o assistente a executar a configuração. No aplicativo Met
 conteúdo foram confirmadas como prontas para testes no painel. O recurso
 **Business Asset User Profile Access** também foi adicionado. Permissões de
 mensagens já apareciam na lista do app, mas não foram solicitadas concessões
-de mensagens neste trabalho. Nenhum token foi gerado, configurado ou validado.
+de mensagens neste trabalho. Um token de usuário Facebook foi gerado e a
+consulta `me/permissions` confirmou as concessões `instagram_basic`,
+`instagram_content_publish`, `pages_show_list`, `pages_read_engagement`,
+`business_management` e `public_profile`. O token foi salvo no Secret
+criptografado `FACEBOOK_USER_ACCESS_TOKEN` do repositório, sem ser incluído no
+código ou neste documento. A validade do token não foi exibida no Explorer.
 
 O adaptador inicial `scripts/meta_poster.py` foi preparado para Instagram Login
 em `graph.instagram.com`. Ainda não foi validado com o fluxo exibido neste app.
 Ele não aceita automaticamente tokens do Facebook Login nem do Unified login.
 As alterações de configuração são preparadas em uma branch para revisão antes
-de integrar a branch padrão. A sessão de configuração do GitHub está aguardando
-o login do proprietário para cadastrar o Secret de API sem expô-lo no chat.
+de integrar a branch padrão. O [PR de configuração #1](https://github.com/gabrielslinhares12-sudo/instagram-skills/pull/1)
+permanece em rascunho. Ainda faltam concluir as Variables do GitHub e executar
+o teste real do adaptador no Actions; a validação no Explorer não substitui
+essa execução.
 
 O protótipo verifica identidade e publica somente uma imagem por vez, após
 aprovação explícita. Reels, carrosséis, Stories e agendamento ainda não estão
@@ -54,18 +64,21 @@ autorizadas e seleciona a única Página cujo Instagram corresponde ao username
 esperado. O token da Página fica somente em memória; não é impresso nem salvo.
 O cliente reconfirma o vínculo e a identidade antes de qualquer publicação.
 
-O vínculo Página-Instagram e a preparação das permissões de conteúdo no app já
-foram concluídos. Para concluir a autorização da API:
+O vínculo Página-Instagram, as concessões do token e a descoberta dos ativos
+no Graph API Explorer foram concluídos. O Secret `FACEBOOK_USER_ACCESS_TOKEN`
+também está salvo no GitHub Actions. Para concluir a configuração do executor:
 
-1. No Graph API Explorer, https://developers.facebook.com/tools/explorer/,
-   selecionar o aplicativo e gerar um token de usuário Facebook com o acesso
-   necessário à Página e ao Instagram. Conferir permissões e ativos na tela de
-   autorização. A Meta pode exigir etapas adicionais conforme o acesso.
-2. Guardar o token como Secret `FACEBOOK_USER_ACCESS_TOKEN` em GitHub Actions.
-   Configurar `INSTAGRAM_API_VERSION` e `INSTAGRAM_USERNAME` como Variables.
-   `FACEBOOK_PAGE_ID` e `FACEBOOK_INSTAGRAM_USER_ID` são filtros numéricos
-   opcionais para restringir a seleção aos ativos esperados. Preenchê-los
-   somente com IDs confirmados pela descoberta da API.
+1. Salvar as Variables `INSTAGRAM_API_VERSION=v26.0` e
+   `INSTAGRAM_USERNAME=temumaexplicacao` no repositório. Essa etapa ainda está
+   pendente de confirmação.
+2. Integrar o workflow à branch padrão após concluir as verificações do PR e
+   executar **Verificar conexão Instagram via Facebook**. O teste real do
+   adaptador ainda está pendente.
+
+`FACEBOOK_PAGE_ID=1385407341325017` e
+`FACEBOOK_INSTAGRAM_USER_ID=17841433004716815` são filtros numéricos opcionais
+para restringir a seleção aos ativos já confirmados pela API. O cliente também
+confere o username esperado antes de prosseguir.
 
 Os Secrets de Actions não são transferidos ao ambiente do Codex. Para execução
 local, configurar as variáveis no ambiente de lançamento. O comando de teste
@@ -121,8 +134,9 @@ Com a Página vinculada:
    Facebook não deve ser colocado no adaptador Instagram Login existente.
 
 A Meta ainda pode exigir outras etapas ou aplicar restrições à conta recente.
-O vínculo da Página e a preparação das permissões estão confirmados; a
-autorização por API depende de gerar o token e validar a descoberta da conta.
+O vínculo da Página, as concessões do token e a descoberta da conta pela API
+estão confirmados. A execução do adaptador pelo Actions ainda precisa ser
+validada.
 
 As seções numeradas 2 a 4 abaixo descrevem apenas o protótipo
 Instagram Login. Só devem ser usadas se esse fluxo for confirmado como
@@ -132,7 +146,8 @@ O App ID pode ser compartilhado para configurar a integração. Token, App Secre
 e códigos de autorização não devem ser publicados no repositório nem no chat.
 Para testar a própria conta, o administrador deve possuir a função adequada no
 app e acesso aos ativos autorizados. As permissões preparadas no painel ainda
-precisam ser concedidas ao token. Acesso a outras contas pode exigir análise do
+precisam ser concedidas a cada token; as concessões deste token foram
+confirmadas em `me/permissions`. Acesso a outras contas pode exigir análise do
 app, verificação e permissões adicionais; não é uma exigência universal para
 testes dos próprios administradores. Criar o app não publica nada no Instagram.
 

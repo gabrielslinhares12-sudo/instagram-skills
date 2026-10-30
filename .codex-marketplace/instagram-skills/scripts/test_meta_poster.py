@@ -2,6 +2,7 @@
 from contextlib import redirect_stderr, redirect_stdout
 import io
 import json
+from secrets import token_urlsafe
 import unittest
 from unittest.mock import Mock, patch
 from urllib.error import URLError
@@ -10,7 +11,8 @@ from meta_poster import Config, MetaError, MetaPoster, NoRedirect, UrllibTranspo
 
 
 TARGET = "https://www.instagram.com/temumaexplicacao/"
-TOKEN = "private-token-never-print"
+# Ephemeral synthetic credentials test redaction without embedded tokens.
+TOKEN = token_urlsafe(24)
 IMAGE_URL = "https://media.example.test/private-image.jpg?signature=secret"
 CONFIG = Config(TOKEN, "12345", "v25.0", "temumaexplicacao")
 ENV = {"INSTAGRAM_ACCESS_TOKEN": TOKEN, "INSTAGRAM_USER_ID": "12345",

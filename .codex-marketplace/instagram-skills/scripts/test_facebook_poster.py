@@ -2,6 +2,7 @@
 from contextlib import redirect_stderr, redirect_stdout
 import io
 import json
+from secrets import token_urlsafe
 import unittest
 from unittest.mock import Mock, patch
 
@@ -9,9 +10,10 @@ from facebook_poster import FacebookConfig, FacebookPoster, main
 from meta_poster import MetaError
 
 
-USER_TOKEN = "private-facebook-user-token"
-PAGE_TOKEN = "private-facebook-page-token"
-IG_TOKEN = "private-instagram-login-token"
+# Ephemeral synthetic credentials test separation and redaction.
+USER_TOKEN = token_urlsafe(24)
+PAGE_TOKEN = token_urlsafe(24)
+IG_TOKEN = token_urlsafe(24)
 TARGET = "https://www.instagram.com/temumaexplicacao/"
 CONFIG = FacebookConfig(USER_TOKEN, "v25.0", "temumaexplicacao")
 ENV = {"FACEBOOK_USER_ACCESS_TOKEN": USER_TOKEN, "INSTAGRAM_API_VERSION": "v25.0",
