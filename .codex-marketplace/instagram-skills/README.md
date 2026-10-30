@@ -5,7 +5,7 @@
 # Instagram Marketing Skills for Claude Code and Codex
 
 Para configurar a API oficial da Meta para `@temumaexplicacao`, veja
-[o guia de conexão com Instagram Login](references/meta-api-setup.md).
+[o guia de configuração da API oficial](references/meta-api-setup.md).
 
 <p align="center">
   <img src="https://img.shields.io/github/v/release/sergebulaev/instagram-skills?color=111827&label=release" alt="Latest release">
@@ -220,3 +220,172 @@ If Publora returns a `postGroupId`, you're set. Cancel the post in the Publora d
 Instagram is visual-first. The Carousel Planner can generate carousel slides and quote-cards and attach them automatically when publishing. Without a key it drafts the image prompt and asks you to generate it yourself, so nothing breaks.
 
 [Pixfaro](https://pixfaro.com) is a single image API over multiple models (from `flux-schnell` at $0.004 to `gpt-5-image`). It composites your handle, brand color, or logo onto the image as a **pixel-exact overlay**, so a cheap base model still renders crisp text on a carousel slide. Pull those brand fields from your [Voice & Brand Profile](references/voice-profile.md) (section 6) and every asset stays on-brand.
+
+Setup: drop `PIXFARO_TOKEN=pf_live_...` into your `.env`. The thin client at `lib/pixfaro_client.py` and the wrappers `lib.illustrate(prompt, kind="carousel")` / `lib.refine(image_id, instruction)` return a hosted URL that flows straight into `lib.publish(..., media_urls=[url])`. `refine` edits a prior image by its id (cheaper than regenerating); results carry `cost`, `balance_after`, and a `premium` flag so the skills never quietly spend on a pricey model.
+
+## Voice rules
+
+Every skill follows these rules automatically:
+
+1. Em dashes capped at about one per 100 words. The character stopped being a tell in 2026; the density is.
+2. Capitalize names. Always. Lowercase a brand reads as careless.
+3. No AI vocabulary clusters. One 2026 marker ("leverage", "significant", "elevate", "dive in") in a paragraph is English; three in one paragraph reads as AI and gets the paragraph rewritten.
+4. Specific numbers beat adjectives. "47 minutes" beats "fast".
+5. The hook lives in the first 125 chars (everything after is behind the "more" fold).
+6. Hashtags are sizing, not volume: 3-5 sized tags, not 30. 0-3 emoji.
+
+## Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| Skills don't activate when I ask about Instagram | Make sure you installed via the Skills panel, `/plugin install`, or `codex plugin add`. Try a new conversation. |
+| "PUBLORA_API_KEY not set" | Your `.env` file is missing or in the wrong folder. It should be in the `instagram-skills/` root. |
+| "401 Invalid API key" from Publora | Your API key is wrong or revoked. Go to Publora Settings > API > Create a new key. |
+| "Invalid platform ID format" | Your `INSTAGRAM_PLATFORM_ID` is wrong. Go to Publora Channels and copy the full `instagram-...` string. |
+| My post failed with "media required" | Instagram does not allow text-only posts. Point the skill at an image or video file. |
+| My carousel was rejected | A carousel is 2-10 items, all images or all video. You cannot mix images and a video in one carousel. |
+| Personal account won't connect | Instagram's API needs a Business or Creator account. Switch in the Instagram app settings, then reconnect. |
+| `pip install` fails | Use a virtual environment: `python -m venv venv && source venv/bin/activate && pip install requests python-dotenv` |
+
+## Cross-cutting references
+
+- [`references/hook-formulas.md`](references/hook-formulas.md) - the 10 Instagram hook formulas with skeletons and goal tags
+- [`references/algorithm-heuristics.md`](references/algorithm-heuristics.md) - 2026 Instagram ranking signals, timing, and limits
+- [`references/hashtag-strategy.md`](references/hashtag-strategy.md) - the 2026 sized-hashtag model (3-5, not 30)
+- [`references/media-workflow.md`](references/media-workflow.md) - the draft, upload, schedule media flow
+- [`references/voice-rules.md`](references/voice-rules.md) - the canonical voice rules every skill inherits
+
+---
+
+<details>
+<summary><b>For developers: runtime compatibility, URL parsing, and internals</b></summary>
+
+## Runtime compatibility
+
+```
+instagram-skills/
+  skills/             SKILL.md frontmatter; native to Claude Code and Codex, others read as markdown
+  .codex-marketplace/ generated nested Codex package (run scripts/sync_codex_marketplace.py)
+  lib/                pure Python, works in any agent runtime
+  references/         pure markdown, works anywhere
+  scripts/            pure Python CLI, works anywhere
+```
+
+| Runtime | Auto-discovers skills? | Setup |
+|---|---|---|
+| **Claude Code** (CLI, Desktop, Web, IDE) | Yes | Install via plugin or clone. Skills activate on matching prompts. |
+| **Codex CLI** | Yes | `codex plugin marketplace add sergebulaev/instagram-skills` and `codex plugin add instagram-skills@instagram-skills`. |
+| **Anthropic Managed Agents** (`/v1/agents`) | Yes | Pass skill files in the agent context. |
+| **Cursor / Cline / Aider** | Manual | Read `SKILL.md` files as prompt context; import `lib/` as Python. |
+| **LangChain / AutoGen** | No | Use `lib/` as a package; feed `references/` as prompt context. |
+
+## Generic Python agent quickstart
+
+```python
+import sys; sys.path.insert(0, "path/to/instagram-skills")
+from lib import parse_instagram_url, PubloraClient, publish
+
+parsed = parse_instagram_url("https://www.instagram.com/reel/C9_aBcDeF/")
+print(parsed["url_type"], parsed["shortcode"])  # reel C9_aBcDeF
+
+# Write side (Publora) - the full Instagram media flow in one call
+client = PubloraClient()  # reads PUBLORA_API_KEY from env
+client.publish_media_post(
+    content="the 3-step setup is below, steal it\n\n#niche #mid #broad",
+    platforms=["instagram-11223344"],
+    media=["slide1.jpg", "slide2.jpg", "slide3.jpg"],  # local paths, in order
+    scheduled_time="2026-07-01T15:00:00.000Z",
+)
+
+# Or use the high-level wrapper that handles manual / Publora / diy routing
+publish("carousel", draft_text="...", target_url="https://www.instagram.com/",
+        media=["slide1.jpg", "slide2.jpg"], platforms=["instagram-11223344"])
+```
+
+## URL handling
+
+`lib/url_parser.py` parses Instagram post, Reel, and profile URLs:
+
+| URL fragment | Parsed |
+|---|---|
+| `instagram.com/p/SHORTCODE/` | `{shortcode, url_type: "post"}` |
+| `instagram.com/reel/SHORTCODE/` | `{shortcode, url_type: "reel"}` |
+| `instagram.com/USERNAME/` | `{username, url_type: "profile"}` |
+| `instagram.com/stories/USER/ID/` | `{username, shortcode, url_type: "story"}` |
+
+```bash
+python lib/url_parser.py "https://www.instagram.com/p/C8xYz12abcd/"
+```
+
+## Why the publish flow is three steps
+
+Instagram requires media, and uploading media to a pre-signed S3 URL is
+asynchronous. If you create a post with a scheduled time set up front, the
+scheduler can fire before the upload finishes, producing a failed or media-less
+post. So the flow is always: create a draft, upload the media, then set the
+schedule. `publish_media_post` enforces that order and cleans up the draft if any
+step fails.
+
+## What the read layer can and cannot do
+
+`ig-audience-insights` reads real Instagram data through two Apify actors, no
+login and no cookies: what is traveling under a hashtag
+(`apify/instagram-hashtag-scraper`) and a profile's public stats
+(`apify/instagram-profile-scraper`). Niche reads ask for **reels**, because the
+actor's own default returns the most recent feed posts and those come back with
+like counts of 0: measured across #marketing, #fitness and #coffee, 14 of 15
+rows had zero engagement, while reels on the same hashtags returned 758, 2004,
+3462.
+
+**Two ways in.** With a shell, `APIFY_TOKEN=apify_api_...` in your `.env`. On
+claude.ai, where a skill has no environment to hold a token, add Apify's MCP
+server as a custom connector:
+
+```
+https://mcp.apify.com?actors=apify/instagram-hashtag-scraper,apify/instagram-profile-scraper
+```
+
+Sign in with OAuth on first use, no key on disk. **Keep the `?actors=` filter**:
+the bare `https://mcp.apify.com` also hands the agent `search-actors` and
+`call-actor`, which run anything in the Apify Store at whatever that actor
+charges. Details and the field mapping:
+[`references/mcp-read-layer.md`](references/mcp-read-layer.md).
+
+**What it cannot do**, on either path, because Instagram gates it: there is no
+post-by-URL read, so `ig-hook-extractor` still asks you to paste a specific
+caption; the list of who liked a post is not available; and commenter identities
+on someone else's post are capped and cookie-walled. A skill offering engager
+segmentation here would be inventing it.
+
+</details>
+
+## References
+
+- [Publora API docs](https://docs.publora.com/?utm_source=github&utm_medium=readme&utm_campaign=instagram-skills) - endpoint reference for the publishing layer
+- [Instagram Graph API content publishing](https://developers.facebook.com/docs/instagram-api/guides/content-publishing) - the platform API the publish layer builds on
+
+## Who builds this
+
+These skills come out of [Creative Content Crafts](https://cccrafts.ai), an engineering company. We build the machinery underneath a company's public voice: ICP parsing, engagement systems, content guardrails, and posting infrastructure. We do not sell the words themselves.
+
+We call that layer **content engineering**. Writing collapsed to the price of a chat subscription. What stayed valuable is everything below it: pulling every post your market wrote this week, keeping a live list of the people who matter, engaging on it daily with judgment in the loop, and catching the risky drafts before the platform does.
+
+This repo is the thin top layer of that stack, open-sourced. The engine underneath is what we build for clients.
+
+## License
+
+MIT. Powered by [Publora](https://publora.com/?utm_source=github&utm_medium=readme&utm_campaign=instagram-skills).
+
+## Related open-source skill bundles
+
+Part of a family of AI social-media marketing skill bundles for Claude Code and Codex:
+
+- [linkedin-skills](https://github.com/sergebulaev/linkedin-skills) - LinkedIn
+- [x-skills](https://github.com/sergebulaev/x-skills) - X (Twitter)
+- **instagram-skills - Instagram (this repo)**
+- [youtube-skills](https://github.com/sergebulaev/youtube-skills) - YouTube
+- [threads-skills](https://github.com/sergebulaev/threads-skills) - Threads
+- [tiktok-skills](https://github.com/sergebulaev/tiktok-skills) - TikTok
+- [facebook-skills](https://github.com/sergebulaev/facebook-skills) - Facebook Pages
+
+Also: [Anthropic Skills repo](https://github.com/anthropics/skills), the `awesome-claude-skills` directory.
