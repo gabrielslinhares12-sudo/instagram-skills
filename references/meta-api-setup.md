@@ -84,6 +84,20 @@ estão concluídos; a conexão do executor ainda não foi validada com sucesso.
 O código `190` isolado não comprova erro de cópia, expiração ou tipo incorreto
 de token. A validação no Explorer não substitui o resultado do executor.
 
+O diagnóstico seguro foi incorporado à `main` no commit
+`0d74cd52cdcd98cc0b6c2d1807bc4af8863151f9`, com CI e scanner aprovados. A
+[execução de diagnóstico somente de leitura](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41072009927)
+passou nos **30 testes offline**, mas retornou novamente HTTP `401`, código
+`190`. O resultado identificou a etapa **`discovery_user_token`**: a falha
+ocorre na descoberta inicial com a credencial de usuário, antes da confirmação
+do vínculo com token de Página.
+
+Os metadados seguros informaram **18 caracteres, todos numéricos**, sem aspas
+nem espaços internos ou externos. Nenhum caractere da credencial foi exibido.
+A Meta recusou esse valor. O formato sugere conferir se um identificador foi
+copiado no lugar do token, mas não comprova o tipo do valor nem expiração:
+tokens são opacos, e tamanho ou prefixo não provam sua validade.
+
 O protótipo verifica identidade e publica somente uma imagem por vez, após
 aprovação explícita. Reels, carrosséis, Stories e agendamento ainda não estão
 implementados nele.
@@ -111,30 +125,34 @@ repositório:
 Os dois filtros numéricos restringem a seleção aos ativos já confirmados pela
 API. O cliente também confere o username esperado antes de prosseguir.
 
-O cadastro da credencial e a remoção do marcador já foram conferidos. A próxima
-validação está sendo preparada para identificar com segurança a etapa da falha
-do `--check`: configuração, descoberta com token de usuário ou confirmação do
-vínculo com token de Página. Os diagnósticos não devem exibir caracteres de
-credenciais nem mensagens brutas da API. Informações de formato, quantidade
-de caracteres, aspas e espaços são apenas pistas; não comprovam a validade de
-um token. A conexão permanece pendente até o teste retornar `ok: true`,
-`mode: check` e os ativos esperados.
+O cadastro do Secret e a remoção do marcador já foram conferidos. O diagnóstico
+do `--check` identificou a falha na descoberta com a credencial de usuário
+(`discovery_user_token`). Ele informa somente a etapa e metadados de formato,
+sem caracteres da credencial nem mensagens brutas da API. Essas informações
+são pistas, não testes de validade. A conexão permanece pendente até o teste
+retornar `ok: true`, `mode: check` e os ativos esperados.
 
-Se for necessário substituir a credencial novamente durante o diagnóstico,
-o procedimento é feito pelo proprietário no mesmo navegador próprio:
+Para corrigir a credencial salva, o proprietário deve copiar o valor completo
+do campo **Token de acesso** e salvá-lo diretamente no mesmo navegador próprio:
 
 1. Abrir o [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
    e selecionar **Tem uma Explicação**, App ID `1132499782513526`, versão
    `v26.0`, e gerar um novo token de **usuário Facebook**, pois a validade do
    anterior é desconhecida. Confirmar as permissões já concedidas e que as
    consultas de leitura retornam os ativos esperados.
-2. Copiar o token válido completo localmente e abrir a
+2. No painel à direita, localizar o campo **Token de acesso**. Usar o ícone ao
+   lado dele, com rótulo **Copy Token**, para copiar o valor completo localmente.
+   O seletor deve indicar **Token do usuário**. Os IDs numéricos do aplicativo,
+   da Página e da conta Instagram são identificadores, não o conteúdo desse
+   campo. Não copiar esses IDs para o Secret de autenticação.
+3. Abrir a
    [edição do Secret existente no repositório](https://github.com/gabrielslinhares12-sudo/instagram-skills/settings/secrets/actions/FACEBOOK_USER_ACCESS_TOKEN).
-   Colar o token no campo do Secret `FACEBOOK_USER_ACCESS_TOKEN`.
-3. Clicar em **Update secret**, concluir a autenticação de **Confirm access**
+   Colar o token completo no campo do Secret `FACEBOOK_USER_ACCESS_TOKEN`, sem
+   acrescentar aspas ou o prefixo `Bearer`.
+4. Clicar em **Update secret**, concluir a autenticação de **Confirm access**
    nessa mesma sessão e aguardar o retorno à lista de Secrets. Conferir que o
    horário de atualização desse Secret passou a ser o atual.
-4. Informar ao assistente apenas que o token foi salvo.
+5. Informar ao assistente apenas que o token foi salvo.
    Não enviar token, código de autenticação ou senha pelo chat.
 
 Depois de uma alteração relevante, executar **Verificar conexão Instagram via
