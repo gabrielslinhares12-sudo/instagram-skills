@@ -42,15 +42,38 @@ consulta `me/permissions` confirmou as concessões `instagram_basic`,
 `business_management` e `public_profile`. O token foi salvo no Secret
 criptografado `FACEBOOK_USER_ACCESS_TOKEN` do repositório, sem ser incluído no
 código ou neste documento. A validade do token não foi exibida no Explorer.
+A existência do Secret não comprova que seu conteúdo continua utilizável: a
+primeira execução real no Actions foi recusada pela Meta com HTTP `401`, código
+`190`.
+
+Na tentativa de correção, um novo token de usuário Facebook foi gerado. As
+consultas somente de leitura `me?fields=permissions` e
+`me/accounts?fields=id,name,instagram_business_account{id,username}` tiveram
+sucesso com esse novo token, confirmando as mesmas concessões e os ativos
+esperados. A substituição do Secret existente ainda não foi salva: o GitHub
+exigiu **Confirm access**, uma reautenticação do proprietário por passkey ou
+código de segurança. O proprietário precisa concluir essa confirmação no
+navegador e salvar o perfil de sessão para que a configuração prossiga.
+
+A opção **Extend Access Token** do Access Token Debugger exigiu uma nova
+autenticação na Meta com senha. Essa extensão opcional não foi concluída; a
+validade do novo token continua desconhecida. Nenhuma senha ou credencial deve
+ser enviada pelo chat.
 
 O adaptador inicial `scripts/meta_poster.py` foi preparado para Instagram Login
 em `graph.instagram.com`. Ainda não foi validado com o fluxo exibido neste app.
 Ele não aceita automaticamente tokens do Facebook Login nem do Unified login.
-As alterações de configuração são preparadas em uma branch para revisão antes
-de integrar a branch padrão. O [PR de configuração #1](https://github.com/gabrielslinhares12-sudo/instagram-skills/pull/1)
-permanece em rascunho. Ainda faltam concluir as Variables do GitHub e executar
-o teste real do adaptador no Actions; a validação no Explorer não substitui
-essa execução.
+O [PR de configuração #1](https://github.com/gabrielslinhares12-sudo/instagram-skills/pull/1)
+foi integrado à `main` no commit
+`e96cecdec1cfaf4212319d8871d35b0e3d43936b`, após aprovação das verificações de
+CI, dos 27 testes e do scanner. As quatro Variables do GitHub foram salvas e
+conferidas. A [primeira execução real do adaptador no Actions](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41059291942)
+passou nos 27 testes offline, mas a consulta à API falhou com HTTP `401`, código
+`190`. O Secret estava presente no ambiente, com o valor oculto nos logs.
+Ainda não houve uma execução bem-sucedida do teste real; a validação anterior
+no Explorer não substitui essa execução. Após gerar o novo token, o workflow
+não foi executado novamente porque a atualização do Secret ficou pendente da
+confirmação de segurança do GitHub.
 
 O protótipo verifica identidade e publica somente uma imagem por vez, após
 aprovação explícita. Reels, carrosséis, Stories e agendamento ainda não estão
@@ -66,19 +89,24 @@ O cliente reconfirma o vínculo e a identidade antes de qualquer publicação.
 
 O vínculo Página-Instagram, as concessões do token e a descoberta dos ativos
 no Graph API Explorer foram concluídos. O Secret `FACEBOOK_USER_ACCESS_TOKEN`
-também está salvo no GitHub Actions. Para concluir a configuração do executor:
+também está salvo no GitHub Actions. As seguintes Variables estão salvas no
+repositório:
 
-1. Salvar as Variables `INSTAGRAM_API_VERSION=v26.0` e
-   `INSTAGRAM_USERNAME=temumaexplicacao` no repositório. Essa etapa ainda está
-   pendente de confirmação.
-2. Integrar o workflow à branch padrão após concluir as verificações do PR e
-   executar **Verificar conexão Instagram via Facebook**. O teste real do
-   adaptador ainda está pendente.
+| Nome | Valor |
+|---|---|
+| `INSTAGRAM_API_VERSION` | `v26.0` |
+| `INSTAGRAM_USERNAME` | `temumaexplicacao` |
+| `FACEBOOK_PAGE_ID` | `1385407341325017` |
+| `FACEBOOK_INSTAGRAM_USER_ID` | `17841433004716815` |
 
-`FACEBOOK_PAGE_ID=1385407341325017` e
-`FACEBOOK_INSTAGRAM_USER_ID=17841433004716815` são filtros numéricos opcionais
-para restringir a seleção aos ativos já confirmados pela API. O cliente também
-confere o username esperado antes de prosseguir.
+Os dois filtros numéricos restringem a seleção aos ativos já confirmados pela
+API. O cliente também confere o username esperado antes de prosseguir.
+
+Para concluir a validação do executor, o proprietário precisa concluir o
+**Confirm access** do GitHub. Depois, é necessário salvar a credencial validada
+no Secret existente e executar novamente **Verificar conexão Instagram via
+Facebook**. O teste deve retornar `ok: true`, `mode: check` e os ativos esperados,
+sem publicar. Até esse resultado, a conexão do executor permanece pendente.
 
 Os Secrets de Actions não são transferidos ao ambiente do Codex. Para execução
 local, configurar as variáveis no ambiente de lançamento. O comando de teste
@@ -89,9 +117,9 @@ python3 scripts/facebook_poster.py --check
 ```
 
 O novo workflow **Verificar conexão Instagram via Facebook** executa testes
-offline e essa consulta, sem publicar. Ele precisa ser integrado à branch padrão
-para aparecer normalmente na interface de Actions. Um PR de configuração por
-si só não ativa publicações nem configura credenciais.
+offline e essa consulta, sem publicar. Ele já está integrado à branch padrão e
+disponível na interface de Actions. A configuração e a execução desse teste
+não autorizam publicações.
 
 Depois de validar a conexão, selecionar o cliente nas skills pelo ambiente de
 lançamento, nunca por `.env`:
@@ -135,8 +163,8 @@ Com a Página vinculada:
 
 A Meta ainda pode exigir outras etapas ou aplicar restrições à conta recente.
 O vínculo da Página, as concessões do token e a descoberta da conta pela API
-estão confirmados. A execução do adaptador pelo Actions ainda precisa ser
-validada.
+foram confirmados no Explorer. A primeira execução do adaptador pelo Actions
+foi recusada por autenticação; uma execução bem-sucedida ainda está pendente.
 
 As seções numeradas 2 a 4 abaixo descrevem apenas o protótipo
 Instagram Login. Só devem ser usadas se esse fluxo for confirmado como
