@@ -15,8 +15,9 @@ otherwise.
   service is the default; preserve the upstream optional integrations without
   enabling them unless the owner requests them.
 - Configuring the account or opening a setup PR does not authorize a post.
-  Show the final image, caption and destination, obtain explicit approval, then
-  pass `approved=True`. Connection checks use `--check` and perform reads only.
+  Show the final media (image, carousel or video), caption and destination,
+  obtain explicit approval, then pass `approved=True`. Connection checks use
+  `--check` and perform reads only.
 - Account credentials belong only in the execution environment or GitHub
   Secrets. Never commit them, copy them into documentation, or print them.
   `INSTAGRAM_SKILLS_CUSTOM_POSTER` must come from the launch environment, never

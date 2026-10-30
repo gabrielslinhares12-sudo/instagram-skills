@@ -24,4 +24,4 @@ jobs:
           FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
           INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
           INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
-        run: python3 scripts/facebook_poster.py --check
+        run: python3 scripts/instagram_preflight.py

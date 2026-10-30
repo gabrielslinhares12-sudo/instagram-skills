@@ -23,9 +23,12 @@ passaram e, em **2026-10-30 às 18:47:53 UTC**, o comando `--check` retornou:
 }
 ```
 
-Esse teste fez somente consultas GET. Nenhuma publicação foi realizada;
-a publicação ainda não foi testada nem aprovada. Cada publicação exige
-aprovação explícita da imagem final, legenda e destino.
+Esse teste fez somente consultas GET. Ele não comprova uma publicação nem
+valida a agenda. Posteriormente, o proprietário solicitou a produção e o
+agendamento do lote de sete pautas discutidas para este perfil. Essa autorização
+vale para o lote identificado no manifesto; não é aprovação geral de futuros
+conteúdos ou de outros destinos. Fora do escopo já autorizado, cada publicação
+exige aprovação explícita das mídias finais, legenda e destino.
 
 A Página **Tem uma Explicação**, disponível em
 https://www.facebook.com/61595789771857/, está vinculada à conta profissional
@@ -99,7 +102,7 @@ API. O cliente também confere o username esperado antes de prosseguir.
 O Secret e as Variables estão cadastrados; a leitura foi restabelecida e
 comprovada às 18:47 UTC após a substituição da credencial expirada.
 O workflow **Verificar conexão Instagram via Facebook** está na branch padrão,
-é iniciado manualmente e executa os 30 testes offline seguidos da consulta de
+é iniciado manualmente e executa testes offline seguidos da consulta de
 identidade. Um resultado `ok: true`, `mode: check` confirma a conexão naquele
 momento; não autoriza publicações nem comprova que um envio de mídia terá
 sucesso.
@@ -161,10 +164,61 @@ ambiente de lançamento, nunca por `.env`:
 export INSTAGRAM_SKILLS_CUSTOM_POSTER='python3 scripts/facebook_poster.py'
 ```
 
-O exemplo de `publish()` mais abaixo é compatível com esse cliente, sempre
-com imagem e legenda aprovadas. O comando publica imediatamente; não o usar
-para testar credenciais. O cliente do Facebook também
-suporta apenas imagem única, sem agendamento, Reels, carrosséis ou Stories.
+O exemplo de `publish()` mais abaixo é compatível com esse cliente para uma
+imagem e legenda aprovadas. A chamada direta publica imediatamente; não a
+usar para testar credenciais. O cliente Facebook agora suporta imagem JPEG
+única, carrossel de 2 a 10 imagens JPEG ou Reel em MP4. Stories não são
+suportados. A fila externa descrita a seguir é responsável pelos horários.
+
+### Fila diária e agendamento externo
+
+Foi implementado o workflow `.github/workflows/instagram-scheduler.yml`, com
+execução agendada a cada 15 minutos (`*/15 * * * *`) na branch `main` e opção
+manual de conferência sem publicação. O código da fila fica em
+`scripts/instagram_queue.py`, o manifesto em `content/schedule.json` e o
+registro durável das tentativas em `content/publication-state.json`.
+
+Esta seção descreve a implementação, sem afirmar que a agenda já foi ativada
+ou que uma publicação real foi validada. A preparação do lote considera um
+post por dia de **31 de outubro a 6 de novembro de 2026, às 19h de Brasília
+(22h UTC)**, salvo preferência diferente do proprietário. As datas, mídias,
+legendas e o destino efetivamente usados devem ser conferidos no manifesto.
+
+Antes da ativação, executar o modo de conferência para o lote de sete peças:
+
+```bash
+python3 scripts/instagram_queue.py --dry-run
+```
+
+O modo `--dry-run` não faz chamadas à Meta nem publica. A execução devida
+depende da Repository Variable `INSTAGRAM_SCHEDULER_ENABLED` ter o valor
+literal `true`; cadastrar a fila ou instalar o workflow não liga esse controle.
+A ativação só deve ser registrada como concluída após conferir a variável e
+um resultado real do workflow. O relógio do GitHub Actions é de melhor esforço:
+a execução pode atrasar e não garante publicação exatamente às 19h.
+
+O executor publica apenas itens explicitamente autorizados para
+`@temumaexplicacao`. Ele escolhe uma peça devida por execução e aceita
+atrasos de até **12 horas**. Itens fora dessa janela precisam de revisão, sem
+publicação tardia automática. Os containers da Meta são criados apenas quando
+a peça está devida, em vez de criar agora containers para toda a semana; esses
+containers têm validade de 24 horas.
+
+Antes de chamar a Meta, o executor grava e envia ao repositório um registro
+`claimed`, vinculado ao conteúdo final e ao horário. Se essa gravação durável
+falhar, a publicação não começa. Sucesso confirmado gera `published`; uma
+resposta ambígua ou falha de publicação gera `needs_review`, sem repetição
+automática. Um item já reivindicado também não é repetido automaticamente.
+Conferir o perfil, o container e o registro antes de qualquer recuperação
+manual. Essa proteção reduz a chance de duplicação, mas não é garantia de
+entrega nem confirmação de que a Meta publicou.
+
+As mídias finais autorizadas são disponibilizadas por URLs públicas diretas
+de arquivos do GitHub, fixadas no commit que contém os arquivos. A Meta precisa
+conseguir baixá-las sem login; um link de visualização do Drive não serve como
+arquivo de mídia. Credenciais continuam nos Secrets criptografados do Actions,
+sem token nas URLs ou no manifesto. O Drive mantém a cópia privada de trabalho
+e backup; sua conexão não é transferida automaticamente ao workflow.
 
 ## 1. Escolher a autenticação disponível
 
@@ -300,12 +354,17 @@ Mantenha arquivos de trabalho privados. Se um ativo aprovado precisar de uma
 URL pública para a Meta, disponibilize somente esse ativo pelo período
 necessário; não torne a pasta inteira pública.
 
-## Limites desta primeira etapa
+## Limites atuais
 
 - Sem OAuth hospedado: a autorização inicial é feita no painel da Meta.
 - Sem renovação automática de token: acompanhe validade e revogação no painel.
-- Sem publicação agendada: a API não substitui uma fila e um executor.
-- Sem upload de arquivos locais, hospedagem de mídia ou sincronização do Drive.
+- O agendamento depende da fila externa e da ativação do workflow; o horário
+  está sujeito a atrasos do GitHub Actions.
+- Imagem JPEG única, carrossel de 2 a 10 JPEGs e Reel MP4 no cliente Facebook;
+  sem Stories. O protótipo Instagram Login tem escopo próprio e não substitui
+  o cliente selecionado.
+- Sem upload local direto para a Meta nem sincronização autônoma do Drive;
+  as mídias precisam de URLs públicas diretas.
 - Sem coleta de métricas, comentários ou mensagens nesta primeira etapa.
 - Nenhuma publicação é autorizada apenas por configurar a conexão.
 
@@ -313,4 +372,5 @@ Testes locais, sem credenciais nem rede:
 
 ```bash
 python3 -m unittest discover -s scripts -p 'test_*poster.py' -v
+python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -v
 ```

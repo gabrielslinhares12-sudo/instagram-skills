@@ -53,8 +53,11 @@ class MetaPosterTests(unittest.TestCase):
 
     def test_invalid_payloads_prevent_all_requests(self):
         cases = [
-            ("reel", TARGET, payload(kind="reel")),
             ("carousel", TARGET, payload(kind="carousel")),
+            ("carousel", TARGET, payload(kind="carousel", media_urls=[IMAGE_URL] * 11)),
+            ("carousel", TARGET, payload(kind="carousel", media_urls=[IMAGE_URL, "https://media.example.test/video.mp4"])),
+            ("reel", TARGET, payload(kind="reel", media_urls=[IMAGE_URL, IMAGE_URL])),
+            ("reel", TARGET, payload(kind="reel")),
             ("story", TARGET, payload(kind="story")),
             ("post", TARGET, payload(scheduled_time="2099-01-01T00:00:00Z")),
             ("post", TARGET, payload(media=["/tmp/image.jpg"])),
@@ -64,6 +67,16 @@ class MetaPosterTests(unittest.TestCase):
             ("post", TARGET, payload(media_urls=["http://example.test/image.jpg"])),
             ("post", TARGET, payload(media_urls=["https://user:password@example.test/image.jpg"])),
             ("post", TARGET, payload(media_urls=["https://example.test:bad/image.jpg"])),
+            ("post", TARGET, payload(media_urls=["https://localhost/image.jpg"])),
+            ("post", TARGET, payload(media_urls=["https://127.0.0.1/image.jpg"])),
+            ("post", TARGET, payload(media_urls=["https://[::1]/image.jpg"])),
+            ("post", TARGET, payload(media_urls=["https://192.168.1.5/image.jpg"])),
+            ("post", TARGET, payload(media_urls=["https://example.test/image.jpg\n"])),
+            ("post", TARGET, payload(media_urls=["https://example.test/image.png"])),
+            ("post", TARGET, payload(is_ai_generated="true")),
+            ("post", TARGET, payload(cover_url=IMAGE_URL)),
+            ("reel", TARGET, payload(kind="reel", cover_url="file:///tmp/cover.jpg")),
+            ("reel", TARGET, payload(kind="reel", media_urls=["https://media.example.test/video.mp4"], cover_url="https://media.example.test/cover.png")),
             ("post", TARGET, payload(kind="reel")),
             ("post", TARGET, payload(target_url="https://www.instagram.com/different/")),
             ("post", "https://www.instagram.com/p/abc/", payload(target_url="https://www.instagram.com/p/abc/")),
@@ -129,6 +142,95 @@ class MetaPosterTests(unittest.TestCase):
             self.assertNotIn("access_token", call.kwargs["params"] or {})
             self.assertNotIn("access_token", call.kwargs["data"] or {})
         self.assertEqual(calls[-1].kwargs["data"], {"creation_id": "444"})
+
+    def test_carousel_waits_for_every_child_then_publishes_parent_once(self):
+        images = [IMAGE_URL, "https://media.example.test/second.jpg"]
+        self.session.request.side_effect = [
+            identity(), response({"id": "101"}), response({"status_code": "FINISHED"}),
+            response({"id": "102"}), response({"status_code": "FINISHED"}),
+            response({"id": "200"}), response({"status_code": "FINISHED"}),
+            response({"id": "300"}),
+        ]
+        result = self.poster.publish("carousel", TARGET,
+                                     payload(kind="carousel", media_urls=images,
+                                             is_ai_generated=True))
+        self.assertEqual(result["creation_id"], "200")
+        self.assertEqual(result["media_id"], "300")
+        calls = self.session.request.call_args_list
+        self.assertEqual([call.args[0] for call in calls],
+                         ["GET", "POST", "GET", "POST", "GET", "POST", "GET", "POST"])
+        self.assertEqual(calls[1].kwargs["data"], {"image_url": images[0], "is_carousel_item": "true"})
+        self.assertEqual(calls[3].kwargs["data"], {"image_url": images[1], "is_carousel_item": "true"})
+        self.assertEqual(calls[5].kwargs["data"], {
+            "media_type": "CAROUSEL", "children": "101,102", "caption": "Legenda aprovada.",
+            "is_ai_generated": "true",
+        })
+        self.assertEqual(calls[7].kwargs["data"], {"creation_id": "200"})
+        self.assertTrue(calls[6].args[1].endswith("/200"))
+        self.assertEqual(sum(call.args[1].endswith("/media_publish") for call in calls), 1)
+        for call in calls:
+            self.assertIs(call.kwargs["allow_redirects"], False)
+            self.assertEqual(call.kwargs["headers"], {"Authorization": f"Bearer {TOKEN}"})
+
+    def test_failed_carousel_child_stops_before_parent_and_does_not_retry(self):
+        self.session.request.side_effect = [
+            identity(), response({"id": "101"}), response({"status_code": "FINISHED"}),
+            response({"id": "102"}), response({"status_code": "ERROR"}),
+        ]
+        with self.assertRaises(MetaError) as caught:
+            self.poster.publish("carousel", TARGET,
+                                payload(kind="carousel", media_urls=[IMAGE_URL] * 2))
+        self.assertEqual(caught.exception.creation_id, "102")
+        self.assertIn("Do not retry automatically", caught.exception.public()["retry_notice"])
+        calls = self.session.request.call_args_list
+        self.assertEqual(len(calls), 5)
+        self.assertFalse(any(call.args[1].endswith("/media_publish") for call in calls))
+        self.assertFalse(any((call.kwargs["data"] or {}).get("media_type") == "CAROUSEL"
+                             for call in calls))
+
+    def test_reel_uses_video_container_and_waits_for_finished(self):
+        video = "https://media.example.test/reel.mp4"
+        self.session.request.side_effect = [identity(), response({"id": "400"}),
+                                            response({"status_code": "IN_PROGRESS"}),
+                                            response({"status_code": "FINISHED"}),
+                                            response({"id": "500"})]
+        with patch("meta_poster.time.sleep") as sleep:
+            result = self.poster.publish("reel", TARGET,
+                                         payload(kind="reel", media_urls=[video],
+                                                 cover_url=IMAGE_URL, is_ai_generated=True))
+        self.assertEqual(result["media_id"], "500")
+        calls = self.session.request.call_args_list
+        self.assertEqual(calls[1].kwargs["data"], {
+            "media_type": "REELS", "video_url": video, "share_to_feed": "true",
+            "caption": "Legenda aprovada.", "cover_url": IMAGE_URL, "is_ai_generated": "true",
+        })
+        self.assertEqual([call.args[0] for call in calls], ["GET", "POST", "GET", "GET", "POST"])
+        self.assertEqual(calls[-1].kwargs["data"], {"creation_id": "400"})
+        sleep.assert_called_once()
+        self.assertAlmostEqual(sleep.call_args.args[0], 60.0)
+
+    def test_reel_processing_timeout_does_not_publish(self):
+        self.session.request.side_effect = [identity(), response({"id": "400"})]
+        with patch("meta_poster.time.monotonic", side_effect=[0, 301]):
+            with self.assertRaises(MetaError) as caught:
+                self.poster.publish("reel", TARGET, payload(kind="reel", media_urls=["https://media.example.test/reel.mp4"]))
+        self.assertEqual(caught.exception.creation_id, "400")
+        self.assertIn("300 seconds", str(caught.exception))
+        self.assertEqual(self.session.request.call_count, 2)
+
+    def test_ambiguous_reel_publication_error_is_sanitized_and_never_retried(self):
+        self.session.request.side_effect = [identity(), response({"id": "400"}),
+                                            response({"status_code": "FINISHED"}),
+                                            URLError(f"{TOKEN} {IMAGE_URL}")]
+        with self.assertRaises(MetaError) as caught:
+            self.poster.publish("reel", TARGET, payload(kind="reel", media_urls=["https://media.example.test/reel.mp4"]))
+        public = json.dumps(caught.exception.public())
+        self.assertNotIn(TOKEN, public)
+        self.assertNotIn(IMAGE_URL, public)
+        self.assertIn("Do not retry automatically", public)
+        calls = self.session.request.call_args_list
+        self.assertEqual(len(calls), 4)
+        self.assertEqual(sum(call.args[1].endswith("/media_publish") for call in calls), 1)
 
     def test_redirect_is_refused_without_disclosing_body(self):
         self.session.request.return_value = response({"error": {"message": TOKEN}}, 302)

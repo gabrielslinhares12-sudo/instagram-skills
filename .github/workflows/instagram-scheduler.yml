@@ -1,0 +1,68 @@
+name: Publicar fila diária do Instagram
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Conferir a fila sem publicar'
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: instagram-temumaexplicacao-publication
+  cancel-in-progress: false
+
+jobs:
+  queue:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Testar publicação e fila sem rede
+        run: |
+          python3 -m unittest discover -s scripts -p 'test_*poster.py' -v
+          python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -v
+          python3 -m unittest discover -s scripts -p 'test_instagram_preflight.py' -v
+      - name: Configurar identidade da automação para o registro
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Conferir ou executar somente a publicação devida
+        env:
+          QUEUE_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'true' || 'false' }}
+          INSTAGRAM_SCHEDULER_ENABLED: ${{ vars.INSTAGRAM_SCHEDULER_ENABLED }}
+          FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
+          FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
+          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
+          INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+        run: |
+          if [ "$QUEUE_DRY_RUN" = 'true' ]; then
+            python3 scripts/instagram_queue.py --dry-run
+          else
+            python3 scripts/instagram_queue.py --execute
+          fi
+      - name: Preservar registro local para recuperação
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: instagram-ledger-${{ github.run_id }}-${{ github.run_attempt }}
+          path: content/publication-state.json
+          if-no-files-found: ignore
+          retention-days: 14

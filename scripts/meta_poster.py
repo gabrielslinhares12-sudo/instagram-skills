@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish one approved image through Instagram Login's official Meta API.
+"""Publish approved images, image carousels or Reels through Meta's official API.
 
 The custom-poster contract is: KIND TARGET_URL argv and a JSON object on stdin.
 Run --check to validate credentials and account identity without creating media.
@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from http.client import HTTPException
+import ipaddress
 import json
 import os
 import re
@@ -27,6 +28,9 @@ NUMERIC_ID = re.compile(r"[0-9]{1,40}\Z")
 API_VERSION = re.compile(r"v[0-9]+\.[0-9]+\Z")
 POLL_SECONDS = 120.0
 POLL_INTERVAL = 2.0
+REEL_POLL_SECONDS = 300.0
+REEL_POLL_INTERVAL = 60.0
+MAX_CAROUSEL_ITEMS = 10
 
 
 class MetaError(Exception):
@@ -99,43 +103,85 @@ def profile_username(target_url: str) -> str:
     return username.lower()
 
 
+def _validate_media_url(value: Any) -> str:
+    """Check a hosted URL without fetching it or revealing it in errors."""
+    if not isinstance(value, str) or not value or len(value) > 8192:
+        raise MetaError("Media must be hosted at a valid HTTPS URL.")
+    try:
+        parsed = urlsplit(value)
+        hostname = parsed.hostname or ""
+        valid_url = (parsed.scheme == "https" and bool(hostname)
+                     and parsed.username is None and parsed.password is None
+                     and not parsed.fragment
+                     and not any(character.isspace() or ord(character) < 32 for character in value)
+                     and hostname.lower() != "localhost"
+                     and not hostname.lower().endswith((".localhost", ".local")))
+        parsed.port  # Reject malformed port syntax without printing the URL.
+        try:
+            address = ipaddress.ip_address(hostname)
+        except ValueError:
+            pass
+        else:
+            valid_url = valid_url and address.is_global
+    except ValueError:
+        valid_url = False
+    if not valid_url:
+        raise MetaError("Media URLs must use public HTTPS without credentials or fragments.")
+    return value
+
+
 def validate_payload(kind: str, target_url: str, payload: Any,
-                     config: Config) -> tuple[str, str]:
+                     config: Config) -> tuple[str, list[str]]:
     """Reject unsupported requests before even checking the remote account."""
     if not isinstance(payload, dict):
         raise MetaError("The stdin payload must be a JSON object.")
     if payload.get("kind") != kind or payload.get("target_url") != target_url:
         raise MetaError("The argv kind and target must match the stdin payload.")
-    if kind != "post":
-        raise MetaError("Only a single-image post is supported; no Reels, carousels or Stories.")
+    if kind not in {"post", "carousel", "reel"}:
+        raise MetaError("Only image posts, image carousels and Reels are supported; no Stories.")
     if payload.get("scheduled_time") is not None:
         raise MetaError("Scheduling is unsupported. Do not send scheduled_time.")
     if payload.get("media"):
-        raise MetaError("Local media is unsupported. Supply one hosted HTTPS media_urls item.")
+        raise MetaError("Local media is unsupported. Supply hosted HTTPS media_urls items.")
     if profile_username(target_url) != config.username:
         raise MetaError("The target profile does not match INSTAGRAM_USERNAME.")
     if payload.get("approved") is not True:
-        raise MetaError("Explicit approved=true is required after reviewing the final image and caption.")
+        raise MetaError("Explicit approved=true is required for the final media and caption.")
     caption = payload.get("draft_text")
     if not isinstance(caption, str) or len(caption) > 2200:
         raise MetaError("draft_text must be a string of at most 2200 characters.")
     urls = payload.get("media_urls")
-    if not isinstance(urls, list) or len(urls) != 1 or not isinstance(urls[0], str):
-        raise MetaError("Supply exactly one hosted HTTPS image in media_urls.")
-    try:
-        parsed = urlsplit(urls[0])
-        valid_url = (parsed.scheme == "https" and bool(parsed.hostname)
-                     and parsed.username is None and parsed.password is None
-                     and not parsed.fragment)
-        parsed.port  # Reject malformed port syntax without printing the URL.
-    except ValueError:
-        valid_url = False
-    if not valid_url:
-        raise MetaError("The image URL must use HTTPS without credentials or a fragment.")
-    allowed = {"kind", "target_url", "draft_text", "approved", "media_urls", "media", "scheduled_time"}
+    if not isinstance(urls, list):
+        raise MetaError("Supply hosted HTTPS media in media_urls.")
+    if kind == "carousel":
+        if not 2 <= len(urls) <= MAX_CAROUSEL_ITEMS:
+            raise MetaError("An image carousel requires 2 to 10 hosted image URLs.")
+    elif len(urls) != 1:
+        raise MetaError("An image post or Reel requires exactly one hosted media URL.")
+    for url in urls:
+        _validate_media_url(url)
+        # A public URL may be signed or omit a suffix. Its bytes remain Meta's
+        # responsibility, but reject filenames that clearly name the wrong kind.
+        suffix = os.path.splitext(urlsplit(url).path)[1].lower()
+        if kind == "reel" and suffix in {".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".svg", ".heic"}:
+            raise MetaError("A Reel requires a hosted video, not an image filename.")
+        if kind != "reel" and suffix in {".mp4", ".mov", ".webm", ".avi", ".mkv", ".m3u8",
+                                         ".png", ".webp", ".gif", ".bmp", ".svg", ".heic"}:
+            raise MetaError("Image posts and carousel items require JPEG media.")
+    if "is_ai_generated" in payload and not isinstance(payload["is_ai_generated"], bool):
+        raise MetaError("is_ai_generated must be a Boolean when supplied.")
+    if "cover_url" in payload:
+        if kind != "reel":
+            raise MetaError("cover_url is supported only for Reels.")
+        _validate_media_url(payload["cover_url"])
+        cover_suffix = os.path.splitext(urlsplit(payload["cover_url"]).path)[1].lower()
+        if cover_suffix and cover_suffix not in {".jpg", ".jpeg"}:
+            raise MetaError("A Reel cover requires JPEG media.")
+    allowed = {"kind", "target_url", "draft_text", "approved", "media_urls", "media", "scheduled_time",
+               "is_ai_generated", "cover_url"}
     if set(payload) - allowed:
         raise MetaError("The payload contains unsupported options.")
-    return caption, urls[0]
+    return caption, urls
 
 
 def _numeric_code(value: Any) -> int | None:
@@ -240,36 +286,59 @@ class MetaPoster:
         return {"ok": True, "mode": "check", "user_id": self.config.user_id,
                 "username": self.config.username}
 
-    def _wait_until_finished(self) -> None:
-        deadline = time.monotonic() + POLL_SECONDS
+    def _wait_until_finished(self, *, poll_seconds: float = POLL_SECONDS,
+                             poll_interval: float = POLL_INTERVAL) -> None:
+        deadline = time.monotonic() + poll_seconds
         while True:
             remaining = deadline - time.monotonic()
             if remaining <= 0:
-                raise MetaError("Media processing did not finish within 120 seconds.")
+                raise MetaError(f"Media processing did not finish within {int(poll_seconds)} seconds.")
             status = self._request(
                 "GET", str(self.creation_id), params={"fields": "status_code"},
                 timeout=min(20, remaining),
             ).get("status_code")
             if time.monotonic() >= deadline:
-                raise MetaError("Media processing did not finish within 120 seconds.")
+                raise MetaError(f"Media processing did not finish within {int(poll_seconds)} seconds.")
             if status == "FINISHED":
                 return
             if status != "IN_PROGRESS":
                 raise MetaError("Media processing failed or returned an unsupported state.")
             remaining = deadline - time.monotonic()
             if remaining > 0:
-                time.sleep(min(POLL_INTERVAL, remaining))
+                time.sleep(min(poll_interval, remaining))
+
+    def _create_container(self, data: dict[str, Any], *, reel: bool = False) -> str:
+        # Never retry a creation request: a transport failure can be ambiguous.
+        created = self._request("POST", f"{self.config.user_id}/media", data=data)
+        self.creation_id = _response_id(created)
+        if reel:
+            self._wait_until_finished(poll_seconds=REEL_POLL_SECONDS,
+                                      poll_interval=REEL_POLL_INTERVAL)
+        else:
+            self._wait_until_finished()
+        return self.creation_id
 
     def publish(self, kind: str, target_url: str, payload: Any) -> dict[str, Any]:
         self.creation_id = None
         self.write_attempted = False
-        caption, image_url = validate_payload(kind, target_url, payload, self.config)
+        caption, media_urls = validate_payload(kind, target_url, payload, self.config)
         self.check_identity()
         try:
-            created = self._request("POST", f"{self.config.user_id}/media",
-                                    data={"image_url": image_url, "caption": caption})
-            self.creation_id = _response_id(created)
-            self._wait_until_finished()
+            options: dict[str, Any] = {"caption": caption}
+            if "is_ai_generated" in payload:
+                options["is_ai_generated"] = str(payload["is_ai_generated"]).lower()
+            if kind == "carousel":
+                children = [self._create_container({"image_url": url, "is_carousel_item": "true"})
+                            for url in media_urls]
+                self._create_container({"media_type": "CAROUSEL", "children": ",".join(children),
+                                        **options})
+            elif kind == "reel":
+                if "cover_url" in payload:
+                    options["cover_url"] = payload["cover_url"]
+                self._create_container({"media_type": "REELS", "video_url": media_urls[0],
+                                        "share_to_feed": "true", **options}, reel=True)
+            else:
+                self._create_container({"image_url": media_urls[0], **options})
             published = self._request("POST", f"{self.config.user_id}/media_publish",
                                       data={"creation_id": self.creation_id})
             return {"ok": True, "mode": "published", "creation_id": self.creation_id,
