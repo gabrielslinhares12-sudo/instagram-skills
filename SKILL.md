@@ -81,6 +81,15 @@ have to reimplement it.
 
 ### Tier 2 - Build your own poster (advanced)
 
+This fork includes `scripts/facebook_poster.py` for Facebook Login and
+`scripts/meta_poster.py` for the separate Instagram Login prototype. Follow
+[the setup guide](references/meta-api-setup.md) for the selected Facebook Login
+path for `@temumaexplicacao`, its read-only identity check and single-image
+limit. Publishing requires approval of the final image and caption. The observed
+Meta dashboard also offers Unified login, which has not been validated against
+these adapters. Keep the different authentication credentials separate and do
+not configure another publishing backend for this account.
+
 Prefer not to SaaS it? Ask Claude Code or Codex to build a custom poster on the
 Instagram Graph API. Set `INSTAGRAM_SKILLS_CUSTOM_POSTER=<your command>` and the
 skills invoke it on approval. Publora is the 2-minute path.

@@ -3,6 +3,26 @@
 This file is for any Codex agent working on this repository. Read it before
 making changes. Conventions here are mandatory unless the user asks otherwise.
 
+## Fork account configuration
+
+- This fork configures the owner's Creator account `@temumaexplicacao`.
+  The selected publishing path is the official Facebook Login API through
+  `scripts/facebook_poster.py`. See `references/meta-api-setup.md` for verified
+  setup state and remaining authorization steps. These account rules take
+  precedence over generic upstream backend defaults below.
+- Use the custom-poster launch environment for this account. No scheduler
+  service is the default; preserve the upstream optional integrations without
+  enabling them unless the owner requests them.
+- Configuring the account or opening a setup PR does not authorize a post.
+  Show the final image, caption and destination, obtain explicit approval, then
+  pass `approved=True`. Connection checks use `--check` and perform reads only.
+- Account credentials belong only in the execution environment or GitHub
+  Secrets. Never commit them, copy them into documentation, or print them.
+  `INSTAGRAM_SKILLS_CUSTOM_POSTER` must come from the launch environment, never
+  from `.env`. Keep the Facebook and Instagram Login token variables separate.
+- Preserve the upstream attribution, existing commit history and license.
+  Attribute new fork changes to the actual authenticated contributor or owner.
+
 ## Versioning
 
 - Single source of truth: `.codex-plugin/plugin.json`,
@@ -17,13 +37,15 @@ making changes. Conventions here are mandatory unless the user asks otherwise.
 - Codex marketplace install uses `.codex-marketplace/instagram-skills/`. Do not
   edit that generated package by hand. Update the root files first, then run
   `python3 scripts/sync_codex_marketplace.py`.
-- **Default: bump the PATCH segment (3rd level, `0.0.X`).** This is the automatic
-  behavior for every shippable commit, regardless of how large the diff feels.
-  Skill renames, lib API breaks, new features: still PATCH by default.
+- Account-configuration changes and their draft PRs do not require package
+  version bumps, tags or GitHub Releases. Preparing or reviewing setup changes
+  does not request distribution of a plugin release.
+- Create a distribution release only when the user explicitly requests it.
+  **For that release, default to bumping PATCH (3rd level, `0.0.X`).**
 - Only bump MINOR or MAJOR when **the user explicitly asks** for a higher rank
   ("this is minor", "make it 2.0", "bump major"). Do not promote on your own
   initiative even if semver textbook says so.
-- After bumping, two steps are required:
+- For an explicitly requested release, after bumping, two steps are required:
   1. Tag the commit: `git tag -a v<X.Y.Z> -m "..."` + `git push origin v<X.Y.Z>`
   2. **Publish a GitHub Release** for the tag: `gh release create v<X.Y.Z> --title "v<X.Y.Z>" --notes "<changelog>" --latest`
   A tag alone does NOT update the README release badge. The shields.io badge
@@ -31,8 +53,9 @@ making changes. Conventions here are mandatory unless the user asks otherwise.
 
 ## Commits
 
-- Primary author **must** be Sergey: every `git commit` needs
-  `--author="Sergey Bulaev <s@bulaev.org>"`. Verify with
+- New fork commits must use the actual authenticated contributor's or owner's
+  configured identity. Do not impersonate the upstream author for new work.
+  Preserve existing authorship and attribution. Verify with
   `git log -1 --format='%an <%ae>'` before pushing.
 - Co-author trailers are fine when appropriate.
 - Verify locally before push: build never breaks, no broken refs in `SKILL.md`,

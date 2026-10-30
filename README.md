@@ -4,6 +4,9 @@
 
 # Instagram Marketing Skills for Claude Code and Codex
 
+Para configurar a API oficial da Meta para `@temumaexplicacao`, veja
+[o guia de configuração da API oficial](references/meta-api-setup.md).
+
 <p align="center">
   <img src="https://img.shields.io/github/v/release/sergebulaev/instagram-skills?color=111827&label=release" alt="Latest release">
   <img src="https://img.shields.io/badge/Claude_Code-Compatible-D97757?logo=anthropic&logoColor=white" alt="Claude Code Compatible">
