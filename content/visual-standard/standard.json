@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "identity": "Instagram TUE / Lúmino",
+  "standard": "editorial-claro-cinematografico-v1",
+  "original_mascot": {
+    "path": "content/visual-standard/assets/LUMINO-ORIGINAL.png",
+    "sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+    "size": [
+      1230,
+      1278
+    ],
+    "mode": "RGBA"
+  },
+  "approved_layout_reference": {
+    "path": "content/visual-standard/assets/MODELO-OFICIAL-8-PAINEIS.png",
+    "sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+    "size": [
+      1536,
+      1024
+    ]
+  },
+  "output": {
+    "width": 1080,
+    "height": 1350,
+    "carousel_pages": 8,
+    "format": "JPEG",
+    "photo_background_required": true
+  },
+  "palette": {
+    "paper": "#F3EBDE",
+    "ink": "#111111",
+    "yellow": "#FFD718",
+    "red": "#D31415",
+    "cyan": "#00CFF6",
+    "cream": "#FFF5E4"
+  },
+  "required_persona": [
+    "cabeça de lanterna vintage dourada",
+    "bulbo visível e aceso",
+    "óculos redondos",
+    "olhos LED ciano",
+    "sobretudo cáqui",
+    "luvas brancas",
+    "sem boca",
+    "sem pernas"
+  ],
+  "prohibited": [
+    "novas versões do personagem",
+    "colagens 2x4 como mídia final",
+    "visual escuro predominante",
+    "páginas sem cena contextual",
+    "cards genéricos repetidos",
+    "imagens sem origem/licença declarada",
+    "liberação de Reel sem MP4 e Rasalgethi"
+  ],
+  "visual_review_is_manual": true,
+  "publication_requires_explicit_owner_authorization": true,
+  "reference_for_style_only": "O exemplo eleitoral contém números hipotéticos inconsistentes e NÃO pode ser copiado como fato."
+}
