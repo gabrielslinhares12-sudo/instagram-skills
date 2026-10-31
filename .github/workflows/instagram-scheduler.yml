@@ -1,8 +1,6 @@
 name: Publicar fila diária do Instagram
 
 on:
-  schedule:
-    - cron: '*/10 * * * *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -39,58 +37,6 @@ jobs:
           python3 -m unittest discover -s scripts -p 'test_*poster.py' -v
           python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -v
           python3 -m unittest discover -s scripts -p 'test_instagram_preflight.py' -v
-      - name: Conferir estado da produção Instagram (sem publicar)
-        if: always()
-        run: |
-          python3 - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          from urllib.parse import urlsplit
-
-          manifest = json.loads(Path("content/schedule.json").read_text(encoding="utf-8"))
-          ledger = json.loads(Path("content/publication-state.json").read_text(encoding="utf-8"))
-          rows = [
-              "## Monitor de produção e publicação do Instagram",
-              "",
-              "Verificação de estado do repositório. Este passo não produz imagens nem comprova publicação na Meta.",
-              "",
-              "| Conteúdo | Situação | Agendado (UTC) |",
-              "|---|---|---|",
-          ]
-          for p in manifest["posts"]:
-              previous = ledger.get("items", {}).get(p["id"])
-              if previous:
-                  status = "Ledger: " + previous.get("status", "desconhecido")
-              elif not p["approved"]:
-                  if any("PENDENTE" in u for u in p["media_urls"]):
-                      status = "Bloqueado: mídia final pendente"
-                  else:
-                      status = "Bloqueado: aguardando revisão/liberação"
-              else:
-                  status = "Liberado na fila, ainda sem recibo"
-              problems = []
-              for u in p["media_urls"]:
-                  parsed = urlsplit(u)
-                  if parsed.hostname != "raw.githubusercontent.com":
-                      continue
-                  segments = parsed.path.lstrip("/").split("/", 3)
-                  if len(segments) != 4:
-                      problems.append("URL incompleta")
-                      continue
-                  local = Path(segments[3])
-                  if not local.is_file():
-                      problems.append("arquivo não encontrado no checkout")
-              if problems:
-                  status += " (" + ", ".join(sorted(set(problems))) + ")"
-              rows.append("| " + p["id"] + " | " + status + " | " + p["due_at"] + " |")
-          report = "\n".join(rows) + "\n"
-          print(report)
-          summary_path = os.getenv("GITHUB_STEP_SUMMARY")
-          if summary_path:
-              with open(summary_path, "a", encoding="utf-8") as output:
-                  output.write(report)
-          PY
       - name: Configurar identidade da automação para o registro
         run: |
           git config user.name 'github-actions[bot]'
