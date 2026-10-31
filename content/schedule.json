@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Produção sequencial autorizada em 30/10/2026; um conteúdo liberado por vez. Halloween aprovado no manifesto após conferência da arte original; os demais só serão liberados após mídia e legenda finais e revisão factual. Notificações por automação própria.",
+  "approval_note": "CORREÇÃO CRÍTICA: Halloween teve a imagem antiga vinculada por engano e foi suspenso para substituição pela arte melhorada. Os demais itens seguem bloqueados para revisão editorial.",
   "posts": [
     {
       "id": "lumino-halloween-2026",
@@ -14,11 +14,11 @@
       "media_urls": [
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/halloween.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Modo Halloween: coragem até ouvir um barulho",
       "sources": [],
-      "approval_note": "Autorização expressa do proprietário em 30/10/2026 para concluir, agendar e publicar o lote semanal sem pedir aprovação por item. Halloween usa a mídia final existente e conferida; publicar apenas este item neste estágio. Agendado para 31/10/2026 12h America/Fortaleza (15h UTC)."
+      "approval_note": "BLOQUEADO EM 30/10: a mídia no manifesto era a arte ANTIGA halloween.jpg. O proprietário confirmou existir a versão final melhorada racionalidade_até_o_primeiro_crac.png. NÃO publicar até substituir a URL antiga por JPG 4:5 final convertido e revisado, com hash fixo, e só então reativar approved=true."
     },
     {
       "id": "lumino-votos-2026",
