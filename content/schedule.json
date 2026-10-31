@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "CORREÇÃO CRÍTICA: Halloween teve a imagem antiga vinculada por engano e foi suspenso para substituição pela arte melhorada. Os demais itens seguem bloqueados para revisão editorial.",
+  "approval_note": "Lote semanal em produção sequencial. Halloween: criação NOVA solicitada, priorizar após conclusão da atividade atualmente em andamento, sem duplicar posts e publicar no primeiro slot viável após mídia final aprovada tecnicamente. Referência e instruções em content/editorial/HALLOWEEN-RECRIACAO-PRIORITARIA-2026-10-30.md. Todos itens permanecem approved=false até mídia final verificada.",
   "posts": [
     {
       "id": "lumino-halloween-2026",
@@ -12,13 +12,13 @@
       "target_url": "https://www.instagram.com/temumaexplicacao/",
       "caption": "Eu dizendo que sou racional… até ouvir um barulho na cozinha de madrugada. 🎃\n\nO Lúmino passa o dia explicando tudo com lógica. Mas, quando a casa fica silenciosa e vem aquele CRAC da cozinha, a imaginação começa a investigar antes de descobrir o que aconteceu.\n\nÉ curioso como um som inesperado, especialmente quando não vemos sua origem, pode nos deixar em alerta. Muitas vezes a explicação é simples. A reação, nem tanto.\n\nEnvie para quem também vira detetive depois da meia-noite.\n\n#Halloween #Curiosidades #Humor #TemUmaExplicacao",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/halloween.jpg"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-10-31-lumino/halloween-novo-PENDENTE.jpg"
       ],
       "approved": false,
       "is_ai_generated": true,
       "title": "Modo Halloween: coragem até ouvir um barulho",
       "sources": [],
-      "approval_note": "BLOQUEADO EM 30/10: a mídia no manifesto era a arte ANTIGA halloween.jpg. O proprietário confirmou existir a versão final melhorada racionalidade_até_o_primeiro_crac.png. NÃO publicar até substituir a URL antiga por JPG 4:5 final convertido e revisado, com hash fixo, e só então reativar approved=true."
+      "approval_note": "RECRIAÇÃO SOLICITADA em 30/10/2026. Placeholder NÃO EXISTE e NÃO deve ser publicado. Produzir nova arte com a estética da versão melhorada, conferir binário e URL pública estável em commit SHA, substituir placeholder, verificar ledger, agendar primeira janela segura, e só então approved=true. Evitar duplicata e imagem antiga. Consultar content/editorial/HALLOWEEN-RECRIACAO-PRIORITARIA-2026-10-30.md."
     },
     {
       "id": "lumino-votos-2026",
