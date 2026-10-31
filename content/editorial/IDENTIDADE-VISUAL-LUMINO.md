@@ -18,3 +18,8 @@ A **capa específica enviada pelo proprietário** com a estética **“COMO ASSI
 
 ## Referência de trabalho
 A capa estética foi produzida em conversa anterior como imagem “Como 51% Não Ganhou?.png” e posteriormente reenviada pelo proprietário como referência. A lâmina seguinte de demonstração foi criada nesta conversa, não substitui a capa nem é considerada aprovada.
+
+## DIRETRIZ DEFINITIVA — 31/10/2026
+O proprietário reenviou a imagem original da capa eleitoral (Lúmino lanterna dourada com lupa, manchete preta condensada, tarjas amarelas e texto vermelho, fundo de documentação eleitoral). ESTA IMAGEM é o padrão visual obrigatório para toda a semana, não uma sugestão. A imagem gerada posteriormente com gato preto foi rejeitada. Uma tentativa posterior de montagem de oito lâminas em uma única colagem também foi rejeitada como entrega final, por inconsistências factuais e formato incorreto. Gerar cada peça individualmente em 1080x1350, conferir visualmente e checar todos os dados. Não substituir o Lúmino por animal ou humano. Manter consistência de proporções, olhos LED ciano, lanterna de vidro, lupa e sobretudo. Não numerar lâminas nas imagens. Corrigir o gancho eleitoral: 46% dos 100 votos depositados = 51,1% dos 90 votos válidos, exemplo presidencial hipotético. NÃO usar '51% dos válidos e não ganhou'.
+
+A partir desta instrução, todos os sete posts antigos foram cancelados (`approved=false`), o workflow de publicação programada foi removido, e o proprietário condicionou QUALQUER novo agendamento a aprovação expressa após receber a nova linha completa. Produção e revisão podem prosseguir sem nova autorização, mas publicar/agendar via gatilho GitHub é proibido até aprovação explícita.
