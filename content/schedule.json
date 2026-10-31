@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Dois posts Halloween aprovados pelo proprietário para 31/10/2026: tirinha às 12h, história do Halloween às 18h. Outros posts só após geração e validação de mídias.",
+  "approval_note": "Halloween de 31/10 aprovado e programado. Demais posts, incluindo 01/11, estão em elaboração e têm approved=false até revisão visual, factual e autorização editorial. Não converter rascunhos automaticamente em publicados.",
   "posts": [
     {
       "id": "halloween-2026-10-31-tirinha-aprovada",
@@ -58,6 +58,60 @@
         "https://www.loc.gov/everyday-mysteries/item/what-is-the-origin-of-halloween/"
       ],
       "approval_note": "Proprietário aprovou expressamente agendar o carrossel Halloween de oito artes individuais para segundo post de hoje, às 18h America/Sao_Paulo."
+    },
+    {
+      "id": "votos-validos-2026-11-01-v2-revisao",
+      "due_at": "2026-11-01T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "Como alguém vence com 46% dos votos depositados? — modelo hipotético",
+      "caption": "🗳️ Um candidato pode ter 46% dos votos depositados e 51,1% dos votos válidos? Sim — porque a base da conta muda! No nosso exemplo HIPOTÉTICO de uma eleição presidencial com 100 votos: A recebe 44, B recebe 46, e 10 são brancos ou nulos. Isso deixa 90 votos válidos, dos quais B tem 46, ou 51,1%. Brancos e nulos não são transferidos a ninguém. 💡 Qual outra dúvida sobre apuração você tem? #VotosVálidos #EducaçãoEleitoral #Lúmino #TemUmaExplicacao",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-05.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-06.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-07.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-08.jpg"
+      ],
+      "media_sha256": [
+        "25d742fe5963e5eb4cd67ebbd6115888fbd26aeffdecfd147b0a62a4da3984fb",
+        "4a00e7973bf7588aaf377fedbdfed5f133150098bd212b875fdaeca0ec85f086",
+        "ad4891ad5ab1e8a0ec8d29a6ceba6fef401f9f58a0476331be4607ee11fd5fff",
+        "7615a07fdcc2e0608b6d9c21765a1e98ca5f3a1895cb9146e9ce7e364003996c",
+        "c2195c7f812027515f01dada50a06cd1653bbaa98dadcfa65acd8301e8236fc9",
+        "0a6eeebdd0964389f0595232c3ef7f57a6fed579ff0a90636d672557fd56fa55",
+        "3cf461be96c1c3ae4f09f968e33a3205c05b0090e9c33ddef23b3302495be561",
+        "7d7ccbaa6f1a488da3b74ed30b4e57e7cb17b452fabc5ceb94f6ad475526d5dc"
+      ],
+      "approved": false,
+      "is_ai_generated": true,
+      "sources": [
+        "https://www.tse.jus.br/comunicacao/noticias/2026/Junho/sabe-o-que-e-o-sistema-eleitoral-majoritario-o-glossario-explica-1",
+        "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
+      ],
+      "approval_note": "RASCUNHO V2 — oito artes verificadas em dimensões e SHA; checagem editorial visual ainda pendente. Não publicar até confirmar fidelidade ao padrão aprovado."
+    },
+    {
+      "id": "meme-voto-branco-nulo-2026-11-01-v2-revisao",
+      "due_at": "2026-11-01T21:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "post",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "O único anulado foi o boato — Lúmino detetive",
+      "caption": "🚨 MITO DETECTADO! Votar nulo não anula a eleição, e votar em branco não manda o voto para quem estiver ganhando. Ambos são registrados, mas ficam fora do cálculo dos votos válidos. O Lúmino investigou e chegou ao verdadeiro culpado: o boato. 🔎💡 Qual mito você gostaria de ver desmentido? #Curiosidades #VotoBranco #VotoNulo #Lúmino #TemUmaExplicacao",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/2026-11-01/meme-voto-branco-nulo-v2-final.jpg"
+      ],
+      "approved": false,
+      "is_ai_generated": true,
+      "sources": [
+        "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
+      ],
+      "approval_note": "RASCUNHO V2 — tirinha com Lúmino e texto factual TSE; JPEG 1080x1350 conferido via workflow. Não publicar até checagem visual final."
     }
   ]
 }
