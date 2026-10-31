@@ -35,3 +35,17 @@ Envie para quem também vira detetive depois da meia-noite.
 
 ## Integração
 Leia também `content/editorial/PLANO-SEQUENCIAL-SEMANA-2026-10-31.md`, `content/editorial/IDENTIDADE-VISUAL-LUMINO.md` e `content/editorial/HALLOWEEN-CORRECAO-MIDIA-2026-10-31.md`. **Esta nova solicitação de recriação substitui apenas a exigência antiga de que o conteúdo precise ser exatamente o JPEG previamente convertido**; todas as proibições da arte antiga e verificações permanecem vigentes.
+
+## Estado da produção — 30/10/2026, 23h (Fortaleza)
+
+**Nova arte criada e revisada localmente; ainda NÃO transferida ao GitHub, NÃO aprovada na fila, NÃO agendada na Meta e NÃO publicada.** A imagem antiga segue proibida.
+
+- Arte final nova: `lumino-halloween-recriado-2026-10-31.jpg` (ChatGPT, `/mnt/data/lumino-halloween-recriado-2026-10-31.jpg`).
+- Formato verificado: JPEG RGB, **1080 × 1350 px**, **497565 bytes**.
+- SHA256 da arte final: `b8147da5e276f61325a9b090f2614222112efb4b9ac097d946055f942b311519`.
+- Conteúdo: Lúmino lanterna/lâmpada com filamento dourado, óculos e olhos ciano, gato assustado, cobertor de Halloween, porta da cozinha azul, `CRAC`, texto legível em português e hierarquia editorial com amarelo e vermelho. Sem legenda de carrossel, pois é post único.
+- Origem: geração visual nova nesta conversa, distinta do antigo `halloween.jpg` e da versão anteriormente convertida.
+- **Impedimento técnico de hospedagem:** a integração GitHub disponível aceita arquivos de texto e blobs cujo conteúdo já esteja na integração, mas não acessa diretamente os bytes do arquivo local; a tentativa de upload temporário pela integração Picsart via shell falhou com `Could not resolve host: upload.picsart.com`, e o envio de anexo pelo conector retornou `BLOCKED_FILE_REFERENCE`. Não há URL pública imutável validada para o JPEG novo.
+- Por isso o item `lumino-halloween-2026` deve permanecer `approved=false` e o placeholder `halloween-novo-PENDENTE.jpg` NÃO pode ser usado.
+- Próxima etapa: transferir **exatamente o JPEG acima** para `content/media/2026-10-31-lumino/halloween-novo.jpg` e conferir o hash; atualizar `media_urls[0]` para raw.githubusercontent.com com SHA de commit; consultar ledger e Meta antes de habilitar. Preservar janela de 31/10 às 12h se ainda viável.
+- Scheduler GitHub Actions: o último run de publicação observado (31/10 01:32Z, `41155804988`) concluiu com sucesso nos testes e dry-run/execute sem item devido; isso **não comprova** permissão de publicação futura. O último workflow de verificação da conexão (30/10 23:37Z, `41145590669`) foi bem-sucedido.
