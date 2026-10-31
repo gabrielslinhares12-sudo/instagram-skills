@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Revisão integral dos sete conteúdos de Lúmino em andamento; o proprietário exige receber e aprovar cada post/carrossel/Reel após sua produção. Todos permanecem blocked (approved=false) até aprovação expressa da mídia e da legenda.",
+  "approval_note": "Produção sequencial autorizada em 30/10/2026; um conteúdo liberado por vez. Halloween aprovado no manifesto após conferência da arte original; os demais só serão liberados após mídia e legenda finais e revisão factual. Notificações por automação própria.",
   "posts": [
     {
       "id": "lumino-halloween-2026",
@@ -10,15 +10,15 @@
       "username": "temumaexplicacao",
       "kind": "post",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "caption": "Eu dizendo que sou racional... até ouvir um barulho na cozinha de madrugada. 🎃\n\nA lanterna está acesa, o Lúmino está alerta e o gato também já percebeu alguma coisa.\n\nMande para aquela pessoa que vira detetive depois de um susto.\n\n#Halloween #Humor #TemUmaExplicacao",
+      "caption": "Eu dizendo que sou racional… até ouvir um barulho na cozinha de madrugada. 🎃\n\nO Lúmino passa o dia explicando tudo com lógica. Mas, quando a casa fica silenciosa e vem aquele CRAC da cozinha, a imaginação começa a investigar antes de descobrir o que aconteceu.\n\nÉ curioso como um som inesperado, especialmente quando não vemos sua origem, pode nos deixar em alerta. Muitas vezes a explicação é simples. A reação, nem tanto.\n\nEnvie para quem também vira detetive depois da meia-noite.\n\n#Halloween #Curiosidades #Humor #TemUmaExplicacao",
       "media_urls": [
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/halloween.jpg"
       ],
-      "approved": false,
+      "approved": true,
       "is_ai_generated": true,
       "title": "Modo Halloween: coragem até ouvir um barulho",
       "sources": [],
-      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
+      "approval_note": "Autorização expressa do proprietário em 30/10/2026 para concluir, agendar e publicar o lote semanal sem pedir aprovação por item. Halloween usa a mídia final existente e conferida; publicar apenas este item neste estágio. Agendado para 31/10/2026 12h America/Fortaleza (15h UTC)."
     },
     {
       "id": "lumino-votos-2026",
