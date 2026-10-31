@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Apenas a tirinha de Halloween aprovada expressamente pelo proprietário em 31/10/2026 para primeiro horário de hoje (12h Brasília). Carrossel histórico solicitado para hoje à noite; só inserir na fila após concluir e verificar 8 JPGs. Nenhum outro tema autorizado.",
+  "approval_note": "Dois posts Halloween aprovados pelo proprietário para 31/10/2026: tirinha às 12h, história do Halloween às 18h. Outros posts só após geração e validação de mídias.",
   "posts": [
     {
       "id": "halloween-2026-10-31-tirinha-aprovada",
@@ -22,6 +22,42 @@
       "is_ai_generated": true,
       "sources": [],
       "approval_note": "Proprietário disse em 31/10/2026: Gostei dessa, agende para o primeiro post. Primeira postagem hoje 12h America/Sao_Paulo, imagem final aprovada exatamente da tirinha 4 quadros."
+    },
+    {
+      "id": "halloween-2026-10-31-historia-8-laminas",
+      "due_at": "2026-10-31T21:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "A história do Halloween — da celebração celta à cultura pop",
+      "caption": "🎃 O Halloween não começou com abóboras, filmes de terror ou pedidos de doces.\n\nMuito antes disso, comunidades celtas celebravam o Samhain, marcando o fim da colheita e a chegada do inverno. Havia fogueiras, disfarces e histórias sobre espíritos — segundo as crenças da época.\n\nCom os séculos, tradições antigas se misturaram à véspera do Dia de Todos os Santos, chamada em inglês de All Hallows' Eve. Daí veio o nome Halloween.\n\nE aquelas abóboras iluminadas? Na Irlanda, eram comuns lanternas esculpidas em nabos. A lenda de Stingy Jack ajudou a dar nome às jack-o'-lanterns. Nos Estados Unidos, as abóboras se tornaram uma alternativa popular.\n\nO famoso “doces ou travessuras” também mudou com o tempo e se popularizou nos EUA no século XX. Hoje, a festa é uma mistura de tradições, histórias e criatividade.\n\nQual dessas origens você não conhecia? 👻\n\n#Halloween #História #Curiosidades #Lumino #TemUmaExplicacao",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb/content/media/halloween-2026-10-31/01-historia-halloween.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb/content/media/halloween-2026-10-31/02-historia-halloween.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb/content/media/halloween-2026-10-31/03-historia-halloween.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb/content/media/halloween-2026-10-31/04-historia-halloween.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb/content/media/halloween-2026-10-31/05-historia-halloween.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb/content/media/halloween-2026-10-31/06-historia-halloween.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb/content/media/halloween-2026-10-31/07-historia-halloween.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb/content/media/halloween-2026-10-31/08-historia-halloween.jpg"
+      ],
+      "media_sha256": [
+        "91f5f655db723d6c124516417f66bd9cdfa192158aac112063a090e1a8385b9c",
+        "7d272c0c4384bf95d2e7dbf5367d96f893941f2a9606a61d1a883b7b73d5939b",
+        "67b5b51bebe84a7a2bc3b630bd0df5b43760019cc2e68bab755fe9b4b1874341",
+        "ab53bad0f741efd21adc65f024fd5a2179202413a861c46128007c7473a2622a",
+        "6035d78337f4d2f169430d4421ba3a471ea4aa81cfc7ad548fc4ae706cbfc5a4",
+        "bfa7d4e71300579b47e07231bd933e26c0a6ef872c321893f47ada4928bfbcc3",
+        "144bd90576d12f1ae0a9aa88d56cbdd3e6fc6193e34b0279c120c1f9e66e1814",
+        "57c55acf24ad5ea23a7d956720aaca72ba8d9c93ac3150310da000fc5cec6e5a"
+      ],
+      "approved": true,
+      "is_ai_generated": true,
+      "sources": [
+        "https://www.history.com/articles/history-of-halloween",
+        "https://www.loc.gov/everyday-mysteries/item/what-is-the-origin-of-halloween/"
+      ],
+      "approval_note": "Proprietário aprovou expressamente agendar o carrossel Halloween de oito artes individuais para segundo post de hoje, às 18h America/Sao_Paulo."
     }
   ]
 }
