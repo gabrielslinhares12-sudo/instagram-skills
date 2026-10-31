@@ -14,11 +14,11 @@
       "media_urls": [
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/halloween/halloween.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Modo Halloween: coragem até ouvir um barulho",
       "sources": [],
-      "approval_note": "Aprovado para o lote de sete posts autorizado pelo proprietário em 30/10/2026. Mídia imutável verificada por SHA-256, dimensões/formato via ffprobe e prévias visuais em 31/10/2026. A aprovação do manifesto não comprova publicação; recibo Meta obrigatório.",
+      "approval_note": "BLOQUEADO A PEDIDO DO PROPRIETÁRIO EM 31/10/2026. Versões anteriores rejeitadas; recriar com identidade visual da capa original enviada (Lúmino lanterna vintage, composição editorial preta/amarela/vermelha). Aguardar revisão final e autorização EXPRESSA posterior para qualquer gatilho de publicação.",
       "media_sha256": [
         "1bf380d7d28c4898957e952994bcf430834675fcb9c6af7b7647c86189ac8e00"
       ]
@@ -46,7 +46,7 @@
       "sources": [
         "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
       ],
-      "approval_note": "BLOQUEADO POR INSTRUÇÃO DO PROPRIETÁRIO EM 31/10/2026: versão atual do carrossel não respeita a imagem original aprovada. Recriar seguindo referência exata Como 51% Não Ganhou?.png, identidade visual documentada, sem substituição por outro modelo. Não publicar mídia antiga.",
+      "approval_note": "BLOQUEADO A PEDIDO DO PROPRIETÁRIO EM 31/10/2026. Versões anteriores rejeitadas; recriar com identidade visual da capa original enviada (Lúmino lanterna vintage, composição editorial preta/amarela/vermelha). Aguardar revisão final e autorização EXPRESSA posterior para qualquer gatilho de publicação.",
       "media_sha256": [
         "a17a8ba8d4002803c501fb85756d8f40ba789f32b4ce939d8e7f28c006d99ca8",
         "2c156e12b0d59885aa016773aaed5b9ef36de2dfe4a4b9d71fe01199a4ee69bd",
@@ -75,14 +75,14 @@
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-07.jpg",
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-08.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Por que o dólar sobe e desce?",
       "sources": [
         "https://www.bcb.gov.br/meubc/faqs/p/por-que-o-banco-central-intervem-no-mercado-de-cambio",
         "https://www.bcb.gov.br/meubc/faqs/p/a-taxa-de-cambio-e-fixada-pelo-banco-central"
       ],
-      "approval_note": "Aprovado para o lote de sete posts autorizado pelo proprietário em 30/10/2026. Mídia imutável verificada por SHA-256, dimensões/formato via ffprobe e prévias visuais em 31/10/2026. A aprovação do manifesto não comprova publicação; recibo Meta obrigatório.",
+      "approval_note": "BLOQUEADO A PEDIDO DO PROPRIETÁRIO EM 31/10/2026. Versões anteriores rejeitadas; recriar com identidade visual da capa original enviada (Lúmino lanterna vintage, composição editorial preta/amarela/vermelha). Aguardar revisão final e autorização EXPRESSA posterior para qualquer gatilho de publicação.",
       "media_sha256": [
         "df8b1016f72809bb110b2b84be284b531498dd5ae4c9c72ddf15800e90609f5e",
         "f14b03515327fcfd35712f55d63623aaed3d0cef9bd2f264cc25ba6883985ee6",
@@ -110,14 +110,14 @@
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/oncas/oncas-06.jpg",
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/oncas/oncas-07.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Parda ou pintada? Diferença entre duas espécies",
       "sources": [
         "https://zoo.df.gov.br/sucuarana",
         "https://www.zoo.df.gov.br/onca-pintada-2"
       ],
-      "approval_note": "Aprovado para o lote de sete posts autorizado pelo proprietário em 30/10/2026. Mídia imutável verificada por SHA-256, dimensões/formato via ffprobe e prévias visuais em 31/10/2026. A aprovação do manifesto não comprova publicação; recibo Meta obrigatório.",
+      "approval_note": "BLOQUEADO A PEDIDO DO PROPRIETÁRIO EM 31/10/2026. Versões anteriores rejeitadas; recriar com identidade visual da capa original enviada (Lúmino lanterna vintage, composição editorial preta/amarela/vermelha). Aguardar revisão final e autorização EXPRESSA posterior para qualquer gatilho de publicação.",
       "media_sha256": [
         "5adfc67449acfe232448ce9c6e4f2e0c6505fd11d14f420d689d8ed02a236020",
         "0a70a5c5e21140cf477f6bbdb522b7af9fbe7873f6945c7f8270e64bd3775a9f",
@@ -138,13 +138,13 @@
       "media_urls": [
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/enem/enem.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Modo ENEM com o Lúmino",
       "sources": [
         "https://www.gov.br/inep/pt-br/acesso-a-informacao/perguntas-frequentes/exame-nacional-do-ensino-medio-enem"
       ],
-      "approval_note": "Aprovado para o lote de sete posts autorizado pelo proprietário em 30/10/2026. Mídia imutável verificada por SHA-256, dimensões/formato via ffprobe e prévias visuais em 31/10/2026. A aprovação do manifesto não comprova publicação; recibo Meta obrigatório.",
+      "approval_note": "BLOQUEADO A PEDIDO DO PROPRIETÁRIO EM 31/10/2026. Versões anteriores rejeitadas; recriar com identidade visual da capa original enviada (Lúmino lanterna vintage, composição editorial preta/amarela/vermelha). Aguardar revisão final e autorização EXPRESSA posterior para qualquer gatilho de publicação.",
       "media_sha256": [
         "84229f4ed4537a2f9f84665fd987239bff0f53990146b27a5c4635edfaa2e3fe"
       ]
@@ -159,13 +159,13 @@
       "media_urls": [
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/foguete/foguete-reel.mp4"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Como um foguete consegue subir?",
       "sources": [
         "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-a-rocket-grades-5-8/"
       ],
-      "approval_note": "Aprovado para o lote de sete posts autorizado pelo proprietário em 30/10/2026. Mídia imutável verificada por SHA-256, dimensões/formato via ffprobe e prévias visuais em 31/10/2026. A aprovação do manifesto não comprova publicação; recibo Meta obrigatório.",
+      "approval_note": "BLOQUEADO A PEDIDO DO PROPRIETÁRIO EM 31/10/2026. Versões anteriores rejeitadas; recriar com identidade visual da capa original enviada (Lúmino lanterna vintage, composição editorial preta/amarela/vermelha). Aguardar revisão final e autorização EXPRESSA posterior para qualquer gatilho de publicação.",
       "media_sha256": [
         "3e90f18b8bff728d667531796d3b8e9733ebb95ed7551f1bd8c8456ed1c56924"
       ]
@@ -180,11 +180,11 @@
       "media_urls": [
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/lua/lua-reel.mp4"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Por que a Lua parece seguir você?",
       "sources": [],
-      "approval_note": "Aprovado para o lote de sete posts autorizado pelo proprietário em 30/10/2026. Mídia imutável verificada por SHA-256, dimensões/formato via ffprobe e prévias visuais em 31/10/2026. A aprovação do manifesto não comprova publicação; recibo Meta obrigatório.",
+      "approval_note": "BLOQUEADO A PEDIDO DO PROPRIETÁRIO EM 31/10/2026. Versões anteriores rejeitadas; recriar com identidade visual da capa original enviada (Lúmino lanterna vintage, composição editorial preta/amarela/vermelha). Aguardar revisão final e autorização EXPRESSA posterior para qualquer gatilho de publicação.",
       "media_sha256": [
         "7ce2b102c28289e7c2f38d6b9ddf4e0c7020baa44e2488dca83643bfe99f269b"
       ]
