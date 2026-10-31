@@ -51,6 +51,18 @@ def verify_brand(root: Path = ROOT) -> dict:
         with Image.open(asset) as im:
             if (im.width, im.height) != (ref["width"], ref["height"]):
                 raise VisualError(f"Dimensoes do ativo canonico incorretas: {item}")
+    # Both checked-in reference locations must be byte-identical. The
+    # content/brand files are the source of truth; visual-standard is a mirror.
+    mirror = root / "content/visual-standard/standard.json"
+    if mirror.is_file():
+        other = read_json(mirror)
+        for key, peer in (("lumino", "original_mascot"),
+                          ("reference", "approved_layout_reference")):
+            check = other[peer]
+            asset = safe_file(root, check["path"])
+            if (check["sha256"] != spec[key]["sha256"] or not asset.is_file()
+                    or sha256(asset) != spec[key]["sha256"]):
+                raise VisualError("Referencias duplicadas divergentes: bloquear.")
     return spec
 
 def _color_ratio(image: Image.Image, box: tuple[int,int,int,int], predicate, stride: int = 8) -> float:
@@ -135,6 +147,15 @@ def audit_queue(root: Path=ROOT) -> dict:
             if not manifest.is_file():
                 raise VisualError(f"Carrossel aprovado sem verificacao de estilo: {slug}")
             validated=validate_package(manifest,root)
+            approval=read_json(manifest)
+            # A generated QA manifest defaults to approved=false. Technical
+            # integrity alone NEVER authorizes publication.
+            if (approval.get("approved") is not True
+                    or approval.get("visual_reviewed") is not True
+                    or approval.get("owner_authorized") is not True
+                    or not isinstance(approval.get("approval_note"),str)
+                    or not approval["approval_note"].strip()):
+                raise VisualError(f"Carrossel sem revisao e autorizacao expressa: {slug}")
             hashes=[p["sha256"] for p in validated["pages"]]
             if hashes!=post.get("media_sha256"):
                 raise VisualError(f"Os hashes do carrossel aprovado nao sao os mesmos do QA: {slug}")
@@ -146,6 +167,23 @@ def audit_queue(root: Path=ROOT) -> dict:
         elif post.get("kind")=="reel":
             # A capa nao comprova audio e MP4. Reels novos requerem liberacao editorial separada.
             raise VisualError("Reel aprovado sem validador dedicado de audio e video; bloquear.")
+        elif post.get("kind")=="post":
+            # Memes may use their own visual language, but still require a
+            # separate review of their exact image and an owner authorization.
+            slug=post.get("id")
+            if not isinstance(slug,str) or not SAFE_ID.fullmatch(slug):
+                raise VisualError("Id de post invalido.")
+            record=root/"content/approved"/slug/"approval.json"
+            if not record.is_file():
+                raise VisualError(f"Post individual sem documento de aprovacao: {slug}")
+            item=read_json(record)
+            if not (item.get("owner_authorized") is True
+                    and item.get("visual_reviewed") is True
+                    and item.get("media_sha256") == post.get("media_sha256")
+                    and len(post.get("media_urls",[])) == 1):
+                raise VisualError(f"Post individual sem autorizacao especifica: {slug}")
+        else:
+            raise VisualError("Tipo de midia nao coberto pelo controle editorial.")
     return {"ok":True,"approved_new_carousels_checked":reviewed,
             "approved_posts_unchanged":True}
 
