@@ -49,3 +49,5 @@ Leia também `content/editorial/PLANO-SEQUENCIAL-SEMANA-2026-10-31.md`, `content
 - Por isso o item `lumino-halloween-2026` deve permanecer `approved=false` e o placeholder `halloween-novo-PENDENTE.jpg` NÃO pode ser usado.
 - Próxima etapa: transferir **exatamente o JPEG acima** para `content/media/2026-10-31-lumino/halloween-novo.jpg` e conferir o hash; atualizar `media_urls[0]` para raw.githubusercontent.com com SHA de commit; consultar ledger e Meta antes de habilitar. Preservar janela de 31/10 às 12h se ainda viável.
 - Scheduler GitHub Actions: o último run de publicação observado (31/10 01:32Z, `41155804988`) concluiu com sucesso nos testes e dry-run/execute sem item devido; isso **não comprova** permissão de publicação futura. O último workflow de verificação da conexão (30/10 23:37Z, `41145590669`) foi bem-sucedido.
+
+- **Acompanhamento ChatGPT:** automação `Produção Instagram Lúmino` pausada após esta execução por bloqueio estrutural de transferência de arquivos; o workflow de publicação no GitHub não foi desativado. Retomar apenas quando o JPEG puder ser hospedado e verificado. As automações GUTHY não foram alteradas.
