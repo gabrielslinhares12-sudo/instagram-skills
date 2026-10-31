@@ -76,8 +76,8 @@ class QueueTests(unittest.TestCase):
         posts = validate_manifest(manifest(item()))
         self.assertEqual(plan(posts, empty_state(), NOW - timedelta(seconds=1))[0]["status"], "future")
         self.assertEqual(plan(posts, empty_state(), NOW)[0]["status"], "due")
-        self.assertEqual(plan(posts, empty_state(), NOW + timedelta(hours=12))[0]["status"], "due")
-        self.assertEqual(plan(posts, empty_state(), NOW + timedelta(hours=12, seconds=1))[0]["status"],
+        self.assertEqual(plan(posts, empty_state(), NOW + timedelta(hours=2))[0]["status"], "due")
+        self.assertEqual(plan(posts, empty_state(), NOW + timedelta(hours=2, seconds=1))[0]["status"],
                          "missed_window")
 
     def test_unapproved_and_future_items_are_not_published(self):
