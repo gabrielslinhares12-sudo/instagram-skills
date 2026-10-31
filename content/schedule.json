@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Lote original de sete; dólar suspenso para aprofundamento editorial solicitado em 30/10. Publicações autorizadas individualmente só com mídias verificadas. Dois Reels seguem pendentes.",
+  "approval_note": "Revisão integral dos sete conteúdos de Lúmino em andamento; o proprietário exige receber e aprovar cada post/carrossel/Reel após sua produção. Todos permanecem blocked (approved=false) até aprovação expressa da mídia e da legenda.",
   "posts": [
     {
       "id": "lumino-halloween-2026",
@@ -14,11 +14,11 @@
       "media_urls": [
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/halloween.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Modo Halloween: coragem até ouvir um barulho",
       "sources": [],
-      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
     },
     {
       "id": "lumino-votos-2026",
@@ -33,13 +33,13 @@
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-03.jpg",
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-04.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "51% dos votos... de qual total?",
       "sources": [
         "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
       ],
-      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
     },
     {
       "id": "lumino-dolar-2026",
@@ -61,7 +61,7 @@
         "https://www.bcb.gov.br/meubc/faqs/p/por-que-o-banco-central-intervem-no-mercado-de-cambio",
         "https://www.bcb.gov.br/meubc/faqs/p/a-taxa-de-cambio-e-fixada-pelo-banco-central"
       ],
-      "approval_note": "Revisão editorial solicitada: versão de quatro lâminas considerada rasa. Não publicar até substituir as imagens pelo roteiro ampliado e revisar a legenda."
+      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
     },
     {
       "id": "lumino-oncas-2026",
@@ -76,14 +76,14 @@
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-03.jpg",
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-04.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Parda ou pintada? Diferença entre duas espécies",
       "sources": [
         "https://zoo.df.gov.br/sucuarana",
         "https://www.zoo.df.gov.br/onca-pintada-2"
       ],
-      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
     },
     {
       "id": "lumino-enem-2026",
@@ -95,13 +95,13 @@
       "media_urls": [
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/enem.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Modo ENEM com o Lúmino",
       "sources": [
         "https://www.gov.br/inep/pt-br/acesso-a-informacao/perguntas-frequentes/exame-nacional-do-ensino-medio-enem"
       ],
-      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
     },
     {
       "id": "lumino-foguete-2026",
@@ -119,7 +119,7 @@
       "sources": [
         "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-a-rocket-grades-5-8/"
       ],
-      "approval_note": "Aguardando revisão visual e técnica do vídeo MP4 completo; não autorizar publicação apenas pelo nome do arquivo."
+      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
     },
     {
       "id": "lumino-lua-2026",
@@ -135,7 +135,7 @@
       "is_ai_generated": true,
       "title": "Por que a Lua parece seguir você?",
       "sources": [],
-      "approval_note": "Aguardando revisão visual e técnica do vídeo MP4 completo; não autorizar publicação apenas pelo nome do arquivo."
+      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
     }
   ]
 }
