@@ -31,7 +31,7 @@ ITEM_ID = re.compile(r"[a-z0-9][a-z0-9_-]{0,79}\Z")
 SHA256 = re.compile(r"[a-f0-9]{64}\Z")
 MAX_DOCUMENT_BYTES = 4 * 1024 * 1024
 MAX_POSTS = 366
-MAX_LATENESS = timedelta(hours=12)
+MAX_LATENESS = timedelta(hours=2)
 ITEM_FIELDS = frozenset({
     "id", "due_at", "username", "kind", "target_url", "caption", "media_urls", "approved",
     "is_ai_generated", "cover_url", "media_sha256", "title", "sources", "approval_note",
@@ -99,7 +99,7 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
             or len(document["posts"]) > MAX_POSTS):
         raise QueueError("The queue manifest must have version 1 and a bounded posts list.")
     seen: set[str] = set()
-    approved_days: set[str] = set()
+    approved_slots: set[str] = set()
     posts = []
     for raw in document["posts"]:
         if not isinstance(raw, dict) or set(raw) - ITEM_FIELDS:
@@ -137,10 +137,10 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
                                           for value in hashes)):
             raise QueueError("Optional media hashes must match the media URL count.")
         if item["approved"]:
-            day = due.date().isoformat()
-            if day in approved_days:
-                raise QueueError("Only one approved queue item is allowed per UTC calendar day.")
-            approved_days.add(day)
+            slot = timestamp(due)
+            if slot in approved_slots:
+                raise QueueError("Only one approved queue item is allowed per exact UTC time slot.")
+            approved_slots.add(slot)
         posts.append(item)
     return sorted(posts, key=lambda item: (utc_time(item["due_at"]), item["id"]))
 
