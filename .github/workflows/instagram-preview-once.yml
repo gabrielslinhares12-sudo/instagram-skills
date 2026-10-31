@@ -1,0 +1,54 @@
+name: Instagram TUE - previsualizacao de artes (execucao unica)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/instagram-preview-once.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install imaging dependencies
+        run: |
+          python3 -m pip install --disable-pip-version-check pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Read-only previews for all seven posts
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64,json,subprocess,tempfile
+          from pathlib import Path
+          from PIL import Image,ImageDraw,ImageFont
+          base=Path('content/media/semana-2026-10-31-final')
+          names=[('Halloween',base/'halloween/halloween.jpg'),('Votos',base/'votos/votos-01.jpg'),('Dólar',base/'dolar/dolar-01.jpg'),('Onças',base/'oncas/oncas-01.jpg'),('ENEM',base/'enem/enem.jpg'),('Foguete',base/'foguete/foguete-reel.mp4'),('Lua',base/'lua/lua-reel.mp4')]
+          canvas=Image.new('RGB',(7*280,458),(244,239,223));d=ImageDraw.Draw(canvas)
+          for i,(label,p) in enumerate(names):
+              if p.suffix=='.mp4':
+                  with tempfile.TemporaryDirectory() as td:
+                      out=Path(td)/'frame.jpg'
+                      subprocess.run(['ffmpeg','-nostdin','-v','error','-ss','00:00:08','-i',str(p),'-frames:v','1','-y',str(out)],check=True)
+                      im=Image.open(out).convert('RGB')
+              else:
+                  im=Image.open(p).convert('RGB')
+              im.thumbnail((260,400),Image.Resampling.LANCZOS)
+              canvas.paste(im,(i*280+10+(260-im.width)//2,10+(400-im.height)//2))
+              d.text((i*280+12,421),label,fill=(10,10,10))
+          out=Path('/tmp/instagram-covers-review.jpg')
+          canvas.save(out,'JPEG',quality=80,optimize=True)
+          data=base64.b64encode(out.read_bytes()).decode('ascii')
+          print('IG_PREVIEW_BEGIN:covers')
+          for i in range(0,len(data),4000):print('IG_PREVIEW_PART:'+data[i:i+4000])
+          print('IG_PREVIEW_END:covers')
+          img=Image.open(base/'halloween/halloween.jpg').convert('RGB')
+          img.thumbnail((750,940),Image.Resampling.LANCZOS)
+          special=Path('/tmp/halloween-review.jpg');img.save(special,'JPEG',quality=81,optimize=True)
+          encoded=base64.b64encode(special.read_bytes()).decode('ascii')
+          print('IG_PREVIEW_BEGIN:halloween')
+          for i in range(0,len(encoded),4000):print('IG_PREVIEW_PART:'+encoded[i:i+4000])
+          print('IG_PREVIEW_END:halloween')
+          PY
