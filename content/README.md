@@ -17,10 +17,18 @@ registro para tentar novamente: uma publicação incerta exige conferência manu
 da conta e do container antes de qualquer recuperação.
 
 O workflow `instagram-scheduler.yml` confere a fila a cada 15 minutos, com
-concorrência única e a variável `INSTAGRAM_SCHEDULER_ENABLED=true`. Os horários
-são alvos; o GitHub Actions pode atrasar. Uma publicação com atraso superior a
-12 horas não é enviada automaticamente. Uma claim é salva no Git remoto antes
-de qualquer chamada de publicação, evitando duplicação após resposta incerta.
+concorrência única. Para executar o lote de sete já autorizado, o agendamento
+fica habilitado quando a variable `INSTAGRAM_SCHEDULER_ENABLED` estiver ausente
+ou igual a `true`. Para suspender publicações, definir explicitamente a
+variable do repositório como `INSTAGRAM_SCHEDULER_ENABLED=false`.
+A autorização publicada no manifesto é individual: os dois Reels ainda têm
+`approved=false` até a revisão técnica e visual completa.
+
+Os horários são alvos; o GitHub Actions pode atrasar. Uma publicação com atraso
+superior a 12 horas não é enviada automaticamente. O workflow consulta
+identidade e permissões oficiais por GET antes de reivindicar qualquer item
+devido; sem concessões, não consome a tentativa. Uma claim é salva no Git remoto
+antes de qualquer chamada de publicação, evitando duplicação após resposta incerta.
 
 Conferência local, sem chamadas à Meta:
 
