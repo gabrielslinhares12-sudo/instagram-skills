@@ -1,0 +1,63 @@
+name: Instagram TUE - exportar arquivos originais para Drive (execucao unica)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/instagram-drive-export-once.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Pacote original halloween
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: instagram-tue-halloween-arquivos-originais
+          path: content/media/semana-2026-10-31-final/halloween/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Pacote original votos
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: instagram-tue-votos-arquivos-originais
+          path: content/media/semana-2026-10-31-final/votos/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Pacote original dolar
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: instagram-tue-dolar-arquivos-originais
+          path: content/media/semana-2026-10-31-final/dolar/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Pacote original oncas
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: instagram-tue-oncas-arquivos-originais
+          path: content/media/semana-2026-10-31-final/oncas/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Pacote original enem
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: instagram-tue-enem-arquivos-originais
+          path: content/media/semana-2026-10-31-final/enem/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Pacote original foguete
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: instagram-tue-foguete-arquivos-originais
+          path: content/media/semana-2026-10-31-final/foguete/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Pacote original lua
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: instagram-tue-lua-arquivos-originais
+          path: content/media/semana-2026-10-31-final/lua/
+          if-no-files-found: error
+          retention-days: 7
