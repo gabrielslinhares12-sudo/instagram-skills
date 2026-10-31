@@ -1,9 +1,6 @@
 name: Importar mídias da semana do Instagram (execução única)
 
 on:
-  push:
-    paths:
-      - 'content/uploads/chunks/instagram-tue-semana-2026-10-31.part*'
   workflow_dispatch:
 
 permissions:
