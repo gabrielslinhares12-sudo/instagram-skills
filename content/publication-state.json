@@ -2,10 +2,15 @@
   "version": 1,
   "items": {
     "halloween-2026-10-31-tirinha-aprovada": {
-      "status": "claimed",
+      "status": "published",
       "fingerprint": "f80ecd6a05d5b70dce60c2b86a96f1ec1dd7c55e5740a53605cd37977d19ea1b",
       "due_at": "2026-10-31T15:00:00Z",
-      "claimed_at": "2026-10-31T15:06:37Z"
+      "claimed_at": "2026-10-31T15:06:37Z",
+      "media_id": "18114706189871027",
+      "creation_id": "18101759078100158",
+      "instagram_user_id": "17841433004716815",
+      "page_id": "1385407341325017",
+      "published_at": "2026-10-31T15:06:47Z"
     }
   }
 }
