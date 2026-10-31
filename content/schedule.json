@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Lote original de sete conteúdos de @temumaexplicacao com Lúmino, autorizado pelo proprietário. Cinco peças estáticas revisadas e habilitadas. Dois Reels mantidos como approved=false até inspeção integral dos MP4. Horário-alvo: 12h de São Paulo (15:00 UTC). Fila não comprova publicação; conferir recibos no ledger e plataforma.",
+  "approval_note": "Lote original de sete; dólar suspenso para aprofundamento editorial solicitado em 30/10. Publicações autorizadas individualmente só com mídias verificadas. Dois Reels seguem pendentes.",
   "posts": [
     {
       "id": "lumino-halloween-2026",
@@ -54,14 +54,14 @@
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-03.jpg",
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-04.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "Por que o dólar sobe e desce?",
       "sources": [
         "https://www.bcb.gov.br/meubc/faqs/p/por-que-o-banco-central-intervem-no-mercado-de-cambio",
         "https://www.bcb.gov.br/meubc/faqs/p/a-taxa-de-cambio-e-fixada-pelo-banco-central"
       ],
-      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+      "approval_note": "Revisão editorial solicitada: versão de quatro lâminas considerada rasa. Não publicar até substituir as imagens pelo roteiro ampliado e revisar a legenda."
     },
     {
       "id": "lumino-oncas-2026",
