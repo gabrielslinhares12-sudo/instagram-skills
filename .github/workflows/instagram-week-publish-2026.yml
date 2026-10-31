@@ -1,8 +1,8 @@
 name: Instagram TUE - publicar uma pauta por dia (31out a 06nov 2026)
 on:
   schedule:
-    - cron: '7 15 31 10 *'
-    - cron: '7 15 1-6 11 *'
+    - cron: '0 15 31 10 *'
+    - cron: '0 15 1-6 11 *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -118,7 +118,7 @@ jobs:
           from pathlib import Path
           p=Path('.github/workflows/instagram-week-publish-2026.yml')
           source=p.read_text('utf-8')
-          old="  schedule:\n    - cron: '7 15 31 10 *'\n    - cron: '7 15 1-6 11 *'\n"
+          old="  schedule:\n    - cron: '0 15 31 10 *'\n    - cron: '0 15 1-6 11 *'\n"
           assert old in source
           p.write_text(source.replace(old,''),'utf-8')
           PY
