@@ -16,7 +16,7 @@ Status verificado em 31/10/2026. **Produção em revisão; não equivale a aprov
 |---|---|---|
 | 01/11 12h | Como ganhou com 46% dos votos depositados? | 8 JPGs V2 **verificados em SHA-256** e individualizados no GitHub; texto factual conferido com o TSE; **revisão visual do padrão ainda pendente**. No schedule, approved=false. |
 | 01/11 18h | Meme sobre mito do voto nulo | Tirinha nova em 4 quadros, linguagem factual neutra, JPEG 1080×1350 gerado pelo Actions; **revisão visual final ainda pendente**. No schedule, approved=false. |
-| 02/11 12h | Por que o dólar sobe/desce? | V1 com 8 JPGs/legenda no Drive; V2 parcial em pasta separada, **não aprovar V1 só porque existe**. |
+| 02/11 12h | Por que o dólar sobe/desce? | V1 com 8 JPGs/legenda no Drive; V2 parcial. Nova **capa V3 candidata** criada com fotografia de moedas/gráfico e texto factual; conferir fidelidade do Lúmino antes de promover. [Ver capa V3](https://drive.google.com/file/d/1pXqLrQM_iiQPrrgFPwU-FRZyU4OU-i-4/view). |
 | 02/11 18h | Fatores que movem o câmbio | V1 com 8 JPGs/legenda no Drive; V2 parcial/com duplicações. Reconciliar e revisar antes de publicar. |
 | 03/11 12h | Onça-parda x pintada | V1 oito JPGs; V2 parcial com capa onde o Lúmino ficou antropomorfizado/alterado. **Corrigir mascote e composição**. |
 | 03/11 18h | Onde vivem e caçam as onças | V1 sete JPGs; está muito uniforme, necessita fotos documentais e ângulos diversos; não aprovar. |
@@ -41,6 +41,6 @@ Status verificado em 31/10/2026. **Produção em revisão; não equivale a aprov
 
 ## Prioridades de execução
 1. Conferir visualmente Votos V2 e Meme V2 contra o padrão obrigatório.
-2. Melhorar Dólar e Onças (V2 incompletas), com Lúmino idêntico e imagens dinâmicas.
+2. Melhorar Dólar e Onças (V2 incompletas), com Lúmino idêntico e imagens dinâmicas. Capa dólar V3 ainda NÃO aprovada.
 3. Revisar ENEM à luz do Inep, finalizar Reels com áudio Rasalgethi.
 4. Somente após QA por post, marcar approved=true. Confirmar publicação apenas com media_id no ledger.
