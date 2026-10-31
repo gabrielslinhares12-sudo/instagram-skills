@@ -1,25 +1,20 @@
-# Identidade visual aprovada para produção: Lúmino — Modelo 01
+# Referência visual definitiva dos carrosséis com Lúmino
 
-**Decisão do proprietário:** utilizar **somente o modelo 01 — Editorial minimalista (Swiss Editorial)** apresentado na comparação de seis estilos da lâmina de votos. **Não mesclar** com o modelo 05, estilo cinematográfico, blueprint, glassmorphism, dashboards ou composições geométricas. Discussões de aperfeiçoamento do design ficam para uma etapa posterior.
+## Nova instrução do proprietário — prioridade máxima
+A **capa específica enviada pelo proprietário** com a estética **“COMO ASSIM / 51% DOS VOTOS / E NÃO GANHOU?”** é a referência visual que ele aprovou como PERFEITA. Ela tem prioridade sobre qualquer especificação anterior que chamava o estilo simplesmente de “editorial minimalista”. O proprietário rejeitou a produção posterior de oito lâminas com fundo totalmente branco, cabeçalhos repetitivos, bordas vermelhas e Lúmino pequeno, pois ficou muito diferente da capa.
 
-## Direção visual obrigatória nos próximos posts/carrosséis
+**Reproduzir a linguagem visual real da capa:**
+- Fundo claro de textura documental com elementos eleitorais fotográficos/desfocados e profundidade, não papel branco vazio.
+- Tipografia preta condensada, gigantesca, impactante; palavras de atenção em vermelho saturado.
+- Pinceladas e sublinhados amarelos artesanais como destaque, com forte hierarquia e respiro.
+- Lúmino **GRANDE**, próximo, visualmente expressivo; lanterna de vidro vintage, filamento quente, óculos circulares, olhos LED ciano, sobretudo cáqui, **sem boca nem pernas**. Preferir pose de investigador com lupa.
+- Elementos gráficos com profundidade e sensação premium editorial; não simplesmente um gráfico seco ou uma planilha.
+- Rodapé com indicadores discretos de múltiplas fotos (“DESLIZE PARA O LADO →” com pontos pequenos), **sem contagem 1/7 etc.**
+- Nas lâminas subsequentes, manter cores, fontes, escala do personagem, textura, iluminação e ritmo visual **da capa enviada**, mas com gráficos e explicações mais substanciais, precisos e legíveis.
+- Textos e gráficos precisam permanecer corretos; **capa aprovada esteticamente não significa aprovação factual da frase original**. Na eleição presidencial com 51% dos votos válidos o candidato vence em primeiro turno. Reescrever o gancho com formulação verdadeira, por exemplo: “COMO ASSIM / 46% DOS VOTOS / E GANHOU?” com qualificador “dos votos registrados” (46/100) e explicar os 51,1% de votos válidos (46/90). Preservar composição e punch visual mesmo ao corrigir o texto.
 
-- **Formato:** Instagram 4:5, 1080 × 1350 pixels, uma arte por lâmina, em sequência numerada.
-- **Tipografia:** títulos muito fortes, em letras sans-serif bold/condensadas, pretas, com contraste editorial e poucas palavras por linha; corpo simples, legível no celular.
-- **Paleta e fundo:** off-white/papel claro dominante, texto preto; vermelho editorial como acento e azul usado apenas para distinguir uma segunda categoria de dado. Não misturar paletas nem efeitos de diferentes opções.
-- **Composição:** minimalista, hierarquia bem definida, margens amplas, áreas de respiro e separações discretas. Preservar elegância e clareza antes de aumentar efeitos visuais.
-- **Dados:** percentuais grandes e precisos; comparações lado a lado; gráficos planos, simples e proporcionais, com valores numéricos e rótulos explícitos. Não usar pictogramas em quantidades desproporcionais nem gráficos decorativos que distorçam a base.
-- **Lúmino original:** lanterna vintage com cabeça de vidro e lâmpada quente visível, ferragens bronze, óculos redondos, olhos LED ciano, sobretudo cáqui/oliva flutuante; **sem boca, lábios, dentes, pernas, pés, sapatos ou cabeça de robô humanoide**. No máximo uma aparição do personagem por lâmina, de forma contida e subordinada à informação.
-- **Evitar:** neon generalizado, vitrines 3D, cenas de cinema, painel de dados estilo aplicativo, cartões translúcidos, múltiplos Lúminos, ilustração cobrindo a informação ou poluição visual.
+## Fluxo de aprovação
+Produzir uma lâmina ou um post e apresentar para aprovação do proprietário antes de seguir. Todos os sete itens do manifesto ficam `approved=false` até avaliação da mídia final e legenda. **Não publicar imagens anteriores** nem reativar agenda sem autorização.
 
-## Aplicação ao conteúdo
-
-- Este estilo vale para **todos os conteúdos com Lúmino** deste lote e novas propostas, salvo alteração expressa do proprietário.
-- Explicações educativas devem continuar aprofundadas, com fonte, fato, exemplo verificável e síntese final, mesmo com visual limpo.
-- A decisão sobre o estilo **não equivale à aprovação de nenhuma arte final, legenda ou publicação**.
-- Apresentar **cada post/carrossel final** para aprovação individual antes de alterar `approved` no arquivo `content/schedule.json`.
-- O agendamento de sete itens permanece bloqueado até aprovação individual do proprietário.
-
-## Referência desta decisão
-
-Referência visual: modelo **01 — Editorial minimalista** da apresentação original de seis alternativas para a lâmina “O mesmo voto. Duas porcentagens.” A segunda alternativa escolhida anteriormente (05) foi explicitamente rejeitada para mesclagem. A prioridade é recuperar o modelo 01 original, sem interpretação híbrida.
+## Referência de trabalho
+A capa estética foi produzida em conversa anterior como imagem “Como 51% Não Ganhou?.png” e posteriormente reenviada pelo proprietário como referência. A lâmina seguinte de demonstração foi criada nesta conversa, não substitui a capa nem é considerada aprovada.
