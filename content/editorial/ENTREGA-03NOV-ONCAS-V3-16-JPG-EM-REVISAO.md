@@ -62,3 +62,17 @@ Referência visual obrigatória do proprietário: [Lúmino — carrossel-modelo]
 2. **Não** editar `content/schedule.json` ou `content/publication-state.json` nem modificar `approved` nesta entrega.
 3. Antes de postar, verificar individualmente legibilidade em celular, anatomia, consistência do mascote, dados científicos e necessidade de trocar cenas geradas por IA por fotografias realmente licenciadas.
 4. O ZIP não é URL de mídia para a API da Meta: para publicação, primeiro colocar cada JPEG aprovado em caminho público imutável no GitHub e registrar seus hashes.
+
+## Atualização visual — nova versão de 31/10/2026 (substitui o V3 anterior para revisão)
+
+**A avaliação do proprietário confirmou que as capas estavam boas, mas rejeitou a qualidade das páginas internas anteriores. A versão antiga NÃO deve ser publicada.** A nova versão reconstruída preserva as capas aprovadas como referência e emprega nas páginas internas a estética do modelo obrigatório: cenas dos felinos em destaque, Lúmino dourado com olhos ciano e lupa, fontes pretas grandes sobre pinceladas amarelas, acentos vermelhos, balões de informação legíveis e indicadores de página.
+
+### Arquivos novos, efetivamente enviados ao Drive e verificados
+
+- **[NOVO ZIP com as 16 imagens JPG 1080×1350 e manifesto de integridade](https://drive.google.com/file/d/14yyFye22aCoO0kmHkoeozCGVEJlNAvMR/view)**
+- [Prévia de 12h: onça-pintada × onça-parda — 8 artes](https://drive.google.com/file/d/17J8KUQ1UiJatyKHSj_juS7L_nnYNTACZ/view)
+- [Prévia de 18h: habitats e caça — 8 artes](https://drive.google.com/file/d/1u0xRxgQn42aRIBNDyXXyAS5tIWI7IHGN/view)
+
+O ZIP foi aberto, todas as 16 imagens foram validadas individualmente quanto a **1080×1350**, integridade CRC e hash SHA-256. Documentação, legendas e fontes anteriormente registradas continuam válidas. Novas artes são ilustrativas geradas por IA, não registros fotográficos reais.
+
+**Importante:** o novo pacote está em **revisão editorial, sem autorização de publicação**. O título interno do ZIP refere-se ao **padrão gráfico**, não a autorização de Instagram. Não alterar `approved`, `content/schedule.json`, `content/publication-state.json` nem executar o gatilho da semana sem autorização específica. Os links V3 neste documento são histórico de rascunho e não mais as imagens prioritárias.
