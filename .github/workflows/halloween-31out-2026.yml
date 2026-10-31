@@ -31,9 +31,10 @@ jobs:
         shell: bash
         run: |
           DAY="$(date -u +%F)"
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$DAY" = "2026-10-31" ]; then
+          UTC_HM="$(date -u +%H%M)"
+          if [ "$DAY" = "2026-10-31" ] && { [ "${{ github.event_name }}" = "schedule" ] || { [ "${{ github.event_name }}" = "push" ] && [ "$UTC_HM" -ge 1500 ] && [ "$UTC_HM" -le 1520 ]; }; then
             echo "publish=true" >> "$GITHUB_OUTPUT"
-            echo "Scheduled Halloween trigger: $DAY"
+            echo "Approved dated Halloween execution ($DAY at $UTC_HM UTC)"
           else
             echo "publish=false" >> "$GITHUB_OUTPUT"
             echo "Smoke test/manual preview only, NO publication."
