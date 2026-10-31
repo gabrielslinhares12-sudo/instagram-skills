@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "id": "instagram-tue-lumino-carrossel-official",
+  "status": "obrigatorio",
+  "reference": {
+    "path": "content/brand/modelo-oficial-carrossel-8-paineis.png",
+    "sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+    "width": 1536,
+    "height": 1024,
+    "role": "referencia visual; nunca copiar dados numericos da arte"
+  },
+  "lumino": {
+    "path": "content/brand/lumino-original.png",
+    "sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+    "width": 1230,
+    "height": 1278,
+    "role": "asset imutavel: sobrepor PNG original; proibido regenerar"
+  },
+  "output": {
+    "width": 1080,
+    "height": 1350,
+    "format": "JPEG",
+    "pages": 8
+  },
+  "design": {
+    "paper": "#F4EDE1",
+    "yellow": "#FFD600",
+    "ink": "#111111",
+    "red": "#D50E15",
+    "white": "#FFFFFF",
+    "photo_hero": true,
+    "large_condensed_headlines": true,
+    "brush_strokes": true,
+    "red_accents": true,
+    "readable_at_mobile": true,
+    "numbering": true,
+    "footer_dots": true,
+    "original_mascot_on_every_page": true,
+    "alternate_page_layouts": true
+  },
+  "forbidden": [
+    "fundos escuros genericos no lugar do papel claro",
+    "mascote redesenhado, sem lupa, com boca humana, pernas ou sapatos",
+    "paineis internos simplificados em relacao a capa",
+    "texto ilegivel e conteudo factualmente incorreto",
+    "colagem 2x4 entregue como carrossel"
+  ],
+  "release": {
+    "approval_required": true,
+    "do_not_publish_without_user_trigger": true,
+    "post_31oct_legacy_exempt": true,
+    "require_visual_qa_report_for_new_carousels": true,
+    "reels_require_narration_and_mp4": true
+  },
+  "notes": "As contas eleitorais impressas no modelo visual sao ilustrativas e nao devem ser reutilizadas. Exemplo presidencial corrigido: A=44, B=46, brancos+nulos=10, validos=90, B=51.1% dos validos."
+}
