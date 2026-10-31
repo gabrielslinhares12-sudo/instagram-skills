@@ -1,7 +1,7 @@
 # Produção sequencial do Instagram — 31/10 a 06/11/2026
 
-## Correção obrigatória em 30/10/2026
-A primeira publicação (Halloween) tinha a **imagem antiga** no manifesto e foi BLOQUEADA. Antes de retomar leia `content/editorial/HALLOWEEN-CORRECAO-MIDIA-2026-10-31.md` e substitua por exato JPEG novo 1080 × 1350 (SHA256: `9b909155390281e5c9648c1eb3cb330f05bc0b459016f07b0a1428eaf3d2bdc8`). Até isso ser verificado, `approved=false`; não publicar a antiga.
+## Recriação solicitada em 30/10/2026 — instrução mais recente
+A imagem antiga de Halloween foi **retirada da fila**. O proprietário pediu **uma nova criação da postagem**, inserida na produção semanal já em curso, com agendamento assim que possível e sem duplicação. Leia primeiro `content/editorial/HALLOWEEN-RECRIACAO-PRIORITARIA-2026-10-30.md`. A recriação permite produzir um **novo JPG fiel ao conceito visual melhorado**, não exige o JPEG antigo como bytes idênticos. Continuam obrigatórios validação, hospedagem real, URL imutável, prevenção de duplicação e `approved=false` até ter arte final verdadeira. A janela preferida continua 31/10 às 12h, se alcançável; caso contrário, primeira janela segura sem sobreposição, respeitando a relevância sazonal.
 
 ## Autorização
 Em 30/10/2026 o proprietário autorizou expressamente a produção e o agendamento automático de **um post completo de cada vez**, sem pedir novas aprovações, para o perfil **@temumaexplicacao**, com **notificação sempre que finalizar um** e início do próximo logo em seguida. Esta autorização é limitada ao lote abaixo, e não inclui outros perfis/canais.
@@ -11,7 +11,7 @@ Todos os horários são **12h de Brasília/Fortaleza (UTC−3), ou 15:00Z**, e a
 
 | Ordem | ID no manifesto | Conteúdo | Publicação-alvo | Tipo | Status inicial |
 |---|---|---|---|---|---|
-| 1 | lumino-halloween-2026 | Halloween — meme Lúmino | 31/10/2026 | imagem | arte antiga identificada; aprovado=false até substituição pela versão melhorada correta |
+| 1 | lumino-halloween-2026 | Halloween — meme Lúmino | 31/10/2026 | imagem | recriação solicitada e vinculada ao mesmo ID; aprovado=false até mídia nova verificada |
 | 2 | lumino-votos-2026 | 46% dos votos registrados vs 51,1% dos válidos | 01/11/2026 | carrossel com oito JPGs | reconstruir antes de liberar |
 | 3 | lumino-dolar-2026 | Por que o dólar sobe e desce — fatores e efeitos | 02/11/2026 | carrossel com oito JPGs | reconstruir antes de liberar |
 | 4 | lumino-oncas-2026 | Onça-parda vs onça-pintada — espécies, filhotes, melanismo | 03/11/2026 | carrossel com sete JPGs | reconstruir antes de liberar |
