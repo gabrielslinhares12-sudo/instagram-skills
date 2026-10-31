@@ -39,7 +39,41 @@ Exemplo inteiramente hipotético. Salve para consultar na próxima apuração.
 - Lei 9.504/1997, art. 2º: https://www.tse.jus.br/legislacao/codigo-eleitoral/lei-das-eleicoes/lei-das-eleicoes-lei-nb0-9.504-de-30-de-setembro-de-1997
 - TSE (jun. 2026): https://www.tse.jus.br/comunicacao/noticias/2026/Junho/sabe-o-que-e-o-sistema-eleitoral-majoritario-o-glossario-explica-1
 
-## Produção e publicação
-- 8 PNGs separados, 1080 × 1350, criados nesta conversa e entregues para aprovação individual.
-- **Não usar imagens da versão anterior com o roteiro novo.**
-- Após aprovação, subir exatamente os oito PNGs verificados, registrar suas URLs definitivas e hashes no manifesto, revisar o post na plataforma e então autorizar o envio, seguindo o fluxo existente de `content/schedule.json`.
+
+---
+
+## Execução sequencial — produção 30/10/2026, 22h56 (Fortaleza)
+
+**Status de produção:** oito artes JPEG 4:5 (1080 × 1350) renderizadas e validadas quanto a formato, dimensões e integridade em ambiente de criação; prévia e ZIP disponíveis como artefatos desta conversa. Visual baseado na capa exata aprovada, com Lúmino grande, pinceladas amarelas, tipografia preta forte, contraste vermelho e cue discreto sem numeração.
+
+**Status do GitHub/Instagram:** **BLOQUEADO PARA PUBLICAÇÃO**. Não foi possível transferir os bytes dos oito JPEGs locais ao repositório pelo conector GitHub disponível (ele aceita apenas conteúdo textual/base64 explicitamente fornecido e não tem ação de upload binário direto de arquivos locais). Os URLs imutáveis para as artes finais **não existem**. As quatro mídias antigas de `content/schedule.json` foram rejeitadas editorialmente e não devem ser liberadas. `approved=false` deve permanecer até transferência, verificação pública de todas as oito mídias e revisão de preflight.
+
+**Arquivos produzidos (não publicados):** `votos-01.jpg` (363573 bytes, SHA-256 inicia `6a12bc74d714694044`); `votos-02.jpg` (270348, `1a81b2d77d2cb858a5`); `votos-03.jpg` (195719, `68899c1e4cabda9c04`); `votos-04.jpg` (231502, `8eeae8c86fc77868b5`); `votos-05.jpg` (205085, `0a064685f4e1431a1e`); `votos-06.jpg` (224967, `2063fb024f85efda51`); `votos-07.jpg` (255748, `538aeeb2463ea635ef`); `votos-08.jpg` (277730, `10e840a7913edf79f2`). Manifesto com hashes completos no pacote de trabalho local `/mnt/data/lumino_votos_final_2026/manifest.json`.
+
+### Legenda final revisada
+
+**GANHOU COM APENAS 46% DOS VOTOS? 🗳️**
+
+Em uma eleição presidencial hipotética, sim — e a explicação é matemática.
+
+Imagine 120 pessoas aptas a votar. Vinte não compareceram. Entre os 100 votos registrados, a candidatura B recebeu 46, a A recebeu 44, e dez foram brancos ou nulos.
+
+Se dividirmos os 46 votos de B pelos 100 votos registrados, o resultado é **46%**. Mas os votos brancos e nulos não entram na conta dos votos válidos: são 90. Assim, **46 ÷ 90 ≈ 51,1% dos votos válidos**.
+
+Na disputa presidencial, mais da metade dos votos válidos é suficiente para vencer no primeiro turno. Como a metade de 90 é 45, a candidatura B, com 46, venceria nesse exemplo.
+
+O voto branco não é transferido para o vencedor. O voto nulo também não. E uma grande quantidade de votos nulos não anula automaticamente uma eleição: a nulidade judicial de uma votação é outra situação, com regras próprias.
+
+Nem todo cargo segue a mesma fórmula: o Senado usa maioria simples; deputados e vereadores são escolhidos pelo sistema proporcional.
+
+**A pergunta certa é: 51% de qual total?**
+
+*Todos os números são hipotéticos, sem relação com candidatos reais.*
+
+Fontes: TSE — 17/09/2026, `https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao`; TSE — sistemas eleitorais, `https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-22-dias-sistemas-majoritario-e-proporcional-definem-a-eleicao`; TSE — voto branco/nulo, `https://www.tse.jus.br/comunicacao/noticias/2026/Julho/voto-branco-x-voto-nulo-saiba-a-diferenca-de-acordo-com-o-glossario-eleitoral`.
+
+#Eleições #VotosVálidos #EducaçãoCívica #TemUmaExplicacao
+
+### Próxima ação segura
+
+Transferir os oito JPEGs finais ao GitHub, obter commit SHA real, construir URLs raw HTTPS pinadas nesse SHA, verificar status 200 e tipo de mídia, atualizar a legenda e as oito URLs no item `lumino-votos-2026`, executar testes/preflight e somente então alterar `approved=true`. Não passar a Dólar antes de concluir este item.
