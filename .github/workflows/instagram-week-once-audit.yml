@@ -13,7 +13,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - name: Install FFmpeg for media probing\n        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg\n      - name: Validate 27 original media bytes and Instagram formats (read-only)
+      - name: Install FFmpeg for media probing
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Validate 27 original media bytes and Instagram formats (read-only)
         shell: bash
         run: |
           python3 - <<'PY'
