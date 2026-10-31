@@ -37,6 +37,11 @@ jobs:
           python3 -m unittest discover -s scripts -p 'test_*poster.py' -v
           python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -v
           python3 -m unittest discover -s scripts -p 'test_instagram_preflight.py' -v
+      - name: Aplicar padrao editorial canônico antes de qualquer publicação
+        run: |
+          python3 -m pip install 'Pillow>=11,<13'
+          python3 scripts/instagram_visual_standard.py verify-assets
+          python3 scripts/instagram_visual_standard.py audit-queue
       - name: Configurar identidade da automação para o registro
         run: |
           git config user.name 'github-actions[bot]'
