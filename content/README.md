@@ -16,7 +16,7 @@ indefinida de novos assuntos.
 registro para tentar novamente: uma publicação incerta exige conferência manual
 da conta e do container antes de qualquer recuperação.
 
-O workflow `instagram-scheduler.yml` confere a fila a cada 15 minutos, com
+O workflow `instagram-scheduler.yml` confere a fila e o andamento da produção a cada 10 minutos, com
 concorrência única. Para executar o lote de sete já autorizado, o agendamento
 fica habilitado quando a variable `INSTAGRAM_SCHEDULER_ENABLED` estiver ausente
 ou igual a `true`. Para suspender publicações, definir explicitamente a
