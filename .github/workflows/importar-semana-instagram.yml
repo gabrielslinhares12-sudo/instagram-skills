@@ -3,7 +3,7 @@ name: Importar mídias da semana do Instagram (execução única)
 on:
   push:
     paths:
-      - 'content/uploads/instagram-tue-semana-2026-10-31-06nov.zip'
+      - 'content/uploads/chunks/instagram-tue-semana-2026-10-31.part*'
   workflow_dispatch:
 
 permissions:
@@ -33,6 +33,19 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Rebuild original ZIP from immutable verified Git blobs
+        run: |
+          mkdir -p content/uploads
+          cat content/uploads/chunks/instagram-tue-semana-2026-10-31.part?? > content/uploads/instagram-tue-semana-2026-10-31-06nov.zip
+          test "$(wc -c < content/uploads/instagram-tue-semana-2026-10-31-06nov.zip)" -eq 13777509
+          python3 - <<'PY'
+          from zipfile import ZipFile
+          p="content/uploads/instagram-tue-semana-2026-10-31-06nov.zip"
+          with ZipFile(p) as z:
+              assert z.testzip() is None, "Corrupted ZIP entry"
+              assert len([i for i in z.namelist() if i.endswith('.jpg') or i.endswith('.mp4')]) == 27
+          print("ZIP reconstructed: 13,777,509 bytes, 27 intact media items")
+          PY
       - name: Verify ZIP and extract all 27 final media files
         run: python3 scripts/importar_semana_zip.py extract
       - name: Commit and push immutable binary media
