@@ -1,6 +1,141 @@
 {
   "version": 1,
   "timezone": "America/Sao_Paulo",
-  "approval_note": "Owner requested production and scheduling of the seven discussed posts. Media is being conformed to the newly supplied Lúmino reference; queue remains empty until final assets are verified.",
-  "posts": []
+  "created_at": "2026-10-30T00:00:00Z",
+  "approval_note": "Lote original de sete conteúdos de @temumaexplicacao com Lúmino, autorizado pelo proprietário. Cinco peças estáticas revisadas e habilitadas. Dois Reels mantidos como approved=false até inspeção integral dos MP4. Horário-alvo: 12h de São Paulo (15:00 UTC). Fila não comprova publicação; conferir recibos no ledger e plataforma.",
+  "posts": [
+    {
+      "id": "lumino-halloween-2026",
+      "due_at": "2026-10-31T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "post",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "caption": "Eu dizendo que sou racional... até ouvir um barulho na cozinha de madrugada. 🎃\n\nA lanterna está acesa, o Lúmino está alerta e o gato também já percebeu alguma coisa.\n\nMande para aquela pessoa que vira detetive depois de um susto.\n\n#Halloween #Humor #TemUmaExplicacao",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/halloween.jpg"
+      ],
+      "approved": true,
+      "is_ai_generated": true,
+      "title": "Modo Halloween: coragem até ouvir um barulho",
+      "sources": [],
+      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+    },
+    {
+      "id": "lumino-votos-2026",
+      "due_at": "2026-11-01T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "caption": "51% dos votos... mas de qual total?\n\nImagine uma eleição majoritária com 100 votos registrados. Dez são brancos ou nulos e uma candidatura recebe 46 votos.\n\nSão 46% de todos os votos registrados, mas aproximadamente 51,1% dos 90 votos válidos.\n\nO número não mudou. Mudou a base do cálculo. Deslize para ver a diferença e salve para consultar quando aparecer um percentual eleitoral.\n\nExemplo hipotético, sem referência a nenhuma candidatura real.\n\n#Eleições #Matemática #EducaçãoCívica",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-04.jpg"
+      ],
+      "approved": true,
+      "is_ai_generated": true,
+      "title": "51% dos votos... de qual total?",
+      "sources": [
+        "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
+      ],
+      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+    },
+    {
+      "id": "lumino-dolar-2026",
+      "due_at": "2026-11-02T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "caption": "Por que o dólar sobe e desce tanto?\n\nA cotação é um preço negociado no mercado. Num exemplo simplificado, quando cresce a procura por dólares sem aumento equivalente da oferta, o preço tende a subir. Se a oferta aumenta mantendo a procura, tende a cair.\n\nMas o mundo real tem muitas forças atuando juntas, como expectativas, comércio e fluxos financeiros. No Brasil, o regime cambial é flutuante.\n\nArraste para entender o mecanismo e salve para quando a próxima cotação chamar atenção.\n\n#Economia #Dólar #EducaçãoFinanceira",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-04.jpg"
+      ],
+      "approved": true,
+      "is_ai_generated": true,
+      "title": "Por que o dólar sobe e desce?",
+      "sources": [
+        "https://www.bcb.gov.br/meubc/faqs/p/por-que-o-banco-central-intervem-no-mercado-de-cambio",
+        "https://www.bcb.gov.br/meubc/faqs/p/a-taxa-de-cambio-e-fixada-pelo-banco-central"
+      ],
+      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+    },
+    {
+      "id": "lumino-oncas-2026",
+      "due_at": "2026-11-03T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "caption": "Onça-parda ou onça-pintada? A resposta vai além da cor.\n\nA onça-parda é a espécie Puma concolor. Os adultos costumam ter pelagem uniforme, mas os filhotes podem nascer com pintas que desaparecem ao crescer.\n\nJá a onça-pintada é Panthera onca, reconhecida pelas manchas em roseta. Até os indivíduos de pelagem escura preservam esse padrão, embora ele fique menos visível.\n\nVeja os quatro quadros antes de tentar identificar uma espécie só pela cor.\n\n#MundoAnimal #OnçaPintada #Biodiversidade",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-04.jpg"
+      ],
+      "approved": true,
+      "is_ai_generated": true,
+      "title": "Parda ou pintada? Diferença entre duas espécies",
+      "sources": [
+        "https://zoo.df.gov.br/sucuarana",
+        "https://www.zoo.df.gov.br/onca-pintada-2"
+      ],
+      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+    },
+    {
+      "id": "lumino-enem-2026",
+      "due_at": "2026-11-04T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "post",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "caption": "Modo ENEM: eu tentando revisar a matéria. Meu cérebro querendo entender como as formigas sabem o caminho. 📚\n\nA curiosidade aparece justamente na hora da concentração.\n\nPara quem vai fazer o ENEM 2026: as aplicações regulares estão previstas para 8 e 15 de novembro. Confira seu local de prova e as orientações no portal oficial.\n\nEnvie para o amigo que também começa a estudar e termina pesquisando outro assunto.\n\n#ENEM2026 #VidaDeEstudante #Humor",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/enem.jpg"
+      ],
+      "approved": true,
+      "is_ai_generated": true,
+      "title": "Modo ENEM com o Lúmino",
+      "sources": [
+        "https://www.gov.br/inep/pt-br/acesso-a-informacao/perguntas-frequentes/exame-nacional-do-ensino-medio-enem"
+      ],
+      "approval_note": "Arte final do lote de sete autorizado; texto e imagens conferidos antes da inclusão."
+    },
+    {
+      "id": "lumino-foguete-2026",
+      "due_at": "2026-11-05T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "reel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "caption": "Um foguete não precisa empurrar o chão para subir. 🚀\n\nAo expelir gases numa direção, recebe uma força em sentido contrário. É a terceira lei de Newton em ação.\n\n#Ciência #Foguetes #TemUmaExplicacao",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/foguete-lumino.mp4"
+      ],
+      "approved": false,
+      "is_ai_generated": true,
+      "title": "Como um foguete consegue subir?",
+      "sources": [
+        "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-a-rocket-grades-5-8/"
+      ],
+      "approval_note": "Aguardando revisão visual e técnica do vídeo MP4 completo; não autorizar publicação apenas pelo nome do arquivo."
+    },
+    {
+      "id": "lumino-lua-2026",
+      "due_at": "2026-11-06T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "reel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "caption": "Já reparou que a Lua parece acompanhar você durante uma viagem? 🌙\n\nA distância enorme faz com que sua posição aparente mude muito pouco quando você se desloca. É uma questão de perspectiva.\n\n#Lua #Astronomia #Curiosidades",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/lua-lumino.mp4"
+      ],
+      "approved": false,
+      "is_ai_generated": true,
+      "title": "Por que a Lua parece seguir você?",
+      "sources": [],
+      "approval_note": "Aguardando revisão visual e técnica do vídeo MP4 completo; não autorizar publicação apenas pelo nome do arquivo."
+    }
+  ]
 }
