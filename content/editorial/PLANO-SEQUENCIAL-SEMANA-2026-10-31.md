@@ -1,5 +1,8 @@
 # Produção sequencial do Instagram — 31/10 a 06/11/2026
 
+## Correção obrigatória em 30/10/2026
+A primeira publicação (Halloween) tinha a **imagem antiga** no manifesto e foi BLOQUEADA. Antes de retomar leia `content/editorial/HALLOWEEN-CORRECAO-MIDIA-2026-10-31.md` e substitua por exato JPEG novo 1080 × 1350 (SHA256: `9b909155390281e5c9648c1eb3cb330f05bc0b459016f07b0a1428eaf3d2bdc8`). Até isso ser verificado, `approved=false`; não publicar a antiga.
+
 ## Autorização
 Em 30/10/2026 o proprietário autorizou expressamente a produção e o agendamento automático de **um post completo de cada vez**, sem pedir novas aprovações, para o perfil **@temumaexplicacao**, com **notificação sempre que finalizar um** e início do próximo logo em seguida. Esta autorização é limitada ao lote abaixo, e não inclui outros perfis/canais.
 
@@ -8,7 +11,7 @@ Todos os horários são **12h de Brasília/Fortaleza (UTC−3), ou 15:00Z**, e a
 
 | Ordem | ID no manifesto | Conteúdo | Publicação-alvo | Tipo | Status inicial |
 |---|---|---|---|---|---|
-| 1 | lumino-halloween-2026 | Halloween — meme Lúmino | 31/10/2026 | imagem | arte e legenda final prontas, aprovado no manifesto |
+| 1 | lumino-halloween-2026 | Halloween — meme Lúmino | 31/10/2026 | imagem | arte antiga identificada; aprovado=false até substituição pela versão melhorada correta |
 | 2 | lumino-votos-2026 | 46% dos votos registrados vs 51,1% dos válidos | 01/11/2026 | carrossel com oito JPGs | reconstruir antes de liberar |
 | 3 | lumino-dolar-2026 | Por que o dólar sobe e desce — fatores e efeitos | 02/11/2026 | carrossel com oito JPGs | reconstruir antes de liberar |
 | 4 | lumino-oncas-2026 | Onça-parda vs onça-pintada — espécies, filhotes, melanismo | 03/11/2026 | carrossel com sete JPGs | reconstruir antes de liberar |
