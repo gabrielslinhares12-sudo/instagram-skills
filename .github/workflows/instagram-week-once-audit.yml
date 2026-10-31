@@ -1,0 +1,64 @@
+name: Instagram TUE - auditoria unica do lote semanal
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/instagram-week-once-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Validate 27 original media bytes and Instagram formats (read-only)
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+          s=json.loads(Path('content/schedule.json').read_text(encoding='utf-8'))
+          ledger=json.loads(Path('content/publication-state.json').read_text(encoding='utf-8'))
+          assert len(s['posts'])==7
+          assert not ledger['items'], 'Claimed/published records need manual reconciliation'
+          counts={}
+          for post in s['posts']:
+              assert post['username']=='temumaexplicacao'
+              assert post['approved'] is False
+              urls=post['media_urls']; hashes=post['media_sha256']
+              assert len(urls)==len(hashes)
+              counts[post['id']]=len(urls)
+              for url,expected in zip(urls,hashes):
+                  prefix='https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/'
+                  assert url.startswith(prefix), 'Unpinned/unexpected media URL'
+                  p=Path(url.removeprefix(prefix))
+                  assert p.is_file() and p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==expected
+                  raw=subprocess.run(['ffprobe','-v','error','-show_entries','stream=index,codec_type,codec_name,width,height:format=duration','-of','json',str(p)],capture_output=True,text=True,check=True)
+                  probe=json.loads(raw.stdout)
+                  video=next(x for x in probe['streams'] if x['codec_type']=='video')
+                  if p.suffix=='.jpg':
+                      assert video['width']==1080 and video['height']==1350
+                  else:
+                      assert p.suffix=='.mp4' and video['width']==1080 and video['height']==1920 and video['codec_name']=='h264'
+                      assert any(x['codec_type']=='audio' and x['codec_name']=='aac' for x in probe['streams'])
+                      assert 30 <= float(probe['format']['duration']) <= 90
+                  print('VERIFIED:',str(p),p.stat().st_size)
+          assert sum(counts.values())==27
+          assert [counts[p['id']] for p in s['posts']]==[1,8,8,7,1,1,1]
+          print('INSTAGRAM_MEDIA_AUDIT_OK=27; PUBLISHING_NOT_PERFORMED')
+          PY
+      - name: Test queue and Meta poster without publishing
+        run: |
+          python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -v
+          python3 -m unittest discover -s scripts -p 'test_instagram_preflight.py' -v
+          python3 -m unittest discover -s scripts -p 'test_facebook_poster.py' -v
+      - name: Check Meta account identity and grants (GET only)
+        env:
+          FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
+          FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
+          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
+          INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+        run: python3 scripts/instagram_preflight.py
