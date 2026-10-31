@@ -1,0 +1,58 @@
+name: Preparar votos V2 — sem publicação
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-stage-votos-v2.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-tue-media-staging
+  cancel-in-progress: false
+jobs:
+  stage:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Descompactar somente os oito arquivos revisados
+        run: |
+          set -euo pipefail
+          mkdir -p content/staging/votos-validos-2026-11-01
+          unzip -oq content/staging/2026-11-01/votos-validos-v2-8-artes-REVISAO.zip 'votos-novo-*.jpg' -d content/staging/votos-validos-2026-11-01
+          test "$(find content/staging/votos-validos-2026-11-01 -maxdepth 1 -name 'votos-novo-*.jpg' | wc -l)" -eq 8
+          : > /tmp/expected.sha256
+          echo '25d742fe5963e5eb4cd67ebbd6115888fbd26aeffdecfd147b0a62a4da3984fb  content/staging/votos-validos-2026-11-01/votos-novo-01.jpg' >> /tmp/expected.sha256
+          echo '4a00e7973bf7588aaf377fedbdfed5f133150098bd212b875fdaeca0ec85f086  content/staging/votos-validos-2026-11-01/votos-novo-02.jpg' >> /tmp/expected.sha256
+          echo 'ad4891ad5ab1e8a0ec8d29a6ceba6fef401f9f58a0476331be4607ee11fd5fff  content/staging/votos-validos-2026-11-01/votos-novo-03.jpg' >> /tmp/expected.sha256
+          echo '7615a07fdcc2e0608b6d9c21765a1e98ca5f3a1895cb9146e9ce7e364003996c  content/staging/votos-validos-2026-11-01/votos-novo-04.jpg' >> /tmp/expected.sha256
+          echo 'c2195c7f812027515f01dada50a06cd1653bbaa98dadcfa65acd8301e8236fc9  content/staging/votos-validos-2026-11-01/votos-novo-05.jpg' >> /tmp/expected.sha256
+          echo '0a6eeebdd0964389f0595232c3ef7f57a6fed579ff0a90636d672557fd56fa55  content/staging/votos-validos-2026-11-01/votos-novo-06.jpg' >> /tmp/expected.sha256
+          echo '3cf461be96c1c3ae4f09f968e33a3205c05b0090e9c33ddef23b3302495be561  content/staging/votos-validos-2026-11-01/votos-novo-07.jpg' >> /tmp/expected.sha256
+          echo '7d7ccbaa6f1a488da3b74ed30b4e57e7cb17b452fabc5ceb94f6ad475526d5dc  content/staging/votos-validos-2026-11-01/votos-novo-08.jpg' >> /tmp/expected.sha256
+          sha256sum -c /tmp/expected.sha256
+          python3 - <<'PY'
+          from pathlib import Path
+          from struct import unpack
+          for path in sorted(Path('content/staging/votos-validos-2026-11-01').glob('*.jpg')):
+              raw=path.read_bytes()
+              assert raw[:2]==b'\xff\xd8' and raw[-2:]==b'\xff\xd9', path
+              assert len(raw)>100_000, path
+          PY
+      - name: Persistir apenas mídias para revisão (nunca publicar)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/staging/votos-validos-2026-11-01
+          if ! git diff --cached --quiet; then
+            git commit -m 'Unpack SHA256-verified voting carousel into Instagram review staging'
+            git push origin HEAD:main
+          else
+            echo 'Media staging already present; nothing to change.'
+          fi
