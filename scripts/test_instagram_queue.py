@@ -185,11 +185,16 @@ class QueueTests(unittest.TestCase):
                 with self.assertRaises((QueueError, MetaError)):
                     validate_manifest(manifest(post))
 
-    def test_duplicate_ids_and_two_approved_posts_on_same_day_are_rejected(self):
+    def test_duplicate_ids_and_duplicate_approved_time_slots_are_rejected(self):
         for document in (manifest(item(), item()),
-                         manifest(item(), item(id="same-day", due_at="2026-10-31T23:00:00Z"))):
+                         manifest(item(), item(id="same-slot"))):
             with self.assertRaises(QueueError):
                 validate_manifest(document)
+
+    def test_two_approved_posts_same_day_with_different_times_are_valid(self):
+        posts = validate_manifest(manifest(item(), item(id="evening-carousel", due_at="2026-10-31T21:00:00Z")))
+        self.assertEqual(len(posts), 2)
+        self.assertNotEqual(posts[0]["due_at"], posts[1]["due_at"])
 
     def test_carousel_reel_optional_ai_label_and_cover_are_mapped_without_schedule(self):
         for post in (item(kind="carousel", media_urls=[URL, URL + "-two"]),
