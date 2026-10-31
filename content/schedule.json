@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Lote semanal em produção sequencial. Halloween: criação NOVA solicitada, priorizar após conclusão da atividade atualmente em andamento, sem duplicar posts e publicar no primeiro slot viável após mídia final aprovada tecnicamente. Referência e instruções em content/editorial/HALLOWEEN-RECRIACAO-PRIORITARIA-2026-10-30.md. Todos itens permanecem approved=false até mídia final verificada.",
+  "approval_note": "Pacote da semana importado para GitHub. URLs finais com SHA imutável, todos approved=false. Nenhum workflow de verificação recorrente habilitado.",
   "posts": [
     {
       "id": "lumino-halloween-2026",
@@ -10,15 +10,18 @@
       "username": "temumaexplicacao",
       "kind": "post",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "caption": "Eu dizendo que sou racional… até ouvir um barulho na cozinha de madrugada. 🎃\n\nO Lúmino passa o dia explicando tudo com lógica. Mas, quando a casa fica silenciosa e vem aquele CRAC da cozinha, a imaginação começa a investigar antes de descobrir o que aconteceu.\n\nÉ curioso como um som inesperado, especialmente quando não vemos sua origem, pode nos deixar em alerta. Muitas vezes a explicação é simples. A reação, nem tanto.\n\nEnvie para quem também vira detetive depois da meia-noite.\n\n#Halloween #Curiosidades #Humor #TemUmaExplicacao",
+      "caption": "Eu dizendo que sou racional… até ouvir um barulho na cozinha de madrugada. 🎃\n\nO Lúmino passa o dia explicando tudo com lógica. Mas quando a casa fica silenciosa, um simples CRAC vira caso de investigação.\n\nManda para aquele amigo que também vira detetive depois da meia-noite.\n\n#Halloween #Humor #Curiosidades #TemUmaExplicacao",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-10-31-lumino/halloween-novo-PENDENTE.jpg"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/halloween/halloween.jpg"
       ],
       "approved": false,
       "is_ai_generated": true,
       "title": "Modo Halloween: coragem até ouvir um barulho",
       "sources": [],
-      "approval_note": "NOVA ARTE RECRIADA EM 30/10 23h, JPEG 1080x1350, SHA256 b8147da5e276f61325a9b090f2614222112efb4b9ac097d946055f942b311519. BLOQUEIO DE TRANSFERÊNCIA: arquivo local ainda sem URL pública imutável no GitHub. Placeholder PENDENTE não existe; approved=false até upload do JPEG exato, verificação hash, troca por URL commit-pinned e checagem de ledger/Meta. Ver content/editorial/HALLOWEEN-RECRIACAO-PRIORITARIA-2026-10-30.md."
+      "approval_note": "27 mídias finais importadas e verificadas por SHA256. Publicação e agendamento NÃO ativados; aguarda revisão e acionamento manual. Mídia fixa no commit 7f178c9d633798c0e0612ed0d52a2b1ce4c814b5",
+      "media_sha256": [
+        "1bf380d7d28c4898957e952994bcf430834675fcb9c6af7b7647c86189ac8e00"
+      ]
     },
     {
       "id": "lumino-votos-2026",
@@ -26,12 +29,16 @@
       "username": "temumaexplicacao",
       "kind": "carousel",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "caption": "51% dos votos... mas de qual total?\n\nImagine uma eleição majoritária com 100 votos registrados. Dez são brancos ou nulos e uma candidatura recebe 46 votos.\n\nSão 46% de todos os votos registrados, mas aproximadamente 51,1% dos 90 votos válidos.\n\nO número não mudou. Mudou a base do cálculo. Deslize para ver a diferença e salve para consultar quando aparecer um percentual eleitoral.\n\nExemplo hipotético, sem referência a nenhuma candidatura real.\n\n#Eleições #Matemática #EducaçãoCívica",
+      "caption": "COMO ALGUÉM PODE TER 46% DOS VOTOS DEPOSITADOS E VENCER NO 1º TURNO? 🗳️\n\nNuma eleição presidencial hipotética, imagine 100 votos depositados: 46 para B, 44 para A e 10 brancos ou nulos. A maioria absoluta considera os 90 votos válidos destinados a candidatos. Assim, B fica com aproximadamente 51,1% dos válidos — embora seus 46 votos sejam 46% das 100 cédulas.\n\nBrancos e nulos não são transferidos para ninguém e não anulam automaticamente uma eleição. É o denominador que muda, não o voto.\n\n#Eleicoes #Voto #EducacaoCivica #TemUmaExplicacao",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-01.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-02.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-03.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/votos-04.jpg"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-05.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-06.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-07.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-08.jpg"
       ],
       "approved": false,
       "is_ai_generated": true,
@@ -39,7 +46,17 @@
       "sources": [
         "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
       ],
-      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
+      "approval_note": "27 mídias finais importadas e verificadas por SHA256. Publicação e agendamento NÃO ativados; aguarda revisão e acionamento manual. Mídia fixa no commit 7f178c9d633798c0e0612ed0d52a2b1ce4c814b5",
+      "media_sha256": [
+        "a17a8ba8d4002803c501fb85756d8f40ba789f32b4ce939d8e7f28c006d99ca8",
+        "2c156e12b0d59885aa016773aaed5b9ef36de2dfe4a4b9d71fe01199a4ee69bd",
+        "79b6e49490eb60df9d618eff6e51f9fabb93cbbe135ed9b363b7b21bb9c4157f",
+        "2efb6a36590905b2275937f0a422a6e1d2fe9d42ff0da00fb7fcbad51bb609e2",
+        "09a7e1c2cd920f2b10a68e649593d01f0aea31bb60a974c6c696ac27e656e0fe",
+        "f7c0c2914aae3c1cb690b7cf4de99e1dde5681e3b013723b48cdd3fa0515bcfa",
+        "274a5665936cd00c52c399811eaa19c54ac68752cd7e1954730826122c6834fe",
+        "ed723bb4ca8a0fc4f431a314219fbec1b5585e0fc880d5836a879cd804f62ebd"
+      ]
     },
     {
       "id": "lumino-dolar-2026",
@@ -47,16 +64,16 @@
       "username": "temumaexplicacao",
       "kind": "carousel",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "caption": "Por que o dólar sobe e desce tanto?\n\nA cotação é um preço negociado no mercado. Num exemplo simplificado, quando cresce a procura por dólares sem aumento equivalente da oferta, o preço tende a subir. Se a oferta aumenta mantendo a procura, tende a cair.\n\nMas o mundo real tem muitas forças atuando juntas, como expectativas, comércio e fluxos financeiros. No Brasil, o regime cambial é flutuante.\n\nArraste para entender o mecanismo e salve para quando a próxima cotação chamar atenção.\n\n#Economia #Dólar #EducaçãoFinanceira",
+      "caption": "POR QUE O DÓLAR SOBE E DESCE? 💵\n\nA cotação não tem uma causa única. É um preço formado no mercado de câmbio, influenciado por demanda e oferta de dólares, juros relativos, expectativas, risco percebido e movimentos internacionais.\n\nQuando o real se desvaloriza, alguns produtos e insumos importados podem ficar mais caros em reais, mas o repasse ao consumidor não é automático nem integral.\n\nPasse as lâminas para entender os mecanismos sem fórmulas milagrosas.\n\n#Dolar #Economia #Cambio #EducacaoFinanceira #TemUmaExplicacao",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-01-PENDENTE.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-02-PENDENTE.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-03-PENDENTE.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-04-PENDENTE.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-05-PENDENTE.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-06-PENDENTE.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-07-PENDENTE.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-08-PENDENTE.jpg"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-05.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-06.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-07.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/dolar/dolar-08.jpg"
       ],
       "approved": false,
       "is_ai_generated": true,
@@ -65,7 +82,17 @@
         "https://www.bcb.gov.br/meubc/faqs/p/por-que-o-banco-central-intervem-no-mercado-de-cambio",
         "https://www.bcb.gov.br/meubc/faqs/p/a-taxa-de-cambio-e-fixada-pelo-banco-central"
       ],
-      "approval_note": "NOVA ARTE FINAL PRODUZIDA EM 30/10/2026: oito JPEGs 1080x1350 com hash SHA256 por lâmina em content/editorial/DOLAR-PRODUCAO-2026-10-30.md. URLs atuais são PLACEHOLDERS INEXISTENTES, proibido publicar. approved=false até transferir e verificar oito binários, fixar URL em commit SHA, conferir ledger e preflight Meta. Não reutilizar os quatro JPGs antigos."
+      "approval_note": "27 mídias finais importadas e verificadas por SHA256. Publicação e agendamento NÃO ativados; aguarda revisão e acionamento manual. Mídia fixa no commit 7f178c9d633798c0e0612ed0d52a2b1ce4c814b5",
+      "media_sha256": [
+        "df8b1016f72809bb110b2b84be284b531498dd5ae4c9c72ddf15800e90609f5e",
+        "f14b03515327fcfd35712f55d63623aaed3d0cef9bd2f264cc25ba6883985ee6",
+        "8b0001b8bd2d1761d9c1451b669e5351fd5ffdf076ecfa9abf526f387fccfc4c",
+        "9bc8d1309b5c9cd6dd8a71ba485ab44a4682ecd0bef369f24fcfaf1f16469458",
+        "d224db0f7358befd02db6cff0dfc8f298fb999c9e647b278e73018ea6ee434b1",
+        "0a292487b48d9398972b3497802b140275b72868b33e3e334aaa61b95d8b91c6",
+        "083e811acc8ba7226ca85551bfe34396add56e790b4e54b80f34e97ac8545234",
+        "7404650f1f92c86c025b8fc039d97e9f98cdd36424e3bc7d1b4cb3ef951fcfb1"
+      ]
     },
     {
       "id": "lumino-oncas-2026",
@@ -73,12 +100,15 @@
       "username": "temumaexplicacao",
       "kind": "carousel",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "caption": "Onça-parda ou onça-pintada? A resposta vai além da cor.\n\nA onça-parda é a espécie Puma concolor. Os adultos costumam ter pelagem uniforme, mas os filhotes podem nascer com pintas que desaparecem ao crescer.\n\nJá a onça-pintada é Panthera onca, reconhecida pelas manchas em roseta. Até os indivíduos de pelagem escura preservam esse padrão, embora ele fique menos visível.\n\nVeja os quatro quadros antes de tentar identificar uma espécie só pela cor.\n\n#MundoAnimal #OnçaPintada #Biodiversidade",
+      "caption": "PARECEM PARENTES, MAS NÃO SÃO A MESMA ONÇA! 🐆\n\nA onça-parda é Puma concolor; a onça-pintada é Panthera onca. Ambas vivem nas Américas, mas pertencem a espécies e gêneros diferentes.\n\nA pelagem adulta da onça-parda costuma ser uniforme, embora os filhotes possam nascer com pintas. Já a pintada apresenta rosetas características; quando é melanística, pode parecer preta, mas as rosetas continuam ali, menos visíveis.\n\nNão confunda cor com espécie. Salve o carrossel para reconhecer as diferenças.\n\nFontes: ICMBio (PAN Grandes Felinos); U.S. Fish & Wildlife Service (Jaguar).\n\n#OncaPintada #OncaParda #Biodiversidade #Animais #TemUmaExplicacao",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-01.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-02.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-03.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/oncas-04.jpg"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/oncas/oncas-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/oncas/oncas-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/oncas/oncas-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/oncas/oncas-04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/oncas/oncas-05.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/oncas/oncas-06.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/oncas/oncas-07.jpg"
       ],
       "approved": false,
       "is_ai_generated": true,
@@ -87,7 +117,16 @@
         "https://zoo.df.gov.br/sucuarana",
         "https://www.zoo.df.gov.br/onca-pintada-2"
       ],
-      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
+      "approval_note": "27 mídias finais importadas e verificadas por SHA256. Publicação e agendamento NÃO ativados; aguarda revisão e acionamento manual. Mídia fixa no commit 7f178c9d633798c0e0612ed0d52a2b1ce4c814b5",
+      "media_sha256": [
+        "5adfc67449acfe232448ce9c6e4f2e0c6505fd11d14f420d689d8ed02a236020",
+        "0a70a5c5e21140cf477f6bbdb522b7af9fbe7873f6945c7f8270e64bd3775a9f",
+        "947f4f948dbba8cf0d9d202f7dedc51ded8d9e03b3fb70d4eeb1efe0117a1ec7",
+        "deeab3ee7ea687d5f6b84f63fb882f783c32b5b76fe195065ecd7763065fae66",
+        "56f4d8373114a6e5cd9221ff48e4ac4a226b2a146211a3fc997ea41133c189e4",
+        "0b3cbfb71ab5ed09cc0f4c1899eddd9d8c0847b42a833a821a51ad4b76ab26ba",
+        "c41f53aa72b7028d2a5e55b0214381cf847b0ba698c4a870e95b3e1f76671fbe"
+      ]
     },
     {
       "id": "lumino-enem-2026",
@@ -95,9 +134,9 @@
       "username": "temumaexplicacao",
       "kind": "post",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "caption": "Modo ENEM: eu tentando revisar a matéria. Meu cérebro querendo entender como as formigas sabem o caminho. 📚\n\nA curiosidade aparece justamente na hora da concentração.\n\nPara quem vai fazer o ENEM 2026: as aplicações regulares estão previstas para 8 e 15 de novembro. Confira seu local de prova e as orientações no portal oficial.\n\nEnvie para o amigo que também começa a estudar e termina pesquisando outro assunto.\n\n#ENEM2026 #VidaDeEstudante #Humor",
+      "caption": "EU: vou estudar cinco minutos sem distração. 📚\nMEU CÉREBRO: mas como as formigas encontram o caminho? 🐜\n\nNem sempre falta vontade de aprender. Às vezes a curiosidade aparece em outra direção!\n\nCuriosidade boa também merece uma explicação — só depois da revisão da matéria.\n\n#ENEM #Estudos #Curiosidades #Humor #TemUmaExplicacao",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/enem.jpg"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/enem/enem.jpg"
       ],
       "approved": false,
       "is_ai_generated": true,
@@ -105,7 +144,10 @@
       "sources": [
         "https://www.gov.br/inep/pt-br/acesso-a-informacao/perguntas-frequentes/exame-nacional-do-ensino-medio-enem"
       ],
-      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
+      "approval_note": "27 mídias finais importadas e verificadas por SHA256. Publicação e agendamento NÃO ativados; aguarda revisão e acionamento manual. Mídia fixa no commit 7f178c9d633798c0e0612ed0d52a2b1ce4c814b5",
+      "media_sha256": [
+        "84229f4ed4537a2f9f84665fd987239bff0f53990146b27a5c4635edfaa2e3fe"
+      ]
     },
     {
       "id": "lumino-foguete-2026",
@@ -113,9 +155,9 @@
       "username": "temumaexplicacao",
       "kind": "reel",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "caption": "Um foguete não precisa empurrar o chão para subir. 🚀\n\nAo expelir gases numa direção, recebe uma força em sentido contrário. É a terceira lei de Newton em ação.\n\n#Ciência #Foguetes #TemUmaExplicacao",
+      "caption": "UM FOGUETE PRECISA DE AR PARA VOAR? 🚀\n\nNão. Ele leva combustível e oxidante a bordo. O motor acelera gases para trás e o foguete recebe impulso na direção oposta, de acordo com a terceira lei de Newton. Por isso um foguete pode acelerar até no vácuo.\n\nFonte: NASA Glenn Research Center, Rocket Thrust Equation.\n\n#Foguetes #Fisica #Espaco #Ciencia #TemUmaExplicacao",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/foguete-lumino.mp4"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/foguete/foguete-reel.mp4"
       ],
       "approved": false,
       "is_ai_generated": true,
@@ -123,7 +165,10 @@
       "sources": [
         "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-a-rocket-grades-5-8/"
       ],
-      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
+      "approval_note": "27 mídias finais importadas e verificadas por SHA256. Publicação e agendamento NÃO ativados; aguarda revisão e acionamento manual. Mídia fixa no commit 7f178c9d633798c0e0612ed0d52a2b1ce4c814b5",
+      "media_sha256": [
+        "3e90f18b8bff728d667531796d3b8e9733ebb95ed7551f1bd8c8456ed1c56924"
+      ]
     },
     {
       "id": "lumino-lua-2026",
@@ -131,15 +176,18 @@
       "username": "temumaexplicacao",
       "kind": "reel",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "caption": "Já reparou que a Lua parece acompanhar você durante uma viagem? 🌙\n\nA distância enorme faz com que sua posição aparente mude muito pouco quando você se desloca. É uma questão de perspectiva.\n\n#Lua #Astronomia #Curiosidades",
+      "caption": "POR QUE A LUA PARECE SEGUIR O CARRO? 🌙\n\nQuando você se desloca, postes e árvores mudam rapidamente de direção no seu campo visual. A Lua está tão distante que sua direção aparente muda muito pouco num trajeto curto. Esse contraste está relacionado à paralaxe.\n\nTeste: compare o movimento aparente de um poste com o da Lua na próxima viagem.\n\n#Lua #Astronomia #Paralaxe #Ciencia #TemUmaExplicacao",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/lua-lumino.mp4"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/lua/lua-reel.mp4"
       ],
       "approved": false,
       "is_ai_generated": true,
       "title": "Por que a Lua parece seguir você?",
       "sources": [],
-      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
+      "approval_note": "27 mídias finais importadas e verificadas por SHA256. Publicação e agendamento NÃO ativados; aguarda revisão e acionamento manual. Mídia fixa no commit 7f178c9d633798c0e0612ed0d52a2b1ce4c814b5",
+      "media_sha256": [
+        "7ce2b102c28289e7c2f38d6b9ddf4e0c7020baa44e2488dca83643bfe99f269b"
+      ]
     }
   ]
 }
