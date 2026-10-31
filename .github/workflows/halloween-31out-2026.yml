@@ -32,13 +32,15 @@ jobs:
         run: |
           DAY="$(date -u +%F)"
           UTC_HM="$(date -u +%H%M)"
-          if [ "$DAY" = "2026-10-31" ] && { [ "${{ github.event_name }}" = "schedule" ] || { [ "${{ github.event_name }}" = "push" ] && [ "$UTC_HM" -ge 1500 ] && [ "$UTC_HM" -le 1520 ]; }; then
-            echo "publish=true" >> "$GITHUB_OUTPUT"
-            echo "Approved dated Halloween execution ($DAY at $UTC_HM UTC)"
-          else
-            echo "publish=false" >> "$GITHUB_OUTPUT"
-            echo "Smoke test/manual preview only, NO publication."
+          ALLOWED=false
+          if [ "$DAY" = "2026-10-31" ] && [ "${{ github.event_name }}" = "schedule" ]; then
+            ALLOWED=true
           fi
+          if [ "$DAY" = "2026-10-31" ] && [ "${{ github.event_name }}" = "push" ] && [ "$UTC_HM" -ge 1500 ] && [ "$UTC_HM" -le 1520 ]; then
+            ALLOWED=true
+          fi
+          echo "publish=$ALLOWED" >> "$GITHUB_OUTPUT"
+          echo "Halloween gated execution=$ALLOWED, day=$DAY, utc=$UTC_HM"
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: main
