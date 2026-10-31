@@ -1,0 +1,55 @@
+{
+  "inspection_date": "2026-10-31",
+  "inspector": "material-technical-check",
+  "scope": "staging_only_not_editorial_approval",
+  "assets": [
+    {
+      "post": "01-votos-validos",
+      "zip_google_drive": "https://drive.google.com/file/d/1_HKT9NddyP9_p6HKADhAIguz62I-LB3_/view",
+      "sha256": "676db3460117e9a9ccf0b88056326a92bdf84b97e0ab7262bfcaf89b9c642a5f",
+      "jpg_count": 8,
+      "unique_files": 8,
+      "dimensions": "1080x1350",
+      "visual_status": "review_required",
+      "factual_check": "example_46_over_90_equals_51_1_pct",
+      "notes": [
+        "Modelo original do usuário tem composição mais expressiva",
+        "Não tratar 46% dos votos depositados como 46% dos válidos",
+        "JPGs V2 individuais já estão no repositório"
+      ]
+    },
+    {
+      "post": "03-dolar",
+      "zip_google_drive": "https://drive.google.com/file/d/1BRyBLet_6hM4XYr-yZVwpB0-2bvKtahs/view",
+      "sha256": "cf4d8bcfc2019d2f6a3dd9b37946b6e58db3b8940a7f6a34eb5636857821dd89",
+      "github_staging_path": "content/staging/semana-2026-11-01/03-dolar-V2-8-artes-EM-REVISAO.zip",
+      "jpg_count": 8,
+      "unique_files": 8,
+      "dimensions": "1080x1350",
+      "visual_status": "rework_required",
+      "notes": [
+        "Conteúdo V2 visualmente repetitivo e com Lúmino pequeno",
+        "Existe capa V3 candidata no Drive, ainda não integrada às demais sete lâminas"
+      ]
+    },
+    {
+      "post": "05-oncas",
+      "zip_google_drive": "https://drive.google.com/file/d/1U6iHDuyQa5KZ8wFImqWWbh_eNEm5nhVW/view",
+      "sha256": "a0f38a725854ea6d2b2b7a4d4a40a26f45d333ef824f72942b3a8bab29123a18",
+      "github_staging_path": "content/staging/semana-2026-11-01/05-oncas-V2-8-artes-EM-REVISAO.zip",
+      "jpg_count": 8,
+      "unique_files": 8,
+      "dimensions": "1080x1350",
+      "visual_status": "rework_required",
+      "notes": [
+        "Oito imagens verificadas visualmente, sem arquivos idênticos",
+        "Faltam maior variação de composição e correção de caracteres/ícones da arte 8"
+      ]
+    }
+  ],
+  "approval": {
+    "approved": false,
+    "publication_trigger_authorized": false,
+    "scheduled": false
+  }
+}
