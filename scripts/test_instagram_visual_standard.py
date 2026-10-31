@@ -28,7 +28,7 @@ class BrandTests(unittest.TestCase):
             slides=[]
             for i in range(8):
                 for suff in ("a","b"):
-                    im=Image.new("RGB",(900,800),(70+i*8,110+i*9,125+i*5))
+                    im=Image.new("RGB",(900,800),(70+i*8+(20 if suff=="b" else 0),110+i*9,125+i*5))
                     draw=ImageDraw.Draw(im)
                     draw.ellipse((40+i*5,40,750,750),fill=(125+i*6,140+i*7,90+i*3))
                     im.save(path/f"{i}-{suff}.jpg")
