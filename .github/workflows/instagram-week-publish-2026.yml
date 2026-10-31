@@ -1,5 +1,8 @@
 name: Instagram TUE - publicar uma pauta por dia (31out a 06nov 2026)
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/instagram-week-publish-2026.yml']
   schedule:
     - cron: '0 15 31 10 *'
     - cron: '0 15 1-6 11 *'
