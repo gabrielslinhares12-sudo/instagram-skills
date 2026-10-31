@@ -1,0 +1,780 @@
+{
+  "project": "Instagram TUE — NOVA LINHA EDITORIAL",
+  "week": "2026-11-01 a 2026-11-06",
+  "timezone": "America/Sao_Paulo",
+  "status": "production_staged_not_scheduled_without_review",
+  "posts": [
+    {
+      "id": "01-votos-validos",
+      "date": "2026-11-01",
+      "hour": "12:00",
+      "kind": "carousel",
+      "title": "Como ganhar com 46% dos votos?",
+      "theme": "votos",
+      "slides": [
+        [
+          "COMO ASSIM|46% E VENCEU?",
+          "A BASE DA CONTA",
+          "Imagine uma eleição presidencial hipotética com 100 votos depositados. O vencedor teve 46 votos. Como isso é possível?",
+          "Não são 46% dos votos válidos."
+        ],
+        [
+          "TRÊS TIPOS|DE VOTO",
+          "NEM TODOS ENTRAM NA CONTA",
+          "Voto em candidato: válido. Voto em branco: registrado, mas não válido. Voto nulo: também registrado e excluído dos válidos.",
+          "Em eleição presidencial, vence quem supera metade dos válidos."
+        ],
+        [
+          "100 VOTOS|NA URNA",
+          "EXEMPLO HIPOTÉTICO",
+          "Candidato A recebeu 44 votos. Candidato B recebeu 46. Outros 10 votos foram brancos ou nulos. Total: 100 votos depositados.",
+          "44 + 46 + 10 = 100"
+        ],
+        [
+          "QUAL É|O TOTAL VÁLIDO?",
+          "TIRE OS BRANCOS E NULOS",
+          "Dos 100 votos depositados, apenas os 90 destinados a candidatos contam como válidos nesse exemplo de dois candidatos.",
+          "100 - 10 = 90 votos válidos."
+        ],
+        [
+          "46 NÃO É|51... OU É?",
+          "A PORCENTAGEM MUDA",
+          "O candidato B recebeu 46 dos 100 votos depositados, mas 46 dos 90 válidos. São denominadores diferentes.",
+          "46 ÷ 90 = 51,1% dos válidos."
+        ],
+        [
+          "QUEM VENCE|NO EXEMPLO?",
+          "CANDIDATO B",
+          "Na disputa hipotética pela Presidência, o candidato B obtém mais da metade dos votos válidos e vence no primeiro turno.",
+          "B: 51,1% dos válidos; A: 48,9%."
+        ],
+        [
+          "E OS OUTROS|CARGOS?",
+          "AS REGRAS VARIAM",
+          "Presidente e governador exigem maioria absoluta dos válidos no primeiro turno; Senado e algumas prefeituras usam maioria simples.",
+          "A regra depende do cargo em disputa."
+        ],
+        [
+          "RESUMINDO",
+          "COMPARE A BASE",
+          "Votos depositados não são iguais a votos válidos. Brancos e nulos entram nas estatísticas, mas não na soma que decide essa eleição.",
+          "Nunca compare porcentagens sem conferir o denominador!"
+        ]
+      ],
+      "caption": "🗳️ Como alguém pode vencer uma eleição presidencial hipotética com 46% dos votos depositados? A resposta está no denominador! No nosso exemplo fictício: 44 votos para A, 46 para B e 10 brancos/nulos. São 90 votos válidos, e B recebeu 51,1% deles. Entendeu a diferença? 💡 Fonte: TSE. #VotosValidos #Eleições #Curiosidades #TemUmaExplicacao",
+      "sources": [
+        "https://www.tse.jus.br/comunicacao/noticias/2022/Outubro/entenda-como-e-eleito-o-presidente-da-republica",
+        "https://www.tse.jus.br/comunicacao/noticias/2026/Julho/voto-branco-x-voto-nulo-saiba-a-diferenca-de-acordo-com-o-glossario-eleitoral"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "01-votos-validos/01-01-votos-validos.jpg",
+        "01-votos-validos/02-01-votos-validos.jpg",
+        "01-votos-validos/03-01-votos-validos.jpg",
+        "01-votos-validos/04-01-votos-validos.jpg",
+        "01-votos-validos/05-01-votos-validos.jpg",
+        "01-votos-validos/06-01-votos-validos.jpg",
+        "01-votos-validos/07-01-votos-validos.jpg",
+        "01-votos-validos/08-01-votos-validos.jpg"
+      ],
+      "hashes": {
+        "01-votos-validos/01-01-votos-validos.jpg": "104b776ce0cade718db18488d9ad6eae2916e6cd425d604ae06b59460535bc24",
+        "01-votos-validos/02-01-votos-validos.jpg": "11398f9a535be0d4f084e9565f3384a2e4c36912d5ee6b6f8610233b08ab1723",
+        "01-votos-validos/03-01-votos-validos.jpg": "9c1d16e0bd69266c94c72b7dc6babebdf3d310d0fb406dcbe4a0790b685f64d0",
+        "01-votos-validos/04-01-votos-validos.jpg": "7a301f04936db127e60f3a9bb66270e6253a4cd63a9a4f8b275cc0566c72d38b",
+        "01-votos-validos/05-01-votos-validos.jpg": "427404dcce8b85faef405ece719a91a8fba413b2e45ee7e7d09e9701ad5fa793",
+        "01-votos-validos/06-01-votos-validos.jpg": "5d2b7a11b4cc65f6f42f85d4750faf8878c7c2355df95a742c605a3775800cbb",
+        "01-votos-validos/07-01-votos-validos.jpg": "6bf594c858124c797202416f1664b3ed8cd90f947d51d08be1f511bfb3760f0c",
+        "01-votos-validos/08-01-votos-validos.jpg": "73651a9fc58a42e7e0c8d41659026f7469767280c2f5f5de59a2b98cfdd1a53c"
+      }
+    },
+    {
+      "id": "02-meme-votos",
+      "date": "2026-11-01",
+      "hour": "18:00",
+      "kind": "post",
+      "title": "O mito que a urna não contou",
+      "panels": [
+        {
+          "head": "EU, TODO CONFIANTE",
+          "body": "Se muita gente votar nulo, a eleição acaba, né?",
+          "punch": "CERTEZA ABSOLUTA..."
+        },
+        {
+          "head": "O TSE ENTRANDO",
+          "body": "Não. Voto nulo é registrado, mas não conta como voto válido.",
+          "punch": "CORREÇÃO DE ROTA"
+        },
+        {
+          "head": "EU PESQUISANDO",
+          "body": "Pera... então voto branco também não vai para quem ganha?",
+          "punch": "MITO DESMONTADO"
+        },
+        {
+          "head": "LÚMINO EXPLICA",
+          "body": "Isso! Nenhum dos dois é transferido para candidato algum.",
+          "punch": "AGORA TEM UMA EXPLICAÇÃO"
+        }
+      ],
+      "caption": "😂 Aquele momento em que você descobre que voto branco NÃO vai para o vencedor e que votar nulo não cancela a eleição. O TSE registra ambos, mas não os soma aos votos válidos. Qual mito eleitoral você já ouviu? #Eleições #VotoBranco #VotoNulo #Lúmino #TemUmaExplicacao",
+      "sources": [
+        "https://www.tse.jus.br/comunicacao/noticias/2022/Outubro/entenda-como-e-eleito-o-presidente-da-republica",
+        "https://www.tse.jus.br/comunicacao/noticias/2026/Julho/voto-branco-x-voto-nulo-saiba-a-diferenca-de-acordo-com-o-glossario-eleitoral"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "02-meme-votos/01-02-meme-votos.jpg"
+      ],
+      "hashes": {
+        "02-meme-votos/01-02-meme-votos.jpg": "1079d04ccfa7d0362faffb4b96ec28e81aa7f0e201df4d839adaf7b5941970b6"
+      }
+    },
+    {
+      "id": "03-dolar",
+      "date": "2026-11-02",
+      "hour": "12:00",
+      "kind": "carousel",
+      "title": "Por que o dólar sobe e desce?",
+      "theme": "dolar",
+      "slides": [
+        [
+          "O DÓLAR|SOBE E DESCE",
+          "MAS POR QUÊ?",
+          "Um dia a cotação parece calma. No outro, muda. O câmbio reage às transações e expectativas de quem compra e vende moedas.",
+          "Não existe um único botão que controla o preço."
+        ],
+        [
+          "O QUE É|CÂMBIO?",
+          "O PREÇO DE UMA MOEDA",
+          "A cotação informa quantos reais você precisa para comprar uma unidade de dólar. Esse preço varia no mercado.",
+          "Mais reais por US$ 1 = dólar mais caro."
+        ],
+        [
+          "QUEM COMPRA|DÓLAR?",
+          "DEMANDA",
+          "Importadores, investidores e pessoas que precisam pagar compromissos no exterior podem aumentar a procura pela moeda.",
+          "Demanda maior pode pressionar a cotação."
+        ],
+        [
+          "QUEM VENDE|DÓLAR?",
+          "OFERTA",
+          "Exportadores, investidores e empresas que recebem recursos em moeda estrangeira podem trazer dólares ao mercado.",
+          "Oferta maior pode reduzir a cotação, se o resto não mudar."
+        ],
+        [
+          "OS JUROS|IMPORTAM?",
+          "CAPITAIS SE MOVEM",
+          "Diferenças de juros e percepção de risco influenciam onde investidores colocam dinheiro. Esses fluxos afetam as moedas.",
+          "Juros são parte da história; não explicam tudo."
+        ],
+        [
+          "O MUNDO|TAMBÉM PESA",
+          "EXPECTATIVAS GLOBAIS",
+          "Decisões nos Estados Unidos, crises, commodities e incertezas internacionais podem alterar a procura pelo dólar.",
+          "Movimentos globais atingem o real."
+        ],
+        [
+          "E NO BRASIL?",
+          "CÂMBIO FLUTUANTE",
+          "O Brasil usa regime de câmbio flutuante. O Banco Central monitora o funcionamento do mercado; não fixa uma cotação diária.",
+          "O preço não é definido por um valor secreto."
+        ],
+        [
+          "RESUMINDO",
+          "O PREÇO TEM MUITAS CAUSAS",
+          "Oferta, demanda, juros, risco e expectativas se misturam. Uma notícia isolada não explica toda mudança no dólar.",
+          "Antes de concluir, olhe o contexto."
+        ]
+      ],
+      "caption": "💵 Por que o dólar sobe ou cai? A cotação é o preço de uma moeda em outra e muda conforme oferta, demanda, juros, risco e expectativas. No Brasil, o regime é de câmbio flutuante. Não existe uma causa única para cada oscilação. Salve este carrossel para a próxima manchete! Fonte: Banco Central. #Dólar #Economia #Câmbio #TemUmaExplicacao",
+      "sources": [
+        "https://www.bcb.gov.br/estabilidadefinanceira/politicacambial/https%3A/www3.bcb.gov.br/sgspub",
+        "https://www.bcb.gov.br/controleinflacao/transmissaopoliticamonetaria"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "03-dolar/01-03-dolar.jpg",
+        "03-dolar/02-03-dolar.jpg",
+        "03-dolar/03-03-dolar.jpg",
+        "03-dolar/04-03-dolar.jpg",
+        "03-dolar/05-03-dolar.jpg",
+        "03-dolar/06-03-dolar.jpg",
+        "03-dolar/07-03-dolar.jpg",
+        "03-dolar/08-03-dolar.jpg"
+      ],
+      "hashes": {
+        "03-dolar/01-03-dolar.jpg": "efea20d2117ebdf1649891189646ed9e2ea1b04b044230235131aa8f983d918f",
+        "03-dolar/02-03-dolar.jpg": "691c9424bba5eef36deb3bc859c52faa7477f6f5b094a2114117f3b789c9aea3",
+        "03-dolar/03-03-dolar.jpg": "eb85e892c6e2e27f49673ab5583385e6349a4bf63e149fc8d80d79d40fb9be37",
+        "03-dolar/04-03-dolar.jpg": "9ad83fe8b3e24e744fa3997bcd0551eab88f7caeb66bd280ab3ffd281ef932ef",
+        "03-dolar/05-03-dolar.jpg": "65907ec1e8997bbb8e20115a6a3171b9afddfaa67c5869b8f6d3f53c22cc2a23",
+        "03-dolar/06-03-dolar.jpg": "bed942fd4b4ea167d0be4b1c67c9b47f05313ad545cf47503dcc2c5fe35ea1fc",
+        "03-dolar/07-03-dolar.jpg": "958e6b52191e1e3ed077ed934207d59d4c3c5b145a6181f771a0b5f8be86313d",
+        "03-dolar/08-03-dolar.jpg": "2683d6bcd68e2abc2faed6b7af3e50378bd9d09b01276d62c45a0044f017ebad"
+      }
+    },
+    {
+      "id": "04-dolar-fatores",
+      "date": "2026-11-02",
+      "hour": "18:00",
+      "kind": "carousel",
+      "title": "Cinco forças que mexem com o câmbio",
+      "theme": "dolar_fatores",
+      "slides": [
+        [
+          "O QUE MEXE|COM O DÓLAR?",
+          "CINCO FORÇAS",
+          "A cotação parece um número simples. Por trás dele existem decisões financeiras, comércio, juros e expectativas.",
+          "O câmbio é resultado de muitos movimentos."
+        ],
+        [
+          "1. COMÉRCIO|EXTERIOR",
+          "IMPORTAR E EXPORTAR",
+          "Empresas compram moedas para importar e podem vender divisas recebidas de exportações. Esses fluxos participam do mercado.",
+          "Comércio internacional afeta oferta e demanda."
+        ],
+        [
+          "2. JUROS|E INVESTIMENTO",
+          "RETORNO X RISCO",
+          "Investidores comparam retornos, inflação e segurança entre países. Recursos podem entrar ou sair do Brasil.",
+          "Capital em movimento pode influenciar o real."
+        ],
+        [
+          "3. RISCO|E CONFIANÇA",
+          "INCERTEZA PESA",
+          "Mudanças de expectativas sobre economia e políticas públicas afetam decisões de investimento. O efeito não é mecânico.",
+          "Expectativas também movem preços."
+        ],
+        [
+          "4. DECISÕES|NO EXTERIOR",
+          "O DÓLAR É GLOBAL",
+          "Juros dos EUA, aversão global ao risco e condições financeiras internacionais influenciam moedas de vários países.",
+          "O que acontece lá fora chega aqui."
+        ],
+        [
+          "5. PREÇOS|E COMMODITIES",
+          "CANAIS INDIRETOS",
+          "Preços de produtos exportados podem influenciar receitas em dólares. Mas o impacto final depende de outros fatores.",
+          "Não existe fórmula única de alta ou queda."
+        ],
+        [
+          "E O BANCO|CENTRAL?",
+          "REGIME FLUTUANTE",
+          "O BC pode atuar para preservar o funcionamento do mercado, mas não anuncia um valor fixo diário para a moeda.",
+          "Flutuar não significa ausência de regras."
+        ],
+        [
+          "MORAL|DA HISTÓRIA",
+          "FUJA DA EXPLICAÇÃO FÁCIL",
+          "Quando ler “dólar subiu por causa de X”, lembre que várias forças atuam ao mesmo tempo.",
+          "Pergunte: quais fatores mudaram juntos?"
+        ]
+      ],
+      "caption": "📈 O câmbio não obedece a uma única manchete. Comércio exterior, juros, risco, decisões globais e commodities podem influenciar a cotação — com efeitos que variam conforme o contexto. Uma explicação boa olha o conjunto. Fonte: Banco Central. #Economia #Dólar #Finanças #TemUmaExplicacao",
+      "sources": [
+        "https://www.bcb.gov.br/estabilidadefinanceira/politicacambial/https%3A/www3.bcb.gov.br/sgspub",
+        "https://www.bcb.gov.br/controleinflacao/transmissaopoliticamonetaria"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "04-dolar-fatores/01-04-dolar-fatores.jpg",
+        "04-dolar-fatores/02-04-dolar-fatores.jpg",
+        "04-dolar-fatores/03-04-dolar-fatores.jpg",
+        "04-dolar-fatores/04-04-dolar-fatores.jpg",
+        "04-dolar-fatores/05-04-dolar-fatores.jpg",
+        "04-dolar-fatores/06-04-dolar-fatores.jpg",
+        "04-dolar-fatores/07-04-dolar-fatores.jpg",
+        "04-dolar-fatores/08-04-dolar-fatores.jpg"
+      ],
+      "hashes": {
+        "04-dolar-fatores/01-04-dolar-fatores.jpg": "91a5d6dff1ed772cd6454ca324825ba98f563d55d182daa706518374c9091ceb",
+        "04-dolar-fatores/02-04-dolar-fatores.jpg": "9cc1e1c2e74d2c35179900d6b24f3fdbbc18d50bf753d58b09e45ff9363cf340",
+        "04-dolar-fatores/03-04-dolar-fatores.jpg": "0e37cfddf02e3d7e9b9a3d2ff456a08029e0d6157174fe0340109618451bde60",
+        "04-dolar-fatores/04-04-dolar-fatores.jpg": "a9d74a41be0cbc2bb6190201aea25bdf7c5ad17f0566e88b88646d6d4b2fff3f",
+        "04-dolar-fatores/05-04-dolar-fatores.jpg": "e56a4e5552368575affaa1f35b7e38702e00c3cb133d900f687ca8bda1ade490",
+        "04-dolar-fatores/06-04-dolar-fatores.jpg": "2d32c3695e8aae8aabe6bac45630320b9cae2dc705495907401a79819c510e5d",
+        "04-dolar-fatores/07-04-dolar-fatores.jpg": "bdee81775e376a3aa1ab078a59d6151b650a4040112ff743e4f8753118491d61",
+        "04-dolar-fatores/08-04-dolar-fatores.jpg": "ab7d235c888b610123a98e28fb76da4c6440af8761683d353cf93652bb5f881f"
+      }
+    },
+    {
+      "id": "05-oncas",
+      "date": "2026-11-03",
+      "hour": "12:00",
+      "kind": "carousel",
+      "title": "Onça-parda e onça-pintada: o que muda?",
+      "theme": "oncas",
+      "slides": [
+        [
+          "DUAS ONÇAS|BEM DIFERENTES",
+          "PARDA X PINTADA",
+          "As duas são felinos das Américas, mas pertencem a gêneros diferentes e têm adaptações próprias.",
+          "O nome parecido esconde espécies distintas."
+        ],
+        [
+          "A ONÇA|PINTADA",
+          "PANTHERA ONCA",
+          "A onça-pintada, também chamada de jaguar, apresenta corpo robusto e manchas em rosetas.",
+          "É o maior felino das Américas."
+        ],
+        [
+          "A ONÇA|PARDA",
+          "PUMA CONCOLOR",
+          "A onça-parda, ou suçuarana, costuma ter pelagem uniforme, do castanho ao acinzentado, e corpo alongado.",
+          "Também é conhecida como puma."
+        ],
+        [
+          "MANCHAS|OU PELAGEM LISA",
+          "UMA PISTA VISUAL",
+          "A pintada tem rosetas escuras. A parda adulta não exibe esse padrão: sua coloração é mais uniforme.",
+          "Olhe a pelagem, não apenas o tamanho."
+        ],
+        [
+          "E O JEITO|DE CAÇAR?",
+          "ESTILOS DIFERENTES",
+          "Ambas caçam por emboscada. A pintada possui mandíbulas especialmente poderosas; a parda combina saltos e agilidade.",
+          "Não existe uma “melhor”: cada uma se adapta."
+        ],
+        [
+          "ONDE|VIVEM?",
+          "AMBIENTES VARIADOS",
+          "Pumas vivem em florestas, montanhas e áreas abertas. Jaguars preferem geralmente áreas com vegetação densa e acesso à água.",
+          "As duas precisam de presas e habitat preservado."
+        ],
+        [
+          "ELAS|SÃO PARENTES?",
+          "SIM, MAS NÃO IGUAIS",
+          "Ambas pertencem à família Felidae, porém a onça-pintada é do gênero Panthera e a parda do gênero Puma.",
+          "Nomes populares não substituem nomes científicos."
+        ],
+        [
+          "RESUMINDO",
+          "PINTADA ≠ PARDA",
+          "Rosetas e porte robusto: pintada. Pelagem mais lisa e corpo esguio: parda. Ambas são predadoras importantes.",
+          "Respeitar esses animais também é preservar seus ambientes."
+        ]
+      ],
+      "caption": "🐆 Onça-pintada e onça-parda são a mesma espécie? Não! A pintada é Panthera onca; a parda é Puma concolor. Pelagem, porte e uso do habitat ajudam a diferenciá-las. Qual das duas você conseguiria reconhecer? Fontes: Animal Diversity Web. #Natureza #OnçaPintada #Puma #Ciência #TemUmaExplicacao",
+      "sources": [
+        "https://animaldiversity.org/accounts/Panthera_onca/",
+        "https://animaldiversity.org/accounts/Puma_concolor/"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "05-oncas/01-05-oncas.jpg",
+        "05-oncas/02-05-oncas.jpg",
+        "05-oncas/03-05-oncas.jpg",
+        "05-oncas/04-05-oncas.jpg",
+        "05-oncas/05-05-oncas.jpg",
+        "05-oncas/06-05-oncas.jpg",
+        "05-oncas/07-05-oncas.jpg",
+        "05-oncas/08-05-oncas.jpg"
+      ],
+      "hashes": {
+        "05-oncas/01-05-oncas.jpg": "2be63a18f4fe9608bb5f1625f3ffde2264b6439e0950fd3d6cd7a3c2672a38ae",
+        "05-oncas/02-05-oncas.jpg": "888be1eee9f0cd79e2049b864b56e88c64794c259c2f889022cf3f69ff8f3a95",
+        "05-oncas/03-05-oncas.jpg": "a25d19ccca63554cb29a66c083b89dc7f290eb1ad67933d48e6a429d57953236",
+        "05-oncas/04-05-oncas.jpg": "ce849730be0c5a78b03a7df85ae976576b5a7ec51b1be6d52eca16701a980c1b",
+        "05-oncas/05-05-oncas.jpg": "dafc363d8dda3242531ab5113a61a744ff34ac0813d43e8eb320652db9057821",
+        "05-oncas/06-05-oncas.jpg": "80abff0e40f2a96c7e7a7d3f315e722cc2a13fcf7891c68deb6b8187deaf3331",
+        "05-oncas/07-05-oncas.jpg": "f955514e6699670e3f937a8aa089103250dd9388be6d63c9016e8b5604617352",
+        "05-oncas/08-05-oncas.jpg": "3dd1cd14ddb2e91810e0adfec136cd00b13bb7d892ec68fed32dc33ab8e31cd6"
+      }
+    },
+    {
+      "id": "06-oncas-habitat",
+      "date": "2026-11-03",
+      "hour": "18:00",
+      "kind": "carousel",
+      "title": "Onde vivem e como caçam as onças?",
+      "theme": "oncas_habitat",
+      "slides": [
+        [
+          "A VIDA SECRETA|DAS ONÇAS",
+          "NÃO É SÓ A PELAGEM",
+          "Habitat e técnica de caça contam muito sobre como a onça-parda e a onça-pintada sobrevivem.",
+          "Cada espécie explora o ambiente à sua maneira."
+        ],
+        [
+          "ONÇA-PINTADA|E A ÁGUA",
+          "EXCELENTE NADADORA",
+          "A pintada costuma usar florestas, áreas úmidas e margens de rios. Ela nada bem e também pode capturar presas aquáticas.",
+          "Água e cobertura vegetal são importantes."
+        ],
+        [
+          "ONÇA-PARDA|E O TERRENO",
+          "MUITA FLEXIBILIDADE",
+          "A parda ocupa habitats bastante variados, de florestas a áreas montanhosas e campos, desde que tenha abrigo e presas.",
+          "É um felino muito adaptável."
+        ],
+        [
+          "CAÇA DE|EMBOSCADA",
+          "SILÊNCIO É VANTAGEM",
+          "Esses felinos normalmente se aproximam da presa de forma discreta antes de atacar; não dependem de perseguições longas.",
+          "Camuflagem e paciência importam."
+        ],
+        [
+          "A MORDIDA|DA PINTADA",
+          "FORÇA E ANATOMIA",
+          "A onça-pintada possui mandíbula robusta e pode abater presas com mordidas muito fortes, inclusive répteis.",
+          "Estratégias diferentes servem a presas diferentes."
+        ],
+        [
+          "O SALTO|DA PARDA",
+          "AGILIDADE E EQUILÍBRIO",
+          "A onça-parda usa saltos e movimentos rápidos para aproximar-se de presas em terrenos diferentes.",
+          "Sua capacidade de adaptação é impressionante."
+        ],
+        [
+          "O MAIOR|PERIGO",
+          "PERDA DE HABITAT",
+          "Desmatamento, conflitos com humanos e redução de presas afetam grandes felinos. Proteger corredores naturais é essencial.",
+          "A sobrevivência depende de ambientes conectados."
+        ]
+      ],
+      "caption": "🌿 Você sabia que a onça-pintada é excelente nadadora e a onça-parda ocupa ambientes muito variados? As duas são caçadoras discretas e precisam de territórios com presas e abrigo. Entenda por que conservar habitats é tão importante. Fontes: Animal Diversity Web. #Onças #Biodiversidade #Natureza #TemUmaExplicacao",
+      "sources": [
+        "https://animaldiversity.org/accounts/Panthera_onca/",
+        "https://animaldiversity.org/accounts/Puma_concolor/"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "06-oncas-habitat/01-06-oncas-habitat.jpg",
+        "06-oncas-habitat/02-06-oncas-habitat.jpg",
+        "06-oncas-habitat/03-06-oncas-habitat.jpg",
+        "06-oncas-habitat/04-06-oncas-habitat.jpg",
+        "06-oncas-habitat/05-06-oncas-habitat.jpg",
+        "06-oncas-habitat/06-06-oncas-habitat.jpg",
+        "06-oncas-habitat/07-06-oncas-habitat.jpg"
+      ],
+      "hashes": {
+        "06-oncas-habitat/01-06-oncas-habitat.jpg": "3d37c97cb8c63582446160a45a41320b6dd436769d2b0d6c148c9bf0d3e9854d",
+        "06-oncas-habitat/02-06-oncas-habitat.jpg": "6819c1df9dedaa2948bcceea5dba60f97cbaac461aa044c8999e7bb6e1deadc8",
+        "06-oncas-habitat/03-06-oncas-habitat.jpg": "487e21d8d185a9006054f85a0bba0c42e6b6c2c5d6d64d36abb6954071d41563",
+        "06-oncas-habitat/04-06-oncas-habitat.jpg": "f5fc45fbfd99be65ef1b48af94d0a1bc74da007462676edf10236e9226004571",
+        "06-oncas-habitat/05-06-oncas-habitat.jpg": "867da05c745b75d10724b722731ec62990d4fe9152fc35fc4bd78b945f7c6a44",
+        "06-oncas-habitat/06-06-oncas-habitat.jpg": "ebca8e9d4b7a94969595063ca3a6c7c0c90b06b321e2d4ba4e37667960336f68",
+        "06-oncas-habitat/07-06-oncas-habitat.jpg": "9c66cfc101908283d7f2b185853d825fcf376c81497e2890affc1134e4059975"
+      }
+    },
+    {
+      "id": "07-enem-meme",
+      "date": "2026-11-04",
+      "hour": "12:00",
+      "kind": "post",
+      "title": "Modo ENEM do Lúmino",
+      "panels": [
+        {
+          "head": "EU: HOJE VOU REVISAR",
+          "body": "Cronograma perfeito, canetas separadas, foco absoluto.",
+          "punch": "PLANEJAMENTO NOTA 1000"
+        },
+        {
+          "head": "CINCO MINUTOS DEPOIS",
+          "body": "“Será que pode levar água? E o horário dos portões?”",
+          "punch": "ABRINDO 47 ABAS"
+        },
+        {
+          "head": "LÚMINO INVESTIGA",
+          "body": "Achei o edital e a cartilha oficiais do Inep.",
+          "punch": "FONTES CONFERIDAS"
+        },
+        {
+          "head": "EU AGORA",
+          "body": "Documento, caneta preta, horário e descanso: checklist feito.",
+          "punch": "MISSÃO MAIS TRANQUILA"
+        }
+      ],
+      "caption": "📚 Modo ENEM ativado: você senta para revisar e termina investigando cada detalhe do dia da prova! 😂 Pelo menos vale conferir as informações oficiais do Inep: horários, documento e caneta preta. Boa preparação! #ENEM2026 #Estudantes #Memes #Lúmino #TemUmaExplicacao",
+      "sources": [
+        "https://www.gov.br/inep/pt-br/centrais-de-conteudo/noticias/enem/conheca-todas-as-etapas-para-concepcao-e-aplicacao-das-provas-do-enem",
+        "https://www.gov.br/inep/pt-br/centrais-de-conteudo/noticias/enem/enem-2026-cartilha-da-redacao-esta-disponivel"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "07-enem-meme/01-07-enem-meme.jpg"
+      ],
+      "hashes": {
+        "07-enem-meme/01-07-enem-meme.jpg": "94cfed4a9bf72bdf49fe67dd1749363fcd102d22351afbb77f82b08a4fb9ae33"
+      }
+    },
+    {
+      "id": "08-enem-preparo",
+      "date": "2026-11-04",
+      "hour": "18:00",
+      "kind": "carousel",
+      "title": "ENEM: o que realmente vale revisar?",
+      "theme": "enem",
+      "slides": [
+        [
+          "ENEM 2026|ESTÁ CHEGANDO",
+          "FOCO NO QUE IMPORTA",
+          "Segundo o Inep, as provas ocorrem em 8 e 15 de novembro de 2026. Agora é hora de organizar a reta final.",
+          "Confira o edital e sua cidade de prova."
+        ],
+        [
+          "1. SAIBA|OS HORÁRIOS",
+          "HORÁRIO DE BRASÍLIA",
+          "Portões abrem às 12h e fecham às 13h. A aplicação começa às 13h30, no horário de Brasília.",
+          "Planeje o deslocamento com antecedência."
+        ],
+        [
+          "2. PREPARE|O ESSENCIAL",
+          "NÃO DEIXE PARA DEPOIS",
+          "Documento oficial com foto, caneta esferográfica preta, água e lanche são itens importantes. Veja as regras do edital.",
+          "Organize tudo antes do dia da prova."
+        ],
+        [
+          "3. REDAÇÃO|COM ESTRUTURA",
+          "CINCO COMPETÊNCIAS",
+          "A cartilha do Inep explica as cinco competências avaliadas na redação, com pontuação de até 200 pontos em cada.",
+          "Treine clareza, argumentação e proposta de intervenção."
+        ],
+        [
+          "4. A PROVA|É LONGA",
+          "CUIDE DO RITMO",
+          "O primeiro domingo tem duração maior que o segundo. Distribuir tempo entre questões e redação ajuda na estratégia.",
+          "Pratique com provas anteriores."
+        ],
+        [
+          "5. ENTENDA|A TRI",
+          "NÃO É SÓ SOMAR ACERTOS",
+          "Na nota das questões objetivas, o Inep usa a Teoria de Resposta ao Item. O padrão de respostas influencia a avaliação.",
+          "Foque em consistência, não em truques."
+        ],
+        [
+          "6. EVITE|BOATOS",
+          "BUSQUE FONTE OFICIAL",
+          "Datas, regras de materiais e procedimentos devem ser conferidos no edital e no portal do Inep.",
+          "Informação certa também faz parte da preparação."
+        ],
+        [
+          "RESUMINDO",
+          "UM PLANO POSSÍVEL",
+          "Confira local e horário, separe documentos, revise com equilíbrio e cuide do descanso.",
+          "Preparação boa também inclui tranquilidade."
+        ]
+      ],
+      "caption": "📝 O ENEM 2026 será realizado em 8 e 15 de novembro, segundo o Inep. Portões fecham às 13h no horário de Brasília. Salve este checklist para a reta final: documentos, caneta preta, redação, estratégia e fontes oficiais. Consulte sempre o edital atualizado! #ENEM2026 #Estudos #Redação #TemUmaExplicacao",
+      "sources": [
+        "https://www.gov.br/inep/pt-br/centrais-de-conteudo/noticias/enem/conheca-todas-as-etapas-para-concepcao-e-aplicacao-das-provas-do-enem",
+        "https://www.gov.br/inep/pt-br/centrais-de-conteudo/noticias/enem/enem-2026-cartilha-da-redacao-esta-disponivel"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "08-enem-preparo/01-08-enem-preparo.jpg",
+        "08-enem-preparo/02-08-enem-preparo.jpg",
+        "08-enem-preparo/03-08-enem-preparo.jpg",
+        "08-enem-preparo/04-08-enem-preparo.jpg",
+        "08-enem-preparo/05-08-enem-preparo.jpg",
+        "08-enem-preparo/06-08-enem-preparo.jpg",
+        "08-enem-preparo/07-08-enem-preparo.jpg",
+        "08-enem-preparo/08-08-enem-preparo.jpg"
+      ],
+      "hashes": {
+        "08-enem-preparo/01-08-enem-preparo.jpg": "03ee27718d077a3da7aaecb2aad0e8cec6cfb14a84c8be05352471c4da9b60c9",
+        "08-enem-preparo/02-08-enem-preparo.jpg": "33770242947c7c8941a8c9cc7417b86e6a457bf54ecd8c3be33fc0303e01b98a",
+        "08-enem-preparo/03-08-enem-preparo.jpg": "99ccc0a1f9e731d64971f9b4375c6eabf1a9966e13f3b89b900aad66a14adda7",
+        "08-enem-preparo/04-08-enem-preparo.jpg": "fd95b6d01053447398b389cd64728aed02d082d819b28487ed12820e8745eea3",
+        "08-enem-preparo/05-08-enem-preparo.jpg": "699dcbe6e1f3b8c08c31a151bfa956fd85b3f05922d711ee62a2d826f97509fa",
+        "08-enem-preparo/06-08-enem-preparo.jpg": "a7c3ec83597d49913854a661639dce10549cb0ab977c5c444ae4e895603f6975",
+        "08-enem-preparo/07-08-enem-preparo.jpg": "cab689162653fa3d7056ca3c522db08c42dd47723dd874c713e14563255695bc",
+        "08-enem-preparo/08-08-enem-preparo.jpg": "d98fece5c1b8de812a26d20f97811d3d7caf83dfeaa54832971c989e1d1eb7d1"
+      }
+    },
+    {
+      "id": "09-foguete-reel",
+      "date": "2026-11-05",
+      "hour": "12:00",
+      "title": "Por que foguetes funcionam no vácuo?",
+      "kind": "reel",
+      "status": "audio_rasalgethi_not_generated",
+      "script": "Parece impossível: se no espaço não existe ar, contra o que um foguete empurra? A resposta não está do lado de fora. Está no motor! Ao expulsar gases quentes para trás em alta velocidade, o foguete recebe uma força na direção oposta. É a terceira lei de Newton. E tem mais: ele leva a bordo combustível e oxidante, por isso pode funcionar até no vácuo. Foguetes não precisam empurrar o ar. Precisam lançar massa para trás. Tem uma explicação.",
+      "sources": [
+        "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-a-rocket-grades-5-8/",
+        "https://www.grc.nasa.gov/www/k-12/rocket/TRCRocket/rocket_principles"
+      ]
+    },
+    {
+      "id": "10-foguete-lancamento",
+      "date": "2026-11-05",
+      "hour": "18:00",
+      "kind": "carousel",
+      "title": "O que acontece num lançamento espacial?",
+      "theme": "rocket",
+      "slides": [
+        [
+          "UM FOGUETE|VAI DECOLAR",
+          "O QUE ACONTECE?",
+          "Os segundos finais parecem um espetáculo de fogo e fumaça, mas um lançamento é uma sequência técnica cuidadosamente coordenada.",
+          "Cada fase tem uma função."
+        ],
+        [
+          "1. ANTES|DA DECOLAGEM",
+          "CHECKLIST TOTAL",
+          "Equipes verificam sistemas, condições meteorológicas e o veículo. O lançamento só continua se as condições permitirem.",
+          "Segurança vem antes da contagem regressiva."
+        ],
+        [
+          "2. IGNIÇÃO|E EMPUXO",
+          "GASES PARA TRÁS",
+          "Os motores aceleram gases para trás, produzindo empuxo no sentido oposto, conforme a terceira lei de Newton.",
+          "Foguete não empurra o ar para subir."
+        ],
+        [
+          "3. A SUBIDA|COMEÇA",
+          "FORÇAS EM EQUILÍBRIO",
+          "O veículo ganha velocidade quando o empuxo supera as forças contrárias, incluindo o peso e o arrasto atmosférico.",
+          "A aceleração muda durante a subida."
+        ],
+        [
+          "4. A ATMOSFERA|FICA PARA TRÁS",
+          "O AR VAI DIMINUINDO",
+          "À medida que sobe, o foguete atravessa camadas com densidades diferentes, e o arrasto tende a diminuir.",
+          "Missões seguem trajetórias planejadas."
+        ],
+        [
+          "5. ESTÁGIOS|SE SEPARAM",
+          "MASSA A MENOS",
+          "Em foguetes de múltiplos estágios, partes já utilizadas podem ser descartadas para reduzir a massa do conjunto.",
+          "Nem todo foguete tem a mesma arquitetura."
+        ],
+        [
+          "6. A ÓRBITA|NÃO É SÓ ALTURA",
+          "VELOCIDADE LATERAL",
+          "Para entrar em órbita, a espaçonave precisa de velocidade horizontal suficiente, não apenas alcançar grande altitude.",
+          "Órbita é queda contínua ao redor da Terra."
+        ],
+        [
+          "RESUMINDO",
+          "CIÊNCIA EM CADA SEGUNDO",
+          "Propulsão, navegação, etapas e controle se combinam em um lançamento.",
+          "O espetáculo é resultado de engenharia."
+        ]
+      ],
+      "caption": "🚀 Um foguete não sobe porque “empurra o ar”. O motor expulsa gases e recebe a reação em sentido oposto. No lançamento, cada etapa é planejada para levar carga ou pessoas ao destino com segurança. Fonte: NASA. #Foguetes #Espaço #Ciência #TemUmaExplicacao",
+      "sources": [
+        "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-a-rocket-grades-5-8/",
+        "https://www.grc.nasa.gov/www/k-12/rocket/TRCRocket/rocket_principles"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "10-foguete-lancamento/01-10-foguete-lancamento.jpg",
+        "10-foguete-lancamento/02-10-foguete-lancamento.jpg",
+        "10-foguete-lancamento/03-10-foguete-lancamento.jpg",
+        "10-foguete-lancamento/04-10-foguete-lancamento.jpg",
+        "10-foguete-lancamento/05-10-foguete-lancamento.jpg",
+        "10-foguete-lancamento/06-10-foguete-lancamento.jpg",
+        "10-foguete-lancamento/07-10-foguete-lancamento.jpg",
+        "10-foguete-lancamento/08-10-foguete-lancamento.jpg"
+      ],
+      "hashes": {
+        "10-foguete-lancamento/01-10-foguete-lancamento.jpg": "5c28cada170aa99fe827e9bbff60b285400fe8c97932f4dd21b4e368ff81d283",
+        "10-foguete-lancamento/02-10-foguete-lancamento.jpg": "c6854cc137b4583ac840f0bf7818e670a1b3470f4d665474e278a71f10b51859",
+        "10-foguete-lancamento/03-10-foguete-lancamento.jpg": "58079fd306e4497c6f48a5b3a37cf16da7a6a87374cf3d088e8f214aa91f5eff",
+        "10-foguete-lancamento/04-10-foguete-lancamento.jpg": "afbdf4485786edf94cd6200411917a0ab6b5464d3a9f49a36171fc2f7650e48a",
+        "10-foguete-lancamento/05-10-foguete-lancamento.jpg": "59aaea2690075b1f37cc1222db140c64e4576b8462519f74620bd4b1b3d80da8",
+        "10-foguete-lancamento/06-10-foguete-lancamento.jpg": "8fe8f1ac28e0919c54ddff33c51098ea7f585a58e58e0b0d7aa99062bd91ad55",
+        "10-foguete-lancamento/07-10-foguete-lancamento.jpg": "6bfa8c247bd09e55b48e3a58244b2af7561f5c640844314db21a667cbf77cc8c",
+        "10-foguete-lancamento/08-10-foguete-lancamento.jpg": "9be64b15001529b55abb93f227158f1d71ce80de1b63283c71594a1ec97d9592"
+      }
+    },
+    {
+      "id": "11-lua-reel",
+      "date": "2026-11-06",
+      "hour": "12:00",
+      "title": "Por que a Lua parece seguir o carro?",
+      "kind": "reel",
+      "status": "audio_rasalgethi_not_generated",
+      "script": "Você já viu a Lua seguindo o carro pela janela? As árvores passam voando, os postes desaparecem, mas a Lua continua ali! O segredo é a distância. Objetos próximos mudam muito de posição quando você se move. Já a Lua está tão longe que um pequeno trajeto quase não muda a direção em que você a vê. Esse efeito tem um nome: paralaxe. Não é a Lua perseguindo você. É o seu ponto de vista mudando. Tem uma explicação.",
+      "sources": [
+        "https://svs.gsfc.nasa.gov/5320",
+        "https://science.nasa.gov/solar-system/moon/the-moon-illusion-why-does-the-moon-look-so-big-sometimes/"
+      ]
+    },
+    {
+      "id": "12-lua-curiosidades",
+      "date": "2026-11-06",
+      "hour": "18:00",
+      "kind": "carousel",
+      "title": "Por que a Lua parece nos acompanhar?",
+      "theme": "lua",
+      "slides": [
+        [
+          "A LUA|SEGUE O CARRO?",
+          "É UMA ILUSÃO",
+          "Você olha pela janela e as árvores passam correndo. Mas a Lua parece ficar no mesmo lugar. Por quê?",
+          "A distância é a chave."
+        ],
+        [
+          "O QUE É|PARALAXE?",
+          "MUDANÇA DE PONTO DE VISTA",
+          "Paralaxe é o deslocamento aparente de objetos quando observados de lugares diferentes.",
+          "Objetos próximos mudam mais de posição."
+        ],
+        [
+          "A ÁRVORE|PASSA RÁPIDO",
+          "MUITO PERTO",
+          "Quando o carro se move, postes e árvores próximos mudam bastante de posição no campo de visão.",
+          "Os pontos de referência próximos deslizam."
+        ],
+        [
+          "A LUA|QUASE NÃO MUDA",
+          "MUITO DISTANTE",
+          "A Lua está tão distante que um trajeto curto de carro muda muito pouco a direção em que a vemos.",
+          "Quase não há paralaxe perceptível no carro."
+        ],
+        [
+          "SEU CÉREBRO|COMPARA",
+          "PERTO CONTRA LONGE",
+          "Ao comparar a paisagem passando com a Lua aparentemente parada, o cérebro pode interpretar que ela acompanha o movimento.",
+          "A ilusão está na perspectiva."
+        ],
+        [
+          "ELA SEGUE|MESMO?",
+          "NÃO, CLARO",
+          "A Lua continua seu movimento próprio; é nossa mudança de posição na estrada que quase não altera sua direção aparente.",
+          "A distância explica a sensação."
+        ],
+        [
+          "E A LUA|GIGANTE?",
+          "OUTRA ILUSÃO",
+          "A Lua perto do horizonte muitas vezes parece maior. Essa é outra questão perceptiva e não significa que ela tenha se aproximado.",
+          "Não confunda as duas ilusões."
+        ],
+        [
+          "RESUMINDO",
+          "OLHE A DISTÂNCIA",
+          "Objetos próximos cruzam a janela. A Lua quase não muda de posição aparente. É assim que nasce o efeito de “seguir o carro”.",
+          "Tem uma explicação: paralaxe!"
+        ]
+      ],
+      "caption": "🌕 Você já teve a sensação de que a Lua seguia seu carro? Não é magia: objetos próximos mudam muito de posição quando você se move, enquanto a direção aparente da Lua muda pouquíssimo por causa da distância. É a paralaxe! Fonte: NASA SVS. #Lua #Astronomia #Curiosidades #TemUmaExplicacao",
+      "sources": [
+        "https://svs.gsfc.nasa.gov/5320",
+        "https://science.nasa.gov/solar-system/moon/the-moon-illusion-why-does-the-moon-look-so-big-sometimes/"
+      ],
+      "status": "draft_ready_for_visual_review",
+      "files": [
+        "12-lua-curiosidades/01-12-lua-curiosidades.jpg",
+        "12-lua-curiosidades/02-12-lua-curiosidades.jpg",
+        "12-lua-curiosidades/03-12-lua-curiosidades.jpg",
+        "12-lua-curiosidades/04-12-lua-curiosidades.jpg",
+        "12-lua-curiosidades/05-12-lua-curiosidades.jpg",
+        "12-lua-curiosidades/06-12-lua-curiosidades.jpg",
+        "12-lua-curiosidades/07-12-lua-curiosidades.jpg",
+        "12-lua-curiosidades/08-12-lua-curiosidades.jpg"
+      ],
+      "hashes": {
+        "12-lua-curiosidades/01-12-lua-curiosidades.jpg": "2be8603f2676d47af9fe65e8c5948f4749e60527a098adcf8d01b3805adfb6e7",
+        "12-lua-curiosidades/02-12-lua-curiosidades.jpg": "b61fd2389dffbc683fba463e2a0bec4d1dc7eb4d9c5234820dd6e28916e41380",
+        "12-lua-curiosidades/03-12-lua-curiosidades.jpg": "e24475b4ffd3eb2afc06f7a0fcae7ef36dcaaf52d8b6e8cfa5a34cfc5cfc52ce",
+        "12-lua-curiosidades/04-12-lua-curiosidades.jpg": "90327cfd1d600ba69d4ada1281df59d993f20a16e159cddc6afbd463da7a2a26",
+        "12-lua-curiosidades/05-12-lua-curiosidades.jpg": "c0175872d020403efd010adc8e54f9b3fa182750db76b5d72574adcc741a74f2",
+        "12-lua-curiosidades/06-12-lua-curiosidades.jpg": "7b2b640fcca6e5ef45f2e5fc247c30287730e49c82466c680a30e9886e09482b",
+        "12-lua-curiosidades/07-12-lua-curiosidades.jpg": "f283477a322f0faa77f072b4ae5204e4a128e6354f0885581e7f57df59a709f9",
+        "12-lua-curiosidades/08-12-lua-curiosidades.jpg": "c57505692fb1493a862f88f84d7393f8f09f52a1ad6b79c6dd209286ebe97f9e"
+      }
+    }
+  ]
+}
