@@ -147,6 +147,7 @@ def render_one(item, number, lumino, output:Path, specdir:Path):
     image.save(output,format="JPEG",quality=97,subsampling=0,optimize=True)
     return {"number":number,"file":output.name,"headline":item["headline"],
             "layout":layout,"mascot_box":box,"sha256":sha256(output),
+            "background_sha256":sha256(p),
             "background_credit":item["credit"],"background_type":item.get("background_type","illustration")}
 
 def render(spec_path:Path,out:Path):
