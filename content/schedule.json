@@ -40,13 +40,13 @@
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-07.jpg",
         "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/7f178c9d633798c0e0612ed0d52a2b1ce4c814b5/content/media/semana-2026-10-31-final/votos/votos-08.jpg"
       ],
-      "approved": true,
+      "approved": false,
       "is_ai_generated": true,
       "title": "51% dos votos... de qual total?",
       "sources": [
         "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
       ],
-      "approval_note": "Aprovado para o lote de sete posts autorizado pelo proprietário em 30/10/2026. Mídia imutável verificada por SHA-256, dimensões/formato via ffprobe e prévias visuais em 31/10/2026. A aprovação do manifesto não comprova publicação; recibo Meta obrigatório.",
+      "approval_note": "BLOQUEADO POR INSTRUÇÃO DO PROPRIETÁRIO EM 31/10/2026: versão atual do carrossel não respeita a imagem original aprovada. Recriar seguindo referência exata Como 51% Não Ganhou?.png, identidade visual documentada, sem substituição por outro modelo. Não publicar mídia antiga.",
       "media_sha256": [
         "a17a8ba8d4002803c501fb85756d8f40ba789f32b4ce939d8e7f28c006d99ca8",
         "2c156e12b0d59885aa016773aaed5b9ef36de2dfe4a4b9d71fe01199a4ee69bd",
