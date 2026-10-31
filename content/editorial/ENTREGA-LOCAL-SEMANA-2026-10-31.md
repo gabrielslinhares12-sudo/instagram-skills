@@ -33,3 +33,8 @@ Transferir os 27 arquivos finais do pacote ao repositório; confirmar dimensões
 - USFWS: https://www.fws.gov/rivers/carp/species/jaguar-panthera-onca
 - NASA Glenn: https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/rocket-thrust-equation/
 - TSE: https://www.tse.jus.br/comunicacao/noticias/2022/Outubro/entenda-como-e-eleito-o-presidente-da-republica
+
+## Instalador de upload em lote (adicionado em 31/10)
+O pacote ZIP final `Instagram_TUE_semana_31out_06nov_2026.zip`, entregue na conversa ChatGPT, contém `instalar_semana_github.py` e `INSTALAR_NO_GITHUB.cmd`. O instalador foi exercitado em um repositório Git de teste, com cópia de 27 mídias e atualização de sete entradas do manifesto, mas **não foi executado contra o repositório de produção**. Requer conexão do computador do proprietário com GitHub, Python e Git autenticado; extrair o ZIP inteiro e executar o CMD uma vez. A rotina verifica hashes, publica os 27 binários no GitHub em um único lote, confirma os URLs públicos com os hashes, atualiza as legendas e fixa URLs em SHA de commit; o item cuja data já tiver passado fica `approved=false`. O workflow não é habilitado para execução recorrente e nenhuma postagem é publicada automaticamente com este instalador.
+
+**Atenção:** O estado do GitHub ainda não tem os 27 arquivos finais até que a execução de upload no computador conectado seja comprovada por commit. Não informar conclusão do agendamento/publicação do Instagram antes de recibo `published` e `media_id`.
