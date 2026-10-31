@@ -1,11 +1,17 @@
-name: Instagram TUE - Halloween 2026 (12h e 18h)
+name: Instagram TUE - dois posts por dia 31out a 06nov 2026
 on:
   push:
     branches: [main]
     paths: ['.github/workflows/halloween-31out-2026.yml', 'scripts/instagram_queue.py', 'scripts/test_instagram_queue.py', 'content/schedule.json']
   schedule:
     - cron: '0 15 31 10 *'
+    - cron: '10 15 31 10 *'
     - cron: '0 21 31 10 *'
+    - cron: '10 21 31 10 *'
+    - cron: '0 15 1-6 11 *'
+    - cron: '10 15 1-6 11 *'
+    - cron: '0 21 1-6 11 *'
+    - cron: '10 21 1-6 11 *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -33,14 +39,14 @@ jobs:
           DAY="$(date -u +%F)"
           UTC_HM="$(date -u +%H%M)"
           ALLOWED=false
-          if [ "$DAY" = "2026-10-31" ] && [ "${{ github.event_name }}" = "schedule" ]; then
+          if [[ "$DAY" > "2026-10-30" && "$DAY" < "2026-11-07" ]] && [ "${{ github.event_name }}" = "schedule" ]; then
             ALLOWED=true
           fi
           if [ "$DAY" = "2026-10-31" ] && [ "${{ github.event_name }}" = "push" ] && [ "$UTC_HM" -ge 1500 ] && [ "$UTC_HM" -le 1520 ]; then
             ALLOWED=true
           fi
           echo "publish=$ALLOWED" >> "$GITHUB_OUTPUT"
-          echo "Halloween gated execution=$ALLOWED, day=$DAY, utc=$UTC_HM"
+          echo "Editorial week gated execution=$ALLOWED, day=$DAY, utc=$UTC_HM"
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: main
