@@ -56,6 +56,12 @@ jobs:
           if [ "$QUEUE_DRY_RUN" = 'true' ]; then
             python3 scripts/instagram_queue.py --dry-run
           else
+            # Preflight before claiming a due item; missing grants must not
+            # consume its one-shot publication slot.
+            python3 scripts/instagram_queue.py --dry-run > /tmp/instagram-queue-plan.json
+            if python3 -c 'import json; d=json.load(open("/tmp/instagram-queue-plan.json", encoding="utf-8")); raise SystemExit(0 if any(x["status"] == "due" for x in d["items"]) else 1)'; then
+              python3 scripts/instagram_preflight.py
+            fi
             python3 scripts/instagram_queue.py --execute
           fi
       - name: Preservar registro local para recuperação
