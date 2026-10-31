@@ -22,6 +22,34 @@ class BrandTests(unittest.TestCase):
         result=audit_queue()
         self.assertTrue(result["ok"])
 
+    def test_new_approval_without_owner_record_is_blocked(self):
+        # A mere approved=true in schedule may not bypass the user's sign-off.
+        from unittest.mock import patch
+        import instagram_visual_standard as standard
+        original_read=standard.read_json
+        schedule=original_read(standard.ROOT/"content/schedule.json")
+        fake=json.loads(json.dumps(schedule))
+        fake["posts"].append({
+            "id":"qa-approved-without-review",
+            "due_at":"2026-11-05T21:00:00Z",
+            "kind":"carousel",
+            "approved":True,
+            "media_urls":[],
+            "media_sha256":[]
+        })
+        def fake_read(path):
+            if Path(path)==standard.ROOT/"content/schedule.json":
+                return fake
+            return original_read(path)
+        with patch.object(standard,"read_json",side_effect=fake_read):
+            with self.assertRaisesRegex(VisualError,"sem verificacao"):
+                audit_queue()
+
+    def test_renderer_cannot_grant_approval(self):
+        # Every newly rendered package starts as a draft.
+        import render_instagram_carrossel as generator
+        self.assertIn('"approved":False', Path(generator.__file__).read_text(encoding="utf-8").replace(" ", ""))
+
     def test_rendered_page_passes_and_replacement_fails(self):
         with tempfile.TemporaryDirectory() as folder:
             path=Path(folder)
