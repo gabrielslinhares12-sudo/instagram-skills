@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'content/brand/**'
+      - 'content/visual-standard/**'
+      - 'content/schedule.json'
       - 'content/approved/**'
       - 'scripts/instagram_visual_standard.py'
       - 'scripts/render_instagram_carrossel.py'
@@ -13,6 +15,8 @@ on:
   pull_request:
     paths:
       - 'content/brand/**'
+      - 'content/visual-standard/**'
+      - 'content/schedule.json'
       - 'content/approved/**'
       - 'scripts/instagram_visual_standard.py'
       - 'scripts/render_instagram_carrossel.py'
