@@ -18,7 +18,7 @@
       "is_ai_generated": true,
       "title": "Modo Halloween: coragem até ouvir um barulho",
       "sources": [],
-      "approval_note": "RECRIAÇÃO SOLICITADA em 30/10/2026. Placeholder NÃO EXISTE e NÃO deve ser publicado. Produzir nova arte com a estética da versão melhorada, conferir binário e URL pública estável em commit SHA, substituir placeholder, verificar ledger, agendar primeira janela segura, e só então approved=true. Evitar duplicata e imagem antiga. Consultar content/editorial/HALLOWEEN-RECRIACAO-PRIORITARIA-2026-10-30.md."
+      "approval_note": "NOVA ARTE RECRIADA EM 30/10 23h, JPEG 1080x1350, SHA256 b8147da5e276f61325a9b090f2614222112efb4b9ac097d946055f942b311519. BLOQUEIO DE TRANSFERÊNCIA: arquivo local ainda sem URL pública imutável no GitHub. Placeholder PENDENTE não existe; approved=false até upload do JPEG exato, verificação hash, troca por URL commit-pinned e checagem de ledger/Meta. Ver content/editorial/HALLOWEEN-RECRIACAO-PRIORITARIA-2026-10-30.md."
     },
     {
       "id": "lumino-votos-2026",
