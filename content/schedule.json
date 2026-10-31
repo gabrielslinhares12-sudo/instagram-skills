@@ -2,7 +2,26 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Sete posts autorizados para disparo único nos respectivos dias, 12h America/Sao_Paulo. Sem monitoramento de fila a cada hora. Não confundir aprovação do manifesto com publicação no Instagram.",
-  "posts": [],
-  "status": "EMPTY — old rejected media and scheduled entries removed at owner request; explicit new authorization required"
+  "approval_note": "Apenas a tirinha de Halloween aprovada expressamente pelo proprietário em 31/10/2026 para primeiro horário de hoje (12h Brasília). Carrossel histórico solicitado para hoje à noite; só inserir na fila após concluir e verificar 8 JPGs. Nenhum outro tema autorizado.",
+  "posts": [
+    {
+      "id": "halloween-2026-10-31-tirinha-aprovada",
+      "due_at": "2026-10-31T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "post",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "Halloween — detetive paranormal da madrugada",
+      "caption": "Você levanta só para beber água, ouve um CRAC na cozinha e, de repente, seu cérebro abre uma investigação paranormal. 🕵️‍♂️🎃\n\nDe dia: “Isso deve ter uma explicação.”\nÀs 23h47: “Tá, mas por que eu parei de respirar?” 😂\n\nVocê também vira detetive depois da meia-noite? Conta aí qual barulho mais te assustou!\n\n#Halloween #Memes #Humor #Lumino #TemUmaExplicacao",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/979d152c06ec112d6f72dab906533fae0b940dbd/content/media/halloween-2026-10-31/01-meme-halloween-tirinha.jpg"
+      ],
+      "media_sha256": [
+        "97d2a2e5e16720fe6b33914d5f289ecb6dd26b10e3876f0a764b1ab41c6d8132"
+      ],
+      "approved": true,
+      "is_ai_generated": true,
+      "sources": [],
+      "approval_note": "Proprietário disse em 31/10/2026: Gostei dessa, agende para o primeiro post. Primeira postagem hoje 12h America/Sao_Paulo, imagem final aprovada exatamente da tirinha 4 quadros."
+    }
+  ]
 }
