@@ -2,7 +2,7 @@ name: Instagram TUE - Halloween 2026 (12h e 18h)
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/halloween-31out-2026.yml']
+    paths: ['.github/workflows/halloween-31out-2026.yml', 'scripts/instagram_queue.py', 'scripts/test_instagram_queue.py', 'content/schedule.json']
   schedule:
     - cron: '0 15 31 10 *'
     - cron: '0 21 31 10 *'
