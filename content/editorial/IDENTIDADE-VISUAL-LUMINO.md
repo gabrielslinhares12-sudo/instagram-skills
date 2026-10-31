@@ -14,7 +14,7 @@ A **capa específica enviada pelo proprietário** com a estética **“COMO ASSI
 - Textos e gráficos precisam permanecer corretos; **capa aprovada esteticamente não significa aprovação factual da frase original**. Na eleição presidencial com 51% dos votos válidos o candidato vence em primeiro turno. Reescrever o gancho com formulação verdadeira, por exemplo: “COMO ASSIM / 46% DOS VOTOS / E GANHOU?” com qualificador “dos votos registrados” (46/100) e explicar os 51,1% de votos válidos (46/90). Preservar composição e punch visual mesmo ao corrigir o texto.
 
 ## Fluxo de aprovação
-Produzir uma lâmina ou um post e apresentar para aprovação do proprietário antes de seguir. Todos os sete itens do manifesto ficam `approved=false` até avaliação da mídia final e legenda. **Não publicar imagens anteriores** nem reativar agenda sem autorização.
+**Atualização autorizada em 30/10/2026:** o proprietário dispensou novas aprovações individuais para este lote semanal e autorizou concluir/agendar **um post de cada vez**, avisando ao finalizar cada um e iniciando o próximo. Veja `content/editorial/PLANO-SEQUENCIAL-SEMANA-2026-10-31.md`. Essa autorização não elimina revisão de qualidade: somente marcar `approved=true` após verificar que as mídias e a legenda **finais** atendem ao visual de referência e aos fatos. Não publicar imagens antigas de carrosséis rejeitados nem conteúdo incompleto. Os demais itens seguem bloqueados até ficarem prontos.
 
 ## Referência de trabalho
 A capa estética foi produzida em conversa anterior como imagem “Como 51% Não Ganhou?.png” e posteriormente reenviada pelo proprietário como referência. A lâmina seguinte de demonstração foi criada nesta conversa, não substitui a capa nem é considerada aprovada.
