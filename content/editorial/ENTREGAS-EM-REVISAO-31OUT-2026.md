@@ -33,3 +33,10 @@
 2. A aprovação visual da semana de 01–06/11 permanece bloqueada até revisão final e **autorização expressa do proprietário**.
 3. A pasta de trabalho é [Instagram TUE — pacote 01 a 06/11](https://drive.google.com/drive/folders/1YnMlMXWX3CEmxwnvHa7GSzjGkHFN--EE).
 4. Próxima prioridade editorial: corrigir onças 03/11 12h e 18h; evitar repetir imagens ou atribuir foto real a mídia de procedência não demonstrada.
+
+## Revisão adicional do meme de 01/11 às 18h
+
+- [Imagem JPG 1080×1350 entregue ao Drive (V3 em revisão)](https://drive.google.com/file/d/1axWG39FB8lsIGjv_XVhx1zGYA6XD3T6y/view).
+- Conversão para 4:5 preservou todos os quatro quadrinhos e todas as frases, sem cortar balões ou deformar o Lúmino. A versão anterior de corte centralizado foi descartada por remover palavras do topo.
+- Conteúdo factual: votar em branco ou nulo não anula uma eleição, e esses votos não são transferidos a candidatos; verificar sempre conforme orientação oficial do TSE.
+- Continua **não aprovado para publicação**; a entrada respectiva do `content/schedule.json` mantém `approved=false`. A aparência das urnas nos quadrinhos é ilustração, não demonstração fiel de uma urna eletrônica oficial.
