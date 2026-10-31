@@ -1,5 +1,7 @@
 # Entrega local consolidada — Instagram Tem Uma Explicação (31/10–06/11/2026)
 
+> **ATUALIZAÇÃO — TRANSFERÊNCIA CONCLUÍDA EM 31/10/2026:** os 27 arquivos finais já estão no GitHub, extraídos e com URLs fixadas em SHA imutável. O texto abaixo registra o estado histórico anterior à transferência. Veja `content/editorial/TRANSFERENCIA-CONCLUIDA-2026-10-31.md`. Publicação no Instagram continua desativada e sem recibos.
+
 **Status em 31/10/2026:** foi criado um pacote local de 7 conteúdos com mídias, roteiros, legendas e checksums SHA-256. **Não foi transferido ao GitHub** (o repositório não recebeu as mídias binárias novas); **não está agendado no Instagram**; a fila existente permanece bloqueada e o controle de publicação não tem recibos.
 
 ## Conteúdos locais terminados
