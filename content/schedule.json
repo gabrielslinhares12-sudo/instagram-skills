@@ -49,10 +49,14 @@
       "target_url": "https://www.instagram.com/temumaexplicacao/",
       "caption": "Por que o dólar sobe e desce tanto?\n\nA cotação é um preço negociado no mercado. Num exemplo simplificado, quando cresce a procura por dólares sem aumento equivalente da oferta, o preço tende a subir. Se a oferta aumenta mantendo a procura, tende a cair.\n\nMas o mundo real tem muitas forças atuando juntas, como expectativas, comércio e fluxos financeiros. No Brasil, o regime cambial é flutuante.\n\nArraste para entender o mecanismo e salve para quando a próxima cotação chamar atenção.\n\n#Economia #Dólar #EducaçãoFinanceira",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-01.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-02.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-03.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/362fde4997128c20fb86ad0fd450a9179af92b45/content/media/2026-10-31-lumino/dolar-04.jpg"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-01-PENDENTE.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-02-PENDENTE.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-03-PENDENTE.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-04-PENDENTE.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-05-PENDENTE.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-06-PENDENTE.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-07-PENDENTE.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/2026-11-02-lumino/dolar-08-PENDENTE.jpg"
       ],
       "approved": false,
       "is_ai_generated": true,
@@ -61,7 +65,7 @@
         "https://www.bcb.gov.br/meubc/faqs/p/por-que-o-banco-central-intervem-no-mercado-de-cambio",
         "https://www.bcb.gov.br/meubc/faqs/p/a-taxa-de-cambio-e-fixada-pelo-banco-central"
       ],
-      "approval_note": "Aguardando aprovação individual solicitada pelo proprietário para a versão editorial e a mídia final; não publicar antes da aprovação."
+      "approval_note": "NOVA ARTE FINAL PRODUZIDA EM 30/10/2026: oito JPEGs 1080x1350 com hash SHA256 por lâmina em content/editorial/DOLAR-PRODUCAO-2026-10-30.md. URLs atuais são PLACEHOLDERS INEXISTENTES, proibido publicar. approved=false até transferir e verificar oito binários, fixar URL em commit SHA, conferir ledger e preflight Meta. Não reutilizar os quatro JPGs antigos."
     },
     {
       "id": "lumino-oncas-2026",
