@@ -14,6 +14,10 @@ on:
       - '.github/workflows/instagram-scheduler.yml'
       - '.github/workflows/halloween-31out-2026.yml'
       - 'scripts/test_instagram_cloud_workflow.py'
+      - 'scripts/instagram_cloud_report.py'
+      - 'scripts/instagram_private_music.py'
+      - 'scripts/test_instagram_private_music.py'
+      - '.github/workflows/instagram-private-music.yml'
       - 'scripts/instagram_preflight.py'
       - 'scripts/test_instagram_preflight.py'
       - 'scripts/render_instagram_carrossel.py'
@@ -33,6 +37,10 @@ on:
       - '.github/workflows/instagram-scheduler.yml'
       - '.github/workflows/halloween-31out-2026.yml'
       - 'scripts/test_instagram_cloud_workflow.py'
+      - 'scripts/instagram_cloud_report.py'
+      - 'scripts/instagram_private_music.py'
+      - 'scripts/test_instagram_private_music.py'
+      - '.github/workflows/instagram-private-music.yml'
       - 'scripts/instagram_preflight.py'
       - 'scripts/test_instagram_preflight.py'
       - 'scripts/render_instagram_carrossel.py'
@@ -60,6 +68,8 @@ jobs:
         run: python scripts/instagram_visual_standard.py verify-assets
       - name: Barrar publicacoes aprovadas fora do padrao
         run: python scripts/instagram_visual_standard.py audit-queue
+      - name: Validar preparação segura do método móvel privado (desativado)
+        run: python -m unittest discover -s scripts -p test_instagram_private_music.py -v
       - name: Validar agendamento cloud e isolamento do fluxo antigo
         run: python -m unittest discover -s scripts -p test_instagram_cloud_workflow.py -v
       - name: Testar roteamento de publicação e prevenção de duplicatas
