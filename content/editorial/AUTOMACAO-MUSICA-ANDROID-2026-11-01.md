@@ -46,3 +46,29 @@ Os controles do Instagram podem variar por versão/idioma; **a automação não 
 - Pendente: conexão ADB autorizada com um dispositivo real para teste do controlador.
 
 Não ativar programação automática de outro post sem aprovação editorial. Não reativar GeeLark. Sem API privada/instagrapi e sem custo novo.
+
+## Adicionado: execução sequencial opcional a cada 10 minutos (Windows)
+
+- `scripts/instagram_music_watch.py`: busca estado mais recente da main, considera apenas **um** carrossel com música/autor explícito e `awaiting_native_music`; reserva local uma única tentativa por `media_id` e aciona `instagram_mobile_music.py --execute` no Android autorizado. Se houver falha ou interface alterada, **não tenta de novo automaticamente** nem marca publicado.
+- `scripts/install_instagram_music_watch.ps1`: instalador/desinstalador do Windows Task Scheduler **somente sob `-Install` explícito**. Frequência: 10 minutos enquanto o Windows estiver ligado. Não foi executado neste ambiente, portanto **não existe tarefa instalada ou serviço rodando no PC**.
+- Toggle de ativação local: `INSTAGRAM_ANDROID_MUSIC_ENABLED=true`. Sem toggle e sem música `music_track` + `music_artist` no carrossel aprovado, o watcher só emite `dry_run`.
+- Comandos locais, após preparar ADB e configurar música exata na fila:
+```powershell
+adb devices
+python scripts/instagram_mobile_music.py
+python scripts/instagram_music_watch.py --skip-pull
+powershell -ExecutionPolicy Bypass -File scripts/install_instagram_music_watch.ps1 -Install
+```
+- Remoção: `powershell -ExecutionPolicy Bypass -File scripts/install_instagram_music_watch.ps1 -Uninstall`.
+- CI offline: [9 testes passaram](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41335729599) em 01/11/2026. **Não é teste de clique no Instagram real**.
+
+### Estado real de operação
+
+O Instagram TUE **já publicou o Halloween**, e a captura enviada pelo proprietário mostra o botão **Adicionar música** em `Editar informações` no app Android para esse mesmo carrossel. Este é um avanço factual sobre o teste anterior. Ainda faltam:
+
+1. Definir **título e artista exatos** de uma música disponível e licenciada na biblioteca para a conta, a fim de permitir escolha automática; a configuração atual de Halloween não contém `music_track` ou `music_artist`.
+2. Autorizar ADB uma vez num Android com app Instagram logado; não há dispositivo conectado ao executor GitHub.
+3. Testar no Android **real** a árvore de acessibilidade, busca/seleção da faixa, botão Salvar e readback do mesmo post. Se alguma tela não for exposta ao ADB, a automação falha de modo conservador e exige adaptação Appium, sem ações cegas.
+4. Instalar opcionalmente o watcher no **Windows local**. Não existe uma automação em nuvem 24/7 que edite a música diretamente na conta nesta configuração; a Graph API não oferece essa operação.
+
+**Concluído até aqui:** código e testes; **não concluído:** música salva no Instagram nem execução móvel desacompanhada. A conta continua sem API privada de instagrapi e sem GeeLark.
