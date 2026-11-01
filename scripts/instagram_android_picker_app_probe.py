@@ -84,7 +84,7 @@ def main():
         raise RuntimeError("Real test app did not receive eight Android image URIs")
     (OUT/"picker-app-proof.json").write_text(json.dumps({"original_photos":8,
        "caller":"locally-built signed test APK","received_uris":8,
-       "instagram_installed":False,"instagram_login":False,"published":False},indent=2)+"\n")
+       "instagram_installed":False,"instagram_login":False,"published":False},indent=2)+"\n",encoding="utf-8")
     print("INSTAGRAM_PUBLISHED=false",flush=True)
 
 if __name__=="__main__":
