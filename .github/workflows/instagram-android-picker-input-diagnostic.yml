@@ -1,0 +1,45 @@
+name: Instagram TUE - diagnostico toques e teclado Android cloud
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-android-picker-input-diagnostic.yml'
+      - 'scripts/instagram_android_picker_input_diagnostic.py'
+permissions:
+  contents: read
+concurrency:
+  group: instagram-cloud-picker-input
+  cancel-in-progress: true
+jobs:
+  offline_picker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout sem credenciais persistentes
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Ativar KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Iniciar Android e diagnosticar selecao sem Instagram
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          profile: pixel_4
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          script: bash -c 'for i in {1..20}; do if adb shell "mkdir -p /sdcard/Pictures/InstagramTUEProbe"; then break; fi; sleep 2; done; adb shell "test -d /sdcard/Pictures/InstagramTUEProbe" && bash scripts/instagram_android_cloud_probe.sh && bash scripts/build_android_picker_probe.sh && python3 scripts/instagram_android_picker_input_diagnostic.py'
+      - name: Guardar diagnosticos sem dados pessoais
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: instagram-android-input-diagnostic-${{ github.run_id }}
+          path: cloud-probe/input-diagnostic/
+          retention-days: 3
+          if-no-files-found: ignore
