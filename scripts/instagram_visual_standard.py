@@ -39,10 +39,10 @@ def safe_file(base: Path, rel: str) -> Path:
 
 def verify_brand(root: Path = ROOT) -> dict:
     spec = read_json(root / "content/brand/padrao-visual.json")
-    if spec.get("version") != 1 or spec.get("output") != {
-        "width": 1080, "height": 1350, "format": "JPEG", "pages": 8
-    }:
-        raise VisualError("A configuracao do formato foi alterada.")
+    expected = {"width": 1080, "height": 1350, "format": "JPEG",
+                "min_pages": 2, "max_pages": 20, "automatic_api_max_pages": 10}
+    if spec.get("version") != 1 or spec.get("output") != expected:
+        raise VisualError("Configuração de formato e limites alterada.")
     for item in ("reference", "lumino"):
         ref = spec[item]
         asset = safe_file(root, ref["path"])
@@ -99,25 +99,37 @@ INDIVIDUAL_MODE = "individually_art_directed_v1"
 LEGACY_MODE = "generic_template_draft_only"
 
 
+def preview_geometry(count: int) -> tuple[int, int, int, int]:
+    """Derived from final page count. Never distort or redraw final artwork."""
+    if type(count) is not int or not 2 <= count <= 20:
+        raise VisualError("Prévia exige entre 2 e 20 páginas.")
+    cols = min(4, count)
+    rows = (count + cols - 1) // cols
+    return cols, rows, cols * 216, rows * 270
+
+
 def verify_preview(folder: Path, data: dict) -> None:
-    """Prove the preview pixels came exclusively from the eight final JPGs."""
-    if data.get("preview_file") != "PREVIA-8-ARTES.png":
-        raise VisualError("Prévia deve ser derivada das oito artes individuais.")
-    path = safe_file(folder, data["preview_file"])
+    """Contact sheet must match the final JPEGs byte-to-pixel, no creative generation."""
+    count = len(data["pages"])
+    name = f"PREVIA-{count:02d}-ARTES.png"
+    if data.get("preview_file") != name:
+        raise VisualError("Prévia não indica a quantidade final de páginas.")
+    path = safe_file(folder, name)
     if not path.is_file() or sha256(path) != data.get("preview_sha256"):
         raise VisualError("Prévia ausente ou com hash divergente.")
+    columns, rows, width, height = preview_geometry(count)
     with Image.open(path) as actual:
-        if actual.format != "PNG" or actual.size != (864, 540):
+        if actual.format != "PNG" or actual.size != (width, height):
             raise VisualError("Dimensões inválidas da prévia.")
         actual_pixels = actual.convert("RGB").tobytes()
-    expected = Image.new("RGB", (864, 540))
+    expected = Image.new("RGB", (width, height))
     for idx, page in enumerate(data["pages"]):
         file = safe_file(folder, page["file"])
         with Image.open(file) as slide:
             thumb = slide.convert("RGB").resize((216, 270), Image.Resampling.LANCZOS)
-        expected.paste(thumb, ((idx % 4) * 216, (idx // 4) * 270))
+        expected.paste(thumb, ((idx % columns) * 216, (idx // columns) * 270))
     if expected.tobytes() != actual_pixels:
-        raise VisualError("Prévia não corresponde aos oito JPGs finais.")
+        raise VisualError("Prévia não corresponde aos JPGs finais.")
 
 
 def validate_package(manifest: Path, root: Path = ROOT) -> dict:
@@ -129,8 +141,9 @@ def validate_package(manifest: Path, root: Path = ROOT) -> dict:
         data.get("reference_sha256") != spec["reference"]["sha256"]):
         raise VisualError("Manifesto nao vincula as duas referencias oficiais.")
     pages = data.get("pages")
-    if not isinstance(pages,list) or len(pages)!=8:
-        raise VisualError("Cada carrossel deve ter exatamente 8 paginas.")
+    limit = spec["output"]
+    if not isinstance(pages, list) or not limit["min_pages"] <= len(pages) <= limit["max_pages"]:
+        raise VisualError("Carrossel deve ter entre 2 e 20 páginas; uma imagem é post simples.")
     mode = data.get("production_mode", LEGACY_MODE)
     if mode not in {LEGACY_MODE, INDIVIDUAL_MODE}:
         raise VisualError("Processo de produção não autorizado.")
@@ -165,6 +178,10 @@ def validate_package(manifest: Path, root: Path = ROOT) -> dict:
                         "match_error":round(difference,2)})
     return {"ok":True,"standard":spec["id"],"pages":checked,"manual_review_required":True}
 
+def spec_max_pages(root: Path = ROOT) -> int:
+    return read_json(root / "content/brand/padrao-visual.json")["output"]["automatic_api_max_pages"]
+
+
 def audit_queue(root: Path=ROOT) -> dict:
     verify_brand(root)
     schedule=read_json(root/"content/schedule.json")
@@ -185,6 +202,11 @@ def audit_queue(root: Path=ROOT) -> dict:
             # Only independent artwork, preserved byte-for-byte, can advance.
             if approval.get("production_mode") != INDIVIDUAL_MODE:
                 raise VisualError(f"Gerador genérico proibido na publicação: {slug}")
+            if len(validated["pages"]) > spec_max_pages(root):
+                raise VisualError(
+                    f"Carrossel {slug}: API automática aceita no máximo 10 páginas. "
+                    "Escolha Reel MP4 ou publicação manual, sem descartar imagens."
+                )
             # A generated QA manifest defaults to approved=false. Technical
             # integrity alone NEVER authorizes publication.
             if (approval.get("approved") is not True
@@ -197,7 +219,7 @@ def audit_queue(root: Path=ROOT) -> dict:
             if hashes!=post.get("media_sha256"):
                 raise VisualError(f"Os hashes do carrossel aprovado nao sao os mesmos do QA: {slug}")
             urls=post.get("media_urls",[])
-            if len(urls)!=8 or any(not isinstance(u,str) or "raw.githubusercontent.com/" not in u
+            if len(urls)!=len(hashes) or any(not isinstance(u,str) or "raw.githubusercontent.com/" not in u
                                   for u in urls):
                 raise VisualError(f"URLs do carrossel nao estao prontas: {slug}")
             reviewed.append(slug)
