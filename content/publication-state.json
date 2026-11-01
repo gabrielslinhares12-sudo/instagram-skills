@@ -13,11 +13,11 @@
       "published_at": "2026-10-31T15:06:47Z"
     },
     "halloween-2026-10-31-historia-8-laminas": {
-      "status": "claimed",
+      "status": "needs_review",
       "fingerprint": "617e6ef4cec381e8797fe774905df2fc0c1491a03da3e5fe3522a6fa4bcf4ba7",
       "due_at": "2026-11-01T17:43:00Z",
       "claimed_at": "2026-11-01T17:45:57Z",
-      "error_type": "publication_not_confirmed",
+      "error_type": "resume_outcome_uncertain",
       "http_status": 400,
       "subcode": 2207003,
       "creation_id": "18102064946100158",
