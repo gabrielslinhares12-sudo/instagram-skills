@@ -53,6 +53,19 @@ class IndividualCarouselTests(unittest.TestCase):
                     with self.assertRaisesRegex(VisualError, "2 e 20"):
                         package(spec, base / "output")
 
+    def test_music_carousel_cannot_be_silently_posted_by_api(self):
+        from instagram_visual_standard import verify_publication_route
+        with self.assertRaisesRegex(VisualError, "aplicativo Instagram"):
+            verify_publication_route({"distribution_mode": "native_music_carousel"})
+        with self.assertRaisesRegex(VisualError, "autorização expressa"):
+            verify_publication_route({"distribution_mode": "api_carousel_without_native_music"})
+        verify_publication_route({
+            "distribution_mode": "api_carousel_without_native_music",
+            "owner_authorized_without_music": True,
+        })
+        with self.assertRaisesRegex(VisualError, "não reconhecido"):
+            verify_publication_route({"distribution_mode": "invalid_mode"})
+
     def test_outdated_template_cannot_publish(self):
         from render_instagram_carrossel import ROOT
         source = (ROOT / "scripts/render_instagram_carrossel.py").read_text(encoding="utf-8")
