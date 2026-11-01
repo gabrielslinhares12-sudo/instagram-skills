@@ -11,7 +11,7 @@ As cópias existentes em `content/visual-standard/assets/` são espelhos, não u
 
 ## Características que não podem mudar
 
-Cada carrossel tem **8 imagens JPEG distintas, 1080×1350 px**, jamais uma única imagem 2×4. Fundo **papel claro texturizado**, com fotografia/ilustração contextual ocupando espaço substancial. Manchete preta, grande e condensada, sobre pincelada **amarela irregular**, com destaques vermelhos; cartões claros e legíveis, dados/ícones informativos, indicadores discretos da página. Variar enquadramento de cenas ao longo das 8 páginas. O nível gráfico das internas precisa acompanhar a capa.
+Cada carrossel tem **2 a 20 imagens JPEG distintas, 1080×1350 px**, em quantidade definida pelo roteiro, jamais uma única imagem 2×4. Fundo **papel claro texturizado**, com fotografia/ilustração contextual ocupando espaço substancial. Manchete preta, grande e condensada, sobre pincelada **amarela irregular**, com destaques vermelhos; cartões claros e legíveis, dados/ícones informativos, indicadores discretos da página. Variar enquadramento de cenas ao longo das 8 páginas. O nível gráfico das internas precisa acompanhar a capa.
 
 O Lúmino é **uma camada proveniente do PNG original**, nunca regenerado: cabeça de lanterna de vidro e metal dourado, lâmpada acesa, óculos redondos, olhos ciano, lupa, luvas e sobretudo cáqui; **sem boca nem pernas**. O teste confere amostras dos pixels do PNG original sobrepostos no resultado e rejeita alterações relevantes.
 
@@ -19,10 +19,10 @@ O Lúmino é **uma camada proveniente do PNG original**, nunca regenerado: cabe�
 
 ## Execução obrigatória: direção artística primeiro, empacotamento depois
 
-**PROIBIDO usar o script `render_instagram_carrossel.py` na entrega final.** Seu template fixo `hero/split/diagram` produz apenas **rascunhos técnicos**, mesmo que passe em testes de cor, tamanho e mascote. O GitHub rejeita qualquer tentativa de promover esses rascunhos para uma publicação nova.
+**PROIBIDO usar o script `render_instagram_carrossel.py` na entrega final.** Seu template fixo `hero/split/diagram` produz apenas **rascunhos técnicos**, mesmo que passe em testes de cor, tamanho e mascote. O GitHub rejeita qualquer tentativa de promover esses rascunhos para uma publicação nova. O modelo visual aprovado de oito painéis permanece referência de identidade, **não uma obrigação de produzir oito páginas**.
 
-1. **Criar 8 artes prontas, uma de cada vez, no mesmo processo criativo.** Para cada página, entregar o modelo de 8 painéis aprovado, a PNG original do Lúmino, o briefing do tema e a identidade editorial. Gerar uma **imagem individual completa**, revisar conteúdo, tipografia, cenário e qualidade da página no tamanho de um celular. A composição 2×4 serve apenas como *direção artística*; recortar seus painéis de baixa resolução e aumentá-los para 1080×1350 não produz uma arte de alta qualidade.
-2. **Sem intervenção criativa do empacotador.** As oito artes devem ser JPGs finais `1080×1350`, com o Lúmino canônico visivelmente integrado. Caso uma arte não tenha esses atributos, refazer **aquela página**, não substituí-la por um template genérico.
+1. **Criar de 2 a 20 artes prontas, uma de cada vez, no mesmo processo criativo.** Para cada página, entregar o modelo de 8 painéis aprovado, a PNG original do Lúmino, o briefing do tema e a identidade editorial. Gerar uma **imagem individual completa**, revisar conteúdo, tipografia, cenário e qualidade da página no tamanho de um celular. A composição 2×4 serve apenas como *direção artística*; recortar seus painéis de baixa resolução e aumentá-los para 1080×1350 não produz uma arte de alta qualidade.
+2. **Sem intervenção criativa do empacotador.** As artes devem ser JPGs finais `1080×1350`, com o Lúmino canônico visivelmente integrado. Caso uma arte não tenha esses atributos, refazer **aquela página**, não substituí-la por um template genérico.
 3. **Empacotar sem re-renderização.** Criar um `brief.json` na pasta das imagens:
    ```json
    {
@@ -38,16 +38,29 @@ O Lúmino é **uma camada proveniente do PNG original**, nunca regenerado: cabe�
      ]
    }
    ```
-   A lista **deve conter 8 entradas**, e `mascot_box` contém a posição REAL do PNG canônico em cada uma (o exemplo acima não é uma posição obrigatória para todas as páginas). Campos `layout` (`hero/split/diagram`) servem somente para identificação e verificação, não autorizam um script a desenhar a página.
+   A lista **deve conter tantas entradas quantas forem necessárias (2 a 20)**, e `mascot_box` contém a posição REAL do PNG canônico em cada uma (o exemplo acima não é uma posição obrigatória para todas as páginas). Campos `layout` (`hero/split/diagram`) servem somente para identificação e verificação, não autorizam um script a desenhar a página.
 4. **Executar o novo empacotador** com as artes finais:
    ```bash
    python3 scripts/package_individual_carousel.py --spec artes/brief.json --out entrega/carrossel
    python3 scripts/instagram_visual_standard.py verify-package --manifest entrega/carrossel/visual-manifest.json
    ```
-   O comando **copia os oito JPEGs byte a byte**, preserva seus SHA-256, rejeita dimensões erradas e duplicações quase idênticas, verifica as cores e a presença do PNG original. A prévia `PREVIA-8-ARTES.png` é construída **somente a partir dos oito arquivos finais**. O validador recompõe essa prévia para impedir o truque de uma colagem bonita e oito JPEGs diferentes.
-5. **Inspeção editorial individual é obrigatória.** É necessário avaliar as oito páginas visualmente, inclusive a consistência com o modelo, a leitura no celular, fatos, direitos das imagens, texto sem cortes e sobreposições. Nenhum comparador automático atesta criatividade, identidade estética completa ou verdade factual com certeza. Quando um dos oito painéis falhar, reprovar o carrossel e corrigir o painel; jamais promover o pacote parcialmente.
+   O comando **copia todos os JPEGs byte a byte**, preserva seus SHA-256, rejeita dimensões erradas e duplicações quase idênticas, verifica as cores e a presença do PNG original. A prévia `PREVIA-NN-ARTES.png` (NN = total de páginas) é construída **somente a partir dos JPGs finais**. O validador recompõe essa prévia para impedir o truque de uma colagem bonita e oito JPEGs diferentes.
+5. **Inspeção editorial individual é obrigatória.** É necessário avaliar todas as páginas visualmente, inclusive a consistência com o modelo, a leitura no celular, fatos, direitos das imagens, texto sem cortes e sobreposições. Nenhum comparador automático atesta criatividade, identidade estética completa ou verdade factual com certeza. Quando qualquer página falhar, reprovar o carrossel e corrigir o painel; jamais promover o pacote parcialmente.
 6. **Bloqueio antes da Meta.** Para carrosséis novos, `audit-queue` exige `production_mode=individually_art_directed_v1`, prévia recomputável, hashes válidos, `approved=true`, `visual_reviewed=true`, `owner_authorized=true`, anotação de aprovação não vazia e hashes idênticos aos da fila. `approved`, `visual_reviewed` e `owner_authorized` vêm **false** no pacote recém-gerado: não se tornam verdadeiros por completar os testes. Publicar exige autorização expressa do proprietário. O processo não altera `content/schedule.json` nem `content/publication-state.json` durante a produção.
 7. **Verificação automática:** `.github/workflows/instagram-editorial-quality.yml` testa a identidade canônica, a integridade da fila e as prévias derivadas dos JPEGs. `.github/workflows/instagram-scheduler.yml` chama `audit-queue` antes de publicação, sem alterar o workflow legado do Halloween.
+
+## Distribuição preferencial: carrossel com música nativa (elegibilidade Reels)
+
+**Regra por padrão:** gerar fotos individuais em carrossel, na quantidade editorialmente necessária (2–20), sem converter em MP4. **Ao publicar no aplicativo Instagram no celular:** criar uma **Publicação** (não Reel), selecionar os JPGs na ordem, tocar em **Adicionar música**, escolher faixa disponibilizada para a conta e trecho, revisar texto e publicar apenas após autorização. O resultado continua sendo um carrossel deslizável de fotos, mas fica **elegível** a aparecer na experiência/aba Reels, conforme recomendação pública de Adam Mosseri; distribuição a não seguidores **não é garantida**. A aba Reels do perfil e o feed de descoberta não são conceitos intercambiáveis.
+
+**Limite técnico inegociável:** o Instagram permite até 20 páginas no aplicativo, porém nosso publicador via API Meta recebe somente 2–10 JPGs por carrossel e **não consegue anexar uma faixa da biblioteca nativa a carrosséis**. Portanto:
+- Os pacotes novos recebem `distribution_mode=native_music_carousel`, `music_status=pending_selection_in_instagram_app` e uma lista de verificação `PUBLICACAO-NATIVA-COM-MUSICA.txt`.
+- Se o carrossel tiver música nativa obrigatória, a chamada ao publicador automático é **bloqueada** por `verify_publication_route`. Um cron de GitHub não deve publicar carrossel silencioso e chamá-lo de Reel.
+- Publicar sem música por API só é permitido com mudança explícita do manifesto para `distribution_mode=api_carousel_without_native_music`, com `owner_authorized_without_music=true`, revisão editorial e autorização expressa. Nunca aplicar esse desvio automaticamente.
+- **A decisão do formato permanece editorial.** Um Reel real exige vídeo MP4; criar Reel estático ou animado não é requisito para alcançar a aba Reels com carrossel musical. Se o Instagram não disponibilizar música na conta, a publicação musical permanece pendente: não inventar faixa, não forçar áudio sem licença e não declarar sucesso.
+- Medir alcance de não seguidores, compartilhamentos, salvamentos e visualizações quando o Instagram estiver conectado a uma ferramenta de análise. A elegibilidade Reels não garante melhora mensurável.
+
+Fontes: [Meta — música em carrosséis](https://about.fb.com/br/news/2023/08/mais-formas-de-criar-e-colaborar-com-amigos-no-instagram/amp/), [fala de Mosseri sobre elegibilidade para Reels](https://www.socialmediatoday.com/news/ig-chief-recommends-posting-carousels-improve-reach/730232/), [limitações da API](https://help.metricool.com/api-limitations-per-social-network-n7zlr).
 
 ## Comandos de manutenção
 
