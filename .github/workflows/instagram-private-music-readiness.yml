@@ -5,6 +5,9 @@ on:
     paths:
       - '.github/workflows/instagram-private-music-readiness.yml'
       - 'scripts/instagram_private_music_readiness.py'
+      - 'scripts/test_instagram_private_poster.py'
+      - 'scripts/test_instagram_private_music.py'
+      - 'scripts/instagram_private_music.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -34,4 +37,4 @@ jobs:
           INSTAGRAM_PRIVATE_RISK_ACCEPTED: ${{ vars.INSTAGRAM_PRIVATE_RISK_ACCEPTED || 'false' }}
         run: python3 scripts/instagram_private_music_readiness.py
       - name: Testes de unidade sem chamadas à rede social
-        run: python3 -m unittest discover -s scripts -p test_instagram_private_music.py -v
+        run: python3 -m unittest discover -s scripts -p test_instagram_private_*.py -v
