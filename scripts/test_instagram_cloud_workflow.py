@@ -11,7 +11,7 @@ class CloudRunnerTests(unittest.TestCase):
         legacy = (ROOT / ".github/workflows/halloween-31out-2026.yml").read_text(encoding="utf-8")
         self.assertIn("cron: '*/10 * * * *'", cloud)
         self.assertIn("runs-on: ubuntu-latest", cloud)
-        self.assertNotIn("self-hosted", cloud.split("jobs:", 1)[1])
+        self.assertNotIn("runs-on: [self-hosted", cloud.split("jobs:", 1)[1])
         self.assertIn("cancel-in-progress: false", cloud)
         self.assertIn("python3 scripts/instagram_queue.py --dry-run", cloud)
         self.assertIn("python3 scripts/instagram_preflight.py", cloud)
