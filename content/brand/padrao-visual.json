@@ -20,7 +20,9 @@
     "width": 1080,
     "height": 1350,
     "format": "JPEG",
-    "pages": 8
+    "min_pages": 2,
+    "max_pages": 20,
+    "automatic_api_max_pages": 10
   },
   "design": {
     "paper": "#F4EDE1",
@@ -36,7 +38,8 @@
     "numbering": true,
     "footer_dots": true,
     "original_mascot_on_every_page": true,
-    "alternate_page_layouts": true
+    "alternate_page_layouts": true,
+    "variable_carousel_length": true
   },
   "forbidden": [
     "fundos escuros genericos no lugar do papel claro",
@@ -50,7 +53,11 @@
     "do_not_publish_without_user_trigger": true,
     "post_31oct_legacy_exempt": true,
     "require_visual_qa_report_for_new_carousels": true,
-    "reels_require_narration_and_mp4": true
+    "reels_require_narration_and_mp4": true,
+    "one_image_use_single_post": true,
+    "manual_publish_above_api_limit": true,
+    "format_selection": "reels_for_discovery_carousels_for_depth",
+    "no_automatic_format_conversion": true
   },
-  "notes": "As contas eleitorais impressas no modelo visual sao ilustrativas e nao devem ser reutilizadas. Exemplo presidencial corrigido: A=44, B=46, brancos+nulos=10, validos=90, B=51.1% dos validos."
+  "notes": "As contas eleitorais impressas no modelo visual sao ilustrativas e nao devem ser reutilizadas. Exemplo presidencial corrigido: A=44, B=46, brancos+nulos=10, validos=90, B=51.1% dos validos. Quantidade de páginas adaptável ao tema: 2–20 para criação no app Instagram, 2–10 para publicação pela API deste projeto; mais de 10 requer fluxo manual ou adaptação editorial explicitamente aprovada; uma imagem é post simples."
 }
