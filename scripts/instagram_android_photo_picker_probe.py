@@ -93,18 +93,33 @@ def main():
     print("PICKER_VISIBLE_UNIQUE_FILES="+str(len(visible))+"/8",flush=True)
     if len(visible)!=8:
         raise RuntimeError("Android picker failed to display 8 original images")
-    click(find(seq,NAMES[0]),hold=True)
+    # Files displays image-grid preview icons; switch to list rows for reliable ADB clicks.
+    toggle=find(seq,"List view")
+    if toggle:
+        click(toggle)
+        seq=nodes()
+        view("05-list-view",seq)
+    first=find(seq,NAMES[0])
+    if not first:
+        raise RuntimeError("First image row missing after switching to list view")
+    click(first,hold=True)
     seq=nodes()
-    view("05-first-selected",seq)
+    view("06-first-hold",seq)
+    first_selected=(find(seq,"1 selected") or find(seq,"1 item selected") or
+                    find(seq,"Select 1") or find(seq,"1 file selected"))
+    print("FIRST_LONG_PRESS_SELECTED="+str(bool(first_selected)).lower(),flush=True)
+    if not first_selected:
+        # Do not try blind publication; record evidence for deterministic follow-up.
+        raise RuntimeError("Long-press did not enter file selection mode")
     for n in NAMES[1:]:
         x=find(seq,n)
         if not x:
             raise RuntimeError("Picker cannot select all; missing "+n)
         click(x)
         seq=nodes()
-    view("06-eight-selected",seq)
+    view("07-eight-selected",seq)
     count=(find(seq,"8 selected") or find(seq,"Selected 8") or
-           find(seq,"8 items selected"))
+           find(seq,"8 items selected") or find(seq,"8 files selected"))
     print("PICKER_EIGHT_SELECTED_VERIFIED="+str(bool(count)).lower(),flush=True)
     if not count:
         raise RuntimeError("No Android UI confirmation of selecting eight files")
