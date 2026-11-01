@@ -278,15 +278,34 @@ def check_inputs(args: argparse.Namespace) -> tuple[dict,dict,datetime,str,dict]
     return post,ledger,when,music,flags
 
 def check(args: argparse.Namespace) -> int:
-    post,ledger,when,music,flags=check_inputs(args)
-    ready=all(flags.values())
+    post=load_post(args.post_id)
+    public_ledger=validate_state(read_document(PUB_STATE,missing={"version":1,"items":{}}))
+    ledger=validate_state_doc(read_document(LEDGER))
+    flags={
+        "api_token_present":bool(os.getenv("GEELARK_TOKEN")),
+        "phone_id_present":bool(os.getenv("GEELARK_PHONE_ID")),
+        "publisher_enabled":os.getenv("GEELARK_PUBLISH_ENABLED")=="true",
+        "account_confirmed":os.getenv("GEELARK_ACCOUNT_CONFIRMED")=="true",
+        "vendor_cost_approved":os.getenv("GEELARK_COST_APPROVED")=="true",
+    }
+    has_date=bool(args.schedule_at)
+    has_music=bool(args.music_url)
+    if has_date:
+        when=iso_time(args.schedule_at)
+        now=datetime.now(timezone.utc)
+        if when < now+timedelta(minutes=10) or when > now+timedelta(days=75):
+            raise Blocked("Schedule must be at least 10 minutes ahead and within 75 days.")
+    if has_music:
+        source_url(args.music_url)
+    already_claimed=(post["id"] in public_ledger["items"] or post["id"] in ledger["items"])
+    ready=(all(flags.values()) and has_date and has_music and not already_claimed)
     print(json.dumps({
         "ok":True,"mode":"check","post_id":post["id"],
         "account":ACCOUNT,"images":len(post["media_urls"]),
-        "native_music_url_supplied":True,
-        "schedule_utc":args.schedule_at,
+        "native_music_url_supplied":has_music,
+        "schedule_utc":args.schedule_at if has_date else None,
         "vendor":"GeeLark documented Instagram RPA template",
-        "task_exists":False,"conditions":flags,"ready_to_attempt":ready,
+        "task_exists":already_claimed,"conditions":flags,"ready_to_attempt":ready,
         "publication_attempted":False,
     },ensure_ascii=False))
     return 0
