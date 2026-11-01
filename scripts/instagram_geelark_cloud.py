@@ -205,10 +205,20 @@ class GeeLark:
             raise Blocked("Vendor temporary upload URLs missing.")
         up=urlsplit(target)
         res=urlsplit(resource)
-        if (up.scheme != "https" or not up.hostname or
+        if (up.scheme not in ("http","https") or not up.hostname or
             res.scheme != "https" or res.hostname not in
             {"material.geelark.com", "material-prod.geelark.cn", "material.geelark.cn"}):
-            raise Blocked("Upload URL did not meet TLS or GeeLark host validation.")
+            raise Blocked("Upload URL did not meet GeeLark host validation.")
+        # The vendor's documented OSS presigned URL example uses http. Upgrade
+        # only the approved public-media OSS host to TLS; signed query is unchanged.
+        if up.scheme == "http":
+            if not up.hostname.endswith(".oss-cn-hangzhou.aliyuncs.com"):
+                raise Blocked("Non-TLS vendor upload host is not allowlisted.")
+            target=up._replace(scheme="https").geturl()
+        elif not (up.hostname.endswith(".aliyuncs.com") or
+                  up.hostname.endswith(".geelark.cn") or
+                  up.hostname.endswith(".geelark.com")):
+            raise Blocked("Vendor upload host is not allowlisted.")
         # Never log the signed target URL or its query parameters.
         req=Request(target,data=path.read_bytes(),headers={"Content-Type":"image/jpeg"},
                     method="PUT")
