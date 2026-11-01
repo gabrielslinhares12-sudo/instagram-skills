@@ -159,7 +159,7 @@ class QueueTests(unittest.TestCase):
 
     def test_changed_content_or_existing_claim_blocks_republication(self):
         original = item()
-        for status in ("claimed", "published", "needs_review"):
+        for status in ("claimed", "published", "needs_review", "awaiting_native_music"):
             state = {"version": 1, "items": {original["id"]:
                      {"status": status, "fingerprint": fingerprint(original)}}}
             factory = Mock()
@@ -260,7 +260,6 @@ class QueueTests(unittest.TestCase):
         self.assertNotEqual(fingerprint(ready), fingerprint(different))
         self.assertNotEqual(fingerprint(ready), fingerprint(dict(ready,
             distribution_mode="native_music_carousel")))
-        return ready
 
     def test_two_step_meta_success_records_awaiting_music_not_completion(self):
         post = item(kind="carousel", media_urls=[URL, URL + "-second"],
