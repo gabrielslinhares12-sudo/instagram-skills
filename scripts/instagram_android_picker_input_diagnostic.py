@@ -20,7 +20,7 @@ def capture(label):
     adb("shell","uiautomator","dump","/sdcard/picker-dump.xml",timeout=55)
     xml,rc=adb("exec-out","cat","/sdcard/picker-dump.xml")
     if rc: return []
-    (OUT/(label+".xml")).write_text(xml)
+    (OUT/(label+".xml")).write_text(xml,encoding="utf-8")
     root=ET.fromstring(xml)
     nodes=[]
     for el in root.iter("node"):
