@@ -1,4 +1,6 @@
 name: Instagram TUE - validar biblioteca de carrossel com musica na nuvem
+# Revalidacao sob demanda: apenas existencia do Secret, hashes das artes e testes offline.
+# Nao realiza login nem publicacao na conta Instagram.
 on:
   push:
     branches: [main]
