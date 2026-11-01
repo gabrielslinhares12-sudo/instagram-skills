@@ -37,7 +37,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Verificar pré-condições locais, sem sessão
-        run: python3 -m unittest discover -s scripts -p test_instagram_private_music.py -v
+        run: python3 -m unittest discover -s scripts -p test_instagram_private_*.py -v
       - name: Confirmar identidade editorial e evitar publicação dupla
         run: |
           python3 -m pip install 'Pillow>=11,<13'
