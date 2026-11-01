@@ -36,3 +36,12 @@ Manter carrosséis com música como pendentes e utilizar o app Instagram oficial
 
 ## Regra do projeto
 **Não concluir como publicado** sem ID/permalink legítimo e áudio confirmado. Não converter a Reel nem descartar música silenciosamente. Não usar aplicativos modificados, APK de fonte desconhecida, credenciais em commits, caches/artifacts públicos ou bypass de autenticação.
+
+## Verificações finais realizadas nesta execução
+
+- **Lib atual e contrato de publicação musical:** instagrapi `3.2.2`, `album_upload_with_music(paths, caption, track)` validado no GitHub Actions. Fotos originais da campanha 8/8 SHA-256 conferidos. **9 testes de unidade passaram**, cobrindo identidade errada, publicação única, duplicata e confirmação de metadados de música. Execução: https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41266303138
+- **Conta Instagram real consultada por API oficial (somente GET):** identidade confirmada @temumaexplicacao, **1 item publicado inspecionado**, **nenhum carrossel de Halloween de oito imagens correspondente** encontrado. A ausência foi verificada nesse conjunto recente, não em todo histórico potencial. Execução: https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41266419734
+- **NÃO existe sessão móvel do Instagram no GitHub Actions Secret** (`session_secret_configured=false`) e não existe aceite dos riscos da API não oficial (`risk_acceptance_flag=false`). Nenhuma publicação feita ou pretendida nesses testes.
+- A rota Android/ADB foi testada repetidamente, mas a seleção múltipla e o login oficial no app não foram confirmados. Não confundir execução de diagnóstico bem-sucedida com uma publicação real.
+- **Status editorial:** campanha Halloween do dia 31/10 às 18:00 ainda não publicada como carrossel; manter oito JPGs originais e legenda, não emitir recibo fictício.
+
