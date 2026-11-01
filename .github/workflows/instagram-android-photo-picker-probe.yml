@@ -35,7 +35,7 @@ jobs:
           profile: pixel_4
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
-          script: bash scripts/instagram_android_cloud_probe.sh && python3 scripts/instagram_android_photo_picker_probe.py
+          script: bash -c 'for i in {1..20}; do if adb shell "mkdir -p /sdcard/Pictures/InstagramTUEProbe"; then break; fi; sleep 2; done; adb shell "test -d /sdcard/Pictures/InstagramTUEProbe" && bash scripts/instagram_android_cloud_probe.sh && python3 scripts/instagram_android_photo_picker_probe.py'
       - name: Guardar evidencias do seletor sem dados de conta
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
