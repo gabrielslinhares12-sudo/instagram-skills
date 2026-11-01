@@ -3,7 +3,7 @@
 
 The approved reference is a creative guide, not something a generic compositor
 can reproduce. This script accepts finished artwork only. The contact sheet is
-ALWAYS derived from the exact eight deliverable files.
+ALWAYS derived from the exact deliverable files.
 """
 from __future__ import annotations
 
@@ -113,11 +113,30 @@ def package(spec_path: Path, out: Path) -> dict:
         "preview_file": preview_name,
         "preview_sha256": sha256(preview_file),
         "pages": pages,
-        "publication_note": ("API automática até 10 páginas; acima disso, publicar manualmente "
-                             "ou transformar em Reel MP4 após revisão editorial."),
+        "distribution_mode": "native_music_carousel",
+        "music_status": "pending_selection_in_instagram_app",
+        "publication_channel": "instagram_mobile_app",
+        "reels_discovery": "eligible_not_guaranteed",
+        "publication_note": ("Postar as fotos como carrossel no aplicativo Instagram, "
+                             "selecionar música nativa antes de compartilhar e só registrar "
+                             "publicação após conferir recibo. Não gerar MP4 por padrão."),
     }
     manifest_path = out / "visual-manifest.json"
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    handoff = [
+        "TUE — CARROSSEL COM MÚSICA NATIVA (PUBLICAÇÃO PELO APLICATIVO)",
+        "1. Conferir as artes e obter autorização expressa do proprietário.",
+        f"2. Abrir Instagram > + > Publicação > Selecionar várias e escolher os {len(pages)} JPGs na ordem 01, 02, ...",
+        "3. Avançar > Adicionar música > escolher faixa disponível e trecho no próprio Instagram.",
+        "4. Conferir perfil, textos, ordem e música antes de publicar.",
+        "5. Registrar URL/ID e recibo real da publicação. Não inventar confirmação.",
+        "Elegível à área Reels, não significa garantido; o formato continua carrossel de fotos.",
+        "A API Meta deste projeto não adiciona música nativa a carrosséis.",
+        "STATUS ATUAL: EM REVISÃO, NÃO AGENDADO, SEM MÚSICA, NÃO PUBLICADO."
+    ]
+    (out / "PUBLICACAO-NATIVA-COM-MUSICA.txt").write_text(
+        "\\n".join(handoff) + "\\n", encoding="utf-8"
+    )
     return validate_package(manifest_path)
 
 
