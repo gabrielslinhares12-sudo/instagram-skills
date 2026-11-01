@@ -36,6 +36,29 @@ Workflow único: [`.github/workflows/instagram-scheduler.yml`](../../.github/wor
 
 Para liberar excepcionalmente um carrossel **sem** música via API, há dois registros de autorização, independentes: os campos de publicação da fila (`distribution_mode=api_carousel_without_native_music` e `owner_authorized_without_music=true`) e o manifesto editorial validado com esse mesmo modo e autorização. A escolha não pode ser feita automaticamente pela automação.
 
+## Alternativa experimental 100% GitHub: carrossel deslizável com música (API móvel não oficial)
+
+A biblioteca de código aberto **instagrapi** (versões recentes) documenta `album_upload_with_music(paths, caption, track)`, que simula o fluxo da API móvel privada e **pode** publicar uma lista de fotos com música nativa, sem converter em Reel. **Isso não é o Graph API oficial da Meta**: disponibilidade da música, login, mudanças internas e comportamento da conta não são garantidos. Pode gerar desafios de login, bloqueios temporários ou restrições. Não utilizar para contornar verificações de segurança; parar em qualquer desafio.
+
+Implementado como **alternativa isolada, desligada por padrão**:
+
+- [`.github/workflows/instagram-private-music.yml`](../../.github/workflows/instagram-private-music.yml): cron GitHub-hosted a cada dez minutos, cinco minutos após o fluxo oficial; **só roda automaticamente com a variável de habilitação**. Compartilha o mesmo grupo de concorrência para não executar duas publicações ao mesmo tempo.
+- [`scripts/instagram_private_music.py`](../../scripts/instagram_private_music.py): baixa JPGs da revisão imutável do GitHub e confirma os hashes SHA-256, dimensões, conta `@temumaexplicacao`, ausência de duplicatas, título e artista aprovados da biblioteca do Instagram. Só chama `album_upload_with_music` após um registro durável prévio no ledger.
+- Em caso de dúvida no retorno ou na presença da música, marca `needs_review` e **não repete a postagem**.
+- Sem segredo de sessão ou sem uma aprovação explícita na fila, o cron não envia nada. Não use usuário/senha em YAML, logs, arquivos ou na conversa do ChatGPT.
+
+**Ativação exige configuração única, sem PC:** criar uma sessão autorizada do `instagrapi` em ambiente seguro e salvar o JSON de sessão codificado como base64 em **GitHub Actions Secret `INSTAGRAM_PRIVATE_SESSION_B64`**. A sessão do navegador do TinyFish **não é** um arquivo `instagrapi` e não pode ser reutilizada diretamente. Para criar/gerenciar esse segredo pode-se usar uma Codespace pelo navegador do celular ou as configurações de Secrets do GitHub, seguindo a autenticação da própria conta. Evitar guardar ou imprimir cookies em logs.
+
+Em **Settings → Secrets and variables → Actions** no GitHub, após avaliar e aceitar os riscos:
+
+1. Secret `INSTAGRAM_PRIVATE_SESSION_B64`: JSON de sessão móvel autenticada, protegido como Secret (não basta login do Facebook).
+2. Variável `INSTAGRAM_PRIVATE_RISK_ACCEPTED=true`: ciência de que o método é não oficial e pode sofrer restrições.
+3. Variável `INSTAGRAM_PRIVATE_PUBLISH_ENABLED=true`: habilita as tentativas automáticas no runner GitHub; padrão é `false`.
+4. Cada novo item `kind=carousel` que usar esse método precisa de `approved=true`, `private_api_authorized=true`, `music_track` e `music_artist` exatos, hashes de todos os JPGs e manifesto editorial aprovado. Não selecionar música aleatória ou com letras impróprias.
+5. Primeiro executar o workflow pelo botão `workflow_dispatch` com `dry_run=true` e conferir os logs. O teste offline passou, **mas uma postagem real com música ainda precisa de validação na conta**.
+
+**Importante:** os carrosséis já atrasados não são reenviados automaticamente. O Halloween de 31/10 às 18h continua pendente até reprogramação editorial explícita. Não divulgar esta rota como concluída só porque o código foi implantado; só um `media_id` e a conferência da música no Instagram comprovam o resultado.
+
 ## Dependência indispensável: credenciais Meta
 
 O usuário precisa uma única vez autorizar a conta profissional `@temumaexplicacao` e a Página Facebook correspondente, com as permissões necessárias. O repositório usa:
