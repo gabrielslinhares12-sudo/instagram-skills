@@ -108,5 +108,42 @@ class GeeLarkGuardrailTests(unittest.TestCase):
             with self.subTest(when=when),self.assertRaises(g.Blocked):
                 g.check_inputs(args(schedule_at=when.replace(microsecond=0).isoformat().replace("+00:00","Z")))
 
+    def test_auto_queue_empty_is_read_only(self):
+        with patch.dict(os.environ,{},clear=True), \
+             patch.object(g.GeeLark,"post") as request, \
+             patch.object(g,"git_save") as persist:
+            output=io.StringIO()
+            with redirect_stdout(output):
+                result=g.auto()
+            self.assertEqual(result,0)
+            self.assertEqual(json.loads(output.getvalue())["tasks_scheduled"],0)
+            request.assert_not_called()
+            persist.assert_not_called()
+
+    def test_auto_rejects_unapproved_audio_or_bad_account(self):
+        with patch.object(g,"read_document",return_value={
+             "version":1,"account":"wrong-account","items":[]}):
+            with self.assertRaises(g.Blocked):
+                g.auto()
+
+    def test_vendor_upload_upgrades_documented_oss_link_to_tls(self):
+        from pathlib import Path
+        import tempfile
+        client=g.GeeLark("unit-test-token")
+        with tempfile.TemporaryDirectory() as temp:
+            jpg=Path(temp)/"test.jpg"
+            jpg.write_bytes(b"public test bytes")
+            response=Mock()
+            response.status=200
+            response.__enter__=Mock(return_value=response)
+            response.__exit__=Mock(return_value=False)
+            with patch.object(client,"post",return_value={
+               "uploadUrl":"http://42-studio-prod.oss-cn-hangzhou.aliyuncs.com/open-upload/signed.jpg?X=1",
+               "resourceUrl":"https://material-prod.geelark.cn/open-upload/signed.jpg"}), \
+               patch("instagram_geelark_cloud.urlopen",return_value=response) as opener:
+                url=client.upload_jpg(jpg)
+                self.assertEqual(url,"https://material-prod.geelark.cn/open-upload/signed.jpg")
+                self.assertTrue(opener.call_args.args[0].full_url.startswith("https://"))
+
 if __name__ == "__main__":
     unittest.main()
