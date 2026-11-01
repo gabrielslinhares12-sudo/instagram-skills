@@ -26,3 +26,19 @@ Post: `halloween-2026-10-31-historia-8-laminas`, "A história do Halloween — d
 Não forçar `rerun` da execução de 18h antes de corrigir a causa: apenas repetiria erro 200, e a janela de duas horas foi encerrada. Não alterar a publicação de 12h nem tornar posts de 01/11 aprovados.
 
 Nenhum reenvio ou novo agendamento foi efetuado por este documento.
+
+## Recuperação solicitada em 01/11/2026 — estado final **ambíguo**
+
+O proprietário **autorizou em 01/11** publicar o carrossel Halloween que havia falhado em 31/10, mantendo as **8 imagens aprovadas** e a legenda, com música inserida **depois** pelo Instagram móvel.
+
+- Drive com as oito imagens APROVADAS (arquivos `01-historia-HALLOWEEN-APROVADA.jpg` ... `08-historia-HALLOWEEN-APROVADA.jpg`): https://drive.google.com/drive/folders/1n_gVeAILscdLvjf0xO9ETlOMsv5nOTol . Não usar a prévia anterior nem arquivos sem o sufixo `APROVADA`.
+- Recuperação exclusiva e bloqueios de duplicatas na main, `distribution_mode=api_carousel_then_native_music`, `owner_authorized_two_step_music=true`. O checkout e os SHA-256 do lote passaram QC em https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41333115028 . **Não foi autorizada a liberação dos rascunhos de 01/11**.
+- A primeira execução de recuperação https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41332969496 parou em QC porque o horário novo acionou a regra de novos carrosséis; corrigido com verificação excepcional ESTRITA dos oito JPGs legados (mesmos URLs imutáveis, hashes, dimensões), preservando a regra das novas pautas.
+- A segunda execução de recuperação https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41333115028 passou QC, preflight Meta e checagem de carrossel duplicado nos 100 posts recentes. A Meta criou o contêiner `18102064946100158`, porém retornou HTTP 400 / subcódigo **2207003**, apontando demora no download/processamento de mídia. O ledger gravou `needs_review`.
+- Diagnóstico somente GET https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41333320892 mostrou `status_code=FINISHED` e nenhum carrossel idêntico na lista.
+- Houve **UMA** tentativa de finalizar esse mesmo contêiner já processado, com reserva durável antes da chamada https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41333454184 . A API não retornou ID de mídia confirmado e o ledger registrou `resume_outcome_uncertain` e `resume_attempted_at`. Nunca repetir esse POST sem reconciliação explícita.
+- Diagnóstico adicional https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41333515974 e https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41333623094: Meta reporta contêiner como **PUBLISHED**, entretanto a listagem de mídia da própria conta ainda mostra apenas a tirinha de 31/10 (ID `18114706189871027`). **Nenhum `media_id` nem permalink do novo carrossel foi confirmado.**
+- **Conclusão de auditoria:** publicação final **NÃO CONFIRMADA**. Status correto de ledger: `needs_review`. Não transformar em `published` nem `awaiting_native_music`, não dar como postado, não reenviar nem finalizar música antes de localizar a publicação no app/Graph. `PUBLISHED` no contêiner não substitui recibo de mídia final.
+- A música nativa não foi adicionada nem testada no carrossel. O usuário confirmou a opção **Adicionar música** ao editar uma publicação de FOTO no app oficial, mas isso não prova disponibilidade para carrossel.
+- Próxima ação: checar no app oficial `@temumaexplicacao` se o novo carrossel apareceu (imagens e legenda). Se existir, localizar permalink/ID e reconciliar o registro. Se não existir, só avaliar nova tentativa com origem de mídia alternativa depois de garantir ausência da publicação/duplicata; não repetir contêiner `PUBLISHED`.
+
