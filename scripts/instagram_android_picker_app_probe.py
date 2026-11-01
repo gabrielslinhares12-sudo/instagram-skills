@@ -26,21 +26,37 @@ def main():
     if toggle:
         util.click(toggle)
         seq=ui("11-real-app-list")
-    first=util.find(seq,NAMES[0])
+    def select_status(items):
+        return (util.find(items,"1 selected") or util.find(items,"1 item selected") or
+                util.find(items,"1 file selected"))
+    def exact_file(items,name):
+        matching=[v for v in items if v["label"].strip()==name]
+        return matching[0] if matching else util.find(items,name)
+    first=exact_file(seq,NAMES[0])
+    print("FIRST_EXACT_FILENAME_NODE="+json.dumps(first),flush=True)
     util.click(first,hold=True)
     seq=ui("12-real-app-first-hold")
-    selected=(util.find(seq,"1 selected") or util.find(seq,"1 item selected") or
-              util.find(seq,"1 file selected"))
+    selected=select_status(seq)
+    if not selected:
+        # Files UI exposes a separate preview icon and the file thumbnail: test thumbnail.
+        rect=first["box"]
+        y=(rect[1]+rect[3])//2
+        util.adb("shell","input","swipe","75",str(y),"75",str(y),"1200")
+        time.sleep(1.2)
+        seq=ui("13-real-app-thumbnail-hold")
+        selected=select_status(seq)
+    if not selected:
+        rect=first["box"]
+        y=(rect[1]+rect[3])//2
+        util.adb("shell","input","tap","75",str(y))
+        time.sleep(1.1)
+        seq=ui("14-real-app-thumbnail-tap")
+        selected=select_status(seq)
     print("REAL_APP_FIRST_SELECTED="+str(bool(selected)).lower(),flush=True)
     if not selected:
-        # Identify if a tap works for multi-select, without sending a post.
-        first=util.find(seq,NAMES[0])
-        if first:
-            util.click(first)
-            seq=ui("13-real-app-first-tap")
-            selected=util.find(seq,"1 selected") or util.find(seq,"1 item selected")
-        if not selected:
-            raise RuntimeError("Real Android caller did not enter multi-select mode")
+        log=util.adb("logcat","-d","-s","TUEPickerProbe:I","*:S")
+        print("APP_RETURNED_AFTER_TAP="+str("PICKER_RESULT_COUNT=" in log).lower(),flush=True)
+        raise RuntimeError("Actual Android caller did not enter multi-select after text and thumbnail interactions")
     # Click the remaining rows, checking selection after each action.
     for index,name in enumerate(NAMES[1:],2):
         item=util.find(seq,name)
