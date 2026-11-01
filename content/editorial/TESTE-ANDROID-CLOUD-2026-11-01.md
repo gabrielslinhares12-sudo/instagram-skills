@@ -28,3 +28,29 @@ A infraestrutura do GitHub para emular Android e carregar 8 fotos é viável. **
 
 ## Segurança editorial
 Não publicar o Halloween antigo sem novo preflight de identidade, aprovação e prevenção de duplicações. Não trocar carrossel por Reel, não omitir áudio exigido, não afirmar sucesso sem permalink verificável.
+
+## Rodada adicional — testes de seleção múltipla e Meta (2026-11-01)
+
+### Conexão oficial da Meta (PASSOU; somente leitura)
+Execução https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41263684039
+
+- `FACEBOOK_USER_ACCESS_TOKEN`, `FACEBOOK_PAGE_ID` e `FACEBOOK_INSTAGRAM_USER_ID`: presentes como secret/vars; valores nunca impressos.
+- `scripts/instagram_preflight.py` retornou `META_PREFLIGHT=passed`, `MISSING_PERMISSIONS=` (nenhuma), identidade e permissões conferidas.
+- Nenhum POST de publicação. Este resultado **não implica** que a API suporte música em carrossel: não suporta na documentação conhecida.
+
+### Files / DocumentsUI no Android (8/8 fotos presentes; seleção ainda NÃO APROVADA)
+
+1. https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41263275531: fotos SHA-256 8/8, MediaStore 8/8, picker reconheceu 8 arquivos; tentativa de oito toques **sem confirmação** de seleção. Capturas e logs anexos à execução.
+2. https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41263638581: falha transitória no início (`/sdcard/Pictures` não montado). O workflow foi ajustado para aguardar montagem.
+3. https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41263804787: Files em visualização **lista**, oito fotos visíveis e indexadas; pressionar longo sobre primeiro arquivo não entrou em modo de seleção. Teste falhou corretamente.
+4. https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41264124074: compilado e instalado com sucesso aplicativo Android **original, offline e temporário** (sem rede/Instagram), usando `ACTION_OPEN_DOCUMENT` + `EXTRA_ALLOW_MULTIPLE`. O aplicativo abriu picker e oito arquivos, mas o toque não gerou seleção confirmada; teste falhou.
+5. https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41264388301: experimentados toque por coordenadas exatas do nome e da miniatura, em aplicativo chamador real. Não houve `PICKER_RESULT_COUNT=8` nem confirmação de seleção. Teste falhou. Continuar depurando essa interação **antes** de integrar qualquer app real.
+
+### Bloqueios antes de poder publicar COM música
+
+- Nenhum teste conseguiu instalar o app oficial Instagram: Android emulador efêmero precisa autenticar a Google Play Store; nenhuma credencial foi transferida.
+- O serviço GitHub Actions fornece VM nova por job. **Não colocar cookies/sessões Google ou Instagram em actions/cache/artifacts**. Documentação de segurança do GitHub desaconselha explicitamente dados sensíveis em cache.
+- Um Android persistente e com autenticação legítima, acionado pelo GitHub como orquestrador, é uma opção **não implementada**; infraestrutura externa pode ter custo e exigirá testes de compatibilidade, UI e política da plataforma.
+- A API oficial da Meta está autenticada e pode publicar carrosséis **sem música**, mas não resolve o requisito editorial de música nativa.
+- O Halloween de oito imagens segue **NÃO PUBLICADO**. Não converter automaticamente em Reel, não enviar sem música quando ela for obrigatória e não marcar como publicado sem permalink real.
+
