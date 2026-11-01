@@ -274,6 +274,8 @@ def check_inputs(args: argparse.Namespace) -> tuple[dict,dict,datetime,str,dict]
     if post["id"] in ledger["items"]:
         raise Blocked("Post already claimed by cloud phone; no automatic retry.")
     when=iso_time(args.schedule_at)
+    if when != iso_time(post["due_at"]):
+        raise Blocked("Schedule must match the approved editorial due time; change requires new editorial approval.")
     now=datetime.now(timezone.utc)
     if when < now+timedelta(minutes=10) or when > now+timedelta(days=75):
         raise Blocked("Schedule must be at least 10 minutes ahead and within 75 days.")
@@ -302,6 +304,8 @@ def check(args: argparse.Namespace) -> int:
     has_music=bool(args.music_url)
     if has_date:
         when=iso_time(args.schedule_at)
+        if when != iso_time(post["due_at"]):
+            raise Blocked("A schedule different from the approved due time requires editorial approval.")
         now=datetime.now(timezone.utc)
         if when < now+timedelta(minutes=10) or when > now+timedelta(days=75):
             raise Blocked("Schedule must be at least 10 minutes ahead and within 75 days.")
