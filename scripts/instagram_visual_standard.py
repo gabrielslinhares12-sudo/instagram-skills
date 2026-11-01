@@ -182,6 +182,27 @@ def spec_max_pages(root: Path = ROOT) -> int:
     return read_json(root / "content/brand/padrao-visual.json")["output"]["automatic_api_max_pages"]
 
 
+def verify_publication_route(approval: dict) -> None:
+    """Fail closed: music in a photo carousel is selected in Instagram mobile UI.
+
+    API publishing has no native carousel-music selection in this project.
+    Never publish a silent carousel and call it an audio/Reels experience.
+    """
+    mode = approval.get("distribution_mode", "native_music_carousel")
+    if mode == "native_music_carousel":
+        raise VisualError(
+            "Carrossel com música nativa: publicar pelo aplicativo Instagram, "
+            "não pela API. Música e elegibilidade Reels não são verificáveis aqui."
+        )
+    if mode == "api_carousel_without_native_music":
+        if approval.get("owner_authorized_without_music") is not True:
+            raise VisualError(
+                "Publicação sem música nativa exige autorização expressa específica."
+            )
+        return
+    raise VisualError("Modo de distribuição de carrossel não reconhecido.")
+
+
 def audit_queue(root: Path=ROOT) -> dict:
     verify_brand(root)
     schedule=read_json(root/"content/schedule.json")
@@ -202,6 +223,7 @@ def audit_queue(root: Path=ROOT) -> dict:
             # Only independent artwork, preserved byte-for-byte, can advance.
             if approval.get("production_mode") != INDIVIDUAL_MODE:
                 raise VisualError(f"Gerador genérico proibido na publicação: {slug}")
+            verify_publication_route(approval)
             if len(validated["pages"]) > spec_max_pages(root):
                 raise VisualError(
                     f"Carrossel {slug}: API automática aceita no máximo 10 páginas. "
