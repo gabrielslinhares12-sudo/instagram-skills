@@ -36,6 +36,7 @@ ITEM_FIELDS = frozenset({
     "id", "due_at", "username", "kind", "target_url", "caption", "media_urls", "approved",
     "is_ai_generated", "cover_url", "media_sha256", "title", "sources", "approval_note",
     "distribution_mode", "owner_authorized_without_music",
+    "private_api_authorized", "music_track", "music_artist",
 })
 PAYLOAD_OPTIONS = ("is_ai_generated", "cover_url")
 FINAL_STATES = frozenset({"claimed", "published", "needs_review"})
@@ -129,8 +130,15 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
                 raise QueueError("Music opt-out must be an explicit boolean.")
             if mode == "api_carousel_without_native_music" and item.get("owner_authorized_without_music") is not True:
                 raise QueueError("API carousel without music requires specific owner authorization.")
-        elif "distribution_mode" in item or "owner_authorized_without_music" in item:
-            raise QueueError("Music distribution mode applies only to photo carousels.")
+        elif any(name in item for name in ("distribution_mode", "owner_authorized_without_music",
+                                            "private_api_authorized", "music_track", "music_artist")):
+            raise QueueError("Music distribution fields apply only to photo carousels.")
+        if kind == "carousel":
+            if "private_api_authorized" in item and type(item["private_api_authorized"]) is not bool:
+                raise QueueError("Unofficial mobile API authorization must be boolean.")
+            for field in ("music_track", "music_artist"):
+                if field in item and (not isinstance(item[field], str) or not 3 <= len(item[field]) <= 120):
+                    raise QueueError("Approved audio title and artist must be bounded strings.")
         caption = item.get("caption")
         if not isinstance(caption, str) or not 1 <= len(caption) <= 2200:
             raise QueueError("Queue captions must contain one to 2200 characters.")
@@ -275,8 +283,19 @@ def safe_publication_result(result: Any) -> dict[str, Any]:
 
 def run_queue(posts: list[dict[str, Any]], state: dict[str, Any], now: datetime, *, execute: bool,
               enabled: bool, persist: Callable[[dict[str, Any], str], None] | None = None,
-              poster_factory: Callable[[], Any] | None = None) -> dict[str, Any]:
+              poster_factory: Callable[[], Any] | None = None,
+              private_music: bool = False) -> dict[str, Any]:
     items = plan(posts, state, now)
+    if private_music:
+        for entry in items:
+            if entry["status"] == "requires_native_music":
+                post = next(p for p in posts if p["id"] == entry["id"])
+                if (post.get("private_api_authorized") is True and
+                    isinstance(post.get("music_track"), str) and
+                    isinstance(post.get("music_artist"), str)):
+                    entry["status"] = "due"
+                else:
+                    entry["status"] = "private_music_not_authorized"
     base = {"ok": True, "mode": "dry_run" if not execute else "disabled", "username": ACCOUNT,
             "checked_at": timestamp(now), "items": items}
     if not execute or not enabled:
