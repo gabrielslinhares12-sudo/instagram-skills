@@ -54,3 +54,31 @@ Execução https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/r
 - A API oficial da Meta está autenticada e pode publicar carrosséis **sem música**, mas não resolve o requisito editorial de música nativa.
 - O Halloween de oito imagens segue **NÃO PUBLICADO**. Não converter automaticamente em Reel, não enviar sem música quando ela for obrigatória e não marcar como publicado sem permalink real.
 
+
+## Rodada complementar — diagnóstico real do Android input (2026-11-01)
+
+Workflow: https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41265191917
+
+**Resultado de CI:** `success` significa somente que o roteiro de diagnóstico executou as oito situações sem lançar erro. **NÃO** significa que o seletor ou o Instagram estejam prontos.
+
+Testes isolados por cenário, sempre no aplicativo de diagnóstico `com.temumaexplicacao.pickerprobe`, sem conexão com Instagram:
+
+| Método de entrada | Comando ADB | Resultado de seleção de fotos |
+|---|---|---|
+| Toque simples no arquivo | `input tap` | Não confirmado |
+| Toque do tipo touchscreen | `input touchscreen tap` | Não confirmado |
+| Pressão longa na miniatura | `input swipe` | Não confirmado |
+| Toque no ícone de prévia | `input tap` | Não confirmado |
+| Atalho Ctrl+A | `input keycombination 113 29` | Não confirmado |
+| Tab | `input keyevent KEYCODE_TAB` | Não confirmado |
+| Shift+Enter | `input keycombination 59 66` | Não confirmado |
+| D-pad Enter | `input keyevent KEYCODE_DPAD_CENTER` | Navegou na interface; sem seleção |
+
+Capturas e dumps XML do gerenciador de arquivos disponíveis no artifact `instagram-android-input-diagnostic-41265191917`. XML confirma nós de arquivo com `selected=false`. Os cenários não geraram retorno `PICKER_RESULT_COUNT=8` no aplicativo. As oito artes continuam intactas e reconhecidas no Android. A execução reforça a necessidade de validar automação **dentro do aplicativo Instagram real**, pois o SAF DocumentsUI de diagnóstico não é equivalente ao seletor da galeria do Instagram.
+
+### Decisão operacional
+- **Pronto:** Linux cloud do GitHub, Android virtual, MediaStore e transferência íntegra dos oito JPEGs; identidade/permissões Meta em modo leitura.
+- **Não pronto:** Instagram oficial instalado no emulador, login seguro persistente, escolha de música nativa, oito fotos selecionadas no aplicativo real e comprovante de publicação.
+- **Não iniciar autopublicação com música** até haver teste ponta a ponta com conta correta, escolha de música legítima e permalink. A publicação via Graph API sem música é um fluxo distinto, que requer autorização editorial explícita.
+- **Não repetir experimentalmente login com APKs de terceiros nem guardar sessões nos artifacts do GitHub**. Para automação de app nativo sem PC, investigar Android persistente privado, possivelmente contratado, com provisionamento seguro; runners hospedados pelo GitHub são efêmeros.
+
