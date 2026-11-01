@@ -19,7 +19,7 @@ def main() -> int:
     import instagrapi
     from instagrapi import Client
     filename = Path("content/schedule.json")
-    manifest = validate_manifest(json.loads(filename.read_text("utf-8")))
+    manifest = validate_manifest(json.loads(filename.read_text(encoding="utf-8")))
     method = getattr(Client, "album_upload_with_music", None)
     finder = getattr(Client, "search_music", None)
     read_identity = getattr(Client, "account_info", None)
@@ -50,7 +50,7 @@ def main() -> int:
     risk_accepted = os.getenv("INSTAGRAM_PRIVATE_RISK_ACCEPTED") == "true"
     authorized = [p["id"] for p in native if p.get("private_api_authorized") is True and
                   p.get("music_track") and p.get("music_artist")]
-    state = json.loads(Path("content/publication-state.json").read_text("utf-8"))
+    state = json.loads(Path("content/publication-state.json").read_text(encoding="utf-8"))
     unpublished = [p["id"] for p in native if p["id"] not in state.get("items", {})]
     # Deliberately never decode the session, print account details or call Instagram.
     result = {
