@@ -9,6 +9,7 @@ on:
       - '.github/workflows/instagram-geelark-cloud.yml'
       - 'scripts/instagram_geelark_cloud.py'
       - 'scripts/test_instagram_geelark_cloud.py'
+      - 'scripts/configurar_geelark_cloud.sh'
       - 'content/geelark-task-state.json'
       - 'content/geelark-music-plan.json'
   schedule:
@@ -63,6 +64,7 @@ jobs:
       - name: Testes offline das travas e do formato carrossel
         run: |
           python3 -m unittest discover -s scripts -p 'test_instagram_geelark_cloud.py' -v
+          bash -n scripts/configurar_geelark_cloud.sh
       - name: Verificar padrão editorial e imagens antes da operação
         run: |
           python3 -m pip install 'Pillow>=11,<13'
