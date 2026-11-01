@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Package EIGHT already art-directed JPGs without repainting or changing their content.
+"""Package finished individual JPGs (2–20), without repainting or changing them.
 
 The approved reference is a creative guide, not something a generic compositor
 can reproduce. This script accepts finished artwork only. The contact sheet is
@@ -15,7 +15,7 @@ from pathlib import Path
 from PIL import Image
 
 from instagram_visual_standard import (
-    ROOT, SAFE_ID, VisualError, safe_file, sha256, validate_package, verify_brand
+    ROOT, SAFE_ID, VisualError, safe_file, sha256, validate_package, verify_brand, preview_geometry
 )
 
 MODE = "individually_art_directed_v1"
@@ -23,13 +23,14 @@ THUMB = (216, 270)
 
 
 def build_preview(folder: Path, pages: list[dict]) -> Image.Image:
-    """Deterministic 4x2 contact sheet using final JPEG pixels only."""
-    image = Image.new("RGB", (4 * THUMB[0], 2 * THUMB[1]))
+    """Preview grid follows the number of final JPGs; only final pixels used."""
+    cols, rows, width, height = preview_geometry(len(pages))
+    image = Image.new("RGB", (width, height))
     for idx, page in enumerate(pages):
         file = safe_file(folder, page["file"])
         with Image.open(file) as original:
             tile = original.convert("RGB").resize(THUMB, Image.Resampling.LANCZOS)
-        image.paste(tile, ((idx % 4) * THUMB[0], (idx // 4) * THUMB[1]))
+        image.paste(tile, ((idx % cols) * THUMB[0], (idx // cols) * THUMB[1]))
     return image
 
 
@@ -56,8 +57,9 @@ def package(spec_path: Path, out: Path) -> dict:
     if out == source or out.is_relative_to(source):
         raise VisualError("A saída deve ficar fora da pasta de artes de entrada.")
     items = data.get("slides")
-    if not isinstance(items, list) or len(items) != 8:
-        raise VisualError("São obrigatórias oito artes finais individuais.")
+    limits = brand["output"]
+    if not isinstance(items, list) or not limits["min_pages"] <= len(items) <= limits["max_pages"]:
+        raise VisualError("Carrossel exige entre 2 e 20 artes finais individuais.")
     if out.exists() and list(out.iterdir()):
         raise VisualError("Saída deve estar vazia para não reaproveitar rascunhos.")
     out.mkdir(parents=True, exist_ok=True)
@@ -95,7 +97,7 @@ def package(spec_path: Path, out: Path) -> dict:
             "visual_notes": item.get("visual_notes", ""),
         })
 
-    preview_name = "PREVIA-8-ARTES.png"
+    preview_name = f"PREVIA-{len(pages):02d}-ARTES.png"
     preview_file = out / preview_name
     build_preview(out, pages).save(preview_file, format="PNG")
     manifest = {
@@ -111,6 +113,8 @@ def package(spec_path: Path, out: Path) -> dict:
         "preview_file": preview_name,
         "preview_sha256": sha256(preview_file),
         "pages": pages,
+        "publication_note": ("API automática até 10 páginas; acima disso, publicar manualmente "
+                             "ou transformar em Reel MP4 após revisão editorial."),
     }
     manifest_path = out / "visual-manifest.json"
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
