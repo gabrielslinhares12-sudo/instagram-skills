@@ -4,6 +4,7 @@ NEVER logs into or uploads to Instagram. All requests are mocked.
 """
 from pathlib import Path
 from types import SimpleNamespace
+import importlib.util
 import unittest
 from unittest.mock import Mock, patch
 from instagram_private_music import InstagramPrivateMusicPoster, PrivateMusicError
@@ -16,6 +17,8 @@ def approved_post():
             "target_url":"https://www.instagram.com/temumaexplicacao/",
             "media_urls":[f"https://example.invalid/{i:02d}.jpg" for i in range(1,9)]}
 
+@unittest.skipUnless(importlib.util.find_spec("instagrapi") is not None,
+                     "Optional unofficial API dependency is tested by dedicated readiness workflow")
 class NativeMusicPosterTests(unittest.TestCase):
     def make_client(self, username=ACCOUNT, existing=None, confirmed_music=None):
         client=Mock()
