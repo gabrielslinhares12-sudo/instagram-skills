@@ -200,6 +200,10 @@ def verify_publication_route(approval: dict) -> None:
                 "Publicação sem música nativa exige autorização expressa específica."
             )
         return
+    if mode == "api_carousel_then_native_music":
+        if approval.get("owner_authorized_two_step_music") is not True:
+            raise VisualError("Música posterior exige autorização expressa do proprietário.")
+        return
     raise VisualError("Modo de distribuição de carrossel não reconhecido.")
 
 
@@ -215,6 +219,31 @@ def audit_queue(root: Path=ROOT) -> dict:
             slug=post.get("id")
             if not isinstance(slug,str) or not SAFE_ID.fullmatch(slug):
                 raise VisualError("Id de publicacao nao e seguro.")
+            # Exception scoped to the eight ORIGINAL Halloween files approved on
+            # 31/10, now re-authorized for the two-step music workflow on 01/11.
+            # Never allow other legacy posts to bypass the individual-art QC.
+            if slug=="halloween-2026-10-31-historia-8-laminas":
+                pinned="f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb"
+                prefix=("https://raw.githubusercontent.com/gabrielslinhares12-sudo/"
+                        "instagram-skills/"+pinned+"/content/media/halloween-2026-10-31/")
+                urls=[prefix+f"{i:02d}-historia-halloween.jpg" for i in range(1,9)]
+                hashes=post.get("media_sha256")
+                if (post.get("distribution_mode")!="api_carousel_then_native_music"
+                        or post.get("owner_authorized_two_step_music") is not True
+                        or post.get("is_ai_generated") is not True
+                        or post.get("media_urls")!=urls
+                        or not isinstance(hashes,list) or len(hashes)!=8):
+                    raise VisualError("Recuperação Halloween diferente do material autorizado.")
+                for i,expected in enumerate(hashes,1):
+                    file=root/"content/media/halloween-2026-10-31"/f"{i:02d}-historia-halloween.jpg"
+                    if (not file.is_file() or not HASH.fullmatch(str(expected))
+                            or sha256(file)!=expected):
+                        raise VisualError("JPG Halloween aprovado modificado ou ausente.")
+                    with Image.open(file) as im:
+                        if im.format!="JPEG" or im.size!=(1080,1350):
+                            raise VisualError("JPG Halloween aprovado em formato incorreto.")
+                reviewed.append(slug)
+                continue
             manifest=root/"content/approved"/slug/"visual-manifest.json"
             if not manifest.is_file():
                 raise VisualError(f"Carrossel aprovado sem verificacao de estilo: {slug}")

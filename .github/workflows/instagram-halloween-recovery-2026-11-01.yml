@@ -1,5 +1,6 @@
 name: Instagram TUE - recuperar carrossel Halloween autorizado
 # One shot on this workflow file creation. No cron; no other scheduled item.
+# Re-dispatched for exact original Halloween JPEG SHA verification; other QC unchanged.
 on:
   push:
     branches: [main]
