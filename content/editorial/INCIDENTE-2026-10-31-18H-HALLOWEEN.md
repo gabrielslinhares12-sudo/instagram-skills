@@ -42,3 +42,5 @@ O proprietário **autorizou em 01/11** publicar o carrossel Halloween que havia 
 - A música nativa não foi adicionada nem testada no carrossel. O usuário confirmou a opção **Adicionar música** ao editar uma publicação de FOTO no app oficial, mas isso não prova disponibilidade para carrossel.
 - Próxima ação: checar no app oficial `@temumaexplicacao` se o novo carrossel apareceu (imagens e legenda). Se existir, localizar permalink/ID e reconciliar o registro. Se não existir, só avaliar nova tentativa com origem de mídia alternativa depois de garantir ausência da publicação/duplicata; não repetir contêiner `PUBLISHED`.
 
+
+- Verificação final de propagação às **17h54 UTC de 01/11**: https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41333820574 — contêiner permanece `PUBLISHED`, mas a consulta `/{ig_user_id}/media?fields=id,caption,media_type,permalink,timestamp` ainda retorna exclusivamente a tirinha de 31/10, **sem** carrossel correspondente. Resultado da publicação permanece **não verificável**; nenhuma nova tentativa de upload efetuada.
