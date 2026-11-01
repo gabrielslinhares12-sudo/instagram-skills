@@ -56,7 +56,7 @@ class GeeLarkGuardrailTests(unittest.TestCase):
         with patch.dict(os.environ,{},clear=True),patch.object(g.GeeLark,"post") as request:
             output=io.StringIO()
             with redirect_stdout(output):
-                g.check(args())
+                g.check(args(schedule_at="", music_url=""))
             result=json.loads(output.getvalue())
             self.assertTrue(result["ok"])
             self.assertEqual(result["images"],8)
@@ -107,6 +107,13 @@ class GeeLarkGuardrailTests(unittest.TestCase):
                      datetime.now(timezone.utc)+timedelta(days=76)):
             with self.subTest(when=when),self.assertRaises(g.Blocked):
                 g.check_inputs(args(schedule_at=when.replace(microsecond=0).isoformat().replace("+00:00","Z")))
+
+    def test_cannot_override_expired_editorial_schedule(self):
+        with patch.dict(os.environ,{},clear=True):
+            with self.assertRaisesRegex(g.Blocked, "approved editorial due time"):
+                g.check_inputs(args())
+            with self.assertRaisesRegex(g.Blocked, "editorial approval"):
+                g.check(args())
 
     def test_auto_queue_empty_is_read_only(self):
         with patch.dict(os.environ,{},clear=True), \
