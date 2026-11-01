@@ -9,6 +9,11 @@ on:
       - 'content/schedule.json'
       - 'content/approved/**'
       - 'scripts/instagram_visual_standard.py'
+      - 'scripts/instagram_queue.py'
+      - 'scripts/test_instagram_queue.py'
+      - '.github/workflows/instagram-scheduler.yml'
+      - '.github/workflows/halloween-31out-2026.yml'
+      - 'scripts/test_instagram_cloud_workflow.py'
       - 'scripts/instagram_preflight.py'
       - 'scripts/test_instagram_preflight.py'
       - 'scripts/render_instagram_carrossel.py'
@@ -23,6 +28,11 @@ on:
       - 'content/schedule.json'
       - 'content/approved/**'
       - 'scripts/instagram_visual_standard.py'
+      - 'scripts/instagram_queue.py'
+      - 'scripts/test_instagram_queue.py'
+      - '.github/workflows/instagram-scheduler.yml'
+      - '.github/workflows/halloween-31out-2026.yml'
+      - 'scripts/test_instagram_cloud_workflow.py'
       - 'scripts/instagram_preflight.py'
       - 'scripts/test_instagram_preflight.py'
       - 'scripts/render_instagram_carrossel.py'
@@ -50,6 +60,10 @@ jobs:
         run: python scripts/instagram_visual_standard.py verify-assets
       - name: Barrar publicacoes aprovadas fora do padrao
         run: python scripts/instagram_visual_standard.py audit-queue
+      - name: Validar agendamento cloud e isolamento do fluxo antigo
+        run: python -m unittest discover -s scripts -p test_instagram_cloud_workflow.py -v
+      - name: Testar roteamento de publicação e prevenção de duplicatas
+        run: python -m unittest discover -s scripts -p test_instagram_queue.py -v
       - name: Verificar diagnóstico seguro da conexão Meta sem rede
         run: python -m unittest discover -s scripts -p test_instagram_preflight.py -v
       - name: Testar páginas individuais e prévia idêntica às artes finais
