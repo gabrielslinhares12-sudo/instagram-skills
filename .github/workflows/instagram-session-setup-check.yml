@@ -29,7 +29,7 @@ jobs:
           assert 'gh("secret", "set"' in s
           assert 'input_value=payload' in s
           assert 'getpass(' in s
-          assert 'instagram_private_session' not in s.lower()
+          assert 'print(payload)' not in s and 'print(settings)' not in s
           print("VALIDATED=static_syntax_and_secret_stdin")
           print("INSTAGRAM_LOGIN_ATTEMPTED=false")
           print("REPOSITORY_SECRET_MODIFIED=false")
