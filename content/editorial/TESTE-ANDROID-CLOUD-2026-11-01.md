@@ -82,3 +82,9 @@ Capturas e dumps XML do gerenciador de arquivos disponíveis no artifact `instag
 - **Não iniciar autopublicação com música** até haver teste ponta a ponta com conta correta, escolha de música legítima e permalink. A publicação via Graph API sem música é um fluxo distinto, que requer autorização editorial explícita.
 - **Não repetir experimentalmente login com APKs de terceiros nem guardar sessões nos artifacts do GitHub**. Para automação de app nativo sem PC, investigar Android persistente privado, possivelmente contratado, com provisionamento seguro; runners hospedados pelo GitHub são efêmeros.
 
+
+## Última análise visual de toques no Android e escolha de arquitetura
+
+Run https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41266024332 — executou todos os cenários de toque no centro e borda do bloco de imagem, toque na prévia e pressão longa em celular virtual Android 11. O workflow terminou `success` **apenas como diagnóstico**: nenhum callback `PICKER_RESULT_COUNT` foi recebido pelo app de teste, a seleção múltipla não foi comprovada. O arquivo `instagram-android-input-diagnostic-41266024332` contém capturas e XML antes/depois. Não confundir com publicação do Instagram.
+
+A rota mais promissora para postagem de carrossel **com música** exclusivamente por GitHub é um cliente móvel não oficial (instagrapi). Testado com 9 testes offline e 8 JPGs originais validados: https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41266303138. **Não está autorizado nem autenticado** e portanto permanece desligado. Detalhes e riscos em [Operação carrossel com música na nuvem](OPERACAO-CARROSSEL-COM-MUSICA-NUVEM.md).
