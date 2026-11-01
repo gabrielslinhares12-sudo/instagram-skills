@@ -95,6 +95,31 @@ def _lumino_match(image: Image.Image, box: list[int], asset: Path) -> float:
         raise VisualError("Mascote nao tem area suficiente para verificacao.")
     return total/count
 
+INDIVIDUAL_MODE = "individually_art_directed_v1"
+LEGACY_MODE = "generic_template_draft_only"
+
+
+def verify_preview(folder: Path, data: dict) -> None:
+    """Prove the preview pixels came exclusively from the eight final JPGs."""
+    if data.get("preview_file") != "PREVIA-8-ARTES.png":
+        raise VisualError("Prévia deve ser derivada das oito artes individuais.")
+    path = safe_file(folder, data["preview_file"])
+    if not path.is_file() or sha256(path) != data.get("preview_sha256"):
+        raise VisualError("Prévia ausente ou com hash divergente.")
+    with Image.open(path) as actual:
+        if actual.format != "PNG" or actual.size != (864, 540):
+            raise VisualError("Dimensões inválidas da prévia.")
+        actual_pixels = actual.convert("RGB").tobytes()
+    expected = Image.new("RGB", (864, 540))
+    for idx, page in enumerate(data["pages"]):
+        file = safe_file(folder, page["file"])
+        with Image.open(file) as slide:
+            thumb = slide.convert("RGB").resize((216, 270), Image.Resampling.LANCZOS)
+        expected.paste(thumb, ((idx % 4) * 216, (idx // 4) * 270))
+    if expected.tobytes() != actual_pixels:
+        raise VisualError("Prévia não corresponde aos oito JPGs finais.")
+
+
 def validate_package(manifest: Path, root: Path = ROOT) -> dict:
     spec = verify_brand(root)
     data = read_json(manifest)
@@ -106,6 +131,14 @@ def validate_package(manifest: Path, root: Path = ROOT) -> dict:
     pages = data.get("pages")
     if not isinstance(pages,list) or len(pages)!=8:
         raise VisualError("Cada carrossel deve ter exatamente 8 paginas.")
+    mode = data.get("production_mode", LEGACY_MODE)
+    if mode not in {LEGACY_MODE, INDIVIDUAL_MODE}:
+        raise VisualError("Processo de produção não autorizado.")
+    if mode == INDIVIDUAL_MODE:
+        for page in pages:
+            if page.get("source_sha256") != page.get("sha256"):
+                raise VisualError("Arte foi alterada durante a montagem.")
+        verify_preview(manifest.parent, data)
     lumino = root / spec["lumino"]["path"]
     checked=[]
     for index,page in enumerate(pages,1):
@@ -148,6 +181,10 @@ def audit_queue(root: Path=ROOT) -> dict:
                 raise VisualError(f"Carrossel aprovado sem verificacao de estilo: {slug}")
             validated=validate_package(manifest,root)
             approval=read_json(manifest)
+            # A color/mascot-valid generic template is NEVER publishable.
+            # Only independent artwork, preserved byte-for-byte, can advance.
+            if approval.get("production_mode") != INDIVIDUAL_MODE:
+                raise VisualError(f"Gerador genérico proibido na publicação: {slug}")
             # A generated QA manifest defaults to approved=false. Technical
             # integrity alone NEVER authorizes publication.
             if (approval.get("approved") is not True
