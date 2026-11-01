@@ -49,6 +49,17 @@ O Lúmino é **uma camada proveniente do PNG original**, nunca regenerado: cabe�
 6. **Bloqueio antes da Meta.** Para carrosséis novos, `audit-queue` exige `production_mode=individually_art_directed_v1`, prévia recomputável, hashes válidos, `approved=true`, `visual_reviewed=true`, `owner_authorized=true`, anotação de aprovação não vazia e hashes idênticos aos da fila. `approved`, `visual_reviewed` e `owner_authorized` vêm **false** no pacote recém-gerado: não se tornam verdadeiros por completar os testes. Publicar exige autorização expressa do proprietário. O processo não altera `content/schedule.json` nem `content/publication-state.json` durante a produção.
 7. **Verificação automática:** `.github/workflows/instagram-editorial-quality.yml` testa a identidade canônica, a integridade da fila e as prévias derivadas dos JPEGs. `.github/workflows/instagram-scheduler.yml` chama `audit-queue` antes de publicação, sem alterar o workflow legado do Halloween.
 
+## Arquitetura de execução 100% na nuvem — sem PC
+
+- **Executor:** GitHub Actions `ubuntu-latest` (runner hospedado pelo GitHub), sem dependência do GUTHY, Android, ADB, Appium ou TinyFish.
+- **Publicação automática oficial:** usar Instagram Graph API para carrossel sem música, somente quando a estratégia editorial autorizar expressamente esse formato; respeitar o limite de itens da API e não alterar a aprovação de conteúdo.
+- **Carrossel com música nativa:** a API oficial não oferece um campo de música para carrosséis. O pipeline não deve simular que adicionou música nem publicar sem música quando o post foi marcado para música obrigatória.
+- **Reel com música:** é uma modalidade alternativa e distinta; exige arquivo MP4, direitos de uso de áudio e conexão elegível com a API de áudio ou trilha incorporada licenciada. Não converter carrossel em Reel sem aprovação editorial.
+- **Credenciais:** armazenar em GitHub Secrets e renovar quando expirarem. Um erro de permissões (como Meta code 200) deve bloquear o envio, gerar diagnóstico e alerta, sem tentar repetidamente publicar ou alterar conta.
+- **Entrega:** registrar ID/permalink verdadeiro e status `published` apenas após confirmação da Meta; quando não houver confirmação, manter pendente para revisão de duplicidade.
+- **Recuperação do Halloween 31/10 18h:** preservar as oito artes e a legenda. Corrigir a conexão Meta, conferir se já foi publicado e então decidir uma publicação atrasada. Não marcar sucesso sem recibo.
+- **Limitação estrutural:** não existe garantia de carrossel de fotos com música nativa 100% automatizado por GitHub Actions usando apenas a API oficial da Meta. A arquitetura deve registrar esse bloqueio, não mascará-lo com outro formato.
+
 ## Distribuição preferencial: carrossel com música nativa (elegibilidade Reels)
 
 **Regra por padrão:** gerar fotos individuais em carrossel, na quantidade editorialmente necessária (2–20), sem converter em MP4. **Ao publicar no aplicativo Instagram no celular:** criar uma **Publicação** (não Reel), selecionar os JPGs na ordem, tocar em **Adicionar música**, escolher faixa disponibilizada para a conta e trecho, revisar texto e publicar apenas após autorização. O resultado continua sendo um carrossel deslizável de fotos, mas fica **elegível** a aparecer na experiência/aba Reels, conforme recomendação pública de Adam Mosseri; distribuição a não seguidores **não é garantida**. A aba Reels do perfil e o feed de descoberta não são conceitos intercambiáveis.
