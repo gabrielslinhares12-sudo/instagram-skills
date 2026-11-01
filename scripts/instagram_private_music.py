@@ -139,6 +139,11 @@ class InstagramPrivateMusicPoster:
                 if caption == post["caption"] and len(pages) == len(self.paths):
                     pk = str(getattr(media, "pk", "") or "")
                     if ID.fullmatch(pk):
+                        detail = self.client.media_info_v1(pk)
+                        if not getattr(detail, "music_metadata", None):
+                            raise PrivateMusicError(
+                                "Publicação igual já existe, mas sem música confirmada."
+                            )
                         self.duplicate = pk
                         break
         except Exception:
