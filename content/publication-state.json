@@ -25,7 +25,9 @@
       "resume_container_id": "18102064946100158",
       "cdn_recovery_claimed_at": "2026-11-01T18:05:40Z",
       "cdn_origin": "pinned_jsdelivr",
-      "cdn_attempt_max": 1
+      "cdn_attempt_max": 1,
+      "cdn_carousel_creation_id": "18102067970100158",
+      "cdn_child_container_count": 8
     }
   }
 }
