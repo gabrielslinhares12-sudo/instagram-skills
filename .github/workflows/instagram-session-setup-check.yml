@@ -1,0 +1,36 @@
+name: Instagram TUE - validar assistente de autenticação sem segredos
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-session-setup-check.yml'
+      - 'scripts/instagram_session_setup.py'
+      - 'scripts/configurar_sessao_instagram.sh'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline_setup_check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout sem salvar credenciais
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Validar sintaxe sem acesso Instagram ou secrets
+        run: |
+          python3 -m py_compile scripts/instagram_session_setup.py
+          bash -n scripts/configurar_sessao_instagram.sh
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path("scripts/instagram_session_setup.py").read_text("utf-8")
+          assert 'INSTAGRAM_PRIVATE_SESSION_B64' in s
+          assert 'gh("secret", "set"' in s
+          assert 'input_value=payload' in s
+          assert 'getpass(' in s
+          assert 'instagram_private_session' not in s.lower()
+          print("VALIDATED=static_syntax_and_secret_stdin")
+          print("INSTAGRAM_LOGIN_ATTEMPTED=false")
+          print("REPOSITORY_SECRET_MODIFIED=false")
+          PY
