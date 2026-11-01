@@ -207,6 +207,7 @@ def audit_queue(root: Path=ROOT) -> dict:
     verify_brand(root)
     schedule=read_json(root/"content/schedule.json")
     reviewed=[]
+    pending_native_music=[]
     for post in schedule.get("posts",[]):
         if not post.get("approved") or str(post.get("due_at",""))[:10]<DATE_LIMIT:
             continue
@@ -223,7 +224,6 @@ def audit_queue(root: Path=ROOT) -> dict:
             # Only independent artwork, preserved byte-for-byte, can advance.
             if approval.get("production_mode") != INDIVIDUAL_MODE:
                 raise VisualError(f"Gerador genérico proibido na publicação: {slug}")
-            verify_publication_route(approval)
             if len(validated["pages"]) > spec_max_pages(root):
                 raise VisualError(
                     f"Carrossel {slug}: API automática aceita no máximo 10 páginas. "
@@ -244,6 +244,12 @@ def audit_queue(root: Path=ROOT) -> dict:
             if len(urls)!=len(hashes) or any(not isinstance(u,str) or "raw.githubusercontent.com/" not in u
                                   for u in urls):
                 raise VisualError(f"URLs do carrossel nao estao prontas: {slug}")
+            if approval.get("distribution_mode", "native_music_carousel") == "native_music_carousel":
+                # A good approved photo carousel may be staged, but cannot be sent
+                # without its requested native audio via the official Graph API.
+                pending_native_music.append(slug)
+                continue
+            verify_publication_route(approval)
             reviewed.append(slug)
         elif post.get("kind")=="reel":
             # A capa nao comprova audio e MP4. Reels novos requerem liberacao editorial separada.
@@ -266,6 +272,7 @@ def audit_queue(root: Path=ROOT) -> dict:
         else:
             raise VisualError("Tipo de midia nao coberto pelo controle editorial.")
     return {"ok":True,"approved_new_carousels_checked":reviewed,
+            "native_music_carousels_waiting_for_compatible_publication":pending_native_music,
             "approved_posts_unchanged":True}
 
 def main(argv=None):
