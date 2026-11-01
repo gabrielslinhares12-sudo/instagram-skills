@@ -9,6 +9,8 @@ on:
       - 'content/schedule.json'
       - 'content/approved/**'
       - 'scripts/instagram_visual_standard.py'
+      - 'scripts/instagram_preflight.py'
+      - 'scripts/test_instagram_preflight.py'
       - 'scripts/render_instagram_carrossel.py'
       - 'scripts/package_individual_carousel.py'
       - 'scripts/test_individual_carousel.py'
@@ -21,6 +23,8 @@ on:
       - 'content/schedule.json'
       - 'content/approved/**'
       - 'scripts/instagram_visual_standard.py'
+      - 'scripts/instagram_preflight.py'
+      - 'scripts/test_instagram_preflight.py'
       - 'scripts/render_instagram_carrossel.py'
       - 'scripts/package_individual_carousel.py'
       - 'scripts/test_individual_carousel.py'
@@ -46,6 +50,8 @@ jobs:
         run: python scripts/instagram_visual_standard.py verify-assets
       - name: Barrar publicacoes aprovadas fora do padrao
         run: python scripts/instagram_visual_standard.py audit-queue
+      - name: Verificar diagnóstico seguro da conexão Meta sem rede
+        run: python -m unittest discover -s scripts -p test_instagram_preflight.py -v
       - name: Testar páginas individuais e prévia idêntica às artes finais
         run: python -m unittest discover -s scripts -p test_individual_carousel.py -v
       - name: Testar renderizacao e recusa de mascote alterado
