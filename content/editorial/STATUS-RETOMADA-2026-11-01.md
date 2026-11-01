@@ -2,6 +2,46 @@
 
 > Auditoria somente leitura do estado publicado no repositório. Horário aproximado da conferência: 13h08–13h15 America/Fortaleza (16h08–16h15 UTC). Este documento NÃO autoriza publicação, remarcação nem aceite de custos.
 
+## Continuação no Work — 01/11/2026
+
+### Acesso e publicação musical
+- Repositório consultado e clonado em `3c457af1f1a5f8914d8f25744e05dcec512ab1c5`.
+- Instagram oficial aberto em navegador cloud: tela de login, sem perfil autenticado. O formulário seguro encerrou com `declined`; nenhuma autenticação foi comprovada. Não repetir sem nova solicitação do proprietário. Login web não substitui login no app Android nem comprova música nativa.
+- Nenhuma tentativa de instagrapi, contratação, ativação paga ou publicação nesta continuação.
+- Documentação oficial do endpoint GeeLark consultada novamente: `sameStyleUrl`, `publishPost` e `needShareLink` estão documentados. A resposta contém `taskId`, não recibo de publicação.
+- **13 testes offline GeeLark e 5 testes do padrão visual passaram.** Os testes visuais exigiram disponibilizar a fonte DejaVuSansCondensed-Bold já presente no ambiente; nenhum código de renderização foi alterado.
+- `verify-assets` e `audit-queue` passaram. Não há novo carrossel aprovado nessa auditoria; isso NÃO significa que rascunhos tenham passado no QC artístico.
+- `check` local: sem token/phone ID, publicação/conta/custos desabilitados, `ready_to_attempt=false`, `publication_attempted=false`. Esse resultado descreve o ambiente local, não relê Secrets do GitHub.
+- Preservados os quatro registros de agenda, o recibo anterior e os dois ledgers vazios do fluxo musical. Nenhum horário vencido foi remarcado.
+
+### Revisão visual efetivamente realizada
+
+| Material | Evidência examinada | Resultado e correção necessária |
+|---|---|---|
+| Modelo oficial | PNG de referência do repositório | Usar papel claro, manchete condensada sobre pincelada amarela, vermelho pontual e cenas variadas. Números da referência não são fonte factual. |
+| Votos V2 | As 8 imagens individuais em `content/staging/votos-validos-2026-11-01/` | **QC visual reprovado.** Fundo e mascote repetidos em todas as páginas; restos de texto do fundo visíveis acima da faixa inferior; ícones de confirmação ausentes (quadrados vazios) nas páginas 2 e 8; cabeçalhos residuais no alto de algumas páginas. Página 5: representar arredondamento com ≈, ou escrever a conta completa `(46 ÷ 90) × 100 ≈ 51,1%`. A conta 44+46+10=100 é coerente. Não foi feita nova validação jurídica nesta etapa. |
+| Meme votos V2 | JPG individual 1080×1350 | Texto visualmente legível; personagem com chapéu e olhos em pixels difere do PNG canônico. Memes podem variar o estilo, mas a identidade do Lúmino exige correção antes de liberação. |
+| Foguetes V9 | Prévia de 8 imagens e página 5 individual | **QC visual reprovado.** Rótulo superior da cena da página 5 está cortado; layout/escala/posição do mascote se repetem nas 8 peças. Preservar o PNG original, variar composição e remover textos herdados das cenas. |
+| Lua V9 | Prévia de 8 imagens e capa individual | **QC visual reprovado.** Rótulos `POSIÇÃO 2`, `OBSERVADOR 2` e restos de `VISÃO...` aparecem sem contexto ou cortados. Capas/cenas recorrentes e mesma pose/posição em todas as peças. Remover rótulos herdados e reconstruir demonstração de paralaxe legível. |
+
+### Pacote recuperado e reconciliação semanal
+- Recuperado `INSTAGRAM-TUE-05-06NOV-V9-16ARTES-PADRAO-CANONICO.zip`, SHA-256 `3010a2008a2504e957579aaea64d615c0b079f5db88cd95624afca6253ee43b8`.
+- CRC sem erro; 16 JPEGs individuais, todos 1080×1350, 16 hashes distintos. A integridade do ZIP não remove os defeitos visuais acima.
+- O relatório geral de produção anterior está desatualizado em relação às versões: Onças possui entrega reconstruída posterior ao V3 original; ENEM possui 9 artes V2; Foguetes/Lua possuem V9. Consultar os relatórios específicos de entrega antes de recuperar V1/V2 antigas.
+- Dólar: ainda precisa harmonização de todas as páginas; não promover capa V3 isolada com interiores rejeitados.
+- Onças e ENEM: relatórios de entrega lidos; os pacotes externos mais recentes ainda não foram inspecionados nesta continuação. Não declarar QA concluído.
+- Reels de 05/11 e 06/11: permanecem pendentes no planejamento; não substituídos automaticamente pelos carrosséis V9.
+
+### Próximo trabalho concreto
+1. Corrigir os defeitos de Votos e do meme mantendo os horários vencidos bloqueados.
+2. Recuperar os pacotes mais recentes de Onças/ENEM, revisar individualmente, depois harmonizar Dólar e reconstruir as cenas problemáticas da V9.
+3. Retomar autenticação apenas com participação do proprietário no fluxo seguro. Para música, confirmar primeiro acesso ao Android persistente e custos reais, depois login no aplicativo oficial.
+4. Selecionar faixa disponível na própria conta, preparar um carrossel revisado e executar teste sem publicar. Só então liberar um item autorizado, verificar as fotos e a música e registrar recibo real.
+
+**Situação ao final desta etapa: revisão avançou; fila semanal NÃO concluída, NÃO agendada e NÃO publicada.**
+
+---
+
 ## Resultado comprovado
 
 - Conta de destino canônica: `@temumaexplicacao`.
