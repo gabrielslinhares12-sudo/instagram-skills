@@ -86,6 +86,14 @@ def main() -> int:
             return fail("A sessão não cabe em um Secret de Actions.")
     except Exception as err:
         # Do NOT print the exception; some clients echo sensitive response data.
+        if type(err).__name__ == "PleaseWaitFewMinutes":
+            return fail(
+                "O Instagram aplicou um limite temporário (PleaseWaitFewMinutes). "
+                "NENHUM código foi necessariamente enviado. Interrompa as tentativas "
+                "com esta API não oficial e confira a segurança da conta no aplicativo "
+                "oficial. Não tente novamente agora: várias tentativas podem agravar "
+                "o bloqueio."
+            )
         return fail(
             "Instagram recusou o login ou solicitou validação adicional "
             f"({type(err).__name__}). Verifique a conta pelo aplicativo oficial; "
