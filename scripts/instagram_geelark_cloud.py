@@ -375,9 +375,62 @@ def reconcile(args: argparse.Namespace) -> int:
                       "items":results},ensure_ascii=False))
     return 0
 
+def auto() -> int:
+    """One approved music carousel per invocation, never more than one."""
+    document=read_document(Path("content/geelark-music-plan.json"))
+    if (not isinstance(document,dict) or set(document)!={"version","account","items"}
+        or document.get("version")!=1 or document.get("account")!=ACCOUNT
+        or not isinstance(document.get("items"),list)
+        or len(document["items"])>100):
+        raise Blocked("Invalid approved GeeLark music queue.")
+    posts={p["id"]:p for p in validate_manifest(read_document(MANIFEST))}
+    ledger=validate_state_doc(read_document(LEDGER))
+    used=set()
+    eligible=[]
+    for item in document["items"]:
+        if not isinstance(item,dict) or set(item)!={"id","schedule_utc","music_source_url","approved"}:
+            raise Blocked("Invalid music assignment shape.")
+        pid=item.get("id")
+        if not isinstance(pid,str) or not POST_SLUG.fullmatch(pid) or pid in used:
+            raise Blocked("Duplicate or invalid approved music assignment ID.")
+        used.add(pid)
+        if item.get("approved") is not True:
+            continue
+        post=posts.get(pid)
+        if post is None or post.get("approved") is not True or post.get("kind")!="carousel":
+            raise Blocked("Approved music assignment references unapproved content.")
+        if post.get("due_at")!=item.get("schedule_utc"):
+            raise Blocked("Music schedule must exactly match the approved editorial due time.")
+        when=iso_time(item["schedule_utc"])
+        music=source_url(item["music_source_url"])
+        if pid in ledger["items"]:
+            continue
+        # Past or already published assignments stay unmodified, not auto-rescheduled.
+        now=datetime.now(timezone.utc)
+        if when < now+timedelta(minutes=10) or when > now+timedelta(days=75):
+            continue
+        eligible.append((when,pid,music))
+    if not eligible:
+        print('{"ok":true,"mode":"auto","tasks_scheduled":0,"reason":"no_due_approved_music_assignments"}')
+        return 0
+    eligible.sort()
+    when,pid,music=eligible[0]
+    if not all((
+       bool(os.getenv("GEELARK_TOKEN")),bool(os.getenv("GEELARK_PHONE_ID")),
+       os.getenv("GEELARK_PUBLISH_ENABLED")=="true",
+       os.getenv("GEELARK_ACCOUNT_CONFIRMED")=="true",
+       os.getenv("GEELARK_COST_APPROVED")=="true",
+    )):
+        print('{"ok":true,"mode":"auto","tasks_scheduled":0,"reason":"cloud_phone_not_authorized"}')
+        return 0
+    params=argparse.Namespace(post_id=pid,
+        schedule_at=when.replace(microsecond=0).isoformat().replace("+00:00","Z"),
+        music_url=music)
+    return submit(params)
+
 def main() -> int:
     p=argparse.ArgumentParser()
-    p.add_argument("mode",choices=("check","submit","reconcile"))
+    p.add_argument("mode",choices=("check","submit","reconcile","auto"))
     p.add_argument("--post-id",default="")
     p.add_argument("--schedule-at",default="")
     p.add_argument("--music-url",default="")
@@ -385,6 +438,7 @@ def main() -> int:
     try:
         if args.mode=="check":return check(args)
         if args.mode=="submit":return submit(args)
+        if args.mode=="auto":return auto()
         return reconcile(args)
     except Exception as error:
         # Whitelist types only. No vendor messages, tokens or signed URLs in logs.
