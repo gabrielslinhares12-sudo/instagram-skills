@@ -125,7 +125,7 @@ def main():
         raise RuntimeError("No Android UI confirmation of selecting eight files")
     (OUT/"proof.json").write_text(json.dumps({"original_jpegs":8,
         "picker_visible":8,"picker_selected":8,
-        "instagram_install_attempted":False,"published":False},indent=2)+"\n")
+        "instagram_install_attempted":False,"published":False},indent=2)+"\n",encoding="utf-8")
     print("INSTAGRAM_PUBLISHED=false",flush=True)
 
 if __name__=="__main__":
