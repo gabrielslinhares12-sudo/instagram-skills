@@ -44,3 +44,13 @@ O proprietário **autorizou em 01/11** publicar o carrossel Halloween que havia 
 
 
 - Verificação final de propagação às **17h54 UTC de 01/11**: https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41333820574 — contêiner permanece `PUBLISHED`, mas a consulta `/{ig_user_id}/media?fields=id,caption,media_type,permalink,timestamp` ainda retorna exclusivamente a tirinha de 31/10, **sem** carrossel correspondente. Resultado da publicação permanece **não verificável**; nenhuma nova tentativa de upload efetuada.
+
+## RESOLVIDO: carrossel publicado em 01/11/2026, aguardando música nativa
+
+- Após a confirmação do proprietário de que não havia carrossel visível, o procedimento de recuperação testou a **mesma sequência de oito JPGs** (SHA256 idênticos) pela CDN versionada jsDelivr, em modo somente GET. [Pré-validação 8/8 aprovada](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41334604459).
+- Uma **única** execução com essa origem alternativa passou pela autenticação da conta correta e verificou ausência de post duplicado antes de criar novas mídias: [reparo aprovado](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41334769693).
+- **CONFIRMADO via Meta Graph API:** `media_id=18107496023215107`; `media_type=CAROUSEL_ALBUM`; legenda integral corresponde ao carrossel aprovado. Link real: **https://www.instagram.com/p/DfNVlLDmC8P/** .
+- Publicação registrada em `2026-11-01T18:06:47Z` (15h06min47s America/Sao_Paulo). Novo contêiner de carrossel `18102067970100158`; oito contêineres-filhos preparados; nenhum conteúdo adicional da fila semanal foi liberado.
+- O ledger mantém **`status=awaiting_native_music`**, não `published`, porque o requisito de **música adicionada no aplicativo oficial ainda está pendente**. O usuário já confirmou que a conta permite **Adicionar música** na edição de uma foto; a função num carrossel continua a verificar no app.
+- Erro histórico de upload pelo raw.githubusercontent e tentativa de retomada foi preservado em `previous_attempt_error`; a recuperação confirmou a publicação. **Jamais reexecutar workflows antigos ou fazer novo upload desse mesmo carrossel.**
+- Próxima etapa: abrir o link acima no app Instagram, tocar em ⋯ > Editar > Adicionar música, escolher e salvar a faixa. Confirmar música audível no **mesmo permalink**; só então registrar a conclusão da etapa musical.
