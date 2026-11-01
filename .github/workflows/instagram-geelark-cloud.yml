@@ -10,6 +10,9 @@ on:
       - 'scripts/instagram_geelark_cloud.py'
       - 'scripts/test_instagram_geelark_cloud.py'
       - 'content/geelark-task-state.json'
+      - 'content/geelark-music-plan.json'
+  schedule:
+    - cron: '*/10 * * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -41,7 +44,7 @@ concurrency:
 
 jobs:
   native_cloud_music:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && (github.event_name != 'schedule' || vars.GEELARK_PUBLISH_ENABLED == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 17
     permissions:
@@ -71,7 +74,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: Executar modo seguro ou agendar tarefa explicita
         env:
-          MODE: ${{ github.event_name == 'push' && 'check' || inputs.mode || 'check' }}
+          MODE: ${{ github.event_name == 'schedule' && 'auto' || github.event_name == 'push' && 'check' || inputs.mode || 'check' }}
           POST_ID: ${{ inputs.post_id || 'halloween-2026-10-31-historia-8-laminas' }}
           SCHEDULE_UTC: ${{ inputs.schedule_utc }}
           MUSIC_SOURCE_URL: ${{ inputs.music_source_url }}
@@ -83,7 +86,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [ "$MODE" = "reconcile" ]; then
+          if [ "$MODE" = "auto" ]; then
+            python3 scripts/instagram_geelark_cloud.py auto
+            python3 scripts/instagram_geelark_cloud.py reconcile
+          elif [ "$MODE" = "reconcile" ]; then
             python3 scripts/instagram_geelark_cloud.py reconcile
           elif [ "$MODE" = "submit" ]; then
             python3 scripts/instagram_geelark_cloud.py submit \
