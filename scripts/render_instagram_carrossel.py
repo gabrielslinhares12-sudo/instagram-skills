@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compositor oficial de carrossel TUE: usa PNG canônica, nunca gera personagem."""
+"""GERADOR ANTIGO SOMENTE PARA RASCUNHOS. Não usar para mídia final."""
 from __future__ import annotations
 import argparse
 import hashlib
@@ -162,7 +162,8 @@ def render(spec_path:Path,out:Path):
     pages=[]
     for n,item in enumerate(slides,1):
         pages.append(render_one(item,n,mascot,out/f"{n:02d}.jpg",specdir))
-    manifest={"version":1,"standard_id":config["id"],"lumino_sha256":config["lumino"]["sha256"],
+    # Template renderer exists for prototypes ONLY. Publishing gate rejects it.
+    manifest={"version":1,"production_mode":"generic_template_draft_only","standard_id":config["id"],"lumino_sha256":config["lumino"]["sha256"],
               "reference_sha256":config["reference"]["sha256"],
               "post_id":content.get("post_id"),"approved":False,"pages":pages}
     manifest_path=out/"visual-manifest.json"
