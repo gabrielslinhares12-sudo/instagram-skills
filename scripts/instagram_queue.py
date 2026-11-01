@@ -35,6 +35,7 @@ MAX_LATENESS = timedelta(hours=2)
 ITEM_FIELDS = frozenset({
     "id", "due_at", "username", "kind", "target_url", "caption", "media_urls", "approved",
     "is_ai_generated", "cover_url", "media_sha256", "title", "sources", "approval_note",
+    "distribution_mode", "owner_authorized_without_music",
 })
 PAYLOAD_OPTIONS = ("is_ai_generated", "cover_url")
 FINAL_STATES = frozenset({"claimed", "published", "needs_review"})
@@ -120,6 +121,16 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
             raise QueueError("Post and Reel need one URL; carousel needs two to ten images.")
         for url in urls:
             public_media_url(url)
+        if kind == "carousel":
+            mode = item.get("distribution_mode", "native_music_carousel")
+            if mode not in {"native_music_carousel", "api_carousel_without_native_music"}:
+                raise QueueError("Unsupported Instagram carousel distribution mode.")
+            if "owner_authorized_without_music" in item and type(item["owner_authorized_without_music"]) is not bool:
+                raise QueueError("Music opt-out must be an explicit boolean.")
+            if mode == "api_carousel_without_native_music" and item.get("owner_authorized_without_music") is not True:
+                raise QueueError("API carousel without music requires specific owner authorization.")
+        elif "distribution_mode" in item or "owner_authorized_without_music" in item:
+            raise QueueError("Music distribution mode applies only to photo carousels.")
         caption = item.get("caption")
         if not isinstance(caption, str) or not 1 <= len(caption) <= 2200:
             raise QueueError("Queue captions must contain one to 2200 characters.")
@@ -188,6 +199,10 @@ def plan(posts: list[dict[str, Any]], state: dict[str, Any], now: datetime) -> l
             status = "future"
         elif now - due > MAX_LATENESS:
             status = "missed_window"
+        elif post["kind"] == "carousel" and post.get("distribution_mode", "native_music_carousel") == "native_music_carousel":
+            # Official Meta Graph API cannot attach native music to a photo carousel.
+            # Keep the item in the queue but NEVER publish a musicless surrogate.
+            status = "requires_native_music"
         else:
             status = "due"
         items.append({"id": post["id"], "due_at": post["due_at"], "kind": post["kind"], "status": status})
