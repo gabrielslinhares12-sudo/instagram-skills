@@ -1,5 +1,14 @@
 # Instagram TUE — retomada operacional em 01/11/2026
 
+## Login do Instagram pelo navegador — verificado em 01/11/2026
+
+- Proprietário confirmou ter feito login e salvo o perfil persistente de navegador **Instagram TUE — sessão nova**.
+- Verificação **somente leitura** com navegador conectado a `https://www.instagram.com/accounts/edit/` confirmou sessão autenticada e conta **@temumaexplicacao** (nome público: **Tem uma Explicação**; bio: “Parece estranho, até você entender.”). Execução: https://agent.tinyfish.ai/runs/c189d539-fafb-4780-97d7-5fb2762ef672
+- **Nenhuma ação de publicação, edição, agendamento ou upload realizada.** Nenhuma senha, cookie ou token copiado para o repositório.
+- **Isso não autentica o instagrapi.** Sessões de navegador não são intercambiáveis com a autenticação da API móvel não oficial; não migrar cookies ou fabricar `INSTAGRAM_PRIVATE_SESSION_B64`.
+- A última validação oficial do workflow de prontidão do instagrapi ainda acusava `session_secret_configured=false` e `can_attempt_unofficial_publication=false`: https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41328502711
+- Próximo passo: usar a sessão web verificada somente para testar, em modo de inspeção, disponibilidade de edição/publicação de carrossel com música no site oficial, sem liberar publicação ou custos automaticamente. O acesso pelo **aplicativo móvel** e a disponibilidade da **música nativa** ainda não estão comprovados.
+
 ## Decisão atual do proprietário — prevalece sobre o histórico abaixo
 
 - **GeeLark DESCARTADO.** Nenhuma etapa futura deve depender desse serviço; seu código de automação, workflow agendado, testes auxiliares e dados de fila vazia foram retirados do projeto. As menções históricas abaixo descrevem testes anteriores e **não** são instruções para voltar a usá-lo.
