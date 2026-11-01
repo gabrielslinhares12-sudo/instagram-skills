@@ -35,11 +35,11 @@ MAX_LATENESS = timedelta(hours=2)
 ITEM_FIELDS = frozenset({
     "id", "due_at", "username", "kind", "target_url", "caption", "media_urls", "approved",
     "is_ai_generated", "cover_url", "media_sha256", "title", "sources", "approval_note",
-    "distribution_mode", "owner_authorized_without_music",
+    "distribution_mode", "owner_authorized_without_music", "owner_authorized_two_step_music",
     "private_api_authorized", "music_track", "music_artist",
 })
 PAYLOAD_OPTIONS = ("is_ai_generated", "cover_url")
-FINAL_STATES = frozenset({"claimed", "published", "needs_review"})
+FINAL_STATES = frozenset({"claimed", "published", "needs_review", "awaiting_native_music"})
 
 
 class QueueError(Exception):
@@ -124,14 +124,25 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
             public_media_url(url)
         if kind == "carousel":
             mode = item.get("distribution_mode", "native_music_carousel")
-            if mode not in {"native_music_carousel", "api_carousel_without_native_music"}:
+            if mode not in {"native_music_carousel", "api_carousel_without_native_music",
+                            "api_carousel_then_native_music"}:
                 raise QueueError("Unsupported Instagram carousel distribution mode.")
             if "owner_authorized_without_music" in item and type(item["owner_authorized_without_music"]) is not bool:
                 raise QueueError("Music opt-out must be an explicit boolean.")
             if mode == "api_carousel_without_native_music" and item.get("owner_authorized_without_music") is not True:
                 raise QueueError("API carousel without music requires specific owner authorization.")
+            if ("owner_authorized_two_step_music" in item
+                    and type(item["owner_authorized_two_step_music"]) is not bool):
+                raise QueueError("Two-step music authorization must be boolean.")
+            if mode == "api_carousel_then_native_music":
+                if (item.get("owner_authorized_two_step_music") is not True
+                        or not item.get("music_track") or not item.get("music_artist")):
+                    raise QueueError("Two-step music requires explicit owner authorization and approved track.")
+            elif item.get("owner_authorized_two_step_music") is True:
+                raise QueueError("Two-step music consent applies only to two-step music carousels.")
         elif any(name in item for name in ("distribution_mode", "owner_authorized_without_music",
-                                            "private_api_authorized", "music_track", "music_artist")):
+                                            "owner_authorized_two_step_music", "private_api_authorized",
+                                            "music_track", "music_artist")):
             raise QueueError("Music distribution fields apply only to photo carousels.")
         if kind == "carousel":
             if "private_api_authorized" in item and type(item["private_api_authorized"]) is not bool:
@@ -188,6 +199,14 @@ def fingerprint(item: dict[str, Any]) -> str:
     # Bind the durable claim to final content, destination, schedule and byte hashes.
     content = {"id": item["id"], "due_at": item["due_at"], "username": item["username"],
                "payload": payload_for(item), "media_sha256": item.get("media_sha256")}
+    # A music-route change after a durable publication claim must be detected.
+    # Keep legacy fingerprints identical for posts without music routing fields.
+    music_intent = {name: item[name] for name in (
+        "distribution_mode", "owner_authorized_without_music",
+        "owner_authorized_two_step_music", "private_api_authorized",
+        "music_track", "music_artist") if name in item}
+    if music_intent:
+        content["music_intent"] = music_intent
     return hashlib.sha256(json.dumps(content, sort_keys=True, separators=(",", ":"),
                                      ensure_ascii=False).encode("utf-8")).hexdigest()
 
@@ -317,8 +336,18 @@ def run_queue(posts: list[dict[str, Any]], state: dict[str, Any], now: datetime,
     # If durable persistence failed, execution never reaches this Meta mutation.
     try:
         result = poster.publish(post["kind"], post["target_url"], payload_for(post))
-        entry.update(safe_publication_result(result), status="published",
+        needs_mobile_audio = (
+            not private_music and post["kind"] == "carousel"
+            and post.get("distribution_mode") == "api_carousel_then_native_music"
+        )
+        completed_state = "awaiting_native_music" if needs_mobile_audio else "published"
+        entry.update(safe_publication_result(result), status=completed_state,
                      published_at=timestamp(datetime.now(timezone.utc)))
+        if needs_mobile_audio:
+            # This is a real Meta publication, but NOT a completed music post.
+            # Never silently call the carousels finished or resubmit them.
+            entry["music_track"] = post["music_track"]
+            entry["music_artist"] = post["music_artist"]
     except Exception as error:
         # Retain the claim even for a failure apparently preceding publication. Never
         # infer a safe automatic retry from transport errors or a missing response.
@@ -337,7 +366,7 @@ def run_queue(posts: list[dict[str, Any]], state: dict[str, Any], now: datetime,
         base["items"] = plan(posts, state, now)
         return base
     persist(state, "Record Instagram publication " + identifier)
-    base.update(item_id=identifier, status="published", media_id=entry["media_id"])
+    base.update(item_id=identifier, status=entry["status"], media_id=entry["media_id"])
     base["items"] = plan(posts, state, now)
     return base
 

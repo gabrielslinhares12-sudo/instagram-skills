@@ -11,6 +11,7 @@ import sys
 ALLOWED_STATUSES = frozenset({
     "future", "not_approved", "published", "claimed", "needs_review",
     "changed_after_claim", "missed_window", "due", "requires_native_music",
+    "awaiting_native_music",
 })
 
 
@@ -30,6 +31,7 @@ def summary(plan: dict) -> tuple[dict[str, int], str]:
         "- Frequência: cron de 10 minutos, sujeito a atrasos do GitHub",
         "- Itens: " + ", ".join(f"`{k}`: {v}" for k, v in sorted(count.items())),
         "- `requires_native_music`: bloqueio intencional; API não adiciona música a carrosséis.",
+        "- `awaiting_native_music`: carrossel publicado pela Meta; música móvel ainda NÃO confirmada.",
         "- `missed_window`: nenhuma publicação tardia não autorizada.",
     ]
     return dict(count), "\n".join(lines) + "\n"

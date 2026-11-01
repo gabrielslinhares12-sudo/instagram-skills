@@ -236,6 +236,69 @@ class QueueTests(unittest.TestCase):
         with self.assertRaisesRegex(QueueError, "only to photo carousels"):
             validate_manifest(manifest(item(distribution_mode="native_music_carousel")))
 
+    def test_two_step_carousel_needs_owner_and_exact_track(self):
+        base = item(kind="carousel", media_urls=[URL, URL + "-second"],
+                    distribution_mode="api_carousel_then_native_music")
+        invalid = [
+            base,
+            dict(base, owner_authorized_two_step_music=True),
+            dict(base, owner_authorized_two_step_music="true",
+                 music_track="Example Instrumental", music_artist="Artist Name"),
+            dict(base, owner_authorized_two_step_music=True,
+                 music_track="Example Instrumental"),
+        ]
+        for entry in invalid:
+            with self.subTest(entry=entry):
+                with self.assertRaises(QueueError):
+                    validate_manifest(manifest(entry))
+        ready = dict(base, owner_authorized_two_step_music=True,
+                     music_track="Example Instrumental", music_artist="Artist Name")
+        posts = validate_manifest(manifest(ready))
+        self.assertEqual(plan(posts, empty_state(), NOW)[0]["status"], "due")
+        # The switch from silent release to music-required is a material change.
+        different = dict(ready, music_track="Different Instrumental")
+        self.assertNotEqual(fingerprint(ready), fingerprint(different))
+        self.assertNotEqual(fingerprint(ready), fingerprint(dict(ready,
+            distribution_mode="native_music_carousel")))
+        return ready
+
+    def test_two_step_meta_success_records_awaiting_music_not_completion(self):
+        post = item(kind="carousel", media_urls=[URL, URL + "-second"],
+                    distribution_mode="api_carousel_then_native_music",
+                    owner_authorized_two_step_music=True,
+                    music_track="Example Instrumental", music_artist="Artist Name")
+        state = empty_state()
+        events = []
+        poster = Mock()
+        poster.publish.return_value = published()
+        def persist(document, message):
+            events.append(deepcopy(document["items"][post["id"]]))
+        result = run_queue(validate_manifest(manifest(post)), state, NOW,
+                           execute=True, enabled=True,
+                           persist=persist, poster_factory=lambda: poster)
+        self.assertEqual([e["status"] for e in events], ["claimed", "awaiting_native_music"])
+        self.assertEqual(result["status"], "awaiting_native_music")
+        self.assertEqual(result["media_id"], "222")
+        self.assertEqual(state["items"][post["id"]]["music_track"], "Example Instrumental")
+        self.assertEqual(plan(validate_manifest(manifest(post)), state, NOW)[0]["status"],
+                         "awaiting_native_music")
+        self.assertEqual(validate_state(state), state)
+        run_queue(validate_manifest(manifest(post)), state, NOW + timedelta(minutes=10),
+                  execute=True, enabled=True, persist=persist, poster_factory=lambda: poster)
+        poster.publish.assert_called_once()
+        self.assertEqual(len(events), 2)
+
+    def test_two_step_without_approval_does_not_post(self):
+        post = item(kind="carousel", media_urls=[URL, URL + "-second"],
+                    distribution_mode="api_carousel_then_native_music",
+                    owner_authorized_two_step_music=True,
+                    music_track="Example Instrumental", music_artist="Artist Name",
+                    approved=False)
+        poster = Mock()
+        run_queue(validate_manifest(manifest(post)), empty_state(), NOW,
+                  execute=True, enabled=True, persist=Mock(), poster_factory=lambda: poster)
+        poster.publish.assert_not_called()
+
     def test_byte_hashes_bind_claim_and_require_one_hash_per_media(self):
         post = item(media_sha256=["a" * 64])
         validate_manifest(manifest(post))
