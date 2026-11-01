@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Halloween de 31/10 aprovado e programado. Demais posts, incluindo 01/11, estão em elaboração e têm approved=false até revisão visual, factual e autorização editorial. Não converter rascunhos automaticamente em publicados.",
+  "approval_note": "Recuperação exclusiva do carrossel Halloween aprovada em 01/11. Outros posts, inclusive 01/11, não foram aprovados. Música será adicionada no aplicativo e só então confirmada.",
   "posts": [
     {
       "id": "halloween-2026-10-31-tirinha-aprovada",
@@ -25,7 +25,7 @@
     },
     {
       "id": "halloween-2026-10-31-historia-8-laminas",
-      "due_at": "2026-10-31T21:00:00Z",
+      "due_at": "2026-11-01T17:43:00Z",
       "username": "temumaexplicacao",
       "kind": "carousel",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
@@ -57,7 +57,9 @@
         "https://www.history.com/articles/history-of-halloween",
         "https://www.loc.gov/everyday-mysteries/item/what-is-the-origin-of-halloween/"
       ],
-      "approval_note": "Proprietário aprovou expressamente agendar o carrossel Halloween de oito artes individuais para segundo post de hoje, às 18h America/Sao_Paulo."
+      "approval_note": "Proprietário aprovou expressamente agendar o carrossel Halloween de oito artes individuais para segundo post de hoje, às 18h America/Sao_Paulo. Autorização do proprietário em 01/11/2026: publicar AGORA este carrossel com as oito artes aprovadas, música adicionada em seguida pelo aplicativo Instagram. Música exata a escolher no aplicativo. NÃO republicar a tirinha.",
+      "distribution_mode": "api_carousel_then_native_music",
+      "owner_authorized_two_step_music": true
     },
     {
       "id": "votos-validos-2026-11-01-v2-revisao",

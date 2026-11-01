@@ -135,9 +135,10 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
                     and type(item["owner_authorized_two_step_music"]) is not bool):
                 raise QueueError("Two-step music authorization must be boolean.")
             if mode == "api_carousel_then_native_music":
-                if (item.get("owner_authorized_two_step_music") is not True
-                        or not item.get("music_track") or not item.get("music_artist")):
-                    raise QueueError("Two-step music requires explicit owner authorization and approved track.")
+                if item.get("owner_authorized_two_step_music") is not True:
+                    raise QueueError("Two-step music requires explicit owner authorization.")
+                if bool(item.get("music_track")) != bool(item.get("music_artist")):
+                    raise QueueError("Two-step music requires both track and artist, or neither.")
             elif item.get("owner_authorized_two_step_music") is True:
                 raise QueueError("Two-step music consent applies only to two-step music carousels.")
         elif any(name in item for name in ("distribution_mode", "owner_authorized_without_music",
@@ -346,8 +347,9 @@ def run_queue(posts: list[dict[str, Any]], state: dict[str, Any], now: datetime,
         if needs_mobile_audio:
             # This is a real Meta publication, but NOT a completed music post.
             # Never silently call the carousels finished or resubmit them.
-            entry["music_track"] = post["music_track"]
-            entry["music_artist"] = post["music_artist"]
+            if post.get("music_track") and post.get("music_artist"):
+                entry["music_track"] = post["music_track"]
+                entry["music_artist"] = post["music_artist"]
     except Exception as error:
         # Retain the claim even for a failure apparently preceding publication. Never
         # infer a safe automatic retry from transport errors or a missing response.

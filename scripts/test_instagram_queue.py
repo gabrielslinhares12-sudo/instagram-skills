@@ -241,7 +241,6 @@ class QueueTests(unittest.TestCase):
                     distribution_mode="api_carousel_then_native_music")
         invalid = [
             base,
-            dict(base, owner_authorized_two_step_music=True),
             dict(base, owner_authorized_two_step_music="true",
                  music_track="Example Instrumental", music_artist="Artist Name"),
             dict(base, owner_authorized_two_step_music=True,
@@ -253,6 +252,8 @@ class QueueTests(unittest.TestCase):
                     validate_manifest(manifest(entry))
         ready = dict(base, owner_authorized_two_step_music=True,
                      music_track="Example Instrumental", music_artist="Artist Name")
+        defer = dict(base, owner_authorized_two_step_music=True)
+        self.assertEqual(plan(validate_manifest(manifest(defer)), empty_state(), NOW)[0]["status"], "due")
         posts = validate_manifest(manifest(ready))
         self.assertEqual(plan(posts, empty_state(), NOW)[0]["status"], "due")
         # The switch from silent release to music-required is a material change.
@@ -286,6 +287,21 @@ class QueueTests(unittest.TestCase):
                   execute=True, enabled=True, persist=persist, poster_factory=lambda: poster)
         poster.publish.assert_called_once()
         self.assertEqual(len(events), 2)
+
+    def test_two_step_without_track_still_marks_audio_pending(self):
+        post = item(kind="carousel", media_urls=[URL, URL + "-second"],
+                    distribution_mode="api_carousel_then_native_music",
+                    owner_authorized_two_step_music=True)
+        state = empty_state()
+        poster = Mock()
+        poster.publish.return_value = published()
+        result = run_queue(validate_manifest(manifest(post)), state, NOW,
+                           execute=True, enabled=True,
+                           persist=Mock(), poster_factory=lambda: poster)
+        self.assertEqual(result["status"], "awaiting_native_music")
+        self.assertNotIn("music_track", state["items"][post["id"]])
+        self.assertEqual(plan(validate_manifest(manifest(post)), state, NOW)[0]["status"],
+                         "awaiting_native_music")
 
     def test_two_step_without_approval_does_not_post(self):
         post = item(kind="carousel", media_urls=[URL, URL + "-second"],
