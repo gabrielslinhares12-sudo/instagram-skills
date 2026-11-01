@@ -125,7 +125,7 @@ def git_save(state: dict, message: str) -> None:
             raise Blocked("Could not durably commit the task claim; stopped before vendor upload.") from exc
     if git("status", "--porcelain", "--untracked-files=no").strip():
         raise Blocked("Git checkout has unstaged changes. Refusing task claim.")
-    original = LEDGER.read_text("utf-8")
+    original = LEDGER.read_text(encoding="utf-8")
     try:
         with tempfile.NamedTemporaryFile("w", dir=LEDGER.parent, delete=False, encoding="utf-8") as fh:
             json.dump(state, fh, sort_keys=True, indent=2, ensure_ascii=False)
