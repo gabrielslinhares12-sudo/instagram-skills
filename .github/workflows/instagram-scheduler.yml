@@ -67,28 +67,13 @@ jobs:
         run: |
           echo 'GitHub-hosted Instagram scheduler: nenhum PC ou dispositivo local.'
           if [ "$QUEUE_DRY_RUN" = 'true' ]; then
-            python3 scripts/instagram_queue.py --dry-run
+            python3 scripts/instagram_queue.py --dry-run > /tmp/instagram-queue-plan.json
+            python3 scripts/instagram_cloud_report.py /tmp/instagram-queue-plan.json
           else
             # Preflight before claiming a due item; missing grants must not
             # consume its one-shot publication slot.
             python3 scripts/instagram_queue.py --dry-run > /tmp/instagram-queue-plan.json
-            python3 - <<'PY'
-            import json, os
-            from collections import Counter
-            report = json.load(open("/tmp/instagram-queue-plan.json", encoding="utf-8"))
-            statuses = Counter(p["status"] for p in report["items"])
-            summary = os.environ.get("GITHUB_STEP_SUMMARY")
-            lines = ["### Instagram cloud — fila segura",
-                     "- Runner: `ubuntu-latest` (GitHub, sem PC)",
-                     "- Agendamento: a cada 10 minutos (sujeito a atrasos do GitHub)",
-                     "- Publicações por status: " + ", ".join(f"`{k}`: {v}" for k,v in sorted(statuses.items())),
-                     "- `requires_native_music`: preserva carrossel; a API não pode anexar música nativa.",
-                     "- `missed_window`: não publicar atrasado sem recuperação aprovada."]
-            if summary:
-                with open(summary, "a", encoding="utf-8") as f:
-                    f.write("\n".join(lines) + "\n")
-            print(json.dumps({"ok":True,"counts":statuses},ensure_ascii=False))
-            PY
+            python3 scripts/instagram_cloud_report.py /tmp/instagram-queue-plan.json
             if python3 -c 'import json; d=json.load(open("/tmp/instagram-queue-plan.json", encoding="utf-8")); raise SystemExit(0 if any(x["status"] == "due" for x in d["items"]) else 1)'; then
               python3 scripts/instagram_preflight.py
             fi
