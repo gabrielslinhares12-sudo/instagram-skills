@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression tests for the eight-independent-pages pipeline (no network)."""
+"""Regression tests for variable-length independent carousel art."""
 from __future__ import annotations
 
 import json
@@ -10,53 +10,57 @@ from unittest.mock import patch
 
 from PIL import Image
 
-from instagram_visual_standard import VisualError, sha256, verify_preview
-from package_individual_carousel import build_preview, package
+from instagram_visual_standard import VisualError, preview_geometry, sha256, verify_preview
+from package_individual_carousel import build_preview, package, dhash
 
 
 class IndividualCarouselTests(unittest.TestCase):
-    def test_preview_contains_pixels_from_final_art_only(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            folder = Path(tmp)
-            pages = []
-            for i in range(1, 9):
-                name = f"{i:02d}.jpg"
-                Image.new("RGB", (1080, 1350), (i * 20, 50, 100)).save(folder / name)
-                pages.append({"file": name, "number": i})
-            img = build_preview(folder, pages)
-            self.assertEqual(img.size, (864, 540))
-            preview = folder / "PREVIA-8-ARTES.png"
-            img.save(preview)
-            data = {"preview_file": preview.name, "preview_sha256": sha256(preview), "pages": pages}
-            verify_preview(folder, data)
-            with Image.open(preview) as opened:
-                edited = opened.convert("RGB")
-            edited.putpixel((4, 4), (250, 250, 250))
-            edited.save(preview)
-            data["preview_sha256"] = sha256(preview)
-            with self.assertRaisesRegex(VisualError, "não corresponde"):
+    def test_variable_length_preview_only_uses_final_jpg_pixels(self):
+        for count in (2, 3, 8, 10, 12, 20):
+            with self.subTest(count=count), tempfile.TemporaryDirectory() as tmp:
+                folder = Path(tmp)
+                pages = []
+                for i in range(1, count+1):
+                    name = f"{i:02d}.jpg"
+                    Image.new("RGB", (1080, 1350), (i * 10, 40, 90)).save(folder / name)
+                    pages.append({"file": name, "number": i})
+                cols, rows, width, height = preview_geometry(count)
+                self.assertEqual((width, height), (cols * 216, rows * 270))
+                img = build_preview(folder, pages)
+                self.assertEqual(img.size, (width, height))
+                path = folder / f"PREVIA-{count:02d}-ARTES.png"
+                img.save(path)
+                data = {"preview_file": path.name, "preview_sha256": sha256(path), "pages": pages}
                 verify_preview(folder, data)
+                altered = img.copy()
+                altered.putpixel((4, 4), (250, 250, 250))
+                altered.save(path)
+                data["preview_sha256"] = sha256(path)
+                with self.assertRaisesRegex(VisualError, "não corresponde"):
+                    verify_preview(folder, data)
 
-    def test_rejects_collage_instead_of_eight_individual_files(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            base = Path(tmp)
-            spec = base / "input" / "brief.json"
-            spec.parent.mkdir()
-            spec.write_text(json.dumps({"post_id": "teste", "slides": [{"file": "sheet.jpg"}]}),
-                            encoding="utf-8")
-            with patch("package_individual_carousel.verify_brand", return_value={"id": "test"}):
-                with self.assertRaisesRegex(VisualError, "oito artes"):
-                    package(spec, base / "output")
+    def test_rejects_one_image_or_more_than_twenty(self):
+        for count in (1, 21):
+            with self.subTest(count=count), tempfile.TemporaryDirectory() as tmp:
+                base = Path(tmp)
+                spec = base / "input" / "brief.json"
+                spec.parent.mkdir()
+                spec.write_text(json.dumps({
+                    "post_id":"test", "slides":[{"file":"missing.jpg"}]*count
+                }), encoding="utf-8")
+                brand={"id":"test","output":{"min_pages":2,"max_pages":20}}
+                with patch("package_individual_carousel.verify_brand", return_value=brand):
+                    with self.assertRaisesRegex(VisualError, "2 e 20"):
+                        package(spec, base / "output")
 
-    def test_outdated_template_is_not_an_independent_authoring_method(self):
+    def test_outdated_template_cannot_publish(self):
         from render_instagram_carrossel import ROOT
         source = (ROOT / "scripts/render_instagram_carrossel.py").read_text(encoding="utf-8")
         self.assertIn('"production_mode":"generic_template_draft_only"', source)
         from instagram_visual_standard import INDIVIDUAL_MODE, LEGACY_MODE
         self.assertNotEqual(INDIVIDUAL_MODE, LEGACY_MODE)
 
-    def test_duplicate_previews_dont_count_as_eight_variations(self):
-        from package_individual_carousel import dhash
+    def test_duplicate_images_rejected_by_fingerprint(self):
         sample = Image.new("RGB", (1080, 1350), "white")
         self.assertEqual(dhash(sample), dhash(sample.copy()))
 
