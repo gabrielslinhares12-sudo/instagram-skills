@@ -1,0 +1,33 @@
+name: Instagram TUE — checar conexão Publora sem publicar
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/publora_readonly_preflight.py'
+      - 'scripts/test_publora_readonly_preflight.py'
+      - '.github/workflows/instagram-publora-readonly-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Testes locais sem rede e sem credenciais
+        run: python3 -m unittest discover -s scripts -p 'test_publora_readonly_preflight.py' -v
+      - name: Conferir conexão apenas na execução manual
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          PUBLORA_API_KEY: ${{ secrets.PUBLORA_API_KEY }}
+          INSTAGRAM_PLATFORM_ID: ${{ vars.INSTAGRAM_PLATFORM_ID }}
+        run: python3 scripts/publora_readonly_preflight.py
