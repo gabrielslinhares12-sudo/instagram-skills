@@ -17,14 +17,37 @@ O Lúmino é **uma camada proveniente do PNG original**, nunca regenerado: cabe�
 
 **Atenção:** os dados eleitorais da imagem-modelo são exemplos de composição, **não fatos a reutilizar**. O roteiro deve ser conferido separadamente.
 
-## Processo implantado
+## Execução obrigatória: direção artística primeiro, empacotamento depois
 
-1. **Produção de oito lâminas individuais:** preparar JSON de entrada com `post_id` e lista `slides`, cada uma com `headline`, `body`, `photo`, `credit`, `layout` (`hero`, `split` ou `diagram`), `callout` e `photo_secondary` diferente quando `split`.
-2. **Renderização determinística:** `python3 scripts/render_instagram_carrossel.py --spec caminho/brief.json --out caminho/saida`. O programa usa o PNG original do repositório, verifica as fotos e cria `01.jpg` a `08.jpg` com `visual-manifest.json`; o campo `approved` começa **false**.
-3. **Verificação técnica:** `python3 scripts/instagram_visual_standard.py verify-assets` e `python3 scripts/instagram_visual_standard.py verify-package --manifest caminho/saida/visual-manifest.json`. Ela confere hashes dos arquivos-base, proporção, ordem, paleta, painel claro, mascote original e hashes das oito páginas.
-4. **Revisão humana obrigatória:** conferir cada imagem em tamanho de celular, fidelidade ao modelo real, português, qualidade da cena, licenças/créditos e fatos. A validação automática **não consegue atestar qualidade artística ou verdade factual por si só**.
-5. **Autorização antes de publicar:** nenhum `approved=true` da semana 01–06/11 basta sozinho. Para carrossel, o pacote aprovado deve estar em `content/approved/<id>/visual-manifest.json` com `approved=true`, `visual_reviewed=true`, `owner_authorized=true`, `approval_note` não vazia e hashes iguais aos de `content/schedule.json`. O manifest gerado não marca esses campos automaticamente. Para meme/post avulso, é necessário `content/approved/<id>/approval.json` com revisão e autorização explícita e mesmos hashes. Para Reels, somente capa não basta: exigem MP4 e voz Rasalgethi revisados; atualmente a publicação é bloqueada até existir verificação própria.
-6. **Gate no GitHub Actions:** `.github/workflows/instagram-editorial-quality.yml` roda em push/PR relevantes, `.github/workflows/instagram-scheduler.yml` verifica antes de publicar e o workflow legado de Halloween também passa pela barreira. A fila/ledger não são modificados por esta etapa.
+**PROIBIDO usar o script `render_instagram_carrossel.py` na entrega final.** Seu template fixo `hero/split/diagram` produz apenas **rascunhos técnicos**, mesmo que passe em testes de cor, tamanho e mascote. O GitHub rejeita qualquer tentativa de promover esses rascunhos para uma publicação nova.
+
+1. **Criar 8 artes prontas, uma de cada vez, no mesmo processo criativo.** Para cada página, entregar o modelo de 8 painéis aprovado, a PNG original do Lúmino, o briefing do tema e a identidade editorial. Gerar uma **imagem individual completa**, revisar conteúdo, tipografia, cenário e qualidade da página no tamanho de um celular. A composição 2×4 serve apenas como *direção artística*; recortar seus painéis de baixa resolução e aumentá-los para 1080×1350 não produz uma arte de alta qualidade.
+2. **Sem intervenção criativa do empacotador.** As oito artes devem ser JPGs finais `1080×1350`, com o Lúmino canônico visivelmente integrado. Caso uma arte não tenha esses atributos, refazer **aquela página**, não substituí-la por um template genérico.
+3. **Empacotar sem re-renderização.** Criar um `brief.json` na pasta das imagens:
+   ```json
+   {
+     "post_id": "identificador-seguro",
+     "slides": [
+       {
+         "file": "arte-01.jpg",
+         "headline": "Título revisado",
+         "layout": "hero",
+         "mascot_box": [18, 973, 274, 284],
+         "credit": "Ilustração editorial produzida para o canal"
+       }
+     ]
+   }
+   ```
+   A lista **deve conter 8 entradas**, e `mascot_box` contém a posição REAL do PNG canônico em cada uma (o exemplo acima não é uma posição obrigatória para todas as páginas). Campos `layout` (`hero/split/diagram`) servem somente para identificação e verificação, não autorizam um script a desenhar a página.
+4. **Executar o novo empacotador** com as artes finais:
+   ```bash
+   python3 scripts/package_individual_carousel.py --spec artes/brief.json --out entrega/carrossel
+   python3 scripts/instagram_visual_standard.py verify-package --manifest entrega/carrossel/visual-manifest.json
+   ```
+   O comando **copia os oito JPEGs byte a byte**, preserva seus SHA-256, rejeita dimensões erradas e duplicações quase idênticas, verifica as cores e a presença do PNG original. A prévia `PREVIA-8-ARTES.png` é construída **somente a partir dos oito arquivos finais**. O validador recompõe essa prévia para impedir o truque de uma colagem bonita e oito JPEGs diferentes.
+5. **Inspeção editorial individual é obrigatória.** É necessário avaliar as oito páginas visualmente, inclusive a consistência com o modelo, a leitura no celular, fatos, direitos das imagens, texto sem cortes e sobreposições. Nenhum comparador automático atesta criatividade, identidade estética completa ou verdade factual com certeza. Quando um dos oito painéis falhar, reprovar o carrossel e corrigir o painel; jamais promover o pacote parcialmente.
+6. **Bloqueio antes da Meta.** Para carrosséis novos, `audit-queue` exige `production_mode=individually_art_directed_v1`, prévia recomputável, hashes válidos, `approved=true`, `visual_reviewed=true`, `owner_authorized=true`, anotação de aprovação não vazia e hashes idênticos aos da fila. `approved`, `visual_reviewed` e `owner_authorized` vêm **false** no pacote recém-gerado: não se tornam verdadeiros por completar os testes. Publicar exige autorização expressa do proprietário. O processo não altera `content/schedule.json` nem `content/publication-state.json` durante a produção.
+7. **Verificação automática:** `.github/workflows/instagram-editorial-quality.yml` testa a identidade canônica, a integridade da fila e as prévias derivadas dos JPEGs. `.github/workflows/instagram-scheduler.yml` chama `audit-queue` antes de publicação, sem alterar o workflow legado do Halloween.
 
 ## Comandos de manutenção
 
