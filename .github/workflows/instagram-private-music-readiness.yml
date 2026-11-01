@@ -1,0 +1,37 @@
+name: Instagram TUE - validar biblioteca de carrossel com musica na nuvem
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-private-music-readiness.yml'
+      - 'scripts/instagram_private_music_readiness.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: instagram-native-music-readiness
+  cancel-in-progress: true
+jobs:
+  verify_unofficial_library:
+    name: Verificar possibilidade tecnica sem publicar
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout somente leitura
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Instalar biblioteca em versão auditável (método não oficial)
+        run: python3 -m pip install 'instagrapi==3.2.2' 'Pillow>=13,<14'
+      - name: Conferir método, assinatura, hashes e bloqueios de credenciais
+        env:
+          INSTAGRAM_PRIVATE_SESSION_B64: ${{ secrets.INSTAGRAM_PRIVATE_SESSION_B64 }}
+          INSTAGRAM_PRIVATE_PUBLISH_ENABLED: ${{ vars.INSTAGRAM_PRIVATE_PUBLISH_ENABLED || 'false' }}
+          INSTAGRAM_PRIVATE_RISK_ACCEPTED: ${{ vars.INSTAGRAM_PRIVATE_RISK_ACCEPTED || 'false' }}
+        run: python3 scripts/instagram_private_music_readiness.py
+      - name: Testes de unidade sem chamadas à rede social
+        run: python3 -m unittest discover -s scripts -p test_instagram_private_music.py -v
