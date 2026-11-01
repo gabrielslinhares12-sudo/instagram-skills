@@ -15,7 +15,11 @@ REQUIRED = frozenset({'instagram_basic', 'instagram_content_publish',
 
 def check(poster: Any) -> dict[str, Any]:
     # The object initially holds the user token; discovery later selects a Page token.
-    response = poster._request('GET', 'me/permissions')
+    try:
+        response = poster._request('GET', 'me/permissions')
+    except MetaError as error:
+        error.preflight_stage = 'read_permissions'
+        raise
     records = response.get('data')
     if not isinstance(records, list):
         raise MetaError('Meta returned invalid permission metadata.')
@@ -25,7 +29,11 @@ def check(poster: Any) -> dict[str, Any]:
     missing = sorted(REQUIRED - granted)
     if missing:
         return {'ok': False, 'mode': 'preflight', 'missing_permissions': missing}
-    identity = poster.check_identity()
+    try:
+        identity = poster.check_identity()
+    except MetaError as error:
+        error.preflight_stage = 'verify_account_identity'
+        raise
     return {**identity, 'mode': 'preflight', 'required_permissions_granted': sorted(REQUIRED),
             'publishing_exercised': False}
 
@@ -36,7 +44,15 @@ def main() -> int:
         print(json.dumps(result, ensure_ascii=False))
         return 0 if result['ok'] else 1
     except MetaError as error:
-        print(json.dumps(error.public(), ensure_ascii=False), file=sys.stderr)
+        diagnostic = error.public()
+        diagnostic['preflight_stage'] = getattr(error, 'preflight_stage', 'initialize_connection')
+        diagnostic['publishing_exercised'] = False
+        if error.code == 200:
+            diagnostic['next_action'] = (
+                'Review the Facebook/Instagram connection and publishing grants; '
+                'reauthorize Meta permissions and retest before any retry.'
+            )
+        print(json.dumps(diagnostic, ensure_ascii=False), file=sys.stderr)
         return 1
 
 
