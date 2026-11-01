@@ -210,6 +210,32 @@ class QueueTests(unittest.TestCase):
             with self.assertRaises(QueueError):
                 validate_manifest(manifest(invalid))
 
+    def test_cloud_carousel_with_native_music_never_posts_silently(self):
+        # Applies to legacy approved carousels as well as new ones.
+        carousel = item(kind="carousel", media_urls=[URL, URL + "-two"])
+        posts = validate_manifest(manifest(carousel))
+        self.assertEqual(plan(posts, empty_state(), NOW)[0]["status"], "requires_native_music")
+        poster, persist = Mock(), Mock()
+        run_queue(posts, empty_state(), NOW, execute=True, enabled=True,
+                  persist=persist, poster_factory=lambda: poster)
+        poster.publish.assert_not_called()
+        persist.assert_not_called()
+
+    def test_cloud_carousel_without_music_requires_specific_opt_out(self):
+        carousel = item(kind="carousel", media_urls=[URL, URL + "-two"],
+                        distribution_mode="api_carousel_without_native_music")
+        with self.assertRaisesRegex(QueueError, "specific owner authorization"):
+            validate_manifest(manifest(carousel))
+        carousel["owner_authorized_without_music"] = True
+        checked = validate_manifest(manifest(carousel))
+        self.assertEqual(plan(checked, empty_state(), NOW)[0]["status"], "due")
+        for bad in ("reel_with_audio", "music_carousel", None):
+            with self.assertRaises(QueueError):
+                validate_manifest(manifest(item(kind="carousel", media_urls=[URL, URL+"-two"],
+                                                distribution_mode=bad)))
+        with self.assertRaisesRegex(QueueError, "only to photo carousels"):
+            validate_manifest(manifest(item(distribution_mode="native_music_carousel")))
+
     def test_byte_hashes_bind_claim_and_require_one_hash_per_media(self):
         post = item(media_sha256=["a" * 64])
         validate_manifest(manifest(post))
