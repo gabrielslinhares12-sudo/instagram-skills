@@ -56,8 +56,22 @@
     "reels_require_narration_and_mp4": true,
     "one_image_use_single_post": true,
     "manual_publish_above_api_limit": true,
-    "format_selection": "reels_for_discovery_carousels_for_depth",
-    "no_automatic_format_conversion": true
+    "format_selection": "native_music_carousel_default_reel_only_when_editorially_justified",
+    "no_automatic_format_conversion": true,
+    "native_music_must_not_be_claimed_before_app_confirmation": true
   },
-  "notes": "As contas eleitorais impressas no modelo visual sao ilustrativas e nao devem ser reutilizadas. Exemplo presidencial corrigido: A=44, B=46, brancos+nulos=10, validos=90, B=51.1% dos validos. Quantidade de páginas adaptável ao tema: 2–20 para criação no app Instagram, 2–10 para publicação pela API deste projeto; mais de 10 requer fluxo manual ou adaptação editorial explicitamente aprovada; uma imagem é post simples."
+  "notes": "As contas eleitorais impressas no modelo visual sao ilustrativas e nao devem ser reutilizadas. Exemplo presidencial corrigido: A=44, B=46, brancos+nulos=10, validos=90, B=51.1% dos validos. Quantidade de páginas adaptável ao tema: 2–20 para criação no app Instagram, 2–10 para publicação pela API deste projeto; mais de 10 requer fluxo manual ou adaptação editorial explicitamente aprovada; uma imagem é post simples. Carrossel + música selecionada no app é elegível (não garantido) à experiência Reels, segundo Adam Mosseri; a API Graph não oferece seleção nativa de música para carrossel. Não declarar que o post virou Reel nem agendar sem áudio como equivalente.",
+  "distribution": {
+    "default_mode": "native_music_carousel",
+    "native_music_added_in": "instagram_mobile_app",
+    "reels_surface": "eligible_not_guaranteed",
+    "music_selection_is_manual": true,
+    "meta_api_supports_native_carousel_music": false,
+    "publication_routing": {
+      "native_music_carousel": "app_only_pending_native_music",
+      "api_carousel_without_native_music": "requires_specific_owner_opt_out"
+    },
+    "keep_swipeable_photos": true,
+    "do_not_generate_video_by_default": true
+  }
 }
