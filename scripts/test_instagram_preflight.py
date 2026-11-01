@@ -34,6 +34,24 @@ class PreflightTests(unittest.TestCase):
         self.assertEqual(poster.identity_calls, 1)
         self.assertEqual(poster.requests, [('GET', 'me/permissions')])
 
+    def test_permission_error_identifies_stage_without_exposing_data(self):
+        class BrokenPermissionPoster(FakePoster):
+            def _request(self, method, endpoint):
+                raise MetaError("Meta rejected the request.", http_status=400, code=200)
+        with self.assertRaises(MetaError) as caught:
+            check(BrokenPermissionPoster([]))
+        self.assertEqual(caught.exception.preflight_stage, "read_permissions")
+        self.assertEqual(caught.exception.public()["code"], 200)
+
+    def test_account_identity_error_identifies_stage(self):
+        class BrokenIdentityPoster(FakePoster):
+            def check_identity(self):
+                raise MetaError("Meta rejected the request.", http_status=400, code=200)
+        poster = BrokenIdentityPoster([{"permission": x, "status": "granted"} for x in REQUIRED])
+        with self.assertRaises(MetaError) as caught:
+            check(poster)
+        self.assertEqual(caught.exception.preflight_stage, "verify_account_identity")
+
     def test_invalid_permission_payload_rejected(self):
         with self.assertRaises(MetaError):
             check(FakePoster('untrusted invalid response'))
