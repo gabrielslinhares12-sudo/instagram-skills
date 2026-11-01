@@ -6,6 +6,28 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 class CloudRunnerTests(unittest.TestCase):
+    def test_geelark_has_been_removed_from_active_pipeline(self):
+        # Historical documentation may remain, but no runnable workflow or
+        # vendor-specific code/state may be reintroduced.
+        retired = (
+            ".github/workflows/instagram-geelark-cloud.yml",
+            "scripts/instagram_geelark_cloud.py",
+            "scripts/configurar_geelark_cloud.sh",
+            "scripts/test_instagram_geelark_cloud.py",
+            "content/geelark-music-plan.json",
+            "content/geelark-task-state.json",
+        )
+        for file in retired:
+            with self.subTest(file=file):
+                self.assertFalse((ROOT / file).exists())
+        brand = __import__("json").loads(
+            (ROOT / "content/brand/padrao-visual.json").read_text(encoding="utf-8")
+        )
+        self.assertTrue(brand["design"]["variable_carousel_length"])
+        self.assertEqual(brand["output"]["min_pages"], 2)
+        self.assertEqual(brand["output"]["max_pages"], 20)
+        self.assertEqual(brand["output"]["automatic_api_max_pages"], 10)
+
     def test_only_central_scheduler_has_automatic_cron(self):
         cloud = (ROOT / ".github/workflows/instagram-scheduler.yml").read_text(encoding="utf-8")
         legacy = (ROOT / ".github/workflows/halloween-31out-2026.yml").read_text(encoding="utf-8")

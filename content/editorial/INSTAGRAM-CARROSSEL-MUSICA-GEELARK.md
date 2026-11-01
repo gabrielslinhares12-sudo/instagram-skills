@@ -1,3 +1,7 @@
+# ARQUIVO HISTÓRICO — integração descartada pelo proprietário em 01/11/2026
+
+**NÃO USAR.** O fornecedor GeeLark foi removido da arquitetura operacional e seus scripts/workflows foram retirados da branch principal. O texto abaixo registra apenas o experimento encerrado; ele não descreve a política atual de publicação. A quantidade fixa de oito imagens nele mencionada estava incorreta como regra geral. A definição atual é **quantidade variável segundo cada conteúdo**. Consulte `content/README.md` e `content/brand/padrao-visual.json`.
+
 # Instagram TUE — carrossel musical 100% em nuvem, orquestrado pelo GitHub
 
 ## Contrato editorial

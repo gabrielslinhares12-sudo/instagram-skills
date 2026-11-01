@@ -1,5 +1,13 @@
 # Instagram TUE — retomada operacional em 01/11/2026
 
+## Decisão atual do proprietário — prevalece sobre o histórico abaixo
+
+- **GeeLark DESCARTADO.** Nenhuma etapa futura deve depender desse serviço; seu código de automação, workflow agendado, testes auxiliares e dados de fila vazia foram retirados do projeto. As menções históricas abaixo descrevem testes anteriores e **não** são instruções para voltar a usá-lo.
+- **NÃO existe obrigação de 8 imagens por carrossel.** O modelo visual de 8 painéis é uma referência de identidade gráfica, não uma quantidade de postagem. Cada carrossel deve usar somente as lâminas necessárias (2–20 no aplicativo; até 10 via API oficial); 1 imagem é publicação simples. Os itens históricos com 8 imagens referem-se apenas a lotes particulares.
+- Continuam obrigatórios QC do Lúmino original, autorização editorial, preservação da música quando exigida, bloqueio de duplicatas e recibo real antes de declarar publicado.
+- A alternativa de publicação musical via app oficial **ainda não está automatizada nem autenticada nesta sessão**; não declarar conclusão ou agendamento por consequência da remoção do fornecedor.
+
+
 > Auditoria somente leitura do estado publicado no repositório. Horário aproximado da conferência: 13h08–13h15 America/Fortaleza (16h08–16h15 UTC). Este documento NÃO autoriza publicação, remarcação nem aceite de custos.
 
 ## Continuação no Work — 01/11/2026

@@ -1,5 +1,8 @@
 # Instagram TUE — carrossel de fotos com música, executado pelo GitHub (2026-11-01)
 
+> **Diretriz vigente (01/11/2026):** GeeLark descartado. Cada carrossel tem **quantidade variável** de JPGs individuais conforme o conteúdo; as oito imagens testadas abaixo são um lote histórico, não requisito. Aplicativo Instagram: até 20 itens; API oficial: até 10 por carrossel, sem seleção de música nativa. Para conteúdos que exigem essa música, aguardar fluxo legítimo no aplicativo sem converter em Reel nem publicar silenciosamente sem áudio. A API privada experimental permanece desativada.
+
+
 ## Objetivo inegociável
 Publicar as **imagens individuais** (não um Reel) em carrossel deslizável, com música selecionada no catálogo do Instagram, sem PC/GUTHY e sem duplicatas; preservar Lúmino, identidade visual, ordem e legenda aprovada.
 

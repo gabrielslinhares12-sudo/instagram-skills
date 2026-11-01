@@ -4,6 +4,12 @@
 
 **Atualizado em 31/10/2026.** Este documento substitui descrições antigas de lotes aprovados que não refletem mais a identidade visual atual.
 
+## Regra canônica: quantidade variável por post (01/11/2026)
+
+A referência aprovada com **8 painéis** serve exclusivamente para replicar a **linguagem visual**, não para fixar 8 imagens por carrossel. Cada tema recebe o número necessário de peças individuais e distintas; não preencher, subdividir ou repetir conteúdo para chegar a oito. Aceitar 2–20 pelo aplicativo Instagram, até 10 pela API oficial; 1 imagem é post simples. Ver `content/brand/padrao-visual.json` e os testes de `scripts/test_individual_carousel.py`.
+
+**GeeLark descartado por decisão do proprietário em 01/11/2026:** não usar o fornecedor, não solicitar tokens/contas e não acionar seus workflows. Código executável e cron do fornecedor removidos; documentação de experimentos anteriores, quando presente, é somente histórica. Priorizar API oficial da Meta. Carrossel com música nativa permanece aguardando inclusão no aplicativo oficial, com autenticação legítima e confirmação de publicação; não substituir por Reel nem eliminar música sem decisão editorial específica.
+
 ## Publicações com aprovação vigente
 
 - 31/10 às 12h (America/Sao_Paulo): tirinha de Halloween, já publicada. O recibo real está em `content/publication-state.json`; nunca reenviar.

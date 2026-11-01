@@ -16,7 +16,7 @@ from package_individual_carousel import build_preview, package, dhash
 
 class IndividualCarouselTests(unittest.TestCase):
     def test_variable_length_preview_only_uses_final_jpg_pixels(self):
-        for count in (2, 3, 8, 10, 12, 20):
+        for count in (2, 3, 5, 8, 10, 12, 16, 20):
             with self.subTest(count=count), tempfile.TemporaryDirectory() as tmp:
                 folder = Path(tmp)
                 pages = []

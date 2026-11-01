@@ -7,7 +7,7 @@
     "sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
     "width": 1536,
     "height": 1024,
-    "role": "referencia visual; nunca copiar dados numericos da arte"
+    "role": "referencia visual de estilo (8 paineis no exemplo), sem impor 8 paginas a cada publicacao"
   },
   "lumino": {
     "path": "content/brand/lumino-original.png",
@@ -60,7 +60,7 @@
     "no_automatic_format_conversion": true,
     "native_music_must_not_be_claimed_before_app_confirmation": true
   },
-  "notes": "As contas eleitorais impressas no modelo visual sao ilustrativas e nao devem ser reutilizadas. Exemplo presidencial corrigido: A=44, B=46, brancos+nulos=10, validos=90, B=51.1% dos validos. Quantidade de páginas adaptável ao tema: 2–20 para criação no app Instagram, 2–10 para publicação pela API deste projeto; mais de 10 requer fluxo manual ou adaptação editorial explicitamente aprovada; uma imagem é post simples. Carrossel + música selecionada no app é elegível (não garantido) à experiência Reels, segundo Adam Mosseri; a API Graph não oferece seleção nativa de música para carrossel. Não declarar que o post virou Reel nem agendar sem áudio como equivalente.",
+  "notes": "As contas eleitorais impressas no modelo visual sao ilustrativas e nao devem ser reutilizadas. Exemplo presidencial corrigido: A=44, B=46, brancos+nulos=10, validos=90, B=51.1% dos validos. Oito paineis da referencia visual NAO sao cota editorial. Cada post deve ter somente as paginas necessarias, sem repeticoes nem preenchimento artificial. Quantidade de páginas adaptável ao tema: 2–20 para criação no app Instagram, 2–10 para publicação pela API deste projeto; mais de 10 requer fluxo manual ou adaptação editorial explicitamente aprovada; uma imagem é post simples. Carrossel + música selecionada no app é elegível (não garantido) à experiência Reels, segundo Adam Mosseri; a API Graph não oferece seleção nativa de música para carrossel. Não declarar que o post virou Reel nem agendar sem áudio como equivalente.",
   "distribution": {
     "default_mode": "native_music_carousel",
     "native_music_added_in": "instagram_mobile_app",

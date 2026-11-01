@@ -1,6 +1,8 @@
 # PADRÃO EDITORIAL VIGENTE — APROVAÇÃO DO PROPRIETÁRIO EM 31/10/2026
 
 **ESTE BLOCO SUBSTITUI QUALQUER DIREÇÃO VISUAL CONTRADITÓRIA ABAIXO.**
+
+**REGRA DE QUANTIDADE — 01/11/2026:** Não existe exigência de 8 fotos por carrossel. O arquivo de referência com oito quadros determina o estilo, não o número de páginas. Planejar somente as lâminas necessárias à explicação, com começo, desenvolvimento e fechamento, sem redundância ou páginas de preenchimento. O aplicativo Instagram permite até 20 itens por carrossel; a integração oficial de API do projeto fica limitada a 10. Um único JPG é post simples. Nem 8 nem 16 fotos são cotas fixas.
 Referência visual **ÚNICA E OBRIGATÓRIA PARA CARROSSÉIS**: a imagem de 8 painéis fornecida diretamente pelo proprietário em 31/10/2026 (capa “COMO ASSIM / 46% DOS VOTOS / E GANHOU?”).
 - Arquivo original aprovado em Google Drive: https://drive.google.com/file/d/1FPAIpEijBQ3tHkr-Hg9V_-yCw-dqSHhl/view
 - Pasta das referências preservadas: https://drive.google.com/drive/folders/1DWmwKCn4v7EhncRhunJi4bZ9Sk1dlA13
