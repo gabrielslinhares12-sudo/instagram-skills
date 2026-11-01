@@ -51,15 +51,16 @@ def poke(cmd,label):
 def main():
     # Coordinates correspond to native 1080x2280 screen, first row image y~760.
     # Each input variation starts with fresh caller and Android DocumentsUI selection.
+    # XML confirms first item grid cell [66,699][367,1001], preview button [235,699][367,831].
+    # Earlier tests tapped filename/preview overlays rather than a file's center.
     scenarios=[
-      ("tap-filename",["tap","350","759"]),
-      ("touchscreen-tap-filename",["touchscreen","tap","350","759"]),
-      ("longpress-image",["swipe","75","755","75","755","2300"]),
-      ("tap-preview-icon",["tap","974","756"]),
-      ("keyboard-select-all",["keycombination","113","29"]),
-      ("keyboard-tab",["keyevent","KEYCODE_TAB"]),
-      ("keyboard-shift-enter",["keycombination","59","66"]),
-      ("keyboard-dpad-enter",["keyevent","KEYCODE_DPAD_CENTER"]),
+      ("tap-cell-center",["tap","152","870"]),
+      ("longpress-cell-center",["swipe","152","870","152","870","1700"]),
+      ("tap-cell-edge",["tap","210","944"]),
+      ("longpress-cell-edge",["swipe","210","944","210","944","1700"]),
+      ("tap-preview-exact",["tap","301","765"]),
+      ("touchscreen-center",["touchscreen","tap","152","870"]),
+      ("tap-second-cell-center",["tap","505","870"]),
     ]
     for label,cmd in scenarios:
         print("SCENARIO_START",label,flush=True)
