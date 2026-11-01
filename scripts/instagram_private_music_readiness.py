@@ -6,6 +6,7 @@ that Instagram will permit a real upload or that a selected song exists.
 """
 from __future__ import annotations
 import inspect
+from datetime import datetime, timezone, timedelta
 import json
 import os
 from pathlib import Path
@@ -13,7 +14,7 @@ import sys
 from tempfile import TemporaryDirectory
 
 from instagram_private_music import fetch_verified_jpegs
-from instagram_queue import validate_manifest
+from instagram_queue import validate_manifest, utc_time, MAX_LATENESS
 
 def main() -> int:
     import instagrapi
@@ -38,8 +39,8 @@ def main() -> int:
         if p["id"] == "halloween-2026-10-31-historia-8-laminas":
             with TemporaryDirectory() as d:
                 paths = fetch_verified_jpegs(p, Path(d))
-                if len(paths) != 8:
-                    raise RuntimeError("Eight approved Halloween images were not verified")
+                if len(paths) != len(p["media_urls"]):
+                    raise RuntimeError("Approved carousel image count did not match manifest")
                 verified.append(p["id"])
     expected = "halloween-2026-10-31-historia-8-laminas"
     if expected not in verified:
@@ -52,6 +53,15 @@ def main() -> int:
                   p.get("music_track") and p.get("music_artist")]
     state = json.loads(Path("content/publication-state.json").read_text(encoding="utf-8"))
     unpublished = [p["id"] for p in native if p["id"] not in state.get("items", {})]
+    now = datetime.now(timezone.utc)
+    due_authorized = [
+        p["id"] for p in native
+        if p.get("approved") is True
+        and p.get("private_api_authorized") is True
+        and p.get("music_track") and p.get("music_artist")
+        and p["id"] not in state.get("items", {})
+        and utc_time(p["due_at"]) <= now <= utc_time(p["due_at"]) + MAX_LATENESS
+    ]
     # Deliberately never decode the session, print account details or call Instagram.
     result = {
         "check": "read_only",
@@ -63,11 +73,12 @@ def main() -> int:
         "native_music_carousels": len(native),
         "explicitly_authorized_for_unofficial_api": len(authorized),
         "unpublished_native_carousels": len(unpublished),
+        "due_authorized_carousels": len(due_authorized),
         "session_secret_configured": session_exists,
         "enable_flag": publisher_enabled,
         "risk_acceptance_flag": risk_accepted,
         "can_attempt_unofficial_publication": bool(session_exists and publisher_enabled and
-             risk_accepted and authorized),
+             risk_accepted and due_authorized),
         "post_attempted": False,
         "audio_library_queried": False,
     }
@@ -77,6 +88,7 @@ def main() -> int:
         with open(summary,"a",encoding="utf-8") as out:
             out.write("### Instagram cloud: native music readiness (no publication)\n")
             for key in ("native_carousel_upload_method","approved_halloween_images_sha256_verified",
+                        "due_authorized_carousels",
                         "session_secret_configured","enable_flag","risk_acceptance_flag",
                         "can_attempt_unofficial_publication"):
                 out.write(f"- `{key}`: `{result[key]}`\n")
