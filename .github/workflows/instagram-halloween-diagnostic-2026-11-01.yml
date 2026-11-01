@@ -1,5 +1,5 @@
 name: Instagram TUE - diagnostico read only container Halloween
-# Read-only recheck after Meta finished-container publish attempt; no mutations.
+# Read-only recheck after Meta returned PUBLISHED; audit feed propagation.
 on:
   push:
     branches: [main]

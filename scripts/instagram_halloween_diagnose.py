@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Read-only inspection of the quarantined Halloween creation ID and Instagram feed."""
 import json
+from difflib import SequenceMatcher
 from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -28,7 +29,7 @@ def main():
     if status not in ("ERROR","EXPIRED","FINISHED","PUBLISHED","IN_PROGRESS"):
         status = "UNKNOWN"
     recent = client._request("GET", identity["instagram_user_id"] + "/media",
-                             params={"fields":"id,caption,media_type,permalink","limit":100})
+                             params={"fields":"id,caption,media_type,permalink,timestamp","limit":100})
     rows = recent.get("data")
     if not isinstance(rows, list):
         raise SystemExit("Media list unavailable")
@@ -40,6 +41,18 @@ def main():
         "same_carousel_found":bool(same), "matches":len(same),
         "matching_media_ids":[x["id"] for x in same if isinstance(x.get("id"),str)],
         "matching_permalinks":[x["permalink"] for x in same if isinstance(x.get("permalink"),str)],
+        "recent_media": [
+            {
+              "id":m.get("id"),
+              "type":m.get("media_type"),
+              "permalink":m.get("permalink"),
+              "timestamp":m.get("timestamp"),
+              "caption_similarity":round(SequenceMatcher(
+                  None,str(m.get("caption") or ""),post["caption"]).ratio(),3),
+              "caption_prefix":str(m.get("caption") or "")[:70],
+            }
+            for m in rows[:20] if isinstance(m,dict)
+        ],
         "current_ledger_status":entry["status"], "mutation":False,
     },ensure_ascii=False))
 if __name__=="__main__":
