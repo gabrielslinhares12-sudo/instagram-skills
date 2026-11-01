@@ -18,7 +18,7 @@ import sys
 
 REPOSITORY = "gabrielslinhares12-sudo/instagram-skills"
 ACCOUNT = "temumaexplicacao"
-SECRET = "INSTAGRAM_PRIVATE_SESSION_B64"
+SESSION_SECRET_NAME = "INSTAGRAM_PRIVATE_SESSION_B64"
 
 def fail(message: str) -> int:
     print(f"\nNão foi possível concluir: {message}", flush=True)
@@ -106,7 +106,7 @@ def main() -> int:
     try:
         # CLI reads secret on stdin and encrypts it for the repository before upload.
         # Never place secrets in command-line flags, files, logs, Git, or terminal output.
-        result = gh("secret", "set", SECRET, "--repo", REPOSITORY, input_value=payload)
+        result = gh("secret", "set", SESSION_SECRET_NAME, "--repo", REPOSITORY, input_value=payload)
         if result.returncode != 0:
             return fail(
                 "GitHub recusou a criação do Secret. Confira se você tem permissão de "
@@ -118,7 +118,7 @@ def main() -> int:
         payload = b""
         settings = None
 
-    print("\nSUCESSO: sessão armazenada no GitHub Actions Secret:", SECRET)
+    print("\nSUCESSO: sessão armazenada no GitHub Actions Secret:", SESSION_SECRET_NAME)
     print("Nenhum post foi publicado. A automação com API não oficial continua desativada.")
     print("Agora é possível executar o teste 'validar biblioteca de carrossel com musica na nuvem'.")
     return 0
