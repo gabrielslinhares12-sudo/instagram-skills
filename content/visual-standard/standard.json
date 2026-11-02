@@ -56,5 +56,14 @@
     "source": "01/11/2026",
     "variable_slides": true,
     "model_grid_required": false
+  },
+  "swipe_cue": {
+    "label": "Arraste →",
+    "required": true,
+    "on": "all_except_last",
+    "position": "bottom_right",
+    "no_page_numbers": true,
+    "avoid_mascot_and_text": true,
+    "verify_manually": true
   }
 }
