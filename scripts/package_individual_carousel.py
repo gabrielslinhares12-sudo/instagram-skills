@@ -74,10 +74,10 @@ def package(spec_path: Path, out: Path) -> dict:
             raise VisualError(f"Página {number}: dados de arte incompletos.")
         # The visual indicator must already exist in the approved art.
         # Never draw a last-minute overlay that degrades an approved master.
-        expected_cue = "Arraste →" if number < len(items) else None
+        expected_cue = "Arraste para o lado →" if number < len(items) else None
         if "swipe_cue" not in item or item["swipe_cue"] != expected_cue:
             raise VisualError(
-                f"Página {number}: exigir 'Arraste →' em cada lâmina com continuação "
+                f"Página {number}: exigir 'Arraste para o lado →' com progresso discreto em cada lâmina com continuação "
                 "e omitir na última. Confirme visualmente o JPG original."
             )
         src = safe_file(source, item["file"])
@@ -116,6 +116,7 @@ def package(spec_path: Path, out: Path) -> dict:
         "production_mode": MODE,
         "standard_id": brand["id"],
         "reference_standard_id": brand["editorial_standard"]["id"],
+        "reference_visual_sha256": brand["reference_visual"]["sha256"],
         "lumino_sha256": brand["lumino"]["sha256"],
         "post_id": post_id,
         "approved": False,
