@@ -85,8 +85,8 @@ jobs:
             python3 scripts/instagram_queue.py --execute
           fi
       - name: Conciliar Stories vinculados apos comprovante do feed
-        # This checks the published post permalink only; it DOES NOT upload a
-        # Story or claim the user's spoken CTA.
+        # Verifies only the published post permalink; this does NOT upload a
+        # Story, attach any link sticker, or claim the written CTA was posted.
         if: success()
         env:
           FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
