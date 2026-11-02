@@ -1,6 +1,5 @@
 {
   "preset_id": "TUE-MESTRE-01",
-  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
   "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
   "status": "draft_review_no_publication",
   "approved": false,
@@ -72,5 +71,6 @@
     }
   ],
   "caption": "💡 Debaixo da areia, a história continuou. Depois de chuvas excepcionais, porções do deserto do Atacama podem apresentar florações intensas. O Copernicus registrou um episódio em 2026. Sementes e estruturas subterrâneas de plantas conseguem permanecer em dormência, aguardando as condições que possibilitam o crescimento. As chuvas precisam ocorrer em condições adequadas de umidade e temperatura para favorecer a germinação e o desenvolvimento das flores. Imagens Sentinel-2 compararam a vegetação no Atacama em 2025 e 2026, mostrando contraste de cobertura em imagens de falsa cor. A floração é temporária e depende de condições incomuns; proteger as áreas e evitar pisoteio ajuda a conservar esse espetáculo. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
-  "publication_requires_native_music": true
+  "publication_requires_native_music": true,
+  "reference_standard_id": "TUE-MESTRE-01"
 }
