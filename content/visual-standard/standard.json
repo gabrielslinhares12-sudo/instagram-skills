@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "identity": "Instagram TUE / Lúmino",
   "standard": "TUE-MESTRE-01",
   "original_mascot": {
@@ -11,21 +11,12 @@
     ],
     "mode": "RGBA"
   },
-  "approved_layout_reference": {
-    "path": "content/visual-standard/assets/MODELO-OFICIAL-8-PAINEIS.png",
-    "sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
-    "size": [
-      1536,
-      1024
-    ]
-  },
   "output": {
     "width": 1080,
     "height": 1350,
     "carousel_pages": "variable_2_to_20",
     "format": "JPEG",
-    "photo_background_required": true,
-    "reference_example_pages": 8
+    "photo_background_required": true
   },
   "palette": {
     "paper": "#F3EBDE",
@@ -58,5 +49,12 @@
   ],
   "visual_review_is_manual": true,
   "publication_requires_explicit_owner_authorization": true,
-  "reference_for_style_only": "O exemplo eleitoral contém números hipotéticos inconsistentes e NÃO pode ser copiado como fato."
+  "reference_for_style_only": "TUE-MESTRE-01 é o contrato editorial. Não usar colagem ou exemplo de oito painéis como modelo; identidade visual preservada pelo Lúmino original e regras do preset.",
+  "editorial_contract": {
+    "id": "TUE-MESTRE-01",
+    "path": "content/brand/TUE-MESTRE-01.md",
+    "source": "01/11/2026",
+    "variable_slides": true,
+    "model_grid_required": false
+  }
 }
