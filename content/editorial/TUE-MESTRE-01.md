@@ -1,5 +1,9 @@
 # TUE-MESTRE-01 — contrato editorial e visual do Instagram TUE
 
+> **REFERÊNCIA VISUAL ÚNICA APROVADA EM 02/11/2026:** [imagem do proprietário](../brand/modelo-oficial-aprovado-2026-11-02.png), SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`. Aplicar a toda produção do Instagram TUE; não substituir por capas inventadas, painéis genéricos nem ilustrações abstratas.
+
+**Direção artística:** papel off-white, fundo contextual com profundidade, manchete ultracondensada preta na pincelada amarela, detalhes vermelhos, Lúmino dourado de grande presença, iluminação quente, informações fáceis de ler e pequena tarja preta de explicação quando útil. **Rodapé dos carrosséis:** pequenas bolinhas amarelas/cinzas indicando progresso, seta fina e `ARRASTE PARA O LADO →` em letra pequena espaçada, igual à imagem. Não criar botão/etiqueta de arrastar nem usar contagens como 1/5. Na última lâmina, sem seta de continuação. Não reutilizar a pauta eleitoral: ela ilustra o DESIGN, não o tema obrigatório.
+
 **Ativação:** `ATIVAR TUE-MESTRE-01`  
 **Escopo:** Instagram @temumaexplicacao — carrosséis, posts ilustrados e tirinhas.  
 **Estado:** regras consolidadas a partir das decisões do proprietário; este documento não aprova nem agenda uma publicação.
@@ -7,9 +11,9 @@
 ## Regras inegociáveis
 
 1. **Lúmino canônico:** cabeça de lanterna vintage de vidro com lâmpada quente interna; óculos redondos; olhos luminosos ciano; sobretudo oliva-cáqui; flutua, SEM pernas, pés ou sapatos e SEM boca, lábios, dentes ou pele humana. Não substituir a cabeça por capacete, lâmpada solta, rosto humano ou versão 3D. A expressão é feita com olhos, pose, mãos, lupa e brilho.
-2. **Modelo visual original:** papel claro de textura sutil; manchete grande em tipografia preta condensada sobre pincelada amarela; vermelho apenas para ênfase, chamadas e marcações pontuais. Usar cenas documentais, infográficos legíveis, recortes e mudanças reais de enquadramento. Evitar 16 fundos idênticos, Lúmino clonado na mesma posição, restos de texto e rótulos cortados.
+2. **Modelo visual exato de 02/11/2026:** aplicar a imagem visual-mestre anexada a este padrão; papel claro de textura sutil; manchete grande em tipografia preta condensada sobre pincelada amarela; vermelho apenas para ênfase, chamadas e marcações pontuais. Usar cenas documentais, infográficos legíveis, recortes e mudanças reais de enquadramento. Evitar 16 fundos idênticos, Lúmino clonado na mesma posição, restos de texto e rótulos cortados.
 3. **Qualidade da abertura:** uma primeira lâmina que gere curiosidade específica; promessa respondida por explicação real, sem clickbait ou afirmações inventadas.
-4. **Progressão verdadeira:** cada lâmina traz uma informação nova. A quantidade de lâminas é decidida pelo assunto, **não há exigência de 8 imagens**. Sem numeração visual de páginas. Em carrosséis, a indicação **“Arraste →” é obrigatória em cada lâmina que não seja a última**, posicionada discretamente no canto inferior direito e legível no celular, com margens de segurança; não inserir seta na lâmina final. Carrosséis de API oficial limitam-se ao formato efetivamente aceito por ela.
+4. **Progressão verdadeira:** cada lâmina traz nova informação, sem quantidade fixa de páginas. O carrossel exibe **pontos discretos de progresso centralizados** (ativo amarelo, demais cinza), seta fina e `ARRASTE PARA O LADO →` pequeno e espaçado, idênticos ao rodapé da imagem oficial de 02/11, em todas as lâminas com continuação. Sem tarja/etiqueta amarela ou ícone de mão; a última lâmina não tem seta de avanço.
 5. **Dimensão padrão:** 1080 × 1350 px (4:5) para artes de feed, JPG individual; preservar área de leitura, sem cortes de títulos, legendas ou mascote. Tirinhas podem variar quantidade de quadros, mas devem permanecer legíveis no celular.
 6. **Factual:** temas reais com fontes rastreáveis; confirmar afirmações, datas e números antes de promover `approved=true`. Distinguir hipótese de constatação, simplificação pedagógica de mecanismo científico ainda discutido.
 7. **Autoria e personalidade:** conteúdo didático, criativo, inesperado; humor inteligente nas tirinhas sem mudar o personagem. Não transformar toda postagem numa cópia da mesma composição.
