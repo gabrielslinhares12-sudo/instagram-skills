@@ -1,0 +1,327 @@
+{
+  "version": 1,
+  "preset_id": "TUE-MESTRE-01",
+  "timezone": "America/Sao_Paulo",
+  "interval": [
+    "2026-11-02",
+    "2026-11-08"
+  ],
+  "status": "visual_drafts_created_in_chat_not_final_media",
+  "description": "Referências de anexos de imagens GERADOS NA CONVERSA (não blobs GitHub), em ordem. O conteúdo não pode ser publicado por este arquivo.",
+  "important": "Não criar ZIP por dedução de paths: nomes podem colidir; usar os IDs de anexos para salvar arquivos originais. Nenhuma imagem foi enviada aos arquivos deste repo por este manifesto.",
+  "images_expected_total": 42,
+  "original_visual_assets_verified_by_sha": false,
+  "resolution_honesty": "Não confundir render gerado e upscale posterior com 4K nativo. Empacotamento local bloqueado por erro de runtime nesta sessão.",
+  "do_not_publish": true,
+  "posts": [
+    {
+      "day": "2026-11-02",
+      "slot": "11:00",
+      "kind": "carousel",
+      "topic_id": "mar-cruzado",
+      "visual_asset_refs_in_chat": [
+        "file_000000006b8c820e8170aef95f88db40",
+        "file_00000000609c820eaddf21f955bf2aa0",
+        "file_00000000f754820ea500cb16bf0ef02b",
+        "file_0000000034d4820e8d33e1179615cba9",
+        "file_000000003df4820e97430623dca18ce6"
+      ],
+      "expected_images": 5,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-02",
+      "slot": "15:00",
+      "kind": "meme",
+      "topic_id": "senha-impossivel",
+      "visual_asset_refs_in_chat": [
+        "file_00000000e298820e811f280a9330cad6"
+      ],
+      "expected_images": 1,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-03",
+      "slot": "11:00",
+      "kind": "meme",
+      "topic_id": "reuniao-sobre-reuniao",
+      "visual_asset_refs_in_chat": [
+        "file_000000001b6c820e884e8bba548182e3"
+      ],
+      "expected_images": 1,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-03",
+      "slot": "15:00",
+      "kind": "carousel",
+      "topic_id": "deserto-florido-atacama",
+      "visual_asset_refs_in_chat": [
+        "file_0000000099c0820eb2c7afde728a78d8",
+        "file_0000000066b4820eab15a6cf4b6ba1fd",
+        "file_00000000cb40820eae317821a02d2633",
+        "file_000000008d28820e9d99cf962e5dc033",
+        "file_00000000eea0820e93b81a82f5212c4b"
+      ],
+      "expected_images": 5,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-04",
+      "slot": "11:00",
+      "kind": "carousel",
+      "topic_id": "por-sol-azul-marte",
+      "visual_asset_refs_in_chat": [
+        "file_0000000062c0820eb093ba0bad0605a4",
+        "file_000000003e74820ea26004357ec70d40",
+        "file_00000000dad4820e813260b4a8255e45",
+        "file_000000007164820e8d76b9493e4a9ec7",
+        "file_000000005f84820eaa829a7ec4f81929"
+      ],
+      "expected_images": 5,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-04",
+      "slot": "15:00",
+      "kind": "meme",
+      "topic_id": "museu-cabos-sem-dono",
+      "visual_asset_refs_in_chat": [
+        "file_0000000012f0820e9490571bab75ae07"
+      ],
+      "expected_images": 1,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-05",
+      "slot": "11:00",
+      "kind": "carousel",
+      "topic_id": "fogo-azul-ijen",
+      "visual_asset_refs_in_chat": [
+        "file_0000000050b4820e869212e8fc602450",
+        "file_000000000694820ea6a53f946d73fc9c",
+        "file_00000000052c820eb997622239123202",
+        "file_00000000cd98820eaf3c786d2771f068",
+        "file_00000000f6ac820ea5d5bcec6a940380"
+      ],
+      "expected_images": 5,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-05",
+      "slot": "15:00",
+      "kind": "meme",
+      "topic_id": "potes-tampas-divorcio",
+      "visual_asset_refs_in_chat": [
+        "file_00000000d790820e8efad982f6b8e8c7"
+      ],
+      "expected_images": 1,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-06",
+      "slot": "11:00",
+      "kind": "meme",
+      "topic_id": "meia-desaparecida",
+      "visual_asset_refs_in_chat": [
+        "file_000000005190820ea7cba3904cfeabb5"
+      ],
+      "expected_images": 1,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-06",
+      "slot": "15:00",
+      "kind": "carousel",
+      "topic_id": "lago-rosa",
+      "visual_asset_refs_in_chat": [
+        "file_0000000098f8820e8344a60eb91d0290",
+        "file_00000000652c820e84f87faec1becfb3",
+        "file_00000000cac4820e8c536f7b87b2d784",
+        "file_00000000a4f4820ebc50a7303c921660",
+        "file_000000000000820ebdf810163a8cbe9a"
+      ],
+      "expected_images": 5,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-07",
+      "slot": "11:00",
+      "kind": "carousel",
+      "topic_id": "nuvens-lenticulares",
+      "visual_asset_refs_in_chat": [
+        "file_000000009178820ea76c6c8f1b3cc483",
+        "file_000000007208820e876b4f1716acdad8",
+        "file_00000000db9c820ea83e66bfccb5b066",
+        "file_00000000fc08820e897b32ca03714970",
+        "file_00000000d0b8820e9a945dfe1ebf03ed"
+      ],
+      "expected_images": 5,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-07",
+      "slot": "15:00",
+      "kind": "meme",
+      "topic_id": "cadeira-guarda-roupa",
+      "visual_asset_refs_in_chat": [
+        "file_00000000bd68820ea8f41410bdeb3d18"
+      ],
+      "expected_images": 1,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-08",
+      "slot": "11:00",
+      "kind": "carousel",
+      "topic_id": "arco-circumhorizontal",
+      "visual_asset_refs_in_chat": [
+        "file_00000000a028820e80929a177baa98c3",
+        "file_00000000cd1c820e8a43bfb7821acc66",
+        "file_000000004288820e9fce764cecc7110a",
+        "file_00000000ba70820e8792722b1d647d50",
+        "file_00000000f8a8820ebe7d2ad41729e5c0"
+      ],
+      "expected_images": 5,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    },
+    {
+      "day": "2026-11-08",
+      "slot": "15:00",
+      "kind": "meme",
+      "topic_id": "despertador-soneca",
+      "visual_asset_refs_in_chat": [
+        "file_000000001dc8820e9eea25b5d02e16da"
+      ],
+      "expected_images": 1,
+      "images_published": false,
+      "images_saved_to_git": false,
+      "original_lumino_pixelwise_verified": false,
+      "human_visual_qc_complete": false,
+      "all_facts_checked": false,
+      "license_rights_checked": false,
+      "high_resolution_master_exported": false,
+      "instagram_export_ready": false,
+      "approved": false
+    }
+  ],
+  "reels_18h": {
+    "count_planned": 7,
+    "confirmed_original_mp4": 0,
+    "complete_videos": 0,
+    "approved": 0,
+    "published": 0
+  },
+  "stories": {
+    "count_planned": 21,
+    "rule": "Somente republicação NATIVA após postagem original confirmada + chamada falada para curtir e seguir",
+    "created": 0,
+    "published": 0
+  },
+  "excluded": "Repetições de capa do Atacama produzidas indevidamente e variantes da mesma lâmina não entram neste manifesto.",
+  "compliance": "Manter revisão da procedência sintética e identificação obrigatória; não acrescentar rótulo voluntário falso, nem omitir identificação exigida."
+}
