@@ -8,7 +8,7 @@
   "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
   "id": "tue-2026-11-02-18-senha-impossivel",
   "day": "2026-11-02",
-  "slot": "15:00",
+  "slot": "11:00",
   "series_id": "sac-lumino",
   "kind": "meme",
   "topic_id": "senha-impossivel",
@@ -35,5 +35,6 @@
   ],
   "caption": "🔐 Cadastrei uma senha tão forte que agora ela não me deixa entrar. O SAC do Lúmino aceita reclamações, mas exige outra senha para abrir o chamado. Quem também já enfrentou um formulário que parece um chefe final? 😂 #Memes #VidaDigital #Lumino #TemUmaExplicacao",
   "publication_requires_native_music": false,
-  "reference_standard_id": "TUE-MESTRE-01"
+  "reference_standard_id": "TUE-MESTRE-01",
+  "editorial_time_override": "Alteração da pauta em 02/11 por solicitação do proprietário; a tirinha foi publicada antes, Mar Cruzado planejado para 15h. Não implica aprovação visual."
 }
