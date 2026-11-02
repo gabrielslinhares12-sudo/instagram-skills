@@ -2,7 +2,7 @@
 
 **Padrão obrigatório:** `ATIVAR TUE-MESTRE-01`.  
 **Status geral:** **execução editorial em rascunho**, não autorizada/publicada automaticamente.  
-**Fonte da grade:** `content/editorial/semana-independente-2026-11-02-a-08/grade.json`. Horário oficial = campo `slot`, não o nome antigo do briefing.
+**Atualização operacional (02/11):** 11h e 15h são os quadros; 18h é o Reel. Nomes de arquivos gerados antes desta correção podem conter 12H ou 18H e **não** representam o horário vigente.\n\n**Fonte da grade:** `content/editorial/semana-independente-2026-11-02-a-08/grade.json`. Horário oficial = campo `slot`, não o nome antigo do briefing.
 
 ## Direção de arte aprovada
 
@@ -15,7 +15,7 @@ Visual aceito em 02/11 pelo proprietário: textura de papel claro, títulos giga
 - **QC:** revisão ortográfica, evidência factual, direitos de uso, personagem correto, mobile, ausência de sobreposição e 100% das lâminas com a mesma qualidade da capa.
 - **Agendamento:** somente com arquivo final verificado, autorização operacional aplicável e recibo real. Nada nestas notas libera a fila.
 
-## Conteúdo 1 — TER 03/11, 12h — PLANTÃO DO ABSURDO
+## Conteúdo 1 — TER 03/11, 11h — PLANTÃO DO ABSURDO
 
 **Tema:** Urgente: reunião cria mais reuniões. **Formato:** uma única tirinha 4:5 com três cenas.
 
@@ -28,7 +28,7 @@ Visual aceito em 02/11 pelo proprietário: textura de papel claro, títulos giga
 
 **Legenda revisada:** “📅 Plantão do Absurdo: uma reunião emergencial foi convocada para definir a pauta. No fim, a única decisão foi marcar outra reunião para decidir a pauta da próxima. O calendário pediu demissão. 😂 Você já participou de uma dessas? #TemUmaExplicacao #PlantaoDoAbsurdo #Lumino #HumorNoTrabalho”
 
-## Conteúdo 2 — TER 03/11, 18h — ARQUIVO IMPROVÁVEL
+## Conteúdo 2 — TER 03/11, 15h — ARQUIVO IMPROVÁVEL
 
 **Tema:** O Atacama virou jardim? **Formato:** carrossel 5 × (4:5).
 
@@ -49,28 +49,28 @@ Visual aceito em 02/11 pelo proprietário: textura de papel claro, títulos giga
 
 | Ordem | Data | Hora | Série | Assunto / cena visual decisiva | Status |
 |---:|---|---|---|---|---|
-| 3 | 04/11 | 12h | CARROSSEL EDUCATIVO | Pôr do sol azulado de Marte; foto real Curiosity + dispersão da luz explicada, NASA | Brief pronto, arte pendente |
-| 4 | 04/11 | 18h | MUSEU DAS COISAS SEM EXPLICAÇÃO | Museu fictício dos cabos que ninguém reconhece; tirinha independente | Brief pronto, arte pendente |
-| 5 | 05/11 | 12h | NÃO ERA ISSO | Fogo azul de Ijen: combustão de gases ricos em enxofre, NÃO lava azul | Brief pronto, arte pendente |
-| 6 | 05/11 | 18h | TRIBUNAL DAS PEQUENAS TRAGÉDIAS | Tribunal cômico dos potes sem tampa | Brief pronto, arte pendente |
-| 7 | 06/11 | 12h | TRIBUNAL DAS PEQUENAS TRAGÉDIAS | Investigação ficcional sobre meia desaparecida | Brief pronto, arte pendente |
-| 8 | 06/11 | 18h | TRIBUNAL DOS FENÔMENOS | Lago rosa e mecanismo biológico adequado ao lago mencionado | Brief pronto, arte pendente |
-| 9 | 07/11 | 12h | PARECE MENTIRA | Nuvens lenticulares fotografadas e mecanismo do ar sobre relevo | Brief pronto, arte pendente |
-| 10 | 07/11 | 18h | RH DO CAOS | Cadeira transformada em guarda-roupa pede demissão | Brief pronto, arte pendente |
-| 11 | 08/11 | 12h | A LUZ NÃO MENTE | Arco circum-horizontal: geometria do Sol e cristais de gelo | Brief pronto, arte pendente |
-| 12 | 08/11 | 18h | SAC DO LÚMINO | Despertador ofendido após inúmeras sonecas | Brief pronto, arte pendente |
+| 3 | 04/11 | 11h | CARROSSEL EDUCATIVO | Pôr do sol azulado de Marte; foto real Curiosity + dispersão da luz explicada, NASA | Brief pronto, arte pendente |
+| 4 | 04/11 | 15h | MUSEU DAS COISAS SEM EXPLICAÇÃO | Museu fictício dos cabos que ninguém reconhece; tirinha independente | Brief pronto, arte pendente |
+| 5 | 05/11 | 11h | NÃO ERA ISSO | Fogo azul de Ijen: combustão de gases ricos em enxofre, NÃO lava azul | Brief pronto, arte pendente |
+| 6 | 05/11 | 15h | TRIBUNAL DAS PEQUENAS TRAGÉDIAS | Tribunal cômico dos potes sem tampa | Brief pronto, arte pendente |
+| 7 | 06/11 | 11h | TRIBUNAL DAS PEQUENAS TRAGÉDIAS | Investigação ficcional sobre meia desaparecida | Brief pronto, arte pendente |
+| 8 | 06/11 | 15h | TRIBUNAL DOS FENÔMENOS | Lago rosa e mecanismo biológico adequado ao lago mencionado | Brief pronto, arte pendente |
+| 9 | 07/11 | 11h | PARECE MENTIRA | Nuvens lenticulares fotografadas e mecanismo do ar sobre relevo | Brief pronto, arte pendente |
+| 10 | 07/11 | 15h | RH DO CAOS | Cadeira transformada em guarda-roupa pede demissão | Brief pronto, arte pendente |
+| 11 | 08/11 | 11h | A LUZ NÃO MENTE | Arco circum-horizontal: geometria do Sol e cristais de gelo | Brief pronto, arte pendente |
+| 12 | 08/11 | 15h | SAC DO LÚMINO | Despertador ofendido após inúmeras sonecas | Brief pronto, arte pendente |
 
-Os assuntos são independentes entre si. A alternância de quadros é por data/horário conforme `grade.json`, não um carrossel fixo no almoço nem uma tirinha fixa às 18h.
+Os assuntos são independentes entre si. A alternância de quadros é por data/horário conforme `grade.json`, não um carrossel fixo no almoço nem uma tirinha fixa às 15h.
 
 ## Reels e Stories
 
-- **Reels 21h:** sete posições reservadas apenas no planejamento; **não selecionar fonte enquanto MP4 original, identificação de vídeo publicado no YouTube, direitos, áudio e duplicação não forem comprovados**. Fila técnica: `content/editorial/REELS-E-STORIES-2026-11-02-a-08.json`.
+- **Reels 18h:** sete posições reservadas apenas no planejamento; **não selecionar fonte enquanto MP4 original, identificação de vídeo publicado no YouTube, direitos, áudio e duplicação não forem comprovados**. Fila técnica: `content/editorial/REELS-E-STORIES-2026-11-02-a-08.json`.
 - **Stories para todos os 21 posts e Reels:** após **cada** publicação principal realmente verificada, fazer **compartilhamento nativo do próprio post** com a chamada falada “Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!”. Não produzir Story como imagem separada antecipada. Fila: `content/editorial/STORIES-VINCULADOS-2026-11-02-a-08.json`.
 
 ## Checkpoint
 
 - 14 briefings de feed têm pauta/horário; 2 artes de 02/11 geradas anteriormente mas sem QC/aprovação.
-- Nova peça 03/11 às 12h com imagem e arquivos em rascunho na conversa, sem aprovação/publicação.
-- A série de 03/11 às 18h tem storyboard factual fechado, **não** arte concluída.
+- Nova peça 03/11 às 11h com imagem e arquivos em rascunho na conversa, sem aprovação/publicação.
+- A série de 03/11 às 15h tem storyboard factual fechado, **não** arte concluída.
 - Sete Reels continuam sem MP4 oficial validado; Stories aguardam os respectivos posts publicados.
 - **Nenhuma ação de publicação ou agendamento foi executada ao criar este documento.**
