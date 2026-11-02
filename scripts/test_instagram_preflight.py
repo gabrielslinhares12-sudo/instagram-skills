@@ -40,7 +40,7 @@ class PreflightTests(unittest.TestCase):
                 raise MetaError("Meta rejected the request.", http_status=400, code=200)
         poster = BrokenPermissionPoster([])
         result = check(poster)
-        self.assertTrue(result['ok'])
+        self.assertFalse(result['ok'])
         self.assertEqual(result['permission_inspection'], 'denied_code_200')
         self.assertFalse(result['permissions_verified'])
         self.assertEqual(result['required_permissions_granted'], [])
