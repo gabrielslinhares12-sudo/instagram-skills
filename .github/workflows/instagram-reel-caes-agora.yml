@@ -1,0 +1,51 @@
+name: TUE Reel agora - Cao enxerga preto e branco - publicacao unica Meta
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/instagram-reel-caes-agora.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-temumaexplicacao-publication
+  cancel-in-progress: false
+jobs:
+  once:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Testar modulo e contrato de Reel antes de executar
+        run: |
+          python3 -m py_compile scripts/instagram_publish_top_youtube_reel_once.py
+          python3 -m unittest discover -s scripts -p 'test_facebook_poster.py' -v
+          python3 -m unittest discover -s scripts -p 'test_meta_poster.py' -v
+          python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -v
+      - name: Configurar autor da trilha de auditoria
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Verificar post existente e publicar somente o Reel escolhido, uma vez
+        env:
+          FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
+          FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
+          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
+          INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+        run: python3 scripts/instagram_publish_top_youtube_reel_once.py
+      - name: Arquivar trilha de auditoria sem publicar novamente
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: reel-caes-auditoria-${{ github.run_id }}
+          path: content/publication-state.json
+          if-no-files-found: warn
+          retention-days: 14
