@@ -28,19 +28,59 @@ def photo_url(filename):
 def get_photos(spec):
     d=DEST/"source-photos"
     d.mkdir(parents=True,exist_ok=True)
+    # Wikimedia Commons currently rate-limits shared GitHub Actions IPs (HTTP 429).
+    # Public TSE Flickr originals are an alternative source for the *same* works.
+    flickr_ids=["51744471623","51744227376","51744543743"]
     out=[]
     for i,info in enumerate(spec["photos"]):
         name=info["file"];target=d/("photo-"+str(i)+".jpg")
-        url=photo_url(name)
-        req=urllib.request.Request(url,headers={"User-Agent":"InstagramTUE-Editorial/1.0 (via GitHub Actions; credit TSE Wikimedia Commons)","Accept":"image/jpeg,image/*"})
-        with urllib.request.urlopen(req,timeout=40) as response:
-            blob=response.read(9_000_000)
-        if len(blob)<20_000 or len(blob)>=9_000_000:
-            raise RuntimeError("Foto fora do limite de download "+str(i))
-        with Image.open(io.BytesIO(blob)) as im:
-            im.verify()
-        target.write_bytes(blob)
-        out.append({"file":target,"source":url,"sha256":hash_file(target)})
+        candidates=[]
+        if i==0:
+            candidates.append("https://live.staticflickr.com/65535/51744471623_4bd4dd11e9_o.jpg")
+        # Flickr public oEmbed reveals a public static photo URL without any key.
+        try:
+            oembed=("https://www.flickr.com/services/oembed/?format=json&url="+
+                urllib.parse.quote("https://www.flickr.com/photos/tsejusbr/"+flickr_ids[i]+"/",safe=""))
+            req=urllib.request.Request(oembed,headers={"User-Agent":"Mozilla/5.0 TUE editorial research"})
+            with urllib.request.urlopen(req,timeout=18) as response:
+                meta=json.loads(response.read(20_000))
+            url=meta.get("url") or meta.get("thumbnail_url")
+            if url and url.startswith("https://"):
+                candidates.append(url)
+        except Exception:
+            pass
+        candidates.append(photo_url(name))
+        candidates.append("https://commons.wikimedia.org/wiki/Special:Redirect/file/"+
+                          urllib.parse.quote(name))
+        last_error=None;selected=None
+        for url in candidates:
+            try:
+                req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36"})
+                with urllib.request.urlopen(req,timeout=25) as response:
+                    blob=response.read(9_000_000)
+                if not 15_000<len(blob)<9_000_000:
+                    raise ValueError("photo bytes out of bounds")
+                with Image.open(io.BytesIO(blob)) as im:
+                    im.verify()
+                target.write_bytes(blob)
+                selected=url
+                break
+            except Exception as exc:
+                last_error=type(exc).__name__
+        if not selected:
+            # Never claim another image was sourced/credited if this one is missing.
+            if i==0:raise RuntimeError("No trusted photo available: "+str(last_error))
+            target.write_bytes(out[0]["file"].read_bytes())
+            out.append({"file":target,"source":out[0]["source"],
+                "sha256":hash_file(target),"credit":out[0]["credit"],
+                "source_index":0,"fallback":True})
+        else:
+            out.append({"file":target,"source":selected,
+                "sha256":hash_file(target),"credit":info["credit"],
+                "source_index":i,"fallback":False})
+        print("PHOTO_SOURCE_STATUS="+json.dumps({
+            "slot":i,"verified":True,"source_index":out[-1]["source_index"],
+            "fallback":out[-1]["fallback"]}),flush=True)
     return out
 
 def paper(seed):
@@ -170,7 +210,7 @@ def main():
         manifest.append({"number":idx,"file":page.name,"source_sha256":sha,
             "sha256":sha,"layout":lay,"headline":" / ".join(titles),
             "mascot_box":[mx,my,mw,mh],"background_type":"documentary_photo",
-            "background_credit":spec["photos"][s["photo"]]["credit"],
+            "background_credit":photos[s["photo"]]["credit"],
             "photo_source":photos[s["photo"]]["source"],
             "photo_source_sha256":photos[s["photo"]]["sha256"]})
     cols,rows,pw,ph=preview_geometry(len(manifest))
