@@ -1,6 +1,5 @@
 {
   "preset_id": "TUE-MESTRE-01",
-  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
   "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
   "status": "draft_review_no_publication",
   "approved": false,
@@ -72,5 +71,6 @@
     }
   ],
   "caption": "💡 Não é chama. É geometria da luz. O apelido arco-íris de fogo descreve uma faixa colorida conhecida como arco circum-horizontal, um fenômeno óptico, não combustão. A luz do Sol atravessa pequenos cristais de gelo de nuvens altas do tipo cirrus e se separa em cores. Cristais de gelo adequadamente orientados refratam e dispersam a luz, produzindo a sequência de cores característica. O arco circum-horizontal só pode surgir quando o Sol atinge pelo menos aproximadamente 58 graus de altura no céu. A combinação de ângulo solar, cristais de gelo e nuvens é específica. A formação é rara de observar em muitos lugares. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
-  "publication_requires_native_music": true
+  "publication_requires_native_music": true,
+  "reference_standard_id": "TUE-MESTRE-01"
 }
