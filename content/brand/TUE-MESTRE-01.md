@@ -55,3 +55,12 @@
 `ATIVAR TUE-MESTRE-01. Faça um post sobre [tema].`
 
 Sem comando explícito, o projeto Instagram TUE também deve adotar o mesmo padrão por padrão.
+
+## Atualização da grade em 02/11/2026 — quadros rotativos, Reel e Stories
+
+- **12h e 18h (America/Sao_Paulo):** dois quadros editoriais de assunto independente, alternando formatos e quadros. **Carrossel Educativo** é um quadro do catálogo, **não** um post fixo diário, nem há obrigação de carrossel às 12h/tirinha às 18h.
+- **21h:** um Reel a partir de um vídeo **original do nosso YouTube em português**, preferindo o MP4-fonte com direitos de uso e sem marca d'água. Nunca baixar e reencodar a tela do player. Verificar duplicação de vídeo e de tema antes de publicar. Preparar capa/legenda nativa, áudio e legendas sincronizados.
+- **Stories:** somente depois da confirmação por recibo do Reel, compartilhar o vídeo ou uma prévia vertical 9:16 com o texto visual padrão: **“💡 Curtiu? Veja o Reel no nosso perfil e deixe seu ❤️!”**. Um Story por Reel, com próprio recibo. Se precisar de compartilhamento nativo com link interativo para o Reel, fazê-lo pelo app oficial: a API de Stories não equivale ao comando “Adicionar reel ao seu story”. Não afirmar que a etapa ocorreu sem recibo.
+- **IA:** não adicionar selo de IA automaticamente apenas porque a postagem foi agendada ou produzida por software. Conferir a procedência do arquivo. Para material sem geração/alteração sintética relevante e com origem verificada, omitir a autodeclaração opcional; para material sintético abrangido pelas regras, informar corretamente. Origem desconhecida bloqueia publicação automática. O Instagram pode aplicar a própria identificação; não adulterar metadados para escondê-la nem prometer remoção.
+- **Total planejado:** 2 publicações de feed + 1 Reel + 1 Story derivado **após** o Reel diariamente (21 itens de feed/Reels por semana + até 7 Stories vinculados). A fila de rascunhos, a aprovação e o recibo de publicação permanecem distintos.
+- **Estado técnico:** editar plano e preset **não** agenda, publica, gera vídeo, insere Story ou comprova autenticação; usar os bloqueios de qualidade e a fila oficial.
