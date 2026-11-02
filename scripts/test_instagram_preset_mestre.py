@@ -29,7 +29,15 @@ class MasterPresetTests(unittest.TestCase):
         }
 
     def test_profile_and_source_assets_exist(self):
+        from instagram_preset_mestre import VISUAL_MASTER, VISUAL_MASTER_SHA, ROOT, sha256
         self.assertEqual(self.preset["id"], IDENTITY)
+        self.assertEqual(self.preset["canonical_assets"]["visual_master_path"], VISUAL_MASTER)
+        self.assertEqual(self.preset["canonical_assets"]["visual_master_sha256"], VISUAL_MASTER_SHA)
+        self.assertEqual(sha256(ROOT / VISUAL_MASTER), VISUAL_MASTER_SHA)
+        self.assertTrue(self.preset["visual"]["swipe_cue"]["progress_dots"])
+        self.assertEqual(self.preset["visual"]["swipe_cue"]["display_text"], "ARRASTE PARA O LADO →")
+        self.assertEqual(self.preset["visual"]["swipe_cue"]["position"],
+                         "rodapé CENTRAL abaixo da arte, respeitando margem segura; sem cobrir texto, Lúmino ou cena")
 
     def test_valid_draft_not_approved(self):
         self.assertEqual(check_brief(self.brief, self.preset)["draft_only"], True)
