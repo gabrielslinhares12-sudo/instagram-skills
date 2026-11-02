@@ -23,6 +23,13 @@ def verify_reels_and_stories(reels_plan, feed_plan):
     if (not isinstance(reels_plan, dict) or reels_plan.get("preset_id") != "TUE-MESTRE-01"
             or reels_plan.get("status") != "draft_review_no_publication"):
         raise PresetError("Fila de Reels e Stories fora do padrão mestre ou liberada.")
+    spec=reels_plan.get("story_spec", {})
+    if (spec.get("text_cta_required") is not True
+            or spec.get("native_post_direct_share_only") is not True
+            or spec.get("no_external_link_or_link_sticker") is not True
+            or spec.get("text_overlay_only") is not True
+            or spec.get("spoken_cta_required") is True):
+        raise PresetError("Stories exigem compartilhamento direto e CTA somente em texto, sem link externo ou áudio.")
     items=reels_plan.get("reels")
     if not isinstance(items, list) or len(items)!=7:
         raise PresetError("É preciso planejar sete Reels, um por data.")
@@ -58,9 +65,9 @@ def verify_reels_and_stories(reels_plan, feed_plan):
             if (not reel.get("reel_published") or not reel.get("story_media_id")
                     or not reel.get("story_created")
                     or not reel.get("story_native_reshare_confirmed")
-                    or not reel.get("story_voiceover_verified")
+                    or not reel.get("story_text_cta_verified")
                     or not reel.get("story_parent_permalink")):
-                raise PresetError("Story não pode preceder o Reel ou omitir republicação nativa, fala ou recibo.")
+                raise PresetError("Story não pode preceder o Reel ou omitir compartilhamento nativo, texto ou recibo.")
     return {"reels_planned":len(items),"stories_confirmed":sum(bool(x.get("story_published")) for x in items),
             "reels_confirmed":sum(bool(x.get("reel_published")) for x in items)}
 
