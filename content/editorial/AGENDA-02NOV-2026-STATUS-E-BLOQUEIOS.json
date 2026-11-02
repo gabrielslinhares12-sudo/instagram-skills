@@ -4,13 +4,13 @@
   "day": "2026-11-02",
   "timezone": "America/Sao_Paulo",
   "intent": "Priorizar três publicações de 02/11/2026 antes de recriar restante da semana",
-  "state": "META_GITHUB_SCHEDULER_IDENTIFIED_02NOV_ENTRIES_NOT_YET_SCHEDULED",
+  "state": "AGENDAMENTO_SOLICITADO_BLOQUEADO_POR_HOSPEDAGEM_E_VALIDACAO_META",
   "operational_schedule_updated": false,
   "publishing_integration": {
     "scheduler": "GitHub Actions: .github/workflows/instagram-scheduler.yml (cron */10 * * * *)",
     "execution": "scripts/instagram_queue.py --execute chama scripts/facebook_poster.py (Facebook Login) e a Instagram Graph API oficial da Meta",
     "meta_api": "Meta recebe publicações no horário do job; o agendamento/espera é responsabilidade do cron e da fila UTC do GitHub, não do Metricool",
-    "metricool": "FORA DO FLUXO: não usar para programar nem como bloqueio",
+    "metricool": "NÃO UTILIZAR — integração correta é GitHub Actions + Meta Graph API",
     "credentials": "GitHub Actions secrets e vars; sua configuração atual não foi validada neste turno",
     "prior_publication_evidence": "content/publication-state.json comprova publicação histórica pelo publicador Meta em 31/10 e carrossel em 01/11",
     "operational_queue": "content/schedule.json — não contém posts para 02/11; alterá-la só após arquivos finais em URLs públicas acessíveis à Meta e demais verificações obrigatórias"
@@ -116,5 +116,24 @@
     "Correção do proprietário 02/11: o único agendamento oficial é o pipeline GitHub Actions → Meta Graph API; Metricool não participa.",
     "Mídias 11h e 15h preparadas em Drive privado; não equivale a URL pública de imagem para Facebook/Instagram Graph API.",
     "Nunca declarar agendado ou publicado sem entrada validada em content/schedule.json e recibo de publicação em content/publication-state.json."
-  ]
+  ],
+  "schedule_attempt": {
+    "requested_by_user": true,
+    "date": "2026-11-02",
+    "intended_slots": [
+      "11:00",
+      "15:00",
+      "18:00"
+    ],
+    "path": "GitHub Actions -> scripts/instagram_queue.py -> facebook_poster.py -> Meta Graph API",
+    "results": "BLOCKED_BEFORE_ADD_TO_ACTIVE_QUEUE",
+    "reasons": [
+      "A API da Meta exige media_urls HTTPS que devolvam JPEG/MP4 públicos sem autenticação. Google Drive existente contém apenas arquivos privados.",
+      "Tentativa de publicar a imagem binária no GitHub por create_blob foi bloqueada pelas configurações de segurança da ferramenta; nenhuma mídia foi hospedada.",
+      "Tentativa de transferência de arquivo para Picsart CDN também foi bloqueada pelas configurações de segurança.",
+      "O post de 18h ainda não possui vídeo original MP4 identificado/validado.",
+      "O controle de qualidade da procedência precisa ser concluído conforme regras da Meta."
+    ],
+    "side_effects": "Nenhum post incluído em content/schedule.json, nenhum job Meta disparado, nenhum conteúdo publicado ou agendado."
+  }
 }
