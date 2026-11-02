@@ -1,5 +1,15 @@
 # Instagram TUE — automação de música após publicar carrossel (Android oficial)
 
+## Música especificamente escolhida pelo proprietário: Thriller — Michael Jackson
+
+- Atribuição oficial para o carrossel de Halloween em `content/music-assignments.json`.
+- Post existente `18107496023215107` — https://www.instagram.com/p/DfNVlLDmC8P/ .
+- **Não altera** a legenda, a ordem das oito fotos, o `due_at` nem a assinatura `fingerprint` do recibo de publicação.
+- O aplicativo deve encontrar exatamente **Thriller — Michael Jackson**, não um cover, remix, instrumental ou áudio não identificado. A disponibilidade na biblioteca da conta ainda não foi confirmada; se não for encontrada, parar e manter `awaiting_native_music`.
+- A atribuição significa **faixa escolhida/autorizada**, não música já salva. Sem ADB conectado a Android autenticado, não houve edição do Instagram.
+- Com a aprovação específica, `python scripts/instagram_mobile_music.py` agora retorna `exact_song_configured=true` e o watcher opcional terá um post elegível. A instalação/agendamento da tarefa Windows continua **desativada**, até testar no aparelho.
+
+
 ## Status e evidências em 01/11/2026
 
 O proprietário confirmou com captura do **aplicativo Android oficial** que a publicação `https://www.instagram.com/p/DfNVlLDmC8P/` oferece **Editar informações > Adicionar música**. O mesmo post já está publicado pela Meta, com recibo `18107496023215107`, e no ledger consta `awaiting_native_music`.

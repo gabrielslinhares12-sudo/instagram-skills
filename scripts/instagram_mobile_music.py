@@ -29,6 +29,7 @@ PACKAGE = "com.instagram.android"
 POST_ID = re.compile(r"[a-z0-9][a-z0-9_-]{0,79}\Z")
 LINK = re.compile(r"https://www\.instagram\.com/p/[A-Za-z0-9_-]{5,40}/\Z")
 TITLE_INPUT = re.compile(r"[a-zA-Z0-9 ]{3,80}\Z")
+ASSIGNMENTS_PATH = Path(__file__).resolve().parent.parent / "content/music-assignments.json"
 
 
 def normalized(s: str) -> str:
@@ -36,9 +37,42 @@ def normalized(s: str) -> str:
     return " ".join("".join(c for c in folded if not unicodedata.combining(c)).split())
 
 
-def select_pending(manifest: dict, ledger: dict, item_id: str | None) -> dict:
+def load_music_assignments() -> dict:
+    """Approved song intent is kept separate from the immutable published fingerprint."""
+    doc = read_document(ASSIGNMENTS_PATH, missing={"version": 1, "assignments": {}})
+    if not (isinstance(doc, dict) and doc.get("version") == 1
+            and isinstance(doc.get("assignments"), dict)
+            and set(doc) == {"version", "assignments"}):
+        raise QueueError("O catálogo de músicas aprovadas é inválido.")
+    return doc["assignments"]
+
+
+def approved_music(post: dict, entry: dict, assignments: dict) -> tuple[str | None, str | None]:
+    assignment = assignments.get(post["id"])
+    current = (post.get("music_track"), post.get("music_artist"))
+    if assignment is None:
+        return current
+    if not (isinstance(assignment, dict)
+            and assignment.get("approved_by_owner") is True
+            and assignment.get("media_id") == entry.get("media_id")
+            and assignment.get("permalink") == entry.get("permalink")
+            and isinstance(assignment.get("track"), str)
+            and isinstance(assignment.get("artist"), str)
+            and 3 <= len(assignment["track"]) <= 120
+            and 3 <= len(assignment["artist"]) <= 120):
+        raise QueueError("Música aprovada não corresponde exatamente ao post e recibo.")
+    selected = (assignment["track"], assignment["artist"])
+    if any(current) and current != selected:
+        raise QueueError("O manifesto e a aprovação musical divergem; não selecionar faixa.")
+    return selected
+
+
+def select_pending(manifest: dict, ledger: dict, item_id: str | None,
+                   assignments: dict | None = None) -> dict:
     posts = validate_manifest(manifest)
     state = validate_state(ledger)
+    if assignments is None:
+        assignments = load_music_assignments()
     matches = []
     for p in posts:
         entry = state["items"].get(p["id"])
@@ -49,9 +83,10 @@ def select_pending(manifest: dict, ledger: dict, item_id: str | None) -> dict:
                 and entry.get("fingerprint") == fingerprint(p)
                 and entry.get("media_id") and LINK.fullmatch(str(entry.get("permalink", "")))):
             continue
+        music_title, music_artist = approved_music(p, entry, assignments)
         matches.append({"id": p["id"], "permalink": entry["permalink"],
                         "media_id": entry["media_id"],
-                        "track": p.get("music_track"), "artist": p.get("music_artist")})
+                        "track": music_title, "artist": music_artist})
     if item_id is None:
         if len(matches) != 1:
             raise QueueError("Escolha o ID; existem zero ou vários carrosséis aguardando música.")

@@ -51,6 +51,35 @@ class MusicUiTests(unittest.TestCase):
         with self.assertRaises(QueueError):
             select_pending({"version":1,"posts":[post]},state,None)
 
+    def test_separate_owner_audio_intent_uses_existing_media_id_without_fingerprint_change(self):
+        from instagram_queue import fingerprint
+        post={"id":"halloween-photo-carousel","kind":"carousel","approved":True,
+              "username":"temumaexplicacao",
+              "target_url":"https://www.instagram.com/temumaexplicacao/",
+              "caption":"Existing approved caption","due_at":"2026-11-01T17:43:00Z",
+              "media_urls":["https://example.com/01.jpg","https://example.com/02.jpg"],
+              "distribution_mode":"api_carousel_then_native_music",
+              "owner_authorized_two_step_music":True}
+        original_fingerprint=fingerprint(post)
+        state={"version":1,"items":{"halloween-photo-carousel":{
+            "status":"awaiting_native_music", "fingerprint":original_fingerprint,
+            "media_id":"18107496023215107", "permalink":"https://www.instagram.com/p/DfNVlLDmC8P/"}}}
+        music={"halloween-photo-carousel":{
+            "approved_by_owner":True, "media_id":"18107496023215107",
+            "permalink":"https://www.instagram.com/p/DfNVlLDmC8P/",
+            "track":"Thriller","artist":"Michael Jackson"}}
+        result=select_pending({"version":1,"posts":[post]},state,post["id"],music)
+        self.assertEqual((result["track"],result["artist"]),("Thriller","Michael Jackson"))
+        self.assertEqual(fingerprint(post),original_fingerprint)
+        self.assertEqual(state["items"][post["id"]]["status"],"awaiting_native_music")
+        music[post["id"]]["media_id"]="18107496023215108"
+        with self.assertRaises(QueueError):
+            select_pending({"version":1,"posts":[post]},state,post["id"],music)
+        music[post["id"]]["media_id"]="18107496023215107"
+        music[post["id"]]["approved_by_owner"]=False
+        with self.assertRaises(QueueError):
+            select_pending({"version":1,"posts":[post]},state,post["id"],music)
+
     def test_never_assumes_music_without_configured_track(self):
         from instagram_queue import fingerprint
         post={"id":"test","kind":"carousel","approved":True,

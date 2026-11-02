@@ -24,9 +24,7 @@ def pending_tasks(manifest: dict, state: dict) -> list[dict]:
     for post in validate_manifest(manifest):
         if not (post["kind"]=="carousel" and post.get("approved") is True
                 and post.get("distribution_mode")=="api_carousel_then_native_music"
-                and post.get("owner_authorized_two_step_music") is True
-                and isinstance(post.get("music_track"),str)
-                and isinstance(post.get("music_artist"),str)):
+                and post.get("owner_authorized_two_step_music") is True):
             continue
         try:
             candidate=select_pending(manifest,state,post["id"])
