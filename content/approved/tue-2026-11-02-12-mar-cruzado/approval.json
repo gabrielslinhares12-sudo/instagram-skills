@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "id": "tue-2026-11-02-12-mar-cruzado",
+  "preset_id": "TUE-MESTRE-01",
+  "approved": true,
+  "owner_authorized": true,
+  "visual_reviewed": true,
+  "owner_authorization_source": "Usuário aprovou a sequência visual de cinco lâminas exibida no chat e pediu 'Perfeito, faça a postagem imediatamente junto do story.'; reiteração: 'Siga para a postagem'.",
+  "approved_visual_reference_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "approved_media_sha256": [
+    "6831ca151f9774699026b89d6647f282092af7d3ac5dc1a9df362591261d679c",
+    "372bf00e76ede34f1e6ebd9b996caf25df7b188c94bd275ce495e0060f51c457",
+    "ce862156a6f3e6a0fc2e08781aaf0911cf1176560d33d785f022e45f0cc3fc35",
+    "3a9e3bbe0f0412825cb581e2dd98cf8c75cec3d66dba02669e66bcd82c292702",
+    "977a00814cb18b0c46c4d4dc64dc4e246c1668c06f31d7d604a256ef03fe507c"
+  ],
+  "source_media_subfolder": "content/media/instagram/2026-11-02/mar-cruzado-final",
+  "image_size": [
+    1080,
+    1350
+  ],
+  "kind": "carousel",
+  "ai_origin": "synthetic",
+  "content_style": "clearly_illustrated",
+  "distribution_mode": "api_carousel_then_native_music",
+  "owner_authorized_two_step_music": true,
+  "approval_note": "Cinco lâminas novas, fontes NOAA e BoM, sequência 1-5, rodapé discreto em 4 primeiras, última sem avanço. Proprietário visualizou e aprovou a sequência completa, autorizando publicação imediata. Publicação Meta em duas etapas para manter pendência explícita de música nativa, sem alegar música concluída. Story original repost requer ação nativa separada. Pixel-match exato ao PNG do mascote não verificado tecnicamente; essa aprovação autoriza exclusivamente os cinco arquivos renderizados mostrados ao proprietário, não libera temas futuros."
+}
