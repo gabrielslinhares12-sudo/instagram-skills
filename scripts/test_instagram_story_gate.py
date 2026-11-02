@@ -23,7 +23,11 @@ class LinkedNativeStoryTests(unittest.TestCase):
 
     def test_never_create_a_story_before_post_receipt(self):
         broken=copy.deepcopy(self.stories)
-        broken["entries"][0]["story_created"]=True
+        # First two posts and 02/11 Reel now have verified parent receipts;
+        # use the next-day draft to prove Stories cannot precede publication.
+        pending=next(i for i, entry in enumerate(broken["entries"])
+                     if entry.get("parent_published") is not True)
+        broken["entries"][pending]["story_created"]=True
         with self.assertRaisesRegex(StoryGateError, "depois do post"):
             verify_linked_stories(self.feed,self.reels,broken)
 
