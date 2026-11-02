@@ -3,7 +3,7 @@
 
 This performs READ-ONLY Meta requests for the original post permalink. It never
 publishes a Story, never creates standalone Story media, and never claims a
-spoken voiceover or native reshare without an authenticated receipt.
+text overlay or native reshare without an authenticated receipt.
 """
 from __future__ import annotations
 
@@ -41,7 +41,9 @@ def approved_permalink(url: object) -> bool:
 
 def reconcile(ledger: dict, stories: dict, lookup=None) -> tuple[dict, list[dict]]:
     """Only a verified permalink enables the published-parent Story state."""
-    if stories.get("native_share_required") is not True or stories.get("spoken_cta_text") != CTA:
+    if stories.get("native_share_required") is not True or stories.get("text_cta") != CTA or
+            stories.get("text_cta_required") is not True or
+            stories.get("no_external_link_or_link_sticker") is not True:
         raise ValueError("Native Story contract is missing.")
     result = json.loads(json.dumps(stories))
     notes = []
@@ -76,7 +78,7 @@ def reconcile(ledger: dict, stories: dict, lookup=None) -> tuple[dict, list[dict
             "parent_media_id": claim["media_id"],
             "parent_permalink": permalink,
             "source_verified_by_official_receipt": True,
-            "status": "awaiting_native_app_share_with_spoken_cta",
+            "status": "awaiting_native_app_share_with_text_cta",
         })
         notes.append({"parent_id": actual_id, "status": entry["status"],
                       "media_id": claim["media_id"], "parent_permalink": permalink})
