@@ -80,6 +80,28 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(plan(posts, empty_state(), NOW + timedelta(hours=2, seconds=1))[0]["status"],
                          "missed_window")
 
+    def test_explicit_meta_recovery_deadline_keeps_approved_post_eligible(self):
+        recovered = item(recovery_until="2026-11-01T21:59:59Z")
+        posts = validate_manifest(manifest(recovered))
+        self.assertEqual(plan(posts, empty_state(), NOW + timedelta(hours=19))[0]["status"], "due")
+        self.assertEqual(plan(posts, empty_state(), NOW + timedelta(hours=24))[0]["status"], "missed_window")
+        # The recovery extension must not erase a durable claim or permit a duplicate.
+        state = {"version": 1, "items": {recovered["id"]:
+                 {"status": "published", "fingerprint": fingerprint(recovered)}}}
+        self.assertEqual(plan(posts, state, NOW + timedelta(hours=19))[0]["status"], "published")
+        self.assertNotEqual(fingerprint(item()), fingerprint(recovered))
+
+    def test_recovery_extension_must_be_explicit_approved_and_within_24h(self):
+        for invalid in (
+            item(recovery_until="2026-10-31T21:59:59Z"),
+            item(recovery_until="2026-11-01T22:00:01Z"),
+            item(recovery_until="not-a-date"),
+            item(approved=False, recovery_until="2026-11-01T20:00:00Z")
+        ):
+            with self.subTest(post=invalid):
+                with self.assertRaises(QueueError):
+                    validate_manifest(manifest(invalid))
+
     def test_unapproved_and_future_items_are_not_published(self):
         for post in (item(approved=False), item(due_at="2026-11-01T22:00:00Z")):
             with self.subTest(post=post["approved"]):
