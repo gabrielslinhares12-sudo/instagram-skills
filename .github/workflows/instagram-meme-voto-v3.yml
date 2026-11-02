@@ -1,0 +1,39 @@
+name: Instagram TUE - meme votos V3 original em revisao
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/instagram_render_meme_v3.py'
+      - 'content/editorial/meme-voto-nulo-v3.json'
+      - '.github/workflows/instagram-meme-voto-v3.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-editorial-meme-v3
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: true
+      - name: Instalar Pillow
+        run: python3 -m pip install --user 'Pillow>=10,<13'
+      - name: Criar meme e conferir Lúmino canônico sem publicar
+        run: python3 scripts/instagram_render_meme_v3.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: instagram-meme-voto-v3-revisao
+          path: content/staging/meme-voto-nulo-2026-11-02-v3/
+          retention-days: 14
+      - name: Armazenar JPG e QA para revisao
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/staging/meme-voto-nulo-2026-11-02-v3/
+          git diff --cached --quiet && exit 0
+          git commit -m 'art(instagram): meme de voto nulo V3 em revisao'
+          git push origin HEAD:main

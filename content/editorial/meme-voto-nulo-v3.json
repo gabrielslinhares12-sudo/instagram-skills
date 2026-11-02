@@ -1,0 +1,22 @@
+{
+  "id": "meme-voto-branco-nulo-2026-11-02-v3",
+  "status": "draft_review_no_publication",
+  "format": "single_image",
+  "dimensions": [
+    1080,
+    1350
+  ],
+  "title": "O mito de que voto nulo anula a eleição",
+  "caption": "🗳️ O voto nulo não tem superpoderes! 😂\n\nBrancos e nulos não contam como votos válidos, não são transferidos para nenhum candidato e não anulam uma eleição — mesmo quando são muitos. Uma coisa é a pessoa votar nulo; outra, bem diferente, é a nulidade jurídica de uma votação, reconhecida nas hipóteses previstas em lei.\n\nQual mito eleitoral você já ouviu por aí?\n\nFoto ilustrativa: TSE, via Wikimedia Commons (Public Domain Mark). Arte editorial com Lúmino original.\n\n#Eleicoes #VotoNulo #VotoBranco #EducacaoEleitoral #TemUmaExplicacao #Lumino",
+  "facts": [
+    "Voto branco não conta como válido",
+    "Voto nulo não conta como válido",
+    "Votos em branco e nulos não vão para candidatos",
+    "Muitos votos nulos não anulam eleições",
+    "Nulidade da votação é categoria jurídica diferente"
+  ],
+  "source": "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao",
+  "photo_source": "https://commons.wikimedia.org/wiki/File:Brazilian_DRE_voting_machine_for_2022_elections.jpg",
+  "media_path": "content/staging/votos-validos-2026-11-02-reconstrucao-v3/source-photos/photo-0.jpg",
+  "owner_authorized_to_publish": false
+}
