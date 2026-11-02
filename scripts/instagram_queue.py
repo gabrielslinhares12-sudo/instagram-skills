@@ -181,7 +181,7 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
                 raise QueueError("New Instagram posts require verified non-synthetic provenance; synthetic or unknown content stays in review.")
             if "is_ai_generated" in item:
                 raise QueueError("New Instagram posts must not add the optional AI marker.")
-            if re.search(r"(?i)(feito\\s+(?:por|com)\\s+(?:i\\.?a\\.?|intelig[eê]ncia\\s+artificial)|made\\s+with\\s+ai|ai[ -]*generated|#feito(?:por|com)ia)", caption):
+            if re.search(r"(?i)(feito\s+(?:por|com)\s+(?:i\.?a\.?|intelig[eê]ncia\s+artificial)|made\s+with\s+ai|ai[ -]*generated|#feito(?:por|com)ia)", caption):
                 raise QueueError("A legenda acrescenta uma atribuição de IA proibida pelo padrão TUE.")
         if "cover_url" in item:
             if kind != "reel":
