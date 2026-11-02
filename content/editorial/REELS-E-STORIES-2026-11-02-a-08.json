@@ -59,14 +59,26 @@
       "youtube_public_views_approx": 5700,
       "views_comparison_sample": 45,
       "source_selection_status": "selected_from_channel_top_views_no_mp4_public_link_services_blocked",
-      "download_status": "blocked",
+      "download_status": "BLOCKED_NO_MP4",
       "download_checks": {
         "webdownloader": "HTTP_403",
         "freeapi": "HTTP_500",
         "gendownload": "HTTP_403",
         "github_action_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41517250325",
         "mp4_verified": false,
-        "instagram_reel_posted": false
+        "instagram_reel_posted": false,
+        "yt_dlp_deno_tv": "YOUTUBE_LOGIN_REQUIRED",
+        "yt_dlp_deno_web_safari": "YOUTUBE_LOGIN_REQUIRED",
+        "yt_dlp_deno_android_vr": "YOUTUBE_LOGIN_REQUIRED",
+        "invidious_three_public_instances": "FAILED",
+        "piped_three_public_instances": "FAILED",
+        "google_drive_folder": "https://drive.google.com/drive/folders/1R4t22XHMEIfbZJjvttOWekXMyfJuKDAK",
+        "drive_upload_code": "VALIDATED_NO_MP4_NO_UPLOAD",
+        "drive_automation_auth": "GITHUB_SECRETS_NOT_VERIFIED",
+        "multiclient_action": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41518974940",
+        "invidious_action": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41519377869",
+        "piped_action": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41519975498",
+        "drive_smoke_action": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41520137504"
       }
     },
     {
