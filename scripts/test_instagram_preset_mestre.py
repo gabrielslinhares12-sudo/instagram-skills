@@ -19,10 +19,12 @@ class MasterPresetTests(unittest.TestCase):
             "slides": [
                 {"headline": "Gancho editorial forte", "new_information": "Contexto factual aprofundado",
                  "distinct_scene": "Cena fotográfica de urna real", "visual_direction": "Modelo 1 com pincelada amarelo",
-                 "source_credit": "Autor de imagem identificado", "uses_original_lumino": True},
+                 "source_credit": "Autor de imagem identificado", "uses_original_lumino": True,
+                 "swipe_cue": "Arraste →"},
                 {"headline": "Explicação com detalhes", "new_information": "Exemplo numérico com lógica",
                  "distinct_scene": "Cena com gráfica da divisão", "visual_direction": "Infográfico contextual foto",
-                 "source_credit": "Dados ilustrativos com fonte", "uses_original_lumino": True},
+                 "source_credit": "Dados ilustrativos com fonte", "uses_original_lumino": True,
+                 "swipe_cue": None},
             ]
         }
 
@@ -36,6 +38,28 @@ class MasterPresetTests(unittest.TestCase):
         self.brief.pop("preset_id")
         with self.assertRaisesRegex(PresetError, IDENTITY):
             check_brief(self.brief, self.preset)
+
+    def test_swipe_cue_required_on_each_nonfinal_slide(self):
+        self.brief["slides"][0]["swipe_cue"] = None
+        with self.assertRaisesRegex(PresetError, "Arraste"):
+            check_brief(self.brief, self.preset)
+
+    def test_no_next_slide_arrow_on_last_slide(self):
+        self.brief["slides"][-1]["swipe_cue"] = "Arraste →"
+        with self.assertRaisesRegex(PresetError, "última"):
+            check_brief(self.brief, self.preset)
+
+    def test_last_slide_and_earlier_cues_on_variable_length(self):
+        from copy import deepcopy
+        for n in (2, 3, 5, 10):
+            brief = deepcopy(self.brief)
+            brief["slides"] = []
+            for i in range(n):
+                slide = deepcopy(self.brief["slides"][0])
+                slide["distinct_scene"] = f"Cena contextual exclusiva {i + 1}"
+                slide["swipe_cue"] = "Arraste →" if i < n - 1 else None
+                brief["slides"].append(slide)
+            self.assertEqual(check_brief(brief, self.preset)["pages"], n)
 
     def test_missing_canonical_mascot_blocked(self):
         self.brief["slides"][0]["uses_original_lumino"] = False
@@ -65,7 +89,7 @@ class MasterPresetTests(unittest.TestCase):
             "original_lumino_visually_confirmed","all_text_readable",
             "all_facts_checked","sources_and_rights_checked",
             "no_unnecessary_repeated_scenes","swipe_cue_verified",
-            "no_visible_page_numbers")})
+            "no_forward_cue_on_last_slide","no_visible_page_numbers")})
         check_release({"preset_id": IDENTITY, "human_visual_qc": qc})
         qc["inner_pages_match_cover_quality"] = False
         with self.assertRaisesRegex(PresetError, "página por página"):
