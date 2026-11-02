@@ -64,6 +64,16 @@
       "manual_visual_review_always_required": true,
       "resolution_rule": "3240x4050 upscaling does not prove greater detail or fidelity.",
       "incident_2026_11_03": "First cinematic newsroom comic was recropped/recomposed into simplified panels; reconstructed version rejected."
+    },
+    "swipe_cue": {
+      "text": "Arraste →",
+      "required_on_nonfinal_carousel_slides": true,
+      "forbidden_on_last_slide": true,
+      "position": "canto inferior direito dentro da margem de segurança",
+      "readable_mobile": true,
+      "no_page_numbers": true,
+      "no_obstruction": true,
+      "style": "amarelo/preto editorial integrado; sem tarja genérica que destrua a arte"
     }
   },
   "format": {
