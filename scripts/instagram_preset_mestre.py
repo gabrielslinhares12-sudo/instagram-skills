@@ -113,6 +113,50 @@ def check_brief(brief: dict, preset: dict) -> dict:
             "human_visual_comparison_still_required": True}
 
 
+def check_week(plan: dict) -> dict:
+    """Enforce separate, independent editorial subjects; semantics require human QC."""
+    posts = plan.get("posts")
+    if not isinstance(posts, list) or not posts:
+        raise PresetError("Grade semanal sem publicações.")
+    if plan.get("preset_id") != IDENTITY or plan.get("status") != "draft_review_no_publication":
+        raise PresetError("Grade fora do TUE-MESTRE-01 ou com liberação indevida.")
+    preset = verify()
+    production = preset.get("production", {})
+    if not all(production.get(key) is True for key in (
+            "independent_daily_posts", "no_same_topic_twice_in_one_day",
+            "no_companion_memes", "every_post_distinct_subject_in_week")):
+        raise PresetError("O bloqueio de temas independentes foi desativado.")
+    by_day = {}
+    topic_ids, subject_ids, post_ids = set(), set(), set()
+    for p in posts:
+        if not isinstance(p, dict):
+            raise PresetError("Publicação semanal inválida.")
+        day, slot = p.get("day"), p.get("slot")
+        topic, subject, post_id = p.get("topic_id"), p.get("subject_id"), p.get("id")
+        for value in (day, slot, topic, subject, post_id):
+            if not isinstance(value, str) or not value.strip():
+                raise PresetError("Publicação sem dia, slot ou tema identificável.")
+        if len(topic.strip()) < 5 or len(subject.strip()) < 5:
+            raise PresetError("Tema vago ou não identificado.")
+        if p.get("approved") is not False:
+            raise PresetError("Grade não pode aprovar conteúdo automaticamente.")
+        if p.get("part_of_series") is True or p.get("companion_to") or p.get("derived_from_post_id"):
+            raise PresetError("Publicação derivada/continuação de outro post proibida.")
+        if p.get("depends_on_other_post") is True or p.get("same_topic_as"):
+            raise PresetError("Posts devem ser autônomos, sem tema compartilhado.")
+        dkey, tkey, skey = day.strip(), topic.strip().casefold(), subject.strip().casefold()
+        if post_id in post_ids or tkey in topic_ids or skey in subject_ids:
+            raise PresetError("Temas duplicados na semana; cada post é individual.")
+        if slot in by_day.setdefault(dkey, set()):
+            raise PresetError("Dois posts no mesmo horário da mesma data.")
+        by_day[dkey].add(slot)
+        post_ids.add(post_id)
+        topic_ids.add(tkey)
+        subject_ids.add(skey)
+    return {"preset_id": IDENTITY, "posts_checked": len(posts),
+            "days_checked": len(by_day), "distinct_topics": len(topic_ids),
+            "independent_subjects": True, "status": "draft_review_no_publication"}
+
 def check_release(manifest: dict) -> None:
     """Required additionally to existing manifest/hash checks before publication."""
     if manifest.get("preset_id") != IDENTITY:
@@ -133,8 +177,9 @@ def check_release(manifest: dict) -> None:
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=["verify", "check-brief"])
+    parser.add_argument("action", choices=["verify", "check-brief", "check-week"])
     parser.add_argument("--brief", type=Path)
+    parser.add_argument("--plan", type=Path)
     args = parser.parse_args(argv)
     try:
         preset = verify()
@@ -142,6 +187,10 @@ def main(argv=None):
             if not args.brief:
                 raise PresetError("--brief é obrigatório para check-brief.")
             result = check_brief(load_json(args.brief), preset)
+        elif args.action == "check-week":
+            if not args.plan:
+                raise PresetError("--plan é obrigatório para check-week.")
+            result = check_week(load_json(args.plan))
         else:
             result = {"verified": True, "preset_id": preset["id"],
                       "activation": preset["activation_phrase"],

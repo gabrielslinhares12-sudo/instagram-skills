@@ -72,5 +72,36 @@ class MasterPresetTests(unittest.TestCase):
             check_release({"preset_id": IDENTITY, "human_visual_qc": qc})
 
 
+    def test_week_topics_must_be_unique_and_posts_independent(self):
+        from instagram_preset_mestre import check_week
+        def make(post_id, day, slot, topic):
+            return {"id":post_id,"day":day,"slot":slot,"topic_id":topic,
+                    "subject_id":"assunto-"+topic,"approved":False,
+                    "part_of_series":False}
+        first=make("p1","2026-11-02","12:00","ondas-cruzadas")
+        second=make("p2","2026-11-02","18:00","geladeira-juri")
+        week={"preset_id":IDENTITY,"status":"draft_review_no_publication",
+              "posts":[first,second]}
+        self.assertTrue(check_week(week)["independent_subjects"])
+        second["topic_id"]="ondas-cruzadas"
+        with self.assertRaisesRegex(PresetError,"duplicados"):
+            check_week(week)
+        second["topic_id"]="geladeira-juri"
+        second["companion_to"]="p1"
+        with self.assertRaisesRegex(PresetError,"derivada"):
+            check_week(week)
+
+    def test_week_subject_reuse_across_dates_is_blocked(self):
+        from instagram_preset_mestre import check_week
+        week={"preset_id":IDENTITY,"status":"draft_review_no_publication",
+              "posts":[
+                {"id":"p1","day":"2026-11-02","slot":"12:00",
+                 "topic_id":"mar-quadrado","subject_id":"ondas-cruzadas","approved":False},
+                {"id":"p2","day":"2026-11-03","slot":"18:00",
+                 "topic_id":"outra-forma-do-mar","subject_id":"ondas-cruzadas","approved":False}
+              ]}
+        with self.assertRaisesRegex(PresetError,"duplicados"):
+            check_week(week)
+
 if __name__ == "__main__":
     unittest.main()

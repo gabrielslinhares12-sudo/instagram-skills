@@ -20,6 +20,16 @@
 6. **Memes:** liberdade de narrativa e tirinhas, mas manter qualidade de cenário/tipografia, identificação e Lúmino original; não adaptar por padrão com desenho simplificado.
 7. **Reels:** sem substituir carrossel por Reel. Se solicitado e aprovado, exigir MP4, áudio Rasalgethi via site Google AI Studio quando houver narração, edição/sincronia e mídia adequada; nada de API paga.
 
+
+## Regra editorial inegociável — posts independentes (02/11/2026)
+
+**Cada publicação é um conteúdo autônomo.** Havendo 2 posts no mesmo dia, os assuntos devem ser **diferentes entre si**: o post da tarde **NÃO** é meme, continuação, curiosidade extra, parte 2 ou reação ao post do meio-dia. Nada de sete pares com o mesmo tema ou de repetir a mesma pauta com outros títulos. Também evitar assuntos repetidos em dias diferentes da semana, mesmo com formatos distintos. O calendário organiza HORÁRIOS, não associa temas.
+
+- Conferir a diferença de assunto e de ângulo antes de aprovar briefings.
+- Cada peça tem seu próprio `topic_id`, `subject_id`, gancho, objetivo, direção de arte, legenda, créditos e fontes. Nenhuma depende de ter visto outro post.
+- O validador de grade `scripts/instagram_preset_mestre.py check-week --plan ...` bloqueia IDs de assunto duplicados ou campos de postagem derivada. **Esta é uma verificação estruturada**, não substitui inspeção semântica manual.
+- Memes são histórias visuais cômicas originais de situações distintas, jamais o desdobramento obrigatório do carrossel do mesmo dia.
+
 ## Trava de produção e revisão
 
 1. Carregar **primeiro** estes arquivos canônicos e confirmar hashes. Ler `content/brand/TUE-MESTRE-01.json`.

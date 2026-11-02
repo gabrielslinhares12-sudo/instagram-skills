@@ -63,6 +63,17 @@
     "quarantined_previous_drafts": [
       "content/staging/votos-validos-2026-11-02-reconstrucao-v3",
       "content/staging/meme-voto-nulo-2026-11-02-v3"
+    ],
+    "independent_daily_posts": true,
+    "no_same_topic_twice_in_one_day": true,
+    "no_companion_memes": true,
+    "every_post_distinct_subject_in_week": true,
+    "no_part_two_or_derivative_post_without_explicit_owner_request": true,
+    "requires_weekly_topic_uniqueness_validation": true,
+    "posts_per_day_planned": 2,
+    "slots_local": [
+      "12:00",
+      "18:00"
     ]
   }
 }
