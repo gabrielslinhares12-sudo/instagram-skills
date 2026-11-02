@@ -35,6 +35,13 @@ jobs:
           python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -v
       - name: Instalar suporte a arquivos grandes no Drive
         run: python3 -m pip install 'gdown>=5,<6'
+      - name: Garantir FFprobe instalado antes de verificar a mídia
+        run: |
+          if ! command -v ffprobe >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y ffmpeg
+          fi
+          ffprobe -version | head -n 1
       - name: Baixar MP4 original do Drive com SHA-256 e ffprobe
         env:
           GDRIVE_OAUTH_CLIENT_ID: ${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}
