@@ -14,7 +14,7 @@ REELS=ROOT/"content/editorial/REELS-E-STORIES-2026-11-02-a-08.json"
 STORIES=ROOT/"content/editorial/STORIES-VINCULADOS-2026-11-02-a-08.json"
 
 
-def verify_reels_and_stories(reels_plan, feed_plan):
+def verify_reels_and_stories(reels_plan, feed_plan, publication_ledger=None):
     """Fail-closed check of the separate 18h reel / post-publication story plan.
 
     This does not publish anything or misrepresent a Story upload as a native
@@ -53,8 +53,24 @@ def verify_reels_and_stories(reels_plan, feed_plan):
         if origin not in ("unverified","verified_non_synthetic","synthetic"):
             raise PresetError("A origem de IA do vídeo é inválida.")
         if reel.get("approved") is True:
-            if (not reel.get("source_verified") or not source or not reel.get("source_mp4")
-                    or not reel.get("topic_id") or origin=="unverified"):
+            # A previously published Reel can retain uncertain origin metadata
+            # as an historical fact, but ONLY when matched to the immutable
+            # real publication ledger. This never approves future media.
+            ledger_items = (publication_ledger or {}).get("items", {})
+            matches = [record for record in ledger_items.values()
+                       if isinstance(record, dict) and record.get("status") == "published"
+                       and record.get("instagram_user_id") == "17841433004716815"
+                       and record.get("source_video_id") == source
+                       and record.get("media_id") == reel.get("reel_media_id")
+                       and record.get("permalink") == reel.get("reel_permalink")
+                       and str(record.get("media_id", "")).isdigit()]
+            historical_receipt = (reel.get("reel_published") is True
+                                  and reel.get("source_verified") is True
+                                  and bool(reel.get("topic_id"))
+                                  and len(matches) == 1)
+            if not historical_receipt and (not reel.get("source_verified") or not source
+                    or not reel.get("source_mp4") or not reel.get("topic_id")
+                    or origin == "unverified"):
                 raise PresetError("Reel sem fonte e origem verificadas não pode ser aprovado.")
         if reel.get("reel_published"):
             if not reel.get("approved") or not reel.get("reel_media_id"):
@@ -94,7 +110,8 @@ def validate(root=ROOT):
         raise PresetError("O quadro Carrossel Educativo deve entrar em rodízio semanal.")
     reels_plan=json.loads((root/REELS.relative_to(ROOT)).read_text(encoding="utf-8"))
     stories_plan=json.loads((root/STORIES.relative_to(ROOT)).read_text(encoding="utf-8"))
-    verify_reels_and_stories(reels_plan, plan)
+    ledger=json.loads((root/"content/publication-state.json").read_text(encoding="utf-8"))
+    verify_reels_and_stories(reels_plan, plan, ledger)
     try:
         native_stories=verify_linked_stories(plan, reels_plan, stories_plan)
     except StoryGateError as exc:
