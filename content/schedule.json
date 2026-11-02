@@ -2,7 +2,7 @@
   "version": 1,
   "timezone": "America/Sao_Paulo",
   "created_at": "2026-10-30T00:00:00Z",
-  "approval_note": "Recuperação exclusiva do carrossel Halloween aprovada em 01/11. Outros posts, inclusive 01/11, não foram aprovados. Música será adicionada no aplicativo e só então confirmada.",
+  "approval_note": "Histórico anterior preservado. Em 02/11/2026, o proprietário solicitou três publicações (10h atrasada, 15h, 18h). Itens 10h (recuperação 13h10) e 15h adicionados após revisão; Reel 18h permanece pendente de arquivo MP4 original comprovado.",
   "posts": [
     {
       "id": "halloween-2026-10-31-tirinha-aprovada",
@@ -114,6 +114,51 @@
         "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
       ],
       "approval_note": "RASCUNHO V2 — tirinha com Lúmino e texto factual TSE; JPEG 1080x1350 conferido via workflow. Não publicar até checagem visual final."
+    },
+    {
+      "id": "tue-2026-11-02-10-mar-cruzado-fato",
+      "due_at": "2026-11-02T16:10:00Z",
+      "username": "temumaexplicacao",
+      "kind": "post",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "O MAR VIROU UM TABULEIRO?",
+      "caption": "🌊 Parece que alguém desenhou quadrados no oceano. Mas a explicação está no movimento das ondas.\n\nQuando dois conjuntos de ondas chegam de direções diferentes, suas cristas podem se cruzar, formando um padrão que lembra um tabuleiro. Ondulações geradas longe da costa também podem se encontrar com ondas produzidas por ventos locais.\n\nEsses movimentos se sobrepõem: em alguns pontos a superfície fica mais elevada; em outros, menos. E o desenho nunca é estático. O mar está em movimento o tempo todo.\n\nA imagem é uma ilustração editorial do fenômeno. Na água de verdade, ondas cruzadas podem tornar as condições mais complexas, especialmente para pequenas embarcações.\n\nVocê já tinha visto falar no mar cruzado? 💡\n\n#TemUmaExplicacao #Oceanografia #Ciência #Curiosidades",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-MAR-CRUZADO-01.jpg"
+      ],
+      "media_sha256": [
+        "745fb200df5051afc008d3898c26a71218dd0a85750acf5ec96f261979546d0f"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "sources": [
+        "https://www.noaa.gov/jetstream/ocean/waves",
+        "https://www.bom.gov.au/resources/learn-and-explore/marine-knowledge-centre/waves-and-swell"
+      ],
+      "approval_note": "Slot original de 10h perdido: recuperação emergencial às 13h10 de 02/11/2026, autorizada pelo proprietário; nova publicação única com capa validada, preservando 5-lâminas em revisão visual. Não retroagir data."
+    },
+    {
+      "id": "tue-2026-11-02-15-senha-impossivel",
+      "due_at": "2026-11-02T18:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "post",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "O SAC DA SENHA IMPOSSÍVEL",
+      "caption": "🔐 Eu só queria criar uma senha. O sistema pediu até o nome do meu primeiro peixe.\n\nO detalhe: eu nunca tive um peixe. 😂\n\nNo SAC do Lúmino, a burocracia foi promovida a chefe final! Um humorzinho sobre aquelas regras de cadastro que parecem um enigma de outra dimensão.\n\nQual foi a exigência de senha mais absurda que você já encontrou?\n\n#TemUmaExplicacao #Memes #VidaDigital #Lumino",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-15H-SAC-SENHA-IMPOSSIVEL.jpg"
+      ],
+      "media_sha256": [
+        "9e532914b7f67b90c5e3cd190399dd83c6dbcf7461636e6267ba4457588cddef"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "sources": [],
+      "approval_note": "Peça humorística ficcional revisada e autorizada em 02/11/2026 para a janela de 15h."
     }
   ]
 }
