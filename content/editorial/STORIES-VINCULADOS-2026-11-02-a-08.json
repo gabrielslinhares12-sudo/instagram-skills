@@ -17,7 +17,7 @@
       "parent_id": "tue-2026-11-02-12-mar-cruzado",
       "parent_kind": "carousel",
       "day": "2026-11-02",
-      "slot": "11:00",
+      "slot": "15:00",
       "parent_topic_id": "mar-cruzado",
       "native_share_method": "share_existing_instagram_post_to_story",
       "parent_published": false,
@@ -37,7 +37,7 @@
       "parent_id": "tue-2026-11-02-18-senha-impossivel",
       "parent_kind": "meme",
       "day": "2026-11-02",
-      "slot": "15:00",
+      "slot": "11:00",
       "parent_topic_id": "senha-impossivel",
       "native_share_method": "share_existing_instagram_post_to_story",
       "parent_published": true,
@@ -440,5 +440,6 @@
   "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
   "cta_mode": "native_story_text_overlay",
   "narration_required": false,
-  "no_external_link_or_link_sticker": true
+  "no_external_link_or_link_sticker": true,
+  "schedule_note": "Para 02/11, Mar Cruzado às 15h e Senha Impossível publicada antecipadamente; Story só após recibo, compartilhamento do próprio post, CTA escrito, sem URL adicional/áudio."
 }
