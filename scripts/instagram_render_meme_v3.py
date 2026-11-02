@@ -59,8 +59,8 @@ def main():
     # Panel 2: the punchline.
     draw.polygon([(565,55),(1060,22),(1038,205),(576,235)],fill=YELLOW)
     draw.text((594,65),"MITO!",font=font(125),fill=RED)
-    draw.text((568,525),"NÃO EXISTE BOTÃO",font=font(31),fill=PAPER)
-    draw.text((568,565),"'ANULAR ELEIÇÃO'.",font=font(31),fill=YELLOW)
+    draw.text((568,574),"NÃO EXISTE BOTÃO",font=font(31),fill=PAPER)
+    draw.text((568,614),"'ANULAR ELEIÇÃO'.",font=font(31),fill=YELLOW)
     # Panel 3: easy-to-scan proof. Contrasting cards.
     draw.polygon([(30,713),(527,695),(512,834),(17,846)],fill=YELLOW)
     multiline(draw,["BRANCO","E NULO"],53,719,65,INK,4)
@@ -68,7 +68,8 @@ def main():
     draw.text((56,889),"NÃO SÃO VÁLIDOS.",font=font(42),fill=RED)
     draw.text((55,955),"NÃO VÃO PARA",font=font(39),fill=INK)
     draw.text((55,1005),"NINGUÉM.",font=font(45),fill=INK)
-    draw.text((37,1131),"Mesmo se forem muitos.",font=font(31),fill=PAPER)
+    draw.text((37,1099),"MUITOS NULOS?",font=font(26),fill=PAPER)
+    draw.text((37,1132),"NÃO ANULAM.",font=font(26),fill=YELLOW)
     # Panel 4: legal distinction, small original mascot.
     draw.rounded_rectangle((567,708,1051,900),radius=25,fill=(250,242,228))
     draw.text((591,732),"VOTO NULO ≠",font=font(56),fill=RED)
