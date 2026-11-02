@@ -18,7 +18,7 @@
     "cta_visually_embedded": true,
     "native_share_required_for_interactive_reel_link": true
   },
-  "ai_disclosure": "Verificar procedência; não atribuir IA por automatização nem ocultar geração sintética que exija divulgação.",
+  "ai_disclosure": "Nunca acrescentar voluntariamente selo ou texto de autoria por IA. Para novo Reel, exigir origem verificada como não sintética; se o conteúdo exigir identificação, bloquear publicação automática para revisão. O Instagram pode aplicar rótulo próprio.",
   "reels": [
     {
       "day": "2026-11-02",
@@ -140,5 +140,7 @@
       "approved": false
     }
   ],
-  "note": "Não agenda ou publica; campo nulo exige verificação de fonte original e inspeção do vídeo, Story e conteúdo."
+  "note": "Não agenda ou publica; campo nulo exige verificação de fonte original e inspeção do vídeo, Story e conteúdo.",
+  "ai_label_by_publisher": false,
+  "synthetic_content_autopublish_allowed": false
 }
