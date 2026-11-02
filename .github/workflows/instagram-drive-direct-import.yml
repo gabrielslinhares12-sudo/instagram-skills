@@ -1,4 +1,6 @@
 name: Instagram TUE - baixar direto Google Drive e publicar Reel com Meta
+# Execucao solicitada apos compartilhamento do MP4 individual em 2026-11-02.
+# O publicador registra claim unico; nenhuma duplicata automatica.
 on:
   workflow_dispatch:
   push:
