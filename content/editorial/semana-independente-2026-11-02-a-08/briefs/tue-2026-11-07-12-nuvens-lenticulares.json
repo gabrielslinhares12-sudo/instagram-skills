@@ -1,6 +1,5 @@
 {
   "preset_id": "TUE-MESTRE-01",
-  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
   "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
   "status": "draft_review_no_publication",
   "approved": false,
@@ -72,5 +71,6 @@
     }
   ],
   "caption": "💡 A nave é feita de água e vento. Nuvens lenticulares podem parecer discos voadores, especialmente quando surgem sobre regiões montanhosas. Quando o ar atravessa relevo, podem se formar ondas estacionárias no fluxo atmosférico. Ar úmido que sobe em parte da onda pode resfriar e formar gotículas, deixando a região visível como nuvem. A nuvem pode parecer estacionária porque gotículas se formam de um lado e evaporam do outro enquanto o ar segue se movendo. Uma nuvem em forma de disco pode ser efeito de ondas do relevo, mas identificá-la exige olhar condições e imagens concretas. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
-  "publication_requires_native_music": true
+  "publication_requires_native_music": true,
+  "reference_standard_id": "TUE-MESTRE-01"
 }
