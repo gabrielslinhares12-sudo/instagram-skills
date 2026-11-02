@@ -217,7 +217,7 @@ def main():
     preview=Image.new("RGB",(pw,ph),PAPER)
     for i,item in enumerate(manifest):
         with Image.open(DEST/item["file"]) as pg:
-            thumb=pg.resize((216,270),Image.Resampling.LANCZOS)
+            thumb=pg.convert("RGB").resize((216,270),Image.Resampling.LANCZOS)
             preview.paste(thumb,((i%cols)*216,(i//cols)*270))
     prev=DEST/f"PREVIA-{len(manifest):02d}-ARTES.png"
     preview.save(prev,"PNG")
