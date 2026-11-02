@@ -81,12 +81,12 @@
       "text": "Arraste para o lado →",
       "required_on_nonfinal_carousel_slides": true,
       "forbidden_on_last_slide": true,
-      "position": "rodapé limpo abaixo da arte, centralizado com margens de segurança",
+      "position": "rodapé CENTRAL abaixo da arte, respeitando margem segura; sem cobrir texto, Lúmino ou cena",
       "readable_mobile": true,
       "no_page_numbers": true,
       "no_obstruction": true,
       "style": "IGUAL À REFERÊNCIA OFICIAL: fileira discreta de pontos pequenos (ativo amarelo, restantes cinza), seta única preta fina e microtexto em letras espaçadas 'ARRASTE PARA O LADO →' no rodapé claro. Não criar tarja amarela, botão, selo, mão ou dupla seta.",
-      "progress_dots": "quantidade igual ao número real de lâminas, atual amarela e demais cinza, sem números nem total fixo",
+      "progress_dots": true,
       "preserve_original_master_art": true,
       "do_not_rebuild_background_or_change_topic": true,
       "prohibited": [
@@ -97,7 +97,10 @@
         "rodapé visualmente chamativo que compete com título e Lúmino",
         "contagem de páginas fixa",
         "refazer a arte original para adicionar swipe"
-      ]
+      ],
+      "display_text": "ARRASTE PARA O LADO →",
+      "progress_dot_style": "quantidade igual ao número real de lâminas, atual amarela e demais cinza, sem números nem total fixo",
+      "dot_count_matches_carousel_length": true
     },
     "visual_master_mandatory_for_all_art": true,
     "visual_master_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
