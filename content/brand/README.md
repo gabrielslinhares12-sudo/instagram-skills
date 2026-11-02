@@ -1,6 +1,6 @@
 # PADRÃO MESTRE ATIVO: [TUE-MESTRE-01](TUE-MESTRE-01.md)
 
-**Sempre aplicar em qualquer conteúdo Instagram TUE.** Comando: `ATIVAR TUE-MESTRE-01`. Prevalece sobre regras contraditórias abaixo. **Sem numeração visível; indicador discreto de arrastar. Modelo 1 exclusivo.** Nenhuma aprovação por QC exclusivamente técnico.
+**Sempre aplicar em qualquer conteúdo Instagram TUE.** Comando: `ATIVAR TUE-MESTRE-01`. Prevalece sobre regras contraditórias abaixo. **Sem numeração visível; “Arraste →” legível, obrigatório em todas as lâminas com continuação e ausente na última. Modelo 1 editorial exclusivo.** Nenhuma aprovação por QC exclusivamente técnico.
 
 # Instagram TUE — PADRÃO VISUAL CANÔNICO (obrigatório)
 
