@@ -15,7 +15,7 @@ STORIES=ROOT/"content/editorial/STORIES-VINCULADOS-2026-11-02-a-08.json"
 
 
 def verify_reels_and_stories(reels_plan, feed_plan):
-    """Fail-closed check of the separate 21h reel / post-publication story plan.
+    """Fail-closed check of the separate 18h reel / post-publication story plan.
 
     This does not publish anything or misrepresent a Story upload as a native
     in-app share of the Reel. Provenance and the original video must be verified.
@@ -32,8 +32,8 @@ def verify_reels_and_stories(reels_plan, feed_plan):
     sources=set()
     for reel in items:
         day=reel.get("day")
-        if day not in feed or day in days or reel.get("slot")!="21:00":
-            raise PresetError("Reel sem data única ou fora das 21h.")
+        if day not in feed or day in days or reel.get("slot")!="18:00":
+            raise PresetError("Reel sem data única ou fora das 18h.")
         days.add(day)
         source=reel.get("source_video_id")
         if source:
@@ -80,9 +80,9 @@ def validate(root=ROOT):
     # The feed must rotate formats between both hours. The educational carousel is a series,
     # not a fixed daily format or a compulsory noon post.
     by_slot = {slot: {p["kind"] for p in plan["posts"] if p.get("slot") == slot}
-               for slot in ("12:00", "18:00")}
+               for slot in ("11:00", "15:00")}
     if any(kinds != {"carousel", "meme"} for kinds in by_slot.values()):
-        raise PresetError("Os quadros devem alternar entre 12h e 18h, sem formato fixo.")
+        raise PresetError("Os quadros devem alternar entre 11h e 15h, sem formato fixo.")
     if not any(p.get("series_id") == "carrossel-educativo" for p in plan["posts"]):
         raise PresetError("O quadro Carrossel Educativo deve entrar em rodízio semanal.")
     reels_plan=json.loads((root/REELS.relative_to(ROOT)).read_text(encoding="utf-8"))
@@ -117,7 +117,7 @@ def validate(root=ROOT):
             raise PresetError("Carrossel sem desenvolvimento suficiente.")
         if post["kind"]=="meme" and "CENA 1:" not in brief["slides"][0]["new_information"]:
             raise PresetError("Meme não tem tirinha autoral desenvolvida.")
-    if any(slots!={"12:00","18:00"} for slots in day_counts.values()):
+    if any(slots!={"11:00","15:00"} for slots in day_counts.values()):
         raise PresetError("Existem horários duplicados ou lacunas.")
     if kinds!={"carousel":7,"meme":7}:
         raise PresetError("Formato/quantidade da grade divergente.")
