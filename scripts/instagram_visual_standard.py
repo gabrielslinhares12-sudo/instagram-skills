@@ -57,15 +57,19 @@ def verify_brand(root: Path = ROOT) -> dict:
         raise VisualError("Modelo antigo de oito painéis não pode ser referência ativa.")
     # Compare the exact image uploaded by the owner, never an invented model.
     master = spec.get("visual_master", {})
-    path = "content/brand/modelo-oficial-aprovado-2026-11-02.png"
+    path = "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg"
     digest = "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
     master_path = safe_file(root, path)
     if (master.get("path") != path or master.get("sha256") != digest
             or not master_path.is_file() or sha256(master_path) != digest):
         raise VisualError("Arquivo visual-mestre aprovado pelo proprietário foi alterado ou está ausente.")
     with Image.open(master_path) as approved:
-        if approved.format != "PNG" or approved.size != (1229, 1536):
+        if approved.format != "JPEG" or approved.size != (1229, 1536):
             raise VisualError("Dimensões ou formato da imagem visual-mestre divergentes.")
+    ref = spec.get("reference_visual", {})
+    if (ref.get("path") != path or ref.get("sha256") != digest
+            or ref.get("width") != 1229 or ref.get("height") != 1536):
+        raise VisualError("A referência oficial precisa ser o exato JPEG aprovado em 02/11.")
     design = spec.get("design", {})
     if (design.get("footer_dots") is not True or
             design.get("swipe_cue_progress_dots") is not True or
@@ -84,6 +88,9 @@ def verify_brand(root: Path = ROOT) -> dict:
     if mirror.is_file():
         other = read_json(mirror)
         peer_master = other.get("approved_visual_master", {})
+        visual_ref = other.get("approved_visual_reference", {})
+        if visual_ref.get("path") != path or visual_ref.get("sha256") != digest:
+            raise VisualError("Espelho não aponta para o mesmo JPEG visual aprovado.")
         if (peer_master.get("path") != path or peer_master.get("sha256") != digest
                 or peer_master.get("required") is not True
                 or other.get("swipe_cue", {}).get("position") != "bottom_center"
@@ -183,15 +190,17 @@ def validate_package(manifest: Path, root: Path = ROOT) -> dict:
     if mode not in {LEGACY_MODE, INDIVIDUAL_MODE}:
         raise VisualError("Processo de produção não autorizado.")
     if mode == INDIVIDUAL_MODE:
+        if data.get("reference_visual_sha256") != spec["reference_visual"]["sha256"]:
+            raise VisualError("Novo carrossel sem hash do modelo visual original aprovado.")
         for i, page in enumerate(pages, 1):
             if page.get("source_sha256") != page.get("sha256"):
                 raise VisualError("Arte foi alterada durante a montagem.")
             # The cue is part of the individual master JPG. These metadata
             # checks complement, never replace, a manual visual inspection.
-            cue = "Arraste →" if i < len(pages) else None
+            cue = "Arraste para o lado →" if i < len(pages) else None
             if "swipe_cue" not in page or page["swipe_cue"] != cue:
                 raise VisualError(
-                    f"Página {i}: falta 'Arraste →' para indicar continuação, "
+                    f"Página {i}: falta 'Arraste para o lado →' com progresso discreto, "
                     "ou existe uma seta incorreta na última."
                 )
         verify_preview(manifest.parent, data)
