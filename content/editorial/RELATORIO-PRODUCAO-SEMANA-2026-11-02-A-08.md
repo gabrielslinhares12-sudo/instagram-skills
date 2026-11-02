@@ -13,7 +13,7 @@
 
 ## Produção iniciada — duas primeiras peças
 
-### 1. 02/11, 12h — Parece mentira, mas tem explicação: O MAR VIROU UM TABULEIRO?
+### 1. 02/11, 11h — Parece mentira, mas tem explicação: O MAR VIROU UM TABULEIRO?
 
 - Carrossel: **5 JPGs individuais**; legenda e manifesto técnico com SHA-256 por imagem; prévia 5 lâminas.
 - As cenas usam infográficos e uma simulação didática de ondas cruzadas, **não fotografia real**. O usuário exige imagem documental nas capas quando possível; portanto **NÃO liberar publicação** antes da foto licenciada e do QC fotográfico.
@@ -21,7 +21,7 @@
 - Fact check: NOAA `https://www.noaa.gov/jetstream/ocean/waves` e Universidade do Havaí `https://manoa.hawaii.edu/exploringourfluidearth/physical/waves/sea-states`.
 - **Estado:** 5 JPGs gerados; arte em revisão; `approved=false`.
 
-### 2. 02/11, 18h — SAC DO LÚMINO: A SENHA VIROU UM CHEFE FINAL
+### 2. 02/11, 15h — SAC DO LÚMINO: A SENHA VIROU UM CHEFE FINAL
 
 - **1 JPG individual** com três cenas, roteiro ficcional/humor, legenda e manifesto.
 - O PNG original do Lúmino foi inserido literalmente, sem redesenho.
@@ -30,8 +30,8 @@
 
 ## Resto da semana
 
-- Os **14 briefings independentes** estão em `content/editorial/semana-independente-2026-11-02-a-08/briefs/` e a grade em `grade.json`, com quadros alternando entre 12h e 18h. **As demais 12 artes ainda não foram geradas neste ciclo.**
-- Os **7 Reels** às 21h precisam do MP4 original do YouTube TUE e confirmação de direitos, conta e tema; a busca conectada no Google Drive por `mimeType = 'video/mp4'` não encontrou vídeos disponíveis. **Não substituir por vídeo fabricado, captura de player ou fonte fictícia.**
+- Os **14 briefings independentes** estão em `content/editorial/semana-independente-2026-11-02-a-08/briefs/` e a grade em `grade.json`, com quadros alternando entre 11h e 15h. **As demais 12 artes ainda não foram geradas neste ciclo.**
+- Os **7 Reels** às 18h precisam do MP4 original do YouTube TUE e confirmação de direitos, conta e tema; a busca conectada no Google Drive por `mimeType = 'video/mp4'` não encontrou vídeos disponíveis. **Não substituir por vídeo fabricado, captura de player ou fonte fictícia.**
 - Os **21 Stories** serão **republicações nativas** da postagem original somente **depois** de cada publicação confirmada, com fala pedindo para curtir e seguir. Nenhum Story será preparado como imagem paralela antes do post.
 - Não adicionar selo/texto voluntário de IA; para conteúdo que exija declaração obrigatória, bloquear e revisar.
 - Não existe recibo de publicação da nova semana neste relatório. Nem cron, nem agendamento, nem Story foi executado por esta atualização.
