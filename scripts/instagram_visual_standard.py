@@ -299,6 +299,50 @@ def audit_queue(root: Path=ROOT) -> dict:
                             raise VisualError("JPG Halloween aprovado em formato incorreto.")
                 reviewed.append(slug)
                 continue
+            # One-time owner's explicit approval of the exact five final
+            # renders shown in conversation on 02/11/2026. This does not
+            # weaken QC for future posts or any different asset. An original
+            # mascot PNG pixel-match is NOT asserted by this special route.
+            if slug == "tue-2026-11-02-12-mar-cruzado":
+                record=root/"content/approved"/slug/"approval.json"
+                if not record.is_file():
+                    raise VisualError("Mar Cruzado sem autorização expressa das cinco artes.")
+                approval=read_json(record)
+                expected=[
+                    "6831ca151f9774699026b89d6647f282092af7d3ac5dc1a9df362591261d679c",
+                    "372bf00e76ede34f1e6ebd9b996caf25df7b188c94bd275ce495e0060f51c457",
+                    "ce862156a6f3e6a0fc2e08781aaf0911cf1176560d33d785f022e45f0cc3fc35",
+                    "3a9e3bbe0f0412825cb581e2dd98cf8c75cec3d66dba02669e66bcd82c292702",
+                    "977a00814cb18b0c46c4d4dc64dc4e246c1668c06f31d7d604a256ef03fe507c",
+                ]
+                pinned="f7195510c58c2a8ab7fe45118f184341c0bea791"
+                prefix=("https://raw.githubusercontent.com/gabrielslinhares12-sudo/"
+                        "instagram-skills/"+pinned+
+                        "/content/media/instagram/2026-11-02/mar-cruzado-final/")
+                urls=[prefix+f"MAR-CRUZADO-FINAL-{i:02d}.jpg" for i in range(1,6)]
+                if (approval.get("id")!=slug
+                        or approval.get("preset_id")!="TUE-MESTRE-01"
+                        or approval.get("owner_authorized") is not True
+                        or approval.get("visual_reviewed") is not True
+                        or approval.get("approved") is not True
+                        or approval.get("approved_visual_reference_sha256") !=
+                           "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
+                        or approval.get("approved_media_sha256") != expected
+                        or post.get("media_sha256") != expected
+                        or post.get("media_urls") != urls
+                        or post.get("distribution_mode") != approval.get("distribution_mode")
+                        or post.get("owner_authorized_two_step_music") is not True):
+                    raise VisualError("Mar Cruzado divergiu dos cinco JPGs aprovados.")
+                for i, digest in enumerate(expected, 1):
+                    asset=root/"content/media/instagram/2026-11-02/mar-cruzado-final"/f"MAR-CRUZADO-FINAL-{i:02d}.jpg"
+                    if not asset.is_file() or sha256(asset)!=digest:
+                        raise VisualError("Arquivo exato do Mar Cruzado não foi preservado.")
+                    with Image.open(asset) as im:
+                        if im.format!="JPEG" or im.size!=(1080,1350):
+                            raise VisualError("Imagem do Mar Cruzado tem dimensões divergentes.")
+                verify_publication_route(approval)
+                reviewed.append(slug)
+                continue
             manifest=root/"content/approved"/slug/"visual-manifest.json"
             if not manifest.is_file():
                 raise VisualError(f"Carrossel aprovado sem verificacao de estilo: {slug}")
