@@ -106,7 +106,7 @@ def package(spec_path: Path, out: Path) -> dict:
         "human_visual_qc": None,  # revisor deve conferir cada lâmina; nunca autopreencher
         "production_mode": MODE,
         "standard_id": brand["id"],
-        "reference_sha256": brand["reference"]["sha256"],
+        "reference_standard_id": brand["editorial_standard"]["id"],
         "lumino_sha256": brand["lumino"]["sha256"],
         "post_id": post_id,
         "approved": False,
