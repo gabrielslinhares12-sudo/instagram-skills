@@ -4,7 +4,7 @@
   "day": "2026-11-02",
   "timezone": "America/Sao_Paulo",
   "intent": "Priorizar três publicações de 02/11/2026 antes de recriar restante da semana",
-  "state": "NOT_SCHEDULED_MEDIA_AND_ACCOUNT_REQUIRE_ACTION",
+  "state": "TWO_POSTS_EXPORTED_AND_MEDIA_STAGED_NOT_SCHEDULED",
   "operational_schedule_updated": false,
   "publishing_integration": {
     "github_workflow": "instagram-scheduler.yml",
@@ -21,12 +21,12 @@
       "id": "tue-2026-11-02-12-mar-cruzado",
       "topic_id": "mar-cruzado",
       "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-02-12-mar-cruzado.json",
-      "status": "BLOCKED_NOT_SCHEDULED",
+      "status": "ASSETS_STAGED_PRIVATE_DRIVE_NOT_SCHEDULED",
       "issues": [
-        "5 mídias não validadas com Lúmino canônico",
-        "assets do manifesto não estão em CDN publicável",
-        "revisão editorial/factual e direitos pendentes",
-        "music native unresolved"
+        "Drive files are private, not publicly downloadable by Meta/Graph",
+        "Metricool connected brand has no Instagram network",
+        "GitHub queue requires public HTTPS media URLs and approved provenance",
+        "Instagram synthetic illustration disclosure may apply, must not falsely classify as non-synthetic"
       ]
     },
     {
@@ -36,11 +36,12 @@
       "id": "tue-2026-11-02-18-senha-impossivel",
       "topic_id": "senha-impossivel",
       "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-02-18-senha-impossivel.json",
-      "status": "BLOCKED_NOT_SCHEDULED",
+      "status": "ASSET_STAGED_PRIVATE_DRIVE_NOT_SCHEDULED",
       "issues": [
-        "personagem Lúmino incorreto",
-        "imagem revisada não está disponível via URL HTTPS pública",
-        "QC visual não aprovado"
+        "Drive original PNG staged privately, not public",
+        "Metricool brand has no Instagram network",
+        "GitHub queue still has no validated publication entry",
+        "Synthetic illustration provenance cannot be falsely classified"
       ]
     },
     {
@@ -62,5 +63,53 @@
   "ai_disclosure": "Sem declaração opcional de IA por automação; mídia sintética que exija identificação deve cumprir política da plataforma, ou ficar bloqueada.",
   "quality_gate": "Nunca aprovar ou agendar ativo com Lúmino não canônico; não inventar URLs, recibos ou aprovação.",
   "blocking_rule": "Este arquivo é registro editorial e NÃO aciona GitHub Actions nem agenda Instagram. Para agendar de verdade, validar mídia e inserir itens reais aprovados em content/schedule.json com URLs verificadas.",
-  "do_not_infer_success": true
+  "do_not_infer_success": true,
+  "quality_status": "Owner approved newly generated visuals in this conversation. Exact canonical Lúmino pixel-match not verified; current artwork is synthetic and provenance must be declared honestly if required.",
+  "files_staged_in_google_drive": {
+    "provider": "Google Drive owner temumaexplicacao@gmail.com",
+    "scope": "private, not public internet-accessible",
+    "remark": "These URLs are owner-accessible staging, NOT public media_urls for Meta API; do not auto-insert them into content/schedule.json",
+    "carousel_11h": [
+      {
+        "position": 1,
+        "title": "O MAR VIROU UM TABULEIRO?",
+        "file_id": "1ZcUmeH3dFM319908cqIP8_8atCM5qWB9"
+      },
+      {
+        "position": 2,
+        "title": "DUAS ONDAS, DUAS DIREÇÕES",
+        "file_id": "1l_Qr5n5fB9uwTn-bFW0RdwfQdjt5UzoH"
+      },
+      {
+        "position": 3,
+        "title": "ONDAS EM SUPERPOSIÇÃO",
+        "file_id": "1irZFSZlLV-5v_id-eHH1RU3s-vijp37u"
+      },
+      {
+        "position": 4,
+        "title": "O DESENHO MUDA O TEMPO TODO",
+        "file_id": "1w3Iy4A0g7rCwylDooRndaAUY1FgCDZ7g"
+      },
+      {
+        "position": 5,
+        "title": "MAR CRUZADO, BONITO, MAS EXIGE CUIDADO",
+        "file_id": "1romck437g1n8p26RcV5Qd6EeaOhGxiC8"
+      }
+    ],
+    "post_15h": {
+      "title": "O SAC DA SENHA IMPOSSÍVEL",
+      "file_id": "1UU6i-yCLZDVUU2ySlT_IPO3UBUqc5FIe"
+    }
+  },
+  "local_export": {
+    "carousel": "sandbox:/mnt/data/TUE-02NOV-CARROSSEL-11H-PRONTO-PARA-ENVIO.zip",
+    "size": "1080x1350 pixels",
+    "media_count": 5,
+    "sha256_manifest_inside_archive": true
+  },
+  "notes": [
+    "No story can be generated before receipt of actual parent Instagram post",
+    "The schedule file and historical ledger were not changed; no Instagram publishing confirmed",
+    "Time slots: 11:00/15:00/18:00 Sao Paulo time; before due need complete Meta access and media source checks"
+  ]
 }
