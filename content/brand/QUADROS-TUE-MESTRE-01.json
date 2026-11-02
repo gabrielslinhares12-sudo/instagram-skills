@@ -114,14 +114,14 @@
   ],
   "editorial_rotation": {
     "feed_slots_local": [
-      "12:00",
-      "18:00"
+      "11:00",
+      "15:00"
     ],
     "kinds_alternate_across_both_slots": true,
     "no_mandatory_daily_carousel": true,
     "no_mandatory_daily_meme": true,
     "carrossel_educativo_is_one_series_among_others": true,
-    "separate_daily_youtube_reel_slot_local": "21:00",
+    "separate_daily_youtube_reel_slot_local": "18:00",
     "distinct_topics_three_daily_posts": true
   }
 }
