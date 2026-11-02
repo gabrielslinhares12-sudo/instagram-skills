@@ -24,8 +24,8 @@ def verify_reels_and_stories(reels_plan, feed_plan):
     items=reels_plan.get("reels")
     if not isinstance(items, list) or len(items)!=7:
         raise PresetError("É preciso planejar sete Reels, um por data.")
-    feed={p["day"]: {p["topic_id"] for p in feed_plan["posts"] if p["day"]==p["day"]}
-          for p in feed_plan["posts"]}
+    feed={entry["day"]: {p["topic_id"] for p in feed_plan["posts"] if p["day"]==entry["day"]}
+          for entry in feed_plan["posts"]}
     days=set()
     sources=set()
     for reel in items:
