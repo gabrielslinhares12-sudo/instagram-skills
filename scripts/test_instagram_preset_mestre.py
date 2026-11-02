@@ -150,19 +150,24 @@ class MasterPresetTests(unittest.TestCase):
         base=Path(__file__).resolve().parent.parent
         feed=json.loads((base/"content/editorial/semana-independente-2026-11-02-a-08/grade.json").read_text(encoding="utf-8"))
         plan=json.loads((base/"content/editorial/REELS-E-STORIES-2026-11-02-a-08.json").read_text(encoding="utf-8"))
-        self.assertEqual(verify_reels_and_stories(plan,feed)["reels_planned"],7)
+        ledger=json.loads((base/"content/publication-state.json").read_text(encoding="utf-8"))
+        self.assertEqual(verify_reels_and_stories(plan,feed,ledger)["reels_planned"],7)
         changed=copy.deepcopy(plan)
         changed["reels"][0]["story_published"]=True
         with self.assertRaisesRegex(PresetError,"Story não pode preceder"):
-            verify_reels_and_stories(changed,feed)
+            verify_reels_and_stories(changed,feed,ledger)
         changed=copy.deepcopy(plan)
-        changed["reels"][0]["approved"]=True
+        changed["reels"][1]["approved"]=True  # Different, unpublished Reel.
         with self.assertRaisesRegex(PresetError,"origem verificadas"):
-            verify_reels_and_stories(changed,feed)
+            verify_reels_and_stories(changed,feed,ledger)
+        changed=copy.deepcopy(plan)
+        changed["reels"][0]["reel_media_id"]="123456789"  # Forged historical receipt.
+        with self.assertRaisesRegex(PresetError,"origem verificadas"):
+            verify_reels_and_stories(changed,feed,ledger)
         changed=copy.deepcopy(plan)
         changed["reels"][0]["topic_id"]=feed["posts"][0]["topic_id"]
         with self.assertRaisesRegex(PresetError,"repete tema"):
-            verify_reels_and_stories(changed,feed)
+            verify_reels_and_stories(changed,feed,ledger)
 
 if __name__ == "__main__":
     unittest.main()
