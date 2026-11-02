@@ -1,6 +1,12 @@
 # PADRÃO MESTRE ATIVO: [TUE-MESTRE-01](TUE-MESTRE-01.md)
 
-**Sempre aplicar em qualquer conteúdo Instagram TUE.** Comando: `ATIVAR TUE-MESTRE-01`. Prevalece sobre regras contraditórias abaixo. **Sem numeração visível; “Arraste →” legível, obrigatório em todas as lâminas com continuação e ausente na última. Modelo 1 editorial exclusivo.** Nenhuma aprovação por QC exclusivamente técnico.
+> **IMAGEM-MESTRE VISUAL CANÔNICA aprovada em 02/11/2026:** [**Imagem oficial aprovada em 02/11/2026**](modelo-oficial-aprovado-2026-11-02.png), SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`.
+>
+> Toda arte do Instagram TUE deve seguir essa EXATA referência estética — não confundir com uma imagem-modelo antiga de oito painéis. O tema eleitoral é apenas demonstrativo, não deve ser copiado como pauta.
+>
+> **Rodapé obrigatório de carrossel (exceto última lâmina):** pontos pequenos de progresso (atual em amarelo, demais cinza), seta fina e texto `ARRASTE PARA O LADO →` pequeno e espaçado, centralizado embaixo, SEM tarja, pincelada, card colorido ou ícone de mão. Número de pontos = total real de lâminas. Na última, sem incentivo falso para avançar.
+
+**Sempre aplicar em qualquer conteúdo Instagram TUE.** Comando: `ATIVAR TUE-MESTRE-01`. Prevalece sobre regras contraditórias abaixo. **Sem numeração; rodapé discreto da imagem de 02/11 (bolinhas de progresso amarelas/cinzas, seta fina, 'ARRASTE PARA O LADO →' em texto pequeno centralizado), somente quando houver próxima lâmina.** Nenhuma aprovação por QC exclusivamente técnico.
 
 # Instagram TUE — PADRÃO VISUAL CANÔNICO (obrigatório)
 
@@ -9,7 +15,8 @@
 ## Arquivos reais no repositório
 
 - [Lúmino original PNG — imutável](lumino-original.png) — SHA-256 `f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b`.
-- [Contrato editorial e visual TUE-MESTRE-01](TUE-MESTRE-01.md) — padrão aprovado em 01/11; **não existe imagem-modelo de oito painéis ativa**.
+- [Contrato editorial e visual TUE-MESTRE-01](TUE-MESTRE-01.md) — revisto em 02/11 com referência visual única. O antigo modelo de oito painéis NÃO é usado.
+- [Imagem de referência EXATA aprovada pelo proprietário](modelo-oficial-aprovado-2026-11-02.png) — SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`.
 
 As cópias existentes em `content/visual-standard/assets/` são espelhos, não uma segunda identidade visual. O verificador exige que o **PNG canônico do Lúmino** e seu espelho sejam byte a byte idênticos, além da presença do contrato TUE-MESTRE-01. Nenhuma grade de oito painéis pode ser carregada como referência vigente.
 
@@ -23,7 +30,7 @@ O Lúmino é **uma camada proveniente do PNG original**, nunca regenerado: cabe�
 
 ## Execução obrigatória: direção artística primeiro, empacotamento depois
 
-**PROIBIDO usar o script `render_instagram_carrossel.py` na entrega final.** Seu template fixo `hero/split/diagram` produz apenas **rascunhos técnicos**, mesmo que passe em testes de cor, tamanho e mascote. O GitHub rejeita qualquer tentativa de promover esses rascunhos para uma publicação nova. O único padrão em vigor é **TUE-MESTRE-01 (01/11)**. O arquivo antigo de oito painéis é obsoleto e não participa da geração, validação nem aprovação.
+**PROIBIDO usar o script `render_instagram_carrossel.py` na entrega final.** Seu template fixo `hero/split/diagram` produz apenas **rascunhos técnicos**, mesmo que passe em testes de cor, tamanho e mascote. O GitHub rejeita qualquer tentativa de promover esses rascunhos para uma publicação nova. O único padrão em vigor é **TUE-MESTRE-01 + imagem oficial do proprietário de 02/11**. O arquivo antigo de oito painéis é obsoleto e não participa da geração, validação nem aprovação.
 
 1. **Criar de 2 a 20 artes prontas, uma de cada vez, no mesmo processo criativo.** Para cada página, usar **TUE-MESTRE-01**, o PNG canônico do Lúmino, o briefing específico do tema e a identidade editorial. Gerar uma **imagem individual completa**, revisar conteúdo, tipografia, cenário e qualidade da página no tamanho de um celular. Não produzir nem recortar colagens de referência: cada peça deve ser uma arte individual final, 1080×1350, com apresentação própria e conteúdo novo.
 2. **Sem intervenção criativa do empacotador.** As artes devem ser JPGs finais `1080×1350`, com o Lúmino canônico visivelmente integrado. Caso uma arte não tenha esses atributos, refazer **aquela página**, não substituí-la por um template genérico.
