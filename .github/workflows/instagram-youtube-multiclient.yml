@@ -40,6 +40,15 @@ jobs:
           ffprobe -version | head -n 1
       - name: Testar clientes e validar arquivo original sem publicar
         run: python scripts/instagram_youtube_multi_client.py --day 2026-11-02
+      - name: Enviar MP4 verificado ao Google Drive (credenciais OAuth opcionais)
+        if: success()
+        env:
+          GDRIVE_OAUTH_CLIENT_ID: '${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}'
+          GDRIVE_OAUTH_CLIENT_SECRET: '${{ secrets.GDRIVE_OAUTH_CLIENT_SECRET }}'
+          GDRIVE_OAUTH_REFRESH_TOKEN: '${{ secrets.GDRIVE_OAUTH_REFRESH_TOKEN }}'
+        run: |
+          if [ -n "$GDRIVE_OAUTH_REFRESH_TOKEN" ]; then python -m pip install google-api-python-client google-auth google-auth-httplib2; fi
+          python scripts/instagram_reel_google_drive_upload.py
       - name: Arquivar somente arquivos gerados e relatorio
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
