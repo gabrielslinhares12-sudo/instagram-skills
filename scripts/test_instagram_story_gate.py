@@ -33,7 +33,7 @@ class LinkedNativeStoryTests(unittest.TestCase):
         with self.assertRaisesRegex(StoryGateError, "independente"):
             verify_linked_stories(self.feed,self.reels,broken)
 
-    def test_story_receipt_needs_native_link_and_spoken_cta(self):
+    def test_story_receipt_needs_native_share_and_text_cta(self):
         broken=copy.deepcopy(self.stories)
         entry=broken["entries"][0]
         entry.update(parent_published=True, source_verified_by_official_receipt=True,
@@ -43,9 +43,21 @@ class LinkedNativeStoryTests(unittest.TestCase):
                      story_media_id="1234567")
         with self.assertRaisesRegex(StoryGateError, "falta republicação"):
             verify_linked_stories(self.feed,self.reels,broken)
-        entry.update(voiceover_created=True,spoken_cta_verified=True,
+        entry.update(text_cta_visible_verified=True,
                      native_original_post_tappable_verified=True)
         self.assertEqual(verify_linked_stories(self.feed,self.reels,broken)["stories_published"],1)
+
+    def test_external_link_sticker_is_forbidden(self):
+        broken=copy.deepcopy(self.stories)
+        broken["entries"][1]["external_link_sticker"]="https://example.org/"
+        with self.assertRaisesRegex(StoryGateError, "independente"):
+            verify_linked_stories(self.feed,self.reels,broken)
+
+    def test_voiceover_is_forbidden(self):
+        broken=copy.deepcopy(self.stories)
+        broken["entries"][1]["voiceover_created"]=True
+        with self.assertRaisesRegex(StoryGateError, "narração"):
+            verify_linked_stories(self.feed,self.reels,broken)
 
     def test_wrong_parent_and_duplicate_are_blocked(self):
         broken=copy.deepcopy(self.stories)
