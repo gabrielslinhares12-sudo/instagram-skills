@@ -23,18 +23,22 @@
       "id": "tue-2026-11-02-12-mar-cruzado",
       "topic_id": "mar-cruzado",
       "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-02-12-mar-cruzado.json",
-      "status": "BLOCKED_QC_NEW_OFFICIAL_REFERENCE",
+      "status": "READY_APPROVED_BLOCKED_META_USER_TOKEN_EXPIRED_190_463",
       "issues": [
-        "Em 02/11 usuário confirmou referência visual oficial exata: content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg",
-        "Versão anterior contém botão/etiqueta amarela grande ARRaste e não tem rodapé de pontos discretos; NÃO publicar nem marcar aprovado",
-        "Tentativa de nova capa sobre águas que não se misturam alterou o fenômeno factual: REPROVADA. Tema correto = cruzamento de dois sistemas de ondas em direções diferentes, cristas/interferência/sobreposição",
-        "Carrossel final deve ter cinco lâminas distintas, Lúmino canônico, microtexto e pontos de progresso dinâmicos 1 de 5 nas quatro primeiras, última sem indicação de próxima",
-        "Publicação no Meta API somente após export final 5 URLs JPEG validada, QA visual e direitos; Story nativo somente após recibo, texto sobre o próprio post sem áudio/link extra"
+        "Credencial FACEBOOK_USER_ACCESS_TOKEN expirou (Meta 190/463). Atualizar Secret com token de longa duração; não reenviar imagens.",
+        "A música nativa do carrossel e o compartilhamento nativo do Story exigem confirmação posterior no aplicativo; não atribuir recibos inexistentes."
       ],
       "approved_visual_reference": "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg",
       "approved_visual_reference_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
       "correct_theme": "cross_seas_intersecting_wave_trains",
-      "article_count": 5
+      "article_count": 5,
+      "operational_id": "tue-2026-11-02-12-mar-cruzado",
+      "final_media_folder": "content/media/instagram/2026-11-02/mar-cruzado-final",
+      "final_media_count": 5,
+      "approval_record": "content/approved/tue-2026-11-02-12-mar-cruzado/approval.json",
+      "editorial_approved": true,
+      "publish_attempt_state": "Meta preflight halted with HTTP 401 / OAuth 190 subcode 463 before any upload or durable claim on 02/11 16h20 BRT",
+      "story_status": "PENDING_PARENT_POST_THEN_NATIVE_TEXT_RESHARE"
     },
     {
       "local_time": "15:00",
@@ -77,7 +81,7 @@
   "quality_gate": "Nunca aprovar ou agendar ativo com Lúmino não canônico; não inventar URLs, recibos ou aprovação.",
   "blocking_rule": "Este arquivo é registro editorial e NÃO aciona GitHub Actions nem agenda Instagram. Para agendar de verdade, validar mídia e inserir itens reais aprovados em content/schedule.json com URLs verificadas.",
   "do_not_infer_success": true,
-  "quality_status": "Imagem oficial da estética protegida por hash e 14 briefings migrados; Mar Cruzado ainda NÃO tem arte aprovada no padrão final, portanto não agendado/não publicado.",
+  "quality_status": "Cinco JPEGs finais do Mar Cruzado hospedados com hashes fixos e aprovação específica do proprietário; Meta API bloqueou o preflight por token expirado, publicação não realizada. Story pendente.",
   "files_staged_in_google_drive": {
     "provider": "Google Drive owner temumaexplicacao@gmail.com",
     "scope": "private, not public internet-accessible",
