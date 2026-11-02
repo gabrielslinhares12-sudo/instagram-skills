@@ -18,8 +18,27 @@ def check(poster: Any) -> dict[str, Any]:
     try:
         response = poster._request('GET', 'me/permissions')
     except MetaError as error:
-        error.preflight_stage = 'read_permissions'
-        raise
+        # Graph's /me/permissions can deny inspection (code 200) even
+        # while Page/Instagram identity reads remain authorized. A denied
+        # permissions inspection does NOT prove publishing permission.
+        # Verify the exact account through the independent Page relationship
+        # and let Meta's actual publish endpoint enforce publishing rights.
+        # Preserve explicit uncertainty rather than claiming scopes granted.
+        if error.code != 200:
+            error.preflight_stage = 'read_permissions'
+            raise
+        try:
+            identity = poster.check_identity()
+        except MetaError as identity_error:
+            identity_error.preflight_stage = 'verify_account_identity'
+            raise
+        if identity.get('ok') is not True or identity.get('username') != 'temumaexplicacao':
+            mismatch = MetaError('The Instagram account identity does not match the approved destination.')
+            mismatch.preflight_stage = 'verify_account_identity'
+            raise mismatch
+        return {**identity, 'mode': 'preflight', 'permission_inspection': 'denied_code_200',
+                'permissions_verified': False, 'required_permissions_granted': [],
+                'publishing_exercised': False}
     records = response.get('data')
     if not isinstance(records, list):
         raise MetaError('Meta returned invalid permission metadata.')
