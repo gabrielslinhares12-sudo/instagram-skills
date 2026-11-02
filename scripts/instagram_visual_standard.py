@@ -159,9 +159,17 @@ def validate_package(manifest: Path, root: Path = ROOT) -> dict:
     if mode not in {LEGACY_MODE, INDIVIDUAL_MODE}:
         raise VisualError("Processo de produção não autorizado.")
     if mode == INDIVIDUAL_MODE:
-        for page in pages:
+        for i, page in enumerate(pages, 1):
             if page.get("source_sha256") != page.get("sha256"):
                 raise VisualError("Arte foi alterada durante a montagem.")
+            # The cue is part of the individual master JPG. These metadata
+            # checks complement, never replace, a manual visual inspection.
+            cue = "Arraste →" if i < len(pages) else None
+            if "swipe_cue" not in page or page["swipe_cue"] != cue:
+                raise VisualError(
+                    f"Página {i}: falta 'Arraste →' para indicar continuação, "
+                    "ou existe uma seta incorreta na última."
+                )
         verify_preview(manifest.parent, data)
     lumino = root / spec["lumino"]["path"]
     checked=[]
