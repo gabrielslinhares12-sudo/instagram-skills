@@ -1,0 +1,42 @@
+name: Instagram TUE - compilar auxiliar Android sem PC
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'android/music-companion/**'
+      - '.github/workflows/instagram-android-music-apk.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build_apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165ca # v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Instalar SDK do Android
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Compilar APK e verificar ausência de permissão de rede
+        run: |
+          cd android/music-companion
+          gradle --no-daemon :app:assembleDebug
+          ls -lh app/build/outputs/apk/debug/app-debug.apk
+      - name: Arquivar APK do auxiliar (protótipo, sem login)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: tue-music-companion-debug-apk
+          path: android/music-companion/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
