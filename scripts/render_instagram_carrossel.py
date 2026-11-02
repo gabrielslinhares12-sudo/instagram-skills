@@ -110,8 +110,7 @@ def render_one(item, number, lumino, output:Path, specdir:Path):
     draw.line((30,95,520,95),fill=RED,width=8)
     draw.text((35,26),"TEM UMA EXPLICAÇÃO  •  LÚMINO INVESTIGA",
               fill=INK,font=font(34))
-    draw.rounded_rectangle((859,21,1058,105),radius=18,fill=RED)
-    draw.text((880,42),f"PÁG. {number}/8",fill="white",font=font(38))
+    # Legacy renderer: never impose a numbered eight-panel visual pattern.
     brush(draw,number)
     headline=item["headline"].upper()
     f,lines=wrap(draw,headline,962,3,85,46)
@@ -138,9 +137,7 @@ def render_one(item, number, lumino, output:Path, specdir:Path):
     original=lumino.resize((box[2],box[3]),Image.Resampling.LANCZOS)
     image.paste(original,(box[0],box[1]),original)
     draw=ImageDraw.Draw(image)
-    for i in range(8):
-        draw.ellipse((435+i*34,1291,454+i*34,1310),
-                     fill=YELLOW if i==number-1 else (172,163,150))
+    # No fixed eight-dot indicator or numeric page counter in new artwork.
     draw.ellipse((989,1286,1041,1338),fill=INK)
     draw.text((999,1293),"→",font=font(31),fill="white")
     output.parent.mkdir(parents=True,exist_ok=True)
@@ -154,8 +151,8 @@ def render(spec_path:Path,out:Path):
     config=verify_brand()
     content=json.loads(spec_path.read_text(encoding="utf-8"))
     slides=content.get("slides")
-    if not isinstance(slides,list) or len(slides)!=8:
-        raise VisualError("Carrossel precisa de 8 descricoes de paginas.")
+    if not isinstance(slides,list) or not 2 <= len(slides) <= 20:
+        raise VisualError("Carrossel exige 2 a 20 descrições; renderer legado é apenas rascunho.")
     out=out.resolve();specdir=spec_path.resolve().parent
     if out==specdir:raise VisualError("Imagens finais precisam de pasta propria.")
     mascot=Image.open(ROOT/config["lumino"]["path"]).convert("RGBA")
@@ -164,7 +161,7 @@ def render(spec_path:Path,out:Path):
         pages.append(render_one(item,n,mascot,out/f"{n:02d}.jpg",specdir))
     # Template renderer exists for prototypes ONLY. Publishing gate rejects it.
     manifest={"version":1,"production_mode":"generic_template_draft_only","standard_id":config["id"],"lumino_sha256":config["lumino"]["sha256"],
-              "reference_sha256":config["reference"]["sha256"],
+              "reference_standard_id":config["editorial_standard"]["id"],
               "post_id":content.get("post_id"),"approved":False,"pages":pages}
     manifest_path=out/"visual-manifest.json"
     manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
