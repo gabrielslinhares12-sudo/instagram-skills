@@ -86,3 +86,15 @@ Para **cada** publicação feita às **11h, 15h ou 18h** (carrossel, post único
 **Resultado da grade:** 14 posts de quadros rotativos + 7 Reels do YouTube no Instagram + até 21 Stories vinculados, com um Story por publicação efetivamente realizada. O post principal já publicado continua válido mesmo que seu Story esteja pendente; o pacote só é considerado integralmente concluído quando ambos forem verificados.
 
 A regra de procedência e identificação obrigatória de IA continua válida; não acrescentar texto ou selo voluntário de IA nem ocultar informações de divulgação exigidas pela plataforma.
+
+## REGRA PRIORITÁRIA — arte aprovada é o arquivo mestre, NÃO um exemplo para reconstrução (02/11/2026)
+
+A imagem aprovada pelo proprietário **é a própria ARTE-MESTRE**. Não usá-la como mera referência para criar uma versão final barata. O erro comprovado no script local `montar_tue_03nov.py`: primeiro foi gerada uma composição cinematográfica integral; depois o script fez `Image.new`, extraiu pequenas regiões com `src.crop(...)` e redesenhou o restante com retângulos, tarjas e caixas de texto. O resultado NÃO preservou a arte aprovada e **não pode ser publicado**. A mudança foi estrutural, não de tamanho ou compressão.
+
+1. Guardar a **imagem completa** que foi aprovada e seu SHA-256 como master imutável. O master é a origem do arquivo final, não um guia de estilo.
+2. Para exportar: **redimensionar proporcionalmente, converter cor e codificar JPG/PNG**, sem refazer cenários, quadros, iluminação, balões, tipografia e personagens. Substituir painéis elaborados por fundos chapados **é proibido**. Ampliar para 3240×4050 sozinho não aumenta detalhe real.
+3. Se for necessário corrigir o Lúmino (PNG canônico obrigatório), editar a **região específica**, sem mudar composição, escala expressiva, luz e figurino, e exigir nova revisão. Não trocar Lúmino grande e integrado por um pequeno adesivo. Qualquer correção estética ou mudança de texto cria uma nova versão, que precisa de nova aprovação.
+4. Executar `python scripts/instagram_preserve_approved_art.py --approved ARTE_APROVADA.png --final ENTREGA.jpg --expected-sha SHA256_DA_ARTE_APROVADA`. Reprovar reconstruções grandes. O limite técnico **não substitui** revisão de cada palavra, da estética, dos direitos e da identidade visual. Nem mesmo aprovação do teste concede aprovação editorial automaticamente.
+5. A preview entregue para aprovação precisa corresponder **ao arquivo efetivamente usado na publicação**. Se o resultado final parecer diferente do primeiro que foi aceito, tratar como reprovado, voltar à arte mestre e corrigir a causa, nunca tentar passar a versão inferior como equivalente.
+
+**Caso concreto 03/11 — PLANTÃO DO ABSURDO:** a primeira imagem com profundidade e iluminação cinematográfica é a referência visual aceita; a imagem remontada, com tarjas e personagem reduzido, está explicitamente **reprovada**. Arquivos locais antigos do pacote `TUE-MESTRE-01-03NOV-12H-PLANTAO-4K-RASCUNHO.zip` não podem ser promovidos à fila como arte aprovada, mesmo com 3240×4050 pixels. Horário oficial do quadro: **11h** (o nome 12H do arquivo é legado).
