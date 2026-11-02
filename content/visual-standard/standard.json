@@ -62,15 +62,19 @@
     "rendered_text": "ARRASTE PARA O LADO →",
     "required": true,
     "on": "all_except_last",
-    "position": "bottom_center_clear_footer",
-    "progress_dots": "dynamic_page_count_one_yellow_active_rest_gray",
+    "position": "bottom_center",
+    "progress_dots": true,
     "small_thin_arrow": true,
     "typography": "compact_spaced_ink_black",
     "no_page_numbers": true,
     "avoid_mascot_and_text": true,
     "verify_manually": true,
     "forbid_button_or_yellow_badge": true,
-    "single_posts": false
+    "single_posts": false,
+    "display_text": "ARRASTE PARA O LADO →",
+    "dot_style": "dynamic_page_count_one_yellow_active_rest_gray",
+    "dot_count_dynamic": true,
+    "no_colored_badge": true
   },
   "approved_visual_master": {
     "path": "content/brand/modelo-oficial-aprovado-2026-11-02.png",
