@@ -43,3 +43,11 @@ Os quadros são formas distintas de contar histórias. Não são licenças para 
 - Somente após QC visual e factual informar status `arte_aprovada`; agendamento e publicação são estados distintos.
 
 **Referências internas de contexto:** `content/editorial/STATUS-RETOMADA-2026-11-01.md`, `content/editorial/STATUS-PRODUCAO-2-POSTS-DIA-2026-11-01-a-06.md` e o modelo visual original aprovado pelo proprietário. Regras mais recentes deste documento prevalecem somente para **nova produção editorial**, sem reescrever recibos históricos.
+
+## Grade atual: rodízio de quadros + Reel + Story (02/11/2026)
+
+- Às **12h e 18h** (America/Sao_Paulo), publicar dois quadros editoriais independentes, alternando carrosséis, tirinhas e outros formatos. **Carrossel Educativo** é só mais um quadro do catálogo: não há carrossel diário ou formato fixo por horário.
+- Às **21h**, planejar Reel a partir de MP4 original do YouTube TUE em português, com revisão de direitos, origem, narração, qualidade e duplicatas; não é um item automaticamente autorizado.
+- **Após confirmação do Reel**, publicar um Story 9:16 com chamada visual **“💡 Curtiu? Veja o Reel no nosso perfil e deixe seu ❤️!”**. Um Story por Reel confirmado, com registro separado; a publicação via API de um vídeo/arte como Story não é o compartilhamento nativo interativo do Reel, que exige aplicativo oficial.
+- **IA:** não enviar autodeclaração de geração por IA apenas porque a publicação foi automatizada. Verificar a origem do vídeo/arte. Para mídia comprovadamente não sintética, omitir a sinalização opcional; quando houver conteúdo gerado/alterado sinteticamente sujeito a divulgação, sinalizar corretamente. Origem desconhecida bloqueia publicação automática. Não ocultar rótulo aplicado pela Meta nem falsificar proveniência.
+- **Status:** regras editoriais registradas; vídeos, Stories e horários continuam sujeitos a arquivo real, revisão, aprovação, autenticação e recibos. Nunca inferir publicação a partir de um rascunho.
