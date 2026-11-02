@@ -32,6 +32,8 @@ on:
       - 'scripts/package_individual_carousel.py'
       - 'scripts/test_individual_carousel.py'
       - 'scripts/test_instagram_visual_standard.py'
+      - 'scripts/instagram_preserve_approved_art.py'
+      - 'scripts/test_instagram_preserve_approved_art.py'
       - '.github/workflows/instagram-editorial-quality.yml'
   pull_request:
     paths:
@@ -55,6 +57,8 @@ on:
       - 'scripts/package_individual_carousel.py'
       - 'scripts/test_individual_carousel.py'
       - 'scripts/test_instagram_visual_standard.py'
+      - 'scripts/instagram_preserve_approved_art.py'
+      - 'scripts/test_instagram_preserve_approved_art.py'
       - '.github/workflows/instagram-editorial-quality.yml'
   workflow_dispatch:
 
@@ -98,5 +102,7 @@ jobs:
         run: python -m unittest discover -s scripts -p test_instagram_preflight.py -v
       - name: Testar páginas individuais e prévia idêntica às artes finais
         run: python -m unittest discover -s scripts -p test_individual_carousel.py -v
+      - name: Impedir que a finalização destrua a arte mestre aprovada
+        run: python -m unittest discover -s scripts -p test_instagram_preserve_approved_art.py -v
       - name: Testar renderizacao e recusa de mascote alterado
         run: python -m unittest discover -s scripts -p test_instagram_visual_standard.py -v
