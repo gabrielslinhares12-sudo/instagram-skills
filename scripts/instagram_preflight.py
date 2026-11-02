@@ -36,9 +36,13 @@ def check(poster: Any) -> dict[str, Any]:
             mismatch = MetaError('The Instagram account identity does not match the approved destination.')
             mismatch.preflight_stage = 'verify_account_identity'
             raise mismatch
-        return {**identity, 'mode': 'preflight', 'permission_inspection': 'denied_code_200',
+        # Fail closed: identity access is not content-publishing access.
+        # Do not burn a durable queue claim until permission inspection passes.
+        return {**identity, 'ok': False, 'mode': 'preflight',
+                'permission_inspection': 'denied_code_200',
                 'permissions_verified': False, 'required_permissions_granted': [],
-                'publishing_exercised': False}
+                'publishing_exercised': False,
+                'next_action': 'Reauthorize Facebook User token with Instagram publishing grants and update GitHub Actions secret.'}
     records = response.get('data')
     if not isinstance(records, list):
         raise MetaError('Meta returned invalid permission metadata.')
