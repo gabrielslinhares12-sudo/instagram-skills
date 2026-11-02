@@ -158,7 +158,8 @@
       "content_style": "clearly_illustrated",
       "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
       "sources": [],
-      "approval_note": "Publicação imediata solicitada pelo proprietário em 02/11. Janela de recuperação ajustada para 13h30 BRT, após falha comprovada da permissão da Meta. Não duplicar, não marcar como publicada sem recibo. Publicar assim que o preflight oficial passar, dentro da janela máxima de atraso."
+      "approval_note": "Publicação imediata autorizada em 02/11, bloqueada pela Meta #200. Recuperação aprovada até 23h59 BRT de 02/11, somente após verificações de identidade/permissões; preservar hash de mídia e bloqueio contra duplicatas.",
+      "recovery_until": "2026-11-03T02:59:59Z"
     }
   ]
 }
