@@ -79,7 +79,9 @@ def public_media_ready():
             if "text/html" in content_type or "json" in content_type:
                 raise RuntimeError("Public media URL is not downloadable video")
         return {"media_host_ready": True, "first_chunk_valid": True}
-    except (HTTPError, URLError, TimeoutError) as error:
+    except HTTPError as error:
+        raise RuntimeError(f"Public media HTTP {error.code}") from error
+    except (URLError, TimeoutError) as error:
         raise RuntimeError("Public media host not reachable by anonymous reader") from error
 
 
@@ -207,6 +209,7 @@ if __name__ == "__main__":
         # Don't include remote error messages or credentials in logs.
         print(json.dumps({"ok": False, "status": "blocked_before_publish_or_ledger_failure",
                           "error_type": type(error).__name__,
+                          "safe_failure_reason": str(error)[:160] if isinstance(error, RuntimeError) else "unexpected_error",
                           "publication_confirmed": False,
                           "check_ledger_before_retry": True}, ensure_ascii=False),
               file=sys.stderr)
