@@ -29,12 +29,18 @@
     "red_accents": true,
     "readable_at_mobile": true,
     "numbering": false,
-    "footer_dots": true,
+    "footer_dots": false,
     "original_mascot_on_every_page": true,
     "alternate_page_layouts": true,
     "variable_carousel_length": true,
     "swipe_cue_discreet": true,
-    "default_master_preset": "TUE-MESTRE-01"
+    "default_master_preset": "TUE-MESTRE-01",
+    "swipe_cue_required": true,
+    "swipe_cue_text": "Arraste →",
+    "swipe_cue_on_nonfinal_carousel_slides": true,
+    "no_forward_cue_on_last_slide": true,
+    "swipe_cue_placement": "canto inferior direito, legível no celular, margem de segurança e sem sobrepor conteúdo",
+    "swipe_cue_style": "tipografia editorial compacta, sobre pincelada amarela ou contraste suave; sem numeração"
   },
   "forbidden": [
     "fundos escuros genericos no lugar do papel claro",
