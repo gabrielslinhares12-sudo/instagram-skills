@@ -34,10 +34,10 @@
       "day": "2026-11-02",
       "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
-      "source_video_id": null,
+      "source_video_id": "H9WGKaO5XQ4",
       "source_mp4": null,
       "source_verified": false,
-      "topic_id": null,
+      "topic_id": "visao-dos-caes",
       "reel_media_id": null,
       "reel_published": false,
       "story_media_id": null,
@@ -53,7 +53,12 @@
       "story_status": "awaiting_source_publication",
       "story_text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "story_text_cta_verified": false,
-      "story_no_external_link_sticker": true
+      "story_no_external_link_sticker": true,
+      "source_video_url": "https://www.youtube.com/shorts/H9WGKaO5XQ4",
+      "source_video_title": "CÃES enxergam em preto e branco? 🐶 #Shorts",
+      "youtube_public_views_approx": 5700,
+      "views_comparison_sample": 45,
+      "source_selection_status": "candidate_selected_official_channel_video_download_blocked_by_youtube_bot_check"
     },
     {
       "day": "2026-11-03",
