@@ -50,6 +50,9 @@ jobs:
         run: |
           python3 -m pip install 'Pillow>=11,<13'
           python3 scripts/instagram_visual_standard.py verify-assets
+          python3 scripts/instagram_preset_mestre.py verify
+          python3 -m unittest discover -s scripts -p 'test_instagram_preset_mestre.py' -v
+          python3 scripts/validate_instagram_weekly_briefs.py
           python3 scripts/instagram_visual_standard.py audit-queue
       - name: Configurar identidade da automação para o registro
         run: |
