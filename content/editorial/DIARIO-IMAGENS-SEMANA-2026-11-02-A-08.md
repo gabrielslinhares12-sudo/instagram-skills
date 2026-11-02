@@ -22,3 +22,11 @@
 
 ## Sequência
 A fila de mídia continua **um post de cada vez**, sem reconstruir a arte aprovada em painel simplificado. Seguir `content/editorial/semana-independente-2026-11-02-a-08/grade.json` nos horários **11h/15h/18h**.
+
+## Fechamento de geração visual nesta conversa (02/11/2026)
+
+Fonte de verdade da **ordem e dos 42 anexos visuais gerados no chat**, sem fingir upload de mídia ao GitHub: [MANIFESTO-VISUAL-SEMANA-2026-11-02-A-08.json](MANIFESTO-VISUAL-SEMANA-2026-11-02-A-08.json). Engloba 14 quadros de feed (sete carrosséis × 5 lâminas e sete tirinhas × 1 imagem). **Toda imagem continua `approved=false`**, aguardando comparação com o Lúmino canônico, ortografia visual, licenças, identificação obrigatória de procedência sintética e exportação mestre 3240×4050 / Instagram 1080×1350 com controle de fidelidade.
+
+**Importante:** o ambiente de empacotamento retornou erro nesta rodada. Os PNGs existem como anexos da conversa, **não como arquivos disponibilizados por este commit no repositório**; nomes locais repetidos foram diferenciados por referências de anexos. Não ativar agendamento ou publicação pela presença deste manifesto.
+
+**Reels às 18h:** não foi encontrado MP4 original validado; zero vídeos finais montados. **Stories:** zero republicações nativas, pois só podem ocorrer após o post original estar publicado e confirmado, com chamada falada.
