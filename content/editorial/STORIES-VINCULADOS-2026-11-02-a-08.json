@@ -28,10 +28,13 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "status": "awaiting_parent_publication",
+      "status": "pending_verified_permalink_before_native_share",
       "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "text_cta_visible_verified": false,
-      "no_external_link_sticker": true
+      "no_external_link_sticker": true,
+      "actual_published_parent_id": "tue-2026-11-02-12-mar-cruzado",
+      "parent_receipt_media_id": "18154222987543257",
+      "parent_receipt_published_at": "2026-11-02T19:32:12Z"
     },
     {
       "parent_id": "tue-2026-11-02-18-senha-impossivel",
