@@ -6,10 +6,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from instagram_preset_mestre import ROOT, check_brief, check_week, verify, PresetError
+from instagram_story_gate import verify_linked_stories, StoryGateError
 
 WEEK=ROOT/"content/editorial/semana-independente-2026-11-02-a-08/grade.json"
 CATALOG=ROOT/"content/brand/QUADROS-TUE-MESTRE-01.json"
 REELS=ROOT/"content/editorial/REELS-E-STORIES-2026-11-02-a-08.json"
+STORIES=ROOT/"content/editorial/STORIES-VINCULADOS-2026-11-02-a-08.json"
 
 
 def verify_reels_and_stories(reels_plan, feed_plan):
@@ -50,10 +52,15 @@ def verify_reels_and_stories(reels_plan, feed_plan):
         if reel.get("reel_published"):
             if not reel.get("approved") or not reel.get("reel_media_id"):
                 raise PresetError("Reel publicado sem aprovação ou recibo.")
+        if reel.get("story_created") and not reel.get("reel_published"):
+            raise PresetError("Story não pode preceder o Reel confirmado.")
         if reel.get("story_published"):
             if (not reel.get("reel_published") or not reel.get("story_media_id")
-                    or not reel.get("story_cta_embedded")):
-                raise PresetError("Story não pode preceder o Reel ou omitir CTA/recibo.")
+                    or not reel.get("story_created")
+                    or not reel.get("story_native_reshare_confirmed")
+                    or not reel.get("story_voiceover_verified")
+                    or not reel.get("story_parent_permalink")):
+                raise PresetError("Story não pode preceder o Reel ou omitir republicação nativa, fala ou recibo.")
     return {"reels_planned":len(items),"stories_confirmed":sum(bool(x.get("story_published")) for x in items),
             "reels_confirmed":sum(bool(x.get("reel_published")) for x in items)}
 
@@ -78,7 +85,13 @@ def validate(root=ROOT):
         raise PresetError("Os quadros devem alternar entre 12h e 18h, sem formato fixo.")
     if not any(p.get("series_id") == "carrossel-educativo" for p in plan["posts"]):
         raise PresetError("O quadro Carrossel Educativo deve entrar em rodízio semanal.")
-    verify_reels_and_stories(json.loads((root/REELS.relative_to(ROOT)).read_text(encoding="utf-8")), plan)
+    reels_plan=json.loads((root/REELS.relative_to(ROOT)).read_text(encoding="utf-8"))
+    stories_plan=json.loads((root/STORIES.relative_to(ROOT)).read_text(encoding="utf-8"))
+    verify_reels_and_stories(reels_plan, plan)
+    try:
+        native_stories=verify_linked_stories(plan, reels_plan, stories_plan)
+    except StoryGateError as exc:
+        raise PresetError(str(exc)) from exc
     previous_day=None
     day_counts={}
     kinds={"carousel":0,"meme":0}
@@ -109,7 +122,8 @@ def validate(root=ROOT):
     if kinds!={"carousel":7,"meme":7}:
         raise PresetError("Formato/quantidade da grade divergente.")
     return {"ok":True,**checked,"formats":kinds,"series":len({p["series_id"] for p in plan["posts"]}),
-            "approval":False,"publications":0,"manual_visual_review":"pending"}
+            "approval":False,"publications":0,"manual_visual_review":"pending",
+            "native_stories":native_stories}
 
 if __name__=="__main__":
     print(json.dumps(validate(),ensure_ascii=False))
