@@ -2,6 +2,7 @@ name: Publicar fila diária do Instagram
 
 # Operação em GitHub-hosted Ubuntu: nenhum PC/runner GUTHY/Android necessário.
 # O cron roda em UTC; a fila guarda horários ISO UTC e previne duplicatas.
+# Referencia visual oficial, travada por SHA: content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg
 on:
   push:
     branches: [main]
