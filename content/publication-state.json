@@ -38,10 +38,15 @@
       }
     },
     "tue-2026-11-02-15-senha-impossivel": {
-      "status": "claimed",
+      "status": "published",
       "fingerprint": "09f9fc67f7606b55a09e9909e6f6f4b9f4a9d17c42a77c9afbdbd299ce240add",
       "due_at": "2026-11-02T16:30:00Z",
-      "claimed_at": "2026-11-02T16:51:49Z"
+      "claimed_at": "2026-11-02T16:51:49Z",
+      "media_id": "18131786309499353",
+      "creation_id": "18102312608100158",
+      "instagram_user_id": "17841433004716815",
+      "page_id": "1385407341325017",
+      "published_at": "2026-11-02T16:51:58Z"
     }
   }
 }
