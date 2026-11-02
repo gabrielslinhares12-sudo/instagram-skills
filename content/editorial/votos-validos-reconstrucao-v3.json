@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "id": "votos-validos-2026-11-01-reconstrucao-editorial-v3",
+  "theme": "Eleição presidencial brasileira: porcentagens de votos registrados e votos válidos",
+  "status": "draft_review_no_publication",
+  "format": "instagram_carousel",
+  "ratio": "4:5",
+  "dimensions": [
+    1080,
+    1350
+  ],
+  "owner_authorized_to_publish": false,
+  "checked_on": "2026-11-02",
+  "hypothetical": true,
+  "ballot": {
+    "total_registered": 100,
+    "candidate_a": 44,
+    "candidate_b": 46,
+    "blank_and_null": 10,
+    "valid": 90,
+    "share_b_valid": "51,1%",
+    "share_a_valid": "48,9%"
+  },
+  "cover": "COMO ASSIM? 46% DOS VOTOS E GANHOU?",
+  "caption": "🗳️ Como alguém pode ter 46% dos votos registrados e vencer no primeiro turno? A diferença está no denominador. Imagine uma eleição presidencial HIPOTÉTICA com 100 votos registrados: 44 no candidato A, 46 no B e 10 brancos ou nulos. Os votos válidos são 90. Portanto, B teve 46/90 = 51,1% dos válidos e A, 44/90 = 48,9%. Brancos e nulos não são transferidos para ninguém nem anulam a eleição. A regra de maioria absoluta vale para a Presidência; outros cargos podem seguir regras diferentes. Salve para lembrar e compartilhe a explicação! 💡\n\nFotografias de urnas: TSE/Secom, via Wikimedia Commons (obras identificadas com Public Domain Mark no Commons). Imagens documentais de modelos de urna, sem relação com a votação hipotética ilustrada.\n\n#VotosValidos #EducacaoEleitoral #Eleições #TemUmaExplicacao #Lumino",
+  "sources": [
+    "https://www.tse.jus.br/comunicacao/noticias/2022/Outubro/entenda-como-e-eleito-o-presidente-da-republica",
+    "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao",
+    "https://www.tse.jus.br/comunicacao/noticias/2026/Junho/sabe-o-que-e-o-sistema-eleitoral-majoritario-o-glossario-explica-1"
+  ],
+  "photos": [
+    {
+      "file": "Brazilian DRE voting machine for 2022 elections.jpg",
+      "credit": "TSE — Superior Electoral Court of Brazil",
+      "license": "Public Domain Mark (as marked on Wikimedia Commons)",
+      "page": "https://commons.wikimedia.org/wiki/File:Brazilian_DRE_voting_machine_for_2022_elections.jpg"
+    },
+    {
+      "file": "Novas urnas eletrônicas - TSE.jpg",
+      "credit": "Abdias Pinheiro/Secom/TSE",
+      "license": "Public Domain Mark (as marked on Wikimedia Commons)",
+      "page": "https://commons.wikimedia.org/wiki/File:Novas_urnas_eletr%C3%B4nicas_-_TSE.jpg"
+    },
+    {
+      "file": "Urna eletrônica brasileira UE2020.jpg",
+      "credit": "Antonio Augusto/Secom/TSE",
+      "license": "Public Domain Mark (as marked on Wikimedia Commons)",
+      "page": "https://commons.wikimedia.org/wiki/File:Urna_eletr%C3%B4nica_brasileira_UE2020.jpg"
+    }
+  ],
+  "slides": [
+    {
+      "headline": [
+        "COMO ASSIM?",
+        "46% DOS VOTOS",
+        "E GANHOU?"
+      ],
+      "subhead": "SIM, SE O TOTAL VÁLIDO FOR OUTRO.",
+      "label": "EXEMPLO PRESIDENCIAL HIPOTÉTICO",
+      "body": "O percentual depende de quais votos entram na conta. Veja como 46 de 100 podem virar 51,1% dos válidos.",
+      "photo": 0,
+      "layout": "hero",
+      "accent": "46% ≠ 51,1%"
+    },
+    {
+      "headline": [
+        "100 VOTOS",
+        "REGISTRADOS"
+      ],
+      "subhead": "COMEÇAMOS COM O TOTAL.",
+      "label": "A CONTA ANTES DA FILTRAGEM",
+      "body": "Candidato A: 44 votos. Candidato B: 46 votos. Brancos e nulos: 10 votos. A soma dos três grupos é 100.",
+      "photo": 1,
+      "layout": "diagram",
+      "accent": "44 + 46 + 10"
+    },
+    {
+      "headline": [
+        "OS 10 VOTOS",
+        "NÃO SOMEM"
+      ],
+      "subhead": "ELES SÃO CONTADOS NAS ESTATÍSTICAS.",
+      "label": "BRANCOS E NULOS",
+      "body": "Esses votos são registrados, mas não são válidos para definir o vencedor. Eles não são transferidos para A nem para B.",
+      "photo": 2,
+      "layout": "split",
+      "accent": "10 FORA"
+    },
+    {
+      "headline": [
+        "RESTAM",
+        "90 VÁLIDOS"
+      ],
+      "subhead": "A BASE DO CÁLCULO MUDOU.",
+      "label": "O DENOMINADOR CERTO",
+      "body": "Dos 100 votos registrados, retiramos os 10 brancos e nulos. Sobram 90 votos válidos, divididos entre A e B.",
+      "photo": 0,
+      "layout": "diagram",
+      "accent": "100 − 10 = 90"
+    },
+    {
+      "headline": [
+        "46 DE 90",
+        "É 51,1%"
+      ],
+      "subhead": "AGORA A VIRADA FAZ SENTIDO.",
+      "label": "O CANDIDATO B",
+      "body": "B tem 46 votos entre 90 válidos: 46 ÷ 90 = 51,1%. No nosso exemplo presidencial, isso supera metade dos válidos.",
+      "photo": 1,
+      "layout": "hero",
+      "accent": "51,1%"
+    },
+    {
+      "headline": [
+        "E OS 44",
+        "DO OUTRO?"
+      ],
+      "subhead": "A MATEMÁTICA VALE PARA OS DOIS.",
+      "label": "O CANDIDATO A",
+      "body": "A recebeu 44 dos 90 votos válidos: 44 ÷ 90 = 48,9%. Os dois percentuais somam 100% dos válidos.",
+      "photo": 2,
+      "layout": "split",
+      "accent": "48,9%"
+    },
+    {
+      "headline": [
+        "NÃO É TRUQUE.",
+        "É A BASE."
+      ],
+      "subhead": "GUARDE ESSA REGRA.",
+      "label": "O QUE VOCÊ APRENDEU",
+      "body": "Percentual do total registrado não é percentual dos votos válidos. Na eleição presidencial, vale a maioria absoluta dos válidos.",
+      "photo": 0,
+      "layout": "hero",
+      "accent": "SALVE!"
+    }
+  ]
+}
