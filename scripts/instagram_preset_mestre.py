@@ -18,6 +18,8 @@ ROOT = Path(__file__).resolve().parent.parent
 PROFILE = ROOT / "content/brand/TUE-MESTRE-01.json"
 IDENTITY = "TUE-MESTRE-01"
 LUMINO_SHA = "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b"
+VISUAL_MASTER = "content/brand/modelo-oficial-aprovado-2026-11-02.png"
+VISUAL_MASTER_SHA = "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
 
 
 class PresetError(ValueError):
@@ -61,6 +63,20 @@ def verify(root: Path = ROOT) -> dict:
         raise PresetError("Referência antiga de oito painéis não pode estar ativa.")
     if "reference" in brand or "approved_layout_reference" in mirror:
         raise PresetError("Referência antiga de oito painéis não pode estar ativa.")
+    # The owner's 02/11/2026 image is the only current art-direction
+    # reference. Pin the exact uploaded bytes, not an approximate recreation.
+    master = brand.get("visual_master", {})
+    mirror_master = mirror.get("approved_visual_master", {})
+    if (assets.get("visual_master_path") != VISUAL_MASTER
+            or assets.get("visual_master_sha256") != VISUAL_MASTER_SHA
+            or assets.get("visual_master_size") != [1229, 1536]
+            or preset.get("visual", {}).get("visual_master_sha256") != VISUAL_MASTER_SHA
+            or master.get("path") != VISUAL_MASTER
+            or master.get("sha256") != VISUAL_MASTER_SHA
+            or mirror_master.get("path") != VISUAL_MASTER
+            or mirror_master.get("sha256") != VISUAL_MASTER_SHA
+            or sha256(root / VISUAL_MASTER) != VISUAL_MASTER_SHA):
+        raise PresetError("Imagem visual-mestre oficial de 02/11 ausente ou modificada.")
     rel = assets.get("lumino_path", "")
     if (rel != "content/brand/lumino-original.png"
             or assets.get("lumino_sha256") != LUMINO_SHA
@@ -87,10 +103,23 @@ def verify(root: Path = ROOT) -> dict:
             or brand_cue.get("swipe_cue_required") is not True
             or brand_cue.get("no_forward_cue_on_last_slide") is not True
             or mirror_cue.get("label") != cue["text"]
-            or mirror_cue.get("on") != "all_except_last"):
+            or mirror_cue.get("on") != "all_except_last"
+            or cue.get("display_text") != "ARRASTE PARA O LADO →"
+            or brand_cue.get("swipe_cue_display_text") != cue["display_text"]
+            or mirror_cue.get("display_text") != cue["display_text"]
+            or cue.get("progress_dots") is not True
+            or brand_cue.get("footer_dots") is not True
+            or mirror_cue.get("progress_dots") is not True
+            or cue.get("dot_count_matches_carousel_length") is not True
+            or mirror_cue.get("dot_count_dynamic") is not True
+            or cue.get("position") != "rodapé CENTRAL abaixo da arte, respeitando margem segura; sem cobrir texto, Lúmino ou cena"
+            or mirror_cue.get("position") != "bottom_center"
+            or mirror_cue.get("no_colored_badge") is not True):
         raise PresetError("Indicação Arraste → não segue o padrão TUE-MESTRE-01.")
-    if preset["reference_style"] != "EXCLUSIVAMENTE identidade editorial modelo 1 do proprietário conforme TUE-MESTRE-01, sem mescla, colagem ou número fixo de painéis":
-        raise PresetError("Foi alterada a referência artística exclusiva.")
+    if (not preset.get("visual", {}).get("visual_master_mandatory_for_all_art")
+            or not preset.get("reference_style", "").startswith(
+                "EXCLUSIVAMENTE a imagem visual-mestre enviada pelo proprietário em 02/11/2026")):
+        raise PresetError("Foi alterada a referência visual oficial de 02/11.")
     return preset
 
 
