@@ -32,7 +32,7 @@
       "source_credit": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "gancho",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "A VIDA JÁ ESTAVA ALI",
@@ -42,7 +42,7 @@
       "source_credit": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "NÃO BASTA UMA GOTA",
@@ -52,7 +52,7 @@
       "source_credit": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "O SATÉLITE TAMBÉM VIU",
@@ -62,7 +62,7 @@
       "source_credit": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "O QUE PARECE MILAGRE TEM CICLO",
@@ -77,5 +77,6 @@
   ],
   "caption": "💡 Debaixo da areia, a história continuou. Depois de chuvas excepcionais, porções do deserto do Atacama podem apresentar florações intensas. O Copernicus registrou um episódio em 2026. Sementes e estruturas subterrâneas de plantas conseguem permanecer em dormência, aguardando as condições que possibilitam o crescimento. As chuvas precisam ocorrer em condições adequadas de umidade e temperatura para favorecer a germinação e o desenvolvimento das flores. Imagens Sentinel-2 compararam a vegetação no Atacama em 2025 e 2026, mostrando contraste de cobertura em imagens de falsa cor. A floração é temporária e depende de condições incomuns; proteger as áreas e evitar pisoteio ajuda a conservar esse espetáculo. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
   "publication_requires_native_music": true,
-  "reference_standard_id": "TUE-MESTRE-01"
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
 }
