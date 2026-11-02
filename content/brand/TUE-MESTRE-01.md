@@ -1,12 +1,18 @@
 # TUE-MESTRE-01 — PADRÃO ORIGINAL LÚMINO
 
+> **IMAGEM-MESTRE VISUAL CANÔNICA aprovada em 02/11/2026:** [**Imagem oficial aprovada em 02/11/2026**](modelo-oficial-aprovado-2026-11-02.png), SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`.
+>
+> Toda arte do Instagram TUE deve seguir essa EXATA referência estética — não confundir com uma imagem-modelo antiga de oito painéis. O tema eleitoral é apenas demonstrativo, não deve ser copiado como pauta.
+>
+> **Rodapé obrigatório de carrossel (exceto última lâmina):** pontos pequenos de progresso (atual em amarelo, demais cinza), seta fina e texto `ARRASTE PARA O LADO →` pequeno e espaçado, centralizado embaixo, SEM tarja, pincelada, card colorido ou ícone de mão. Número de pontos = total real de lâminas. Na última, sem incentivo falso para avançar.
+
 **Comando para o proprietário:** `ATIVAR TUE-MESTRE-01`.
 
 **Padrão automático:** em todo pedido de **conteúdo do Instagram TUE neste projeto**, usar este preset, mesmo quando o comando não for repetido. Em novas conversas, repetir o comando para evitar ambiguidade. NÃO presumir que salvar este arquivo altera as configurações globais do ChatGPT.
 
-## Contrato editorial e identidade canônica — aprovado em 01/11
+## Contrato editorial e identidade canônica — imagem-mestre atualizada em 02/11
 
-- **Padrão ativo:** `TUE-MESTRE-01` (este documento). "Modelo 1" descreve a direção artística aprovada, **não existe imagem-modelo de oito painéis obrigatória** nem uso do arquivo obsoleto.
+- **Padrão ativo:** `TUE-MESTRE-01` + arquivo visual-mestre de 02/11/2026. Essa única capa é exemplo de direção de arte para **qualquer** tema ou formato; não impõe quantidade de lâminas e revoga todas as outras referências de estilo.
 - **Personagem:** [PNG original do Lúmino](lumino-original.png), nunca criar variante, regenerar, mudar expressão/anatomia nem substituí-lo por desenho parecido. Cabeça de lanterna vintage de vidro dourado; lâmpada amarela acesa; óculos redondos; olhos ciano; sobretudo cáqui, lupa, luvas brancas; **sem boca, pernas ou pés**.
 - Arquivos e hashes verificados em `TUE-MESTRE-01.json`. Se faltar a imagem original, **bloquear** a produção e buscar o arquivo canônico; não improvisar.
 
@@ -14,8 +20,8 @@
 
 1. **Capa de impacto.** Gancho forte, verdadeiro, preto condensado bem grande sobre faixas de pincel amarelo, detalhes vermelhos; cena documental/fotografia contextual, textura clara, luz e profundidade, Lúmino original em destaque.
 2. **Miolo tão bom quanto a capa.** Direção artística individual. Cada lâmina traz uma ideia nova bem explicada, fotografia ou cena **diferente** e adequada ao assunto, dados corretos, gráficos contextualizados quando úteis. **Nunca** montar sete variações do mesmo card, repetir a mesma foto como cenário recorrente, trocar qualidade por painel vazio, colagem ou layout genérico.
-3. **Modelo 1 somente.** Não mesclar com o modelo 5, não trocar fontes/fundos/mascote. O template antigo `render_instagram_carrossel.py` é **apenas prova técnica**, proibido como arte final. Evitar qualquer compositor fixo que reduz a identidade a cartão retangular + borda + foto repetida.
-4. **Avanço obrigatório no carrossel:** em **todas as lâminas, exceto a última**, inserir **“Arraste →”** em local discreto e legível no celular, preferencialmente no canto inferior direito, integrado à identidade amarelo/preto, dentro da área segura e sem cobrir texto, gráficos ou Lúmino. **Na última lâmina não inserir seta de avanço**. Proibidos números de páginas e contagens fixas. A quantidade de lâminas depende somente do roteiro.
+3. **Modelo visual-mestre de 02/11 somente.** Usar a imagem enviada como referência de proporção, tipografia, luz, Lúmino, efeitos gráficos e rodapé; não misturar com modelos rejeitados. O template antigo `render_instagram_carrossel.py` é **apenas prova técnica**, proibido como arte final. Evitar qualquer compositor fixo que reduz a identidade a cartão retangular + borda + foto repetida.
+4. **Avanço obrigatório no carrossel:** reproduzir o **rodapé da imagem-mestre**: pequenas bolinhas de progresso (página atual amarela, outras cinza), seta fina para direita e, abaixo, texto `ARRASTE PARA O LADO →` bem pequeno e espaçado, **CENTRALIZADO**, sem botão, etiqueta, tarja/pincelada ou mãos. Presente em todas as lâminas com continuação; última sem seta para avançar. Não há números visíveis nem quantidade fixa de páginas.
 5. **Formato final:** cada página JPEG individual 1080 × 1350 px (4:5). 2–20 peças conforme o roteiro, 10 no máximo pela Graph API do projeto. Um único JPG é post simples. A prévia é derivada exatamente dos JPGs finais.
 6. **Memes:** liberdade de narrativa e tirinhas, mas manter qualidade de cenário/tipografia, identificação e Lúmino original; não adaptar por padrão com desenho simplificado.
 7. **Reels:** sem substituir carrossel por Reel. Se solicitado e aprovado, exigir MP4, áudio Rasalgethi via site Google AI Studio quando houver narração, edição/sincronia e mídia adequada; nada de API paga.
@@ -32,9 +38,9 @@
 
 ## Trava de produção e revisão
 
-1. Carregar **primeiro** o contrato TUE-MESTRE-01, a configuração JSON e o PNG original do Lúmino. Conferir o hash do mascote e as regras editoriais; não carregar imagens-modelo antigas.
+1. Carregar **primeiro** a imagem visual-mestre de 02/11, este contrato, o JSON e o PNG original do Lúmino. Conferir o hash do mascote e as regras editoriais; não carregar imagens-modelo antigas.
 2. Montar briefing para um conteúdo por vez com `preset_id`, `reference_standard_id=TUE-MESTRE-01`, hash do PNG canônico e um conceito de cena próprio por lâmina; executar `python scripts/instagram_preset_mestre.py check-brief --brief caminho/brief.json`.
-3. Criar e **inspecionar visualmente** cada JPEG final contra o contrato TUE-MESTRE-01 e o Lúmino original, inclusive em tamanho pequeno no celular. Conferir tipografia, hierarquia, enquadramento, acentos, clareza, precisão factual e direitos das mídias. Se uma lâmina falhar, **refazer essa lâmina**, não remediar com template.
+3. Criar e **inspecionar visualmente** cada JPEG final contra a imagem visual-mestre de 02/11 e o Lúmino original, inclusive em tamanho pequeno no celular. Conferir tipografia, hierarquia, enquadramento, acentos, clareza, precisão factual e direitos das mídias. Se uma lâmina falhar, **refazer essa lâmina**, não remediar com template.
 4. Empacotar imagens **sem re-renderizar** com `scripts/package_individual_carousel.py` e testar `scripts/instagram_visual_standard.py verify-package`. Passar em QA técnico **não comprova** fidelidade artística.
 5. Manter `approved=false`, `visual_reviewed=false`, `owner_authorized=false` inicialmente. Para liberar post novo, um revisor deve preencher `human_visual_qc` após comparação de verdade com a imagem original; `audit-queue` exige o `preset_id` e todas as verificações, além de autorização real do proprietário.
 6. Não ativar música/Android cloud, não agendar nem postar sem as condições de cada post. Confirmar recibo real e evitar duplicatas.
