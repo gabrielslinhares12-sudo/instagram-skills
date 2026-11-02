@@ -1,0 +1,71 @@
+{
+  "kind": "meta_public_media_assets",
+  "version": 1,
+  "date": "2026-11-02",
+  "format": "JPEG",
+  "source_count": 6,
+  "publication_status": "NOT_SCHEDULED_NOT_PUBLISHED",
+  "review": "Media-hosting only. Artwork, copyright, AI-origin disclosure, account credentials and publishing approval remain separate gates.",
+  "files": [
+    {
+      "source_png": "TUE-02NOV-MAR-CRUZADO-01.png",
+      "source_sha256": "c51f631ed001ec561c56c8c3629b99cbd68b6c4dbf4c7d0758ee6f0198e91de6",
+      "jpeg_name": "TUE-02NOV-MAR-CRUZADO-01.jpg",
+      "jpeg_sha256": "745fb200df5051afc008d3898c26a71218dd0a85750acf5ec96f261979546d0f",
+      "bytes": 1007267,
+      "width": 1080,
+      "height": 1350,
+      "public_jpeg_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-MAR-CRUZADO-01.jpg"
+    },
+    {
+      "source_png": "TUE-02NOV-MAR-CRUZADO-02.png",
+      "source_sha256": "71809085f57e4f51ec226c5ce3477eb83c86e0fe478d306609e30d3685866e59",
+      "jpeg_name": "TUE-02NOV-MAR-CRUZADO-02.jpg",
+      "jpeg_sha256": "74117cabfcacd902cf774a1fb5fc80e3e5cfc878d243c2bb7807c7d7580b0a82",
+      "bytes": 1003168,
+      "width": 1080,
+      "height": 1350,
+      "public_jpeg_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-MAR-CRUZADO-02.jpg"
+    },
+    {
+      "source_png": "TUE-02NOV-MAR-CRUZADO-03.png",
+      "source_sha256": "2228fe3327cb055de5744217dd78a2ad32bd0ca7ac2e4ba0869c159b3246e800",
+      "jpeg_name": "TUE-02NOV-MAR-CRUZADO-03.jpg",
+      "jpeg_sha256": "5317a6beaeb0034dc075e6f0fb9db3d3724de06b7c0e3e354de104d7f2d95db6",
+      "bytes": 1041443,
+      "width": 1080,
+      "height": 1350,
+      "public_jpeg_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-MAR-CRUZADO-03.jpg"
+    },
+    {
+      "source_png": "TUE-02NOV-MAR-CRUZADO-04.png",
+      "source_sha256": "bd9b1817dbccb6fb422aca5816833a877b6c6d68b1faf41c2f2f20698ce0e607",
+      "jpeg_name": "TUE-02NOV-MAR-CRUZADO-04.jpg",
+      "jpeg_sha256": "7ba2fa1659527520b5b86ab730b5eaefe960a905b11ee40ba2fca430ea8aef46",
+      "bytes": 1007898,
+      "width": 1080,
+      "height": 1350,
+      "public_jpeg_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-MAR-CRUZADO-04.jpg"
+    },
+    {
+      "source_png": "TUE-02NOV-MAR-CRUZADO-05.png",
+      "source_sha256": "acf17c3a77c31a6a1a4a282c1d6d033d14521983895e932cc626c8eee43f4daa",
+      "jpeg_name": "TUE-02NOV-MAR-CRUZADO-05.jpg",
+      "jpeg_sha256": "1794438374dd194788e5925f761943df2ac1214e940d16c1e448ee730e859d9a",
+      "bytes": 1044440,
+      "width": 1080,
+      "height": 1350,
+      "public_jpeg_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-MAR-CRUZADO-05.jpg"
+    },
+    {
+      "source_png": "TUE-02NOV-15H-SAC-SENHA-IMPOSSIVEL.png",
+      "source_sha256": "be10668af10a6d28a17dd52ab94a451d98dac65623f13bfa5490eaa7f309b05b",
+      "jpeg_name": "TUE-02NOV-15H-SAC-SENHA-IMPOSSIVEL.jpg",
+      "jpeg_sha256": "9e532914b7f67b90c5e3cd190399dd83c6dbcf7461636e6267ba4457588cddef",
+      "bytes": 1028656,
+      "width": 1080,
+      "height": 1350,
+      "public_jpeg_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-15H-SAC-SENHA-IMPOSSIVEL.jpg"
+    }
+  ]
+}
