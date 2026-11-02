@@ -11,7 +11,9 @@ on:
       - 'scripts/instagram_visual_standard.py'
       - 'scripts/instagram_preset_mestre.py'
       - 'scripts/test_instagram_preset_mestre.py'
-      - 'content/editorial/semana-independente-2026-11-02-a-08/grade.json'
+      - 'content/editorial/semana-independente-2026-11-02-a-08/**'
+      - 'content/brand/QUADROS-TUE-MESTRE-01.json'
+      - 'scripts/validate_instagram_weekly_briefs.py'
       - 'scripts/instagram_queue.py'
       - 'scripts/test_instagram_queue.py'
       - '.github/workflows/instagram-scheduler.yml'
@@ -75,6 +77,8 @@ jobs:
         run: python -m unittest discover -s scripts -p test_instagram_preset_mestre.py -v
       - name: Validar 14 temas autonomos da semana
         run: python scripts/instagram_preset_mestre.py check-week --plan content/editorial/semana-independente-2026-11-02-a-08/grade.json
+      - name: Validar integridade dos 14 briefings, quadros e temas independentes
+        run: python scripts/validate_instagram_weekly_briefs.py
       - name: Barrar publicacoes aprovadas fora do padrao
         run: python scripts/instagram_visual_standard.py audit-queue
       - name: Validar preparação segura do método móvel privado (desativado)
