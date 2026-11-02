@@ -9,6 +9,53 @@ from instagram_preset_mestre import ROOT, check_brief, check_week, verify, Prese
 
 WEEK=ROOT/"content/editorial/semana-independente-2026-11-02-a-08/grade.json"
 CATALOG=ROOT/"content/brand/QUADROS-TUE-MESTRE-01.json"
+REELS=ROOT/"content/editorial/REELS-E-STORIES-2026-11-02-a-08.json"
+
+
+def verify_reels_and_stories(reels_plan, feed_plan):
+    """Fail-closed check of the separate 21h reel / post-publication story plan.
+
+    This does not publish anything or misrepresent a Story upload as a native
+    in-app share of the Reel. Provenance and the original video must be verified.
+    """
+    if (not isinstance(reels_plan, dict) or reels_plan.get("preset_id") != "TUE-MESTRE-01"
+            or reels_plan.get("status") != "draft_review_no_publication"):
+        raise PresetError("Fila de Reels e Stories fora do padrão mestre ou liberada.")
+    items=reels_plan.get("reels")
+    if not isinstance(items, list) or len(items)!=7:
+        raise PresetError("É preciso planejar sete Reels, um por data.")
+    feed={p["day"]: {p["topic_id"] for p in feed_plan["posts"] if p["day"]==p["day"]}
+          for p in feed_plan["posts"]}
+    days=set()
+    sources=set()
+    for reel in items:
+        day=reel.get("day")
+        if day not in feed or day in days or reel.get("slot")!="21:00":
+            raise PresetError("Reel sem data única ou fora das 21h.")
+        days.add(day)
+        source=reel.get("source_video_id")
+        if source:
+            if not isinstance(source,str) or source in sources:
+                raise PresetError("Vídeo do YouTube ausente ou reutilizado em outro Reel.")
+            sources.add(source)
+        if reel.get("topic_id") is not None and reel["topic_id"] in feed[day]:
+            raise PresetError("Reel repete tema de um post do feed do mesmo dia.")
+        origin=reel.get("ai_origin")
+        if origin not in ("unverified","verified_non_synthetic","synthetic"):
+            raise PresetError("A origem de IA do vídeo é inválida.")
+        if reel.get("approved") is True:
+            if (not reel.get("source_verified") or not source or not reel.get("source_mp4")
+                    or not reel.get("topic_id") or origin=="unverified"):
+                raise PresetError("Reel sem fonte e origem verificadas não pode ser aprovado.")
+        if reel.get("reel_published"):
+            if not reel.get("approved") or not reel.get("reel_media_id"):
+                raise PresetError("Reel publicado sem aprovação ou recibo.")
+        if reel.get("story_published"):
+            if (not reel.get("reel_published") or not reel.get("story_media_id")
+                    or not reel.get("story_cta_embedded")):
+                raise PresetError("Story não pode preceder o Reel ou omitir CTA/recibo.")
+    return {"reels_planned":len(items),"stories_confirmed":sum(bool(x.get("story_published")) for x in items),
+            "reels_confirmed":sum(bool(x.get("reel_published")) for x in items)}
 
 def validate(root=ROOT):
     profile=verify(root)
@@ -23,6 +70,15 @@ def validate(root=ROOT):
         raise PresetError("A grade precisa de 14 postagens em 7 dias.")
     if len({p["series_id"] for p in plan["posts"]})<6:
         raise PresetError("Faltam quadros diferentes para diversificar a semana.")
+    # The feed must rotate formats between both hours. The educational carousel is a series,
+    # not a fixed daily format or a compulsory noon post.
+    by_slot = {slot: {p["kind"] for p in plan["posts"] if p.get("slot") == slot}
+               for slot in ("12:00", "18:00")}
+    if any(kinds != {"carousel", "meme"} for kinds in by_slot.values()):
+        raise PresetError("Os quadros devem alternar entre 12h e 18h, sem formato fixo.")
+    if not any(p.get("series_id") == "carrossel-educativo" for p in plan["posts"]):
+        raise PresetError("O quadro Carrossel Educativo deve entrar em rodízio semanal.")
+    verify_reels_and_stories(json.loads((root/REELS.relative_to(ROOT)).read_text(encoding="utf-8")), plan)
     previous_day=None
     day_counts={}
     kinds={"carousel":0,"meme":0}
