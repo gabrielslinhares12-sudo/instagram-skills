@@ -36,7 +36,7 @@ ITEM_FIELDS = frozenset({
     "id", "due_at", "username", "kind", "target_url", "caption", "media_urls", "approved",
     "is_ai_generated", "ai_origin", "content_style", "ai_disclosure_review", "cover_url", "media_sha256", "title", "sources", "approval_note",
     "distribution_mode", "owner_authorized_without_music", "owner_authorized_two_step_music",
-    "private_api_authorized", "music_track", "music_artist",
+    "private_api_authorized", "music_track", "music_artist", "recovery_until",
 })
 PAYLOAD_OPTIONS = ("is_ai_generated", "cover_url")
 FINAL_STATES = frozenset({"claimed", "published", "needs_review", "awaiting_native_music"})
@@ -156,6 +156,13 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
             raise QueueError("Queue captions must contain one to 2200 characters.")
         if type(item.get("approved")) is not bool:
             raise QueueError("Every queue item must declare an explicit boolean approval.")
+        if "recovery_until" in item:
+            # Exceptional same-day recovery only after a verified Meta outage.
+            # The original due_at is preserved for audit; the deadline is
+            # bounded to 24h and never bypasses a prior publication claim.
+            deadline = utc_time(item["recovery_until"])
+            if item["approved"] is not True or not due < deadline <= due + timedelta(hours=24):
+                raise QueueError("Recovery deadline requires an approved post and must be within 24h of its original schedule.")
         if "is_ai_generated" in item and type(item["is_ai_generated"]) is not bool:
             raise QueueError("is_ai_generated must be boolean when supplied.")
         # Optional verified provenance for new media. Legacy posts remain readable.
@@ -244,6 +251,8 @@ def fingerprint(item: dict[str, Any]) -> str:
         content["music_intent"] = music_intent
     if "ai_origin" in item:
         content["ai_origin"]=item["ai_origin"]
+    if "recovery_until" in item:
+        content["recovery_until"] = item["recovery_until"]
     return hashlib.sha256(json.dumps(content, sort_keys=True, separators=(",", ":"),
                                      ensure_ascii=False).encode("utf-8")).hexdigest()
 
@@ -261,7 +270,8 @@ def plan(posts: list[dict[str, Any]], state: dict[str, Any], now: datetime) -> l
             status = "not_approved"
         elif due > now:
             status = "future"
-        elif now - due > MAX_LATENESS:
+        elif now > (utc_time(post["recovery_until"]) if "recovery_until" in post
+                    else due + MAX_LATENESS):
             status = "missed_window"
         elif post["kind"] == "carousel" and post.get("distribution_mode", "native_music_carousel") == "native_music_carousel":
             # Official Meta Graph API cannot attach native music to a photo carousel.
