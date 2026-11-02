@@ -22,7 +22,8 @@ CHANNEL_ID = "UCeVMYZs1z9HecuK0cPKnHgQ"
 
 def upload():
     reports = list(OUTPUT.glob("multi-client-report.json")) + list(
-        OUTPUT.glob("invidious-report.json"))
+        OUTPUT.glob("invidious-report.json")) + list(
+        OUTPUT.glob("piped-report.json"))
     docs = [json.loads(p.read_text(encoding="utf-8")) for p in reports]
     success = [d for d in docs if d.get("status") in
                ("downloaded_for_review", "downloaded_pending_editorial_qc")]
