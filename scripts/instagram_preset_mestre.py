@@ -75,8 +75,20 @@ def verify(root: Path = ROOT) -> dict:
         raise PresetError("Número de lâminas deixou de ser variável.")
     if brand["design"].get("numbering") is not False or preset["visual"]["no_visible_page_numbers"] is not True:
         raise PresetError("Numeração visual proibida pelo TUE-MESTRE-01.")
-    if not preset["visual"].get("discreet_swipe_cue"):
-        raise PresetError("Falta a indicação discreta para arrastar.")
+    cue = preset["visual"].get("swipe_cue")
+    brand_cue = brand.get("design", {})
+    mirror_cue = mirror.get("swipe_cue", {})
+    if (not preset["visual"].get("discreet_swipe_cue")
+            or not isinstance(cue, dict)
+            or cue.get("text") != "Arraste →"
+            or cue.get("required_on_nonfinal_carousel_slides") is not True
+            or cue.get("forbidden_on_last_slide") is not True
+            or brand_cue.get("swipe_cue_text") != cue["text"]
+            or brand_cue.get("swipe_cue_required") is not True
+            or brand_cue.get("no_forward_cue_on_last_slide") is not True
+            or mirror_cue.get("label") != cue["text"]
+            or mirror_cue.get("on") != "all_except_last"):
+        raise PresetError("Indicação Arraste → não segue o padrão TUE-MESTRE-01.")
     if preset["reference_style"] != "EXCLUSIVAMENTE identidade editorial modelo 1 do proprietário conforme TUE-MESTRE-01, sem mescla, colagem ou número fixo de painéis":
         raise PresetError("Foi alterada a referência artística exclusiva.")
     return preset
@@ -121,6 +133,13 @@ def check_brief(brief: dict, preset: dict) -> dict:
         seen.add(scene)
         if page.get("uses_original_lumino") is not True:
             raise PresetError(f"Lâmina {i}: Lúmino original obrigatório.")
+        if kind == "carousel":
+            expected_cue = "Arraste →" if i < len(pages) else None
+            if page.get("swipe_cue") != expected_cue:
+                raise PresetError(
+                    f"Lâmina {i}: usar Arraste → nas páginas com continuação e omitir na última."
+                )
+
     return {"preset_id": IDENTITY, "pages": len(pages), "draft_only": True,
             "human_visual_comparison_still_required": True}
 
@@ -180,7 +199,7 @@ def check_release(manifest: dict) -> None:
              "original_lumino_visually_confirmed", "all_text_readable",
              "all_facts_checked", "sources_and_rights_checked",
              "no_unnecessary_repeated_scenes", "swipe_cue_verified",
-             "no_visible_page_numbers")
+             "no_forward_cue_on_last_slide", "no_visible_page_numbers")
     if not all(qc.get(item) is True for item in flags):
         raise PresetError("Revisão manual página por página não foi concluída.")
     if not isinstance(qc.get("reviewer_note"), str) or len(qc["reviewer_note"].strip()) < 30:
