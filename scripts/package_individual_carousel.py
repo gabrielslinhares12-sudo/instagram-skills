@@ -72,6 +72,14 @@ def package(spec_path: Path, out: Path) -> dict:
         required = ("file", "headline", "mascot_box", "credit", "layout")
         if any(not item.get(field) for field in required):
             raise VisualError(f"Página {number}: dados de arte incompletos.")
+        # The visual indicator must already exist in the approved art.
+        # Never draw a last-minute overlay that degrades an approved master.
+        expected_cue = "Arraste →" if number < len(items) else None
+        if "swipe_cue" not in item or item["swipe_cue"] != expected_cue:
+            raise VisualError(
+                f"Página {number}: exigir 'Arraste →' em cada lâmina com continuação "
+                "e omitir na última. Confirme visualmente o JPG original."
+            )
         src = safe_file(source, item["file"])
         if src.suffix.lower() not in {".jpg", ".jpeg"} or not src.is_file():
             raise VisualError(f"Página {number}: somente JPG individual pronto.")
@@ -95,6 +103,7 @@ def package(spec_path: Path, out: Path) -> dict:
             "background_credit": item["credit"],
             "background_type": item.get("background_type", "illustration"),
             "visual_notes": item.get("visual_notes", ""),
+            "swipe_cue": expected_cue,
         })
 
     preview_name = f"PREVIA-{len(pages):02d}-ARTES.png"
