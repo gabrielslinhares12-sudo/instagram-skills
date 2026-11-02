@@ -1,0 +1,43 @@
+{
+  "id": "meme-voto-branco-nulo-2026-11-02-v3",
+  "approved": false,
+  "visual_reviewed": false,
+  "owner_authorized": false,
+  "published": false,
+  "media_file": "meme-voto-nulo.jpg",
+  "size": [
+    1080,
+    1350
+  ],
+  "sha256": "6a6e883219ddd92f80536c797889147f21d893d97f933cb5ccc1d864f7849f60",
+  "canonical_lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "photo_source": "https://commons.wikimedia.org/wiki/File:Brazilian_DRE_voting_machine_for_2022_elections.jpg",
+  "source": "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao",
+  "mascot_boxes": [
+    [
+      331,
+      389,
+      194,
+      203
+    ],
+    [
+      636,
+      238,
+      312,
+      324
+    ],
+    [
+      299,
+      1089,
+      190,
+      197
+    ],
+    [
+      784,
+      895,
+      220,
+      228
+    ]
+  ],
+  "source_pixel_match_error": 0.587
+}
