@@ -60,7 +60,7 @@ Sem comando explícito, o projeto Instagram TUE também deve adotar o mesmo padr
 
 - **11h e 15h (America/Sao_Paulo):** dois quadros editoriais de assunto independente, alternando formatos e quadros. **Carrossel Educativo** é um quadro do catálogo, **não** um post fixo diário, nem há obrigação de carrossel às 11h/tirinha às 15h.
 - **18h:** um Reel a partir de um vídeo **original do nosso YouTube em português**, preferindo o MP4-fonte com direitos de uso e sem marca d'água. Nunca baixar e reencodar a tela do player. Verificar duplicação de vídeo e de tema antes de publicar. Preparar capa/legenda nativa, áudio e legendas sincronizados.
-- **Stories:** somente depois da confirmação por recibo do Reel, compartilhar o vídeo ou uma prévia vertical 9:16 com o texto visual padrão: **“💡 Curtiu? Veja o Reel no nosso perfil e deixe seu ❤️!”**. Um Story por Reel, com próprio recibo. Se precisar de compartilhamento nativo com link interativo para o Reel, fazê-lo pelo app oficial: a API de Stories não equivale ao comando “Adicionar reel ao seu story”. Não afirmar que a etapa ocorreu sem recibo.
+- **Stories:** após qualquer post ou Reel confirmado, compartilhar **a própria publicação** pelo comando nativo *Adicionar ao story* e adicionar **chamada em texto, sem narração nem sticker de link**. Um Story vinculado por post; não gerar mídia separada.
 - **IA:** não adicionar selo de IA automaticamente apenas porque a postagem foi agendada ou produzida por software. Conferir a procedência do arquivo. Para material sem geração/alteração sintética relevante e com origem verificada, omitir a autodeclaração opcional; para material sintético abrangido pelas regras, informar corretamente. Origem desconhecida bloqueia publicação automática. O Instagram pode aplicar a própria identificação; não adulterar metadados para escondê-la nem prometer remoção.
 - **Total planejado:** 2 publicações de feed + 1 Reel + 1 Story derivado **após** o Reel diariamente (21 itens de feed/Reels por semana + até 7 Stories vinculados). A fila de rascunhos, a aprovação e o recibo de publicação permanecem distintos.
 - **Estado técnico:** editar plano e preset **não** agenda, publica, gera vídeo, insere Story ou comprova autenticação; usar os bloqueios de qualidade e a fila oficial.
@@ -71,22 +71,18 @@ Sem comando explícito, o projeto Instagram TUE também deve adotar o mesmo padr
 
 **Trava de integridade:** a partir de 02/11/2026 UTC, um novo item só pode ser automaticamente publicado se sua origem foi verificada como **não sintética** e sem sinalizador voluntário de IA. Se for sintético, exigir declaração obrigatória, ou tiver origem desconhecida, **não publicar automaticamente**: colocar em revisão em vez de ocultar informação relevante. Essa regra não permite mentir sobre a origem, remover metadados de procedência ou impedir rótulos que o Instagram aplique por conta própria. Preservar os recibos anteriores.
 
-## REGRA PRIORITÁRIA — Story apenas como republicação nativa do post publicado (02/11/2026)
+## REGRA PRIORITÁRIA — Story diretamente do post, CTA apenas em texto (02/11/2026)
 
-**Prevalece sobre qualquer instrução anterior que sugira criar uma imagem ou vídeo independente para o Story.**
+**Prevalece sobre quaisquer regras anteriores de narração, áudio, link externo, imagem separada ou Story independente.**
 
-Para **cada** publicação feita às **11h, 15h ou 18h** (carrossel, post único, tirinha, meme ou Reel):
-1. Publicar primeiro o conteúdo original no Instagram @temumaexplicacao. Conferir identidade da conta, `media_id` real e permalink da postagem.
-2. **Somente após a confirmação**, abrir o **próprio post já publicado** no aplicativo oficial e selecionar **Compartilhar → Adicionar ao story** (ou a opção equivalente mostrada no aplicativo). O Story é obrigatoriamente uma **republicação vinculada**, preservando a prévia tocável que leva ao original, não a criação de outra foto/colagem/vídeo ou duplicação no feed.
-3. Adicionar uma **fala audível** com a chamada padrão: **“Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!”**. O texto pode acompanhar a fala de modo discreto, sem encobrir a publicação. Não desenhar boca no Lúmino. Conferir o áudio antes de enviar.
-4. Publicar **um único Story por post** e conferir que é possível abrir a postagem original tocando nele, que a chamada está audível e que a publicação do Story foi confirmada. Registrar o ID ou evidência visual autenticada, além do recibo do post de origem.
-5. Caso o aplicativo não disponibilize a republicação nativa **com a fala** nessa conta, **manter o Story pendente**, sem produzir um Story independente e sem declarar que a operação foi concluída. Não usar o endpoint de envio de nova imagem/vídeo como equivalente ao comando nativo.
-6. Os Stories **não são criados antecipadamente**: só existem após a publicação de origem. O registro da fila para os 21 pares semanais é apenas planejamento, não arte, não voz, não agendamento e não publicação.
+1. Primeiro, publicar e confirmar o post original no Instagram @temumaexplicacao, registrando o ID e o permalink **somente para verificação interna**.
+2. Na própria publicação já existente, usar o comando nativo do Instagram **Compartilhar → Adicionar ao story**. O Story deve preservar o cartão/prévia original do post e seu comportamento nativo de acesso ao post, sem criar foto ou vídeo independente.
+3. Sobre esse compartilhamento nativo, adicionar **apenas texto**, com a chamada: **“Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!”**. Texto legível, integrado ao Story, sem cobrir a prévia. **Nenhuma fala, voz sintetizada, narração ou áudio de CTA é necessária ou desejada.**
+4. **Não adicionar sticker de link, URL escrita, QR code, link externo ou outro destino manual.** A própria republicação nativa é a referência ao post. O permalink é dado técnico interno, nunca um link a ser colado na arte.
+5. Um Story por publicação original, somente após a confirmação do post. Registrar evidência da republicação nativa, texto visível e confirmação real de envio do Story. Sem essas evidências, o Story permanece pendente.
+6. Se a integração API/GitHub não conseguir acionar **Compartilhar → Adicionar ao story** com texto no aplicativo oficial, **não substituir o procedimento por envio de uma mídia de Story independente** nem marcar como publicado; registrar pendência de republicação nativa.
 
-**Resultado da grade:** 14 posts de quadros rotativos + 7 Reels do YouTube no Instagram + até 21 Stories vinculados, com um Story por publicação efetivamente realizada. O post principal já publicado continua válido mesmo que seu Story esteja pendente; o pacote só é considerado integralmente concluído quando ambos forem verificados.
-
-A regra de procedência e identificação obrigatória de IA continua válida; não acrescentar texto ou selo voluntário de IA nem ocultar informações de divulgação exigidas pela plataforma.
-
+A grade permanece em 14 publicações de feed + 7 Reels com **até 21 Stories nativos**, dependentes da publicação de cada conteúdo original. O post principal permanece publicado mesmo quando seu Story estiver pendente.
 ## REGRA PRIORITÁRIA — arte aprovada é o arquivo mestre, NÃO um exemplo para reconstrução (02/11/2026)
 
 A imagem aprovada pelo proprietário **é a própria ARTE-MESTRE**. Não usá-la como mera referência para criar uma versão final barata. O erro comprovado no script local `montar_tue_03nov.py`: primeiro foi gerada uma composição cinematográfica integral; depois o script fez `Image.new`, extraiu pequenas regiões com `src.crop(...)` e redesenhou o restante com retângulos, tarjas e caixas de texto. O resultado NÃO preservou a arte aprovada e **não pode ser publicado**. A mudança foi estrutural, não de tamanho ou compressão.
