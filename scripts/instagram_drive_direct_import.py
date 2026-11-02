@@ -112,6 +112,29 @@ def stream_mp4(request, output: Path):
     return {"bytes": length, "sha256": digest.hexdigest()}
 
 
+def download_with_gdown():
+    """Public-link fallback for Drive files requiring a large-download confirmation."""
+    try:
+        import gdown
+    except ImportError as exc:
+        raise ImportErrorSafe("gdown_dependency_missing") from exc
+    try:
+        # gdown uses only a file ID and the public Google Drive download flow.
+        # It does not receive any user's Google auth cookie or private token.
+        result = gdown.download(id=FILE_ID, output=str(OUTPUT), quiet=True)
+    except Exception as exc:
+        raise ImportErrorSafe("gdown_public_download_unavailable") from exc
+    if result is None or not OUTPUT.is_file():
+        raise ImportErrorSafe("gdown_public_download_unavailable")
+    length = OUTPUT.stat().st_size
+    if length != EXPECTED_BYTES or hashlib.sha256(OUTPUT.read_bytes()).hexdigest() != EXPECTED_SHA256:
+        raise ImportErrorSafe("gdown_public_download_failed_validation")
+    with OUTPUT.open("rb") as file:
+        if file.read(12)[4:8] != b"ftyp":
+            raise ImportErrorSafe("gdown_output_not_mp4")
+    return {"bytes": length, "sha256": EXPECTED_SHA256}
+
+
 def validate_media(path: Path):
     try:
         check = subprocess.run(["ffprobe", "-v", "error", "-show_streams",
@@ -145,15 +168,22 @@ def main():
         except ImportErrorSafe as exc:
             OUTPUT.unlink(missing_ok=True)
             print("ANONYMOUS_DRIVE_RESULT=" + str(exc), flush=True)
-            token = get_oauth_token()
-            if token is None:
-                raise ImportErrorSafe("drive_private_oauth_secrets_missing")
-            print("TEST_GDRIVE_OAUTH_API", flush=True)
-            qc = stream_mp4(urllib.request.Request(API_URL, headers={
-                "Authorization": "Bearer " + token,
-                "Accept": "application/octet-stream"
-            }, method="GET"), OUTPUT)
-            mode = "owner_drive_oauth"
+            try:
+                print("TEST_GDOWN_PUBLIC_SHARE_LINK", flush=True)
+                qc = download_with_gdown()
+                mode = "gdown_public_shared_file"
+            except ImportErrorSafe as gdown_error:
+                OUTPUT.unlink(missing_ok=True)
+                print("GDOWN_RESULT=" + str(gdown_error), flush=True)
+                token = get_oauth_token()
+                if token is None:
+                    raise ImportErrorSafe("drive_private_oauth_secrets_missing")
+                print("TEST_GDRIVE_OAUTH_API", flush=True)
+                qc = stream_mp4(urllib.request.Request(API_URL, headers={
+                    "Authorization": "Bearer " + token,
+                    "Accept": "application/octet-stream"
+                }, method="GET"), OUTPUT)
+                mode = "owner_drive_oauth"
         extra = validate_media(OUTPUT)
         summary("verified", access_mode=mode, filename=OUTPUT.name, **qc, **extra)
         return 0
