@@ -64,10 +64,10 @@ def verify_brand(root: Path = ROOT) -> dict:
             or not master_path.is_file() or sha256(master_path) != digest):
         raise VisualError("Arquivo visual-mestre aprovado pelo proprietário foi alterado ou está ausente.")
     with Image.open(master_path) as approved:
-        # User-supplied reference is an exact PNG payload, even though a
-        # historical GitHub alias has a .jpg filename. Validate bytes and
-        # image format; never re-encode and silently alter the signed image.
-        if approved.format != "PNG" or approved.size != (1229, 1536):
+        # The user-provided bytes have a JPEG header (FF D8) despite the
+        # original conversation filename ending in .png. Preserve the original
+        # byte stream and validate the TRUE encoded format, not its old suffix.
+        if approved.format != "JPEG" or approved.size != (1229, 1536):
             raise VisualError("Dimensões ou formato da imagem visual-mestre divergentes.")
     ref = spec.get("reference_visual", {})
     if (ref.get("path") != path or ref.get("sha256") != digest
