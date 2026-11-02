@@ -5,7 +5,7 @@
   "approved": false,
   "owner_authorized": false,
   "publication_attempted": false,
-  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "frame_note": "Referência EXCLUSIVA content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg, Lúmino original, qualidade da capa em todas as lâminas.",
   "id": "tue-2026-11-08-18-despertador-soneca",
   "day": "2026-11-08",
   "slot": "15:00",
@@ -35,5 +35,6 @@
   ],
   "caption": "⏰ A soneca é um contrato de cinco minutos renovado sem limite de vezes. O despertador já procurou advogado. 😂 #Rotina #Memes #Lumino #TemUmaExplicacao",
   "publication_requires_native_music": false,
-  "reference_standard_id": "TUE-MESTRE-01"
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
 }
