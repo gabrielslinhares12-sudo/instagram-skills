@@ -36,18 +36,22 @@
     "swipe_cue_discreet": true,
     "default_master_preset": "TUE-MESTRE-01",
     "swipe_cue_required": true,
-    "swipe_cue_text": "Arraste →",
+    "swipe_cue_text": "Arraste para o lado →",
     "swipe_cue_on_nonfinal_carousel_slides": true,
     "no_forward_cue_on_last_slide": true,
-    "swipe_cue_placement": "rodapé CENTRAL, com pontos pequenos e seta fina como na imagem-mestre; texto pequeno espaçado abaixo dos pontos",
-    "swipe_cue_style": "idêntico à imagem oficial: bolinhas de progresso amarelas/cinzas + seta fina + texto pequeno ARRRASTE PARA O LADO sem botão, tarja ou pincelada atrás",
+    "swipe_cue_placement": "rodapé claro, centralizado, discreto, abaixo da composição sem obstruir conteúdo",
+    "swipe_cue_style": "EXATAMENTE referência visual oficial: pequenos pontos de progresso (atual amarelo, demais cinza); seta preta fina; microtexto espaçado 'ARRASTE PARA O LADO →'. SEM pincelada amarela, selo, botão ou mão.",
     "swipe_cue_must_preserve_approved_art": true,
     "swipe_cue_display_text": "ARRASTE PARA O LADO →",
     "swipe_cue_progress_dots": true,
     "swipe_cue_active_dot": "#F6B900",
     "swipe_cue_inactive_dots": "#BFC1C3",
     "swipe_cue_dot_count_dynamic": true,
-    "official_model_for_all_formats": true
+    "official_model_for_all_formats": true,
+    "footer_dots_only_carousel": true,
+    "swipe_cue_dots_dynamic": true,
+    "no_footer_cue_on_single_post": true,
+    "approved_visual_style_only": "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg"
   },
   "forbidden": [
     "fundos escuros genericos no lugar do papel claro",
@@ -58,7 +62,10 @@
     "imagem de referência de oito painéis usada como template obrigatório",
     "mudança de assunto no lugar de correção pontual do Lúmino",
     "regenerar personagem em vez de compor o PNG canônico",
-    "selos gigantes de arraste, ícones de mão, moldura azul ou mudança da composição aprovada apenas para adicionar aviso"
+    "selos gigantes de arraste, ícones de mão, moldura azul ou mudança da composição aprovada apenas para adicionar aviso",
+    "substituir o padrão oficial 51% enviado pelo proprietário por capa genérica",
+    "rodapé de arrastar em pincelada amarela ou botão gigante",
+    "indicador de progresso com número fixo de pontos para todos os carrosséis"
   ],
   "release": {
     "approval_required": true,
@@ -89,7 +96,7 @@
   "editorial_standard": {
     "id": "TUE-MESTRE-01",
     "path": "content/brand/TUE-MESTRE-01.md",
-    "role": "contrato editorial + imagem visual-mestre exata aprovada em 02/11/2026; a referência é UMA capa de exemplo, não uma exigência de número fixo de lâminas."
+    "role": "contrato editorial e referência visual oficial enviada em 02/11/2026; sem quantidade fixa de páginas"
   },
   "visual_master": {
     "path": "content/brand/modelo-oficial-aprovado-2026-11-02.png",
@@ -97,5 +104,13 @@
     "width": 1229,
     "height": 1536,
     "role": "EXATA imagem-mestre do proprietário aprovada em 02/11/2026; padrão visual obrigatório para TODAS as artes TUE"
+  },
+  "reference_visual": {
+    "path": "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg",
+    "sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+    "width": 1229,
+    "height": 1536,
+    "role": "REFERÊNCIA VISUAL OFICIAL aprovada pelo proprietário em 02/11/2026; substitui referências estéticas anteriores. Não serve de template de 8 painéis.",
+    "source": "imagem enviada diretamente pelo proprietário no chat; exemplo eleitoral apenas para estilo"
   }
 }
