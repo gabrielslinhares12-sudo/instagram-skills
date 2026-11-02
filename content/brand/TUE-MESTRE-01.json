@@ -54,7 +54,25 @@
     "never_auto_approve_generated_work": true,
     "never_repost_published_content": true,
     "native_music": "requires legitimate Instagram app verification; do not fake or silently omit",
-    "reel": "requires actual MP4 and voice Rasalgethi via Google AI Studio when narration is required"
+    "reel": "requires actual MP4 and voice Rasalgethi via Google AI Studio when narration is required",
+    "daily_reel_stories": {
+      "required": true,
+      "after_confirmed_reel": true,
+      "one_story_per_reel": true,
+      "story_format": "9:16 — original licensed video or edited story preview with actual CTA overlay",
+      "cta": "💡 Curtiu? Veja o Reel no nosso perfil e deixe seu ❤️!",
+      "requires_story_receipt": true,
+      "do_not_claim_native_reel_share_via_api": true,
+      "do_not_publish_if_source_unverified": true
+    },
+    "ai_disclosure": {
+      "policy": "Disclose AI-generated/synthetically altered media when applicable; never falsify origin or remove platform-mandated labels",
+      "source_check_required": true,
+      "verified_non_ai_media": "omit optional is_ai_generated=true flag; do not label content AI solely because automated publication was used",
+      "generated_or_materially_synthetic": "disclose when required; is_ai_generated=true where applicable",
+      "unknown_origin": "block automatic posting until reviewed",
+      "native_platform_label": "Meta may apply its own labels; never guarantee removal"
+    }
   },
   "production": {
     "one_complete_content_at_a_time": true,
@@ -70,10 +88,20 @@
     "every_post_distinct_subject_in_week": true,
     "no_part_two_or_derivative_post_without_explicit_owner_request": true,
     "requires_weekly_topic_uniqueness_validation": true,
-    "posts_per_day_planned": 2,
+    "posts_per_day_planned": 3,
     "slots_local": [
       "12:00",
+      "18:00",
+      "21:00"
+    ],
+    "feed_slots_local": [
+      "12:00",
       "18:00"
-    ]
+    ],
+    "reel_slot_local": "21:00",
+    "feed_format_rotation": true,
+    "carrossel_educativo_is_optional_rotating_series": true,
+    "daily_reel_from_owned_youtube": true,
+    "no_topic_duplication_across_all_three_daily_posts": true
   }
 }
