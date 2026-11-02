@@ -3,7 +3,7 @@
   "preset_id": "TUE-MESTRE-01",
   "status": "draft_review_no_publication",
   "timezone": "America/Sao_Paulo",
-  "name": "Semana de quadros independentes — Parece mentira, mas tem explicação",
+  "name": "Semana de quadros rotativos independentes — 12h/18h (Reels 21h em fila própria)",
   "range": {
     "start": "2026-11-02",
     "end": "2026-11-08"
@@ -40,7 +40,7 @@
     {
       "id": "tue-2026-11-03-12-deserto-florido-atacama",
       "day": "2026-11-03",
-      "slot": "12:00",
+      "slot": "18:00",
       "topic_id": "deserto-florido-atacama",
       "subject_id": "floracao-atacama-sementes-dormencia",
       "series_id": "arquivo-improvavel",
@@ -54,7 +54,7 @@
     {
       "id": "tue-2026-11-03-18-reuniao-sobre-reuniao",
       "day": "2026-11-03",
-      "slot": "18:00",
+      "slot": "12:00",
       "topic_id": "reuniao-sobre-reuniao",
       "subject_id": "corporativo-reuniao-circular",
       "series_id": "plantao-absurdo",
@@ -71,7 +71,7 @@
       "slot": "12:00",
       "topic_id": "por-sol-azul-marte",
       "subject_id": "poeira-marciana-espalhamento-luz",
-      "series_id": "raio-x-real",
+      "series_id": "carrossel-educativo",
       "kind": "carousel",
       "title": "NO PLANETA VERMELHO O SOL SE PÕE AZUL?",
       "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-12-por-sol-azul-marte.json",
@@ -124,7 +124,7 @@
     {
       "id": "tue-2026-11-06-12-lago-rosa",
       "day": "2026-11-06",
-      "slot": "12:00",
+      "slot": "18:00",
       "topic_id": "lago-rosa",
       "subject_id": "microorganismos-pigmentos-lagos-salinos",
       "series_id": "tribunal-fenomenos",
@@ -138,7 +138,7 @@
     {
       "id": "tue-2026-11-06-18-meia-desaparecida",
       "day": "2026-11-06",
-      "slot": "18:00",
+      "slot": "12:00",
       "topic_id": "meia-desaparecida",
       "subject_id": "lavanderia-meia-sem-par",
       "series_id": "tribunal-pequenas",
@@ -221,13 +221,15 @@
       "sac-lumino": 2,
       "arquivo-improvavel": 1,
       "plantao-absurdo": 1,
-      "raio-x-real": 1,
+      "carrossel-educativo": 1,
       "museu-inutilidades": 1,
       "nao-era-isso": 1,
       "tribunal-pequenas": 2,
       "tribunal-fenomenos": 1,
       "rh-do-caos": 1,
       "luz-seu-veredito": 1
-    }
-  }
+    },
+    "rotating_12_and_18": true
+  },
+  "feed_rotation_rule": "Nenhum formato é fixo por horário: carrosséis educativos, demais carrosséis e tirinhas alternam entre 12h e 18h. O Reel do YouTube às 21h permanece fila separada e dependente de MP4 verificado."
 }
