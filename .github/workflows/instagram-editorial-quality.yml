@@ -16,6 +16,8 @@ on:
       - 'scripts/validate_instagram_weekly_briefs.py'
       - 'scripts/instagram_story_gate.py'
       - 'scripts/test_instagram_story_gate.py'
+      - 'scripts/instagram_story_reconcile.py'
+      - 'scripts/test_instagram_story_reconcile.py'
       - 'content/editorial/STORIES-VINCULADOS-2026-11-02-a-08.json'
       - 'scripts/instagram_queue.py'
       - 'scripts/test_instagram_queue.py'
@@ -82,9 +84,10 @@ jobs:
         run: python scripts/instagram_preset_mestre.py verify
       - name: Testar bloqueios de arte sem preset e revisao manual
         run: python -m unittest discover -s scripts -p test_instagram_preset_mestre.py -v
-      - name: Validar vínculo e CTA falado de todos os 21 Stories
+      - name: Validar Story nativo com CTA em texto, sem narração ou link extra
         run: |
           python -m unittest discover -s scripts -p test_instagram_story_gate.py -v
+          python -m unittest discover -s scripts -p test_instagram_story_reconcile.py -v
           python scripts/instagram_story_gate.py
       - name: Validar 14 temas autonomos da semana
         run: python scripts/instagram_preset_mestre.py check-week --plan content/editorial/semana-independente-2026-11-02-a-08/grade.json
