@@ -12,7 +12,7 @@
     {
       "id": "tue-2026-11-02-12-mar-cruzado",
       "day": "2026-11-02",
-      "slot": "11:00",
+      "slot": "15:00",
       "topic_id": "mar-cruzado",
       "subject_id": "interferencia-ondas-direcoes",
       "series_id": "parece-mentira",
@@ -26,7 +26,7 @@
     {
       "id": "tue-2026-11-02-18-senha-impossivel",
       "day": "2026-11-02",
-      "slot": "15:00",
+      "slot": "11:00",
       "topic_id": "senha-impossivel",
       "subject_id": "seguranca-digital-senhas",
       "series_id": "sac-lumino",
@@ -231,5 +231,6 @@
     },
     "rotating_12_and_18": true
   },
-  "feed_rotation_rule": "Nenhum formato é fixo por horário: carrosséis educativos, demais carrosséis e tirinhas alternam entre 11h e 15h. O Reel do YouTube às 18h permanece fila separada e dependente de MP4 verificado."
+  "feed_rotation_rule": "Nenhum formato é fixo por horário: carrosséis educativos, demais carrosséis e tirinhas alternam entre 11h e 15h. O Reel do YouTube às 18h permanece fila separada e dependente de MP4 verificado.",
+  "schedule_override_note": "02/11: tirinha antecipada e publicada 13h51, Mar Cruzado transferido para 15h por solicitação do proprietário. IDs históricos são preservados; alteração não constitui agendamento nem publicação."
 }
