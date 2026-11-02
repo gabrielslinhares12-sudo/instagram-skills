@@ -5,7 +5,7 @@
   "approved": false,
   "owner_authorized": false,
   "publication_attempted": false,
-  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "frame_note": "Referência EXCLUSIVA content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg, Lúmino original, qualidade da capa em todas as lâminas.",
   "id": "tue-2026-11-07-12-nuvens-lenticulares",
   "day": "2026-11-07",
   "slot": "11:00",
@@ -32,7 +32,7 @@
       "source_credit": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/clouds/unusual-cloud-formations — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "gancho",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "NÃO HÁ MOTOR NESSA NAVE",
@@ -42,7 +42,7 @@
       "source_credit": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/clouds/unusual-cloud-formations — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "O VAPOR CONDENSA NA ONDA",
@@ -52,7 +52,7 @@
       "source_credit": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/clouds/unusual-cloud-formations — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "POR QUE NÃO VAI EMBORA?",
@@ -62,7 +62,7 @@
       "source_credit": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/clouds/unusual-cloud-formations — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "MISTÉRIO RESOLVIDO, CÉU NÃO",
@@ -77,5 +77,6 @@
   ],
   "caption": "💡 A nave é feita de água e vento. Nuvens lenticulares podem parecer discos voadores, especialmente quando surgem sobre regiões montanhosas. Quando o ar atravessa relevo, podem se formar ondas estacionárias no fluxo atmosférico. Ar úmido que sobe em parte da onda pode resfriar e formar gotículas, deixando a região visível como nuvem. A nuvem pode parecer estacionária porque gotículas se formam de um lado e evaporam do outro enquanto o ar segue se movendo. Uma nuvem em forma de disco pode ser efeito de ondas do relevo, mas identificá-la exige olhar condições e imagens concretas. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
   "publication_requires_native_music": true,
-  "reference_standard_id": "TUE-MESTRE-01"
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
 }
