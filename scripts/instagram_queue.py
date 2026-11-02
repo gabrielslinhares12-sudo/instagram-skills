@@ -34,7 +34,7 @@ MAX_POSTS = 366
 MAX_LATENESS = timedelta(hours=2)
 ITEM_FIELDS = frozenset({
     "id", "due_at", "username", "kind", "target_url", "caption", "media_urls", "approved",
-    "is_ai_generated", "cover_url", "media_sha256", "title", "sources", "approval_note",
+    "is_ai_generated", "ai_origin", "cover_url", "media_sha256", "title", "sources", "approval_note",
     "distribution_mode", "owner_authorized_without_music", "owner_authorized_two_step_music",
     "private_api_authorized", "music_track", "music_artist",
 })
@@ -158,6 +158,21 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
             raise QueueError("Every queue item must declare an explicit boolean approval.")
         if "is_ai_generated" in item and type(item["is_ai_generated"]) is not bool:
             raise QueueError("is_ai_generated must be boolean when supplied.")
+        # Optional verified provenance for new media. Legacy posts remain readable.
+        # Never force an AI label solely because a scheduler was used; never
+        # under-declare when the content is synthetic and disclosure is needed.
+        origin=item.get("ai_origin")
+        if origin is not None:
+            if origin not in {"verified_non_synthetic","synthetic","unverified"}:
+                raise QueueError("ai_origin must describe a verified non-synthetic, synthetic or unverified asset.")
+            if item["approved"] and origin=="unverified":
+                raise QueueError("Unverified AI provenance blocks automatic publication.")
+            if origin=="synthetic" and item["approved"] and item.get("is_ai_generated") is not True:
+                raise QueueError("Synthetic media requires truthful AI disclosure.")
+            if origin=="verified_non_synthetic" and item.get("is_ai_generated") is True:
+                raise QueueError("Verified non-synthetic media must not be falsely marked AI.")
+        if item.get("is_ai_generated") is False and origin!="verified_non_synthetic":
+            raise QueueError("Explicit non-AI disclosure requires verified non-synthetic provenance.")
         if "cover_url" in item:
             if kind != "reel":
                 raise QueueError("cover_url is supported only for Reels.")
@@ -208,6 +223,8 @@ def fingerprint(item: dict[str, Any]) -> str:
         "music_track", "music_artist") if name in item}
     if music_intent:
         content["music_intent"] = music_intent
+    if "ai_origin" in item:
+        content["ai_origin"]=item["ai_origin"]
     return hashlib.sha256(json.dumps(content, sort_keys=True, separators=(",", ":"),
                                      ensure_ascii=False).encode("utf-8")).hexdigest()
 
