@@ -29,7 +29,7 @@ CHANNEL_VIDEO_ID = "H9WGKaO5XQ4"
 POST_ID = "tue-2026-11-02-18-reel-caes-cores-original"
 TARGET = "https://www.instagram.com/" + EXPECTED + "/"
 MEDIA = ("https://raw.githubusercontent.com/"
-         "gabrielslinhares12-sudo/tem-uma-explicacao/"
+         "gabrielslinhares12-sudo/instagram-skills/"
          "instagram-reel-media-2026-11-02/"
          "instagram-reel-media/H9WGKaO5XQ4.mp4")
 SHA256 = "ae4892d2c9c3b7215bb621d1c4d79e5a2669938428c97345effbf6a113d96fba"
@@ -153,7 +153,8 @@ def main():
     try:
         result = poster.publish("reel", TARGET, {
             "kind": "reel", "target_url": TARGET,
-            "approved": True, "draft_text": CAPTION, "media_urls": [MEDIA]
+            "approved": True, "draft_text": CAPTION, "media_urls": [MEDIA],
+            "is_ai_generated": True  # Fonte original informa narracao sintetica com IA.
         })
         if not result.get("ok") or not str(result.get("media_id", "")).isdigit():
             raise RuntimeError("Meta returned no valid media receipt")
