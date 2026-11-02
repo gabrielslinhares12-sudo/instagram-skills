@@ -66,12 +66,14 @@
       "do_not_publish_if_source_unverified": true
     },
     "ai_disclosure": {
-      "policy": "Disclose AI-generated/synthetically altered media when applicable; never falsify origin or remove platform-mandated labels",
-      "source_check_required": true,
-      "verified_non_ai_media": "omit optional is_ai_generated=true flag; do not label content AI solely because automated publication was used",
-      "generated_or_materially_synthetic": "disclose when required; is_ai_generated=true where applicable",
-      "unknown_origin": "block automatic posting until reviewed",
-      "native_platform_label": "Meta may apply its own labels; never guarantee removal"
+      "rule": "NUNCA acrescentar voluntariamente selo ou texto atribuindo autoria a IA nos posts do Instagram TUE.",
+      "never_add_ai_text_in_caption_hashtags_artwork": true,
+      "never_send_optional_ai_flag_for_new_publications": true,
+      "new_publication_requires_verified_non_synthetic_origin": true,
+      "synthetic_or_mandatory_disclosure": "BLOQUEAR a publicação automática e enviar para revisão; nunca omitir identificação exigida pela Meta ou pela legislação.",
+      "origin_unverified": "BLOQUEAR a publicação automática.",
+      "platform_applied_label": "O Instagram pode aplicar seus próprios rótulos mesmo sem declaração do publicador; não prometer remoção ou alterar metadados para contornar a plataforma.",
+      "historical_publications": "Preservar registros e aprovações históricas; aplicar a nova trava a publicações previstas a partir de 2026-11-02T00:00:00Z."
     }
   },
   "production": {
