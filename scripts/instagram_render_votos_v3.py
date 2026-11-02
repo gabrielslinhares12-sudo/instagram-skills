@@ -214,7 +214,7 @@ def main():
             "photo_source":photos[s["photo"]]["source"],
             "photo_source_sha256":photos[s["photo"]]["sha256"]})
     cols,rows,pw,ph=preview_geometry(len(manifest))
-    preview=Image.new("RGB",(pw,ph),PAPER)
+    preview=Image.new("RGB",(pw,ph))  # exact QA expects unused slot black
     for i,item in enumerate(manifest):
         with Image.open(DEST/item["file"]) as pg:
             thumb=pg.convert("RGB").resize((216,270),Image.Resampling.LANCZOS)
