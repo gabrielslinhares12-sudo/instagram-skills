@@ -1,6 +1,5 @@
 {
   "preset_id": "TUE-MESTRE-01",
-  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
   "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
   "status": "draft_review_no_publication",
   "approved": false,
@@ -35,5 +34,6 @@
     }
   ],
   "caption": "🪑 Contrataram uma cadeira e deram a ela o trabalho de um guarda-roupa inteiro. O RH do Lúmino abriu investigação trabalhista. Essa funcionária existe na sua casa? 😂 #VidaReal #Memes #Lumino #TemUmaExplicacao",
-  "publication_requires_native_music": false
+  "publication_requires_native_music": false,
+  "reference_standard_id": "TUE-MESTRE-01"
 }
