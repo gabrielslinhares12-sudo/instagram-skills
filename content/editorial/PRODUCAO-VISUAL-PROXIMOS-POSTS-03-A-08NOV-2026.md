@@ -24,7 +24,7 @@ Visual aceito em 02/11 pelo proprietário: textura de papel claro, títulos giga
 2. Na sala, ninguém consegue responder: “Mas qual era a pauta?”
 3. O Lúmino apresenta a ata: “Foi aprovada outra reunião para definir a pauta.” Encerramento: “O calendário pediu demissão.”
 
-**Arte produzida nesta conversa:** existe uma imagem de composição 4:5 com personagem original sobreposto, arquivos PNG 3240×4050 + JPEG 1080×1350 + prévia e manifesto de hashes dentro do pacote local **`TUE-MESTRE-01-03NOV-12H-PLANTAO-4K-RASCUNHO.zip`**. Os bytes estão na conversa, **não** no GitHub ou Drive. Não afirmar que estão sincronizados. A ilustração contextual contém elementos sintéticos e **permanece bloqueada para revisão de procedência e QC**. Não alterar status `approved=false` do briefing.
+**Revisão visual posterior (02/11/2026): REPROVADA.** O usuário comparou a primeira imagem cinematográfica, que aprovou, com o arquivo final simplificado. A versão final do pacote `TUE-MESTRE-01-03NOV-12H-PLANTAO-4K-RASCUNHO.zip` perdeu profundidade, iluminação, integração do Lúmino e balões originais ao reconstruir a arte com crops e retângulos. **Proibido utilizar esse JPG/PNG para publicação.** A imagem aprovada inicialmente deve ser preservada integralmente como master; a única finalização aceitável é exportação proporcional ou correção local que gere nova versão para revisão. A aprovação da primeira imagem **não autoriza a segunda**. Ver `content/brand/TUE-MESTRE-01.md` e `scripts/instagram_preserve_approved_art.py`. A procedência sintética permanece sujeita às regras de divulgação, sem marcação voluntária falsa.
 
 **Legenda revisada:** “📅 Plantão do Absurdo: uma reunião emergencial foi convocada para definir a pauta. No fim, a única decisão foi marcar outra reunião para decidir a pauta da próxima. O calendário pediu demissão. 😂 Você já participou de uma dessas? #TemUmaExplicacao #PlantaoDoAbsurdo #Lumino #HumorNoTrabalho”
 
@@ -70,7 +70,7 @@ Os assuntos são independentes entre si. A alternância de quadros é por data/h
 ## Checkpoint
 
 - 14 briefings de feed têm pauta/horário; 2 artes de 02/11 geradas anteriormente mas sem QC/aprovação.
-- Nova peça 03/11 às 11h com imagem e arquivos em rascunho na conversa, sem aprovação/publicação.
+- Peça de 03/11 às 11h: primeiro visual aceito como referência de qualidade; **remontagem final reprovada**. Não aprovar/publicar arte inferior.
 - A série de 03/11 às 15h tem storyboard factual fechado, **não** arte concluída.
 - Sete Reels continuam sem MP4 oficial validado; Stories aguardam os respectivos posts publicados.
 - **Nenhuma ação de publicação ou agendamento foi executada ao criar este documento.**
