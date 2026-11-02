@@ -1,0 +1,80 @@
+{
+  "preset": "TUE-MESTRE-01",
+  "date": "2026-11-03",
+  "timezone": "America/Sao_Paulo",
+  "state": "LOTE_DE_SEIS_IMAGENS_CRIADO_PENDENTE_DE_VERIFICACAO_DO_USUARIO",
+  "images": [
+    {
+      "slot": "11:00",
+      "kind": "post_unico",
+      "name": "03NOV_11H_REUNIOES_POST_UNICO.jpg",
+      "drive_file_id": "1qAr_K0WqTQQXNwRB_nMzE0W_lp5_mfZl",
+      "drive_link": "https://drive.google.com/file/d/1qAr_K0WqTQQXNwRB_nMzE0W_lp5_mfZl/view",
+      "approved": false,
+      "scheduled": false,
+      "published": false
+    },
+    {
+      "slot": "15:00",
+      "kind": "carousel_1",
+      "name": "03NOV_15H_ATACAMA_01_CAPA.jpg",
+      "drive_file_id": "1VK5kyQWMK7DFARyZu727omZxn2KeD867",
+      "drive_link": "https://drive.google.com/file/d/1VK5kyQWMK7DFARyZu727omZxn2KeD867/view",
+      "approved": false,
+      "scheduled": false,
+      "published": false
+    },
+    {
+      "slot": "15:00",
+      "kind": "carousel_2",
+      "name": "03NOV_15H_ATACAMA_02_SOLO.jpg",
+      "drive_file_id": "1SSD_udwRHiDKfAViWrXD7GmnhfpZvtbB",
+      "drive_link": "https://drive.google.com/file/d/1SSD_udwRHiDKfAViWrXD7GmnhfpZvtbB/view",
+      "approved": false,
+      "scheduled": false,
+      "published": false
+    },
+    {
+      "slot": "15:00",
+      "kind": "carousel_3",
+      "name": "03NOV_15H_ATACAMA_03_CHUVA.jpg",
+      "drive_file_id": "153DDJYSgDabFpl7nPTGTcQpgk0fAyDSk",
+      "drive_link": "https://drive.google.com/file/d/153DDJYSgDabFpl7nPTGTcQpgk0fAyDSk/view",
+      "approved": false,
+      "scheduled": false,
+      "published": false
+    },
+    {
+      "slot": "15:00",
+      "kind": "carousel_4",
+      "name": "03NOV_15H_ATACAMA_04_SENTINEL.jpg",
+      "drive_file_id": "1no75A1ijfwd9_eMrDcAVtskfvE7LA10x",
+      "drive_link": "https://drive.google.com/file/d/1no75A1ijfwd9_eMrDcAVtskfvE7LA10x/view",
+      "approved": false,
+      "scheduled": false,
+      "published": false
+    },
+    {
+      "slot": "15:00",
+      "kind": "carousel_5",
+      "name": "03NOV_15H_ATACAMA_05_PRESERVAR.jpg",
+      "drive_file_id": "1p5wEPUrKPGz1U8dPf4StFDuqBoQjfH_H",
+      "drive_link": "https://drive.google.com/file/d/1p5wEPUrKPGz1U8dPf4StFDuqBoQjfH_H/view",
+      "approved": false,
+      "scheduled": false,
+      "published": false
+    }
+  ],
+  "reel_at_18h": "videomidia_em_fila_separada_nao_incluida_neste_lote_de_imagens",
+  "source_lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "swipe_cue": "bolinhas_discretas_e_arraste_para_o_lado_apenas_nas_laminas_1_4",
+  "folder": "https://drive.google.com/drive/folders/14yhKhfyjVZn82Azzij2TzOu6rd_Yx9WR",
+  "preview": "https://drive.google.com/file/d/1moHVsd8YYEW1TUUeMa1nklGtLNGLSjM2/view",
+  "package": "https://drive.google.com/file/d/1YbFCfATRFXVOdesIar6mMmIUKCZSxiCa/view",
+  "next_date": "2026-11-04",
+  "next_date_locked_until_user_review": true,
+  "factual_source_links": [
+    "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=de",
+    "https://goreatacama.gob.cl/2026/10/01/realizan-lanzamiento-de-temporada-2026-del-desierto-florido-en-atacama/"
+  ]
+}
