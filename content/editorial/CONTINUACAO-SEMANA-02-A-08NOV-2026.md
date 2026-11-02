@@ -57,3 +57,10 @@
 4. Seguir **04/11 → 08/11**, um item completo por vez, e após cada publicação confirmada executar/verificar o Story nativo vinculado.
 
 **Não confundir esta recuperação editorial com postagem agendada ou entregue no Instagram.**
+
+## Complemento — revisão de legendas e QC automatizado
+
+- As **12 legendas independentes de 03–08/11** foram escritas em `content/editorial/LEGENDAS-REVISTAS-03-A-08NOV-2026.json`. Cada uma contém chamada própria, contexto editorial e **cinco hashtags específicas**. Continuam `approved=false` até liberar a arte.
+- A validação editorial estrutural passou no [GitHub Actions 41536460193](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41536460193). Ela confirma integridade do preset, planos, regras de Stories nativos e rejeição do renderizador genérico; **não valida esteticamente nem aprova automaticamente as 36 imagens**.
+- Foram corrigidos testes históricos que supunham incorretamente que o Reel de 02/11 ainda não estava publicado ou que a antiga imagem-modelo estava vigente. A exceção para o Reel já publicado exige comprovante real da Meta no ledger, sem liberar Reels futuros.
+- Uma comparação visual humana ainda é obrigatória e a arte da reunião/mascotes não pode ser promovida só por ter passado em testes de código.
