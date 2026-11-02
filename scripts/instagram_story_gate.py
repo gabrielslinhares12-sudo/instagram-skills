@@ -33,10 +33,10 @@ def verify_linked_stories(feed_plan: dict, reel_plan: dict, story_plan: dict) ->
         for p in feed_plan["posts"]
     }
     for reel in reel_plan["reels"]:
-        key = "tue-" + reel["day"] + "-21-youtube-reel"
+        key = "tue-" + reel["day"] + "-18-youtube-reel"
         if key in expected:
             raise StoryGateError("ID de Reel conflita com item do feed.")
-        expected[key] = (reel["day"], "21:00", "reel")
+        expected[key] = (reel["day"], "18:00", "reel")
 
     entries = story_plan.get("entries")
     if not isinstance(entries, list) or len(entries) != len(expected) or len(expected) != 21:
