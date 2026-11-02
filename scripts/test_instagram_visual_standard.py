@@ -18,7 +18,7 @@ class BrandTests(unittest.TestCase):
         self.assertEqual(cfg["editorial_standard"]["id"], "TUE-MESTRE-01")
         self.assertNotIn("reference", cfg)
         master = cfg["visual_master"]
-        self.assertEqual(master["path"], "content/brand/modelo-oficial-aprovado-2026-11-02.png")
+        self.assertEqual(master["path"], "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg")
         self.assertEqual(master["sha256"], "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9")
         self.assertEqual(cfg["design"]["swipe_cue_display_text"], "ARRASTE PARA O LADO →")
         self.assertTrue(cfg["design"]["footer_dots"])
@@ -55,7 +55,7 @@ class BrandTests(unittest.TestCase):
         import render_instagram_carrossel as generator
         self.assertIn('"approved":False', Path(generator.__file__).read_text(encoding="utf-8").replace(" ", ""))
 
-    def test_rendered_page_passes_and_replacement_fails(self):
+    def test_legacy_generic_renderer_is_rejected_by_current_master(self):
         with tempfile.TemporaryDirectory() as folder:
             path=Path(folder)
             slides=[]
@@ -74,19 +74,10 @@ class BrandTests(unittest.TestCase):
             spec=path/"input.json"
             spec.write_text(json.dumps({"post_id":"qa-teste","slides":slides},ensure_ascii=False),encoding="utf-8")
             out=path/"produced"
-            result=render(spec,out)
-            self.assertTrue(result["ok"])
-            manifest=out/"visual-manifest.json"
-            page=out/"01.jpg"
-            # Alterar o personagem e tentar forjar um novo SHA nao passa na analise visual.
-            with Image.open(page) as im:
-                im=im.convert("RGB")
-                ImageDraw.Draw(im).rectangle((18,973,290,1257),fill=(20,20,20))
-                im.save(page,format="JPEG",quality=96)
-            data=json.loads(manifest.read_text(encoding="utf-8"))
-            data["pages"][0]["sha256"]=sha256(page)
-            manifest.write_text(json.dumps(data),encoding="utf-8")
-            with self.assertRaisesRegex(VisualError,"Lumino"):
-                validate_package(manifest)
+            # The former 8-panel generic renderer is prohibited by the
+            # current master art. It must FAIL, never become a publishable
+            # package merely because its mascot checksum is correct.
+            with self.assertRaisesRegex(VisualError, "falta faixa amarela"):
+                render(spec,out)
 
 if __name__=="__main__":unittest.main()
