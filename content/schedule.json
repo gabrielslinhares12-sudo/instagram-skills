@@ -189,7 +189,7 @@
       "owner_authorized_two_step_music": true,
       "ai_origin": "synthetic",
       "content_style": "clearly_illustrated",
-      "ai_disclosure_review": "original_synthetic_illustration_in_caption",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
       "sources": [
         "https://www.noaa.gov/jetstream/ocean/waves",
         "https://www.bom.gov.au/resources/learn-and-explore/marine-knowledge-centre/waves-and-swell"
