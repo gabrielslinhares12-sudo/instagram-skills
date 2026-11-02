@@ -210,6 +210,19 @@ class QueueTests(unittest.TestCase):
             with self.assertRaises(QueueError):
                 validate_manifest(manifest(invalid))
 
+    def test_ai_provenance_prevents_false_labels_and_under_disclosure(self):
+        self.assertNotIn("is_ai_generated", payload_for(validate_manifest(manifest(
+            item(kind="reel", ai_origin="verified_non_synthetic")))[0]))
+        self.assertEqual(payload_for(validate_manifest(manifest(
+            item(kind="reel", ai_origin="synthetic", is_ai_generated=True)))[0])["is_ai_generated"],True)
+        for bad in (item(kind="reel", ai_origin="unverified"),
+                    item(kind="reel", ai_origin="synthetic"),
+                    item(kind="reel", ai_origin="verified_non_synthetic", is_ai_generated=True),
+                    item(kind="reel", is_ai_generated=False)):
+            with self.subTest(bad=bad):
+                with self.assertRaises(QueueError):
+                    validate_manifest(manifest(bad))
+
     def test_cloud_carousel_with_native_music_never_posts_silently(self):
         # Applies to legacy approved carousels as well as new ones.
         carousel = item(kind="carousel", media_urls=[URL, URL + "-two"])
