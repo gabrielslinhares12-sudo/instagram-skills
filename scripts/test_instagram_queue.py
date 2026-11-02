@@ -223,6 +223,27 @@ class QueueTests(unittest.TestCase):
                 with self.assertRaises(QueueError):
                     validate_manifest(manifest(bad))
 
+    def test_new_posts_never_add_optional_ai_label(self):
+        cutoff = "2026-11-03T21:00:00Z"
+        good = item(kind="reel", due_at=cutoff,
+                    ai_origin="verified_non_synthetic")
+        self.assertNotIn("is_ai_generated",
+                         payload_for(validate_manifest(manifest(good))[0]))
+        blocked = (
+            item(kind="reel", due_at=cutoff),
+            item(kind="reel", due_at=cutoff, ai_origin="unverified"),
+            item(kind="reel", due_at=cutoff, ai_origin="synthetic",
+                 is_ai_generated=True),
+            item(kind="reel", due_at=cutoff, ai_origin="verified_non_synthetic",
+                 is_ai_generated=False),
+            item(kind="reel", due_at=cutoff, ai_origin="verified_non_synthetic",
+                 caption="Este conteúdo foi feito por IA. Confira."),
+        )
+        for post in blocked:
+            with self.subTest(post=post):
+                with self.assertRaises(QueueError):
+                    validate_manifest(manifest(post))
+
     def test_cloud_carousel_with_native_music_never_posts_silently(self):
         # Applies to legacy approved carousels as well as new ones.
         carousel = item(kind="carousel", media_urls=[URL, URL + "-two"])
