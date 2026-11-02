@@ -49,6 +49,7 @@ def get_photos(spec):
                 candidates.append(url)
         except Exception:
             pass
+        candidates.append("https://wsrv.nl/?url="+urllib.parse.quote(photo_url(name),safe="")+"&w=1280")
         candidates.append(photo_url(name))
         candidates.append("https://commons.wikimedia.org/wiki/Special:Redirect/file/"+
                           urllib.parse.quote(name))
