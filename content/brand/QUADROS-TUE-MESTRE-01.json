@@ -31,6 +31,15 @@
       "format": "carousel"
     },
     {
+      "id": "carrossel-educativo",
+      "name": "CARROSSEL EDUCATIVO",
+      "mission": "explicar um assunto complexo em linguagem clara e com desenvolvimento visual aprofundado, sem repetir pauta no mesmo dia",
+      "story_engine": "pergunta concreta → contexto → mecanismo ou evidências → implicações → conclusão",
+      "art_motif": "modelo 1, Lúmino PNG original, cenas, fotos e gráficos variados; nenhuma lâmina genérica",
+      "format": "carousel",
+      "rotation": "em rodízio com os demais quadros, sem horário ou frequência diários fixos"
+    },
+    {
       "id": "raio-x-real",
       "name": "RAIO-X DA REALIDADE",
       "mission": "mecanismos naturais difíceis de observar a olho nu",
@@ -102,5 +111,17 @@
       "art_motif": "vitrines de museu fictício, plaquinhas de identificação cômicas, Lúmino PNG original como curador; nenhuma nova identidade visual",
       "format": "meme"
     }
-  ]
+  ],
+  "editorial_rotation": {
+    "feed_slots_local": [
+      "12:00",
+      "18:00"
+    ],
+    "kinds_alternate_across_both_slots": true,
+    "no_mandatory_daily_carousel": true,
+    "no_mandatory_daily_meme": true,
+    "carrossel_educativo_is_one_series_among_others": true,
+    "separate_daily_youtube_reel_slot_local": "21:00",
+    "distinct_topics_three_daily_posts": true
+  }
 }
