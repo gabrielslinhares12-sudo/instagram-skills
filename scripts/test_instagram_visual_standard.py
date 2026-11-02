@@ -17,6 +17,11 @@ class BrandTests(unittest.TestCase):
                          "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b")
         self.assertEqual(cfg["editorial_standard"]["id"], "TUE-MESTRE-01")
         self.assertNotIn("reference", cfg)
+        master = cfg["visual_master"]
+        self.assertEqual(master["path"], "content/brand/modelo-oficial-aprovado-2026-11-02.png")
+        self.assertEqual(master["sha256"], "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9")
+        self.assertEqual(cfg["design"]["swipe_cue_display_text"], "ARRASTE PARA O LADO →")
+        self.assertTrue(cfg["design"]["footer_dots"])
 
     def test_existing_queue_cannot_autoapprove(self):
         result=audit_queue()
