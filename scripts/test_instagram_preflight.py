@@ -34,14 +34,37 @@ class PreflightTests(unittest.TestCase):
         self.assertEqual(poster.identity_calls, 1)
         self.assertEqual(poster.requests, [('GET', 'me/permissions')])
 
-    def test_permission_error_identifies_stage_without_exposing_data(self):
+    def test_permission_inspection_error_200_checks_identity_but_not_grants(self):
         class BrokenPermissionPoster(FakePoster):
             def _request(self, method, endpoint):
                 raise MetaError("Meta rejected the request.", http_status=400, code=200)
+        poster = BrokenPermissionPoster([])
+        result = check(poster)
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['permission_inspection'], 'denied_code_200')
+        self.assertFalse(result['permissions_verified'])
+        self.assertEqual(result['required_permissions_granted'], [])
+        self.assertFalse(result['publishing_exercised'])
+        self.assertEqual(poster.identity_calls, 1)
+
+    def test_permission_inspection_error_200_still_blocks_wrong_account(self):
+        class WrongAccountPoster(FakePoster):
+            def _request(self, method, endpoint):
+                raise MetaError("Meta rejected the request.", http_status=400, code=200)
+            def check_identity(self):
+                return {'ok': True, 'username': 'different_user'}
         with self.assertRaises(MetaError) as caught:
-            check(BrokenPermissionPoster([]))
+            check(WrongAccountPoster([]))
+        self.assertEqual(caught.exception.preflight_stage, "verify_account_identity")
+
+    def test_other_permission_inspection_error_still_fails_closed(self):
+        class ExpiredTokenPoster(FakePoster):
+            def _request(self, method, endpoint):
+                raise MetaError("Meta rejected the request.", http_status=401, code=190)
+        with self.assertRaises(MetaError) as caught:
+            check(ExpiredTokenPoster([]))
         self.assertEqual(caught.exception.preflight_stage, "read_permissions")
-        self.assertEqual(caught.exception.public()["code"], 200)
+        self.assertEqual(caught.exception.public()["code"], 190)
 
     def test_account_identity_error_identifies_stage(self):
         class BrokenIdentityPoster(FakePoster):
