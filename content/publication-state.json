@@ -58,6 +58,14 @@
       "instagram_user_id": "17841433004716815",
       "page_id": "1385407341325017",
       "published_at": "2026-11-02T19:32:12Z"
+    },
+    "tue-2026-11-02-18-reel-caes-cores-original": {
+      "status": "claimed",
+      "fingerprint": "c1ab30154c2bac81a984a4b3fc1c00200e0741ab33f5c8c5a6b0aad63931593e",
+      "due_at": "2026-11-02T21:00:00Z",
+      "claimed_at": "2026-11-02T21:44:30Z",
+      "source_video_id": "H9WGKaO5XQ4",
+      "source_sha256": "ae4892d2c9c3b7215bb621d1c4d79e5a2669938428c97345effbf6a113d96fba"
     }
   }
 }
