@@ -17,6 +17,7 @@ def validate(root=ROOT):
     if c.get("preset_id")!=profile["id"] or c.get("version")!=1:
         raise PresetError("Catálogo de quadros não usa o padrão mestre.")
     names={s["id"] for s in c["series"]}
+    frame_kinds={s["id"]:s["format"] for s in c["series"]}
     checked=check_week(plan)
     if len(plan["posts"])!=14 or checked["days_checked"]!=7:
         raise PresetError("A grade precisa de 14 postagens em 7 dias.")
@@ -28,6 +29,8 @@ def validate(root=ROOT):
     for post in plan["posts"]:
         if post.get("series_id") not in names:
             raise PresetError("Quadro editorial não cadastrado.")
+        if frame_kinds[post["series_id"]] != post.get("kind"):
+            raise PresetError("Quadro incompatível com o formato desta postagem.")
         day_counts.setdefault(post["day"],set()).add(post["slot"])
         bp=root/post["brief_path"]
         if not bp.resolve().is_relative_to((root/WEEK.relative_to(ROOT)).parent.resolve()):

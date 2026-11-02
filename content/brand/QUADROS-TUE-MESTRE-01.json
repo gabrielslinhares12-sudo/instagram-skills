@@ -93,6 +93,14 @@
       "story_engine": "urgente → reviravolta → fechamento curto",
       "art_motif": "Tarja jornalística fictícia, sem emular notícia real ou marca de veículo",
       "format": "meme"
+    },
+    {
+      "id": "museu-inutilidades",
+      "name": "MUSEU DAS COISAS SEM EXPLICAÇÃO",
+      "mission": "objetos domésticos que permanecem guardados sem ninguém saber a origem ou a utilidade",
+      "story_engine": "curador apresenta relíquia banal → especialista tenta identificar → reviravolta absurda",
+      "art_motif": "vitrines de museu fictício, plaquinhas de identificação cômicas, Lúmino PNG original como curador; nenhuma nova identidade visual",
+      "format": "meme"
     }
   ]
 }
