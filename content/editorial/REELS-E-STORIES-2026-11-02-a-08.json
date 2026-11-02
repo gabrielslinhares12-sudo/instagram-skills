@@ -58,7 +58,16 @@
       "source_video_title": "CÃES enxergam em preto e branco? 🐶 #Shorts",
       "youtube_public_views_approx": 5700,
       "views_comparison_sample": 45,
-      "source_selection_status": "candidate_selected_official_channel_video_download_blocked_by_youtube_bot_check"
+      "source_selection_status": "selected_from_channel_top_views_no_mp4_public_link_services_blocked",
+      "download_status": "blocked",
+      "download_checks": {
+        "webdownloader": "HTTP_403",
+        "freeapi": "HTTP_500",
+        "gendownload": "HTTP_403",
+        "github_action_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41517250325",
+        "mp4_verified": false,
+        "instagram_reel_posted": false
+      }
     },
     {
       "day": "2026-11-03",
