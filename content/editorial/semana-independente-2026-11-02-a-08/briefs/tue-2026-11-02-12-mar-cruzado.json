@@ -1,6 +1,5 @@
 {
   "preset_id": "TUE-MESTRE-01",
-  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
   "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
   "status": "draft_review_no_publication",
   "approved": false,
@@ -72,5 +71,6 @@
     }
   ],
   "caption": "💡 As ondas não combinaram a direção. Quando duas ondulações chegam de direções diferentes, suas linhas de crista podem se cruzar e criar um desenho de malha na superfície. Ondas do vento local e ondulações geradas longe podem alcançar a mesma região marítima em direções distintas. As ondas se sobrepõem. Em determinados pontos, cristas se reforçam; em outros, a elevação diminui pela combinação dos movimentos. A aparência quadriculada é temporária; as ondas continuam atravessando a área e os desenhos mudam continuamente. Quando mares diferentes se cruzam, o movimento pode ficar mais complexo para pequenas embarcações. O desenho bonito não é uma recomendação de banho. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
-  "publication_requires_native_music": true
+  "publication_requires_native_music": true,
+  "reference_standard_id": "TUE-MESTRE-01"
 }
