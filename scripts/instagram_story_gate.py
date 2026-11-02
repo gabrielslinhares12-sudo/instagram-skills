@@ -24,9 +24,11 @@ def verify_linked_stories(feed_plan: dict, reel_plan: dict, story_plan: dict) ->
         raise StoryGateError("Plano de Stories deve ficar em planejamento, sem publicação direta.")
     if (story_plan.get("native_share_required") is not True or
             story_plan.get("parent_receipt_required") is not True or
-            story_plan.get("spoken_cta_required") is not True or
-            story_plan.get("spoken_cta_text") != CTA):
-        raise StoryGateError("A republicação nativa e a fala obrigatória foram alteradas.")
+            story_plan.get("text_cta_required") is not True or
+            story_plan.get("text_cta") != CTA or
+            story_plan.get("no_external_link_or_link_sticker") is not True or
+            story_plan.get("narration_required") is not False):
+        raise StoryGateError("A republicação nativa sem link extra e o CTA em texto foram alterados.")
 
     expected = {
         p["id"]: (p["day"], p["slot"], p["kind"])
@@ -49,31 +51,33 @@ def verify_linked_stories(feed_plan: dict, reel_plan: dict, story_plan: dict) ->
         seen.add(pid)
         if (item.get("day"), item.get("slot"), item.get("parent_kind")) != expected[pid]:
             raise StoryGateError("Story está vinculado ao dia, horário ou tipo errado.")
-        if item.get("native_share_method") != METHOD or item.get("spoken_cta_text") != CTA:
-            raise StoryGateError("Story não é republicação nativa com CTA falado.")
+        if item.get("native_share_method") != METHOD or item.get("text_cta") != CTA or
+                item.get("no_external_link_sticker") is not True:
+            raise StoryGateError("Story deve ser republicação nativa com CTA escrito e sem link extra.")
         # Proibir a mídia separada como substituta, inclusive após o post de origem.
-        if item.get("story_media_url") or item.get("independent_story_asset"):
+        if (item.get("story_media_url") or item.get("independent_story_asset")
+                or item.get("external_link_sticker") or item.get("link_url")
+                or item.get("story_link_sticker")):
             raise StoryGateError("Story independente é proibido: republicar o post nativo.")
         verified = (item.get("parent_published") is True and
                     item.get("source_verified_by_official_receipt") is True and
                     bool(item.get("parent_media_id")) and bool(item.get("parent_permalink")))
         editing_started = any(item.get(k) is True for k in
-                              ("story_created", "voiceover_created",
-                               "spoken_cta_verified", "story_published",
+                              ("story_created", "text_cta_visible_verified", "story_published",
                                "native_original_post_tappable_verified"))
         if editing_started and not verified:
             raise StoryGateError("Story só pode ser criado depois do post publicado e verificado.")
         if item.get("story_published") is True:
             if (item.get("story_created") is not True or
-                    item.get("voiceover_created") is not True or
-                    item.get("spoken_cta_verified") is not True or
+                    item.get("text_cta_visible_verified") is not True or
                     item.get("native_original_post_tappable_verified") is not True or
                     not item.get("story_media_id")):
-                raise StoryGateError("Story não concluído: falta republicação nativa, fala ou recibo.")
+                raise StoryGateError("Story não concluído: falta republicação nativa, chamada em texto ou recibo.")
         if item.get("story_media_id") and item.get("story_published") is not True:
             raise StoryGateError("Story tem recibo sem publicação confirmada.")
-        if item.get("voiceover_asset") and not verified:
-            raise StoryGateError("Não gerar a fala do Story antes de publicar o post.")
+        if (item.get("voiceover_asset") or item.get("voiceover_created")
+                or item.get("spoken_cta_verified")):
+            raise StoryGateError("Não usar narração no Story; a chamada é somente escrita.")
         if (item.get("parent_published") is True and
                 (not item.get("parent_media_id") or not item.get("parent_permalink") or
                  item.get("source_verified_by_official_receipt") is not True)):
@@ -81,7 +85,7 @@ def verify_linked_stories(feed_plan: dict, reel_plan: dict, story_plan: dict) ->
     return {"ok": True, "linked_stories_planned":len(entries),
             "stories_published":sum(e["story_published"] is True for e in entries),
             "source_verified_required":True, "native_reshare_required":True,
-            "spoken_cta_required":True}
+            "text_cta_required":True, "audio_required":False, "external_link_sticker_forbidden":True}
 
 
 def main() -> None:
