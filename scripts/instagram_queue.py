@@ -162,12 +162,17 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
         # Never force an AI label solely because a scheduler was used; never
         # under-declare when the content is synthetic and disclosure is needed.
         origin=item.get("ai_origin")
+        illustrated_still = (origin == "synthetic" and kind in {"post", "carousel"}
+                            and item.get("content_style") == "clearly_illustrated"
+                            and item.get("ai_disclosure_review") ==
+                            "no_mandatory_self_disclosure_for_stylized_still")
         if origin is not None:
             if origin not in {"verified_non_synthetic","synthetic","unverified"}:
                 raise QueueError("ai_origin must describe a verified non-synthetic, synthetic or unverified asset.")
             if item["approved"] and origin=="unverified":
                 raise QueueError("Unverified AI provenance blocks automatic publication.")
-            if origin=="synthetic" and item["approved"] and item.get("is_ai_generated") is not True:
+            if (origin=="synthetic" and item["approved"] and not illustrated_still
+                    and item.get("is_ai_generated") is not True):
                 raise QueueError("Synthetic media requires truthful AI disclosure.")
             if origin=="verified_non_synthetic" and item.get("is_ai_generated") is True:
                 raise QueueError("Verified non-synthetic media must not be falsely marked AI.")
@@ -181,11 +186,6 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
             # while for clearly illustrative still images self-disclosure via
             # is_ai_generated is optional. Keep synthetic provenance truthfully
             # in the private queue and let Meta apply its own labels if detected.
-            illustrated_still = (
-                origin == "synthetic" and kind in {"post", "carousel"}
-                and item.get("content_style") == "clearly_illustrated"
-                and item.get("ai_disclosure_review") == "no_mandatory_self_disclosure_for_stylized_still"
-            )
             if origin != "verified_non_synthetic" and not illustrated_still:
                 raise QueueError("New posts need verified provenance; synthetic media must have an approved, nondeceptive still-image exception or remain in review.")
             if "is_ai_generated" in item:
