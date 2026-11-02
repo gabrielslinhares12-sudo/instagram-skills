@@ -100,10 +100,10 @@ def main():
         report["next_blocker"]="google_play_login_required_for_official_instagram_install"
     else:
         report["next_blocker"]="no_verified_install_without_google_login"
-    (OUT/"result.json").write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n")
+    (OUT/"result.json").write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     print("ANDROID_OFFICIAL_INSTAGRAM="+json.dumps(report,ensure_ascii=False),flush=True)
     if os.getenv("GITHUB_STEP_SUMMARY"):
-        with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:
+        with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf-8") as f:
             f.write("## Instagram oficial no Android cloud\n")
             for key in ("android","play_store_installed","instagram_after","state","next_blocker"):
                 f.write(f"- {key}: {report.get(key)}\n")
