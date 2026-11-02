@@ -17,7 +17,7 @@
     "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
     "editorial_contract_path": "content/brand/TUE-MESTRE-01.md",
     "editorial_contract_id": "TUE-MESTRE-01",
-    "visual_master_path": "content/brand/modelo-oficial-aprovado-2026-11-02.png",
+    "visual_master_path": "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg",
     "visual_master_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
     "visual_master_size": [
       1229,
@@ -105,7 +105,8 @@
     "visual_master_mandatory_for_all_art": true,
     "visual_master_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
     "footer_progress_system": "bolinhas pequenas com amarelo/cinza e seta fina em rodapé central, exatamente como a imagem-mestre",
-    "reference_visual_lock": "NÃO usar modelos anteriores do Mar Cruzado nem reconstruções baratas; não substituir o personagem nem reduzir para adesivo. A referência enviada pelo proprietário é a única direção artística aprovada."
+    "reference_visual_lock": "NÃO usar modelos anteriores do Mar Cruzado nem reconstruções baratas; não substituir o personagem nem reduzir para adesivo. A referência enviada pelo proprietário é a única direção artística aprovada.",
+    "visual_master_path": "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg"
   },
   "format": {
     "carousel": "JPEG individual 1080x1350 4:5",
