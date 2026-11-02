@@ -58,8 +58,8 @@
       "source_video_title": "CÃES enxergam em preto e branco? 🐶 #Shorts",
       "youtube_public_views_approx": 5700,
       "views_comparison_sample": 45,
-      "source_selection_status": "selected_from_channel_top_views_no_mp4_public_link_services_blocked",
-      "download_status": "BLOCKED_NO_MP4",
+      "source_selection_status": "original_from_owner_archive_exported_and_file_verified",
+      "download_status": "ORIGINAL_MP4_IMPORTED_DRIVE_CONFIRMED",
       "download_checks": {
         "webdownloader": "HTTP_403",
         "freeapi": "HTTP_500",
@@ -79,6 +79,19 @@
         "invidious_action": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41519377869",
         "piped_action": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41519975498",
         "drive_smoke_action": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41520137504"
+      },
+      "original_media_record": {
+        "youtube_id": "H9WGKaO5XQ4",
+        "original_filename": "03_caes_cores_V2.mp4",
+        "archived_filename": "01-H9WGKaO5XQ4-original.mp4",
+        "drive_file_id": "16o_d6_R-bDXQSpC0Mu-KP-UOoHjL5hEQ",
+        "drive_file_url": "https://drive.google.com/file/d/16o_d6_R-bDXQSpC0Mu-KP-UOoHjL5hEQ/view",
+        "sha256": "ae4892d2c9c3b7215bb621d1c4d79e5a2669938428c97345effbf6a113d96fba",
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 46.93,
+        "drive_upload_verified": true,
+        "meta_public_media_url_verified": false
       }
     },
     {
