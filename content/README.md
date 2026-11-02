@@ -52,3 +52,19 @@ Pasta de revisão no [Google Drive](https://drive.google.com/drive/folders/1YnMl
 **Nunca escrever ou inserir voluntariamente** “Feito por IA”, “Feito com inteligência artificial”, “AI Generated”, “Made with AI” ou equivalentes em legendas, hashtags, sobreposições, capas, Stories ou rodapés do Instagram TUE. Nunca acionar **por padrão** o sinalizador opcional `is_ai_generated` em publicações novas. Publicar por automação **não** significa que o conteúdo seja gerado por IA.
 
 **Trava de integridade:** a partir de 02/11/2026 UTC, um novo item só pode ser automaticamente publicado se sua origem foi verificada como **não sintética** e sem sinalizador voluntário de IA. Se for sintético, exigir declaração obrigatória, ou tiver origem desconhecida, **não publicar automaticamente**: colocar em revisão em vez de ocultar informação relevante. Essa regra não permite mentir sobre a origem, remover metadados de procedência ou impedir rótulos que o Instagram aplique por conta própria. Preservar os recibos anteriores.
+
+## REGRA PRIORITÁRIA — Story apenas como republicação nativa do post publicado (02/11/2026)
+
+**Prevalece sobre qualquer instrução anterior que sugira criar uma imagem ou vídeo independente para o Story.**
+
+Para **cada** publicação feita às **12h, 18h ou 21h** (carrossel, post único, tirinha, meme ou Reel):
+1. Publicar primeiro o conteúdo original no Instagram @temumaexplicacao. Conferir identidade da conta, `media_id` real e permalink da postagem.
+2. **Somente após a confirmação**, abrir o **próprio post já publicado** no aplicativo oficial e selecionar **Compartilhar → Adicionar ao story** (ou a opção equivalente mostrada no aplicativo). O Story é obrigatoriamente uma **republicação vinculada**, preservando a prévia tocável que leva ao original, não a criação de outra foto/colagem/vídeo ou duplicação no feed.
+3. Adicionar uma **fala audível** com a chamada padrão: **“Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!”**. O texto pode acompanhar a fala de modo discreto, sem encobrir a publicação. Não desenhar boca no Lúmino. Conferir o áudio antes de enviar.
+4. Publicar **um único Story por post** e conferir que é possível abrir a postagem original tocando nele, que a chamada está audível e que a publicação do Story foi confirmada. Registrar o ID ou evidência visual autenticada, além do recibo do post de origem.
+5. Caso o aplicativo não disponibilize a republicação nativa **com a fala** nessa conta, **manter o Story pendente**, sem produzir um Story independente e sem declarar que a operação foi concluída. Não usar o endpoint de envio de nova imagem/vídeo como equivalente ao comando nativo.
+6. Os Stories **não são criados antecipadamente**: só existem após a publicação de origem. O registro da fila para os 21 pares semanais é apenas planejamento, não arte, não voz, não agendamento e não publicação.
+
+**Resultado da grade:** 14 posts de quadros rotativos + 7 Reels do YouTube no Instagram + até 21 Stories vinculados, com um Story por publicação efetivamente realizada. O post principal já publicado continua válido mesmo que seu Story esteja pendente; o pacote só é considerado integralmente concluído quando ambos forem verificados.
+
+A regra de procedência e identificação obrigatória de IA continua válida; não acrescentar texto ou selo voluntário de IA nem ocultar informações de divulgação exigidas pela plataforma.
