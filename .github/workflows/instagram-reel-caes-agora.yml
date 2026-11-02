@@ -1,10 +1,5 @@
 name: TUE Reel agora - Cao enxerga preto e branco - publicacao unica Meta
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/instagram-reel-caes-agora.yml'
-      - 'scripts/instagram_publish_top_youtube_reel_once.py'
   workflow_dispatch:
 permissions:
   contents: write
