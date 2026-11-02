@@ -29,7 +29,7 @@
     "red_accents": true,
     "readable_at_mobile": true,
     "numbering": false,
-    "footer_dots": false,
+    "footer_dots": true,
     "original_mascot_on_every_page": true,
     "alternate_page_layouts": true,
     "variable_carousel_length": true,
@@ -39,9 +39,15 @@
     "swipe_cue_text": "Arraste →",
     "swipe_cue_on_nonfinal_carousel_slides": true,
     "no_forward_cue_on_last_slide": true,
-    "swipe_cue_placement": "canto inferior direito, legível no celular, margem de segurança e sem sobrepor conteúdo",
-    "swipe_cue_style": "Apenas 'Arraste →' pequeno, sobre pincelada amarela integrada ao layout aprovado; sem novo card, botão ou selo chamativo",
-    "swipe_cue_must_preserve_approved_art": true
+    "swipe_cue_placement": "rodapé CENTRAL, com pontos pequenos e seta fina como na imagem-mestre; texto pequeno espaçado abaixo dos pontos",
+    "swipe_cue_style": "idêntico à imagem oficial: bolinhas de progresso amarelas/cinzas + seta fina + texto pequeno ARRRASTE PARA O LADO sem botão, tarja ou pincelada atrás",
+    "swipe_cue_must_preserve_approved_art": true,
+    "swipe_cue_display_text": "ARRASTE PARA O LADO →",
+    "swipe_cue_progress_dots": true,
+    "swipe_cue_active_dot": "#F6B900",
+    "swipe_cue_inactive_dots": "#BFC1C3",
+    "swipe_cue_dot_count_dynamic": true,
+    "official_model_for_all_formats": true
   },
   "forbidden": [
     "fundos escuros genericos no lugar do papel claro",
@@ -66,7 +72,7 @@
     "no_automatic_format_conversion": true,
     "native_music_must_not_be_claimed_before_app_confirmation": true
   },
-  "notes": "Padrão único TUE-MESTRE-01 aprovado em 01/11/2026: modelo visual 1 significa DIREÇÃO ARTÍSTICA, não arquivo de oito painéis. Cada carrossel tem somente lâminas necessárias ao tema (2–20 no app; 2–10 na API deste projeto); um JPG é post único. Usar somente o PNG canônico Lúmino. Papel claro, pincelada amarela, manchete preta, destaques vermelhos, cenas específicas e texto aprofundado, sem número de página e com arrastar discreto. QC técnico e aprovação editorial separados; não reconstruir arte aprovada nem criar posts sobre outro tema.",
+  "notes": "TUE-MESTRE-01: a imagem enviada pelo proprietário em 02/11/2026 (modelo-oficial-aprovado-2026-11-02.png) é o exemplo obrigatório da identidade visual para TUDO. Manter Lúmino dourado vintage, tipografia preta condensada, amarelo pincelado para títulos, contraste vermelho, cenário contextual realista/ilustrado e fundo claro. Nos carrosséis usar pontinhos de progresso amarelo/cinza, seta fina e ARRASTE PARA O LADO em rodapé discreto, SEM TARJA; nunca contagem de páginas. Quantidade variável 2–20 (API 2–10). Stories: compartilhar o próprio post nativo com CTA apenas em texto, sem link extra ou áudio.",
   "distribution": {
     "default_mode": "native_music_carousel",
     "native_music_added_in": "instagram_mobile_app",
@@ -83,6 +89,13 @@
   "editorial_standard": {
     "id": "TUE-MESTRE-01",
     "path": "content/brand/TUE-MESTRE-01.md",
-    "role": "contrato editorial e direção visual aprovada em 01/11/2026; não existe imagem-modelo obrigatória nem grade de oito painéis"
+    "role": "contrato editorial + imagem visual-mestre exata aprovada em 02/11/2026; a referência é UMA capa de exemplo, não uma exigência de número fixo de lâminas."
+  },
+  "visual_master": {
+    "path": "content/brand/modelo-oficial-aprovado-2026-11-02.png",
+    "sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+    "width": 1229,
+    "height": 1536,
+    "role": "EXATA imagem-mestre do proprietário aprovada em 02/11/2026; padrão visual obrigatório para TODAS as artes TUE"
   }
 }
