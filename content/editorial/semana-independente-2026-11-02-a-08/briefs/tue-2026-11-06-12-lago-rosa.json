@@ -32,7 +32,7 @@
       "source_credit": "https://pubmed.ncbi.nlm.nih.gov/36544228/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "gancho",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "PRIMEIRA PISTA: MUITO SAL",
@@ -42,7 +42,7 @@
       "source_credit": "https://pubmed.ncbi.nlm.nih.gov/36544228/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "SEGUNDA PISTA: PIGMENTOS",
@@ -52,7 +52,7 @@
       "source_credit": "https://pubmed.ncbi.nlm.nih.gov/36544228/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "UM SUSPEITO SÓ? NEM SEMPRE",
@@ -62,7 +62,7 @@
       "source_credit": "https://pubmed.ncbi.nlm.nih.gov/36544228/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "VEREDITO: A COR MUDA",
@@ -77,5 +77,6 @@
   ],
   "caption": "💡 Réu: o sal. Testemunha: os micróbios. Alguns lagos hipersalinos assumem tons rosados por processos biológicos e pigmentos de organismos adaptados ao sal. Salinidade elevada cria condições em que microrganismos especializados conseguem prosperar. Algumas microalgas, bactérias e arqueias produzem pigmentos que ajudam a explicar a coloração de lagos salinos. Estudo sobre o lago Hillier encontrou uma comunidade diversa de produtores de pigmentos, e não uma causa única que valha para todos os lagos. A tonalidade pode variar se as condições ambientais mudarem, como salinidade e populações microbianas. Não há tinta secreta. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
   "publication_requires_native_music": true,
-  "reference_standard_id": "TUE-MESTRE-01"
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
 }
