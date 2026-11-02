@@ -5,7 +5,7 @@
   "approved": false,
   "owner_authorized": false,
   "publication_attempted": false,
-  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "frame_note": "Referência EXCLUSIVA content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg, Lúmino original, qualidade da capa em todas as lâminas.",
   "id": "tue-2026-11-08-12-arco-circumhorizontal",
   "day": "2026-11-08",
   "slot": "11:00",
@@ -32,7 +32,7 @@
       "source_credit": "https://science.nasa.gov/image-article/apod-2019-may-19-a-circumhorizontal-arc-over-ohio/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "gancho",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "NÃO HÁ FOGO NEM CHUVA",
@@ -42,7 +42,7 @@
       "source_credit": "https://science.nasa.gov/image-article/apod-2019-may-19-a-circumhorizontal-arc-over-ohio/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "O GELO FUNCIONA COMO PRISMA",
@@ -52,7 +52,7 @@
       "source_credit": "https://science.nasa.gov/image-article/apod-2019-may-19-a-circumhorizontal-arc-over-ohio/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "O SOL PRECISA ESTAR ALTO",
@@ -62,7 +62,7 @@
       "source_credit": "https://science.nasa.gov/image-article/apod-2019-may-19-a-circumhorizontal-arc-over-ohio/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "O VERDADEIRO TRUQUE",
@@ -77,5 +77,6 @@
   ],
   "caption": "💡 Não é chama. É geometria da luz. O apelido arco-íris de fogo descreve uma faixa colorida conhecida como arco circum-horizontal, um fenômeno óptico, não combustão. A luz do Sol atravessa pequenos cristais de gelo de nuvens altas do tipo cirrus e se separa em cores. Cristais de gelo adequadamente orientados refratam e dispersam a luz, produzindo a sequência de cores característica. O arco circum-horizontal só pode surgir quando o Sol atinge pelo menos aproximadamente 58 graus de altura no céu. A combinação de ângulo solar, cristais de gelo e nuvens é específica. A formação é rara de observar em muitos lugares. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
   "publication_requires_native_music": true,
-  "reference_standard_id": "TUE-MESTRE-01"
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
 }
