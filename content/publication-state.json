@@ -49,10 +49,15 @@
       "published_at": "2026-11-02T16:51:58Z"
     },
     "tue-2026-11-02-12-mar-cruzado": {
-      "status": "claimed",
+      "status": "awaiting_native_music",
       "fingerprint": "49a2c66b7cc52d9f6f08debeba01c8c118fa42df23317ae3f41cc13c2a9e9350",
       "due_at": "2026-11-02T18:00:00Z",
-      "claimed_at": "2026-11-02T19:31:32Z"
+      "claimed_at": "2026-11-02T19:31:32Z",
+      "media_id": "18154222987543257",
+      "creation_id": "18102342023100158",
+      "instagram_user_id": "17841433004716815",
+      "page_id": "1385407341325017",
+      "published_at": "2026-11-02T19:32:12Z"
     }
   }
 }
