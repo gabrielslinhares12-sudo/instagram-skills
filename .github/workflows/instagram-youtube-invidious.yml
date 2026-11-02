@@ -1,0 +1,29 @@
+name: TUE - testar Invidious e recuperar Short do proprio canal
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/instagram-youtube-invidious.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencias
+        run: python -m pip install -U yt-dlp
+      - name: Conferir canal e baixar MP4 via Invidious
+        run: python scripts/instagram_youtube_invidious.py --day 2026-11-02
+      - name: Guardar MP4 somente se passou em QC
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tue-short-invidious
+          path: output/youtube-reel-import/
+          if-no-files-found: warn
+          retention-days: 7
