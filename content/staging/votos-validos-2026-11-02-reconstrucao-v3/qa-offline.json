@@ -1,0 +1,54 @@
+{
+  "technical": {
+    "ok": true,
+    "standard": "instagram-tue-lumino-carrossel-official",
+    "pages": [
+      {
+        "number": 1,
+        "name": "01-votos-validos.jpg",
+        "sha256": "7892b3b076ba9be7c50bb0790e1b81aa5872b89a820357e36f74f6c5994d3883",
+        "match_error": 2.23
+      },
+      {
+        "number": 2,
+        "name": "02-votos-validos.jpg",
+        "sha256": "a167918617dfe2f8d90210ea53f0fc3547dfbec23552b51af3c3385d7b9b41a4",
+        "match_error": 2.17
+      },
+      {
+        "number": 3,
+        "name": "03-votos-validos.jpg",
+        "sha256": "d7bbe12b257f096dad3a075a4f6cc0c39a58e379d11f62e2fadf0812bd25b247",
+        "match_error": 2.23
+      },
+      {
+        "number": 4,
+        "name": "04-votos-validos.jpg",
+        "sha256": "b47f8775a43b7dd1224e356837d20e9e75d16e91b14815307ca2c028599b0bcb",
+        "match_error": 2.21
+      },
+      {
+        "number": 5,
+        "name": "05-votos-validos.jpg",
+        "sha256": "251cd5b76c139c973f86eb6a92fd99e777c9f5fa02ec7cefe2825cc5a4796f04",
+        "match_error": 2.23
+      },
+      {
+        "number": 6,
+        "name": "06-votos-validos.jpg",
+        "sha256": "72d35fa17be7b50a2fa11b9ee474a526ca180d23ddbcf16ec19f295e3b952639",
+        "match_error": 2.21
+      },
+      {
+        "number": 7,
+        "name": "07-votos-validos.jpg",
+        "sha256": "8b1f29f007f4f9e5edf21730e98ec1d933d32ca8e602f669e77cdb32327ba3f8",
+        "match_error": 2.22
+      }
+    ],
+    "manual_review_required": true
+  },
+  "publication_approved": false,
+  "manual_visual_review_required": true,
+  "legal_context": "Eleição presidencial HIPOTÉTICA e fotos de urnas TSE de outras datas"
+}

@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "standard_id": "instagram-tue-lumino-carrossel-official",
+  "post_id": "votos-validos-2026-11-01-reconstrucao-editorial-v3",
+  "production_mode": "individually_art_directed_v1",
+  "approved": false,
+  "visual_reviewed": false,
+  "owner_authorized": false,
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "preview_file": "PREVIA-07-ARTES.png",
+  "preview_sha256": "8e06055cf42041d741a904e51ad56ec46901c1aa6d4249173a35a259b7d7cf03",
+  "pages": [
+    {
+      "number": 1,
+      "file": "01-votos-validos.jpg",
+      "source_sha256": "7892b3b076ba9be7c50bb0790e1b81aa5872b89a820357e36f74f6c5994d3883",
+      "sha256": "7892b3b076ba9be7c50bb0790e1b81aa5872b89a820357e36f74f6c5994d3883",
+      "layout": "hero",
+      "headline": "COMO ASSIM? / 46% DOS VOTOS / E GANHOU?",
+      "mascot_box": [
+        700,
+        801,
+        310,
+        322
+      ],
+      "background_type": "documentary_photo",
+      "background_credit": "TSE — Superior Electoral Court of Brazil",
+      "photo_source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Brazilian%20DRE%20voting%20machine%20for%202022%20elections.jpg",
+      "photo_source_sha256": "aef7952059e145f8c4f8a6ff6d795362723c1788b73d6cafe2b9127f9da31f8f"
+    },
+    {
+      "number": 2,
+      "file": "02-votos-validos.jpg",
+      "source_sha256": "a167918617dfe2f8d90210ea53f0fc3547dfbec23552b51af3c3385d7b9b41a4",
+      "sha256": "a167918617dfe2f8d90210ea53f0fc3547dfbec23552b51af3c3385d7b9b41a4",
+      "layout": "diagram",
+      "headline": "100 VOTOS / REGISTRADOS",
+      "mascot_box": [
+        64,
+        821,
+        315,
+        327
+      ],
+      "background_type": "documentary_photo",
+      "background_credit": "Abdias Pinheiro/Secom/TSE",
+      "photo_source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Novas%20urnas%20eletr%C3%B4nicas%20-%20TSE.jpg",
+      "photo_source_sha256": "bbf47209ee5ff3390b18346e8287cd38c8c8ea67d17797df4ca6398ff141ba5a"
+    },
+    {
+      "number": 3,
+      "file": "03-votos-validos.jpg",
+      "source_sha256": "d7bbe12b257f096dad3a075a4f6cc0c39a58e379d11f62e2fadf0812bd25b247",
+      "sha256": "d7bbe12b257f096dad3a075a4f6cc0c39a58e379d11f62e2fadf0812bd25b247",
+      "layout": "split",
+      "headline": "OS 10 VOTOS / NÃO SOMEM",
+      "mascot_box": [
+        700,
+        801,
+        310,
+        322
+      ],
+      "background_type": "documentary_photo",
+      "background_credit": "TSE — Superior Electoral Court of Brazil",
+      "photo_source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Brazilian%20DRE%20voting%20machine%20for%202022%20elections.jpg",
+      "photo_source_sha256": "aef7952059e145f8c4f8a6ff6d795362723c1788b73d6cafe2b9127f9da31f8f"
+    },
+    {
+      "number": 4,
+      "file": "04-votos-validos.jpg",
+      "source_sha256": "b47f8775a43b7dd1224e356837d20e9e75d16e91b14815307ca2c028599b0bcb",
+      "sha256": "b47f8775a43b7dd1224e356837d20e9e75d16e91b14815307ca2c028599b0bcb",
+      "layout": "diagram",
+      "headline": "RESTAM / 90 VÁLIDOS",
+      "mascot_box": [
+        64,
+        821,
+        315,
+        327
+      ],
+      "background_type": "documentary_photo",
+      "background_credit": "TSE — Superior Electoral Court of Brazil",
+      "photo_source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Brazilian%20DRE%20voting%20machine%20for%202022%20elections.jpg",
+      "photo_source_sha256": "aef7952059e145f8c4f8a6ff6d795362723c1788b73d6cafe2b9127f9da31f8f"
+    },
+    {
+      "number": 5,
+      "file": "05-votos-validos.jpg",
+      "source_sha256": "251cd5b76c139c973f86eb6a92fd99e777c9f5fa02ec7cefe2825cc5a4796f04",
+      "sha256": "251cd5b76c139c973f86eb6a92fd99e777c9f5fa02ec7cefe2825cc5a4796f04",
+      "layout": "hero",
+      "headline": "46 DE 90 / É 51,1%",
+      "mascot_box": [
+        700,
+        801,
+        310,
+        322
+      ],
+      "background_type": "documentary_photo",
+      "background_credit": "Abdias Pinheiro/Secom/TSE",
+      "photo_source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Novas%20urnas%20eletr%C3%B4nicas%20-%20TSE.jpg",
+      "photo_source_sha256": "bbf47209ee5ff3390b18346e8287cd38c8c8ea67d17797df4ca6398ff141ba5a"
+    },
+    {
+      "number": 6,
+      "file": "06-votos-validos.jpg",
+      "source_sha256": "72d35fa17be7b50a2fa11b9ee474a526ca180d23ddbcf16ec19f295e3b952639",
+      "sha256": "72d35fa17be7b50a2fa11b9ee474a526ca180d23ddbcf16ec19f295e3b952639",
+      "layout": "split",
+      "headline": "E OS 44 / DO OUTRO?",
+      "mascot_box": [
+        64,
+        821,
+        315,
+        327
+      ],
+      "background_type": "documentary_photo",
+      "background_credit": "TSE — Superior Electoral Court of Brazil",
+      "photo_source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Brazilian%20DRE%20voting%20machine%20for%202022%20elections.jpg",
+      "photo_source_sha256": "aef7952059e145f8c4f8a6ff6d795362723c1788b73d6cafe2b9127f9da31f8f"
+    },
+    {
+      "number": 7,
+      "file": "07-votos-validos.jpg",
+      "source_sha256": "8b1f29f007f4f9e5edf21730e98ec1d933d32ca8e602f669e77cdb32327ba3f8",
+      "sha256": "8b1f29f007f4f9e5edf21730e98ec1d933d32ca8e602f669e77cdb32327ba3f8",
+      "layout": "hero",
+      "headline": "NÃO É TRUQUE. / É A BASE.",
+      "mascot_box": [
+        700,
+        801,
+        310,
+        322
+      ],
+      "background_type": "documentary_photo",
+      "background_credit": "TSE — Superior Electoral Court of Brazil",
+      "photo_source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Brazilian%20DRE%20voting%20machine%20for%202022%20elections.jpg",
+      "photo_source_sha256": "aef7952059e145f8c4f8a6ff6d795362723c1788b73d6cafe2b9127f9da31f8f"
+    }
+  ]
+}
