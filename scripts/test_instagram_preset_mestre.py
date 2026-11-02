@@ -3,7 +3,7 @@
 import copy
 import unittest
 from instagram_preset_mestre import (
-    IDENTITY, LUMINO_SHA, PresetError,
+    IDENTITY, LUMINO_SHA, VISUAL_MASTER_SHA, VISUAL_REFERENCE, PresetError,
     check_brief, check_release, verify
 )
 
@@ -14,13 +14,14 @@ class MasterPresetTests(unittest.TestCase):
         self.brief = {
             "preset_id": IDENTITY, "reference_standard_id": IDENTITY,
             "lumino_sha256": LUMINO_SHA,
+            "reference_visual_sha256": VISUAL_MASTER_SHA,
             "status": "draft_review_no_publication", "approved": False,
             "kind": "carousel", "sources": ["TSE: exemplo verificado"],
             "slides": [
                 {"headline": "Gancho editorial forte", "new_information": "Contexto factual aprofundado",
                  "distinct_scene": "Cena fotográfica de urna real", "visual_direction": "Modelo 1 com pincelada amarelo",
                  "source_credit": "Autor de imagem identificado", "uses_original_lumino": True,
-                 "swipe_cue": "Arraste →"},
+                 "swipe_cue": "Arraste para o lado →"},
                 {"headline": "Explicação com detalhes", "new_information": "Exemplo numérico com lógica",
                  "distinct_scene": "Cena com gráfica da divisão", "visual_direction": "Infográfico contextual foto",
                  "source_credit": "Dados ilustrativos com fonte", "uses_original_lumino": True,
@@ -53,7 +54,7 @@ class MasterPresetTests(unittest.TestCase):
             check_brief(self.brief, self.preset)
 
     def test_no_next_slide_arrow_on_last_slide(self):
-        self.brief["slides"][-1]["swipe_cue"] = "Arraste →"
+        self.brief["slides"][-1]["swipe_cue"] = "Arraste para o lado →"
         with self.assertRaisesRegex(PresetError, "última"):
             check_brief(self.brief, self.preset)
 
@@ -65,9 +66,14 @@ class MasterPresetTests(unittest.TestCase):
             for i in range(n):
                 slide = deepcopy(self.brief["slides"][0])
                 slide["distinct_scene"] = f"Cena contextual exclusiva {i + 1}"
-                slide["swipe_cue"] = "Arraste →" if i < n - 1 else None
+                slide["swipe_cue"] = "Arraste para o lado →" if i < n - 1 else None
                 brief["slides"].append(slide)
             self.assertEqual(check_brief(brief, self.preset)["pages"], n)
+
+    def test_reference_visual_hash_is_mandatory(self):
+        self.brief["reference_visual_sha256"] = None
+        with self.assertRaisesRegex(PresetError, "referência visual|imagem oficial"):
+            check_brief(self.brief, self.preset)
 
     def test_missing_canonical_mascot_blocked(self):
         self.brief["slides"][0]["uses_original_lumino"] = False
@@ -91,13 +97,15 @@ class MasterPresetTests(unittest.TestCase):
             check_release({"preset_id": IDENTITY})
 
     def test_release_requires_quality_on_all_screens(self):
-        qc = {"reference_standard_id": IDENTITY, "reviewer_note": "Comparei cada lâmina com o modelo 1 e qualidade visual interna."}
+        qc = {"reference_standard_id": IDENTITY, "reference_visual_sha256": VISUAL_MASTER_SHA, "reviewer_note": "Comparei cada lâmina com o modelo 1 e qualidade visual interna."}
         qc.update({v: True for v in (
             "cover_matches_model_1","inner_pages_match_cover_quality",
             "original_lumino_visually_confirmed","all_text_readable",
             "all_facts_checked","sources_and_rights_checked",
             "no_unnecessary_repeated_scenes","swipe_cue_verified",
-            "no_forward_cue_on_last_slide","no_visible_page_numbers")})
+            "no_forward_cue_on_last_slide","no_visible_page_numbers",
+            "official_reference_visual_match_verified", "discreet_footer_progress_verified",
+            "no_yellow_swipe_badge_verified")})
         check_release({"preset_id": IDENTITY, "human_visual_qc": qc})
         qc["inner_pages_match_cover_quality"] = False
         with self.assertRaisesRegex(PresetError, "página por página"):
