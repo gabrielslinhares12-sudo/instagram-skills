@@ -38,31 +38,41 @@ def safe_file(base: Path, rel: str) -> Path:
     return p
 
 def verify_brand(root: Path = ROOT) -> dict:
+    """Bind the current editorial contract and the immutable original mascot.
+
+    No eight-panel image reference is permitted as an active template.
+    """
     spec = read_json(root / "content/brand/padrao-visual.json")
     expected = {"width": 1080, "height": 1350, "format": "JPEG",
                 "min_pages": 2, "max_pages": 20, "automatic_api_max_pages": 10}
-    if spec.get("version") != 1 or spec.get("output") != expected:
-        raise VisualError("Configuração de formato e limites alterada.")
-    for item in ("reference", "lumino"):
-        ref = spec[item]
-        asset = safe_file(root, ref["path"])
-        if not asset.is_file() or sha256(asset) != ref["sha256"]:
-            raise VisualError(f"Ativo canonico alterado ou ausente: {item}")
-        with Image.open(asset) as im:
-            if (im.width, im.height) != (ref["width"], ref["height"]):
-                raise VisualError(f"Dimensoes do ativo canonico incorretas: {item}")
-    # Both checked-in reference locations must be byte-identical. The
-    # content/brand files are the source of truth; visual-standard is a mirror.
+    if (spec.get("version") != 2 or spec.get("id") != "TUE-MESTRE-01"
+            or spec.get("output") != expected):
+        raise VisualError("Configuração atual TUE-MESTRE-01 ou limites alterados.")
+    contract = spec.get("editorial_standard", {})
+    if (contract.get("id") != "TUE-MESTRE-01"
+            or contract.get("path") != "content/brand/TUE-MESTRE-01.md"
+            or not (root / contract["path"]).is_file()):
+        raise VisualError("Contrato editorial TUE-MESTRE-01 ausente ou divergente.")
+    if "reference" in spec:
+        raise VisualError("Modelo antigo de oito painéis não pode ser referência ativa.")
+    lumino = spec["lumino"]
+    asset = safe_file(root, lumino["path"])
+    if not asset.is_file() or sha256(asset) != lumino["sha256"]:
+        raise VisualError("PNG canônico Lúmino alterado ou ausente.")
+    with Image.open(asset) as im:
+        if (im.width, im.height) != (lumino["width"], lumino["height"]):
+            raise VisualError("Dimensões do PNG Lúmino incorretas.")
     mirror = root / "content/visual-standard/standard.json"
     if mirror.is_file():
         other = read_json(mirror)
-        for key, peer in (("lumino", "original_mascot"),
-                          ("reference", "approved_layout_reference")):
-            check = other[peer]
-            asset = safe_file(root, check["path"])
-            if (check["sha256"] != spec[key]["sha256"] or not asset.is_file()
-                    or sha256(asset) != spec[key]["sha256"]):
-                raise VisualError("Referencias duplicadas divergentes: bloquear.")
+        if "approved_layout_reference" in other or "reference_example_pages" in other.get("output", {}):
+            raise VisualError("Espelho visual ainda exige antigo modelo de oito painéis.")
+        peer = other["original_mascot"]
+        mirror_file = safe_file(root, peer["path"])
+        if (peer["sha256"] != lumino["sha256"] or not mirror_file.is_file()
+                or sha256(mirror_file) != lumino["sha256"]
+                or other.get("editorial_contract", {}).get("id") != "TUE-MESTRE-01"):
+            raise VisualError("Espelho Lúmino / contrato editorial divergentes.")
     return spec
 
 def _color_ratio(image: Image.Image, box: tuple[int,int,int,int], predicate, stride: int = 8) -> float:
@@ -138,8 +148,9 @@ def validate_package(manifest: Path, root: Path = ROOT) -> dict:
     if (data.get("version") != 1 or
         data.get("standard_id") != spec["id"] or
         data.get("lumino_sha256") != spec["lumino"]["sha256"] or
-        data.get("reference_sha256") != spec["reference"]["sha256"]):
-        raise VisualError("Manifesto nao vincula as duas referencias oficiais.")
+        data.get("reference_standard_id") != spec["editorial_standard"]["id"] or
+        "reference_sha256" in data):
+        raise VisualError("Manifesto não vincula o TUE-MESTRE-01 e Lúmino canônico, ou mantém modelo antigo.")
     pages = data.get("pages")
     limit = spec["output"]
     if not isinstance(pages, list) or not limit["min_pages"] <= len(pages) <= limit["max_pages"]:
