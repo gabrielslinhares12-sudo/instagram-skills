@@ -4,16 +4,16 @@
   "day": "2026-11-02",
   "timezone": "America/Sao_Paulo",
   "intent": "Priorizar três publicações de 02/11/2026 antes de recriar restante da semana",
-  "state": "AGENDAMENTO_SOLICITADO_BLOQUEADO_POR_HOSPEDAGEM_E_VALIDACAO_META",
-  "operational_schedule_updated": false,
+  "state": "PUBLICACAO_PARCIAL_CONFIRMADA_META_02NOV",
+  "operational_schedule_updated": true,
   "publishing_integration": {
     "scheduler": "GitHub Actions: .github/workflows/instagram-scheduler.yml (cron */10 * * * *)",
     "execution": "scripts/instagram_queue.py --execute chama scripts/facebook_poster.py (Facebook Login) e a Instagram Graph API oficial da Meta",
     "meta_api": "Meta recebe publicações no horário do job; o agendamento/espera é responsabilidade do cron e da fila UTC do GitHub, não do Metricool",
     "metricool": "NÃO UTILIZAR — integração correta é GitHub Actions + Meta Graph API",
-    "credentials": "GitHub Actions secrets e vars; sua configuração atual não foi validada neste turno",
+    "credentials": "Meta Graph API Facebook Login autorizada e validada no job 41422923007 em 02/11; Instagram @temumaexplicacao e quatro permissoes confirmadas.",
     "prior_publication_evidence": "content/publication-state.json comprova publicação histórica pelo publicador Meta em 31/10 e carrossel em 01/11",
-    "operational_queue": "content/schedule.json — não contém posts para 02/11; alterá-la só após arquivos finais em URLs públicas acessíveis à Meta e demais verificações obrigatórias"
+    "operational_queue": "content/schedule.json — tirinha 02/11 publicada com recibo; Mar Cruzado não aprovado visualmente, Reel sem MP4."
   },
   "posts": [
     {
@@ -23,11 +23,11 @@
       "id": "tue-2026-11-02-12-mar-cruzado",
       "topic_id": "mar-cruzado",
       "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-02-12-mar-cruzado.json",
-      "status": "ASSETS_STAGED_PRIVATE_DRIVE_NOT_SCHEDULED",
+      "status": "QC_BLOCKED_REDESIGN_REQUIRED",
       "issues": [
-        "Drive files are private, not publicly downloadable by Meta/Graph",
-        "GitHub queue requires public HTTPS media URLs and approved provenance",
-        "Instagram synthetic illustration disclosure may apply, must not falsely classify as non-synthetic"
+        "Cinco lâminas existentes repetem cena e posição do mascote; usuário rejeitou o padrão e exigiu refação",
+        "Carrossel não aprovado para publicação automática",
+        "Manter o padrão canônico TUE-MESTRE-01 e Lúmino original sem substituição"
       ]
     },
     {
@@ -37,13 +37,18 @@
       "id": "tue-2026-11-02-18-senha-impossivel",
       "topic_id": "senha-impossivel",
       "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-02-18-senha-impossivel.json",
-      "status": "ASSET_STAGED_PRIVATE_DRIVE_NOT_SCHEDULED",
+      "status": "PUBLISHED_META_CONFIRMED",
       "issues": [
         "Drive original PNG staged privately, not public",
         "GitHub queue still has no validated publication entry",
         "Synthetic illustration provenance cannot be falsely classified",
         "Meta Graph API precisa buscar a mídia por URL HTTPS pública verificável."
-      ]
+      ],
+      "operational_id": "tue-2026-11-02-15-senha-impossivel",
+      "media_id": "18131786309499353",
+      "published_at_utc": "2026-11-02T16:51:58Z",
+      "account": "temumaexplicacao",
+      "verified_in_ledger": true
     },
     {
       "local_time": "18:00",
@@ -110,12 +115,10 @@
     "sha256_manifest_inside_archive": true
   },
   "notes": [
-    "No story can be generated before receipt of actual parent Instagram post",
-    "The schedule file and historical ledger were not changed; no Instagram publishing confirmed",
-    "Time slots: 11:00/15:00/18:00 Sao Paulo time; before due need complete Meta access and media source checks",
-    "Correção do proprietário 02/11: o único agendamento oficial é o pipeline GitHub Actions → Meta Graph API; Metricool não participa.",
-    "Mídias 11h e 15h preparadas em Drive privado; não equivale a URL pública de imagem para Facebook/Instagram Graph API.",
-    "Nunca declarar agendado ou publicado sem entrada validada em content/schedule.json e recibo de publicação em content/publication-state.json."
+    "02/11/2026: tirinha O SAC DA SENHA IMPOSSÍVEL publicada pela Meta em 2026-11-02T16:51:58Z; media_id 18131786309499353. A reautorização do Facebook funcionou.",
+    "Proximo carrossel Mar Cruzado retido até refação visual, sem promover as cinco artes repetitivas.",
+    "Reel das 18h depende de vídeo original MP4, direitos, revisão e URL HTTPS pública.",
+    "Story nativo com chamada falada requer republicação pelo Instagram app após post confirmado; não confundir com Story independente."
   ],
   "schedule_attempt": {
     "requested_by_user": true,
@@ -125,15 +128,15 @@
       "15:00",
       "18:00"
     ],
-    "path": "GitHub Actions -> scripts/instagram_queue.py -> facebook_poster.py -> Meta Graph API",
-    "results": "BLOCKED_BEFORE_ADD_TO_ACTIVE_QUEUE",
-    "reasons": [
-      "A API da Meta exige media_urls HTTPS que devolvam JPEG/MP4 públicos sem autenticação. Google Drive existente contém apenas arquivos privados.",
-      "Tentativa de publicar a imagem binária no GitHub por create_blob foi bloqueada pelas configurações de segurança da ferramenta; nenhuma mídia foi hospedada.",
-      "Tentativa de transferência de arquivo para Picsart CDN também foi bloqueada pelas configurações de segurança.",
-      "O post de 18h ainda não possui vídeo original MP4 identificado/validado.",
-      "O controle de qualidade da procedência precisa ser concluído conforme regras da Meta."
+    "path": "GitHub Actions -> instagram_queue.py -> FacebookPoster -> Meta Graph API",
+    "results": "CONFIRMED_1_POST_OTHERS_BLOCKED_QC_OR_MISSING_MP4",
+    "published_ids": [
+      "18131786309499353"
     ],
-    "side_effects": "Nenhum post incluído em content/schedule.json, nenhum job Meta disparado, nenhum conteúdo publicado ou agendado."
+    "blocked_post_topics": [
+      "mar-cruzado",
+      "youtube-reel"
+    ],
+    "workflow_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41422923007"
   }
 }
