@@ -1,3 +1,5 @@
+> **PADRÃO ATIVO E ÚNICO PARA NOVOS CONTEÚDOS: `ATIVAR TUE-MESTRE-01`.** Fonte principal: [TUE-MESTRE-01](../brand/TUE-MESTRE-01.md). Quando houver conflito com orientações anteriores neste documento, o TUE-MESTRE-01 prevalece. Novas artes devem ser comparadas de verdade ao MODELO 1 ORIGINAL; rascunhos V3 de 02/11 foram rejeitados por não seguirem o estilo. **Sem numeração visível de páginas.**
+
 # PADRÃO EDITORIAL VIGENTE — APROVAÇÃO DO PROPRIETÁRIO EM 31/10/2026
 
 **ESTE BLOCO SUBSTITUI QUALQUER DIREÇÃO VISUAL CONTRADITÓRIA ABAIXO.**

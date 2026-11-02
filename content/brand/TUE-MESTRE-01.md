@@ -1,0 +1,47 @@
+# TUE-MESTRE-01 — PADRÃO ORIGINAL LÚMINO
+
+**Comando para o proprietário:** `ATIVAR TUE-MESTRE-01`.
+
+**Padrão automático:** em todo pedido de **conteúdo do Instagram TUE neste projeto**, usar este preset, mesmo quando o comando não for repetido. Em novas conversas, repetir o comando para evitar ambiguidade. NÃO presumir que salvar este arquivo altera as configurações globais do ChatGPT.
+
+## Referência visual imutável
+
+- **ÚNICO modelo:** [MODELO 1 ORIGINAL — 8 painéis apenas como referência visual](modelo-oficial-carrossel-8-paineis.png). A quantidade de painéis é variável por publicação.
+- **Personagem:** [PNG original do Lúmino](lumino-original.png), nunca criar variante, regenerar, mudar expressão/anatomia nem substituí-lo por desenho parecido. Cabeça de lanterna vintage de vidro dourado; lâmpada amarela acesa; óculos redondos; olhos ciano; sobretudo cáqui, lupa, luvas brancas; **sem boca, pernas ou pés**.
+- Arquivos e hashes verificados em `TUE-MESTRE-01.json`. Se faltar a imagem original, **bloquear** a produção e buscar o arquivo canônico; não improvisar.
+
+## Visual real que o usuário aprovou — não negociar
+
+1. **Capa de impacto.** Gancho forte, verdadeiro, preto condensado bem grande sobre faixas de pincel amarelo, detalhes vermelhos; cena documental/fotografia contextual, textura clara, luz e profundidade, Lúmino original em destaque.
+2. **Miolo tão bom quanto a capa.** Direção artística individual. Cada lâmina traz uma ideia nova bem explicada, fotografia ou cena **diferente** e adequada ao assunto, dados corretos, gráficos contextualizados quando úteis. **Nunca** montar sete variações do mesmo card, repetir a mesma foto como cenário recorrente, trocar qualidade por painel vazio, colagem ou layout genérico.
+3. **Modelo 1 somente.** Não mesclar com o modelo 5, não trocar fontes/fundos/mascote. O template antigo `render_instagram_carrossel.py` é **apenas prova técnica**, proibido como arte final. Evitar qualquer compositor fixo que reduz a identidade a cartão retangular + borda + foto repetida.
+4. **Arrastar discreto:** indicadores/pontos ou texto pequeno; **sem numeração visível 1/8, 2/8 etc.** Oito painéis no modelo NÃO impõem oito fotos no post.
+5. **Formato final:** cada página JPEG individual 1080 × 1350 px (4:5). 2–20 peças conforme o roteiro, 10 no máximo pela Graph API do projeto. Um único JPG é post simples. A prévia é derivada exatamente dos JPGs finais.
+6. **Memes:** liberdade de narrativa e tirinhas, mas manter qualidade de cenário/tipografia, identificação e Lúmino original; não adaptar por padrão com desenho simplificado.
+7. **Reels:** sem substituir carrossel por Reel. Se solicitado e aprovado, exigir MP4, áudio Rasalgethi via site Google AI Studio quando houver narração, edição/sincronia e mídia adequada; nada de API paga.
+
+## Trava de produção e revisão
+
+1. Carregar **primeiro** estes arquivos canônicos e confirmar hashes. Ler `content/brand/TUE-MESTRE-01.json`.
+2. Montar briefing para um conteúdo por vez com `preset_id`, SHA dos dois arquivos e um conceito de cena próprio por lâmina; executar `python scripts/instagram_preset_mestre.py check-brief --brief caminho/brief.json`.
+3. Criar e **inspecionar visualmente** cada JPEG final contra a imagem modelo, inclusive em tamanho pequeno no celular. Conferir tipografia, hierarquia, enquadramento, acentos, clareza, precisão factual e direitos das mídias. Se uma lâmina falhar, **refazer essa lâmina**, não remediar com template.
+4. Empacotar imagens **sem re-renderizar** com `scripts/package_individual_carousel.py` e testar `scripts/instagram_visual_standard.py verify-package`. Passar em QA técnico **não comprova** fidelidade artística.
+5. Manter `approved=false`, `visual_reviewed=false`, `owner_authorized=false` inicialmente. Para liberar post novo, um revisor deve preencher `human_visual_qc` após comparação de verdade com a imagem original; `audit-queue` exige o `preset_id` e todas as verificações, além de autorização real do proprietário.
+6. Não ativar música/Android cloud, não agendar nem postar sem as condições de cada post. Confirmar recibo real e evitar duplicatas.
+
+## Rascunhos de 02/11 REPROVADOS pelo padrão
+
+- `content/staging/votos-validos-2026-11-02-reconstrucao-v3/`: design repetitivo, foto de urna repetida, Lúmino diminuto e interiores sem linguagem visual fiel ao modelo. **Não promover nem publicar**.
+- `content/staging/meme-voto-nulo-2026-11-02-v3/`: tipografia e desenho de tirinha diferentes da expectativa editorial. **Não promover nem publicar**.
+- Os dois workflows de renderização antiga ficaram **inativos**; o material só é histórico para diagnóstico. Não retomar o mesmo método de geração ao criar conteúdo novo.
+
+## O que o controle garante e o que não garante
+
+- Garante tecnicamente **bloqueios verificáveis** de fonte, hashes, formato, volume e ausência de registro de revisão.
+- **Não** garante arte perfeita nem erro zero: a fidelidade estética e a verdade de toda afirmação ainda exigem inspeção editorial real. É proibido declarar `QA aprovado` só porque o GitHub Actions terminou verde.
+
+## Chamada simples
+
+`ATIVAR TUE-MESTRE-01. Faça um post sobre [tema].`
+
+Sem comando explícito, o projeto Instagram TUE também deve adotar o mesmo padrão por padrão.

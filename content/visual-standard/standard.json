@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "identity": "Instagram TUE / Lúmino",
-  "standard": "editorial-claro-cinematografico-v1",
+  "standard": "TUE-MESTRE-01",
   "original_mascot": {
     "path": "content/visual-standard/assets/LUMINO-ORIGINAL.png",
     "sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
@@ -22,9 +22,10 @@
   "output": {
     "width": 1080,
     "height": 1350,
-    "carousel_pages": 8,
+    "carousel_pages": "variable_2_to_20",
     "format": "JPEG",
-    "photo_background_required": true
+    "photo_background_required": true,
+    "reference_example_pages": 8
   },
   "palette": {
     "paper": "#F3EBDE",
@@ -51,7 +52,9 @@
     "páginas sem cena contextual",
     "cards genéricos repetidos",
     "imagens sem origem/licença declarada",
-    "liberação de Reel sem MP4 e Rasalgethi"
+    "liberação de Reel sem MP4 e Rasalgethi",
+    "numeração visível de páginas nas artes novas",
+    "mesma fotografia e layout genérico repetido no miolo"
   ],
   "visual_review_is_manual": true,
   "publication_requires_explicit_owner_authorization": true,

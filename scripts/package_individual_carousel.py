@@ -102,6 +102,8 @@ def package(spec_path: Path, out: Path) -> dict:
     build_preview(out, pages).save(preview_file, format="PNG")
     manifest = {
         "version": 1,
+        "preset_id": "TUE-MESTRE-01",
+        "human_visual_qc": None,  # revisor deve conferir cada lâmina; nunca autopreencher
         "production_mode": MODE,
         "standard_id": brand["id"],
         "reference_sha256": brand["reference"]["sha256"],

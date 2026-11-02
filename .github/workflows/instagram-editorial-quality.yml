@@ -9,6 +9,8 @@ on:
       - 'content/schedule.json'
       - 'content/approved/**'
       - 'scripts/instagram_visual_standard.py'
+      - 'scripts/instagram_preset_mestre.py'
+      - 'scripts/test_instagram_preset_mestre.py'
       - 'scripts/instagram_queue.py'
       - 'scripts/test_instagram_queue.py'
       - '.github/workflows/instagram-scheduler.yml'
@@ -66,6 +68,10 @@ jobs:
         run: python -m pip install 'Pillow>=11,<13'
       - name: Verificar PNG original, modelo e hashes
         run: python scripts/instagram_visual_standard.py verify-assets
+      - name: Validar ativacao automatica TUE-MESTRE-01 e hashes imutaveis
+        run: python scripts/instagram_preset_mestre.py verify
+      - name: Testar bloqueios de arte sem preset e revisao manual
+        run: python -m unittest discover -s scripts -p test_instagram_preset_mestre.py -v
       - name: Barrar publicacoes aprovadas fora do padrao
         run: python scripts/instagram_visual_standard.py audit-queue
       - name: Validar preparação segura do método móvel privado (desativado)

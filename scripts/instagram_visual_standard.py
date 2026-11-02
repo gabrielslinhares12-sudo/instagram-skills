@@ -249,6 +249,13 @@ def audit_queue(root: Path=ROOT) -> dict:
                 raise VisualError(f"Carrossel aprovado sem verificacao de estilo: {slug}")
             validated=validate_package(manifest,root)
             approval=read_json(manifest)
+            # TUE-MESTRE-01: no new approved carousel may bypass manual
+            # comparison to the exact original model 1 and all inner slides.
+            from instagram_preset_mestre import PresetError, check_release
+            try:
+                check_release(approval)
+            except PresetError as error:
+                raise VisualError(str(error)) from error
             # A color/mascot-valid generic template is NEVER publishable.
             # Only independent artwork, preserved byte-for-byte, can advance.
             if approval.get("production_mode") != INDIVIDUAL_MODE:

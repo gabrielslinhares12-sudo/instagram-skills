@@ -1,0 +1,157 @@
+#!/usr/bin/env python3
+"""TUE-MESTRE-01 editorial guard, pure stdlib. Does NOT create or publish media.
+
+Usage:
+  python3 scripts/instagram_preset_mestre.py verify
+  python3 scripts/instagram_preset_mestre.py check-brief --brief path.json
+
+Visual aesthetics are NOT provable by hashes or a CI test; the approval gate
+requires an explicit accountable visual comparison against the canonical asset.
+"""
+from __future__ import annotations
+import argparse
+import hashlib
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+PROFILE = ROOT / "content/brand/TUE-MESTRE-01.json"
+IDENTITY = "TUE-MESTRE-01"
+REFERENCE_SHA = "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63"
+LUMINO_SHA = "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b"
+
+
+class PresetError(ValueError):
+    pass
+
+
+def load_json(path: Path) -> dict:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise PresetError("Configuração não é um objeto JSON.")
+    return value
+
+
+def sha256(path: Path) -> str:
+    value = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            value.update(chunk)
+    return value.hexdigest()
+
+
+def verify(root: Path = ROOT) -> dict:
+    preset = load_json(root / "content/brand/TUE-MESTRE-01.json")
+    brand = load_json(root / "content/brand/padrao-visual.json")
+    mirror = load_json(root / "content/visual-standard/standard.json")
+    if preset.get("id") != IDENTITY or preset.get("activation_phrase") != "ATIVAR TUE-MESTRE-01":
+        raise PresetError("Gatilho TUE-MESTRE-01 inválido ou alterado.")
+    for label, pinned in (("model", REFERENCE_SHA), ("lumino", LUMINO_SHA)):
+        item = preset["canonical_assets"]
+        rel = item[label + "_path"]
+        if not rel.startswith("content/brand/") or ".." in rel:
+            raise PresetError("Ativo canônico fora da pasta aprovada: " + label)
+        if item[label + "_sha256"] != pinned or sha256(root / rel) != pinned:
+            raise PresetError("Arquivo canônico alterado ou substituído: " + label)
+    if brand["reference"]["sha256"] != REFERENCE_SHA or brand["lumino"]["sha256"] != LUMINO_SHA:
+        raise PresetError("Configuração de marca diverge dos arquivos originais.")
+    if mirror["original_mascot"]["sha256"] != LUMINO_SHA or mirror["approved_layout_reference"]["sha256"] != REFERENCE_SHA:
+        raise PresetError("Espelho visual diverge do padrão mestre.")
+    if brand["output"]["width"] != 1080 or brand["output"]["height"] != 1350:
+        raise PresetError("Formato do carrossel foi alterado.")
+    if brand["output"]["min_pages"] != 2 or brand["output"]["max_pages"] != 20:
+        raise PresetError("Número de lâminas deixou de ser variável.")
+    if brand["design"].get("numbering") is not False or preset["visual"]["no_visible_page_numbers"] is not True:
+        raise PresetError("Numeração visual proibida pelo TUE-MESTRE-01.")
+    if not preset["visual"].get("discreet_swipe_cue"):
+        raise PresetError("Falta a indicação discreta para arrastar.")
+    if preset["reference_style"] != "EXCLUSIVAMENTE modelo 1 do proprietário, sem mescla com modelo 5, templates ou improvisações":
+        raise PresetError("Foi alterada a referência artística exclusiva.")
+    return preset
+
+
+def check_brief(brief: dict, preset: dict) -> dict:
+    """Fail closed for *new* content, without grandfathering rejected versions."""
+    if brief.get("preset_id") != IDENTITY:
+        raise PresetError("Brief sem TUE-MESTRE-01: criar conteúdo está bloqueado.")
+    if brief.get("reference_sha256") != REFERENCE_SHA:
+        raise PresetError("Brief não aponta para o modelo visual original.")
+    if brief.get("lumino_sha256") != LUMINO_SHA:
+        raise PresetError("Brief não usa o Lúmino canônico.")
+    if brief.get("status") != "draft_review_no_publication":
+        raise PresetError("Produção só pode nascer como rascunho não publicável.")
+    if brief.get("approved") is not False:
+        raise PresetError("Arte não pode ser aprovada automaticamente.")
+    kind = brief.get("kind")
+    if kind not in ("carousel", "meme", "single_post", "reel"):
+        raise PresetError("Tipo de conteúdo inválido.")
+    if not isinstance(brief.get("sources"), list) or not brief["sources"]:
+        raise PresetError("Brief sem fontes factuais ou créditos de referências.")
+    pages = brief.get("slides")
+    if not isinstance(pages, list):
+        raise PresetError("Brief sem roteiro por lâmina.")
+    if kind == "carousel" and not 2 <= len(pages) <= 20:
+        raise PresetError("Carrossel deve ter páginas variáveis entre 2 e 20.")
+    if kind in ("meme", "single_post") and len(pages) != 1:
+        raise PresetError("Post único deve ter somente uma imagem final.")
+    if kind == "reel" and not pages:
+        raise PresetError("Reel exige plano visual.")
+    seen = set()
+    for i, page in enumerate(pages, 1):
+        if not isinstance(page, dict):
+            raise PresetError("Lâmina inválida.")
+        for name in ("headline", "new_information", "distinct_scene", "visual_direction", "source_credit"):
+            if not isinstance(page.get(name), str) or len(page[name].strip()) < 8:
+                raise PresetError(f"Lâmina {i}: falta {name} detalhado.")
+        scene = page["distinct_scene"].casefold().strip()
+        if scene in seen:
+            raise PresetError("Cenas repetidas: o miolo não acompanha a capa.")
+        seen.add(scene)
+        if page.get("uses_original_lumino") is not True:
+            raise PresetError(f"Lâmina {i}: Lúmino original obrigatório.")
+    return {"preset_id": IDENTITY, "pages": len(pages), "draft_only": True,
+            "human_visual_comparison_still_required": True}
+
+
+def check_release(manifest: dict) -> None:
+    """Required additionally to existing manifest/hash checks before publication."""
+    if manifest.get("preset_id") != IDENTITY:
+        raise PresetError("PADRÃO TUE-MESTRE-01 não foi ativado neste carrossel.")
+    qc = manifest.get("human_visual_qc")
+    if not isinstance(qc, dict) or qc.get("reference_sha256") != REFERENCE_SHA:
+        raise PresetError("Comparação visual assinada com o modelo 1 está ausente.")
+    flags = ("cover_matches_model_1", "inner_pages_match_cover_quality",
+             "original_lumino_visually_confirmed", "all_text_readable",
+             "all_facts_checked", "sources_and_rights_checked",
+             "no_unnecessary_repeated_scenes", "swipe_cue_verified",
+             "no_visible_page_numbers")
+    if not all(qc.get(item) is True for item in flags):
+        raise PresetError("Revisão manual página por página não foi concluída.")
+    if not isinstance(qc.get("reviewer_note"), str) or len(qc["reviewer_note"].strip()) < 30:
+        raise PresetError("Falta justificativa específica de comparação com a referência.")
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("action", choices=["verify", "check-brief"])
+    parser.add_argument("--brief", type=Path)
+    args = parser.parse_args(argv)
+    try:
+        preset = verify()
+        if args.action == "check-brief":
+            if not args.brief:
+                raise PresetError("--brief é obrigatório para check-brief.")
+            result = check_brief(load_json(args.brief), preset)
+        else:
+            result = {"verified": True, "preset_id": preset["id"],
+                      "activation": preset["activation_phrase"],
+                      "manual_artistic_review_required": True}
+        print(json.dumps(result, ensure_ascii=False))
+        return 0
+    except (PresetError, OSError, ValueError, KeyError) as error:
+        print(json.dumps({"verified": False, "error": str(error)}, ensure_ascii=False))
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

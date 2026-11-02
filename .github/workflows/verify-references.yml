@@ -16,6 +16,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Check no credentials are tracked
         run: python3 scripts/check_no_secrets.py
+      - name: Enforce canonical Instagram TUE-MESTRE-01 preset
+        run: |
+          python3 scripts/instagram_preset_mestre.py verify
+          python3 -m unittest discover -s scripts -p test_instagram_preset_mestre.py -v
       - name: Install verification dependencies
         run: python3 -m pip install --quiet pyyaml -r requirements-lock.txt
       - name: Test official API adapters without credentials

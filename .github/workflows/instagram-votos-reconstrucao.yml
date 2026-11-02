@@ -1,43 +1,13 @@
-name: Instagram TUE - produzir primeiro carrossel votos sem publicar
+name: Instagram TUE - votos V3 REPROVADO - nao executar
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/instagram_render_votos_v3.py'
-      - 'content/editorial/votos-validos-reconstrucao-v3.json'
-      - '.github/workflows/instagram-votos-reconstrucao.yml'
   workflow_dispatch:
 permissions:
-  contents: write
-concurrency:
-  group: instagram-editorial-votos-v3
-  cancel-in-progress: false
+  contents: read
 jobs:
-  render:
+  blocked:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-        with:
-          persist-credentials: true
-      - name: Instalar Pillow
-        run: python3 -m pip install --user 'Pillow>=10,<13'
-      - name: Renderizar artes e validar original do Lumino
-        run: python3 scripts/instagram_render_votos_v3.py
-      - name: Checar revisão técnica de cada arte
-        run: python3 scripts/instagram_visual_standard.py verify-package --manifest content/staging/votos-validos-2026-11-02-reconstrucao-v3/visual-manifest.json
-      - name: Guardar prévia e QC
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: instagram-votos-v3-revisao
-          path: content/staging/votos-validos-2026-11-02-reconstrucao-v3/
-          retention-days: 14
-      - name: Salvar somente as artes para revisão no GitHub
-        if: github.ref == 'refs/heads/main'
+      - name: Bloquear renderizador fora do TUE-MESTRE-01
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add content/staging/votos-validos-2026-11-02-reconstrucao-v3/
-          git diff --cached --quiet && exit 0
-          git commit -m 'art(instagram): 7 laminas votos v3 em revisao - sem agendamento'
-          git push origin HEAD:main
+          echo '::error::Este fluxo gera arte fora do modelo TUE-MESTRE-01 e foi desativado. Usar o padrão mestre aprovado.'
+          exit 1

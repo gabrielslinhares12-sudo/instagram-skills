@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "id": "TUE-MESTRE-01",
+  "display_name": "TUE-MESTRE-01 — Padrão Original Lúmino",
+  "activation_phrase": "ATIVAR TUE-MESTRE-01",
+  "applies_by_default_to": [
+    "todo pedido de conteúdo para Instagram TUE",
+    "carrossel",
+    "post simples",
+    "meme",
+    "Reel do Instagram TUE"
+  ],
+  "overrides_old_conflicts": true,
+  "reference_style": "EXCLUSIVAMENTE modelo 1 do proprietário, sem mescla com modelo 5, templates ou improvisações",
+  "canonical_assets": {
+    "model_path": "content/brand/modelo-oficial-carrossel-8-paineis.png",
+    "model_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+    "lumino_path": "content/brand/lumino-original.png",
+    "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b"
+  },
+  "visual": {
+    "palette": {
+      "paper": "#F4EDE1",
+      "yellow": "#FFD600",
+      "ink": "#111111",
+      "red": "#D50E15",
+      "cyan": "#00CFF6"
+    },
+    "cartoon_style": "2D editorial, character PNG original overlaid; never redraw, regenerate or invent a new pose",
+    "identity": "lanterna vintage de vidro dourado com bulbo quente, óculos redondos, olhos ciano, lupa, sobretudo cáqui, luvas brancas, sem boca, pernas ou sapatos",
+    "first_page": "gancho forte e factual, texto condensado preto grande, pinceladas amarelas irregulares, destaque vermelho e cena contextual forte",
+    "inner_pages": "mesma qualidade visual da capa, variedade real de cenas, sem fundo copiado repetido, progressão de informação profunda, gráficos claros quando ajudam",
+    "layout": "editorial claro, fotografia contextual ou ilustração identificada; sem cartões genéricos em série nem fundos mínimos vazios",
+    "no_visible_page_numbers": true,
+    "discreet_swipe_cue": true,
+    "legible_mobile": true,
+    "require_contextual_source_and_rights": true,
+    "never_reuse_photo_repeatedly_to_fill_pages": true
+  },
+  "format": {
+    "carousel": "JPEG individual 1080x1350 4:5",
+    "carousel_min": 2,
+    "carousel_max": 20,
+    "api_max": 10,
+    "fixed_slide_count": false,
+    "one_image_is_single_post": true
+  },
+  "publication": {
+    "require_factual_sources": true,
+    "require_orthography_check": true,
+    "require_pixel_accurate_preview": true,
+    "require_manual_visual_comparison_against_original": true,
+    "require_owner_publication_authorization": true,
+    "never_auto_approve_generated_work": true,
+    "never_repost_published_content": true,
+    "native_music": "requires legitimate Instagram app verification; do not fake or silently omit",
+    "reel": "requires actual MP4 and voice Rasalgethi via Google AI Studio when narration is required"
+  },
+  "production": {
+    "one_complete_content_at_a_time": true,
+    "verify_before_next": true,
+    "never_use_generic_template_as_final": true,
+    "quarantined_previous_drafts": [
+      "content/staging/votos-validos-2026-11-02-reconstrucao-v3",
+      "content/staging/meme-voto-nulo-2026-11-02-v3"
+    ]
+  }
+}
