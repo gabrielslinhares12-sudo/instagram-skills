@@ -22,6 +22,12 @@
     "visual_master_size": [
       1229,
       1536
+    ],
+    "visual_reference_path": "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg",
+    "visual_reference_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+    "visual_reference_dimensions": [
+      1229,
+      1536
     ]
   },
   "visual": {
@@ -42,7 +48,7 @@
     "legible_mobile": true,
     "require_contextual_source_and_rights": true,
     "never_reuse_photo_repeatedly_to_fill_pages": true,
-    "approved_visual_direction": "REFERÊNCIA VISUAL MESTRE FIXA: content/brand/modelo-oficial-aprovado-2026-11-02.png (imagem do usuário, 02/11/2026). Todo post, meme, capa, carrossel e arte de divulgação deve reproduzir sua hierarquia, iluminação, tratamento do Lúmino, equilíbrio editorial, tipografia e grafismos; adaptar apenas o assunto e cenas.",
+    "approved_visual_direction": "REFERÊNCIA VISUAL REAL E ÚNICA aprovada pelo proprietário em 02/11/2026: content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg (arte 'COMO ASSIM 51% DOS VOTOS E NÃO GANHOU?'). Fotografia/ilustração editorial profunda e integrada; Lúmino grande à direita ou na composição conforme o assunto; manchetes pretas enormes condensadas, pinceladas amarelas, acentos vermelhos, branco/papel claro contextual. Mesma excelência na capa e no miolo. O tema eleitoral é SOMENTE exemplo de composição, nunca copiar conteúdo.",
     "original_lumino_must_be_composited_not_regenerated": true,
     "finalization_lock": {
       "policy": "A imagem aprovada é a ARTE-MESTRE, não um conceito para reconstrução.",
@@ -72,35 +78,31 @@
       "incident_2026_11_03": "First cinematic newsroom comic was recropped/recomposed into simplified panels; reconstructed version rejected."
     },
     "swipe_cue": {
-      "text": "Arraste →",
+      "text": "Arraste para o lado →",
       "required_on_nonfinal_carousel_slides": true,
       "forbidden_on_last_slide": true,
-      "position": "rodapé CENTRAL abaixo da arte, respeitando margem segura; sem cobrir texto, Lúmino ou cena",
+      "position": "rodapé limpo abaixo da arte, centralizado com margens de segurança",
       "readable_mobile": true,
       "no_page_numbers": true,
       "no_obstruction": true,
-      "style": "IGUAL À IMAGEM-MESTRE 02/11: bolinhas pequenas centradas (página atual amarela, demais cinza), seta fina preta à direita e, abaixo, 'ARRASTE PARA O LADO →' em letras pequenas, espaçadas, sóbrias, sem tarja, card, botão, pincelada ou ícone de mão.",
+      "style": "IGUAL À REFERÊNCIA OFICIAL: fileira discreta de pontos pequenos (ativo amarelo, restantes cinza), seta única preta fina e microtexto em letras espaçadas 'ARRASTE PARA O LADO →' no rodapé claro. Não criar tarja amarela, botão, selo, mão ou dupla seta.",
+      "progress_dots": "quantidade igual ao número real de lâminas, atual amarela e demais cinza, sem números nem total fixo",
       "preserve_original_master_art": true,
       "do_not_rebuild_background_or_change_topic": true,
       "prohibited": [
-        "botão/etiqueta/tarja colorida atrás de Arraste",
-        "pincelada amarela para o aviso de arrastar",
-        "setas gigantes, ícone de mão, rodapé alto",
-        "destaques azuis/moldura escura",
-        "numeração 1/5 ou 2/5",
-        "misturar o layout do modelo de ontem com modelo inventado"
-      ],
-      "display_text": "ARRASTE PARA O LADO →",
-      "progress_dots": true,
-      "dot_count_matches_carousel_length": true,
-      "active_dot": "#F6B900",
-      "inactive_dots": "#BFC1C3",
-      "thin_right_arrow": true,
-      "last_slide": "sem seta nem convite a arrastar na última; pontos de progresso só se fizerem sentido, sem continuação falsa"
+        "etiqueta amarela gigante 'Arraste'",
+        "botão, pill, selo ou pincelada amarela para aviso de arrastar",
+        "seta gigante, mão ou chevrons duplos",
+        "rodapé azul, moldura decorativa",
+        "rodapé visualmente chamativo que compete com título e Lúmino",
+        "contagem de páginas fixa",
+        "refazer a arte original para adicionar swipe"
+      ]
     },
     "visual_master_mandatory_for_all_art": true,
     "visual_master_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
-    "footer_progress_system": "bolinhas pequenas com amarelo/cinza e seta fina em rodapé central, exatamente como a imagem-mestre"
+    "footer_progress_system": "bolinhas pequenas com amarelo/cinza e seta fina em rodapé central, exatamente como a imagem-mestre",
+    "reference_visual_lock": "NÃO usar modelos anteriores do Mar Cruzado nem reconstruções baratas; não substituir o personagem nem reduzir para adesivo. A referência enviada pelo proprietário é a única direção artística aprovada."
   },
   "format": {
     "carousel": "JPEG individual 1080x1350 4:5",
