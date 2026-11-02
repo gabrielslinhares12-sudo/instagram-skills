@@ -20,6 +20,8 @@ IDENTITY = "TUE-MESTRE-01"
 LUMINO_SHA = "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b"
 VISUAL_MASTER = "content/brand/modelo-oficial-aprovado-2026-11-02.png"
 VISUAL_MASTER_SHA = "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
+VISUAL_REFERENCE = "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg"
+SWIPE_CUE = "Arraste para o lado →"
 
 
 class PresetError(ValueError):
@@ -77,6 +79,17 @@ def verify(root: Path = ROOT) -> dict:
             or mirror_master.get("sha256") != VISUAL_MASTER_SHA
             or sha256(root / VISUAL_MASTER) != VISUAL_MASTER_SHA):
         raise PresetError("Imagem visual-mestre oficial de 02/11 ausente ou modificada.")
+    current_ref = brand.get("reference_visual", {})
+    visual_mirror = mirror.get("approved_visual_reference", {})
+    if (assets.get("visual_reference_path") != VISUAL_REFERENCE
+            or assets.get("visual_reference_sha256") != VISUAL_MASTER_SHA
+            or current_ref.get("path") != VISUAL_REFERENCE
+            or current_ref.get("sha256") != VISUAL_MASTER_SHA
+            or visual_mirror.get("path") != VISUAL_REFERENCE
+            or visual_mirror.get("sha256") != VISUAL_MASTER_SHA
+            or not (root / VISUAL_REFERENCE).is_file()
+            or sha256(root / VISUAL_REFERENCE) != VISUAL_MASTER_SHA):
+        raise PresetError("Referência visual oficial de 02/11 ausente ou alterada.")
     rel = assets.get("lumino_path", "")
     if (rel != "content/brand/lumino-original.png"
             or assets.get("lumino_sha256") != LUMINO_SHA
@@ -96,7 +109,7 @@ def verify(root: Path = ROOT) -> dict:
     mirror_cue = mirror.get("swipe_cue", {})
     if (not preset["visual"].get("discreet_swipe_cue")
             or not isinstance(cue, dict)
-            or cue.get("text") != "Arraste →"
+            or cue.get("text") != SWIPE_CUE
             or cue.get("required_on_nonfinal_carousel_slides") is not True
             or cue.get("forbidden_on_last_slide") is not True
             or brand_cue.get("swipe_cue_text") != cue["text"]
@@ -114,11 +127,13 @@ def verify(root: Path = ROOT) -> dict:
             or mirror_cue.get("dot_count_dynamic") is not True
             or cue.get("position") != "rodapé CENTRAL abaixo da arte, respeitando margem segura; sem cobrir texto, Lúmino ou cena"
             or mirror_cue.get("position") != "bottom_center"
-            or mirror_cue.get("no_colored_badge") is not True):
-        raise PresetError("Indicação Arraste → não segue o padrão TUE-MESTRE-01.")
+            or mirror_cue.get("no_colored_badge") is not True
+            or brand_cue.get("swipe_cue_dots_dynamic") is not True
+            or mirror_cue.get("forbid_button_or_yellow_badge") is not True):
+        raise PresetError("Rodapé de progresso do carrossel diverge da referência visual oficial.")
     if (not preset.get("visual", {}).get("visual_master_mandatory_for_all_art")
-            or not preset.get("reference_style", "").startswith(
-                "EXCLUSIVAMENTE a imagem visual-mestre enviada pelo proprietário em 02/11/2026")):
+            or preset.get("reference_style") !=
+                "EXCLUSIVAMENTE REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg aprovada em 02/11/2026, sem misturas nem grade fixa"):
         raise PresetError("Foi alterada a referência visual oficial de 02/11.")
     return preset
 
@@ -129,6 +144,8 @@ def check_brief(brief: dict, preset: dict) -> dict:
         raise PresetError("Brief sem TUE-MESTRE-01: criar conteúdo está bloqueado.")
     if brief.get("reference_standard_id") != IDENTITY or "reference_sha256" in brief:
         raise PresetError("Brief deve usar TUE-MESTRE-01, sem referência antiga de oito painéis.")
+    if brief.get("reference_visual_sha256") != VISUAL_MASTER_SHA:
+        raise PresetError("Brief sem hash da imagem oficial aprovada pelo proprietário em 02/11.")
     if brief.get("lumino_sha256") != LUMINO_SHA:
         raise PresetError("Brief não usa o Lúmino canônico.")
     if brief.get("status") != "draft_review_no_publication":
@@ -163,10 +180,10 @@ def check_brief(brief: dict, preset: dict) -> dict:
         if page.get("uses_original_lumino") is not True:
             raise PresetError(f"Lâmina {i}: Lúmino original obrigatório.")
         if kind == "carousel":
-            expected_cue = "Arraste →" if i < len(pages) else None
+            expected_cue = SWIPE_CUE if i < len(pages) else None
             if page.get("swipe_cue") != expected_cue:
                 raise PresetError(
-                    f"Lâmina {i}: usar Arraste → nas páginas com continuação e omitir na última."
+                    f"Lâmina {i}: usar Arraste para o lado com pontinhos de progresso nas páginas com continuação e omitir na última."
                 )
 
     return {"preset_id": IDENTITY, "pages": len(pages), "draft_only": True,
@@ -222,13 +239,16 @@ def check_release(manifest: dict) -> None:
     if manifest.get("preset_id") != IDENTITY:
         raise PresetError("PADRÃO TUE-MESTRE-01 não foi ativado neste carrossel.")
     qc = manifest.get("human_visual_qc")
-    if not isinstance(qc, dict) or qc.get("reference_standard_id") != IDENTITY:
+    if (not isinstance(qc, dict) or qc.get("reference_standard_id") != IDENTITY
+            or qc.get("reference_visual_sha256") != VISUAL_MASTER_SHA):
         raise PresetError("Comparação visual assinada com o TUE-MESTRE-01 está ausente.")
     flags = ("cover_matches_model_1", "inner_pages_match_cover_quality",
              "original_lumino_visually_confirmed", "all_text_readable",
              "all_facts_checked", "sources_and_rights_checked",
              "no_unnecessary_repeated_scenes", "swipe_cue_verified",
-             "no_forward_cue_on_last_slide", "no_visible_page_numbers")
+             "no_forward_cue_on_last_slide", "no_visible_page_numbers",
+             "official_reference_visual_match_verified", "discreet_footer_progress_verified",
+             "no_yellow_swipe_badge_verified")
     if not all(qc.get(item) is True for item in flags):
         raise PresetError("Revisão manual página por página não foi concluída.")
     if not isinstance(qc.get("reviewer_note"), str) or len(qc["reviewer_note"].strip()) < 30:
