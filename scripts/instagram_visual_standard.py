@@ -55,6 +55,24 @@ def verify_brand(root: Path = ROOT) -> dict:
         raise VisualError("Contrato editorial TUE-MESTRE-01 ausente ou divergente.")
     if "reference" in spec:
         raise VisualError("Modelo antigo de oito painéis não pode ser referência ativa.")
+    # Compare the exact image uploaded by the owner, never an invented model.
+    master = spec.get("visual_master", {})
+    path = "content/brand/modelo-oficial-aprovado-2026-11-02.png"
+    digest = "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
+    master_path = safe_file(root, path)
+    if (master.get("path") != path or master.get("sha256") != digest
+            or not master_path.is_file() or sha256(master_path) != digest):
+        raise VisualError("Arquivo visual-mestre aprovado pelo proprietário foi alterado ou está ausente.")
+    with Image.open(master_path) as approved:
+        if approved.format != "PNG" or approved.size != (1229, 1536):
+            raise VisualError("Dimensões ou formato da imagem visual-mestre divergentes.")
+    design = spec.get("design", {})
+    if (design.get("footer_dots") is not True or
+            design.get("swipe_cue_progress_dots") is not True or
+            design.get("swipe_cue_dot_count_dynamic") is not True or
+            design.get("swipe_cue_display_text") != "ARRASTE PARA O LADO →" or
+            design.get("no_forward_cue_on_last_slide") is not True):
+        raise VisualError("Rodapé do carrossel não usa os pontos discretos do modelo oficial.")
     lumino = spec["lumino"]
     asset = safe_file(root, lumino["path"])
     if not asset.is_file() or sha256(asset) != lumino["sha256"]:
@@ -65,6 +83,12 @@ def verify_brand(root: Path = ROOT) -> dict:
     mirror = root / "content/visual-standard/standard.json"
     if mirror.is_file():
         other = read_json(mirror)
+        peer_master = other.get("approved_visual_master", {})
+        if (peer_master.get("path") != path or peer_master.get("sha256") != digest
+                or peer_master.get("required") is not True
+                or other.get("swipe_cue", {}).get("position") != "bottom_center"
+                or other.get("swipe_cue", {}).get("progress_dots") is not True):
+            raise VisualError("Espelho não preserva a imagem-mestre e o rodapé oficial.")
         if "approved_layout_reference" in other or "reference_example_pages" in other.get("output", {}):
             raise VisualError("Espelho visual ainda exige antigo modelo de oito painéis.")
         peer = other["original_mascot"]
