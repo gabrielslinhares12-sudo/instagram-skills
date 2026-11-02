@@ -40,6 +40,7 @@ def verify_final(approved_path: Path, final_path: Path, expected_sha: str,
     rb = delivered.width / delivered.height
     if abs(ra - rb) > 0.005:
         raise VisualFidelityError("A arte final foi cortada ou mudou de proporção.")
+    final_native_size = delivered.size
     delivered = delivered.resize(reference.size, Image.Resampling.LANCZOS)
     delta = ImageChops.difference(reference, delivered)
     channels = delta.split()
@@ -51,7 +52,7 @@ def verify_final(approved_path: Path, final_path: Path, expected_sha: str,
         "preset": "TUE-MESTRE-01",
         "approved_sha256": expected_sha.lower(),
         "approved_resolution": list(reference.size),
-        "final_resolution": list(delivered.size),
+        "final_resolution": list(final_native_size),
         "fraction_visibly_changed": round(changed_fraction, 5),
         "mean_absolute_channel_change": round(avg_absolute_difference, 3),
         "max_allowed_fraction": max_changed_fraction,
@@ -59,10 +60,9 @@ def verify_final(approved_path: Path, final_path: Path, expected_sha: str,
     }
     if changed_fraction > max_changed_fraction:
         raise VisualFidelityError(
-            "FINAL REPROVADO: {:.1%} dos pixels mudaram visualmente contra o mestre aprovado. "
+            f"FINAL REPROVADO: {changed_fraction:.1%} dos pixels mudaram visualmente contra o mestre aprovado. "
             "É proibido reconstruir a composição por crops, tarjas e fundos chapados; "
             "entregue o master preservado ou obtenha aprovação explícita de uma nova imagem."
-            .format(changed_fraction)
         )
     report["ok"] = True
     return report
