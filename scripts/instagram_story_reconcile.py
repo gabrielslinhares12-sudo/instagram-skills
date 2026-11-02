@@ -41,9 +41,10 @@ def approved_permalink(url: object) -> bool:
 
 def reconcile(ledger: dict, stories: dict, lookup=None) -> tuple[dict, list[dict]]:
     """Only a verified permalink enables the published-parent Story state."""
-    if stories.get("native_share_required") is not True or stories.get("text_cta") != CTA or
-            stories.get("text_cta_required") is not True or
-            stories.get("no_external_link_or_link_sticker") is not True:
+    if (stories.get("native_share_required") is not True
+            or stories.get("text_cta") != CTA
+            or stories.get("text_cta_required") is not True
+            or stories.get("no_external_link_or_link_sticker") is not True):
         raise ValueError("Native Story contract is missing.")
     result = json.loads(json.dumps(stories))
     notes = []
