@@ -90,10 +90,10 @@
         "reel"
       ],
       "applies_to_feed_slots": [
-        "12:00",
-        "18:00"
+        "11:00",
+        "15:00"
       ],
-      "applies_to_reel_slot": "21:00",
+      "applies_to_reel_slot": "18:00",
       "creation_trigger": "AFTER verified publication of the original Instagram post: must have media_id and public permalink",
       "one_story_per_confirmed_post": true,
       "type": "native_share_original_instagram_post_to_story",
@@ -127,21 +127,23 @@
     "requires_weekly_topic_uniqueness_validation": true,
     "posts_per_day_planned": 3,
     "slots_local": [
-      "12:00",
-      "18:00",
-      "21:00"
-    ],
-    "feed_slots_local": [
-      "12:00",
+      "11:00",
+      "15:00",
       "18:00"
     ],
-    "reel_slot_local": "21:00",
+    "feed_slots_local": [
+      "11:00",
+      "15:00"
+    ],
+    "reel_slot_local": "18:00",
     "feed_format_rotation": true,
     "carrossel_educativo_is_optional_rotating_series": true,
     "daily_reel_from_owned_youtube": true,
     "no_topic_duplication_across_all_three_daily_posts": true,
     "stories_per_day_planned": 3,
     "stories_are_reposts_after_real_publications": true,
-    "stories_do_not_count_as_independent_daily_topics": true
+    "stories_do_not_count_as_independent_daily_topics": true,
+    "timezone": "America/Sao_Paulo",
+    "schedule_updated_at": "2026-11-02"
   }
 }
