@@ -72,16 +72,38 @@ def run_once(*, execute: bool, refresh: bool) -> dict[str,Any]:
         return {"ok":True,"mode":"blocked","approved_music_tasks":len(tasks),
                 "reason":"Exactly one approved music task is required"}
     task=tasks[0]
-    Android().preflight()
-    if not reserve_once(task["id"],str(task["media_id"])):
-        return {"ok":True,"mode":"already_attempted","id":task["id"]}
-    proc=subprocess.run([sys.executable,str(ROOT/"scripts/instagram_mobile_music.py"),
-                         "--id",task["id"],"--execute"],
-                        cwd=ROOT,capture_output=True,text=True,timeout=240)
+    try:
+        Android().preflight()
+    except QueueError:
+        # The phone may be disconnected, locked or not yet paired. Never spend
+        # a one-shot edit claim just because the device is unavailable.
+        return {"ok":True,"mode":"awaiting_authorized_android","id":task["id"],
+                "music_unchanged":True}
+    # Reconcile an earlier success before any new edit. This is read-only
+    # at Instagram but may commit a verified ledger receipt to GitHub.
+    def mobile_call(mode: str):
+        try:
+            return subprocess.run(
+                [sys.executable,str(ROOT/"scripts/instagram_mobile_music.py"),
+                 "--id",task["id"],mode],
+                cwd=ROOT,capture_output=True,text=True,timeout=240)
+        except (OSError,subprocess.SubprocessError):
+            raise QueueError("Falha no executor Android; resultado não confirmado.") from None
+    claim_key=str(task["media_id"])
+    reconcile=mobile_call("--verify-only")
+    if reconcile.returncode==0:
+        return {"ok":True,"mode":"music_verified_on_original_post",
+                "id":task["id"],"media_id":claim_key}
+    if not reserve_once(task["id"],claim_key):
+        return {"ok":True,"mode":"previous_attempt_pending_reconciliation",
+                "id":task["id"],"media_id":claim_key}
+    proc=mobile_call("--execute")
     if proc.returncode!=0:
-        return {"ok":False,"mode":"needs_manual_review","id":task["id"],
-                "reason":"Android UI result unverified; one-shot claim retained"}
-    return {"ok":True,"mode":"music_verified","id":task["id"]}
+        return {"ok":False,"mode":"needs_review",
+                "id":task["id"],"media_id":claim_key,
+                "reason":"Audio edit was attempted but is not verified; claim blocks duplicate writes."}
+    return {"ok":True,"mode":"music_verified_on_original_post",
+            "id":task["id"],"media_id":claim_key}
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
@@ -89,6 +111,8 @@ def main(argv=None):
     parser.add_argument("--skip-pull",action="store_true",
                         help="Read-only offline diagnostics only")
     args=parser.parse_args(argv)
+    if args.execute and args.skip_pull:
+        parser.error("--skip-pull não pode ser usado para editar a conta.")
     try:
         result=run_once(execute=args.execute,refresh=not args.skip_pull)
         print(json.dumps(result,ensure_ascii=False))

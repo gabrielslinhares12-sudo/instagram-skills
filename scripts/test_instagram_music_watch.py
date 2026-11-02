@@ -48,6 +48,60 @@ class WorkerTests(unittest.TestCase):
         self.assertEqual(result["approved_music_tasks"],1)
         android.assert_not_called()
 
+    def test_disconnected_device_remains_eligible_without_claim(self):
+        manifest,state=make()
+        with patch("instagram_music_watch.read_document",side_effect=[manifest,state]), \
+             patch("instagram_music_watch.Android") as android, \
+             patch("instagram_music_watch.reserve_once") as reserve, \
+             patch.dict("os.environ",{"INSTAGRAM_ANDROID_MUSIC_ENABLED":"true"}):
+            android.return_value.preflight.side_effect=__import__(
+                "instagram_music_watch").QueueError("Not connected")
+            result=run_once(execute=True,refresh=False)
+        self.assertEqual(result["mode"],"awaiting_authorized_android")
+        reserve.assert_not_called()
+
+    def test_preexisting_audio_reconciles_before_edit_claim(self):
+        from subprocess import CompletedProcess
+        manifest,state=make()
+        with patch("instagram_music_watch.read_document",side_effect=[manifest,state]), \
+             patch("instagram_music_watch.Android"), \
+             patch("instagram_music_watch.reserve_once") as reserve, \
+             patch("instagram_music_watch.subprocess.run",
+                   return_value=CompletedProcess([],0,"", "")) as execute, \
+             patch.dict("os.environ",{"INSTAGRAM_ANDROID_MUSIC_ENABLED":"true"}):
+            result=run_once(execute=True,refresh=False)
+        self.assertEqual(result["mode"],"music_verified_on_original_post")
+        reserve.assert_not_called()
+        self.assertIn("--verify-only", execute.call_args.args[0])
+
+    def test_failed_reconcile_then_one_edit_attempt(self):
+        from subprocess import CompletedProcess
+        manifest,state=make()
+        results=[CompletedProcess([],1,"",""),CompletedProcess([],0,"","")]
+        with patch("instagram_music_watch.read_document",side_effect=[manifest,state]), \
+             patch("instagram_music_watch.Android"), \
+             patch("instagram_music_watch.reserve_once",return_value=True) as reserve, \
+             patch("instagram_music_watch.subprocess.run",side_effect=results) as run, \
+             patch.dict("os.environ",{"INSTAGRAM_ANDROID_MUSIC_ENABLED":"true"}):
+            result=run_once(execute=True,refresh=False)
+        self.assertEqual(result["mode"],"music_verified_on_original_post")
+        reserve.assert_called_once()
+        self.assertIn("--execute",run.call_args_list[1].args[0])
+
+    def test_previous_attempt_never_edits_again(self):
+        from subprocess import CompletedProcess
+        manifest,state=make()
+        with patch("instagram_music_watch.read_document",side_effect=[manifest,state]), \
+             patch("instagram_music_watch.Android"), \
+             patch("instagram_music_watch.reserve_once",return_value=False), \
+             patch("instagram_music_watch.subprocess.run",
+                   return_value=CompletedProcess([],1,"","")) as run, \
+             patch.dict("os.environ",{"INSTAGRAM_ANDROID_MUSIC_ENABLED":"true"}):
+            result=run_once(execute=True,refresh=False)
+        self.assertEqual(result["mode"],"previous_attempt_pending_reconciliation")
+        self.assertEqual(run.call_count,1)
+        self.assertIn("--verify-only",run.call_args.args[0])
+
     def test_environment_default_disables_mobile_writes(self):
         manifest,state=make()
         with patch("instagram_music_watch.read_document",side_effect=[manifest,state]), \

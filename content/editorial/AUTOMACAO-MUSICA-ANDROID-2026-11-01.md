@@ -82,3 +82,10 @@ O Instagram TUE **já publicou o Halloween**, e a captura enviada pelo propriet�
 4. Instalar opcionalmente o watcher no **Windows local**. Não existe uma automação em nuvem 24/7 que edite a música diretamente na conta nesta configuração; a Graph API não oferece essa operação.
 
 **Concluído até aqui:** código e testes; **não concluído:** música salva no Instagram nem execução móvel desacompanhada. A conta continua sem API privada de instagrapi e sem GeeLark.
+
+## Robustez adicionada para operação autônoma
+
+A execução de 10 em 10 minutos agora **verifica primeiro se o áudio já está no mesmo permalink**. Se já estiver, reconcilia o recibo do GitHub sem editar de novo. Se o Android estiver desconectado/não autorizado, mantém o post elegível e não consome a tentativa. Se houver uma edição com resultado incerto, registra uma reserva persistente e usa verificações somente leitura nas próximas passagens; não repete uma mudança que poderia já ter sido aplicada.
+
+A instalação do Scheduled Task agora usa PowerShell com janela oculta e `MultipleInstances IgnoreNew`, sem janelas CMD na frente. O agendador **não está instalado neste ambiente** e não deve ser declarado em execução. O dispositivo real ainda precisa estar pareado por ADB uma vez, e a UI do Instagram precisa passar em teste real para confirmação da música.
+
