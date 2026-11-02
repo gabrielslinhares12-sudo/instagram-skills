@@ -3,20 +3,27 @@
   "preset_id": "TUE-MESTRE-01",
   "status": "draft_review_no_publication",
   "timezone": "America/Sao_Paulo",
-  "purpose": "Planejamento não executável: um Reel do YouTube PT às 21h, com Story somente após Reel realmente publicado",
+  "purpose": "Fila de sete Reels do YouTube TUE em português. A republicação nativa nos Stories só é criada após confirmação de cada Reel. Todos os quadros de feed também terão seu Story associado.",
   "schedule": {
     "feed": [
       "12:00",
       "18:00"
     ],
     "reel": "21:00",
-    "story": "after_confirmed_reel"
+    "story": "after_each_confirmed_feed_post_or_reel"
   },
-  "story_cta": "💡 Curtiu? Veja o Reel no nosso perfil e deixe seu ❤️!",
+  "story_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
   "story_spec": {
-    "ratio": "9:16",
-    "cta_visually_embedded": true,
-    "native_share_required_for_interactive_reel_link": true
+    "method": "instagram_native_share_published_post_to_your_story",
+    "parent_post_required": true,
+    "parent_media_id_required": true,
+    "parent_permalink_required": true,
+    "separate_new_story_art_forbidden": true,
+    "spoken_cta_required": true,
+    "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+    "keep_native_tappable_parent_post_preview": true,
+    "publish_only_after_original_receipt": true,
+    "if_spoken_cta_cannot_be_added": "block, do not publish silent story or substitute independent video"
   },
   "ai_disclosure": "Nunca acrescentar voluntariamente selo ou texto de autoria por IA. Para novo Reel, exigir origem verificada como não sintética; se o conteúdo exigir identificação, bloquear publicação automática para revisão. O Instagram pode aplicar rótulo próprio.",
   "reels": [
@@ -35,7 +42,14 @@
       "story_media_url": null,
       "story_cta_embedded": false,
       "ai_origin": "unverified",
-      "approved": false
+      "approved": false,
+      "story_method": "native_reshare_published_reel",
+      "story_voiceover_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "story_parent_permalink": null,
+      "story_voiceover_asset": null,
+      "story_native_reshare_confirmed": false,
+      "story_created": false,
+      "story_status": "awaiting_source_publication"
     },
     {
       "day": "2026-11-03",
@@ -52,7 +66,14 @@
       "story_media_url": null,
       "story_cta_embedded": false,
       "ai_origin": "unverified",
-      "approved": false
+      "approved": false,
+      "story_method": "native_reshare_published_reel",
+      "story_voiceover_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "story_parent_permalink": null,
+      "story_voiceover_asset": null,
+      "story_native_reshare_confirmed": false,
+      "story_created": false,
+      "story_status": "awaiting_source_publication"
     },
     {
       "day": "2026-11-04",
@@ -69,7 +90,14 @@
       "story_media_url": null,
       "story_cta_embedded": false,
       "ai_origin": "unverified",
-      "approved": false
+      "approved": false,
+      "story_method": "native_reshare_published_reel",
+      "story_voiceover_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "story_parent_permalink": null,
+      "story_voiceover_asset": null,
+      "story_native_reshare_confirmed": false,
+      "story_created": false,
+      "story_status": "awaiting_source_publication"
     },
     {
       "day": "2026-11-05",
@@ -86,7 +114,14 @@
       "story_media_url": null,
       "story_cta_embedded": false,
       "ai_origin": "unverified",
-      "approved": false
+      "approved": false,
+      "story_method": "native_reshare_published_reel",
+      "story_voiceover_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "story_parent_permalink": null,
+      "story_voiceover_asset": null,
+      "story_native_reshare_confirmed": false,
+      "story_created": false,
+      "story_status": "awaiting_source_publication"
     },
     {
       "day": "2026-11-06",
@@ -103,7 +138,14 @@
       "story_media_url": null,
       "story_cta_embedded": false,
       "ai_origin": "unverified",
-      "approved": false
+      "approved": false,
+      "story_method": "native_reshare_published_reel",
+      "story_voiceover_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "story_parent_permalink": null,
+      "story_voiceover_asset": null,
+      "story_native_reshare_confirmed": false,
+      "story_created": false,
+      "story_status": "awaiting_source_publication"
     },
     {
       "day": "2026-11-07",
@@ -120,7 +162,14 @@
       "story_media_url": null,
       "story_cta_embedded": false,
       "ai_origin": "unverified",
-      "approved": false
+      "approved": false,
+      "story_method": "native_reshare_published_reel",
+      "story_voiceover_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "story_parent_permalink": null,
+      "story_voiceover_asset": null,
+      "story_native_reshare_confirmed": false,
+      "story_created": false,
+      "story_status": "awaiting_source_publication"
     },
     {
       "day": "2026-11-08",
@@ -137,10 +186,17 @@
       "story_media_url": null,
       "story_cta_embedded": false,
       "ai_origin": "unverified",
-      "approved": false
+      "approved": false,
+      "story_method": "native_reshare_published_reel",
+      "story_voiceover_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "story_parent_permalink": null,
+      "story_voiceover_asset": null,
+      "story_native_reshare_confirmed": false,
+      "story_created": false,
+      "story_status": "awaiting_source_publication"
     }
   ],
-  "note": "Não agenda ou publica; campo nulo exige verificação de fonte original e inspeção do vídeo, Story e conteúdo.",
+  "note": "Arquivo de planejamento. O Story nunca é uma imagem ou vídeo gerado de antemão; precisa do Reel já publicado, de permalink/ID oficiais e do compartilhamento nativo com CTA falado. Feed: ver STORIES-VINCULADOS-2026-11-02-a-08.json.",
   "ai_label_by_publisher": false,
   "synthetic_content_autopublish_allowed": false
 }
