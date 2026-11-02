@@ -3,11 +3,9 @@
   "preset_id": "TUE-MESTRE-01",
   "schedule": "2026-11-02 to 2026-11-08, 11:00/15:00/18:00 America/Sao_Paulo",
   "status": "planning_only_no_story_assets_created",
-  "purpose": "Controlar 21 republicações NATIVAS nos Stories, uma por publicação realmente confirmada. Não gerar artes paralelas.",
+  "purpose": "Controlar 21 republicações NATIVAS diretamente do post publicado para Story, com chamada VISUAL EM TEXTO; sem link adicionado e sem mídia independente.",
   "native_share_required": true,
   "parent_receipt_required": true,
-  "spoken_cta_required": true,
-  "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
   "do_not_use_as_publish_queue": true,
   "count": {
     "feed_posts": 14,
@@ -30,11 +28,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-02-18-senha-impossivel",
@@ -51,13 +48,12 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_native_app_share_with_spoken_cta",
+      "status": "awaiting_native_app_share_with_text_cta",
       "actual_published_parent_id": "tue-2026-11-02-15-senha-impossivel",
-      "parent_receipt_media_id": "18131786309499353"
+      "parent_receipt_media_id": "18131786309499353",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-02-18-youtube-reel",
@@ -74,11 +70,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-03-18-reuniao-sobre-reuniao",
@@ -95,11 +90,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-03-12-deserto-florido-atacama",
@@ -116,11 +110,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-03-18-youtube-reel",
@@ -137,11 +130,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-04-12-por-sol-azul-marte",
@@ -158,11 +150,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-04-18-museu-cabos-sem-dono",
@@ -179,11 +170,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-04-18-youtube-reel",
@@ -200,11 +190,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-05-12-fogo-azul-ijen",
@@ -221,11 +210,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-05-18-potes-tampas-divorcio",
@@ -242,11 +230,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-05-18-youtube-reel",
@@ -263,11 +250,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-06-18-meia-desaparecida",
@@ -284,11 +270,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-06-12-lago-rosa",
@@ -305,11 +290,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-06-18-youtube-reel",
@@ -326,11 +310,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-07-12-nuvens-lenticulares",
@@ -347,11 +330,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-07-18-cadeira-guarda-roupa",
@@ -368,11 +350,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-07-18-youtube-reel",
@@ -389,11 +370,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-08-12-arco-circumhorizontal",
@@ -410,11 +390,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-08-18-despertador-soneca",
@@ -431,11 +410,10 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     },
     {
       "parent_id": "tue-2026-11-08-18-youtube-reel",
@@ -452,11 +430,15 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "voiceover_created": false,
-      "voiceover_asset": null,
-      "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_parent_publication",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_visible_verified": false,
+      "no_external_link_sticker": true
     }
-  ]
+  ],
+  "text_cta_required": true,
+  "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+  "cta_mode": "native_story_text_overlay",
+  "narration_required": false,
+  "no_external_link_or_link_sticker": true
 }
