@@ -111,11 +111,15 @@
       "after_confirmed_post": true,
       "one_story_per_parent_post": true,
       "native_repost_only": true,
-      "requires_spoken_cta": true,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "requires_spoken_cta": false,
       "requires_parent_media_id_and_permalink": true,
       "requires_story_receipt": true,
-      "fallback": "blocked_pending_native_share_if_unavailable"
+      "fallback": "blocked_pending_native_share_if_unavailable",
+      "requires_text_cta": true,
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "no_external_link_sticker": true,
+      "audio_required": false,
+      "direct_native_reshare_only": true
     },
     "ai_disclosure": {
       "rule": "NUNCA acrescentar voluntariamente selo ou texto atribuindo autoria a IA nos posts do Instagram TUE.",
@@ -139,21 +143,25 @@
         "15:00"
       ],
       "applies_to_reel_slot": "18:00",
-      "creation_trigger": "AFTER verified publication of the original Instagram post: must have media_id and public permalink",
+      "creation_trigger": "AFTER verified publication of the original post (media_id and verified permalink for internal checks only); use Instagram 'Compartilhar → Adicionar ao story'",
       "one_story_per_confirmed_post": true,
       "type": "native_share_original_instagram_post_to_story",
       "requires_native_tappable_original_post": true,
       "never_generate_independent_story_image_or_video": true,
       "do_not_prepare_story_media_before_source_publication": true,
       "preserve_original_post_preview": true,
-      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
-      "spoken_cta_required": true,
-      "voice_profile": "Rasalgethi quando houver áudio sintetizado autorizado; não desenhar boca no Lúmino",
-      "if_voiceover_unavailable_in_native_share": "BLOCK story as incomplete; do not substitute a separate standalone story",
       "source_verified_against_instagram": true,
       "requires_story_receipt": true,
-      "confirmation": "post media_id + permalink; native reshare evidence + story id or authenticated visual proof",
-      "independence_exception": "Story is the only allowed duplicate of the post because it is a linked repost, not a second feed post"
+      "confirmation": "Original post receipt + authenticated evidence of its native Story reshare with visible text and Story receipt; no URL/link sticker",
+      "independence_exception": "Story is the only allowed duplicate of the post because it is a linked repost, not a second feed post",
+      "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "text_cta_required": true,
+      "cta_format": "native_instagram_story_text_overlay",
+      "audio_narration_required": false,
+      "audio_narration_forbidden": true,
+      "native_reshare_only": true,
+      "no_external_link_or_link_sticker": true,
+      "preserve_native_shared_post_card": true
     }
   },
   "production": {
