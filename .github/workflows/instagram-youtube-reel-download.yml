@@ -63,10 +63,24 @@ jobs:
                   if isinstance(vid, str) and re.fullmatch(r'[a-zA-Z0-9_-]{11}', vid) and vid not in ids:
                       ids.append(vid)
               state['video_ids_found'] = len(ids)
+              flat = []
+              for entry in (playlist or {}).get('entries') or []:
+                  if not isinstance(entry, dict) or entry.get('id') not in ids:
+                      continue
+                  flat.append({'id': entry.get('id'), 'title': entry.get('title'),
+                               'views': entry.get('view_count'),
+                               'duration': entry.get('duration')})
+              state['flat_metadata'] = flat
+              ranking = sorted((x for x in flat if isinstance(x.get('views'), int)),
+                               key=lambda x: x['views'], reverse=True)[:10]
+              state['flat_ranking'] = ranking
               print('SHORTS_ENCONTRADOS=', len(ids), flush=True)
+              print('VIEWS_NA_LISTAGEM=', len(ranking), flush=True)
+              print('RANKING_PUBLICO=', json.dumps(ranking, ensure_ascii=False), flush=True)
               if not ids:
                   raise RuntimeError('Nenhum Short listado pelo YouTube (acesso pode exigir autenticação)')
               checked = []
+              bot_errors = 0
               for vid in ids[:45]:
                   try:
                       with yt_dlp.YoutubeDL({'quiet': True, 'no_warnings': True,
@@ -89,6 +103,11 @@ jobs:
                       checked.append(row)
                   except Exception as exc:
                       checked.append({'id': vid, 'error_type': type(exc).__name__, 'eligible': False})
+                      if 'Sign in to confirm' in str(exc):
+                          bot_errors += 1
+                      if bot_errors >= 3:
+                          print('YOUTUBE_REQUER_LOGIN_VERIFICADO: interrompendo consultas repetidas', flush=True)
+                          break
                   if len(checked) % 10 == 0:
                       print('METADADOS_CONFERIDOS=', len(checked), flush=True)
               state['checked'] = checked
