@@ -31,6 +31,8 @@ jobs:
           python3 -m unittest discover -s scripts -p 'test_facebook_poster.py' -v
           python3 -m unittest discover -s scripts -p 'test_meta_poster.py' -v
           python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -v
+      - name: Instalar suporte a arquivos grandes no Drive
+        run: python3 -m pip install 'gdown>=5,<6'
       - name: Baixar MP4 original do Drive com SHA-256 e ffprobe
         env:
           GDRIVE_OAUTH_CLIENT_ID: ${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}
