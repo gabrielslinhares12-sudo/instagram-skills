@@ -84,6 +84,7 @@ jobs:
             fi
             python3 scripts/instagram_queue.py --execute
           fi
+      # Reconcilia publicação e permalink do post original; não cria Story independente.
       - name: Conciliar Stories vinculados apos comprovante do feed
         # Read-only permalink validation after Meta receipt. Native repost,
         # textual CTA and Story receipt remain independently pending.
