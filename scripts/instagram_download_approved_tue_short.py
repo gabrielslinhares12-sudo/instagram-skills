@@ -14,7 +14,7 @@ from pathlib import Path
 import subprocess
 import sys
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urlencode
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -147,6 +147,67 @@ def download_via_site(url: str, path: Path) -> dict:
     return verify_mp4(path)
 
 
+def download_via_freeapi(url: str, path: Path) -> dict:
+    """Fallback to a documented free URL-to-MP4 API. Never trust returned metadata."""
+    if not safe_https(url) or not url.startswith("https://www.youtube.com/shorts/"):
+        raise DownloadError("Only selected channel URLs may be downloaded")
+    endpoint = "https://freeapi.pro/api/alldl?" + urlencode({"url": url})
+    req = Request(endpoint, headers={"Accept": "application/json"}, method="GET")
+    opener = build_opener(HttpsOnly())
+    try:
+        with opener.open(req, timeout=30) as response:
+            if response.status != 200:
+                raise DownloadError("Fallback downloader returned non-200")
+            raw = response.read(64 * 1024 + 1)
+        if len(raw) > 64 * 1024:
+            raise DownloadError("Fallback metadata response exceeds limit")
+        info = json.loads(raw.decode("utf-8"))
+        if info.get("success") is not True or not isinstance(info.get("mediaInfo"), dict):
+            raise DownloadError("Fallback downloader did not resolve video")
+        media = info["mediaInfo"]
+        direct = media.get("videoUrl")
+        if not isinstance(direct, str) or not safe_https(direct):
+            raise DownloadError("Fallback did not return a public HTTPS MP4 URL")
+        if urlsplit(direct).hostname in ("www.youtube.com", "youtube.com", "youtu.be"):
+            raise DownloadError("Fallback returned the watch page instead of video")
+        req = Request(direct, headers={"Accept": "video/mp4,application/octet-stream"})
+        with opener.open(req, timeout=100) as response:
+            if response.status != 200:
+                raise DownloadError("Fallback media download was not successful")
+            mimetype = response.headers.get("Content-Type", "").split(";")[0].lower().strip()
+            if mimetype not in ("video/mp4", "application/octet-stream", "application/mp4",
+                                "binary/octet-stream", "video/quicktime"):
+                raise DownloadError("Fallback returned non-video MIME type")
+            total = 0
+            with path.open("wb") as dst:
+                while True:
+                    chunk = response.read(CHUNK)
+                    if not chunk:
+                        break
+                    total += len(chunk)
+                    if total > MAX_BYTES:
+                        raise DownloadError("Fallback media exceeds allowed size")
+                    dst.write(chunk)
+    except HTTPError as exc:
+        raise DownloadError(f"Fallback service HTTP {exc.code}") from exc
+    except (URLError, TimeoutError, ValueError, UnicodeError) as exc:
+        raise DownloadError("Fallback service could not provide a valid MP4") from exc
+    return verify_mp4(path)
+
+
+def download_with_fallback(url: str, path: Path) -> tuple[dict, str]:
+    errors = []
+    for label, handler in (("WebDownloader", download_via_site),
+                           ("FreeAPI", download_via_freeapi)):
+        path.unlink(missing_ok=True)
+        try:
+            return handler(url, path), label
+        except DownloadError as exc:
+            errors.append(label + ": " + str(exc))
+    path.unlink(missing_ok=True)
+    raise DownloadError("; ".join(errors))
+
+
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     state = {"source_channel_id": YT_CHANNEL, "operation": "download_only",
@@ -159,7 +220,8 @@ def main() -> int:
         chosen = selected_entry()
         state["selected"] = chosen
         file = OUT / (chosen["id"] + ".mp4")
-        qc = download_via_site(chosen["url"], file)
+        qc, provider = download_with_fallback(chosen["url"], file)
+        state["download_provider"] = provider
         state.update({"status": "downloaded_pending_editorial_qc",
                       "file": {"name": file.name, **qc}})
         print("MP4_VERIFIED=" + str(file.name), flush=True)
