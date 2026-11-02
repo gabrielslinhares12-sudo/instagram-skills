@@ -53,28 +53,24 @@
   "editorial_contract": {
     "id": "TUE-MESTRE-01",
     "path": "content/brand/TUE-MESTRE-01.md",
-    "source": "01/11/2026",
+    "source": "referência visual oficial aprovada em 02/11/2026",
     "variable_slides": true,
     "model_grid_required": false
   },
   "swipe_cue": {
-    "label": "Arraste →",
+    "label": "Arraste para o lado →",
+    "rendered_text": "ARRASTE PARA O LADO →",
     "required": true,
     "on": "all_except_last",
-    "position": "bottom_center",
+    "position": "bottom_center_clear_footer",
+    "progress_dots": "dynamic_page_count_one_yellow_active_rest_gray",
+    "small_thin_arrow": true,
+    "typography": "compact_spaced_ink_black",
     "no_page_numbers": true,
     "avoid_mascot_and_text": true,
     "verify_manually": true,
-    "display_text": "ARRASTE PARA O LADO →",
-    "progress_dots": true,
-    "active_dot": "#F6B900",
-    "inactive_dots": "#BFC1C3",
-    "dot_count_dynamic": true,
-    "thin_right_arrow": true,
-    "no_colored_badge": true,
-    "text_is_small_letter_spaced": true,
-    "last_slide_has_no_forward_arrow": true,
-    "example_reference": "content/brand/modelo-oficial-aprovado-2026-11-02.png"
+    "forbid_button_or_yellow_badge": true,
+    "single_posts": false
   },
   "approved_visual_master": {
     "path": "content/brand/modelo-oficial-aprovado-2026-11-02.png",
@@ -83,5 +79,14 @@
     "height": 1536,
     "required": true,
     "applies_to": "todos os formatos Instagram TUE"
+  },
+  "approved_visual_reference": {
+    "path": "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg",
+    "sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+    "size": [
+      1229,
+      1536
+    ],
+    "role": "visual oficial mestre para todas as capas e lâminas; não reutilizar tema eleitoral"
   }
 }
