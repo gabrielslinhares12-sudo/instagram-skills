@@ -223,6 +223,23 @@ class QueueTests(unittest.TestCase):
                 with self.assertRaises(QueueError):
                     validate_manifest(manifest(bad))
 
+    def test_new_clearly_illustrated_stills_preserve_truthful_origin(self):
+        cutoff = "2026-11-02T18:00:00Z"
+        for kind in ("post", "carousel"):
+            urls = [URL, URL + "-two"] if kind == "carousel" else [URL]
+            post = item(kind=kind, due_at=cutoff, media_urls=urls,
+                        ai_origin="synthetic", content_style="clearly_illustrated",
+                        ai_disclosure_review="no_mandatory_self_disclosure_for_stylized_still")
+            posts=validate_manifest(manifest(post))
+            self.assertNotIn("is_ai_generated", payload_for(posts[0]))
+        with self.assertRaises(QueueError):
+            validate_manifest(manifest(item(kind="post", due_at=cutoff,
+                ai_origin="synthetic", content_style="clearly_illustrated")))
+        with self.assertRaises(QueueError):
+            validate_manifest(manifest(item(kind="reel", due_at=cutoff,
+                ai_origin="synthetic", content_style="clearly_illustrated",
+                ai_disclosure_review="no_mandatory_self_disclosure_for_stylized_still")))
+
     def test_new_posts_never_add_optional_ai_label(self):
         cutoff = "2026-11-03T21:00:00Z"
         good = item(kind="reel", due_at=cutoff,
