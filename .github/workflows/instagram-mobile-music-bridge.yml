@@ -9,6 +9,7 @@ on:
       - 'scripts/test_instagram_music_watch.py'
       - 'scripts/install_instagram_music_watch.ps1'
       - 'scripts/run_instagram_music_task.ps1'
+      - 'scripts/setup_instagram_android.ps1'
       - '.github/workflows/instagram-mobile-music-bridge.yml'
   workflow_dispatch:
 permissions:
@@ -30,3 +31,22 @@ jobs:
           python3 -m unittest discover -s scripts -p 'test_instagram_music_watch.py' -v
           python3 scripts/instagram_mobile_music.py
           python3 scripts/instagram_music_watch.py --skip-pull
+  validate_powershell:
+    runs-on: windows-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Analisar sintaxe dos instaladores sem executar pareamento
+        shell: pwsh
+        run: |
+          $paths = @('scripts/setup_instagram_android.ps1','scripts/install_instagram_music_watch.ps1','scripts/run_instagram_music_task.ps1')
+          foreach ($p in $paths) {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $p).Path,[ref]$tokens,[ref]$errors) | Out-Null
+            if ($errors.Count -ne 0) { throw ("PowerShell syntax problem: " + $p + " " + ($errors | Out-String)) }
+          }
+          Write-Output 'Syntax valid. No ADB, Instagram or scheduled task touched.'
+

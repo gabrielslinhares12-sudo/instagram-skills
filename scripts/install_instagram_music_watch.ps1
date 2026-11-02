@@ -9,7 +9,7 @@ if ($Uninstall) {
   exit 0
 }
 if (-not $Install) {
-  Write-Host 'Nada foi instalado: o executor precisa ser ativado uma vez no Windows.'
+  Write-Host 'Nada foi instalado: use setup_instagram_android.ps1 -Install para parear e ativar uma única vez.'
   exit 0
 }
 $python = (Get-Command python -ErrorAction Stop).Source
@@ -32,4 +32,4 @@ $settings = New-ScheduledTaskSettingsSet -MultipleInstances IgnoreNew `
 Register-ScheduledTask -TaskName $name -Action $action -Trigger $trigger `
   -Settings $settings -Description 'Instagram TUE: aplicar musica aprovada apenas em carrossel existente, sem repostar' -Force | Out-Null
 Write-Host 'Executor local instalado sem janela CMD. Música é aplicada só com Android ADB autorizado e faixa previamente aprovada.'
-Write-Host 'Não há serviço 24/7 em nuvem: o Windows precisa estar ligado.'
+Write-Host 'Windows deve estar ligado e Android autorizado na rede Wi-Fi. A edição é feita em segundo plano.'
