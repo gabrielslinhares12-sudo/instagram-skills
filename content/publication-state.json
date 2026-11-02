@@ -36,6 +36,12 @@
         "subcode": 2207003,
         "creation_id": "18102064946100158"
       }
+    },
+    "tue-2026-11-02-15-senha-impossivel": {
+      "status": "claimed",
+      "fingerprint": "09f9fc67f7606b55a09e9909e6f6f4b9f4a9d17c42a77c9afbdbd299ce240add",
+      "due_at": "2026-11-02T16:30:00Z",
+      "claimed_at": "2026-11-02T16:51:49Z"
     }
   }
 }
