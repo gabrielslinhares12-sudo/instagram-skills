@@ -85,8 +85,9 @@ jobs:
             python3 scripts/instagram_queue.py --execute
           fi
       - name: Conciliar Stories vinculados apos comprovante do feed
-        # Verifies only the published post permalink; this does NOT upload a
-        # Story, attach any link sticker, or claim the written CTA was posted.
+        # Read-only permalink validation after Meta receipt. Native repost,
+        # textual CTA and Story receipt remain independently pending.
+        # Safe to rerun: publication ledger prevents duplicate feed uploads.
         if: success()
         env:
           FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
