@@ -12,13 +12,13 @@
       {
         "number": 2,
         "name": "02-votos-validos.jpg",
-        "sha256": "a167918617dfe2f8d90210ea53f0fc3547dfbec23552b51af3c3385d7b9b41a4",
-        "match_error": 2.17
+        "sha256": "63ba940b15ff46e4b30d24d0b73d023c507041919626fff3fa4ce4dae029d44c",
+        "match_error": 2.22
       },
       {
         "number": 3,
         "name": "03-votos-validos.jpg",
-        "sha256": "d7bbe12b257f096dad3a075a4f6cc0c39a58e379d11f62e2fadf0812bd25b247",
+        "sha256": "0be6b663c616f849ad39df20b4b51ab1e70c8329b56f1f99ca1bda6b992cd090",
         "match_error": 2.23
       },
       {
@@ -30,14 +30,14 @@
       {
         "number": 5,
         "name": "05-votos-validos.jpg",
-        "sha256": "251cd5b76c139c973f86eb6a92fd99e777c9f5fa02ec7cefe2825cc5a4796f04",
+        "sha256": "1d123d3dd3aca7444d55c37404987c2f1cf95500b7dd869d2f24a4cc1f53f797",
         "match_error": 2.23
       },
       {
         "number": 6,
         "name": "06-votos-validos.jpg",
-        "sha256": "72d35fa17be7b50a2fa11b9ee474a526ca180d23ddbcf16ec19f295e3b952639",
-        "match_error": 2.21
+        "sha256": "f149cf249986ae686d2e12ad8002cfe86e9e5d42d1d106ad1992e0894a960a11",
+        "match_error": 2.29
       },
       {
         "number": 7,
