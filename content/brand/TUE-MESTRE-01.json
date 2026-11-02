@@ -11,12 +11,12 @@
     "Reel do Instagram TUE"
   ],
   "overrides_old_conflicts": true,
-  "reference_style": "EXCLUSIVAMENTE modelo 1 do proprietário, sem mescla com modelo 5, templates ou improvisações",
+  "reference_style": "EXCLUSIVAMENTE identidade editorial modelo 1 do proprietário conforme TUE-MESTRE-01, sem mescla, colagem ou número fixo de painéis",
   "canonical_assets": {
-    "model_path": "content/brand/modelo-oficial-carrossel-8-paineis.png",
-    "model_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
     "lumino_path": "content/brand/lumino-original.png",
-    "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b"
+    "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+    "editorial_contract_path": "content/brand/TUE-MESTRE-01.md",
+    "editorial_contract_id": "TUE-MESTRE-01"
   },
   "visual": {
     "palette": {
@@ -173,6 +173,8 @@
     "timezone": "America/Sao_Paulo",
     "schedule_updated_at": "2026-11-02",
     "approved_visual_is_final_source": true,
-    "reconstructing_approved_art_is_prohibited": true
+    "reconstructing_approved_art_is_prohibited": true,
+    "requires_latest_master_preset": true,
+    "obsolete_eight_panel_reference_forbidden": true
   }
 }
