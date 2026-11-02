@@ -195,10 +195,77 @@ def download_via_freeapi(url: str, path: Path) -> dict:
     return verify_mp4(path)
 
 
+def download_via_gendownload(url: str, path: Path) -> dict:
+    """Resolve owner's selected Short with GenDownload's documented public API."""
+    if not safe_https(url) or not url.startswith("https://www.youtube.com/shorts/"):
+        raise DownloadError("Invalid selected channel Short")
+    body = json.dumps({"url": url}).encode("utf-8")
+    opener = build_opener(HttpsOnly())
+    try:
+        req = Request("https://gendownload.com/api/extract",
+                      data=body,
+                      headers={"Content-Type": "application/json", "Accept": "application/json"},
+                      method="POST")
+        with opener.open(req, timeout=40) as response:
+            if response.status != 200:
+                raise DownloadError("GenDownload extraction did not return 200")
+            payload = response.read(64 * 1024 + 1)
+        if len(payload) > 64 * 1024:
+            raise DownloadError("GenDownload metadata is oversized")
+        info = json.loads(payload.decode("utf-8"))
+        formats = info.get("formats")
+        if not isinstance(formats, list):
+            raise DownloadError("GenDownload did not return media formats")
+        viable = [f for f in formats
+                  if isinstance(f, dict) and f.get("type") == "video"
+                  and f.get("ext") == "mp4"
+                  and isinstance(f.get("url"), str)
+                  and safe_https(f["url"])]
+        if not viable:
+            raise DownloadError("GenDownload returned no MP4 format")
+        # Up to 2 format variants, avoiding bulk requests and excessive storage.
+        for chosen in viable[:2]:
+            target = chosen["url"]
+            req = Request(target, headers={"Accept": "video/mp4,application/octet-stream"},
+                          method="GET")
+            try:
+                with opener.open(req, timeout=100) as response:
+                    if response.status != 200:
+                        continue
+                    mime = response.headers.get("Content-Type", "").split(";")[0].lower().strip()
+                    if mime not in ("video/mp4", "application/octet-stream", "application/mp4",
+                                    "binary/octet-stream", "video/quicktime"):
+                        continue
+                    total = 0
+                    with path.open("wb") as dst:
+                        while True:
+                            chunk = response.read(CHUNK)
+                            if not chunk:
+                                break
+                            total += len(chunk)
+                            if total > MAX_BYTES:
+                                raise DownloadError("GenDownload MP4 exceeds allowed size")
+                            dst.write(chunk)
+                try:
+                    return verify_mp4(path)
+                except DownloadError:
+                    path.unlink(missing_ok=True)
+                    continue
+            except (HTTPError, URLError, TimeoutError):
+                path.unlink(missing_ok=True)
+                continue
+        raise DownloadError("GenDownload could not supply a valid vertical MP4 with audio")
+    except HTTPError as exc:
+        raise DownloadError(f"GenDownload extraction HTTP {exc.code}") from exc
+    except (URLError, TimeoutError, ValueError, UnicodeError) as exc:
+        raise DownloadError("GenDownload extraction unavailable") from exc
+
+
 def download_with_fallback(url: str, path: Path) -> tuple[dict, str]:
     errors = []
     for label, handler in (("WebDownloader", download_via_site),
-                           ("FreeAPI", download_via_freeapi)):
+                           ("FreeAPI", download_via_freeapi),
+                           ("GenDownload", download_via_gendownload)):
         path.unlink(missing_ok=True)
         try:
             return handler(url, path), label
