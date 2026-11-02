@@ -1,7 +1,7 @@
 {
   "version": 1,
   "preset_id": "TUE-MESTRE-01",
-  "status": "2026-11-02_REEL_PUBLISHED_PLUS_FOUR_DRAFTS_ORIGINALS_VERIFIED_TWO_SOURCES_PENDING",
+  "status": "draft_review_no_publication",
   "timezone": "America/Sao_Paulo",
   "purpose": "Fila de sete Reels do YouTube TUE em português. A republicação nativa nos Stories só é criada após confirmação de cada Reel. Todos os quadros de feed também terão seu Story associado.",
   "schedule": {
@@ -356,5 +356,6 @@
   ],
   "note": "O Reel de 02/11 foi publicado com recibo Meta. Quatro originais extras foram verificados e estão no Drive privado para 03-06/11, mas requerem URL pública de mídia e QC; manter approved=false. Para 07-08/11 faltam novos MP4s independentes. Nenhuma nova publicação automática é liberada por este plano.",
   "ai_label_by_publisher": false,
-  "synthetic_content_autopublish_allowed": false
+  "synthetic_content_autopublish_allowed": false,
+  "progress_status": "2026-11-02_REEL_PUBLISHED_PLUS_FOUR_DRAFTS_ORIGINALS_VERIFIED_TWO_SOURCES_PENDING"
 }
