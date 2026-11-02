@@ -73,7 +73,15 @@
       "readable_mobile": true,
       "no_page_numbers": true,
       "no_obstruction": true,
-      "style": "amarelo/preto editorial integrado; sem tarja genérica que destrua a arte"
+      "style": "AVISO DISCRETO anterior: texto curto 'Arraste →' na pincelada amarela, integrado à arte original aprovada, sem selo gigante, contorno azul, mão, ícones duplos ou nova composição.",
+      "preserve_original_master_art": true,
+      "do_not_rebuild_background_or_change_topic": true,
+      "prohibited": [
+        "selo amarelo gigante no rodapé",
+        "ícone de mão ou duas setas chamativas",
+        "novo fundo azul ou moldura escura",
+        "mudança de título, explicação, cena ou personagem para demonstrar o aviso"
+      ]
     }
   },
   "format": {
