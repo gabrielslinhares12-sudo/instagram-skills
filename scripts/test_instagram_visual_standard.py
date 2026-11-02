@@ -15,8 +15,8 @@ class BrandTests(unittest.TestCase):
         cfg=verify_brand()
         self.assertEqual(cfg["lumino"]["sha256"],
                          "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b")
-        self.assertEqual(cfg["reference"]["sha256"],
-                         "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63")
+        self.assertEqual(cfg["editorial_standard"]["id"], "TUE-MESTRE-01")
+        self.assertNotIn("reference", cfg)
 
     def test_existing_queue_cannot_autoapprove(self):
         result=audit_queue()
