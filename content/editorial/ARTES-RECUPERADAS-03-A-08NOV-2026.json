@@ -1,0 +1,587 @@
+{
+  "version": 1,
+  "created_date": "2026-11-02",
+  "timezone": "America/Sao_Paulo",
+  "preset": "ATIVAR TUE-MESTRE-01",
+  "week": "2026-11-02/2026-11-08",
+  "status": "MEDIA_RECOVERED_IN_DRIVE_AWAITING_VISUAL_QC",
+  "folder_url": "https://drive.google.com/drive/folders/1Ad_thDQq9O66jrTk9m6pp_ljtGli-hZ3",
+  "summary": {
+    "posts": 12,
+    "verified_uploaded_images": 36,
+    "expected_images": 36,
+    "published_new_posts": 0,
+    "scheduled_new_posts": 0
+  },
+  "posts": [
+    {
+      "id": "tue-2026-11-03-18-reuniao-sobre-reuniao",
+      "day": "2026-11-03",
+      "slot": "11:00",
+      "topic_id": "reuniao-sobre-reuniao",
+      "title": "URGENTE: REUNIÃO CRIA MAIS REUNIÕES",
+      "kind": "meme",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 1,
+      "drive_images": [
+        {
+          "file_name": "03NOV-11H-01-PLANTAO-EM-REVISAO.png",
+          "drive_id": "13SaXZj0HA49X734mJe_kDPLRE6XhNt9n",
+          "size_bytes": 2533610,
+          "url": "https://drive.google.com/file/d/13SaXZj0HA49X734mJe_kDPLRE6XhNt9n/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-03-12-deserto-florido-atacama",
+      "day": "2026-11-03",
+      "slot": "15:00",
+      "topic_id": "deserto-florido-atacama",
+      "title": "O DESERTO ACORDOU COBERTO DE FLORES?",
+      "kind": "carousel",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 5,
+      "drive_images": [
+        {
+          "file_name": "2026-11-03-15h00-deserto-florido-atacama-01-RASCUNHO.png",
+          "drive_id": "1xudDZf_KdE5_7KMUws3b2_8rMK5QNQ8P",
+          "size_bytes": 2576563,
+          "url": "https://drive.google.com/file/d/1xudDZf_KdE5_7KMUws3b2_8rMK5QNQ8P/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-03-15h00-deserto-florido-atacama-02-RASCUNHO.png",
+          "drive_id": "1l1dXDHLTUi1qQS1lFZlBbhKKmOxFHcNy",
+          "size_bytes": 2999387,
+          "url": "https://drive.google.com/file/d/1l1dXDHLTUi1qQS1lFZlBbhKKmOxFHcNy/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-03-15h00-deserto-florido-atacama-03-RASCUNHO.png",
+          "drive_id": "1fyROGj9b1W9Nk_yoU_x-N1s2Xzn4CwUc",
+          "size_bytes": 2651203,
+          "url": "https://drive.google.com/file/d/1fyROGj9b1W9Nk_yoU_x-N1s2Xzn4CwUc/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-03-15h00-deserto-florido-atacama-04-RASCUNHO.png",
+          "drive_id": "1bgzLQaUaZsxV38g6eOPXxPIGvmgieyFP",
+          "size_bytes": 2960451,
+          "url": "https://drive.google.com/file/d/1bgzLQaUaZsxV38g6eOPXxPIGvmgieyFP/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-03-15h00-deserto-florido-atacama-05-RASCUNHO.png",
+          "drive_id": "1C5cvAWFPQDULtDvsr22GD4pIJR4mItPA",
+          "size_bytes": 2889262,
+          "url": "https://drive.google.com/file/d/1C5cvAWFPQDULtDvsr22GD4pIJR4mItPA/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-04-12-por-sol-azul-marte",
+      "day": "2026-11-04",
+      "slot": "11:00",
+      "topic_id": "por-sol-azul-marte",
+      "title": "NO PLANETA VERMELHO O SOL SE PÕE AZUL?",
+      "kind": "carousel",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 5,
+      "drive_images": [
+        {
+          "file_name": "2026-11-04-11h00-por-sol-azul-marte-01-RASCUNHO.png",
+          "drive_id": "1pvu0cRnQFVRTeRHnNYJ17ZW5nR8aOhUR",
+          "size_bytes": 2411115,
+          "url": "https://drive.google.com/file/d/1pvu0cRnQFVRTeRHnNYJ17ZW5nR8aOhUR/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-04-11h00-por-sol-azul-marte-02-RASCUNHO.png",
+          "drive_id": "1rWJCwf5Z4X680g_suXPRAjew7cC53yRv",
+          "size_bytes": 2821417,
+          "url": "https://drive.google.com/file/d/1rWJCwf5Z4X680g_suXPRAjew7cC53yRv/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-04-11h00-por-sol-azul-marte-03-RASCUNHO.png",
+          "drive_id": "1ub2XXU1DZyNRDHTTmxrlWlTqu72IdxuO",
+          "size_bytes": 2576247,
+          "url": "https://drive.google.com/file/d/1ub2XXU1DZyNRDHTTmxrlWlTqu72IdxuO/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-04-11h00-por-sol-azul-marte-04-RASCUNHO.png",
+          "drive_id": "1rI7Z4CPHETSRsZJOP9fu7_UzKGxOOWvk",
+          "size_bytes": 2492383,
+          "url": "https://drive.google.com/file/d/1rI7Z4CPHETSRsZJOP9fu7_UzKGxOOWvk/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-04-11h00-por-sol-azul-marte-05-RASCUNHO.png",
+          "drive_id": "1l8bbOs4UGRLzayw-DbNjoRfWDd9P1LHa",
+          "size_bytes": 2453839,
+          "url": "https://drive.google.com/file/d/1l8bbOs4UGRLzayw-DbNjoRfWDd9P1LHa/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-04-18-museu-cabos-sem-dono",
+      "day": "2026-11-04",
+      "slot": "15:00",
+      "topic_id": "museu-cabos-sem-dono",
+      "title": "O MUSEU DOS CABOS SEM DONO",
+      "kind": "meme",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 1,
+      "drive_images": [
+        {
+          "file_name": "2026-11-04-15h00-museu-cabos-sem-dono-01-RASCUNHO.png",
+          "drive_id": "1XZn5hvrMaCHSwgf2Zpz_yoYgr-mHKfL2",
+          "size_bytes": 2762318,
+          "url": "https://drive.google.com/file/d/1XZn5hvrMaCHSwgf2Zpz_yoYgr-mHKfL2/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-05-12-fogo-azul-ijen",
+      "day": "2026-11-05",
+      "slot": "11:00",
+      "topic_id": "fogo-azul-ijen",
+      "title": "LAVA AZUL? O VULCÃO TE ENGANOU.",
+      "kind": "carousel",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 5,
+      "drive_images": [
+        {
+          "file_name": "2026-11-05-11h00-fogo-azul-ijen-01-RASCUNHO.png",
+          "drive_id": "1qcQ8-LkqzmFCzNhcprtefmidhnzEYU1Y",
+          "size_bytes": 2688748,
+          "url": "https://drive.google.com/file/d/1qcQ8-LkqzmFCzNhcprtefmidhnzEYU1Y/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-05-11h00-fogo-azul-ijen-02-RASCUNHO.png",
+          "drive_id": "1zRPn9qfBwBhrRcUpRdKoARJ9xQ2O-yNL",
+          "size_bytes": 2758429,
+          "url": "https://drive.google.com/file/d/1zRPn9qfBwBhrRcUpRdKoARJ9xQ2O-yNL/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-05-11h00-fogo-azul-ijen-03-RASCUNHO.png",
+          "drive_id": "1w0d_4fCgFwJbIDUTdJvcTF0PF2rMpRHt",
+          "size_bytes": 2839166,
+          "url": "https://drive.google.com/file/d/1w0d_4fCgFwJbIDUTdJvcTF0PF2rMpRHt/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-05-11h00-fogo-azul-ijen-04-RASCUNHO.png",
+          "drive_id": "1NUHpRIk0n_rVM-j27nl84VjLWTE88-Mv",
+          "size_bytes": 2843941,
+          "url": "https://drive.google.com/file/d/1NUHpRIk0n_rVM-j27nl84VjLWTE88-Mv/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-05-11h00-fogo-azul-ijen-05-RASCUNHO.png",
+          "drive_id": "1z4zBPEaQ-V87oMq6n4eyScNd3_zKYmPJ",
+          "size_bytes": 2488652,
+          "url": "https://drive.google.com/file/d/1z4zBPEaQ-V87oMq6n4eyScNd3_zKYmPJ/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-05-18-potes-tampas-divorcio",
+      "day": "2026-11-05",
+      "slot": "15:00",
+      "topic_id": "potes-tampas-divorcio",
+      "title": "TRIBUNAL DOS POTES SOLTEIROS",
+      "kind": "meme",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 1,
+      "drive_images": [
+        {
+          "file_name": "2026-11-05-15h00-potes-tampas-divorcio-01-RASCUNHO.png",
+          "drive_id": "10gJETw3z3XvdMRpbwZKErqPytLtfx00C",
+          "size_bytes": 2546416,
+          "url": "https://drive.google.com/file/d/10gJETw3z3XvdMRpbwZKErqPytLtfx00C/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-06-18-meia-desaparecida",
+      "day": "2026-11-06",
+      "slot": "11:00",
+      "topic_id": "meia-desaparecida",
+      "title": "CASO 047: A MEIA EVAPOROU",
+      "kind": "meme",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 1,
+      "drive_images": [
+        {
+          "file_name": "2026-11-06-11h00-meia-desaparecida-01-RASCUNHO.png",
+          "drive_id": "15ryDDz7vUjtxy3NJ-xQs-i_dI0QEnHGb",
+          "size_bytes": 2705948,
+          "url": "https://drive.google.com/file/d/15ryDDz7vUjtxy3NJ-xQs-i_dI0QEnHGb/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-06-12-lago-rosa",
+      "day": "2026-11-06",
+      "slot": "15:00",
+      "topic_id": "lago-rosa",
+      "title": "QUEM PINTOU ESSE LAGO DE ROSA?",
+      "kind": "carousel",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 5,
+      "drive_images": [
+        {
+          "file_name": "2026-11-06-15h00-lago-rosa-01-RASCUNHO.png",
+          "drive_id": "1SuGkeXpHammTMxPdhco3eCG7Ggxk2xsJ",
+          "size_bytes": 2820883,
+          "url": "https://drive.google.com/file/d/1SuGkeXpHammTMxPdhco3eCG7Ggxk2xsJ/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-06-15h00-lago-rosa-02-RASCUNHO.png",
+          "drive_id": "1zG6wxGbs01ERznxTEidM_LTr1iArqCD6",
+          "size_bytes": 2493001,
+          "url": "https://drive.google.com/file/d/1zG6wxGbs01ERznxTEidM_LTr1iArqCD6/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-06-15h00-lago-rosa-03-RASCUNHO.png",
+          "drive_id": "1cJzxMJRShsyJGPRLW2h-XI0naKThD8e3",
+          "size_bytes": 2695300,
+          "url": "https://drive.google.com/file/d/1cJzxMJRShsyJGPRLW2h-XI0naKThD8e3/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-06-15h00-lago-rosa-04-RASCUNHO.png",
+          "drive_id": "15tRHunVbqqkaYw6N5zJ0Eh_kHdq1ATFb",
+          "size_bytes": 2738590,
+          "url": "https://drive.google.com/file/d/15tRHunVbqqkaYw6N5zJ0Eh_kHdq1ATFb/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-06-15h00-lago-rosa-05-RASCUNHO.png",
+          "drive_id": "1qGj5OGZrpICPqvQcS2h10MQdDMiHlUWj",
+          "size_bytes": 2879046,
+          "url": "https://drive.google.com/file/d/1qGj5OGZrpICPqvQcS2h10MQdDMiHlUWj/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-07-12-nuvens-lenticulares",
+      "day": "2026-11-07",
+      "slot": "11:00",
+      "topic_id": "nuvens-lenticulares",
+      "title": "O OVNI ESTÁ PARADO NO CÉU?",
+      "kind": "carousel",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 5,
+      "drive_images": [
+        {
+          "file_name": "2026-11-07-11h00-nuvens-lenticulares-01-RASCUNHO.png",
+          "drive_id": "1Ckjs5MGHcUo3e4SDNuPV1UiVGPFiINXl",
+          "size_bytes": 2506344,
+          "url": "https://drive.google.com/file/d/1Ckjs5MGHcUo3e4SDNuPV1UiVGPFiINXl/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-07-11h00-nuvens-lenticulares-02-RASCUNHO.png",
+          "drive_id": "1YX1EjcMADwlstgEszel0HXg1LDfFjGJR",
+          "size_bytes": 2515840,
+          "url": "https://drive.google.com/file/d/1YX1EjcMADwlstgEszel0HXg1LDfFjGJR/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-07-11h00-nuvens-lenticulares-03-RASCUNHO.png",
+          "drive_id": "1x4Q4e1NB_jS4_inkWd1fD8vWwgF4q5U1",
+          "size_bytes": 2634189,
+          "url": "https://drive.google.com/file/d/1x4Q4e1NB_jS4_inkWd1fD8vWwgF4q5U1/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-07-11h00-nuvens-lenticulares-04-RASCUNHO.png",
+          "drive_id": "1BiVgYzY7f77-JRTN4m-XC9NFDYIJH3ZV",
+          "size_bytes": 2595071,
+          "url": "https://drive.google.com/file/d/1BiVgYzY7f77-JRTN4m-XC9NFDYIJH3ZV/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-07-11h00-nuvens-lenticulares-05-RASCUNHO.png",
+          "drive_id": "1G7jlSJEURPkxO2GUS0LNv79O7flj98Tv",
+          "size_bytes": 2440561,
+          "url": "https://drive.google.com/file/d/1G7jlSJEURPkxO2GUS0LNv79O7flj98Tv/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-07-18-cadeira-guarda-roupa",
+      "day": "2026-11-07",
+      "slot": "15:00",
+      "topic_id": "cadeira-guarda-roupa",
+      "title": "A CADEIRA PEDIU DEMISSÃO",
+      "kind": "meme",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 1,
+      "drive_images": [
+        {
+          "file_name": "2026-11-07-15h00-cadeira-guarda-roupa-01-RASCUNHO.png",
+          "drive_id": "1yIP6eYstvAyGrzA5nW6bCkB1TSO3xWnj",
+          "size_bytes": 2852751,
+          "url": "https://drive.google.com/file/d/1yIP6eYstvAyGrzA5nW6bCkB1TSO3xWnj/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-08-12-arco-circumhorizontal",
+      "day": "2026-11-08",
+      "slot": "11:00",
+      "topic_id": "arco-circumhorizontal",
+      "title": "O CÉU PEGOU FOGO?",
+      "kind": "carousel",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 5,
+      "drive_images": [
+        {
+          "file_name": "2026-11-08-11h00-arco-circumhorizontal-01-RASCUNHO.png",
+          "drive_id": "1BfLk86p2Zwdj8za_fKb63_6RVIa5vqFh",
+          "size_bytes": 2514844,
+          "url": "https://drive.google.com/file/d/1BfLk86p2Zwdj8za_fKb63_6RVIa5vqFh/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-08-11h00-arco-circumhorizontal-02-RASCUNHO.png",
+          "drive_id": "1ZptJXDi46YGvE1gCq8crYAgACFwZ8gnq",
+          "size_bytes": 2771170,
+          "url": "https://drive.google.com/file/d/1ZptJXDi46YGvE1gCq8crYAgACFwZ8gnq/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-08-11h00-arco-circumhorizontal-03-RASCUNHO.png",
+          "drive_id": "1pbCOBGgavJIHU9WlrGaF2rgHMmYwANRG",
+          "size_bytes": 2504123,
+          "url": "https://drive.google.com/file/d/1pbCOBGgavJIHU9WlrGaF2rgHMmYwANRG/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-08-11h00-arco-circumhorizontal-04-RASCUNHO.png",
+          "drive_id": "1quBCgfbGZodBqjHhd77jWtsxcgAUePRH",
+          "size_bytes": 2388073,
+          "url": "https://drive.google.com/file/d/1quBCgfbGZodBqjHhd77jWtsxcgAUePRH/view?usp=drivesdk",
+          "source_raw_png": true
+        },
+        {
+          "file_name": "2026-11-08-11h00-arco-circumhorizontal-05-RASCUNHO.png",
+          "drive_id": "11DBEVdQN9bLnSmf2EhybX-qWqQdjXOTs",
+          "size_bytes": 2475226,
+          "url": "https://drive.google.com/file/d/11DBEVdQN9bLnSmf2EhybX-qWqQdjXOTs/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    },
+    {
+      "id": "tue-2026-11-08-18-despertador-soneca",
+      "day": "2026-11-08",
+      "slot": "15:00",
+      "topic_id": "despertador-soneca",
+      "title": "SAC DO DESPERTADOR OFENDIDO",
+      "kind": "meme",
+      "preset": "TUE-MESTRE-01",
+      "approved": false,
+      "published": false,
+      "scheduled": false,
+      "format_export_ready": false,
+      "quality_control": {
+        "original_lumino_png_pixelwise_verified": false,
+        "exact_master_visual_review": false,
+        "swipe_footer_verified": false,
+        "provenance_and_rights_verified": false,
+        "all_slides_human_reviewed": false,
+        "story_native_share_verified": false
+      },
+      "expected_images": 1,
+      "drive_images": [
+        {
+          "file_name": "2026-11-08-15h00-despertador-soneca-01-RASCUNHO.png",
+          "drive_id": "1ObY66u6whWJAn4jRPVD6jXvUY-Ox-Q4r",
+          "size_bytes": 2490812,
+          "url": "https://drive.google.com/file/d/1ObY66u6whWJAn4jRPVD6jXvUY-Ox-Q4r/view?usp=drivesdk",
+          "source_raw_png": true
+        }
+      ],
+      "note": "Rascunhos da Biblioteca recuperados; só promover após comparação visual com mestre e eventual revisão factual."
+    }
+  ],
+  "alternate_03NOV_11H_review_only": {
+    "file_id": "15AT7s76IMsT5zwJkteeJA4nFPiurS9IJ",
+    "not_a_second_post": true
+  },
+  "constraints": {
+    "feed_slots": [
+      "11:00",
+      "15:00"
+    ],
+    "reel_slot": "18:00",
+    "carousels_variable_length": true,
+    "swipe_cue_small_footer_dots_no_numbers": true,
+    "native_story_repost_only_after_verified_parent": true,
+    "story_text_only_no_external_link": true,
+    "do_not_fake_receipts": true,
+    "topics_independent": true
+  }
+}
