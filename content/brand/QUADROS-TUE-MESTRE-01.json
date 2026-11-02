@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "preset_id": "TUE-MESTRE-01",
+  "display_name": "QUADROS TUE — editoriais recorrentes e independentes",
+  "note": "Quadro é formato de narrativa, não uma identidade visual nova. Cada postagem tem assunto único; série não significa continuação da postagem anterior.",
+  "style": "Toda arte mantém exatamente o modelo 1, o Lúmino PNG imutável e os hashes definidos em content/brand/TUE-MESTRE-01.json.",
+  "nonnegotiables": [
+    "posts do mesmo dia não compartilham tema",
+    "mesma série pode aparecer em dias diferentes, mas nunca retoma o assunto de outro post",
+    "nenhum meme é complemento de carrossel do mesmo dia",
+    "cada post deve ser compreensível sozinho",
+    "sem numeração visível nas lâminas",
+    "nunca desenhar ou trocar o Lúmino",
+    "quadros não liberam publicação nem dispensam revisão visual"
+  ],
+  "series": [
+    {
+      "id": "parece-mentira",
+      "name": "PARECE MENTIRA, MAS TEM EXPLICAÇÃO",
+      "mission": "fatos e fenômenos reais que parecem efeitos especiais",
+      "story_engine": "registro que surpreende → evidência → mecanismo → consequência",
+      "art_motif": "Carimbo discreto REGISTRO REAL; foto documental grande; nunca simular foto não captada",
+      "format": "carousel"
+    },
+    {
+      "id": "nao-era-isso",
+      "name": "NÃO ERA ISSO QUE VOCÊ PENSOU",
+      "mission": "desmontar a interpretação errada de imagens reais",
+      "story_engine": "suspeita visual → inversão → causa correta → o que se pode afirmar",
+      "art_motif": "Selo VIRA A CHAVE; corte fotográfico com camada de explicação, não antes/depois inventado",
+      "format": "carousel"
+    },
+    {
+      "id": "raio-x-real",
+      "name": "RAIO-X DA REALIDADE",
+      "mission": "mecanismos naturais difíceis de observar a olho nu",
+      "story_engine": "pergunta direta → esquema explicativo → evidência → síntese",
+      "art_motif": "Uma imagem de impacto e uma janela de detalhe; nenhuma fotografia repetida",
+      "format": "carousel"
+    },
+    {
+      "id": "arquivo-improvavel",
+      "name": "ARQUIVO IMPROVÁVEL",
+      "mission": "episódios naturais ou históricos documentados com data e lugar",
+      "story_engine": "data/local → vestígio visual → fato comprovado → esclarecimento",
+      "art_motif": "Textura de documento e recorte documental com crédito no briefing; não fingir artefato histórico",
+      "format": "carousel"
+    },
+    {
+      "id": "tribunal-fenomenos",
+      "name": "TRIBUNAL DOS FENÔMENOS",
+      "mission": "julgar uma confusão científica comum com provas visuais",
+      "story_engine": "acusação humorística → prova 1 → prova 2 → veredito factual",
+      "art_motif": "Metáfora de tribunal em detalhes gráficos sem vestir ou modificar Lúmino",
+      "format": "carousel"
+    },
+    {
+      "id": "luz-seu-veredito",
+      "name": "A LUZ NÃO MENTE",
+      "mission": "fenômenos ópticos coloridos explicados por geometria e matéria",
+      "story_engine": "cor chocante → percurso de luz → condição necessária → limite",
+      "art_motif": "Faixas amarelas e linhas óticas por cima de cenários distintos; evitar montagem como prova",
+      "format": "carousel"
+    },
+    {
+      "id": "sac-lumino",
+      "name": "SAC DO LÚMINO",
+      "mission": "tirinhas com reclamações absurdas de coisas banais do cotidiano",
+      "story_engine": "cliente → atendente → resposta inesperada",
+      "art_motif": "Quadros de atendimento cenográficos; Lúmino PNG intacto como funcionário, sem boca desenhada",
+      "format": "meme"
+    },
+    {
+      "id": "tribunal-pequenas",
+      "name": "TRIBUNAL DAS PEQUENAS TRAGÉDIAS",
+      "mission": "microdramas da vida cotidiana tratados como processo judicial",
+      "story_engine": "acusação → prova ridícula → sentença cômica",
+      "art_motif": "Recorte de autos judiciais ficcionais e cenário ilustrado; não imitar documento oficial",
+      "format": "meme"
+    },
+    {
+      "id": "rh-do-caos",
+      "name": "RH DO CAOS",
+      "mission": "problemas comuns tratados como candidatos a emprego",
+      "story_engine": "entrevista → pergunta → qualificação desastrosa",
+      "art_motif": "Mesa de RH divertida e Lúmino original como recrutador; fontes e paleta idênticas",
+      "format": "meme"
+    },
+    {
+      "id": "plantao-absurdo",
+      "name": "PLANTÃO DO ABSURDO",
+      "mission": "últimas notícias de situações cotidianas tratadas com humor dramático",
+      "story_engine": "urgente → reviravolta → fechamento curto",
+      "art_motif": "Tarja jornalística fictícia, sem emular notícia real ou marca de veículo",
+      "format": "meme"
+    }
+  ]
+}
