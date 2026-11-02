@@ -13,7 +13,7 @@
 5. **Dimensão padrão:** 1080 × 1350 px (4:5) para artes de feed, JPG individual; preservar área de leitura, sem cortes de títulos, legendas ou mascote. Tirinhas podem variar quantidade de quadros, mas devem permanecer legíveis no celular.
 6. **Factual:** temas reais com fontes rastreáveis; confirmar afirmações, datas e números antes de promover `approved=true`. Distinguir hipótese de constatação, simplificação pedagógica de mecanismo científico ainda discutido.
 7. **Autoria e personalidade:** conteúdo didático, criativo, inesperado; humor inteligente nas tirinhas sem mudar o personagem. Não transformar toda postagem numa cópia da mesma composição.
-8. **Dois posts por dia:** pauta-base de 12h e 18h no fuso `America/Sao_Paulo`, sem dois posts sobre o mesmo assunto no mesmo dia, sem continuação obrigatória de manhã para a noite. São duas peças autônomas.
+8. **Dois posts por dia:** pauta-base de 11h e 15h no fuso `America/Sao_Paulo`, sem dois posts sobre o mesmo assunto no mesmo dia, sem continuação obrigatória de manhã para a noite. São duas peças autônomas.
 9. **Produção sequencial:** finalizar roteiro, mídias, QC e arquivo de **um post** antes de iniciar o próximo. Carrossel completo, não apenas capa; revisar uma lâmina por vez.
 10. **Música:** quando exigida, publicar carrossel pela Meta e adicionar faixa no aplicativo oficial é um fluxo em duas etapas ainda dependente de confirmação real. Não declarar música inserida sem verificar. Jamais duplicar o post para tentar corrigir som.
 11. **Publicação:** não confundir arquivo, aprovação, agendamento, upload, teste ou workflow verde com publicação. Somente recibo verificável e conta correta permitem `published`. Preservar o `content/publication-state.json` e `content/schedule.json`; não publicar novos rascunhos automaticamente.
@@ -46,8 +46,8 @@ Os quadros são formas distintas de contar histórias. Não são licenças para 
 
 ## Grade atual: rodízio de quadros + Reel + Story (02/11/2026)
 
-- Às **12h e 18h** (America/Sao_Paulo), publicar dois quadros editoriais independentes, alternando carrosséis, tirinhas e outros formatos. **Carrossel Educativo** é só mais um quadro do catálogo: não há carrossel diário ou formato fixo por horário.
-- Às **21h**, planejar Reel a partir de MP4 original do YouTube TUE em português, com revisão de direitos, origem, narração, qualidade e duplicatas; não é um item automaticamente autorizado.
+- Às **11h e 15h** (America/Sao_Paulo), publicar dois quadros editoriais independentes, alternando carrosséis, tirinhas e outros formatos. **Carrossel Educativo** é só mais um quadro do catálogo: não há carrossel diário ou formato fixo por horário.
+- Às **18h**, planejar Reel a partir de MP4 original do YouTube TUE em português, com revisão de direitos, origem, narração, qualidade e duplicatas; não é um item automaticamente autorizado.
 - **Após confirmação do Reel**, publicar um Story 9:16 com chamada visual **“💡 Curtiu? Veja o Reel no nosso perfil e deixe seu ❤️!”**. Um Story por Reel confirmado, com registro separado; a publicação via API de um vídeo/arte como Story não é o compartilhamento nativo interativo do Reel, que exige aplicativo oficial.
 - **IA:** não enviar autodeclaração de geração por IA apenas porque a publicação foi automatizada. Verificar a origem do vídeo/arte. Para mídia comprovadamente não sintética, omitir a sinalização opcional; quando houver conteúdo gerado/alterado sinteticamente sujeito a divulgação, sinalizar corretamente. Origem desconhecida bloqueia publicação automática. Não ocultar rótulo aplicado pela Meta nem falsificar proveniência.
 - **Status:** regras editoriais registradas; vídeos, Stories e horários continuam sujeitos a arquivo real, revisão, aprovação, autenticação e recibos. Nunca inferir publicação a partir de um rascunho.
@@ -62,7 +62,7 @@ Os quadros são formas distintas de contar histórias. Não são licenças para 
 
 **Prevalece sobre qualquer instrução anterior que sugira criar uma imagem ou vídeo independente para o Story.**
 
-Para **cada** publicação feita às **12h, 18h ou 21h** (carrossel, post único, tirinha, meme ou Reel):
+Para **cada** publicação feita às **11h, 15h ou 18h** (carrossel, post único, tirinha, meme ou Reel):
 1. Publicar primeiro o conteúdo original no Instagram @temumaexplicacao. Conferir identidade da conta, `media_id` real e permalink da postagem.
 2. **Somente após a confirmação**, abrir o **próprio post já publicado** no aplicativo oficial e selecionar **Compartilhar → Adicionar ao story** (ou a opção equivalente mostrada no aplicativo). O Story é obrigatoriamente uma **republicação vinculada**, preservando a prévia tocável que leva ao original, não a criação de outra foto/colagem/vídeo ou duplicação no feed.
 3. Adicionar uma **fala audível** com a chamada padrão: **“Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!”**. O texto pode acompanhar a fala de modo discreto, sem encobrir a publicação. Não desenhar boca no Lúmino. Conferir o áudio antes de enviar.
