@@ -19,7 +19,7 @@ A referência aprovada com **8 painéis** serve exclusivamente para replicar a *
 
 ## Semana de 01 a 06/11
 
-- Grade editorial: duas peças por dia, 12h e 18h (America/Sao_Paulo); são 12 conteúdos.
+- Grade editorial histórica anterior: duas peças por dia; para 02–08/11 prevalecem 11h, 15h e Reel às 18h.
 - As 10 peças gráficas do Google Drive são rascunhos em revisão, incluindo V2 de Votos, meme V2, Dólar V2/V3, Onças e demais temas. Os dois Reels aguardam áudio da voz **Rasalgethi** pelo site do **Google AI Studio** e arquivo MP4 sincronizado.
 - Os dois itens de 01/11 presentes em `content/schedule.json` estão `approved=false`; **não autorizados para publicar**. Os demais itens do pacote de 01–06/11 não devem ser acrescentados como aprovados até revisão final e autorização expressa.
 - Modelo **obrigatório** de cada carrossel: `content/editorial/IDENTIDADE-VISUAL-LUMINO.md` e [referência visual 2×4 do proprietário](https://drive.google.com/file/d/1FPAIpEijBQ3tHkr-Hg9V_-yCw-dqSHhl/view). Cada arte final deve ser JPEG individual 1080×1350. Nunca usar a colagem como arquivo de postagem, nem reutilizar imagens V1 rejeitadas.
@@ -41,8 +41,8 @@ Pasta de revisão no [Google Drive](https://drive.google.com/drive/folders/1YnMl
 
 ## Grade atual: rodízio de quadros + Reel + Story (02/11/2026)
 
-- Às **12h e 18h** (America/Sao_Paulo), publicar dois quadros editoriais independentes, alternando carrosséis, tirinhas e outros formatos. **Carrossel Educativo** é só mais um quadro do catálogo: não há carrossel diário ou formato fixo por horário.
-- Às **21h**, planejar Reel a partir de MP4 original do YouTube TUE em português, com revisão de direitos, origem, narração, qualidade e duplicatas; não é um item automaticamente autorizado.
+- Às **11h e 15h** (America/Sao_Paulo), publicar dois quadros editoriais independentes, alternando carrosséis, tirinhas e outros formatos. **Carrossel Educativo** é só mais um quadro do catálogo: não há carrossel diário ou formato fixo por horário.
+- Às **18h**, planejar Reel a partir de MP4 original do YouTube TUE em português, com revisão de direitos, origem, narração, qualidade e duplicatas; não é um item automaticamente autorizado.
 - **Após confirmação do Reel**, publicar um Story 9:16 com chamada visual **“💡 Curtiu? Veja o Reel no nosso perfil e deixe seu ❤️!”**. Um Story por Reel confirmado, com registro separado; a publicação via API de um vídeo/arte como Story não é o compartilhamento nativo interativo do Reel, que exige aplicativo oficial.
 - **IA:** não enviar autodeclaração de geração por IA apenas porque a publicação foi automatizada. Verificar a origem do vídeo/arte. Para mídia comprovadamente não sintética, omitir a sinalização opcional; quando houver conteúdo gerado/alterado sinteticamente sujeito a divulgação, sinalizar corretamente. Origem desconhecida bloqueia publicação automática. Não ocultar rótulo aplicado pela Meta nem falsificar proveniência.
 - **Status:** regras editoriais registradas; vídeos, Stories e horários continuam sujeitos a arquivo real, revisão, aprovação, autenticação e recibos. Nunca inferir publicação a partir de um rascunho.
@@ -57,7 +57,7 @@ Pasta de revisão no [Google Drive](https://drive.google.com/drive/folders/1YnMl
 
 **Prevalece sobre qualquer instrução anterior que sugira criar uma imagem ou vídeo independente para o Story.**
 
-Para **cada** publicação feita às **12h, 18h ou 21h** (carrossel, post único, tirinha, meme ou Reel):
+Para **cada** publicação feita às **11h, 15h ou 18h** (carrossel, post único, tirinha, meme ou Reel):
 1. Publicar primeiro o conteúdo original no Instagram @temumaexplicacao. Conferir identidade da conta, `media_id` real e permalink da postagem.
 2. **Somente após a confirmação**, abrir o **próprio post já publicado** no aplicativo oficial e selecionar **Compartilhar → Adicionar ao story** (ou a opção equivalente mostrada no aplicativo). O Story é obrigatoriamente uma **republicação vinculada**, preservando a prévia tocável que leva ao original, não a criação de outra foto/colagem/vídeo ou duplicação no feed.
 3. Adicionar uma **fala audível** com a chamada padrão: **“Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!”**. O texto pode acompanhar a fala de modo discreto, sem encobrir a publicação. Não desenhar boca no Lúmino. Conferir o áudio antes de enviar.
