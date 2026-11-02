@@ -17,7 +17,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PROFILE = ROOT / "content/brand/TUE-MESTRE-01.json"
 IDENTITY = "TUE-MESTRE-01"
-REFERENCE_SHA = "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63"
 LUMINO_SHA = "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b"
 
 
@@ -46,17 +45,30 @@ def verify(root: Path = ROOT) -> dict:
     mirror = load_json(root / "content/visual-standard/standard.json")
     if preset.get("id") != IDENTITY or preset.get("activation_phrase") != "ATIVAR TUE-MESTRE-01":
         raise PresetError("Gatilho TUE-MESTRE-01 inválido ou alterado.")
-    for label, pinned in (("model", REFERENCE_SHA), ("lumino", LUMINO_SHA)):
-        item = preset["canonical_assets"]
-        rel = item[label + "_path"]
-        if not rel.startswith("content/brand/") or ".." in rel:
-            raise PresetError("Ativo canônico fora da pasta aprovada: " + label)
-        if item[label + "_sha256"] != pinned or sha256(root / rel) != pinned:
-            raise PresetError("Arquivo canônico alterado ou substituído: " + label)
-    if brand["reference"]["sha256"] != REFERENCE_SHA or brand["lumino"]["sha256"] != LUMINO_SHA:
-        raise PresetError("Configuração de marca diverge dos arquivos originais.")
-    if mirror["original_mascot"]["sha256"] != LUMINO_SHA or mirror["approved_layout_reference"]["sha256"] != REFERENCE_SHA:
-        raise PresetError("Espelho visual diverge do padrão mestre.")
+    # Active standard is the editorial contract approved on 01/11, not an old
+    # eight-panel visual reference. Only the canonical mascot is a pinned image.
+    assets = preset.get("canonical_assets", {})
+    if (assets.get("editorial_contract_id") != IDENTITY
+            or assets.get("editorial_contract_path") != "content/brand/TUE-MESTRE-01.md"
+            or brand.get("editorial_standard", {}).get("id") != IDENTITY
+            or brand["editorial_standard"].get("path") != assets["editorial_contract_path"]
+            or mirror.get("editorial_contract", {}).get("id") != IDENTITY
+            or mirror["editorial_contract"].get("path") != assets["editorial_contract_path"]):
+        raise PresetError("Contrato editorial ativo divergente do TUE-MESTRE-01.")
+    if not (root / assets["editorial_contract_path"]).is_file():
+        raise PresetError("Contrato editorial TUE-MESTRE-01 ausente.")
+    if any(key in assets for key in ("model_path", "model_sha256")):
+        raise PresetError("Referência antiga de oito painéis não pode estar ativa.")
+    if "reference" in brand or "approved_layout_reference" in mirror:
+        raise PresetError("Referência antiga de oito painéis não pode estar ativa.")
+    rel = assets.get("lumino_path", "")
+    if (rel != "content/brand/lumino-original.png"
+            or assets.get("lumino_sha256") != LUMINO_SHA
+            or not (root / rel).is_file()
+            or sha256(root / rel) != LUMINO_SHA
+            or brand["lumino"]["sha256"] != LUMINO_SHA
+            or mirror["original_mascot"]["sha256"] != LUMINO_SHA):
+        raise PresetError("PNG canônico do Lúmino alterado ou ausente.")
     if brand["output"]["width"] != 1080 or brand["output"]["height"] != 1350:
         raise PresetError("Formato do carrossel foi alterado.")
     if brand["output"]["min_pages"] != 2 or brand["output"]["max_pages"] != 20:
@@ -65,7 +77,7 @@ def verify(root: Path = ROOT) -> dict:
         raise PresetError("Numeração visual proibida pelo TUE-MESTRE-01.")
     if not preset["visual"].get("discreet_swipe_cue"):
         raise PresetError("Falta a indicação discreta para arrastar.")
-    if preset["reference_style"] != "EXCLUSIVAMENTE modelo 1 do proprietário, sem mescla com modelo 5, templates ou improvisações":
+    if preset["reference_style"] != "EXCLUSIVAMENTE identidade editorial modelo 1 do proprietário conforme TUE-MESTRE-01, sem mescla, colagem ou número fixo de painéis":
         raise PresetError("Foi alterada a referência artística exclusiva.")
     return preset
 
@@ -74,8 +86,8 @@ def check_brief(brief: dict, preset: dict) -> dict:
     """Fail closed for *new* content, without grandfathering rejected versions."""
     if brief.get("preset_id") != IDENTITY:
         raise PresetError("Brief sem TUE-MESTRE-01: criar conteúdo está bloqueado.")
-    if brief.get("reference_sha256") != REFERENCE_SHA:
-        raise PresetError("Brief não aponta para o modelo visual original.")
+    if brief.get("reference_standard_id") != IDENTITY or "reference_sha256" in brief:
+        raise PresetError("Brief deve usar TUE-MESTRE-01, sem referência antiga de oito painéis.")
     if brief.get("lumino_sha256") != LUMINO_SHA:
         raise PresetError("Brief não usa o Lúmino canônico.")
     if brief.get("status") != "draft_review_no_publication":
@@ -162,8 +174,8 @@ def check_release(manifest: dict) -> None:
     if manifest.get("preset_id") != IDENTITY:
         raise PresetError("PADRÃO TUE-MESTRE-01 não foi ativado neste carrossel.")
     qc = manifest.get("human_visual_qc")
-    if not isinstance(qc, dict) or qc.get("reference_sha256") != REFERENCE_SHA:
-        raise PresetError("Comparação visual assinada com o modelo 1 está ausente.")
+    if not isinstance(qc, dict) or qc.get("reference_standard_id") != IDENTITY:
+        raise PresetError("Comparação visual assinada com o TUE-MESTRE-01 está ausente.")
     flags = ("cover_matches_model_1", "inner_pages_match_cover_quality",
              "original_lumino_visually_confirmed", "all_text_readable",
              "all_facts_checked", "sources_and_rights_checked",
