@@ -1,0 +1,39 @@
+name: Instagram TUE - importar Reel diretamente do Google Drive
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-drive-direct-import.yml'
+permissions:
+  contents: read
+concurrency:
+  group: tue-instagram-drive-import
+  cancel-in-progress: false
+jobs:
+  import-drive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Validar script
+        run: python3 -m py_compile scripts/instagram_drive_direct_import.py
+      - name: Download privado por OAuth ou publico direto do Drive, sem publicar
+        env:
+          GDRIVE_OAUTH_CLIENT_ID: ${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}
+          GDRIVE_OAUTH_CLIENT_SECRET: ${{ secrets.GDRIVE_OAUTH_CLIENT_SECRET }}
+          GDRIVE_OAUTH_REFRESH_TOKEN: ${{ secrets.GDRIVE_OAUTH_REFRESH_TOKEN }}
+        run: python3 scripts/instagram_drive_direct_import.py
+      - name: Guardar somente MP4 autenticado e relatorio para revisão
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: tue-google-drive-import-${{ github.run_id }}
+          path: output/instagram-drive-reel/
+          if-no-files-found: warn
+          retention-days: 7
