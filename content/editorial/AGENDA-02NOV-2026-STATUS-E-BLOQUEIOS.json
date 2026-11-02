@@ -23,10 +23,12 @@
       "id": "tue-2026-11-02-12-mar-cruzado",
       "topic_id": "mar-cruzado",
       "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-02-12-mar-cruzado.json",
-      "status": "READY_APPROVED_BLOCKED_META_USER_TOKEN_EXPIRED_190_463",
+      "status": "PUBLISHED_FEED_META_RECEIPT_NATIVE_MUSIC_AND_STORY_PENDING",
       "issues": [
-        "Credencial FACEBOOK_USER_ACCESS_TOKEN expirou (Meta 190/463). Atualizar Secret com token de longa duração; não reenviar imagens.",
-        "A música nativa do carrossel e o compartilhamento nativo do Story exigem confirmação posterior no aplicativo; não atribuir recibos inexistentes."
+        "O feed está publicado e tem comprovante da Meta. Não republicar carrossel.",
+        "Música nativa do carrossel não comprovada; selecionar/confirmar no aplicativo Instagram se disponível.",
+        "Story deve compartilhar nativamente o próprio carrossel e conter CTA somente em texto, sem sticker de link ou áudio; ainda sem recibo.",
+        "Não confundir recibo do feed com conclusão de Story ou música."
       ],
       "approved_visual_reference": "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg",
       "approved_visual_reference_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
@@ -38,7 +40,11 @@
       "approval_record": "content/approved/tue-2026-11-02-12-mar-cruzado/approval.json",
       "editorial_approved": true,
       "publish_attempt_state": "Meta preflight halted with HTTP 401 / OAuth 190 subcode 463 before any upload or durable claim on 02/11 16h20 BRT",
-      "story_status": "PENDING_PARENT_POST_THEN_NATIVE_TEXT_RESHARE"
+      "story_status": "NATIVE_SHARE_TEXT_CTA_PENDING",
+      "media_id": "18154222987543257",
+      "published_at_utc": "2026-11-02T19:32:12Z",
+      "parent_receipt_verified": true,
+      "music_status": "pending_instagram_app"
     },
     {
       "local_time": "15:00",
@@ -81,7 +87,7 @@
   "quality_gate": "Nunca aprovar ou agendar ativo com Lúmino não canônico; não inventar URLs, recibos ou aprovação.",
   "blocking_rule": "Este arquivo é registro editorial e NÃO aciona GitHub Actions nem agenda Instagram. Para agendar de verdade, validar mídia e inserir itens reais aprovados em content/schedule.json com URLs verificadas.",
   "do_not_infer_success": true,
-  "quality_status": "Cinco JPEGs finais do Mar Cruzado hospedados com hashes fixos e aprovação específica do proprietário; Meta API bloqueou o preflight por token expirado, publicação não realizada. Story pendente.",
+  "quality_status": "Post Mar Cruzado confirmado pela Meta em 02/11 16h32 BRT, media ID 18154222987543257; música nativa e Story continuam pendentes.",
   "files_staged_in_google_drive": {
     "provider": "Google Drive owner temumaexplicacao@gmail.com",
     "scope": "private, not public internet-accessible",
