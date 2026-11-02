@@ -1,0 +1,76 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "id": "tue-2026-11-02-12-mar-cruzado",
+  "day": "2026-11-02",
+  "slot": "12:00",
+  "series_id": "parece-mentira",
+  "kind": "carousel",
+  "topic_id": "mar-cruzado",
+  "subject_id": "interferencia-ondas-direcoes",
+  "title": "QUEM COLOCOU UM TABULEIRO NO MAR?",
+  "hook": "QUEM COLOCOU UM TABULEIRO NO MAR?",
+  "concept": "As ondas não combinaram a direção.",
+  "sources": [
+    "https://www.noaa.gov/jetstream/ocean/waves",
+    "https://www.bom.gov.au/resources/learn-and-explore/marine-knowledge-centre/waves-and-swell"
+  ],
+  "factual_caution": "Não prometer grade perfeita, mar sempre perigoso nem correntes de retorno como consequência automática.",
+  "format": "JPEG 1080x1350 4:5 individual por lâmina",
+  "media_policy": "Fotografia documental a localizar com autorização/licença verificadas; gráficos internos originais sem fingir registro real.",
+  "slides": [
+    {
+      "headline": "O MAR VIROU UM TABULEIRO?",
+      "new_information": "Quando duas ondulações chegam de direções diferentes, suas linhas de crista podem se cruzar e criar um desenho de malha na superfície.",
+      "distinct_scene": "Plano de cima do mar com cristas cruzadas fotografadas de verdade, sem traçado digital que simule o fenômeno.",
+      "visual_direction": "Capa com assunto em quase toda a largura; Lúmino examina as cristas pelo canto inferior, sem ocupar a área factual.",
+      "source_credit": "https://www.noaa.gov/jetstream/ocean/waves — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "gancho"
+    },
+    {
+      "headline": "DE ONDE VÊM DUAS ONDAS?",
+      "new_information": "Ondas do vento local e ondulações geradas longe podem alcançar a mesma região marítima em direções distintas.",
+      "distinct_scene": "Mapa costeiro original mostrando duas regiões geradoras de ondas e setas que chegam a um único ponto de encontro.",
+      "visual_direction": "Mapa profundo com foto aérea em recorte pequeno; amarelo para direções, vermelho para localização; não repetir a capa.",
+      "source_credit": "https://www.noaa.gov/jetstream/ocean/waves — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "UMA NÃO DESLIGA A OUTRA",
+      "new_information": "As ondas se sobrepõem. Em determinados pontos, cristas se reforçam; em outros, a elevação diminui pela combinação dos movimentos.",
+      "distinct_scene": "Experimento visual editorial com duas superfícies transparentes de ondas e um encontro em escala reduzida.",
+      "visual_direction": "Diagrama orgânico com sombra e textura de água; Lúmino original com lupa no ponto de interseção.",
+      "source_credit": "https://www.noaa.gov/jetstream/ocean/waves — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "UM QUADRADO QUE SE MOVE",
+      "new_information": "A aparência quadriculada é temporária; as ondas continuam atravessando a área e os desenhos mudam continuamente.",
+      "distinct_scene": "Sequência de três momentos do mesmo sistema de ondas simulados e rotulados como esquema didático.",
+      "visual_direction": "Três molduras fotográficas dinâmicas sem parecer montagem de uma única foto; texto grande central e selo DIDÁTICO.",
+      "source_credit": "https://www.noaa.gov/jetstream/ocean/waves — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "E POR QUE ISSO IMPORTA?",
+      "new_information": "Quando mares diferentes se cruzam, o movimento pode ficar mais complexo para pequenas embarcações. O desenho bonito não é uma recomendação de banho.",
+      "distinct_scene": "Pequena embarcação fictícia em corte editorial frente a duas direções de ondulação, sem dramatizar acidente real.",
+      "visual_direction": "Cena náutica ilustrada com trajetórias e advertência proporcional; fechamento com pergunta sobre observação do mar.",
+      "source_credit": "https://www.noaa.gov/jetstream/ocean/waves — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "síntese"
+    }
+  ],
+  "caption": "💡 As ondas não combinaram a direção. Quando duas ondulações chegam de direções diferentes, suas linhas de crista podem se cruzar e criar um desenho de malha na superfície. Ondas do vento local e ondulações geradas longe podem alcançar a mesma região marítima em direções distintas. As ondas se sobrepõem. Em determinados pontos, cristas se reforçam; em outros, a elevação diminui pela combinação dos movimentos. A aparência quadriculada é temporária; as ondas continuam atravessando a área e os desenhos mudam continuamente. Quando mares diferentes se cruzam, o movimento pode ficar mais complexo para pequenas embarcações. O desenho bonito não é uma recomendação de banho. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
+  "publication_requires_native_music": true
+}

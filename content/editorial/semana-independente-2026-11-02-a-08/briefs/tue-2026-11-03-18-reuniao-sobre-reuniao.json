@@ -1,0 +1,39 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "id": "tue-2026-11-03-18-reuniao-sobre-reuniao",
+  "day": "2026-11-03",
+  "slot": "18:00",
+  "series_id": "plantao-absurdo",
+  "kind": "meme",
+  "topic_id": "reuniao-sobre-reuniao",
+  "subject_id": "corporativo-reuniao-circular",
+  "title": "URGENTE: REUNIÃO CRIA MAIS REUNIÕES",
+  "hook": "URGENTE: REUNIÃO CRIA MAIS REUNIÕES",
+  "concept": "A pauta original: descobrir quem marcou a reunião.",
+  "sources": [
+    "Roteiro ficcional e humor original desenvolvido para Instagram TUE. Não apresenta afirmações documentais."
+  ],
+  "factual_caution": "Humor ficcional, evitar foto/interface de empresa real, ataque pessoal ou alegação falsa de notícia.",
+  "format": "Imagem única JPG 1080x1350 com 3 a 4 quadros internos; não é carrossel",
+  "media_policy": "Ilustração editorial autoral claramente identificada, sem imitar captura real; Lúmino canônico como camada original.",
+  "slides": [
+    {
+      "headline": "URGENTE: REUNIÃO CRIA MAIS REUNIÕES",
+      "new_information": "CENA 1: jornalista fictício anuncia “Reunião de alinhamento emergencial”; CENA 2: participantes perguntam “Qual era a pauta?”; CENA 3: Lúmino lê ata: “Foi aprovado marcar uma reunião para definir a pauta da próxima.”",
+      "distinct_scene": "Cena independente reuniao-sobre-reuniao: Redação de telejornal claramente fictícia, sem marcas ou veículos reais; quadro de agenda com círculos infinitos estilizados.",
+      "visual_direction": "Redação de telejornal claramente fictícia, sem marcas ou veículos reais; quadro de agenda com círculos infinitos estilizados. Manter cada fala legível em tela de celular. Virada cômica no último quadro.",
+      "source_credit": "Ilustração original de cenário ficcional; PNG canônico do Lúmino sobreposto sem regeneração.",
+      "uses_original_lumino": true,
+      "position_in_story": "setup → escalation → reversal"
+    }
+  ],
+  "caption": "📅 A reunião começou sem pauta, terminou com três novas reuniões e declarou produtividade recorde. O calendário pediu licença médica. 😂 #HumorNoTrabalho #Memes #Lumino #TemUmaExplicacao",
+  "publication_requires_native_music": false
+}

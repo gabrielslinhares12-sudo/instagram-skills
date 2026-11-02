@@ -1,0 +1,76 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "id": "tue-2026-11-03-12-deserto-florido-atacama",
+  "day": "2026-11-03",
+  "slot": "12:00",
+  "series_id": "arquivo-improvavel",
+  "kind": "carousel",
+  "topic_id": "deserto-florido-atacama",
+  "subject_id": "floracao-atacama-sementes-dormencia",
+  "title": "O DESERTO ACORDOU COBERTO DE FLORES?",
+  "hook": "O DESERTO ACORDOU COBERTO DE FLORES?",
+  "concept": "Debaixo da areia, a história continuou.",
+  "sources": [
+    "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt",
+    "https://copernicus.com.ar/casos/atacama-2026/en"
+  ],
+  "factual_caution": "Não afirmar que o deserto mudou em uma noite, que acontece anualmente, ou que toda a área floresceu.",
+  "format": "JPEG 1080x1350 4:5 individual por lâmina",
+  "media_policy": "Fotografia documental a localizar com autorização/licença verificadas; gráficos internos originais sem fingir registro real.",
+  "slides": [
+    {
+      "headline": "O ATACAMA VIROU JARDIM?",
+      "new_information": "Depois de chuvas excepcionais, porções do deserto do Atacama podem apresentar florações intensas. O Copernicus registrou um episódio em 2026.",
+      "distinct_scene": "Registro de flores do deserto do Atacama com origem e data verificadas; montanhas áridas ao fundo.",
+      "visual_direction": "Capa dividida organicamente entre aridez e flores, evitando um antes/depois inventado; etiqueta 2026.",
+      "source_credit": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "gancho"
+    },
+    {
+      "headline": "A VIDA JÁ ESTAVA ALI",
+      "new_information": "Sementes e estruturas subterrâneas de plantas conseguem permanecer em dormência, aguardando as condições que possibilitam o crescimento.",
+      "distinct_scene": "Seção ilustrada de solo árido com sementes e bulbos protegidos abaixo da crosta.",
+      "visual_direction": "Desenho botânico minucioso com textura de areia real e lupa do Lúmino apontando sementes.",
+      "source_credit": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "NÃO BASTA UMA GOTA",
+      "new_information": "As chuvas precisam ocorrer em condições adequadas de umidade e temperatura para favorecer a germinação e o desenvolvimento das flores.",
+      "distinct_scene": "Pluviômetro editorial entre solo seco, gotas graduais e plantas ainda pequenas, sem fazer promessa causal exata.",
+      "visual_direction": "Cenário meteorológico amarelo e marrom, com legenda de hipótese explicativa e sem números inventados.",
+      "source_credit": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "O SATÉLITE TAMBÉM VIU",
+      "new_information": "Imagens Sentinel-2 compararam a vegetação no Atacama em 2025 e 2026, mostrando contraste de cobertura em imagens de falsa cor.",
+      "distinct_scene": "Dois recortes Sentinel-2 de antes e depois retirados do Copernicus com legenda explícita FALSA COR.",
+      "visual_direction": "Painel de evidências como pasta de arquivo, com créditos e a diferença entre vermelho orbital e cor real.",
+      "source_credit": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "O QUE PARECE MILAGRE TEM CICLO",
+      "new_information": "A floração é temporária e depende de condições incomuns; proteger as áreas e evitar pisoteio ajuda a conservar esse espetáculo.",
+      "distinct_scene": "Plano de flores nativas com trilha marcada na margem, sem turista caminhando sobre plantas.",
+      "visual_direction": "Fechamento contemplativo com orientação ambiental curta e pergunta original sobre paciência da natureza.",
+      "source_credit": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region?prefLang=lt — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "síntese"
+    }
+  ],
+  "caption": "💡 Debaixo da areia, a história continuou. Depois de chuvas excepcionais, porções do deserto do Atacama podem apresentar florações intensas. O Copernicus registrou um episódio em 2026. Sementes e estruturas subterrâneas de plantas conseguem permanecer em dormência, aguardando as condições que possibilitam o crescimento. As chuvas precisam ocorrer em condições adequadas de umidade e temperatura para favorecer a germinação e o desenvolvimento das flores. Imagens Sentinel-2 compararam a vegetação no Atacama em 2025 e 2026, mostrando contraste de cobertura em imagens de falsa cor. A floração é temporária e depende de condições incomuns; proteger as áreas e evitar pisoteio ajuda a conservar esse espetáculo. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
+  "publication_requires_native_music": true
+}

@@ -1,0 +1,76 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "id": "tue-2026-11-05-12-fogo-azul-ijen",
+  "day": "2026-11-05",
+  "slot": "12:00",
+  "series_id": "nao-era-isso",
+  "kind": "carousel",
+  "topic_id": "fogo-azul-ijen",
+  "subject_id": "combustao-enxofre-kawah-ijen",
+  "title": "LAVA AZUL? O VULCÃO TE ENGANOU.",
+  "hook": "LAVA AZUL? O VULCÃO TE ENGANOU.",
+  "concept": "Não era a rocha que brilhava.",
+  "sources": [
+    "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/",
+    "https://www.nationalgeographic.com/science/article/140130-kawah-ijen-blue-flame-volcanoes-sulfur-indonesia-pictures"
+  ],
+  "factual_caution": "Não chamar chamas de lava azul. Gases tóxicos são perigosos. Imagens históricas de Grunewald exigem licença, não assumir uso livre.",
+  "format": "JPEG 1080x1350 4:5 individual por lâmina",
+  "media_policy": "Fotografia documental a localizar com autorização/licença verificadas; gráficos internos originais sem fingir registro real.",
+  "slides": [
+    {
+      "headline": "A LAVA É AZUL?",
+      "new_information": "O brilho azul registrado no Kawah Ijen, na Indonésia, vem principalmente das chamas de compostos sulfurados em combustão, não de lava azul.",
+      "distinct_scene": "Fotografia verdadeira do fenômeno obtida de fonte licenciada ou imagem ilustrativa com identificação explícita.",
+      "visual_direction": "Capa de cor intensa com palavra AZUL em vermelho, sem simular prova com IA.",
+      "source_credit": "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "gancho"
+    },
+    {
+      "headline": "O QUE SAI DAS FENDAS",
+      "new_information": "Gases ricos em enxofre escapam de aberturas quentes no terreno vulcânico e podem se inflamar ao encontrar ar.",
+      "distinct_scene": "Corte geológico original com rachaduras e trajetórias dos gases, rótulos claros.",
+      "visual_direction": "Cena de ciência em perspectiva cortada, diferente da fotografia noturna de abertura.",
+      "source_credit": "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "O AZUL É CHAMA",
+      "new_information": "A combustão produz luz azul. A rocha fundida não muda para essa cor; o efeito é mais visível na escuridão.",
+      "distinct_scene": "Close editorial de chama azul com legenda CHAMA, ao lado de amostra ilustrada de lava vermelha identificada.",
+      "visual_direction": "Lúmino com lupa próximo a dois cartões enormes CHAMA / LAVA, nunca tratando como foto do mesmo instante.",
+      "source_credit": "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "POR QUE PARECE UM RIO?",
+      "new_information": "Parte do enxofre pode condensar em líquido e continuar queimando enquanto escoa pela encosta, lembrando um fluxo de lava azul.",
+      "distinct_scene": "Esquema visual de enxofre líquido aceso descendo uma rocha, identificado como ilustração.",
+      "visual_direction": "Fluxo curvo ilustrado, setas mínimas e texto em faixas amarelas sobre pedra texturizada.",
+      "source_credit": "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "ESPETÁCULO NÃO É CONVITE",
+      "new_information": "A presença de gases vulcânicos perigosos torna a proximidade arriscada. A fotografia impressionante não comunica a segurança do local.",
+      "distinct_scene": "Cena real de mineiros/paisagem apenas com licença verificada; alternativa ilustração de máscara e gás com sinalização.",
+      "visual_direction": "Fecho sério sobre segurança sem romantizar exposição humana; crédito técnico em notas.",
+      "source_credit": "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "síntese"
+    }
+  ],
+  "caption": "💡 Não era a rocha que brilhava. O brilho azul registrado no Kawah Ijen, na Indonésia, vem principalmente das chamas de compostos sulfurados em combustão, não de lava azul. Gases ricos em enxofre escapam de aberturas quentes no terreno vulcânico e podem se inflamar ao encontrar ar. A combustão produz luz azul. A rocha fundida não muda para essa cor; o efeito é mais visível na escuridão. Parte do enxofre pode condensar em líquido e continuar queimando enquanto escoa pela encosta, lembrando um fluxo de lava azul. A presença de gases vulcânicos perigosos torna a proximidade arriscada. A fotografia impressionante não comunica a segurança do local. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
+  "publication_requires_native_music": true
+}

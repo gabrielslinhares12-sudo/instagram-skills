@@ -1,0 +1,39 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "id": "tue-2026-11-07-18-cadeira-guarda-roupa",
+  "day": "2026-11-07",
+  "slot": "18:00",
+  "series_id": "rh-do-caos",
+  "kind": "meme",
+  "topic_id": "cadeira-guarda-roupa",
+  "subject_id": "quarto-cadeira-roupa-acumulada",
+  "title": "A CADEIRA PEDIU DEMISSÃO",
+  "hook": "A CADEIRA PEDIU DEMISSÃO",
+  "concept": "Foi contratada para sentar. Virou armário.",
+  "sources": [
+    "Roteiro ficcional e humor original desenvolvido para Instagram TUE. Não apresenta afirmações documentais."
+  ],
+  "factual_caution": "Humor ficcional, evitar foto/interface de empresa real, ataque pessoal ou alegação falsa de notícia.",
+  "format": "Imagem única JPG 1080x1350 com 3 a 4 quadros internos; não é carrossel",
+  "media_policy": "Ilustração editorial autoral claramente identificada, sem imitar captura real; Lúmino canônico como camada original.",
+  "slides": [
+    {
+      "headline": "A CADEIRA PEDIU DEMISSÃO",
+      "new_information": "CENA 1: Lúmino entrevista uma cadeira: “Qual sua função?”; CENA 2: cadeira coberta de jaquetas: “Sou guarda-roupa de plantão há 6 meses”; CENA 3: Lúmino responde “Sua vaga era para sentar”; CENA 4: “Gostaria de negociar férias e cabides.”",
+      "distinct_scene": "Cena independente cadeira-guarda-roupa: Escritório improvisado no quarto, cadeira sobrecarregada por roupas, post-its com cargos absurdos; sem refazer o mascote.",
+      "visual_direction": "Escritório improvisado no quarto, cadeira sobrecarregada por roupas, post-its com cargos absurdos; sem refazer o mascote. Manter cada fala legível em tela de celular. Virada cômica no último quadro.",
+      "source_credit": "Ilustração original de cenário ficcional; PNG canônico do Lúmino sobreposto sem regeneração.",
+      "uses_original_lumino": true,
+      "position_in_story": "setup → escalation → reversal"
+    }
+  ],
+  "caption": "🪑 Contrataram uma cadeira e deram a ela o trabalho de um guarda-roupa inteiro. O RH do Lúmino abriu investigação trabalhista. Essa funcionária existe na sua casa? 😂 #VidaReal #Memes #Lumino #TemUmaExplicacao",
+  "publication_requires_native_music": false
+}

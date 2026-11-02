@@ -1,0 +1,39 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "id": "tue-2026-11-05-18-potes-tampas-divorcio",
+  "day": "2026-11-05",
+  "slot": "18:00",
+  "series_id": "tribunal-pequenas",
+  "kind": "meme",
+  "topic_id": "potes-tampas-divorcio",
+  "subject_id": "cozinha-potes-sem-tampa",
+  "title": "TRIBUNAL DOS POTES SOLTEIROS",
+  "hook": "TRIBUNAL DOS POTES SOLTEIROS",
+  "concept": "Sete potes, nove tampas e nenhum par compatível.",
+  "sources": [
+    "Roteiro ficcional e humor original desenvolvido para Instagram TUE. Não apresenta afirmações documentais."
+  ],
+  "factual_caution": "Humor ficcional, evitar foto/interface de empresa real, ataque pessoal ou alegação falsa de notícia.",
+  "format": "Imagem única JPG 1080x1350 com 3 a 4 quadros internos; não é carrossel",
+  "media_policy": "Ilustração editorial autoral claramente identificada, sem imitar captura real; Lúmino canônico como camada original.",
+  "slides": [
+    {
+      "headline": "TRIBUNAL DOS POTES SOLTEIROS",
+      "new_information": "CENA 1: Lúmino abre audiência: “Quem perdeu a tampa?”; CENA 2: pote diz “Ela saiu depois do almoço e nunca voltou”; CENA 3: tampa responde “Eu nunca vi esse pote!”; CENA 4: sentença: “Condenados a ocupar o armário para sempre.”",
+      "distinct_scene": "Cena independente potes-tampas-divorcio: Tribunal fictício na bancada de cozinha, potes e tampas antropomorfizados só por balões, sem rostos humanos inventados no Lúmino.",
+      "visual_direction": "Tribunal fictício na bancada de cozinha, potes e tampas antropomorfizados só por balões, sem rostos humanos inventados no Lúmino. Manter cada fala legível em tela de celular. Virada cômica no último quadro.",
+      "source_credit": "Ilustração original de cenário ficcional; PNG canônico do Lúmino sobreposto sem regeneração.",
+      "uses_original_lumino": true,
+      "position_in_story": "setup → escalation → reversal"
+    }
+  ],
+  "caption": "⚖️ A investigação começou com um pote sem tampa. Terminou com nove tampas, zero compatibilidade e um armário lotado. A sentença foi unânime: ninguém joga nada fora. 😂 #Memes #Cozinha #Lumino #TemUmaExplicacao",
+  "publication_requires_native_music": false
+}

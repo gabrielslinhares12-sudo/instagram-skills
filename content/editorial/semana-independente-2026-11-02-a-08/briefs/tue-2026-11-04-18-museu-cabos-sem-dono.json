@@ -1,0 +1,39 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "id": "tue-2026-11-04-18-museu-cabos-sem-dono",
+  "day": "2026-11-04",
+  "slot": "18:00",
+  "series_id": "arquivo-improvavel",
+  "kind": "meme",
+  "topic_id": "museu-cabos-sem-dono",
+  "subject_id": "tecnologia-cabos-esquecidos",
+  "title": "O MUSEU DOS CABOS SEM DONO",
+  "hook": "O MUSEU DOS CABOS SEM DONO",
+  "concept": "Peças raras, mas ninguém sabe de qual aparelho.",
+  "sources": [
+    "Roteiro ficcional e humor original desenvolvido para Instagram TUE. Não apresenta afirmações documentais."
+  ],
+  "factual_caution": "Humor ficcional, evitar foto/interface de empresa real, ataque pessoal ou alegação falsa de notícia.",
+  "format": "Imagem única JPG 1080x1350 com 3 a 4 quadros internos; não é carrossel",
+  "media_policy": "Ilustração editorial autoral claramente identificada, sem imitar captura real; Lúmino canônico como camada original.",
+  "slides": [
+    {
+      "headline": "O MUSEU DOS CABOS SEM DONO",
+      "new_information": "CENA 1: Lúmino inaugura museu com um cabo misterioso sob vidro; CENA 2: placa diz “Encontrado em toda casa desde 2014”; CENA 3: visitante pergunta “Posso jogar fora?”; CENA 4: alarme dispara: “E SE PRECISAR DELE?”",
+      "distinct_scene": "Cena independente museu-cabos-sem-dono: Galeria fictícia com vitrines, etiquetas de inventário e fios inventados sem logotipos; Lúmino PNG original como curador.",
+      "visual_direction": "Galeria fictícia com vitrines, etiquetas de inventário e fios inventados sem logotipos; Lúmino PNG original como curador. Manter cada fala legível em tela de celular. Virada cômica no último quadro.",
+      "source_credit": "Ilustração original de cenário ficcional; PNG canônico do Lúmino sobreposto sem regeneração.",
+      "uses_original_lumino": true,
+      "position_in_story": "setup → escalation → reversal"
+    }
+  ],
+  "caption": "🗃️ Em alguma gaveta existe um cabo que não cabe em aparelho nenhum, mas que você guarda há oito anos por respeito à possibilidade. 😂 #Humor #Tecnologia #Lumino #TemUmaExplicacao",
+  "publication_requires_native_music": false
+}

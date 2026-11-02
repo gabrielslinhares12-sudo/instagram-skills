@@ -1,0 +1,76 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "id": "tue-2026-11-04-12-por-sol-azul-marte",
+  "day": "2026-11-04",
+  "slot": "12:00",
+  "series_id": "raio-x-real",
+  "kind": "carousel",
+  "topic_id": "por-sol-azul-marte",
+  "subject_id": "poeira-marciana-espalhamento-luz",
+  "title": "NO PLANETA VERMELHO O SOL SE PÕE AZUL?",
+  "hook": "NO PLANETA VERMELHO O SOL SE PÕE AZUL?",
+  "concept": "A poeira muda as regras da cor.",
+  "sources": [
+    "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/",
+    "https://science.nasa.gov/resource/sunset-sequence-in-mars-gale-crater/"
+  ],
+  "factual_caution": "O azul se concentra próximo ao Sol no entardecer marciano; não colorir todo o céu de azul. Respeitar tratamento e créditos das imagens NASA.",
+  "format": "JPEG 1080x1350 4:5 individual por lâmina",
+  "media_policy": "Fotografia documental a localizar com autorização/licença verificadas; gráficos internos originais sem fingir registro real.",
+  "slides": [
+    {
+      "headline": "MARTE TEM PÔR DO SOL AZUL?",
+      "new_information": "Registros de sondas da NASA mostram um brilho azulado próximo ao Sol durante alguns entardeceres marcianos.",
+      "distinct_scene": "Fotografia oficial da NASA do entardecer visto pelo rover Curiosity no cráter Gale; manter cores científicas.",
+      "visual_direction": "Capa com foto genuína em destaque, papel e pincel amarelo sobre bordas sem pintar a cena original.",
+      "source_credit": "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "gancho"
+    },
+    {
+      "headline": "O VERMELHO NÃO SUMIU",
+      "new_information": "Marte é conhecido pelo solo rico em óxidos de ferro, mas a cor do céu depende da forma como a luz interage com a atmosfera.",
+      "distinct_scene": "Superfície avermelhada de Marte em imagem NASA e janela recortada para o céu de entardecer.",
+      "visual_direction": "Contraste imagem de solo e atmosfera, sem fabricar fotografia híbrida apresentada como registro único.",
+      "source_credit": "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "A POEIRA FAZ A DIFERENÇA",
+      "new_information": "Partículas finas de poeira marciana dispersam a luz de modo que o azul pode permanecer mais próximo da direção do Sol.",
+      "distinct_scene": "Diagrama original de raios solares entrando em atmosfera fina com partículas suspensas.",
+      "visual_direction": "Arte de raio X transparente; Lúmino aponta caminho óptico, texto direto sem excesso de termos técnicos.",
+      "source_credit": "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "AZUL PERTO DO SOL",
+      "new_information": "Não é que todo o céu de Marte fique azul. A tonalidade se destaca na região do Sol, enquanto outras regiões tendem a tons diferentes.",
+      "distinct_scene": "Zoom sobre imagem publicada da sequência do Curiosity com anotações discretas e sem modificar balanço de cores.",
+      "visual_direction": "Setas amarelas de explicação fora do quadro fotográfico, legenda da câmera e observação SOBRE O SOL.",
+      "source_credit": "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "É UMA PISTA PARA OS CIENTISTAS",
+      "new_information": "A luminosidade ao entardecer ajuda equipes a estudar a poeira suspensa, nuvens e propriedades da atmosfera marciana.",
+      "distinct_scene": "Rover em superfície marciana com painel infográfico para a atmosfera, devidamente rotulado como montagem didática.",
+      "visual_direction": "Encerramento cinematográfico com recorte real de rover e frase curta: UMA COR, MUITAS PISTAS.",
+      "source_credit": "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "síntese"
+    }
+  ],
+  "caption": "💡 A poeira muda as regras da cor. Registros de sondas da NASA mostram um brilho azulado próximo ao Sol durante alguns entardeceres marcianos. Marte é conhecido pelo solo rico em óxidos de ferro, mas a cor do céu depende da forma como a luz interage com a atmosfera. Partículas finas de poeira marciana dispersam a luz de modo que o azul pode permanecer mais próximo da direção do Sol. Não é que todo o céu de Marte fique azul. A tonalidade se destaca na região do Sol, enquanto outras regiões tendem a tons diferentes. A luminosidade ao entardecer ajuda equipes a estudar a poeira suspensa, nuvens e propriedades da atmosfera marciana. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
+  "publication_requires_native_music": true
+}

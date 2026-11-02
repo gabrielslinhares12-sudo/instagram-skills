@@ -1,0 +1,76 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_sha256": "6d3dcdebcea7006b4f1934e74c19618951453b000aea9deb6968add55d5f0e63",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "frame_note": "O quadro define narrativa, NÃO uma nova identidade visual. Usar modelo 1 e Lúmino PNG original.",
+  "id": "tue-2026-11-06-12-lago-rosa",
+  "day": "2026-11-06",
+  "slot": "12:00",
+  "series_id": "tribunal-fenomenos",
+  "kind": "carousel",
+  "topic_id": "lago-rosa",
+  "subject_id": "microorganismos-pigmentos-lagos-salinos",
+  "title": "QUEM PINTOU ESSE LAGO DE ROSA?",
+  "hook": "QUEM PINTOU ESSE LAGO DE ROSA?",
+  "concept": "Réu: o sal. Testemunha: os micróbios.",
+  "sources": [
+    "https://pubmed.ncbi.nlm.nih.gov/36544228/",
+    "https://www.nationalgeographicbrasil.com/meio-ambiente/2025/07/misterio-por-que-os-famosos-lagos-cor-de-rosa-da-australia-estao-desaparecendo"
+  ],
+  "factual_caution": "Causa varia por lago; vários microrganismos podem contribuir. A cor pode mudar com a salinidade e condições, não é sempre permanente.",
+  "format": "JPEG 1080x1350 4:5 individual por lâmina",
+  "media_policy": "Fotografia documental a localizar com autorização/licença verificadas; gráficos internos originais sem fingir registro real.",
+  "slides": [
+    {
+      "headline": "O LAGO FOI PINTADO?",
+      "new_information": "Alguns lagos hipersalinos assumem tons rosados por processos biológicos e pigmentos de organismos adaptados ao sal.",
+      "distinct_scene": "Foto documental de lago rosa com licença e data identificadas, sem saturação artificial.",
+      "visual_direction": "Capa de investigação com selo QUEM É O RESPONSÁVEL? e Lúmino em destaque sobre margem contextual.",
+      "source_credit": "https://pubmed.ncbi.nlm.nih.gov/36544228/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "gancho"
+    },
+    {
+      "headline": "PRIMEIRA PISTA: MUITO SAL",
+      "new_information": "Salinidade elevada cria condições em que microrganismos especializados conseguem prosperar.",
+      "distinct_scene": "Salinas com bordas brancas cristalizadas em fotografia distinta da capa.",
+      "visual_direction": "Quadro de perícia com cristais de sal ampliados e ícone de prova científica.",
+      "source_credit": "https://pubmed.ncbi.nlm.nih.gov/36544228/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "SEGUNDA PISTA: PIGMENTOS",
+      "new_information": "Algumas microalgas, bactérias e arqueias produzem pigmentos que ajudam a explicar a coloração de lagos salinos.",
+      "distinct_scene": "Microscopia licenciada de Dunaliella ou ilustração fiel identificada como didática, com células em escala.",
+      "visual_direction": "Lúmino observa microrganismos por lente gigante, termos legíveis e sem representar uma espécie como causa universal.",
+      "source_credit": "https://pubmed.ncbi.nlm.nih.gov/36544228/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "UM SUSPEITO SÓ? NEM SEMPRE",
+      "new_information": "Estudo sobre o lago Hillier encontrou uma comunidade diversa de produtores de pigmentos, e não uma causa única que valha para todos os lagos.",
+      "distinct_scene": "Esquema com três grupos de microrganismos lado a lado e um pequeno mapa rotulado de lago Hillier.",
+      "visual_direction": "Tribunal visual com provas numeradas por letras não páginas, sem criar pessoas reais como personagens.",
+      "source_credit": "https://pubmed.ncbi.nlm.nih.gov/36544228/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento"
+    },
+    {
+      "headline": "VEREDITO: A COR MUDA",
+      "new_information": "A tonalidade pode variar se as condições ambientais mudarem, como salinidade e populações microbianas. Não há tinta secreta.",
+      "distinct_scene": "Comparação didática de condições diferentes com selo ILUSTRATIVO, sem fotos de datas inventadas.",
+      "visual_direction": "Fechamento de veredito em amarelo forte e imagem real de margem salina, sem impressão de coloração fixa.",
+      "source_credit": "https://pubmed.ncbi.nlm.nih.gov/36544228/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
+      "uses_original_lumino": true,
+      "position_in_story": "síntese"
+    }
+  ],
+  "caption": "💡 Réu: o sal. Testemunha: os micróbios. Alguns lagos hipersalinos assumem tons rosados por processos biológicos e pigmentos de organismos adaptados ao sal. Salinidade elevada cria condições em que microrganismos especializados conseguem prosperar. Algumas microalgas, bactérias e arqueias produzem pigmentos que ajudam a explicar a coloração de lagos salinos. Estudo sobre o lago Hillier encontrou uma comunidade diversa de produtores de pigmentos, e não uma causa única que valha para todos os lagos. A tonalidade pode variar se as condições ambientais mudarem, como salinidade e populações microbianas. Não há tinta secreta. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
+  "publication_requires_native_music": true
+}
