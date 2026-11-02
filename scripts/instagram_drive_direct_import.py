@@ -141,8 +141,14 @@ def validate_media(path: Path):
                                 "-show_format", "-of", "json", str(path)],
                                capture_output=True, text=True, timeout=30, check=True)
         details = json.loads(check.stdout)
+    except FileNotFoundError as exc:
+        raise ImportErrorSafe("ffprobe_binary_missing") from exc
+    except subprocess.TimeoutExpired as exc:
+        raise ImportErrorSafe("ffprobe_timeout") from exc
+    except subprocess.CalledProcessError as exc:
+        raise ImportErrorSafe("ffprobe_exit_" + str(exc.returncode)) from exc
     except (OSError, ValueError, subprocess.SubprocessError) as exc:
-        raise ImportErrorSafe("ffprobe_validation_failed") from exc
+        raise ImportErrorSafe("ffprobe_invalid_response_" + type(exc).__name__) from exc
     streams = details.get("streams") or []
     v = next((s for s in streams if s.get("codec_type") == "video"), None)
     a = next((s for s in streams if s.get("codec_type") == "audio"), None)
