@@ -1,5 +1,17 @@
 # TUE-MESTRE-01 — PADRÃO ORIGINAL LÚMINO
 
+## Referência visual oficial e única (aprovada pelo proprietário em 02/11/2026)
+
+![Imagem-mestre TUE-MESTRE-01](REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg)
+
+**Esta é a referência estética real para TODOS os conteúdos Instagram TUE, substituindo as versões anteriores.** O arquivo original é `content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg`, SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`. Não confundir a referência com o tema dos votos: cada novo post deve ter assunto próprio e verificado.
+
+- **Hierarquia:** manchetes enormes condensadas pretas, pinceladas amarelas irregulares, acentos vermelhos fortes porém pontuais, texto auxiliar legível e editorial; elementos fotografados/ilustrados com iluminação, profundidade e integração.
+- **Lúmino:** grande e protagonizando a cena, com lanterna de vidro, lâmpada interna, olhos ciano, óculos e sobretudo cáqui; compor o PNG canônico, nunca recriar ou transformar em adesivo.
+- **Carrossel:** somente as lâminas necessárias ao assunto, cada uma tão caprichada quanto a capa. No rodapé claro, o mesmo indicador do modelo: pequenos pontos de progresso dinâmicos (ponto ativo amarelo, demais cinza), seta preta fina e `ARRASTE PARA O LADO →` pequeno, espaçado. Sem botão, tarja ou selo amarelo grande; sem números ou frações. Na última lâmina, não indicar avanço inexistente.
+- **Post único:** mesma direção artística, porém sem pontos nem chamada para arrastar. Stories vinculados seguem compartilhamento nativo do post com chamada apenas em TEXTO, sem narração e sem sticker de link.
+- **Aprovação:** novo arquivo final só pode ser considerado conforme após comparar visualmente com esta imagem original. Um teste de hash apenas verifica o arquivo de referência, não a qualidade da nova arte.
+
 > **IMAGEM-MESTRE VISUAL CANÔNICA aprovada em 02/11/2026:** [**Imagem oficial aprovada em 02/11/2026**](modelo-oficial-aprovado-2026-11-02.png), SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`.
 >
 > Toda arte do Instagram TUE deve seguir essa EXATA referência estética — não confundir com uma imagem-modelo antiga de oito painéis. O tema eleitoral é apenas demonstrativo, não deve ser copiado como pauta.
