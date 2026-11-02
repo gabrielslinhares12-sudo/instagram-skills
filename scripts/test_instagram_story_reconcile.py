@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression: native Story linkages never fabricate posting or audio."""
+"""Regression: native Story linkages never fabricate posting or a text overlay."""
 from __future__ import annotations
 import copy
 import unittest
@@ -18,11 +18,12 @@ class StoryReconcileTests(unittest.TestCase):
             "story_created": False,
             "story_published": False,
             "story_media_id": None,
-            "voiceover_created": False,
-            "spoken_cta_verified": False,
+            "text_cta_visible_verified": False,
+            "no_external_link_sticker": True,
             "status": "awaiting_parent_publication",
         }
-        self.doc = {"native_share_required": True, "spoken_cta_text": CTA,
+        self.doc = {"native_share_required": True, "text_cta": CTA,
+                    "text_cta_required": True, "no_external_link_or_link_sticker": True,
                     "entries": [self.entry]}
         self.ledger = {"items": {self.actual_id: {
             "status": "published", "media_id": "18131786309499353",
@@ -39,7 +40,7 @@ class StoryReconcileTests(unittest.TestCase):
         self.assertFalse(e["story_created"])
         self.assertFalse(e["story_published"])
         self.assertIsNone(e["story_media_id"])
-        self.assertEqual(e["status"], "awaiting_native_app_share_with_spoken_cta")
+        self.assertEqual(e["status"], "awaiting_native_app_share_with_text_cta")
         self.assertFalse(self.entry["parent_published"])
 
     def test_without_verified_permalink_no_false_native_story_state(self):
