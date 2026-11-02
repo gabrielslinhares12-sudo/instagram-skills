@@ -1,0 +1,38 @@
+name: Instagram TUE - DuoPlus cloud Android sem publicar
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/instagram_duoplus_readiness.py'
+      - 'scripts/test_instagram_duoplus_readiness.py'
+      - '.github/workflows/instagram-duoplus-readiness.yml'
+permissions:
+  contents: read
+concurrency:
+  group: instagram-duoplus-readonly
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Testes de seguranca sem conta
+        run: python3 -m unittest discover -s scripts -p 'test_instagram_duoplus_readiness.py' -v
+  remote_check:
+    if: github.event_name == 'workflow_dispatch'
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Consultar APENAS dispositivo escolhido
+        env:
+          DUOPLUS_API_KEY: ${{ secrets.DUOPLUS_API_KEY }}
+          DUOPLUS_PHONE_ID: ${{ vars.DUOPLUS_PHONE_ID }}
+        run: python3 scripts/instagram_duoplus_readiness.py
