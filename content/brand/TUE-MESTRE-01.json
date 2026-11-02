@@ -57,13 +57,15 @@
     "reel": "requires actual MP4 and voice Rasalgethi via Google AI Studio when narration is required",
     "daily_reel_stories": {
       "required": true,
-      "after_confirmed_reel": true,
-      "one_story_per_reel": true,
-      "story_format": "9:16 — original licensed video or edited story preview with actual CTA overlay",
-      "cta": "💡 Curtiu? Veja o Reel no nosso perfil e deixe seu ❤️!",
+      "applies_to_every_feed_and_reel_post": true,
+      "after_confirmed_post": true,
+      "one_story_per_parent_post": true,
+      "native_repost_only": true,
+      "requires_spoken_cta": true,
+      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "requires_parent_media_id_and_permalink": true,
       "requires_story_receipt": true,
-      "do_not_claim_native_reel_share_via_api": true,
-      "do_not_publish_if_source_unverified": true
+      "fallback": "blocked_pending_native_share_if_unavailable"
     },
     "ai_disclosure": {
       "rule": "NUNCA acrescentar voluntariamente selo ou texto atribuindo autoria a IA nos posts do Instagram TUE.",
@@ -74,6 +76,34 @@
       "origin_unverified": "BLOQUEAR a publicação automática.",
       "platform_applied_label": "O Instagram pode aplicar seus próprios rótulos mesmo sem declaração do publicador; não prometer remoção ou alterar metadados para contornar a plataforma.",
       "historical_publications": "Preservar registros e aprovações históricas; aplicar a nova trava a publicações previstas a partir de 2026-11-02T00:00:00Z."
+    },
+    "story_reshare": {
+      "required_for": [
+        "carousel",
+        "single_post",
+        "meme",
+        "reel"
+      ],
+      "applies_to_feed_slots": [
+        "12:00",
+        "18:00"
+      ],
+      "applies_to_reel_slot": "21:00",
+      "creation_trigger": "AFTER verified publication of the original Instagram post: must have media_id and public permalink",
+      "one_story_per_confirmed_post": true,
+      "type": "native_share_original_instagram_post_to_story",
+      "requires_native_tappable_original_post": true,
+      "never_generate_independent_story_image_or_video": true,
+      "do_not_prepare_story_media_before_source_publication": true,
+      "preserve_original_post_preview": true,
+      "spoken_cta_text": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
+      "spoken_cta_required": true,
+      "voice_profile": "Rasalgethi quando houver áudio sintetizado autorizado; não desenhar boca no Lúmino",
+      "if_voiceover_unavailable_in_native_share": "BLOCK story as incomplete; do not substitute a separate standalone story",
+      "source_verified_against_instagram": true,
+      "requires_story_receipt": true,
+      "confirmation": "post media_id + permalink; native reshare evidence + story id or authenticated visual proof",
+      "independence_exception": "Story is the only allowed duplicate of the post because it is a linked repost, not a second feed post"
     }
   },
   "production": {
@@ -104,6 +134,9 @@
     "feed_format_rotation": true,
     "carrossel_educativo_is_optional_rotating_series": true,
     "daily_reel_from_owned_youtube": true,
-    "no_topic_duplication_across_all_three_daily_posts": true
+    "no_topic_duplication_across_all_three_daily_posts": true,
+    "stories_per_day_planned": 3,
+    "stories_are_reposts_after_real_publications": true,
+    "stories_do_not_count_as_independent_daily_topics": true
   }
 }
