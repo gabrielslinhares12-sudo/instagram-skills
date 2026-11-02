@@ -47,6 +47,21 @@ class LinkedNativeStoryTests(unittest.TestCase):
                      native_original_post_tappable_verified=True)
         self.assertEqual(verify_linked_stories(self.feed,self.reels,broken)["stories_published"],1)
 
+    def test_visible_text_is_required_no_voice(self):
+        broken=copy.deepcopy(self.stories)
+        entry=broken["entries"][0]
+        entry.update(parent_published=True, source_verified_by_official_receipt=True,
+                     parent_media_id="18114706189871027",
+                     parent_permalink="https://www.instagram.com/p/EXAMPLE/",
+                     story_created=True,story_published=True,
+                     native_original_post_tappable_verified=True,
+                     story_media_id="1234567",
+                     text_cta_visible_verified=False)
+        with self.assertRaisesRegex(StoryGateError, "texto"):
+            verify_linked_stories(self.feed,self.reels,broken)
+        entry["text_cta_visible_verified"]=True
+        self.assertEqual(verify_linked_stories(self.feed,self.reels,broken)["stories_published"],1)
+
     def test_external_link_sticker_is_forbidden(self):
         broken=copy.deepcopy(self.stories)
         broken["entries"][1]["external_link_sticker"]="https://example.org/"
