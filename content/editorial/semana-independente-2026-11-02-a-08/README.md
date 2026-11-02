@@ -2,13 +2,13 @@
 
 **TUE-MESTRE-01 obrigatório.** Fonte de verdade do planejamento: [grade.json](grade.json).
 
-Esta grade é composta por **14 postagens independentes**, não sete duplas. O post das 18h **NÃO** tem relação temática com o das 12h. A série serve de enquadramento criativo, não de vínculo de roteiro.
+Esta grade é composta por **14 postagens independentes**, não sete duplas. O post das 15h **NÃO** tem relação temática com o das 11h. A série serve de enquadramento criativo, não de vínculo de roteiro.
 
-## Grade oficial revisada — 02 a 08 de novembro (America/Sao_Paulo)
+## Grade oficial revisada — 11h, 15h e 18h — 02 a 08 de novembro (America/Sao_Paulo)
 
 **Os horários abaixo foram confirmados com os campos `slot` de `grade.json`; os nomes dos arquivos de briefing são identificadores históricos e NÃO determinam a hora.**
 
-| Data | 12h — quadro | 18h — quadro | 21h |
+| Data | 11h — quadro | 15h — quadro | 18h |
 |---|---|---|---|
 | 02/11 | Carrossel: **O mar virou um tabuleiro?** — Parece Mentira | Tirinha: **SAC da Senha Impossível** | Reel do YouTube PT ainda sem MP4 verificado |
 | 03/11 | Tirinha: **Urgente: reunião cria mais reuniões** — Plantão do Absurdo | Carrossel: **O Atacama virou jardim?** — Arquivo Improvável | Reel do YouTube PT ainda sem MP4 verificado |
@@ -18,7 +18,7 @@ Esta grade é composta por **14 postagens independentes**, não sete duplas. O p
 | 07/11 | Carrossel: **O OVNI parado no céu?** — Parece Mentira | Tirinha: **A cadeira pediu demissão** — RH do Caos | Reel do YouTube PT ainda sem MP4 verificado |
 | 08/11 | Carrossel: **O céu pegou fogo?** — A Luz Não Mente | Tirinha: **SAC do despertador ofendido** | Reel do YouTube PT ainda sem MP4 verificado |
 
-**Stories:** um compartilhamento nativo do post original + chamada falada para curtir e seguir, **somente após** recibo real do post das 12h, 18h e 21h; não produzir Story independente.
+**Stories:** um compartilhamento nativo do post original + chamada falada para curtir e seguir, **somente após** recibo real do post das 11h, 15h e 18h; não produzir Story independente.
 
 **Resolução:** criar mestre 4:5 de **3240×4050** quando a origem permitir, preservando detalhes, textos e Lúmino canônico. Exportar também JPEG **1080×1350** para o Instagram. Escalar uma ilustração menor para 3240×4050 **não equivale a adicionar detalhes 4K reais**. Todas as 14 postagens seguem o modelo 1; alto contraste, papel claro, pincel amarelo, preto e vermelho, cenas distintas, texto legível, nenhuma numeração visível e fonte da mídia documentada.
 
