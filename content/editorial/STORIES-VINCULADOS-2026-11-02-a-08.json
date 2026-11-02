@@ -43,10 +43,10 @@
       "slot": "15:00",
       "parent_topic_id": "senha-impossivel",
       "native_share_method": "share_existing_instagram_post_to_story",
-      "parent_published": false,
-      "parent_media_id": null,
-      "parent_permalink": null,
-      "source_verified_by_official_receipt": false,
+      "parent_published": true,
+      "parent_media_id": "18131786309499353",
+      "parent_permalink": "https://www.instagram.com/p/DfPx0n4mvIB/",
+      "source_verified_by_official_receipt": true,
       "story_created": false,
       "story_published": false,
       "story_media_id": null,
@@ -55,7 +55,9 @@
       "voiceover_created": false,
       "voiceover_asset": null,
       "spoken_cta_verified": false,
-      "status": "awaiting_parent_publication"
+      "status": "awaiting_native_app_share_with_spoken_cta",
+      "actual_published_parent_id": "tue-2026-11-02-15-senha-impossivel",
+      "parent_receipt_media_id": "18131786309499353"
     },
     {
       "parent_id": "tue-2026-11-02-18-youtube-reel",
