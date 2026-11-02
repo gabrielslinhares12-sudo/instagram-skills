@@ -1,7 +1,7 @@
 {
   "version": 1,
   "preset_id": "TUE-MESTRE-01",
-  "status": "draft_review_no_publication",
+  "status": "2026-11-02_REEL_PUBLISHED_PLUS_FOUR_DRAFTS_ORIGINALS_VERIFIED_TWO_SOURCES_PENDING",
   "timezone": "America/Sao_Paulo",
   "purpose": "Fila de sete Reels do YouTube TUE em português. A republicação nativa nos Stories só é criada após confirmação de cada Reel. Todos os quadros de feed também terão seu Story associado.",
   "schedule": {
@@ -105,10 +105,10 @@
       "day": "2026-11-03",
       "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
-      "source_video_id": null,
+      "source_video_id": "OlUMyBWiZDQ",
       "source_mp4": null,
-      "source_verified": false,
-      "topic_id": null,
+      "source_verified": true,
+      "topic_id": "origem-do-sal-marinho",
       "reel_media_id": null,
       "reel_published": false,
       "story_media_id": null,
@@ -124,16 +124,41 @@
       "story_status": "awaiting_source_publication",
       "story_text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "story_text_cta_verified": false,
-      "story_no_external_link_sticker": true
+      "story_no_external_link_sticker": true,
+      "source_video_url": "https://www.youtube.com/shorts/OlUMyBWiZDQ",
+      "source_video_title": "De onde vem todo o sal do mar?",
+      "download_status": "ORIGINAL_MP4_VERIFIED_DRIVE_PRIVATE_HOSTING_REQUIRED",
+      "source_selection_status": "source_integrity_verified_and_private_drive_copy_confirmed",
+      "original_media_record": {
+        "youtube_id": "OlUMyBWiZDQ",
+        "archived_filename": "02-OlUMyBWiZDQ-original.mp4",
+        "drive_file_id": "1jgT5d9yGtX0W9G37Zo4Bzdv3VrzacE6d",
+        "drive_file_url": "https://drive.google.com/file/d/1jgT5d9yGtX0W9G37Zo4Bzdv3VrzacE6d/view",
+        "sha256": "20fae81be736cf10c27ef4576ef389825ca57e7cf0d3bd9bf4e3a839c43a8241",
+        "bytes": 62368201,
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 50.5,
+        "ffprobe_verified": true,
+        "public_meta_media_url_verified": false
+      },
+      "caption_draft": "🌊 O mar sempre foi salgado? De onde vem tanto sal?\n\nUma pista está nas rochas e na água dos rios, que carregam substâncias dissolvidas ao longo do tempo. E o oceano tem mais histórias para contar.\n\nVocê já tinha pensado nisso? Siga @temumaexplicacao para descobrir outras curiosidades reais.\n\n#TemUmaExplicacao #Curiosidades #Oceanos #Ciencia #Natureza",
+      "caption_hashtags": [
+        "#TemUmaExplicacao",
+        "#Curiosidades",
+        "#Oceanos",
+        "#Ciencia",
+        "#Natureza"
+      ]
     },
     {
       "day": "2026-11-04",
       "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
-      "source_video_id": null,
+      "source_video_id": "-yht5idVJL4",
       "source_mp4": null,
-      "source_verified": false,
-      "topic_id": null,
+      "source_verified": true,
+      "topic_id": "caes-sacodem-pelo-molhado",
       "reel_media_id": null,
       "reel_published": false,
       "story_media_id": null,
@@ -149,16 +174,41 @@
       "story_status": "awaiting_source_publication",
       "story_text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "story_text_cta_verified": false,
-      "story_no_external_link_sticker": true
+      "story_no_external_link_sticker": true,
+      "source_video_url": "https://www.youtube.com/shorts/-yht5idVJL4",
+      "source_video_title": "Por que os cães se sacodem quando estão molhados?",
+      "download_status": "ORIGINAL_MP4_VERIFIED_DRIVE_PRIVATE_HOSTING_REQUIRED",
+      "source_selection_status": "source_integrity_verified_and_private_drive_copy_confirmed",
+      "original_media_record": {
+        "youtube_id": "-yht5idVJL4",
+        "archived_filename": "03--yht5idVJL4-original.mp4",
+        "drive_file_id": "1-xDNJksVyMNB6ZzqTH_RimFEy_663akZ",
+        "drive_file_url": "https://drive.google.com/file/d/1-xDNJksVyMNB6ZzqTH_RimFEy_663akZ/view",
+        "sha256": "ef7acfe9ce97ad93cb84e93fc7264962e9aaebbf28c449f638706bc6f12a659c",
+        "bytes": 43665991,
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 55.2,
+        "ffprobe_verified": true,
+        "public_meta_media_url_verified": false
+      },
+      "caption_draft": "🐶 Um cachorro molhado pode transformar todo mundo ao redor em plateia de um banho inesperado.\n\nMas aquele sacode rápido tem uma função: ajuda a expulsar a água presa no pelo.\n\nSeu cachorro já fez isso do seu lado? Conta aqui! Siga @temumaexplicacao para mais descobertas.\n\n#TemUmaExplicacao #Cachorros #ComportamentoAnimal #CuriosidadesAnimais #Ciencia",
+      "caption_hashtags": [
+        "#TemUmaExplicacao",
+        "#Cachorros",
+        "#ComportamentoAnimal",
+        "#CuriosidadesAnimais",
+        "#Ciencia"
+      ]
     },
     {
       "day": "2026-11-05",
       "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
-      "source_video_id": null,
+      "source_video_id": "iokOqOzC1Yg",
       "source_mp4": null,
-      "source_verified": false,
-      "topic_id": null,
+      "source_verified": true,
+      "topic_id": "furacao-milton-intensificacao",
       "reel_media_id": null,
       "reel_published": false,
       "story_media_id": null,
@@ -174,16 +224,41 @@
       "story_status": "awaiting_source_publication",
       "story_text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "story_text_cta_verified": false,
-      "story_no_external_link_sticker": true
+      "story_no_external_link_sticker": true,
+      "source_video_url": "https://www.youtube.com/shorts/iokOqOzC1Yg",
+      "source_video_title": "O furacão que atingiu a categoria 5",
+      "download_status": "ORIGINAL_MP4_VERIFIED_DRIVE_PRIVATE_HOSTING_REQUIRED",
+      "source_selection_status": "source_integrity_verified_and_private_drive_copy_confirmed",
+      "original_media_record": {
+        "youtube_id": "iokOqOzC1Yg",
+        "archived_filename": "04-iokOqOzC1Yg-original.mp4",
+        "drive_file_id": "1_wAARisfsnr4GofUNv3p4eGAWTiHWNox",
+        "drive_file_url": "https://drive.google.com/file/d/1_wAARisfsnr4GofUNv3p4eGAWTiHWNox/view",
+        "sha256": "c1f8ef7f712ec92b503ba0f622504937d834459aac856e7b09e50f6c27633d0b",
+        "bytes": 35742382,
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 75.98,
+        "ffprobe_verified": true,
+        "public_meta_media_url_verified": false
+      },
+      "caption_draft": "🌀 Como um furacão pode ficar tão intenso?\n\nO Milton chamou a atenção pela rapidez com que ganhou força no Atlântico em 2024. Temperatura do oceano, umidade e condições atmosféricas ajudam a explicar a intensificação — mas cada tempestade tem sua própria história.\n\nSiga @temumaexplicacao para entender fenômenos impressionantes com ciência.\n\n#TemUmaExplicacao #FuracaoMilton #Meteorologia #FenomenosNaturais #Ciencia",
+      "caption_hashtags": [
+        "#TemUmaExplicacao",
+        "#FuracaoMilton",
+        "#Meteorologia",
+        "#FenomenosNaturais",
+        "#Ciencia"
+      ]
     },
     {
       "day": "2026-11-06",
       "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
-      "source_video_id": null,
+      "source_video_id": "Tjkk1WtLhBI",
       "source_mp4": null,
-      "source_verified": false,
-      "topic_id": null,
+      "source_verified": true,
+      "topic_id": "oscilacao-edificios-vento",
       "reel_media_id": null,
       "reel_published": false,
       "story_media_id": null,
@@ -199,7 +274,32 @@
       "story_status": "awaiting_source_publication",
       "story_text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "story_text_cta_verified": false,
-      "story_no_external_link_sticker": true
+      "story_no_external_link_sticker": true,
+      "source_video_url": "https://www.youtube.com/shorts/Tjkk1WtLhBI",
+      "source_video_title": "Por que prédios altos balançam?",
+      "download_status": "ORIGINAL_MP4_VERIFIED_DRIVE_PRIVATE_HOSTING_REQUIRED",
+      "source_selection_status": "source_integrity_verified_and_private_drive_copy_confirmed",
+      "original_media_record": {
+        "youtube_id": "Tjkk1WtLhBI",
+        "archived_filename": "06-Tjkk1WtLhBI-original.mp4",
+        "drive_file_id": "1eMbwCIfCcy7Pi0KPA9nLK8NvMKCDZEZ5",
+        "drive_file_url": "https://drive.google.com/file/d/1eMbwCIfCcy7Pi0KPA9nLK8NvMKCDZEZ5/view",
+        "sha256": "b1c1c4f24b500f3aff439551d5e41c5786af9a72664e3c7f4ac29bceaee935e7",
+        "bytes": 40532889,
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 54.13,
+        "ffprobe_verified": true,
+        "public_meta_media_url_verified": false
+      },
+      "caption_draft": "🏙️ Um arranha-céu pode se mover mesmo sem ninguém perceber?\n\nPrédios altos são projetados para responder às forças do vento. Uma pequena oscilação controlada pode fazer parte do comportamento esperado da estrutura.\n\nOlhe para os edifícios de outro jeito. Siga @temumaexplicacao para mais ciência no cotidiano.\n\n#TemUmaExplicacao #EngenhariaCivil #ArranhaCeus #Curiosidades #Ciencia",
+      "caption_hashtags": [
+        "#TemUmaExplicacao",
+        "#EngenhariaCivil",
+        "#ArranhaCeus",
+        "#Curiosidades",
+        "#Ciencia"
+      ]
     },
     {
       "day": "2026-11-07",
@@ -224,7 +324,8 @@
       "story_status": "awaiting_source_publication",
       "story_text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "story_text_cta_verified": false,
-      "story_no_external_link_sticker": true
+      "story_no_external_link_sticker": true,
+      "source_selection_status": "BLOCKED_NO_ADDITIONAL_VERIFIED_MP4_WITHOUT_GUTHY"
     },
     {
       "day": "2026-11-08",
@@ -249,10 +350,11 @@
       "story_status": "awaiting_source_publication",
       "story_text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "story_text_cta_verified": false,
-      "story_no_external_link_sticker": true
+      "story_no_external_link_sticker": true,
+      "source_selection_status": "BLOCKED_NO_ADDITIONAL_VERIFIED_MP4_WITHOUT_GUTHY"
     }
   ],
-  "note": "Arquivo de planejamento. O Story nunca é uma imagem ou vídeo gerado de antemão; precisa do Reel já publicado, de permalink/ID oficiais e do compartilhamento nativo com chamada exclusivamente escrita, sem narração, sem link externo e com o post original tocável. Feed: ver STORIES-VINCULADOS-2026-11-02-a-08.json.",
+  "note": "O Reel de 02/11 foi publicado com recibo Meta. Quatro originais extras foram verificados e estão no Drive privado para 03-06/11, mas requerem URL pública de mídia e QC; manter approved=false. Para 07-08/11 faltam novos MP4s independentes. Nenhuma nova publicação automática é liberada por este plano.",
   "ai_label_by_publisher": false,
   "synthetic_content_autopublish_allowed": false
 }
