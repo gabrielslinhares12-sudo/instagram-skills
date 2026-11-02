@@ -3,7 +3,7 @@
 import copy
 import unittest
 from instagram_preset_mestre import (
-    IDENTITY, REFERENCE_SHA, LUMINO_SHA, PresetError,
+    IDENTITY, LUMINO_SHA, PresetError,
     check_brief, check_release, verify
 )
 
@@ -12,7 +12,7 @@ class MasterPresetTests(unittest.TestCase):
     def setUp(self):
         self.preset = verify()
         self.brief = {
-            "preset_id": IDENTITY, "reference_sha256": REFERENCE_SHA,
+            "preset_id": IDENTITY, "reference_standard_id": IDENTITY,
             "lumino_sha256": LUMINO_SHA,
             "status": "draft_review_no_publication", "approved": False,
             "kind": "carousel", "sources": ["TSE: exemplo verificado"],
@@ -59,7 +59,7 @@ class MasterPresetTests(unittest.TestCase):
             check_release({"preset_id": IDENTITY})
 
     def test_release_requires_quality_on_all_screens(self):
-        qc = {"reference_sha256": REFERENCE_SHA, "reviewer_note": "Comparei cada lâmina com o modelo 1 e qualidade visual interna."}
+        qc = {"reference_standard_id": IDENTITY, "reviewer_note": "Comparei cada lâmina com o modelo 1 e qualidade visual interna."}
         qc.update({v: True for v in (
             "cover_matches_model_1","inner_pages_match_cover_quality",
             "original_lumino_visually_confirmed","all_text_readable",
