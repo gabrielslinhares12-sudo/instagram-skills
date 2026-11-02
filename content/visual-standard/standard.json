@@ -49,7 +49,7 @@
   ],
   "visual_review_is_manual": true,
   "publication_requires_explicit_owner_authorization": true,
-  "reference_for_style_only": "TUE-MESTRE-01 é o contrato editorial. Não usar colagem ou exemplo de oito painéis como modelo; identidade visual preservada pelo Lúmino original e regras do preset.",
+  "reference_for_style_only": "Imagem oficial única do usuário de 02/11/2026 (content/brand/modelo-oficial-aprovado-2026-11-02.png) como REFERÊNCIA ESTÉTICA; não é um modelo fixo de número de páginas nem autoriza copiar o conteúdo eleitoral.",
   "editorial_contract": {
     "id": "TUE-MESTRE-01",
     "path": "content/brand/TUE-MESTRE-01.md",
@@ -61,9 +61,27 @@
     "label": "Arraste →",
     "required": true,
     "on": "all_except_last",
-    "position": "bottom_right",
+    "position": "bottom_center",
     "no_page_numbers": true,
     "avoid_mascot_and_text": true,
-    "verify_manually": true
+    "verify_manually": true,
+    "display_text": "ARRASTE PARA O LADO →",
+    "progress_dots": true,
+    "active_dot": "#F6B900",
+    "inactive_dots": "#BFC1C3",
+    "dot_count_dynamic": true,
+    "thin_right_arrow": true,
+    "no_colored_badge": true,
+    "text_is_small_letter_spaced": true,
+    "last_slide_has_no_forward_arrow": true,
+    "example_reference": "content/brand/modelo-oficial-aprovado-2026-11-02.png"
+  },
+  "approved_visual_master": {
+    "path": "content/brand/modelo-oficial-aprovado-2026-11-02.png",
+    "sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+    "width": 1229,
+    "height": 1536,
+    "required": true,
+    "applies_to": "todos os formatos Instagram TUE"
   }
 }
