@@ -34,7 +34,7 @@ MAX_POSTS = 366
 MAX_LATENESS = timedelta(hours=2)
 ITEM_FIELDS = frozenset({
     "id", "due_at", "username", "kind", "target_url", "caption", "media_urls", "approved",
-    "is_ai_generated", "ai_origin", "cover_url", "media_sha256", "title", "sources", "approval_note",
+    "is_ai_generated", "ai_origin", "content_style", "ai_disclosure_review", "cover_url", "media_sha256", "title", "sources", "approval_note",
     "distribution_mode", "owner_authorized_without_music", "owner_authorized_two_step_music",
     "private_api_authorized", "music_track", "music_artist",
 })
@@ -177,8 +177,17 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
         # nos novos uploads. Se a declaração for necessária, bloquear em vez
         # de publicá-los sem a identificação exigida. Itens antigos preservados.
         if item["approved"] and due >= datetime(2026, 11, 2, tzinfo=timezone.utc):
-            if origin != "verified_non_synthetic":
-                raise QueueError("New Instagram posts require verified non-synthetic provenance; synthetic or unknown content stays in review.")
+            # Meta requires disclosure for certain realistic synthetic video/audio,
+            # while for clearly illustrative still images self-disclosure via
+            # is_ai_generated is optional. Keep synthetic provenance truthfully
+            # in the private queue and let Meta apply its own labels if detected.
+            illustrated_still = (
+                origin == "synthetic" and kind in {"post", "carousel"}
+                and item.get("content_style") == "clearly_illustrated"
+                and item.get("ai_disclosure_review") == "no_mandatory_self_disclosure_for_stylized_still"
+            )
+            if origin != "verified_non_synthetic" and not illustrated_still:
+                raise QueueError("New posts need verified provenance; synthetic media must have an approved, nondeceptive still-image exception or remain in review.")
             if "is_ai_generated" in item:
                 raise QueueError("New Instagram posts must not add the optional AI marker.")
             if re.search(r"(?i)(feito\s+(?:por|com)\s+(?:i\.?a\.?|intelig[eê]ncia\s+artificial)|made\s+with\s+ai|ai[ -]*generated|#feito(?:por|com)ia)", caption):
