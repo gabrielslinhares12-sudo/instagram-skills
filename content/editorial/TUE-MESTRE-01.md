@@ -1,5 +1,9 @@
 # TUE-MESTRE-01 — contrato editorial e visual do Instagram TUE
 
+## REFERÊNCIA VISUAL PRINCIPAL — APROVADA 02/11/2026
+
+Usar **sempre** a imagem-mestre exata `content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg` (hash SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`). A composição sobre 51% dos votos é SOMENTE uma referência de estética, não uma pauta para repetir. Exigir manchete preta condensada, pincelada amarela, acentos vermelhos, cena com profundidade, Lúmino original grande e presente. Carrossel: rodapé central discreto com bolinhas de progresso dinâmicas, seta fina e `ARRASTE PARA O LADO →` pequeno; sem tarja amarela, botão, número de página ou padrão de oito painéis; última lâmina sem seta. No Story: compartilhar nativamente o próprio post e incluir texto; sem voz e sem link adicional. Comparação humana de cada arte final é obrigatória.
+
 > **REFERÊNCIA VISUAL ÚNICA APROVADA EM 02/11/2026:** [imagem do proprietário](../brand/modelo-oficial-aprovado-2026-11-02.png), SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`. Aplicar a toda produção do Instagram TUE; não substituir por capas inventadas, painéis genéricos nem ilustrações abstratas.
 
 **Direção artística:** papel off-white, fundo contextual com profundidade, manchete ultracondensada preta na pincelada amarela, detalhes vermelhos, Lúmino dourado de grande presença, iluminação quente, informações fáceis de ler e pequena tarja preta de explicação quando útil. **Rodapé dos carrosséis:** pequenas bolinhas amarelas/cinzas indicando progresso, seta fina e `ARRASTE PARA O LADO →` em letra pequena espaçada, igual à imagem. Não criar botão/etiqueta de arrastar nem usar contagens como 1/5. Na última lâmina, sem seta de continuação. Não reutilizar a pauta eleitoral: ela ilustra o DESIGN, não o tema obrigatório.
