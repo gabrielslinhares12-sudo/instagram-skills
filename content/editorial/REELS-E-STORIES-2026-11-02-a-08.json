@@ -19,7 +19,6 @@
     "parent_media_id_required": true,
     "parent_permalink_required": true,
     "separate_new_story_art_forbidden": true,
-    "spoken_cta_required": false,
     "keep_native_tappable_parent_post_preview": true,
     "publish_only_after_original_receipt": true,
     "text_cta_required": true,
