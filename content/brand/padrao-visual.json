@@ -40,7 +40,8 @@
     "swipe_cue_on_nonfinal_carousel_slides": true,
     "no_forward_cue_on_last_slide": true,
     "swipe_cue_placement": "canto inferior direito, legível no celular, margem de segurança e sem sobrepor conteúdo",
-    "swipe_cue_style": "tipografia editorial compacta, sobre pincelada amarela ou contraste suave; sem numeração"
+    "swipe_cue_style": "Apenas 'Arraste →' pequeno, sobre pincelada amarela integrada ao layout aprovado; sem novo card, botão ou selo chamativo",
+    "swipe_cue_must_preserve_approved_art": true
   },
   "forbidden": [
     "fundos escuros genericos no lugar do papel claro",
@@ -50,7 +51,8 @@
     "colagem 2x4 entregue como carrossel",
     "imagem de referência de oito painéis usada como template obrigatório",
     "mudança de assunto no lugar de correção pontual do Lúmino",
-    "regenerar personagem em vez de compor o PNG canônico"
+    "regenerar personagem em vez de compor o PNG canônico",
+    "selos gigantes de arraste, ícones de mão, moldura azul ou mudança da composição aprovada apenas para adicionar aviso"
   ],
   "release": {
     "approval_required": true,
