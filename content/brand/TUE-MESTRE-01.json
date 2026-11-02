@@ -37,7 +37,34 @@
     "require_contextual_source_and_rights": true,
     "never_reuse_photo_repeatedly_to_fill_pages": true,
     "approved_visual_direction": "artes revistas aprovadas pelo usuário na conversa em 02/11/2026: cinema editorial quente, amarelo/preto/vermelho, texto exato, cenas ilustrativas claras, alto contraste e qualidade uniforme",
-    "original_lumino_must_be_composited_not_regenerated": true
+    "original_lumino_must_be_composited_not_regenerated": true,
+    "finalization_lock": {
+      "policy": "A imagem aprovada é a ARTE-MESTRE, não um conceito para reconstrução.",
+      "preserve_approved_composition": true,
+      "never_rebuild_approved_art_from_crops_boxes_or_flat_backgrounds": true,
+      "never_replace_scenic_panels_with_plain_color_cards": true,
+      "never_shrink_original_lumino_to_sticker": true,
+      "never_replace_integrated_dialogue_with_generic_overlay_text_boxes": true,
+      "preserve_scene_lighting_depth_framing_humor_visual_rhythm": true,
+      "allowed_operations_without_new_approval": [
+        "lossless export",
+        "same-aspect-ratio resize",
+        "color-managed conversion with negligible difference"
+      ],
+      "changes_requiring_new_visual_approval": [
+        "altering panel layout",
+        "replacing a character",
+        "editing dialogue positions",
+        "crop",
+        "redesigning visual backgrounds",
+        "adding or removing graphic elements"
+      ],
+      "canonical_mascot": "If approved art includes a noncanonical mascot, make a targeted local correction and request new visual approval. Never redesign the canvas.",
+      "quality_check": "Compare the delivered final against the approved full image with scripts/instagram_preserve_approved_art.py; block substantial alteration until a new approved master exists.",
+      "manual_visual_review_always_required": true,
+      "resolution_rule": "3240x4050 upscaling does not prove greater detail or fidelity.",
+      "incident_2026_11_03": "First cinematic newsroom comic was recropped/recomposed into simplified panels; reconstructed version rejected."
+    }
   },
   "format": {
     "carousel": "JPEG individual 1080x1350 4:5",
@@ -144,6 +171,8 @@
     "stories_are_reposts_after_real_publications": true,
     "stories_do_not_count_as_independent_daily_topics": true,
     "timezone": "America/Sao_Paulo",
-    "schedule_updated_at": "2026-11-02"
+    "schedule_updated_at": "2026-11-02",
+    "approved_visual_is_final_source": true,
+    "reconstructing_approved_art_is_prohibited": true
   }
 }
