@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "preset_id": "TUE-MESTRE-01",
+  "day": "2026-11-02",
+  "timezone": "America/Sao_Paulo",
+  "intent": "Priorizar três publicações de 02/11/2026 antes de recriar restante da semana",
+  "state": "NOT_SCHEDULED_MEDIA_AND_ACCOUNT_REQUIRE_ACTION",
+  "operational_schedule_updated": false,
+  "publishing_integration": {
+    "github_workflow": "instagram-scheduler.yml",
+    "instagram_graph": "publicador existente (publicação real 31/10 no ledger), credenciais atuais não comprovadas",
+    "metricool": "marca 7243771: somente YouTube e TikTok; sem Instagram",
+    "metricool_scheduled_posts_today": 0,
+    "tinyfish": "nenhuma sessão instagram.com confirmada nos perfis existentes"
+  },
+  "posts": [
+    {
+      "local_time": "11:00",
+      "due_at_utc": "2026-11-02T14:00:00Z",
+      "kind": "carousel",
+      "id": "tue-2026-11-02-12-mar-cruzado",
+      "topic_id": "mar-cruzado",
+      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-02-12-mar-cruzado.json",
+      "status": "BLOCKED_NOT_SCHEDULED",
+      "issues": [
+        "5 mídias não validadas com Lúmino canônico",
+        "assets do manifesto não estão em CDN publicável",
+        "revisão editorial/factual e direitos pendentes",
+        "music native unresolved"
+      ]
+    },
+    {
+      "local_time": "15:00",
+      "due_at_utc": "2026-11-02T18:00:00Z",
+      "kind": "post",
+      "id": "tue-2026-11-02-18-senha-impossivel",
+      "topic_id": "senha-impossivel",
+      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-02-18-senha-impossivel.json",
+      "status": "BLOCKED_NOT_SCHEDULED",
+      "issues": [
+        "personagem Lúmino incorreto",
+        "imagem revisada não está disponível via URL HTTPS pública",
+        "QC visual não aprovado"
+      ]
+    },
+    {
+      "local_time": "18:00",
+      "due_at_utc": "2026-11-02T21:00:00Z",
+      "kind": "reel",
+      "id": "tue-2026-11-02-18-youtube-reel",
+      "source": "Tem Uma Explicação YouTube PT",
+      "status": "BLOCKED_NOT_SCHEDULED",
+      "issues": [
+        "ID de vídeo publicado não confirmado",
+        "MP4 original ausente",
+        "origem e direitos não verificados",
+        "URL HTTPS de mídia ausente"
+      ]
+    }
+  ],
+  "after_post": "Somente depois do recibo oficial de cada publicação, compartilhar NATIVE reshare em Story com chamada falada para curtir e seguir.",
+  "ai_disclosure": "Sem declaração opcional de IA por automação; mídia sintética que exija identificação deve cumprir política da plataforma, ou ficar bloqueada.",
+  "quality_gate": "Nunca aprovar ou agendar ativo com Lúmino não canônico; não inventar URLs, recibos ou aprovação.",
+  "blocking_rule": "Este arquivo é registro editorial e NÃO aciona GitHub Actions nem agenda Instagram. Para agendar de verdade, validar mídia e inserir itens reais aprovados em content/schedule.json com URLs verificadas.",
+  "do_not_infer_success": true
+}
