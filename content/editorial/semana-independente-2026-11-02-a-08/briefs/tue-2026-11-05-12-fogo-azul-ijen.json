@@ -32,7 +32,7 @@
       "source_credit": "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "gancho",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "O QUE SAI DAS FENDAS",
@@ -42,7 +42,7 @@
       "source_credit": "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "O AZUL É CHAMA",
@@ -52,7 +52,7 @@
       "source_credit": "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "POR QUE PARECE UM RIO?",
@@ -62,7 +62,7 @@
       "source_credit": "https://www.smithsonianmag.com/science-nature/why-does-indonesian-volcano-burn-bright-blue-180949576/ — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "ESPETÁCULO NÃO É CONVITE",
@@ -77,5 +77,6 @@
   ],
   "caption": "💡 Não era a rocha que brilhava. O brilho azul registrado no Kawah Ijen, na Indonésia, vem principalmente das chamas de compostos sulfurados em combustão, não de lava azul. Gases ricos em enxofre escapam de aberturas quentes no terreno vulcânico e podem se inflamar ao encontrar ar. A combustão produz luz azul. A rocha fundida não muda para essa cor; o efeito é mais visível na escuridão. Parte do enxofre pode condensar em líquido e continuar queimando enquanto escoa pela encosta, lembrando um fluxo de lava azul. A presença de gases vulcânicos perigosos torna a proximidade arriscada. A fotografia impressionante não comunica a segurança do local. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
   "publication_requires_native_music": true,
-  "reference_standard_id": "TUE-MESTRE-01"
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
 }
