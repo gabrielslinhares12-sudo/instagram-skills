@@ -206,7 +206,7 @@
       "story_no_external_link_sticker": true
     }
   ],
-  "note": "Arquivo de planejamento. O Story nunca é uma imagem ou vídeo gerado de antemão; precisa do Reel já publicado, de permalink/ID oficiais e do compartilhamento nativo com CTA falado. Feed: ver STORIES-VINCULADOS-2026-11-02-a-08.json.",
+  "note": "Arquivo de planejamento. O Story nunca é uma imagem ou vídeo gerado de antemão; precisa do Reel já publicado, de permalink/ID oficiais e do compartilhamento nativo com chamada exclusivamente escrita, sem narração, sem link externo e com o post original tocável. Feed: ver STORIES-VINCULADOS-2026-11-02-a-08.json.",
   "ai_label_by_publisher": false,
   "synthetic_content_autopublish_allowed": false
 }
