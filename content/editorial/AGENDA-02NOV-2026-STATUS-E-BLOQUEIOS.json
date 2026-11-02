@@ -4,14 +4,16 @@
   "day": "2026-11-02",
   "timezone": "America/Sao_Paulo",
   "intent": "Priorizar três publicações de 02/11/2026 antes de recriar restante da semana",
-  "state": "TWO_POSTS_EXPORTED_AND_MEDIA_STAGED_NOT_SCHEDULED",
+  "state": "META_GITHUB_SCHEDULER_IDENTIFIED_02NOV_ENTRIES_NOT_YET_SCHEDULED",
   "operational_schedule_updated": false,
   "publishing_integration": {
-    "github_workflow": "instagram-scheduler.yml",
-    "instagram_graph": "publicador existente (publicação real 31/10 no ledger), credenciais atuais não comprovadas",
-    "metricool": "marca 7243771: somente YouTube e TikTok; sem Instagram",
-    "metricool_scheduled_posts_today": 0,
-    "tinyfish": "nenhuma sessão instagram.com confirmada nos perfis existentes"
+    "scheduler": "GitHub Actions: .github/workflows/instagram-scheduler.yml (cron */10 * * * *)",
+    "execution": "scripts/instagram_queue.py --execute chama scripts/facebook_poster.py (Facebook Login) e a Instagram Graph API oficial da Meta",
+    "meta_api": "Meta recebe publicações no horário do job; o agendamento/espera é responsabilidade do cron e da fila UTC do GitHub, não do Metricool",
+    "metricool": "FORA DO FLUXO: não usar para programar nem como bloqueio",
+    "credentials": "GitHub Actions secrets e vars; sua configuração atual não foi validada neste turno",
+    "prior_publication_evidence": "content/publication-state.json comprova publicação histórica pelo publicador Meta em 31/10 e carrossel em 01/11",
+    "operational_queue": "content/schedule.json — não contém posts para 02/11; alterá-la só após arquivos finais em URLs públicas acessíveis à Meta e demais verificações obrigatórias"
   },
   "posts": [
     {
@@ -24,7 +26,6 @@
       "status": "ASSETS_STAGED_PRIVATE_DRIVE_NOT_SCHEDULED",
       "issues": [
         "Drive files are private, not publicly downloadable by Meta/Graph",
-        "Metricool connected brand has no Instagram network",
         "GitHub queue requires public HTTPS media URLs and approved provenance",
         "Instagram synthetic illustration disclosure may apply, must not falsely classify as non-synthetic"
       ]
@@ -39,9 +40,9 @@
       "status": "ASSET_STAGED_PRIVATE_DRIVE_NOT_SCHEDULED",
       "issues": [
         "Drive original PNG staged privately, not public",
-        "Metricool brand has no Instagram network",
         "GitHub queue still has no validated publication entry",
-        "Synthetic illustration provenance cannot be falsely classified"
+        "Synthetic illustration provenance cannot be falsely classified",
+        "Meta Graph API precisa buscar a mídia por URL HTTPS pública verificável."
       ]
     },
     {
@@ -55,7 +56,8 @@
         "ID de vídeo publicado não confirmado",
         "MP4 original ausente",
         "origem e direitos não verificados",
-        "URL HTTPS de mídia ausente"
+        "URL HTTPS de mídia ausente",
+        "Meta Graph API precisa buscar a mídia por URL HTTPS pública verificável."
       ]
     }
   ],
@@ -110,6 +112,9 @@
   "notes": [
     "No story can be generated before receipt of actual parent Instagram post",
     "The schedule file and historical ledger were not changed; no Instagram publishing confirmed",
-    "Time slots: 11:00/15:00/18:00 Sao Paulo time; before due need complete Meta access and media source checks"
+    "Time slots: 11:00/15:00/18:00 Sao Paulo time; before due need complete Meta access and media source checks",
+    "Correção do proprietário 02/11: o único agendamento oficial é o pipeline GitHub Actions → Meta Graph API; Metricool não participa.",
+    "Mídias 11h e 15h preparadas em Drive privado; não equivale a URL pública de imagem para Facebook/Instagram Graph API.",
+    "Nunca declarar agendado ou publicado sem entrada validada em content/schedule.json e recibo de publicação em content/publication-state.json."
   ]
 }
