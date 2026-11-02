@@ -1,158 +1,40 @@
-name: TUE - importar YouTube Short por visualizacoes (sem publicar)
+name: Importar YouTube Short TUE via link (sem publicar)
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
       - '.github/workflows/instagram-youtube-reel-download.yml'
-  workflow_dispatch:
+      - 'scripts/instagram_download_approved_tue_short.py'
+      - 'scripts/test_instagram_download_approved_tue_short.py'
 
 permissions:
   contents: read
 
 concurrency:
-  group: tue-youtube-download-only
+  group: tue-download-short-link-02nov
   cancel-in-progress: false
 
 jobs:
   download:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.12'
-      - name: Instalar extrator gratuito
-        run: python -m pip install --upgrade yt-dlp
-      - name: Comparar visualizacoes e baixar o melhor Short elegivel do canal proprio
-        shell: bash
-        run: |
-          python - <<'PY'
-          import hashlib
-          import json
-          import re
-          import sys
-          from pathlib import Path
-          import yt_dlp
-
-          CHANNEL = 'UCeVMYZs1z9HecuK0cPKnHgQ'
-          URL = 'https://www.youtube.com/channel/' + CHANNEL + '/shorts'
-          OUT = Path('output/youtube-reel-import')
-          OUT.mkdir(parents=True, exist_ok=True)
-          REPORT = OUT / 'download-report.json'
-          state = {'date': '2026-11-02', 'slot': '18:00 America/Sao_Paulo',
-                   'channel_id': CHANNEL, 'source': URL,
-                   'operation': 'download_only_no_instagram_publication',
-                   'publication_approved': False, 'rights_review': 'pending',
-                   'origin_review': 'pending', 'selected': None}
-          def report():
-              REPORT.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding='utf-8')
-          try:
-              plan = json.loads(Path('content/editorial/REELS-E-STORIES-2026-11-02-a-08.json').read_text(encoding='utf-8'))
-              used = {s.get('source_video_id') for s in plan.get('reels', []) if s.get('source_video_id')}
-              with yt_dlp.YoutubeDL({'quiet': True, 'no_warnings': True,
-                                     'extract_flat': 'in_playlist', 'skip_download': True,
-                                     'playlistend': 45, 'ignoreerrors': True,
-                                     'socket_timeout': 15, 'retries': 2}) as dl:
-                  playlist = dl.extract_info(URL, download=False)
-              ids = []
-              for entry in (playlist or {}).get('entries') or []:
-                  if not entry:
-                      continue
-                  vid = entry.get('id')
-                  if isinstance(vid, str) and re.fullmatch(r'[a-zA-Z0-9_-]{11}', vid) and vid not in ids:
-                      ids.append(vid)
-              state['video_ids_found'] = len(ids)
-              flat = []
-              for entry in (playlist or {}).get('entries') or []:
-                  if not isinstance(entry, dict) or entry.get('id') not in ids:
-                      continue
-                  flat.append({'id': entry.get('id'), 'title': entry.get('title'),
-                               'views': entry.get('view_count'),
-                               'duration': entry.get('duration')})
-              state['flat_metadata'] = flat
-              ranking = sorted((x for x in flat if isinstance(x.get('views'), int)),
-                               key=lambda x: x['views'], reverse=True)[:10]
-              state['flat_ranking'] = ranking
-              print('SHORTS_ENCONTRADOS=', len(ids), flush=True)
-              print('VIEWS_NA_LISTAGEM=', len(ranking), flush=True)
-              print('RANKING_PUBLICO=', json.dumps(ranking, ensure_ascii=False), flush=True)
-              if not ids:
-                  raise RuntimeError('Nenhum Short listado pelo YouTube (acesso pode exigir autenticação)')
-              checked = []
-              bot_errors = 0
-              for vid in ids[:45]:
-                  try:
-                      with yt_dlp.YoutubeDL({'quiet': True, 'no_warnings': True,
-                                           'skip_download': True, 'noplaylist': True,
-                                           'socket_timeout': 15, 'retries': 1}) as dl:
-                          info = dl.extract_info('https://www.youtube.com/watch?v=' + vid, download=False)
-                      if not info or info.get('channel_id') != CHANNEL:
-                          checked.append({'id': vid, 'status': 'wrong_channel_or_missing'})
-                          continue
-                      views = info.get('view_count')
-                      duration = info.get('duration')
-                      row = {'id': vid, 'title': info.get('title'),
-                             'views': views, 'duration': duration,
-                             'url': 'https://www.youtube.com/shorts/' + vid}
-                      row['eligible'] = (
-                          isinstance(views, int) and views >= 0
-                          and isinstance(duration, (int,float)) and 5 <= duration <= 180
-                          and vid not in used
-                          and info.get('live_status') not in ('is_live', 'is_upcoming'))
-                      checked.append(row)
-                  except Exception as exc:
-                      checked.append({'id': vid, 'error_type': type(exc).__name__, 'eligible': False})
-                      if 'Sign in to confirm' in str(exc):
-                          bot_errors += 1
-                      if bot_errors >= 3:
-                          print('YOUTUBE_REQUER_LOGIN_VERIFICADO: interrompendo consultas repetidas', flush=True)
-                          break
-                  if len(checked) % 10 == 0:
-                      print('METADADOS_CONFERIDOS=', len(checked), flush=True)
-              state['checked'] = checked
-              best = sorted((x for x in checked if x.get('eligible')),
-                            key=lambda x: x['views'], reverse=True)
-              if not best:
-                  raise RuntimeError('Nenhum vídeo com canal, duração e views confirmados')
-              selected = best[0]
-              state['selected'] = selected
-              report()
-              print('VIDEO_ESCOLHIDO=', selected['url'], 'VIEWS=', selected['views'], flush=True)
-              with yt_dlp.YoutubeDL({
-                  'quiet': False, 'noplaylist': True,
-                  'format': 'bv*[height<=1920]+ba/b[ext=mp4]/best',
-                  'merge_output_format': 'mp4',
-                  'outtmpl': str(OUT / '%(id)s.%(ext)s'),
-                  'max_filesize': 200*1024*1024,
-                  'retries': 3, 'fragment_retries': 3
-              }) as dl:
-                  rc = dl.download(['https://www.youtube.com/watch?v=' + selected['id']])
-              if rc:
-                  raise RuntimeError('Download retornou erro')
-              clips = [p for p in OUT.glob(selected['id'] + '.*')
-                       if p.suffix.lower() in ('.mp4', '.webm', '.mkv')]
-              if len(clips) != 1 or not 1024 <= clips[0].stat().st_size <= 200*1024*1024:
-                  raise RuntimeError('Arquivo de vídeo ausente ou inválido')
-              clip = clips[0]
-              state['download'] = {'filename': clip.name, 'bytes': clip.stat().st_size,
-                                   'sha256': hashlib.sha256(clip.read_bytes()).hexdigest()}
-              state['status'] = 'downloaded_for_review_not_published'
-              print('VIDEO_BAIXADO=', clip.name, flush=True)
-              report()
-          except Exception as exc:
-              state['status'] = 'blocked_no_unsafe_fallback'
-              state['error_type'] = type(exc).__name__
-              state['error'] = str(exc)[:250]
-              report()
-              print('DOWNLOAD_BLOQUEADO=', state['error'], file=sys.stderr)
-              sys.exit(1)
-          PY
-      - name: Guardar MP4 e relatório no artefato do GitHub, sem publicar
+      - name: Testes offline de URL, identidade e formato
+        run: python -m unittest discover -s scripts -p 'test_instagram_download_approved_tue_short.py' -v
+      - name: Verificar FFprobe
+        run: ffprobe -version | head -n 1
+      - name: Baixar video por URL via site publico (somente MP4 do canal)
+        run: python scripts/instagram_download_approved_tue_short.py
+      - name: Preservar MP4 e relatorio somente em Actions Artifacts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: tue-youtube-short-02nov
+          name: tue-youtube-reel-02nov
           path: output/youtube-reel-import/
           if-no-files-found: warn
           retention-days: 7
