@@ -51,8 +51,8 @@ def verify_linked_stories(feed_plan: dict, reel_plan: dict, story_plan: dict) ->
         seen.add(pid)
         if (item.get("day"), item.get("slot"), item.get("parent_kind")) != expected[pid]:
             raise StoryGateError("Story está vinculado ao dia, horário ou tipo errado.")
-        if item.get("native_share_method") != METHOD or item.get("text_cta") != CTA or
-                item.get("no_external_link_sticker") is not True:
+        if (item.get("native_share_method") != METHOD or item.get("text_cta") != CTA or
+                item.get("no_external_link_sticker") is not True):
             raise StoryGateError("Story deve ser republicação nativa com CTA escrito e sem link extra.")
         # Proibir a mídia separada como substituta, inclusive após o post de origem.
         if (item.get("story_media_url") or item.get("independent_story_asset")
