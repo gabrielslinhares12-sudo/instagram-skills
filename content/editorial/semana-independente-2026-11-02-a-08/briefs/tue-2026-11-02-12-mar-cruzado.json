@@ -32,7 +32,7 @@
       "source_credit": "https://www.noaa.gov/jetstream/ocean/waves — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "gancho",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "DE ONDE VÊM DUAS ONDAS?",
@@ -42,7 +42,7 @@
       "source_credit": "https://www.noaa.gov/jetstream/ocean/waves — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "UMA NÃO DESLIGA A OUTRA",
@@ -52,7 +52,7 @@
       "source_credit": "https://www.noaa.gov/jetstream/ocean/waves — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "UM QUADRADO QUE SE MOVE",
@@ -62,7 +62,7 @@
       "source_credit": "https://www.noaa.gov/jetstream/ocean/waves — conteúdo editorial próprio; procurar mídias com licença antes da arte",
       "uses_original_lumino": true,
       "position_in_story": "desenvolvimento",
-      "swipe_cue": "Arraste →"
+      "swipe_cue": "Arraste para o lado →"
     },
     {
       "headline": "E POR QUE ISSO IMPORTA?",
@@ -78,5 +78,6 @@
   "caption": "💡 As ondas não combinaram a direção. Quando duas ondulações chegam de direções diferentes, suas linhas de crista podem se cruzar e criar um desenho de malha na superfície. Ondas do vento local e ondulações geradas longe podem alcançar a mesma região marítima em direções distintas. As ondas se sobrepõem. Em determinados pontos, cristas se reforçam; em outros, a elevação diminui pela combinação dos movimentos. A aparência quadriculada é temporária; as ondas continuam atravessando a área e os desenhos mudam continuamente. Quando mares diferentes se cruzam, o movimento pode ficar mais complexo para pequenas embarcações. O desenho bonito não é uma recomendação de banho. Qual dessas imagens você imaginaria ser real? #TemUmaExplicacao #Lumino #Curiosidades #Ciência",
   "publication_requires_native_music": true,
   "reference_standard_id": "TUE-MESTRE-01",
-  "editorial_time_override": "Alteração da pauta em 02/11 por solicitação do proprietário; a tirinha foi publicada antes, Mar Cruzado planejado para 15h. Não implica aprovação visual."
+  "editorial_time_override": "Alteração da pauta em 02/11 por solicitação do proprietário; a tirinha foi publicada antes, Mar Cruzado planejado para 15h. Não implica aprovação visual.",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
 }
