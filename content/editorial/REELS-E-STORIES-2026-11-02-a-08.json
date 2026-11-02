@@ -6,10 +6,10 @@
   "purpose": "Fila de sete Reels do YouTube TUE em português. A republicação nativa nos Stories só é criada após confirmação de cada Reel. Todos os quadros de feed também terão seu Story associado.",
   "schedule": {
     "feed": [
-      "12:00",
-      "18:00"
+      "11:00",
+      "15:00"
     ],
-    "reel": "21:00",
+    "reel": "18:00",
     "story": "after_each_confirmed_feed_post_or_reel"
   },
   "story_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
@@ -29,7 +29,7 @@
   "reels": [
     {
       "day": "2026-11-02",
-      "slot": "21:00",
+      "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
       "source_video_id": null,
       "source_mp4": null,
@@ -54,7 +54,7 @@
     },
     {
       "day": "2026-11-03",
-      "slot": "21:00",
+      "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
       "source_video_id": null,
       "source_mp4": null,
@@ -79,7 +79,7 @@
     },
     {
       "day": "2026-11-04",
-      "slot": "21:00",
+      "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
       "source_video_id": null,
       "source_mp4": null,
@@ -104,7 +104,7 @@
     },
     {
       "day": "2026-11-05",
-      "slot": "21:00",
+      "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
       "source_video_id": null,
       "source_mp4": null,
@@ -129,7 +129,7 @@
     },
     {
       "day": "2026-11-06",
-      "slot": "21:00",
+      "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
       "source_video_id": null,
       "source_mp4": null,
@@ -154,7 +154,7 @@
     },
     {
       "day": "2026-11-07",
-      "slot": "21:00",
+      "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
       "source_video_id": null,
       "source_mp4": null,
@@ -179,7 +179,7 @@
     },
     {
       "day": "2026-11-08",
-      "slot": "21:00",
+      "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
       "source_video_id": null,
       "source_mp4": null,
