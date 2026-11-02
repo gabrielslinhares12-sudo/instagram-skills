@@ -17,18 +17,24 @@
   },
   "posts": [
     {
-      "local_time": "11:00",
-      "due_at_utc": "2026-11-02T14:00:00Z",
+      "local_time": "15:00",
+      "due_at_utc": "2026-11-02T18:00:00Z",
       "kind": "carousel",
       "id": "tue-2026-11-02-12-mar-cruzado",
       "topic_id": "mar-cruzado",
       "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-02-12-mar-cruzado.json",
-      "status": "QC_BLOCKED_REDESIGN_REQUIRED",
+      "status": "BLOCKED_QC_NEW_OFFICIAL_REFERENCE",
       "issues": [
-        "Cinco lâminas existentes repetem cena e posição do mascote; usuário rejeitou o padrão e exigiu refação",
-        "Carrossel não aprovado para publicação automática",
-        "Manter o padrão canônico TUE-MESTRE-01 e Lúmino original sem substituição"
-      ]
+        "Em 02/11 usuário confirmou referência visual oficial exata: content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg",
+        "Versão anterior contém botão/etiqueta amarela grande ARRaste e não tem rodapé de pontos discretos; NÃO publicar nem marcar aprovado",
+        "Tentativa de nova capa sobre águas que não se misturam alterou o fenômeno factual: REPROVADA. Tema correto = cruzamento de dois sistemas de ondas em direções diferentes, cristas/interferência/sobreposição",
+        "Carrossel final deve ter cinco lâminas distintas, Lúmino canônico, microtexto e pontos de progresso dinâmicos 1 de 5 nas quatro primeiras, última sem indicação de próxima",
+        "Publicação no Meta API somente após export final 5 URLs JPEG validada, QA visual e direitos; Story nativo somente após recibo, texto sobre o próprio post sem áudio/link extra"
+      ],
+      "approved_visual_reference": "content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg",
+      "approved_visual_reference_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+      "correct_theme": "cross_seas_intersecting_wave_trains",
+      "article_count": 5
     },
     {
       "local_time": "15:00",
@@ -66,12 +72,12 @@
       ]
     }
   ],
-  "after_post": "Somente depois do recibo oficial de cada publicação, compartilhar NATIVE reshare em Story com chamada falada para curtir e seguir.",
+  "after_post": "Após recibo Meta de cada publicação, compartilhar NATIVAMENTE o próprio post no Story do Instagram; adicionar chamada somente em TEXTO, sem narração, sticker de link, URL ou mídia independente.",
   "ai_disclosure": "Sem declaração opcional de IA por automação; mídia sintética que exija identificação deve cumprir política da plataforma, ou ficar bloqueada.",
   "quality_gate": "Nunca aprovar ou agendar ativo com Lúmino não canônico; não inventar URLs, recibos ou aprovação.",
   "blocking_rule": "Este arquivo é registro editorial e NÃO aciona GitHub Actions nem agenda Instagram. Para agendar de verdade, validar mídia e inserir itens reais aprovados em content/schedule.json com URLs verificadas.",
   "do_not_infer_success": true,
-  "quality_status": "Owner approved newly generated visuals in this conversation. Exact canonical Lúmino pixel-match not verified; current artwork is synthetic and provenance must be declared honestly if required.",
+  "quality_status": "Imagem oficial da estética protegida por hash e 14 briefings migrados; Mar Cruzado ainda NÃO tem arte aprovada no padrão final, portanto não agendado/não publicado.",
   "files_staged_in_google_drive": {
     "provider": "Google Drive owner temumaexplicacao@gmail.com",
     "scope": "private, not public internet-accessible",
@@ -118,7 +124,9 @@
     "02/11/2026: tirinha O SAC DA SENHA IMPOSSÍVEL publicada pela Meta em 2026-11-02T16:51:58Z; media_id 18131786309499353. A reautorização do Facebook funcionou.",
     "Proximo carrossel Mar Cruzado retido até refação visual, sem promover as cinco artes repetitivas.",
     "Reel das 18h depende de vídeo original MP4, direitos, revisão e URL HTTPS pública.",
-    "Story nativo com chamada falada requer republicação pelo Instagram app após post confirmado; não confundir com Story independente."
+    "02/11: padrão oficial corrigido pela imagem 51% enviada pelo proprietário; o assunto eleitoral é só referência visual.",
+    "Mar Cruzado: não usar arte antiga com 'Arraste' amarelo grande nem nova capa sobre águas que não se misturam; imagens atuais permanecem bloqueadas.",
+    "Story: compartilhar post nativo no Instagram e acrescentar CTA texto; sem fala ou link externo."
   ],
   "schedule_attempt": {
     "requested_by_user": true,
