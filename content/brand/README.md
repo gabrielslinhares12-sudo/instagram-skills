@@ -1,5 +1,13 @@
 # PADRÃO MESTRE ATIVO: [TUE-MESTRE-01](TUE-MESTRE-01.md)
 
+## REFERÊNCIA VISUAL ÚNICA — MODELO REAL APROVADO EM 02/11/2026
+
+![Referência oficial TUE-MESTRE-01](REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg)
+
+A referência enviada pelo proprietário é o **modelo real obrigatório para tudo**: `REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg` (SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`). Temática da imagem (votos) NÃO é para copiar. Design: tipografia preta condensada de alto impacto, pincelada amarela, acentos vermelhos, papel claro, Lúmino grande integrado, cenas com profundidade e informações legíveis.
+
+Em carrosséis: usar no rodapé pontos pequenos de progresso (ativo amarelo, demais cinza), seta preta simples e microtexto `ARRASTE PARA O LADO →`, sem nenhum botão/etiqueta amarela nem contagem visual numérica. Quantidade de lâminas variável. Na última, sem seta de continuidade; em post único, sem indicador. **Nunca voltar aos layouts rejeitados.** Story é compartilhamento NATIVO do post com CTA apenas em texto, sem áudio e sem link adicionado.
+
 > **IMAGEM-MESTRE VISUAL CANÔNICA aprovada em 02/11/2026:** [**Imagem oficial aprovada em 02/11/2026**](modelo-oficial-aprovado-2026-11-02.png), SHA-256 `571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9`.
 >
 > Toda arte do Instagram TUE deve seguir essa EXATA referência estética — não confundir com uma imagem-modelo antiga de oito painéis. O tema eleitoral é apenas demonstrativo, não deve ser copiado como pauta.
