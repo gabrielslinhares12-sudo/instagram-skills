@@ -1,0 +1,36 @@
+name: TUE - terceiro mecanismo Piped (somente download e Drive)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/instagram-youtube-piped.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fetch-video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Baixar MP4 do canal via Piped e validar audio e video
+        run: python scripts/instagram_youtube_piped.py
+      - name: Transferir video aprovado ao Drive se OAuth configurado
+        if: success()
+        env:
+          GDRIVE_OAUTH_CLIENT_ID: '${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}'
+          GDRIVE_OAUTH_CLIENT_SECRET: '${{ secrets.GDRIVE_OAUTH_CLIENT_SECRET }}'
+          GDRIVE_OAUTH_REFRESH_TOKEN: '${{ secrets.GDRIVE_OAUTH_REFRESH_TOKEN }}'
+        run: |
+          if [ -n "$GDRIVE_OAUTH_REFRESH_TOKEN" ]; then python -m pip install google-api-python-client google-auth google-auth-httplib2; fi
+          python scripts/instagram_reel_google_drive_upload.py
+      - name: Preservar video e relatorio no GitHub
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tue-short-piped
+          path: output/youtube-reel-import/
+          if-no-files-found: warn
+          retention-days: 7
