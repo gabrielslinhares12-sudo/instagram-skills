@@ -160,6 +160,41 @@
       "sources": [],
       "approval_note": "Publicação imediata autorizada em 02/11, bloqueada pela Meta #200. Recuperação aprovada até 23h59 BRT de 02/11, somente após verificações de identidade/permissões; preservar hash de mídia e bloqueio contra duplicatas.",
       "recovery_until": "2026-11-03T02:59:59Z"
+    },
+    {
+      "id": "tue-2026-11-02-12-mar-cruzado",
+      "due_at": "2026-11-02T18:00:00Z",
+      "recovery_until": "2026-11-03T02:59:59Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "O MAR VIROU UM TABULEIRO?",
+      "caption": "🌊 O MAR VIROU UM TABULEIRO? Parece impossível, mas o oceano pode formar um desenho que lembra um xadrez de ondas!\n\nIsso acontece quando dois conjuntos de ondulações chegam de direções diferentes. As cristas se cruzam e os movimentos se sobrepõem: em alguns pontos reforçam a elevação da água; em outros, a reduzem.\n\nO desenho não fica parado. As ondas continuam avançando e o padrão muda o tempo todo. E esse cruzamento pode deixar o movimento do mar mais complexo para pequenas embarcações.\n\nAs imagens são ilustrações didáticas do fenômeno — não fotografias de uma situação real.\n\nVocê já tinha ouvido falar no MAR CRUZADO? 🌊\n\n#TemUmaExplicacao #Lumino #Ciencia #Oceanografia #Curiosidades #Mar",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f7195510c58c2a8ab7fe45118f184341c0bea791/content/media/instagram/2026-11-02/mar-cruzado-final/MAR-CRUZADO-FINAL-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f7195510c58c2a8ab7fe45118f184341c0bea791/content/media/instagram/2026-11-02/mar-cruzado-final/MAR-CRUZADO-FINAL-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f7195510c58c2a8ab7fe45118f184341c0bea791/content/media/instagram/2026-11-02/mar-cruzado-final/MAR-CRUZADO-FINAL-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f7195510c58c2a8ab7fe45118f184341c0bea791/content/media/instagram/2026-11-02/mar-cruzado-final/MAR-CRUZADO-FINAL-04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f7195510c58c2a8ab7fe45118f184341c0bea791/content/media/instagram/2026-11-02/mar-cruzado-final/MAR-CRUZADO-FINAL-05.jpg"
+      ],
+      "media_sha256": [
+        "6831ca151f9774699026b89d6647f282092af7d3ac5dc1a9df362591261d679c",
+        "372bf00e76ede34f1e6ebd9b996caf25df7b188c94bd275ce495e0060f51c457",
+        "ce862156a6f3e6a0fc2e08781aaf0911cf1176560d33d785f022e45f0cc3fc35",
+        "3a9e3bbe0f0412825cb581e2dd98cf8c75cec3d66dba02669e66bcd82c292702",
+        "977a00814cb18b0c46c4d4dc64dc4e246c1668c06f31d7d604a256ef03fe507c"
+      ],
+      "approved": true,
+      "distribution_mode": "api_carousel_then_native_music",
+      "owner_authorized_two_step_music": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "original_synthetic_illustration_in_caption",
+      "sources": [
+        "https://www.noaa.gov/jetstream/ocean/waves",
+        "https://www.bom.gov.au/resources/learn-and-explore/marine-knowledge-centre/waves-and-swell"
+      ],
+      "approval_note": "Lâminas 1–5 explicitamente aprovadas no chat após apresentação em 02/11. O usuário exigiu publicação imediata do carrossel das 15h e Story vinculado. Este é apenas um envio oficial do feed; música nativa e compartilhamento nativo no Story permanecem etapas distintas com prova exigida. Recuperação restrita ao dia 02/11."
     }
   ]
 }
