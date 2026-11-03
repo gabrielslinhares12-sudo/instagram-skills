@@ -195,6 +195,60 @@
         "https://www.bom.gov.au/resources/learn-and-explore/marine-knowledge-centre/waves-and-swell"
       ],
       "approval_note": "Lâminas 1–5 explicitamente aprovadas no chat após apresentação em 02/11. O usuário exigiu publicação imediata do carrossel das 15h e Story vinculado. Este é apenas um envio oficial do feed; música nativa e compartilhamento nativo no Story permanecem etapas distintas com prova exigida. Recuperação restrita ao dia 02/11."
+    },
+    {
+      "id": "tue-2026-11-03-11-tirinha-reuniao",
+      "due_at": "2026-11-03T14:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "post",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "PLANTÃO DO ABSURDO — A reunião que marcou outra reunião",
+      "caption": "🚨 PLANTÃO DO ABSURDO: a reunião que marcou outra reunião!\n\n09h: “Pessoal, é rapidinho. Vamos definir a pauta.”\n10h: ainda sem pauta.\nDecisão final: marcar uma nova reunião… para definir a pauta. 😂\n\nQual foi a reunião mais desnecessária da sua vida? Conta nos comentários!\n\n#TemUmaExplicacao #PlantaoDoAbsurdo #HumorNoTrabalho #Reunioes #VidaCorporativa",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/007a7fefb47b303316170c972e0ffdff7d8475dc/content/media/instagram/2026-11-03/final/01_03NOV_11H_MEME_REUNIOES.jpg"
+      ],
+      "media_sha256": [
+        "3e242de8bca6e69f0e0ba56e30b2113f89f85e97904764777c27b1ef59378cf7"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "sources": [],
+      "approval_note": "Autorização específica do proprietário 'Ok, faça os 2 posts', após ver a tirinha final de 4 quadrinhos. Programar para 11h 03/11/2026 BRT; mídia exata protegida por SHA256; Story nativo com CTA em texto após postagem confirmada."
+    },
+    {
+      "id": "tue-2026-11-03-15-atacama-florido",
+      "due_at": "2026-11-03T18:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "O DESERTO VIROU UM JARDIM? — Atacama florido",
+      "caption": "🏜️🌸 O deserto virou um jardim?\n\nNo Atacama, no Chile, chuvas raras podem despertar sementes e estruturas subterrâneas que atravessam longos períodos de dormência. O resultado é a impressionante floração do deserto.\n\nEm 2026, o fenômeno voltou a chamar atenção: o Copernicus destacou o aumento da vegetação observado por satélites. E há um detalhe importante: a cor de imagens de satélite pode resultar de processamento, não necessariamente da cor real das flores.\n\nUma beleza temporária e delicada: para preservar as espécies, não pise nas flores e siga as trilhas autorizadas.\n\nAs artes deste carrossel são ilustrações editoriais, não imagens de satélite ou fotos documentais.\n\nVocê sabia que isso podia acontecer?\n\n#TemUmaExplicacao #DesertoFlorido #Atacama #Natureza #Ciencia",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/007a7fefb47b303316170c972e0ffdff7d8475dc/content/media/instagram/2026-11-03/final/02_03NOV_15H_ATACAMA_01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/007a7fefb47b303316170c972e0ffdff7d8475dc/content/media/instagram/2026-11-03/final/03_03NOV_15H_ATACAMA_02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/007a7fefb47b303316170c972e0ffdff7d8475dc/content/media/instagram/2026-11-03/final/04_03NOV_15H_ATACAMA_03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/007a7fefb47b303316170c972e0ffdff7d8475dc/content/media/instagram/2026-11-03/final/05_03NOV_15H_ATACAMA_04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/007a7fefb47b303316170c972e0ffdff7d8475dc/content/media/instagram/2026-11-03/final/06_03NOV_15H_ATACAMA_05.jpg"
+      ],
+      "media_sha256": [
+        "08ca2c522f0768b8f3acd5307127e913eccfad0c23df5066ec5f07be6c1f2e5f",
+        "b35b9e0af99f008b95a89f3f04652470a3d53717cf937c6dec589da3ecb60203",
+        "e717e1338a5d4a68ef87a4b05fa0458a15d51a5f4d61f61659c0d0cc1c86fbff",
+        "4df804be6371acbe6658e5f9b5592996aca73c90d8c0ca8d4cf98d1dd21a8988",
+        "a3d750b169b5dea568f0271e10b449a2de1ae444e4ff6266b0df9c9977e9acc8"
+      ],
+      "approved": false,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "distribution_mode": "native_music_carousel",
+      "sources": [
+        "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region",
+        "https://dpratacama.dpr.gob.cl/2026/10/02/region-de-atacama-lanza-oficialmente-la-temporada-del-desierto-florido-2026-en-freirina/"
+      ],
+      "approval_note": "Proprietário aprovou as artes de 03/11 e pediu os dois posts, porém o preset exige música nativa no carrossel. A API Graph não incorpora essa música; item fica bloqueado para publicação móvel, não substituir por carrossel mudo nem transformar em Reel. As imagens são ilustrativas e a fidelidade pixelwise do mascote não está demonstrada."
     }
   ]
 }
