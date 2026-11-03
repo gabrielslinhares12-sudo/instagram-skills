@@ -157,7 +157,8 @@ class MasterPresetTests(unittest.TestCase):
         with self.assertRaisesRegex(PresetError,"Story não pode preceder"):
             verify_reels_and_stories(changed,feed,ledger)
         changed=copy.deepcopy(plan)
-        changed["reels"][1]["approved"]=True  # Different, unpublished Reel.
+        changed["reels"][1]["approved"]=True
+        changed["reels"][1]["source_verified"]=False  # Approved Reel with unverified provenance.
         with self.assertRaisesRegex(PresetError,"origem verificadas"):
             verify_reels_and_stories(changed,feed,ledger)
         changed=copy.deepcopy(plan)
