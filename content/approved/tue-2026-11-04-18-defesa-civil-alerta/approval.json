@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "id": "tue-2026-11-04-18-defesa-civil-alerta",
+  "preset_id": "TUE-MESTRE-01",
+  "kind": "reel",
+  "approved": true,
+  "owner_authorized": true,
+  "owner_authorizes_only": "tue-2026-11-04-18-defesa-civil-alerta",
+  "owner_authorization_source": "O proprietário ordenou criar o Reel primeiro, pediu 'Finalize a parte da voz agora.' e autorizou a continuação com 'siga' em 03/11/2026. Escopo: concluir o Reel e seguir a fila das 18h de 04/11.",
+  "release_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/26930c086cf81bdb9e3fd43050f89c17953f0056/content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4",
+  "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/26930c086cf81bdb9e3fd43050f89c17953f0056/content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg",
+  "media_sha256": [
+    "8215c8451426d08ff49b7a129ce64abead0658d8a0854e98fa4c253decca0d04"
+  ],
+  "video_duration_seconds": 42,
+  "video_width": 1080,
+  "video_height": 1920,
+  "technical_video_qc_passed": true,
+  "audio_qc_technical_passed": true,
+  "caption_transcript_verified": true,
+  "caption_segments": 25,
+  "subtitles_embedded": true,
+  "visual_geometry_qc_passed": true,
+  "visual_manual_review": "not_performed; automated layout and 6 sample contact frames rendered",
+  "synthetic_voice_disclosure_mandatory": true,
+  "disclosure_review": "mandatory_realistic_synthetic_audio",
+  "ai_origin": "synthetic",
+  "voice": "Rasalgethi",
+  "voice_model": "gemini-2.5-flash-tts",
+  "voice_language": "pt-BR",
+  "audio_origin": "AI-generated narration; user-desired Rasalgethi, not a recorded human voice",
+  "footage_origin": "licensed real footage from Pexels and CC0 Wikimedia with textual editorial overlays",
+  "licensing_sources": [
+    "https://www.pexels.com/license/",
+    "https://commons.wikimedia.org/wiki/File:Heliponto_improvisado_na_ULBRA,_enchentes_de_2024_no_Rio_Grande_do_Sul.webm"
+  ],
+  "research_sources": [
+    "https://www.gov.br/mdr/pt-br/assuntos/protecao-e-defesa-civil/defesa-civil-alerta/mas-o-que-e-defesa-civil-alerta",
+    "https://www.gov.br/mcom/pt-br/noticias/2026/copy_of_julho/como-receber-alertas-da-defesa-civil-sobre-situacoes-de-emergencia-no-celular"
+  ],
+  "technical_provenance": {
+    "export_scene": "https://gcdn.picsart.com/picsart-mcp/ede8ba0e-4977-4c52-8299-af1a0450c3b9.json",
+    "github_archive_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41715891687",
+    "audit_methods": [
+      "ASR word timestamps all spoken content recognized and no truncation",
+      "Picsart scene graph validated and visual geometry checked",
+      "FFprobe metadata H264+AAC 1080x1920 42 seconds",
+      "FFmpeg max_volume -4.8 dB",
+      "GitHub SHA256 fingerprint and immutable pinned commit"
+    ],
+    "media_file_size_bytes": 27519640,
+    "media_immutable_commit": "26930c086cf81bdb9e3fd43050f89c17953f0056"
+  },
+  "planned_publication": "2026-11-04T21:00:00Z",
+  "publication_method": "Meta Graph API via one-shot GitHub queue; no music; no Story",
+  "approval_note": "Autorizado para a publicação única do Reel Defender Civil Alerta às 18h de quarta 04/11/2026. Preparação e narração concluídas; controle de qualidade automatizado aprovado. A identificação de áudio sintético via is_ai_generated=true é obrigatória pela Meta; não é uma declaração voluntária na legenda. Não criar Stories nem adicionar música."
+}
