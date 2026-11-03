@@ -1,0 +1,43 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "day": "2026-11-04",
+  "id": "tue-2026-11-04-15-sac-ar-17-graus",
+  "slot": "15:00",
+  "series_id": "sac-lumino",
+  "kind": "meme",
+  "topic_id": "ar-condicionado-17-graus-mito",
+  "subject_id": "eficiencia-energetica-climatizacao-termometro",
+  "title": "SAC DO CLIMA — O 17 °C QUE SAI CARO",
+  "hook": "COLOQUEI NO 17°. E AGORA?",
+  "concept": "Tirinha com punchline e informação de serviço sobre o mito de que a menor temperatura resfria mais rápido.",
+  "sources": [
+    "https://www.gov.br/inmetro/pt-br/centrais-de-conteudo/noticias/2026/dia-mundial-da-eficiencia-energetica-inmetro-da-dicas-para-reduzir-o-consumo-e-economizar-na-conta-de-luz",
+    "https://www.gov.br/inmetro/pt-br/centrais-de-conteudo/noticias/2025/inmetro-orienta-sobre-como-economizar-energia-com-o-uso-do-ar-condicionado-1"
+  ],
+  "factual_caution": "Não prometer economia percentual nem afirmar que 23 °C seja universalmente ideal. O Inmetro recomenda configuração em torno de 23 °C, ambiente vedado e filtros em dia; aparelho em 17 °C não acelera necessariamente o resfriamento.",
+  "format": "Uma arte única JPEG 1080x1350 (4:5), quatro quadros internos cinematográficos; não carrossel",
+  "media_policy": "Cenário de apartamento realista/ilustrado com arte 2D original; Lúmino PNG oficial sobreposto SEM redesenho nem novos membros. Balões de texto originais e sem marcas de fabricantes.",
+  "slides": [
+    {
+      "headline": "SAC DO CLIMA — O 17 °C QUE SAI CARO",
+      "new_information": "CENA 1: Pessoa aflita diz 'Coloquei no 17 °C. Vai gelar mais rápido, né?'; CENA 2: ar-condicionado personificado como aparelho fictício responde 'Não sou botão de teletransporte do frio'; CENA 3: Lúmino mostra no painel '17 °C não é modo turbo'; CENA 4: Lúmino conclui 'Tente perto de 23 °C, portas fechadas e filtro limpo'. Cliente: 'Ah... era configuração, não feitiço!' ",
+      "distinct_scene": "Apartamento original em quatro enquadramentos distintos: sala abafada, aparelho na parede, balcão SAC Lúmino, sala confortável com janelas fechadas; sem repetir cartões nem quadros simplificados.",
+      "visual_direction": "Composição inspirada na referência oficial, cenas integradas com profundidade e luz, quatro balões legíveis, Lúmino original canônico em destaque nos quadros 3 e 4, final com punchline e aviso factual discreto do Inmetro.",
+      "source_credit": "Orientação de eficiência energética: https://www.gov.br/inmetro/pt-br/centrais-de-conteudo/noticias/2026/dia-mundial-da-eficiencia-energetica-inmetro-da-dicas-para-reduzir-o-consumo-e-economizar-na-conta-de-luz ; arte e diálogos ficcionais originais.",
+      "uses_original_lumino": true,
+      "position_in_story": "setup → escalada → explicação → punchline"
+    }
+  ],
+  "caption": "🥶 Você coloca o ar no 17 °C achando que ele vira um foguete de gelo? O Inmetro explica: reduzir demais a temperatura não faz o ambiente esfriar mais rápido — e pode gastar mais energia. Uma referência de uso eficiente é perto de 23 °C, com portas fechadas e filtros limpos. 😂 Qual temperatura você costuma usar? #TemUmaExplicacao #SacDoLumino #ArCondicionado #EconomiaDeEnergia #Humor",
+  "publication_requires_native_music": false,
+  "production_status": "brief_complete_art_not_generated",
+  "manual_visual_review_required": true,
+  "editorial_freshness_checked_at": "2026-11-03"
+}
