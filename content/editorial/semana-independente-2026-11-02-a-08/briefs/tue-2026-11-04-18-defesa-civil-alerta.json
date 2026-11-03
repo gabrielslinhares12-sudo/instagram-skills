@@ -23,7 +23,7 @@
   ],
   "format": "MP4 original 1080x1920 9:16, alvo 40–45 s, legendas inferiores, capa até cinco palavras, sem marca d'água",
   "media_policy": "Produzir vídeo original primeiro para o YouTube Tem Uma Explicação em PT-BR; usar cenas reais autorizadas de chuva/Defesa Civil e grafismo original claramente ilustrativo; não fingir captura de alerta verdadeiro. Depois usar o MP4 fonte verificado na Meta; não fazer reupload de vídeo de terceiros.",
-  "narration_pt_br": "Seu celular pode emitir um alerta de emergência mesmo sem você instalar nenhum aplicativo. Não é vírus. É o Defesa Civil Alerta, que usa a rede 4G ou 5G para avisar aparelhos compatíveis em áreas de risco. Se aparecer um aviso sobre enxurrada, deslizamento ou vendaval, leia as instruções e siga o que a Defesa Civil orientar para aquela região. Já o SMS 40199 é outro serviço: você cadastra gratuitamente os CEPs que quer acompanhar. Um alerta pode interromper o seu dia, mas também pode dar tempo para se proteger. Tem uma explicação.",
+  "narration_pt_br": "Seu celular pode emitir um alerta de emergência mesmo sem instalar aplicativo. Não é vírus. É o Defesa Civil Alerta, que usa as redes quatro G e cinco G para avisar celulares compatíveis em áreas de risco. Se surgir um alerta de enxurrada, deslizamento ou vendaval, leia a mensagem e siga as instruções da Defesa Civil. O SMS quatro zero um nove nove é outro serviço: nele, você cadastra gratuitamente os CEPs que quer acompanhar. Um aviso pode interromper seu dia, mas também dar tempo para se proteger. Tem uma explicação.",
   "visual_plan": [
     {
       "segment": "0–6 s",
@@ -53,13 +53,28 @@
   ],
   "cover_text": "ALERTA NO CELULAR?",
   "caption": "📱 Uma mensagem pode ocupar a tela do celular para avisar sobre uma emergência na sua região. O Defesa Civil Alerta funciona em aparelhos compatíveis conectados às redes 4G/5G nas áreas atendidas, sem cadastro prévio. Quer receber alertas por SMS dos seus CEPs? Cadastre gratuitamente no 40199. Siga sempre a orientação oficial. #TemUmaExplicacao #DefesaCivil #AlertaDeEmergencia #Seguranca #Tecnologia",
-  "voice": "Google AI Studio (site), voz Rasalgethi, sem API paga",
+  "voice": {
+    "model": "gemini-2.5-flash-tts",
+    "provider": "Google via Picsart connector, not Google AI Studio website",
+    "requested_voice": "Rasalgethi",
+    "language": "pt-BR",
+    "output_format": "wav",
+    "duration_seconds": 36.251,
+    "voice_start_in_video_seconds": 2,
+    "audio_url": "https://gcdn.picsart.com/cloud-storage/c6425242-3ed0-4180-ad1e-18f048c8a25f.wav",
+    "archive_raw_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/drafts/VOZ-RASALGETHI-PTBR.wav",
+    "archive_job": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41705379287",
+    "archive_status": "IN_PROGRESS",
+    "generate_job": "17d4c130-0364-4fe1-86b8-052beb9335d3",
+    "generation_confirmed": true,
+    "perceptual_reviewed": false
+  },
   "source_channel": "Tem Uma Explicação — YouTube PT",
   "source_video_id": null,
   "source_mp4": null,
   "source_verified": false,
   "ai_origin": "unverified",
-  "production_status": "PREVIEW_MP4_42S_EXPORTED__VOICE_RASALGETHI_PENDING__NOT_PUBLISHABLE",
+  "production_status": "VOICE_RASALGETHI_CREATED_AND_MIXED_IN_MP4__PENDING_HUMAN_PERCEPTUAL_QC__NOT_PUBLISHED",
   "manual_visual_review_required": true,
   "editorial_freshness_checked_at": "2026-11-03",
   "factual_caution": "Defesa Civil Alerta por Cell Broadcast não é o mesmo que SMS 40199. Não afirmar que qualquer aparelho, rede ou local recebe necessariamente a mensagem. Não imitar aviso autêntico em publicação sensacionalista.",
@@ -109,10 +124,11 @@
     }
   ],
   "qc_pending": [
-    "Adicionar narração Google AI Studio Rasalgethi e sincronizar as legendas",
-    "Revisar vídeo final e mixagem com áudio no celular",
-    "Confirmar o MP4 final na Meta e não repetir o tema",
-    "Não agendar ou publicar esta prévia sem voz"
+    "Escutar e verificar a voz gerada (pronúncia de 40199, ritmo e naturalidade)",
+    "Conferir alinhamento perceptivo de todas as legendas com a fala",
+    "Revisão visual do Reel em tamanho de celular, direitos e fontes",
+    "Verificar se existe MP4 original no canal YouTube PT antes de usar no Instagram",
+    "Não agendar/publicar sem QC e autorização"
   ],
   "cover_image": {
     "url": "https://gcdn.picsart.com/media-engine/91d3b2a7-79b7-42d0-9450-478e126e585f.jpg",
@@ -123,5 +139,20 @@
     "storage": "GitHub branch de mídia isolado, JPEG verificado 1080x1920",
     "archive_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg",
     "archive_job": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41702537219"
+  },
+  "rendered_reel": {
+    "url": "https://gcdn.picsart.com/media-engine/d6e5ff7a-1437-4f55-a8db-c0b0d7875347.mp4",
+    "archive_raw_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-NARRADO-RASALGETHI.mp4",
+    "archive_status": "IN_PROGRESS",
+    "archive_job": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41705379287",
+    "duration_seconds": 42,
+    "width": 1080,
+    "height": 1920,
+    "has_audio_track": true,
+    "video_codec": "avc1",
+    "audio_codec": "mp4a",
+    "subtitle_timing": "estimated from text length, needs listening-based correction",
+    "voice_start_seconds": 2,
+    "ready_to_publish": false
   }
 }
