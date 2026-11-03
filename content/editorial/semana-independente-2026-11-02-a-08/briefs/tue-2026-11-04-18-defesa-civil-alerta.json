@@ -75,7 +75,7 @@
   "source_mp4": null,
   "source_verified": false,
   "ai_origin": "unverified",
-  "production_status": "NARRATION_COMPLETE__VIDEO_42S_MIXED_AND_ARCHIVED__PERCEPTUAL_QC_PENDING__NOT_PUBLISHED",
+  "production_status": "VOICE_RASALGETHI_GENERATED_AND_MUXED__MP4_42S__PENDING_FINAL_QC_NOT_PUBLISHED",
   "manual_visual_review_required": true,
   "editorial_freshness_checked_at": "2026-11-03",
   "factual_caution": "Defesa Civil Alerta por Cell Broadcast não é o mesmo que SMS 40199. Não afirmar que qualquer aparelho, rede ou local recebe necessariamente a mensagem. Não imitar aviso autêntico em publicação sensacionalista.",
@@ -129,7 +129,8 @@
     "Conferir alinhamento perceptivo de todas as legendas com a fala",
     "Revisão visual do Reel em tamanho de celular, direitos e fontes",
     "Verificar se existe MP4 original no canal YouTube PT antes de usar no Instagram",
-    "Não agendar/publicar sem QC e autorização"
+    "Não agendar/publicar sem QC e autorização",
+    "Verificar audição integral e sincronismo perceptivo da narração Rasalgethi antes da publicação"
   ],
   "cover_image": {
     "url": "https://gcdn.picsart.com/media-engine/91d3b2a7-79b7-42d0-9450-478e126e585f.jpg",
@@ -156,5 +157,24 @@
     "voice_start_seconds": 2,
     "ready_to_publish": false,
     "verified_format": "H.264 MP4, 1080×1920, 42 s, AAC stereo, 27,143,550 bytes"
+  },
+  "voice_completion": {
+    "model": "gemini-2.5-flash-tts",
+    "voice": "Rasalgethi",
+    "language": "pt-BR",
+    "audio_url": "https://gcdn.picsart.com/cloud-storage/eb39e135-9cc5-4073-98ca-841c7b08143b.wav",
+    "audio_duration_seconds": 38.811,
+    "audio_sample_rate": 24000,
+    "narrator_file_format": "WAV",
+    "video_url": "https://gcdn.picsart.com/media-engine/67cf1b02-3b9b-4df9-a344-beebf9fe9915.mp4",
+    "video_duration_seconds": 42,
+    "video_resolution": "1080x1920",
+    "video_audio_codec": "AAC",
+    "video_audio_present": true,
+    "preview_scene": "https://gcdn.picsart.com/picsart-mcp/609b18db-5aee-4d42-acbf-373acd0a1818.json",
+    "github_archival_workflow": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41705805123",
+    "github_branch": "instagram-reel-defesa-civil-04nov-2026",
+    "audio_balance": "Gerado com um crédito Picsart via integração; sem ativar API paga Google.",
+    "status": "voice_completed_in_video; final perceptual QC still pending; not published"
   }
 }
