@@ -250,6 +250,31 @@
       ],
       "approval_note": "Proprietário aprovou as cinco artes do Atacama e autorizou expressamente 'Poste sem música' em 03/11/2026. Só publicar os cinco JPEGs originais com SHA256 exato em 03/11 às 15h de São Paulo; sem música, sem conversão de formato ou alegação de fidelidade pixel a pixel do mascote. Story nativo posterior apenas se houver recibo da Meta.",
       "owner_authorized_without_music": true
+    },
+    {
+      "id": "tue-2026-11-04-18-defesa-civil-alerta",
+      "due_at": "2026-11-04T21:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "reel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "SEU CELULAR PODE TOCAR UMA SIRENE DO NADA?",
+      "caption": "📱 Uma mensagem pode ocupar a tela do celular para avisar sobre uma emergência na sua região. O Defesa Civil Alerta funciona em aparelhos compatíveis conectados às redes 4G/5G nas áreas atendidas, sem cadastro prévio. Quer receber alertas por SMS dos seus CEPs? Cadastre gratuitamente no 40199. Siga sempre a orientação oficial. #TemUmaExplicacao #DefesaCivil #AlertaDeEmergencia #Seguranca #Tecnologia",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/26930c086cf81bdb9e3fd43050f89c17953f0056/content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4"
+      ],
+      "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/26930c086cf81bdb9e3fd43050f89c17953f0056/content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg",
+      "media_sha256": [
+        "8215c8451426d08ff49b7a129ce64abead0658d8a0854e98fa4c253decca0d04"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "ai_disclosure_review": "mandatory_realistic_synthetic_audio",
+      "is_ai_generated": true,
+      "sources": [
+        "https://www.gov.br/mcom/pt-br/noticias/2026/copy_of_julho/como-receber-alertas-da-defesa-civil-sobre-situacoes-de-emergencia-no-celular",
+        "https://www.gov.br/mdr/pt-br/assuntos/protecao-e-defesa-civil/defesa-civil-alerta/mas-o-que-e-defesa-civil-alerta"
+      ],
+      "approval_note": "Autorização de continuidade do proprietário em 03/11/2026: completar o primeiro Reel, usar Meta API, publicar em 04/11 às 18h BRT. Voz gerada Rasalgethi com IA: etiqueta AI info obrigatória da Meta. MP4 imutável 42s com legendas e QC em content/approved/tue-2026-11-04-18-defesa-civil-alerta/approval.json. Sem música ou Story."
     }
   ]
 }
