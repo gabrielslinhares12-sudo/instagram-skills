@@ -239,16 +239,17 @@
         "4df804be6371acbe6658e5f9b5592996aca73c90d8c0ca8d4cf98d1dd21a8988",
         "a3d750b169b5dea568f0271e10b449a2de1ae444e4ff6266b0df9c9977e9acc8"
       ],
-      "approved": false,
+      "approved": true,
       "ai_origin": "synthetic",
       "content_style": "clearly_illustrated",
       "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
-      "distribution_mode": "native_music_carousel",
+      "distribution_mode": "api_carousel_without_native_music",
       "sources": [
         "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region",
         "https://dpratacama.dpr.gob.cl/2026/10/02/region-de-atacama-lanza-oficialmente-la-temporada-del-desierto-florido-2026-en-freirina/"
       ],
-      "approval_note": "Proprietário aprovou as artes de 03/11 e pediu os dois posts, porém o preset exige música nativa no carrossel. A API Graph não incorpora essa música; item fica bloqueado para publicação móvel, não substituir por carrossel mudo nem transformar em Reel. As imagens são ilustrativas e a fidelidade pixelwise do mascote não está demonstrada."
+      "approval_note": "Proprietário aprovou as cinco artes do Atacama e autorizou expressamente 'Poste sem música' em 03/11/2026. Só publicar os cinco JPEGs originais com SHA256 exato em 03/11 às 15h de São Paulo; sem música, sem conversão de formato ou alegação de fidelidade pixel a pixel do mascote. Story nativo posterior apenas se houver recibo da Meta.",
+      "owner_authorized_without_music": true
     }
   ]
 }
