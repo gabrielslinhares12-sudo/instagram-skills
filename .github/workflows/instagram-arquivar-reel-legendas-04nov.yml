@@ -1,0 +1,70 @@
+name: Arquivar Reel Defesa Civil final legendado 04NOV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-arquivar-reel-legendas-04nov.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: arquivar-reel-04nov-legendas
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout isolado para mídia, sem tocar a fila oficial
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: instagram-reel-defesa-civil-04nov-2026
+          persist-credentials: true
+      - name: Prevenir sobrescrita de MP4 arquivado
+        id: already
+        run: |
+          if test -f content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4; then
+            echo "saved=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "saved=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Instalar ffprobe
+        if: steps.already.outputs.saved == 'false'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Baixar e validar a versão legendada
+        if: steps.already.outputs.saved == 'false'
+        env:
+          REEL_URL: https://gcdn.picsart.com/media-engine/fb8e5892-e617-43d9-9234-43f232e57cd8.mp4
+        run: |
+          set -euo pipefail
+          OUT=content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4
+          mkdir -p "$(dirname "$OUT")"
+          curl -fSL --retry 3 --retry-all-errors --max-time 270 "$REEL_URL" -o "$OUT"
+          python3 - <<'PY'
+          import json,subprocess,hashlib,pathlib,re
+          p=pathlib.Path("content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4")
+          assert p.stat().st_size >= 5_000_000, "MP4 incompleto"
+          o=json.loads(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration:stream=codec_type,codec_name,width,height","-of","json",str(p)]))
+          assert 41 <= float(o["format"]["duration"]) <= 43, o
+          assert any(s.get("codec_type")=="video" and s.get("width")==1080 and s.get("height")==1920 for s in o["streams"]),o
+          assert any(s.get("codec_type")=="audio" for s in o["streams"]),o
+          r=subprocess.run(["ffmpeg","-i",str(p),"-af","volumedetect","-vn","-f","null","-"],capture_output=True,text=True,timeout=100)
+          m=re.search(r"max_volume:\s*(-?[\d.]+) dB",r.stderr)
+          assert m and float(m.group(1))>-55, "Áudio ausente/baixo"
+          print("FINAL_REEL_QC="+json.dumps({"sha256":hashlib.sha256(p.read_bytes()).hexdigest(),"bytes":p.stat().st_size,"duration_seconds":float(o["format"]["duration"]),"resolution":[1080,1920],"audio_max_db":float(m.group(1)),"voice":"Rasalgethi","caption_groups":25,"synthetic_voice_disclosure_required":True},ensure_ascii=False))
+          PY
+      - name: Preservar release em branch de mídia sem publicar
+        if: steps.already.outputs.saved == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4
+          git commit -m "media(instagram): finalizar Reel 04NOV Defesa Civil com voz e 25 legendas"
+          git push origin HEAD:refs/heads/instagram-reel-defesa-civil-04nov-2026
+          echo "MP4 final preservado; nenhuma publicação efetuada."
