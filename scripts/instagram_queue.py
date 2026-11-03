@@ -185,18 +185,21 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
                 raise QueueError("Verified non-synthetic media must not be falsely marked AI.")
         if item.get("is_ai_generated") is False and origin!="verified_non_synthetic":
             raise QueueError("Explicit non-AI disclosure requires verified non-synthetic provenance.")
-        # Política TUE 02/11: jamais adicionar declaração voluntária de IA
-        # nos novos uploads. Se a declaração for necessária, bloquear em vez
-        # de publicá-los sem a identificação exigida. Itens antigos preservados.
+        # TUE 02/11: não adicionar marcações VOLUNTÁRIAS de IA em novos
+        # posts. EXCEÇÃO OBRIGATÓRIA: áudio de fala realista gerado por IA
+        # em Reels requer divulgação conforme política Meta. A exceção
+        # exige procedência sintética declarada E is_ai_generated=true;
+        # não vale para conteúdo desconhecido nem para imagem ilustrativa.
         if item["approved"] and due >= datetime(2026, 11, 2, tzinfo=timezone.utc):
-            # Meta requires disclosure for certain realistic synthetic video/audio,
-            # while for clearly illustrative still images self-disclosure via
-            # is_ai_generated is optional. Keep synthetic provenance truthfully
-            # in the private queue and let Meta apply its own labels if detected.
-            if origin != "verified_non_synthetic" and not illustrated_still:
-                raise QueueError("New posts need verified provenance; synthetic media must have an approved, nondeceptive still-image exception or remain in review.")
-            if "is_ai_generated" in item:
-                raise QueueError("New Instagram posts must not add the optional AI marker.")
+            mandatory_audio_label = (
+                kind == "reel" and origin == "synthetic"
+                and item.get("ai_disclosure_review") == "mandatory_realistic_synthetic_audio"
+                and item.get("is_ai_generated") is True
+            )
+            if origin != "verified_non_synthetic" and not illustrated_still and not mandatory_audio_label:
+                raise QueueError("New posts require verified provenance; realistic synthetic Reel audio must carry mandatory AI disclosure.")
+            if "is_ai_generated" in item and not mandatory_audio_label:
+                raise QueueError("New Instagram posts must not add optional AI labels.")
             if re.search(r"(?i)(feito\s+(?:por|com)\s+(?:i\.?a\.?|intelig[eê]ncia\s+artificial)|made\s+with\s+ai|ai[ -]*generated|#feito(?:por|com)ia)", caption):
                 raise QueueError("A legenda acrescenta uma atribuição de IA proibida pelo padrão TUE.")
         if "cover_url" in item:
