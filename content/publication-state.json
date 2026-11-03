@@ -96,10 +96,15 @@
       "published_at": "2026-11-03T18:55:05Z"
     },
     "tue-2026-11-04-18-defesa-civil-alerta": {
-      "status": "claimed",
+      "status": "published",
       "fingerprint": "01a0d60c92637d0c7ad2b39b7e9e0d73cdff16611cedfebd551c294602ac6b21",
       "due_at": "2026-11-03T21:17:00Z",
-      "claimed_at": "2026-11-03T21:19:30Z"
+      "claimed_at": "2026-11-03T21:19:30Z",
+      "media_id": "17896370313614659",
+      "creation_id": "18102608369100158",
+      "instagram_user_id": "17841433004716815",
+      "page_id": "1385407341325017",
+      "published_at": "2026-11-03T21:21:53Z"
     }
   }
 }
