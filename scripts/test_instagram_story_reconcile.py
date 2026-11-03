@@ -43,6 +43,24 @@ class StoryReconcileTests(unittest.TestCase):
         self.assertEqual(e["status"], "awaiting_native_app_share_with_text_cta")
         self.assertFalse(self.entry["parent_published"])
 
+    def test_03nov_meeting_story_resolves_actual_published_post(self):
+        doc = copy.deepcopy(self.doc)
+        planned_id = "tue-2026-11-03-18-reuniao-sobre-reuniao"
+        actual_id = "tue-2026-11-03-11-tirinha-reuniao"
+        doc["entries"][0]["parent_id"] = planned_id
+        ledger = {"items": {actual_id: {
+            "status": "published", "media_id": "18180254872434730",
+            "published_at": "2026-11-03T15:43:27Z",
+            "instagram_user_id": "17841433004716815"}}}
+        out, notes = reconcile(ledger, doc, lambda m: self.url)
+        e = out["entries"][0]
+        self.assertEqual(ALIASES[planned_id], actual_id)
+        self.assertEqual(e["actual_published_parent_id"], actual_id)
+        self.assertEqual(e["parent_media_id"], "18180254872434730")
+        self.assertTrue(e["parent_published"])
+        self.assertFalse(e["story_published"])
+        self.assertEqual(e["status"], "awaiting_native_app_share_with_text_cta")
+
     def test_without_verified_permalink_no_false_native_story_state(self):
         out, _ = reconcile(self.ledger, self.doc, lambda m: None)
         e = out["entries"][0]
