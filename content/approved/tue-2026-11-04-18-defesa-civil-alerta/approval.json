@@ -7,12 +7,12 @@
   "owner_authorized": true,
   "owner_authorizes_only": "tue-2026-11-04-18-defesa-civil-alerta",
   "owner_authorization_source": "O proprietário ordenou criar o Reel primeiro, pediu 'Finalize a parte da voz agora.' e autorizou a continuação com 'siga' em 03/11/2026. Escopo: concluir o Reel e seguir a fila das 18h de 04/11.",
-  "release_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/26930c086cf81bdb9e3fd43050f89c17953f0056/content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4",
-  "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/26930c086cf81bdb9e3fd43050f89c17953f0056/content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg",
+  "release_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/aec4e169fb9d362249946b7f7ce601a102247dfd/content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-META.mp4",
+  "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/aec4e169fb9d362249946b7f7ce601a102247dfd/content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg",
   "media_sha256": [
-    "8215c8451426d08ff49b7a129ce64abead0658d8a0854e98fa4c253decca0d04"
+    "02f3044f009251349c3ec15e322cb999e042f65fa812c214a2e35109d2790991"
   ],
-  "video_duration_seconds": 42,
+  "video_duration_seconds": 42.005,
   "video_width": 1080,
   "video_height": 1920,
   "technical_video_qc_passed": true,
@@ -48,10 +48,14 @@
       "FFmpeg max_volume -4.8 dB",
       "GitHub SHA256 fingerprint and immutable pinned commit"
     ],
-    "media_file_size_bytes": 27519640,
-    "media_immutable_commit": "26930c086cf81bdb9e3fd43050f89c17953f0056"
+    "media_file_size_bytes": 27223218,
+    "media_immutable_commit": "aec4e169fb9d362249946b7f7ce601a102247dfd",
+    "github_audio_normalization_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41717386127",
+    "audio_bitrate": 117698,
+    "audio_sample_rate": 48000,
+    "faststart": true
   },
   "planned_publication": "2026-11-04T21:00:00Z",
   "publication_method": "Meta Graph API via one-shot GitHub queue; no music; no Story",
-  "approval_note": "Autorizado para a publicação única do Reel Defender Civil Alerta às 18h de quarta 04/11/2026. Preparação e narração concluídas; controle de qualidade automatizado aprovado. A identificação de áudio sintético via is_ai_generated=true é obrigatória pela Meta; não é uma declaração voluntária na legenda. Não criar Stories nem adicionar música."
+  "approval_note": "Autorizado para a publicação única do Reel Defender Civil Alerta às 18h de quarta 04/11/2026. Preparação e narração concluídas; controle de qualidade automatizado aprovado. A identificação de áudio sintético via is_ai_generated=true é obrigatória pela Meta; não é uma declaração voluntária na legenda. Não criar Stories nem adicionar música. Versão final normalizada: H.264 + AAC 48 kHz ~118 kb/s, faststart, mesma narração e 25 legendas."
 }
