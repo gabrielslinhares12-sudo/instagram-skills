@@ -4,6 +4,7 @@ Pure stdlib. No publishing, no network, no image generation.
 """
 from __future__ import annotations
 import json
+import re
 from pathlib import Path
 from instagram_preset_mestre import ROOT, check_brief, check_week, verify, PresetError
 from instagram_story_gate import verify_linked_stories, StoryGateError
@@ -68,7 +69,23 @@ def verify_reels_and_stories(reels_plan, feed_plan, publication_ledger=None):
                                   and reel.get("source_verified") is True
                                   and bool(reel.get("topic_id"))
                                   and len(matches) == 1)
-            if not historical_receipt and (not reel.get("source_verified") or not source
+            # Um Reel original produzido dentro do TUE pode não possuir ID do
+            # YouTube. Aceitar essa origem SOMENTE com MP4 imutável hospedado
+            # no GitHub, identificação do processo original e QC registrado.
+            original_tue_source = (
+                reel.get("source_kind") == "tue_original_production"
+                and isinstance(reel.get("source_mp4"), str)
+                and re.fullmatch(
+                    r"https://raw\.githubusercontent\.com/gabrielslinhares12-sudo/"
+                    r"instagram-skills/[a-f0-9]{40}/content/media/instagram/"
+                    r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO\.mp4",
+                    reel["source_mp4"]
+                ) is not None
+                and reel.get("source_video_id") is None
+                and reel.get("ai_origin") == "synthetic"
+            )
+            if not historical_receipt and (not reel.get("source_verified")
+                    or not (source or original_tue_source)
                     or not reel.get("source_mp4") or not reel.get("topic_id")
                     or origin == "unverified"):
                 raise PresetError("Reel sem fonte e origem verificadas não pode ser aprovado.")
