@@ -66,29 +66,29 @@
       "depends_on_other_post": false
     },
     {
-      "id": "tue-2026-11-04-12-por-sol-azul-marte",
+      "id": "tue-2026-11-04-11-pix-med-2026",
       "day": "2026-11-04",
       "slot": "11:00",
-      "topic_id": "por-sol-azul-marte",
-      "subject_id": "poeira-marciana-espalhamento-luz",
+      "topic_id": "pix-med-fraude-2026",
+      "subject_id": "recuperacao-golpe-pix-mecanismo-devolucao",
       "series_id": "carrossel-educativo",
       "kind": "carousel",
-      "title": "NO PLANETA VERMELHO O SOL SE PÕE AZUL?",
-      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-12-por-sol-azul-marte.json",
+      "title": "GOLPE NO PIX? O QUE FAZER NOS PRIMEIROS MINUTOS",
+      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-11-pix-med-2026.json",
       "approved": false,
       "part_of_series": false,
       "depends_on_other_post": false
     },
     {
-      "id": "tue-2026-11-04-18-museu-cabos-sem-dono",
+      "id": "tue-2026-11-04-15-sac-ar-17-graus",
       "day": "2026-11-04",
       "slot": "15:00",
-      "topic_id": "museu-cabos-sem-dono",
-      "subject_id": "tecnologia-cabos-esquecidos",
-      "series_id": "museu-inutilidades",
+      "topic_id": "ar-condicionado-17-graus-mito",
+      "subject_id": "eficiencia-energetica-climatizacao-termometro",
+      "series_id": "sac-lumino",
       "kind": "meme",
-      "title": "O MUSEU DOS CABOS SEM DONO",
-      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-18-museu-cabos-sem-dono.json",
+      "title": "SAC DO CLIMA — O 17 °C QUE SAI CARO",
+      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-15-sac-ar-17-graus.json",
       "approved": false,
       "part_of_series": false,
       "depends_on_other_post": false
@@ -215,14 +215,13 @@
     "carousels": 7,
     "standalone_memes": 7,
     "distinct_topics": 14,
-    "distinct_series": 11,
+    "distinct_series": 10,
     "series_usage": {
       "parece-mentira": 2,
-      "sac-lumino": 2,
+      "sac-lumino": 3,
       "arquivo-improvavel": 1,
       "plantao-absurdo": 1,
       "carrossel-educativo": 1,
-      "museu-inutilidades": 1,
       "nao-era-isso": 1,
       "tribunal-pequenas": 2,
       "tribunal-fenomenos": 1,
@@ -232,5 +231,6 @@
     "rotating_12_and_18": true
   },
   "feed_rotation_rule": "Nenhum formato é fixo por horário: carrosséis educativos, demais carrosséis e tirinhas alternam entre 11h e 15h. O Reel do YouTube às 18h permanece fila separada e dependente de MP4 verificado.",
-  "schedule_override_note": "02/11: tirinha antecipada e publicada 13h51, Mar Cruzado transferido para 15h por solicitação do proprietário. IDs históricos são preservados; alteração não constitui agendamento nem publicação."
+  "schedule_override_note": "02/11: tirinha antecipada e publicada 13h51, Mar Cruzado transferido para 15h por solicitação do proprietário. IDs históricos são preservados; alteração não constitui agendamento nem publicação.",
+  "plan_revision_2026_11_03": "Em 04/11, o rascunho antigo de Marte às 11h e Museu dos Cabos às 15h foi substituído por temas de utilidade prática e conteúdo atualizado de 2026: Pix/MED e consumo do ar-condicionado. Produção e publicação ainda dependem de ativos, QC e liberação. Não reativar planos antigos para os dois horários."
 }
