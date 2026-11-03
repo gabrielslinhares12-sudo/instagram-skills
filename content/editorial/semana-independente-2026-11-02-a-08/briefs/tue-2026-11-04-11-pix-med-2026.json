@@ -1,0 +1,95 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "day": "2026-11-04",
+  "id": "tue-2026-11-04-11-pix-med-2026",
+  "slot": "11:00",
+  "series_id": "carrossel-educativo",
+  "kind": "carousel",
+  "topic_id": "pix-med-fraude-2026",
+  "subject_id": "recuperacao-golpe-pix-mecanismo-devolucao",
+  "title": "GOLPE NO PIX? O QUE FAZER NOS PRIMEIROS MINUTOS",
+  "hook": "GOLPE NO PIX? AJA AGORA",
+  "concept": "Guia prático e atual do MED, com limites reais, sem promessa de estorno.",
+  "sources": [
+    "https://www.bcb.gov.br/estabilidadefinanceira/pix-seguranca",
+    "https://bcb.gov.br/meubc/faqs/p/o-que-e-e-como-funciona-o-mecanismo-especial-de-devolucao-med",
+    "https://agenciabrasil.ebc.com.br/economia/noticia/2026-09/nova-regra-do-pix-amplia-prazo-para-contestar-golpe"
+  ],
+  "factual_caution": "O MED não garante reembolso; prazo de 80 dias refere-se ao pedido da vítima após a transferência. Distinguir claramente fraude, Pix para destinatário errado e disputa comercial. Não sugerir cancelar Pix instantâneo.",
+  "format": "6 JPEGs individuais 1080x1350 (4:5); mestre 3240x4050",
+  "media_policy": "Fotografias contextuais com licença/uso comprovados e imagens esquemáticas originais identificadas; não reproduzir telas de banco ou contas de pessoas reais.",
+  "slides": [
+    {
+      "headline": "GOLPE NO PIX? AJA AGORA",
+      "new_information": "Se você transferiu dinheiro num golpe, existe um procedimento específico do Pix que pode ajudar na recuperação. Não é estorno automático.",
+      "distinct_scene": "Cena de uma pessoa diante de confirmação de transferência em aparelho sem marca, com reação humana realista e fundo bancário abstrato.",
+      "visual_direction": "Manchete de impacto no mestre visual; Lúmino PNG original à direita, situação cotidiana contextual; não simular aplicativo de banco real.",
+      "source_credit": "https://www.bcb.gov.br/estabilidadefinanceira/pix-seguranca",
+      "uses_original_lumino": true,
+      "position_in_story": "gancho",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "O PRIMEIRO PASSO É NO BANCO",
+      "new_information": "Conteste a transação no aplicativo ou canal oficial do seu banco e registre o ocorrido o mais rápido possível.",
+      "distinct_scene": "Close editorial de mãos usando aplicativo bancário genérico e neutro, sem telas falsas com marca institucional.",
+      "visual_direction": "Infográfico original com fluxo cliente → banco; cena fotográfica diferente da capa; texto legível e destaques amarelos.",
+      "source_credit": "https://www.bcb.gov.br/estabilidadefinanceira/pix-seguranca",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "MED NÃO É UM PIX DESFEITO",
+      "new_information": "O Mecanismo Especial de Devolução (MED) trata de fraude e falha operacional; não cobre uma transferência feita à pessoa errada por engano nem uma disputa comercial.",
+      "distinct_scene": "Mesa de triagem com três casos distintos ilustrados e separação clara entre golpe, erro de destinatário e desacordo comercial.",
+      "visual_direction": "Três cenas menores integradas a balcão investigativo, não cartões repetidos; Lúmino canônico no balcão e etiquetas informativas.",
+      "source_credit": "https://bcb.gov.br/meubc/faqs/p/o-que-e-e-como-funciona-o-mecanismo-especial-de-devolucao-med",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "80 DIAS. MAS NÃO ESPERE.",
+      "new_information": "A vítima pode pedir o MED em até 80 dias após o Pix. Fazer o registro cedo pode aumentar a chance de encontrar recursos disponíveis para bloqueio.",
+      "distinct_scene": "Calendário físico sendo marcado ao lado de celular e comprovante genérico coberto parcialmente.",
+      "visual_direction": "Destaque 80 DIAS correto; relógio e calendário documentais; não prometer que todo pedido será aceito.",
+      "source_credit": "https://bcb.gov.br/meubc/faqs/p/o-que-e-e-como-funciona-o-mecanismo-especial-de-devolucao-med",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "O DINHEIRO PODE PASSAR POR CONTAS",
+      "new_information": "O aprimoramento de 2026 permite mapear também contas intermediárias usadas no desvio. Isso melhora a investigação, mas não garante que exista saldo recuperável.",
+      "distinct_scene": "Diagrama original de uma rede de contas com setas de rastreio sobre cenário de agência e computadores, sem citar pessoas reais.",
+      "visual_direction": "Rede visual instrutiva com elementos concretos e anotação não é devolução garantida; atmosfera e enquadramento únicos.",
+      "source_credit": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-09/nova-regra-do-pix-amplia-prazo-para-contestar-golpe",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "GUARDE AS PROVAS",
+      "new_information": "Preserve comprovante, conversas e dados da transação. Acompanhe o caso no seu banco; uma devolução pode ser total, parcial ou não ocorrer.",
+      "distinct_scene": "Pasta documental com recibo fictício sem dados pessoais e tela neutra de acompanhamento, Lúmino iluminando as evidências.",
+      "visual_direction": "Encerramento de serviço: AJA PELO BANCO. Sem links suspeitos, sem personagens desconhecidos, sem seta de arrastar.",
+      "source_credit": "https://www.bcb.gov.br/estabilidadefinanceira/pix-seguranca",
+      "uses_original_lumino": true,
+      "position_in_story": "síntese",
+      "swipe_cue": null
+    }
+  ],
+  "caption": "🚨 Caiu em golpe no Pix? O primeiro passo é contestar pelo aplicativo ou canal oficial do seu banco. O Mecanismo Especial de Devolução (MED) pode ajudar a rastrear e recuperar valores em casos de fraude. O pedido pode ser feito em até 80 dias após a transferência, mas agir rápido importa — e a devolução não é garantida. Guarde comprovantes e conversas. 💡 Salve este guia para lembrar do que fazer. #TemUmaExplicacao #Pix #SegurancaDigital #Golpes #EducacaoFinanceira",
+  "publication_requires_native_music": false,
+  "production_status": "brief_complete_assets_not_generated",
+  "manual_visual_review_required": true,
+  "editorial_freshness_checked_at": "2026-11-03"
+}
