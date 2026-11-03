@@ -1,0 +1,68 @@
+name: Normalizar o Reel Defesa Civil 04NOV para a Meta
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-normalizar-reel-defesa-civil-meta-04nov.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-04nov-normalizar-media
+  cancel-in-progress: false
+
+jobs:
+  normalizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: instagram-reel-defesa-civil-04nov-2026
+          persist-credentials: true
+      - name: Checar arquivo de saída, sem refazer se existir
+        id: guard
+        run: |
+          if test -f content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-META.mp4; then
+            echo 'existing=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'existing=false' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Instalar FFmpeg
+        if: steps.guard.outputs.existing == 'false'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Corrigir codec e bitrate do áudio, preservar imagem e legendas
+        if: steps.guard.outputs.existing == 'false'
+        run: |
+          set -euo pipefail
+          FROM=content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4
+          TO=content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-META.mp4
+          test -s "$FROM"
+          ffmpeg -hide_banner -loglevel error -y -i "$FROM" \
+            -map 0:v:0 -map 0:a:0 -c:v copy -c:a aac -b:a 128k -ar 48000 \
+            -movflags +faststart -max_muxing_queue_size 1024 "$TO"
+          python3 - <<'PY'
+          import json,subprocess,pathlib,hashlib
+          p=pathlib.Path("content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-META.mp4")
+          o=json.loads(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration:stream=index,codec_type,codec_name,width,height,sample_rate,bit_rate,r_frame_rate","-of","json",str(p)]))
+          assert 41<=float(o["format"]["duration"])<=43,o
+          video=[s for s in o["streams"] if s.get("codec_type")=="video"]
+          audio=[s for s in o["streams"] if s.get("codec_type")=="audio"]
+          assert len(video)==1 and video[0].get("codec_name")=="h264" and video[0].get("width")==1080 and video[0].get("height")==1920, o
+          assert len(audio)==1 and audio[0].get("codec_name")=="aac" and audio[0].get("sample_rate")=="48000" and int(audio[0].get("bit_rate",0))<=135000,o
+          assert p.stat().st_size>5_000_000
+          print("META_REEL_VALIDATED="+json.dumps({"sha256":hashlib.sha256(p.read_bytes()).hexdigest(),"bytes":p.stat().st_size,"duration_seconds":float(o["format"]["duration"]),"codec":video[0]["codec_name"],"audio_bitrate":int(audio[0]["bit_rate"]),"audio_sample_rate":int(audio[0]["sample_rate"]),"resolution":[1080,1920],"audio":"Rasalgethi","caption_groups":25},ensure_ascii=False))
+          PY
+      - name: Salvar MP4 normalizado na mesma branch isolada (não publica)
+        if: steps.guard.outputs.existing == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-META.mp4
+          git commit -m "media(instagram): Reel Defesa Civil AAC128k para Meta 04NOV"
+          git push origin HEAD:refs/heads/instagram-reel-defesa-civil-04nov-2026
