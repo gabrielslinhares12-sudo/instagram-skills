@@ -83,6 +83,12 @@
       "instagram_user_id": "17841433004716815",
       "page_id": "1385407341325017",
       "published_at": "2026-11-03T15:43:27Z"
+    },
+    "tue-2026-11-03-15-atacama-florido": {
+      "status": "claimed",
+      "fingerprint": "8cac20bf5713ad65d1b64a4e1a91144f2f1fcec674bd8bdc7398dc416c201abd",
+      "due_at": "2026-11-03T18:00:00Z",
+      "claimed_at": "2026-11-03T18:54:25Z"
     }
   }
 }
