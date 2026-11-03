@@ -30,6 +30,11 @@ jobs:
           else
             echo 'already=false' >> "$GITHUB_OUTPUT"
           fi
+      - name: Instalar validador de vídeo ffprobe (runner sem FFmpeg)
+        if: steps.branch.outputs.already == 'false'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
       - name: Baixar o MP4 exportado e verificar mídia real
         if: steps.branch.outputs.already == 'false'
         env:
