@@ -1,0 +1,61 @@
+name: Salvar montagem do Reel Defesa Civil 04NOV no GitHub
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-salvar-reel-defesa-civil-04nov.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-armazenar-reel-defesa-civil-04nov
+  cancel-in-progress: false
+
+jobs:
+  salvar-rascunho:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: true
+      - name: Evitar recriar ou sobrescrever branch existente
+        id: branch
+        run: |
+          if git ls-remote --exit-code --heads origin instagram-reel-defesa-civil-04nov-2026 >/dev/null; then
+            echo 'already=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'already=false' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Baixar o MP4 exportado e verificar mídia real
+        if: steps.branch.outputs.already == 'false'
+        env:
+          MEDIA_URL: https://gcdn.picsart.com/media-engine/a557a6b7-ccf5-42c5-9d12-8f2aca7868b7.mp4
+          DEST: content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-SEM-NARRACAO.mp4
+        run: |
+          mkdir -p "$(dirname "$DEST")"
+          curl --fail --location --retry 3 --retry-all-errors --max-time 300 "$MEDIA_URL" -o "$DEST"
+          test "$(stat -c%s "$DEST")" -gt 1000000
+          python3 - <<'PY'
+          import json,subprocess,pathlib,hashlib
+          path=pathlib.Path("content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-SEM-NARRACAO.mp4")
+          meta=json.loads(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration:stream=codec_type,width,height","-of","json",str(path)]))
+          duration=float(meta["format"]["duration"])
+          assert 41<=duration<=43, duration
+          assert any(s.get("codec_type")=="video" and s.get("width")==1080 and s.get("height")==1920 for s in meta["streams"]), meta
+          sha=hashlib.sha256(path.read_bytes()).hexdigest()
+          print(json.dumps({"ok":True,"duration":duration,"size":path.stat().st_size,"sha256":sha},ensure_ascii=False))
+          PY
+      - name: Arquivar num branch isolado (NAO publicar)
+        if: steps.branch.outputs.already == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c instagram-reel-defesa-civil-04nov-2026
+          git add -- content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-SEM-NARRACAO.mp4
+          git commit -m "media(instagram): guardar Reel Defesa Civil 42s (rascunho sem narracao)"
+          git push origin HEAD:refs/heads/instagram-reel-defesa-civil-04nov-2026
+          echo "Arquivo guardado em branch de mídia isolado; rascunho NÃO publicado"
