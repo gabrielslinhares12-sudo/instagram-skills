@@ -7,8 +7,32 @@ import tempfile
 import unittest
 
 from PIL import Image, ImageDraw
-from instagram_visual_standard import ROOT, VisualError, verify_brand, validate_package, audit_queue, sha256
+from instagram_visual_standard import ROOT, VisualError, verify_brand, validate_package, audit_queue, verify_reel_release, sha256
 from render_instagram_carrossel import render
+
+class ReelReleaseTests(unittest.TestCase):
+    def test_original_reel_requires_immutable_source_qc_and_ai_info(self):
+        slug = "tue-2026-11-04-18-defesa-civil-alerta"
+        receipt = json.loads(
+            (ROOT / "content/approved" / slug / "approval.json").read_text(encoding="utf-8"))
+        post = {"id": slug, "kind": "reel", "media_urls": [receipt["release_url"]],
+                "media_sha256": list(receipt["media_sha256"]), "cover_url": receipt["cover_url"],
+                "ai_origin": "synthetic", "is_ai_generated": True,
+                "ai_disclosure_review": "mandatory_realistic_synthetic_audio"}
+        self.assertEqual(verify_reel_release(ROOT, post), slug)
+        for changes in (
+            {"media_sha256": ["0" * 64]},
+            {"media_urls": [receipt["release_url"].replace(
+                receipt["technical_provenance"]["media_immutable_commit"],
+                "instagram-reel-defesa-civil-04nov-2026")]},
+            {"ai_origin": "verified_non_synthetic"},
+            {"is_ai_generated": False},
+            {"ai_disclosure_review": "optional"},
+            {"cover_url": receipt["cover_url"].replace(".jpg", ".png")},
+        ):
+            with self.subTest(changes=changes), self.assertRaises(VisualError):
+                verify_reel_release(ROOT, {**post, **changes})
+
 
 class BrandTests(unittest.TestCase):
     def test_canonical_assets_unchanged(self):
