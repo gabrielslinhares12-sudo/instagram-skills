@@ -59,8 +59,57 @@
   "source_mp4": null,
   "source_verified": false,
   "ai_origin": "unverified",
-  "production_status": "SCRIPT_AND_MEDIA_PLAN_ONLY_MP4_NOT_CREATED",
+  "production_status": "PREVIEW_MP4_42S_EXPORTED__VOICE_RASALGETHI_PENDING__NOT_PUBLISHABLE",
   "manual_visual_review_required": true,
   "editorial_freshness_checked_at": "2026-11-03",
-  "factual_caution": "Defesa Civil Alerta por Cell Broadcast não é o mesmo que SMS 40199. Não afirmar que qualquer aparelho, rede ou local recebe necessariamente a mensagem. Não imitar aviso autêntico em publicação sensacionalista."
+  "factual_caution": "Defesa Civil Alerta por Cell Broadcast não é o mesmo que SMS 40199. Não afirmar que qualquer aparelho, rede ou local recebe necessariamente a mensagem. Não imitar aviso autêntico em publicação sensacionalista.",
+  "preview_media": {
+    "url": "https://gcdn.picsart.com/media-engine/a557a6b7-ccf5-42c5-9d12-8f2aca7868b7.mp4",
+    "download_url": "https://gcdn.picsart.com/media-engine/a557a6b7-ccf5-42c5-9d12-8f2aca7868b7.mp4?download=true&download_file_name=TUE-Reel-Defesa-Civil-Alerta-04NOV2026.mp4",
+    "width": 1080,
+    "height": 1920,
+    "duration_seconds": 42,
+    "video_codec": "h264",
+    "soundtrack": "ambient captured / no Rasalgethi narration",
+    "editor": "Picsart scene composition",
+    "scene_url": "https://gcdn.picsart.com/picsart-mcp/1ad36c3a-574a-4469-8ff4-43d10b083698.json",
+    "archive_branch": "instagram-reel-defesa-civil-04nov-2026",
+    "archive_job": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41701754644",
+    "archive_status": "IN_PROGRESS",
+    "final_voice_required": "Google AI Studio web, Rasalgethi (no paid API)",
+    "publish_ready": false
+  },
+  "visual_source_clips": [
+    {
+      "source": "https://www.pexels.com/video/nighttime-rain-on-bustling-city-streets-40316687/",
+      "credit": "Thanzeena Husain / Pexels",
+      "license": "Pexels License",
+      "time_on_timeline": "0–6s"
+    },
+    {
+      "source": "https://commons.wikimedia.org/wiki/File:Heliponto_improvisado_na_ULBRA,_enchentes_de_2024_no_Rio_Grande_do_Sul.webm",
+      "credit": "Otávio Astor Vaz Costa",
+      "license": "CC0 1.0",
+      "time_on_timeline": "6–13s",
+      "label": "Arquivo, enchentes RS 2024"
+    },
+    {
+      "source": "https://www.pexels.com/video/rainy-day-in-bustling-city-street-35733130/",
+      "credit": "Sanej Prasad Suwal / Pexels",
+      "license": "Pexels License",
+      "time_on_timeline": "13–25s and 34–42s"
+    },
+    {
+      "source": "https://www.pexels.com/video/heavy-rain-pouring-in-urban-street-34376190/",
+      "credit": "Nothing Ahead / Pexels",
+      "license": "Pexels License",
+      "time_on_timeline": "25–34s"
+    }
+  ],
+  "qc_pending": [
+    "Adicionar narração Google AI Studio Rasalgethi e sincronizar as legendas",
+    "Revisar vídeo final e mixagem com áudio no celular",
+    "Confirmar o MP4 final na Meta e não repetir o tema",
+    "Não agendar ou publicar esta prévia sem voz"
+  ]
 }
