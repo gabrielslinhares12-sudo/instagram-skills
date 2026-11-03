@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "tue-2026-11-03-11-tirinha-reuniao",
+  "preset_id": "TUE-MESTRE-01",
+  "kind": "post",
+  "approved": true,
+  "visual_reviewed": true,
+  "owner_authorized": true,
+  "authorizes_only": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/007a7fefb47b303316170c972e0ffdff7d8475dc/content/media/instagram/2026-11-03/final/01_03NOV_11H_MEME_REUNIOES.jpg",
+  "media_sha256": [
+    "3e242de8bca6e69f0e0ba56e30b2113f89f85e97904764777c27b1ef59378cf7"
+  ],
+  "image_size": [
+    1080,
+    1350
+  ],
+  "ai_origin": "synthetic",
+  "content_style": "clearly_illustrated",
+  "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+  "original_lumino_pixel_match_verified": false,
+  "owner_authorization_source": "Depois de visualizar a tirinha em quatro quadrinhos de 03/11 no chat, o proprietário respondeu 'Ok, faça os 2 posts.'",
+  "approved_media_preserved": true,
+  "approval_note": "Aprovação restrita à última tirinha em quatro quadros exibida ao usuário: reunião rápida às 09h, uma hora sem definição da pauta, pergunta do Lúmino e decisão absurda de marcar outra reunião. A exportação foi apenas redimensionada para JPEG 1080x1350; a fidelidade pixel a pixel do personagem ao PNG canônico NÃO está demonstrada. Conteúdo de humor claramente ilustrado. Agendamento 03/11 11h America/Sao_Paulo, sem Stories antes do recibo."
+}
