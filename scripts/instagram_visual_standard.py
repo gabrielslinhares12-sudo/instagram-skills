@@ -285,9 +285,9 @@ def verify_reel_release(root: Path, post: dict) -> str:
         raise VisualError(f"Reel sem MP4 e SHA-256 verificaveis: {slug}")
     # A 40-char commit makes GitHub's raw URL immutable. A mutable branch,
     # signed link or unapproved host must never be used for a release.
-    rx = (r"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/"
+    rx = (r"https://raw\.githubusercontent\.com/gabrielslinhares12-sudo/"
           r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
-          r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO\\.mp4")
+          r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO\.mp4")
     match = re.fullmatch(rx, media[0])
     if not match or not isinstance(cover, str):
         raise VisualError(f"Reel sem origem imutavel ou capa: {slug}")
