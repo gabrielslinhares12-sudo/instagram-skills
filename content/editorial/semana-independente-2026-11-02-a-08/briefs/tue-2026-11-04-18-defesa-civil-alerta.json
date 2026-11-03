@@ -175,6 +175,14 @@
     "github_archival_workflow": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41705805123",
     "github_branch": "instagram-reel-defesa-civil-04nov-2026",
     "audio_balance": "Gerado com um crédito Picsart via integração; sem ativar API paga Google.",
-    "status": "voice_completed_in_video; final perceptual QC still pending; not published"
+    "status": "voice_completed_in_video; final perceptual QC still pending; not published",
+    "github_archive_status": "verified_success",
+    "github_archive_video_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/final/Reel-Defesa-Civil-Rasalgethi.mp4",
+    "github_archive_voice_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/final/Voz-Rasalgethi-Defesa-Civil.wav",
+    "github_archive_bytes": {
+      "video": 27319519,
+      "voice": 1862970
+    },
+    "technical_qc": "passed: MP4 video 1080x1920 42s with audible AAC audio, WAV 38.811s"
   }
 }
