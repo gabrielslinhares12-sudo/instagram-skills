@@ -1,0 +1,23 @@
+name: Instagram TUE - testar agendamento Reel sal mar 18h
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/test-instagram-sal-mar-03nov.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Verificar janela de 18h, origem e duplicatas sem publicar
+        run: python3 -m unittest discover -s scripts -p 'test_instagram_sal_mar_nov03_schedule.py' -v
+      - name: Validar plano editorial e stories sem publicar
+        run: python3 scripts/validate_instagram_weekly_briefs.py
