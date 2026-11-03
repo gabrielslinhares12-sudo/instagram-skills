@@ -74,10 +74,15 @@
       "permalink": "https://www.instagram.com/reel/DfQTVD6iOTA/"
     },
     "tue-2026-11-03-11-tirinha-reuniao": {
-      "status": "claimed",
+      "status": "published",
       "fingerprint": "52423f82020bcb643949421fe04f031419f5384ffe2b74806fb8bfdc0793aa3b",
       "due_at": "2026-11-03T14:00:00Z",
-      "claimed_at": "2026-11-03T15:43:16Z"
+      "claimed_at": "2026-11-03T15:43:16Z",
+      "media_id": "18180254872434730",
+      "creation_id": "18102549029100158",
+      "instagram_user_id": "17841433004716815",
+      "page_id": "1385407341325017",
+      "published_at": "2026-11-03T15:43:27Z"
     }
   }
 }
