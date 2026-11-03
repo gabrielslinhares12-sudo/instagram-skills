@@ -1,0 +1,53 @@
+name: Arquivar capa do Reel Defesa Civil 04NOV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-salvar-capa-reel-defesa-civil-04nov.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: instagram-reel-defesa-civil-04nov-2026
+          persist-credentials: true
+      - name: Verificar se a capa já existe
+        id: exists
+        run: |
+          if test -f content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg; then
+            echo 'already=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'already=false' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Download de capa aprovada para prévia técnica
+        if: steps.exists.outputs.already == 'false'
+        env:
+          COVER_URL: https://gcdn.picsart.com/media-engine/91d3b2a7-79b7-42d0-9450-478e126e585f.jpg
+        run: |
+          DEST=content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg
+          mkdir -p "$(dirname "$DEST")"
+          curl --fail --location --retry 3 --max-time 120 "$COVER_URL" -o "$DEST"
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg")
+          b=p.read_bytes()
+          assert len(b)>10000, "Tamanho inválido"
+          assert b.startswith(bytes.fromhex("ffd8ff")) and b.endswith(bytes.fromhex("ffd9")), "Cabeçalho ou final JPEG inválido"
+          print("JPEG válido",len(b),"bytes")
+          PY
+      - name: Preservar capa ao lado do vídeo sem liberar publicação
+        if: steps.exists.outputs.already == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg
+          git commit -m "media(instagram): guardar capa do Reel Defesa Civil 04NOV"
+          git push origin HEAD:refs/heads/instagram-reel-defesa-civil-04nov-2026
