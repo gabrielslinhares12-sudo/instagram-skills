@@ -1,7 +1,7 @@
 # Instagram TUE — plano editorial de quarta-feira, 04/11/2026
 
 **Canal:** @temumaexplicacao | **Fuso:** America/Sao_Paulo (UTC−03:00) | **Padrão:** ATIVAR TUE-MESTRE-01  
-**Planejado em:** 03/11/2026 | **Status:** 3 briefings editoriais completos; **nenhuma arte nova produzida**, nenhum MP4 produzido, nenhuma publicação autorizada, agendada ou executada por este plano.
+**Planejado em:** 03/11/2026 | **Status atualizado em 03/11:** 18h Reel **finalizado**, com voz Rasalgethi e legendas, **agendado na fila GitHub/Meta para 04/11 às 18h**; 11h e 15h seguem apenas em briefing. Nenhuma publicação de amanhã ocorreu antecipadamente.
 
 ## Decisão editorial
 
@@ -69,8 +69,17 @@ Priorizar três assuntos independentes, práticos e relevantes para 2026, com ut
 1. **Produzir um post de cada vez**, na ordem 11h → 15h → 18h. Não gerar três processos simultâneos.
 2. Para cada peça: aplicar somente a referência visual aprovada de 02/11/2026 e o Lúmino original (sem redesenho); manter fidelidade da capa **e do miolo**, cenários diferentes, conteúdo factual, boa tipografia e cenas reais quando disponíveis.
 3. Antes de liberar, revisar ortografia, fontes, licenças, hash do Lúmino, dimensões, visualização em tamanho de celular e duplicatas na conta Instagram. Não considerar teste automático substituto de revisão visual.
-4. Para o Reel das 18h: **produção original pendente**. Criar vídeo PT no YouTube Tem Uma Explicação, usar voz Rasalgethi via site Google AI Studio se houver narração, guardar MP4 íntegro para Instagram e confirmar origem antes de liberar.
+4. Para o Reel das 18h: **produção original concluída** e arquivada em SHA imutável no GitHub; voz Rasalgethi Google Gemini TTS (integração Picsart, 1 crédito), duração 42,005 s, legendas originais sincronizadas em 25 trechos, arquivo H.264 + AAC 48 kHz ~118 kb/s, capa 1080×1920 e QC automático aprovado. **Não declarar que o MP4 foi publicado no YouTube**: esta fonte é produção original TUE no GitHub. Rotulagem AI info exigida pela Meta para narração sintética.
 5. **Sem música e sem Story neste escopo**, conforme pedido operacional recente. O plano estrutural de Stories permanece pendente e não será declarado publicado.
-6. Nenhum post foi adicionado a `content/schedule.json`: **não há assets finais novos verificados e não se deve iniciar publicação automática de rascunho**. Após finalizar e revisar, aprovar e inserir na fila oficial com horário real, mesmo canal, Meta Graph API, travas contra duplicação e recibos.
+6. **Apenas o Reel das 18h foi adicionado** à fila oficial `content/schedule.json`, com `due_at=2026-11-04T21:00:00Z`, `approved=true`, mídia e capa imutáveis por commit, hashes, AI info obrigatório e trava contra duplicação. Os posts de 11h e 15h **não foram adicionados**: continuam sem artes finais/QC e não serão publicados automaticamente.
 
-**Fontes e afirmações foram conferidas para o planejamento. Status de execução:** 3 roteiros/briefings concluídos; **artes, MP4, QC visual final e agendamento/publicação pendentes.**
+**Fontes e afirmações foram conferidas. Status de execução:** 3 briefings concluídos; 18h Reel MP4 narrado/legendado **produzido, QC técnico aprovado e agendado na fila GitHub para publicação automática pela Meta em 04/11 às 18h**; aguardando recibo efetivo da Meta. Artes finais das 11h/15h e respectivas aprovações/agendamentos ainda pendentes.
+
+
+## Comprovantes da versão final do Reel de 18h
+
+- [Vídeo imutável MP4 H.264 + AAC 118 kb/s, 25 legendas sincronizadas](https://github.com/gabrielslinhares12-sudo/instagram-skills/blob/aec4e169fb9d362249946b7f7ce601a102247dfd/content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-META.mp4)
+- [Capa oficial com Lúmino original](https://github.com/gabrielslinhares12-sudo/instagram-skills/blob/aec4e169fb9d362249946b7f7ce601a102247dfd/content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg)
+- [Recibo de validação do MP4](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41717386127)
+- [Aprovação editorial amarrada ao SHA-256 exato](../../approved/tue-2026-11-04-18-defesa-civil-alerta/approval.json)
+- [Fila oficial programada](../../schedule.json) — 04/11, 18h BRT; não afirmar publicado sem ID de mídia e URL Meta.
