@@ -1,0 +1,87 @@
+name: Arquivar Reel Defesa Civil com voz Rasalgethi 04NOV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-arquivar-reel-com-voz-defesa-civil-04nov.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-reel-defesa-civil-04nov-com-voz
+  cancel-in-progress: false
+
+jobs:
+  arquivar-voz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: instagram-reel-defesa-civil-04nov-2026
+          persist-credentials: true
+      - name: Confirmar se o pacote narrado ja existe
+        id: guard
+        run: |
+          if test -f content/media/instagram/2026-11-04/final/Reel-Defesa-Civil-Rasalgethi.mp4 \
+             && test -f content/media/instagram/2026-11-04/final/Voz-Rasalgethi-Defesa-Civil.wav; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Baixar MP4 narrado e a voz Rasalgethi
+        if: steps.guard.outputs.exists == 'false'
+        env:
+          VIDEO_URL: https://gcdn.picsart.com/media-engine/67cf1b02-3b9b-4df9-a344-beebf9fe9915.mp4
+          VOICE_URL: https://gcdn.picsart.com/cloud-storage/eb39e135-9cc5-4073-98ca-841c7b08143b.wav
+        run: |
+          set -euo pipefail
+          mkdir -p content/media/instagram/2026-11-04/final
+          curl --fail --location --retry 4 --retry-all-errors --max-time 240 \
+            "$VIDEO_URL" -o content/media/instagram/2026-11-04/final/Reel-Defesa-Civil-Rasalgethi.mp4
+          curl --fail --location --retry 4 --retry-all-errors --max-time 180 \
+            "$VOICE_URL" -o content/media/instagram/2026-11-04/final/Voz-Rasalgethi-Defesa-Civil.wav
+          python3 - <<'PY'
+          from pathlib import Path
+          import wave,hashlib,json
+          root=Path("content/media/instagram/2026-11-04/final")
+          mp4=root/"Reel-Defesa-Civil-Rasalgethi.mp4"
+          wav=root/"Voz-Rasalgethi-Defesa-Civil.wav"
+          assert mp4.stat().st_size>1_000_000
+          assert wav.stat().st_size>100_000
+          with wave.open(str(wav),"rb") as w:
+              dur=w.getnframes()/w.getframerate()
+              assert 34<=dur<=42, dur
+              assert w.getnchannels() in (1,2)
+          print(json.dumps({"voice_seconds":dur,"mp4_bytes":mp4.stat().st_size,"mp4_sha256":hashlib.sha256(mp4.read_bytes()).hexdigest(),"wav_sha256":hashlib.sha256(wav.read_bytes()).hexdigest()}))
+          PY
+      - name: Verificar dimensoes e audio real no arquivo MP4
+        if: steps.guard.outputs.exists == 'false'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python3 - <<'PY'
+          import subprocess,json
+          mp4="content/media/instagram/2026-11-04/final/Reel-Defesa-Civil-Rasalgethi.mp4"
+          p=subprocess.run(["ffprobe","-v","error","-show_entries","format=duration:stream=codec_type,width,height,codec_name","-of","json",mp4],check=True,text=True,capture_output=True)
+          obj=json.loads(p.stdout)
+          assert 41<=float(obj["format"]["duration"])<=43, obj
+          assert any(s.get("codec_type")=="video" and s.get("width")==1080 and s.get("height")==1920 for s in obj["streams"]), obj
+          assert any(s.get("codec_type")=="audio" for s in obj["streams"]), obj
+          a=subprocess.run(["ffmpeg","-i",mp4,"-af","volumedetect","-vn","-f","null","-"],text=True,capture_output=True,timeout=90)
+          import re
+          m=re.search(r"max_volume:\s*(-?[\d.]+) dB",a.stderr)
+          assert m is not None and float(m.group(1))>-55, "Faixa de voz vazia ou praticamente inaudivel"
+          print(json.dumps({"video_duration":obj["format"]["duration"],"max_audio_db":float(m.group(1)),"quality_gate":"passed"},ensure_ascii=False))
+          PY
+      - name: Preservar voz e MP4 em branch isolado sem publicar
+        if: steps.guard.outputs.exists == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- content/media/instagram/2026-11-04/final/Reel-Defesa-Civil-Rasalgethi.mp4 content/media/instagram/2026-11-04/final/Voz-Rasalgethi-Defesa-Civil.wav
+          git commit -m "media(instagram): arquivar Reel Defesa Civil 42s com voz Rasalgethi"
+          git push origin HEAD:refs/heads/instagram-reel-defesa-civil-04nov-2026
