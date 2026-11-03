@@ -64,17 +64,18 @@
     "audio_url": "https://gcdn.picsart.com/cloud-storage/c6425242-3ed0-4180-ad1e-18f048c8a25f.wav",
     "archive_raw_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/drafts/VOZ-RASALGETHI-PTBR.wav",
     "archive_job": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41705379287",
-    "archive_status": "IN_PROGRESS",
+    "archive_status": "SUCCEEDED_VERIFIED_GITHUB_FILE",
     "generate_job": "17d4c130-0364-4fe1-86b8-052beb9335d3",
     "generation_confirmed": true,
-    "perceptual_reviewed": false
+    "perceptual_reviewed": false,
+    "audio_verified_format": "WAV 24 kHz, 1 channel, 36.251 s, 1,740,090 bytes"
   },
   "source_channel": "Tem Uma Explicação — YouTube PT",
   "source_video_id": null,
   "source_mp4": null,
   "source_verified": false,
   "ai_origin": "unverified",
-  "production_status": "VOICE_RASALGETHI_CREATED_AND_MIXED_IN_MP4__PENDING_HUMAN_PERCEPTUAL_QC__NOT_PUBLISHED",
+  "production_status": "NARRATION_COMPLETE__VIDEO_42S_MIXED_AND_ARCHIVED__PERCEPTUAL_QC_PENDING__NOT_PUBLISHED",
   "manual_visual_review_required": true,
   "editorial_freshness_checked_at": "2026-11-03",
   "factual_caution": "Defesa Civil Alerta por Cell Broadcast não é o mesmo que SMS 40199. Não afirmar que qualquer aparelho, rede ou local recebe necessariamente a mensagem. Não imitar aviso autêntico em publicação sensacionalista.",
@@ -143,7 +144,7 @@
   "rendered_reel": {
     "url": "https://gcdn.picsart.com/media-engine/d6e5ff7a-1437-4f55-a8db-c0b0d7875347.mp4",
     "archive_raw_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-NARRADO-RASALGETHI.mp4",
-    "archive_status": "IN_PROGRESS",
+    "archive_status": "SUCCEEDED_VERIFIED_GITHUB_FILE",
     "archive_job": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41705379287",
     "duration_seconds": 42,
     "width": 1080,
@@ -153,6 +154,7 @@
     "audio_codec": "mp4a",
     "subtitle_timing": "estimated from text length, needs listening-based correction",
     "voice_start_seconds": 2,
-    "ready_to_publish": false
+    "ready_to_publish": false,
+    "verified_format": "H.264 MP4, 1080×1920, 42 s, AAC stereo, 27,143,550 bytes"
   }
 }
