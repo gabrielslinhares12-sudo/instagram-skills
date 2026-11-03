@@ -1,0 +1,88 @@
+name: Arquivar voz Rasalgethi e Reel narrado Defesa Civil 04NOV
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-arquivar-reel-narrado-defesa-civil-04nov.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-voz-defesa-civil-04nov-arquivo
+  cancel-in-progress: false
+jobs:
+  preservar-voz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Checkout da branch isolada do Reel
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: instagram-reel-defesa-civil-04nov-2026
+          persist-credentials: true
+      - name: Verificar material de base
+        run: |
+          test -s content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-SEM-NARRACAO.mp4
+          test -s content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg
+      - name: Instalar validador FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Baixar os dois arquivos e validar a narração
+        env:
+          VOICE_URL: 'https://gcdn.picsart.com/cloud-storage/c6425242-3ed0-4180-ad1e-18f048c8a25f.wav'
+          VIDEO_URL: 'https://gcdn.picsart.com/media-engine/d6e5ff7a-1437-4f55-a8db-c0b0d7875347.mp4'
+        run: |
+          set -euo pipefail
+          DEST=content/media/instagram/2026-11-04/drafts
+          if test -e "$DEST/VOZ-RASALGETHI-PTBR.wav" || test -e "$DEST/Reel-Defesa-Civil-42s-NARRADO-RASALGETHI.mp4"; then
+            echo "Arquivos já presentes; não sobrescrever"; exit 1
+          fi
+          curl -fsSL --retry 3 --retry-all-errors --max-time 240 "$VOICE_URL" -o "$DEST/VOZ-RASALGETHI-PTBR.wav"
+          curl -fsSL --retry 3 --retry-all-errors --max-time 300 "$VIDEO_URL" -o "$DEST/Reel-Defesa-Civil-42s-NARRADO-RASALGETHI.mp4"
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, hashlib, subprocess
+          base = Path("content/media/instagram/2026-11-04/drafts")
+          audio = base / "VOZ-RASALGETHI-PTBR.wav"
+          video = base / "Reel-Defesa-Civil-42s-NARRADO-RASALGETHI.mp4"
+          def meta(path):
+              return json.loads(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=codec_type,codec_name,width,height,sample_rate", "-of", "json", str(path)]))
+          a=meta(audio)
+          v=meta(video)
+          voice_duration=float(a["format"]["duration"])
+          video_duration=float(v["format"]["duration"])
+          assert 35 <= voice_duration <= 43, voice_duration
+          assert 41 <= video_duration <= 43, video_duration
+          assert any(s.get("codec_type")=="audio" for s in a["streams"]), "Arquivo WAV sem voz"
+          assert any(s.get("codec_type")=="audio" for s in v["streams"]), "MP4 sem faixa de som"
+          assert any(s.get("codec_type")=="video" and s.get("width")==1080 and s.get("height")==1920 for s in v["streams"]), "MP4 não é 9:16 1080p"
+          assert audio.stat().st_size > 200000 and video.stat().st_size > 5000000, "Arquivo incompleto"
+          report={
+            "topic":"Defesa Civil Alerta",
+            "day":"2026-11-04",
+            "title":"SEU CELULAR PODE TOCAR UMA SIRENE DO NADA?",
+            "video_status":"VOICE_ADDED__PENDING_PERCEPTUAL_QC__NOT_PUBLISHED",
+            "model":"gemini-2.5-flash-tts",
+            "voice_requested":"Rasalgethi",
+            "language":"pt-BR",
+            "voice_audio_start_in_video_seconds":2,
+            "voice_duration_seconds":voice_duration,
+            "video_duration_seconds":video_duration,
+            "video_resolution":[1080,1920],
+            "voice_sha256":hashlib.sha256(audio.read_bytes()).hexdigest(),
+            "video_sha256":hashlib.sha256(video.read_bytes()).hexdigest(),
+            "human_listening_qc":"pending",
+            "instagram_publication":"not_attempted",
+          }
+          (base / "AUDITORIA-REEL-NARRADO.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(report,ensure_ascii=False))
+          PY
+      - name: Preservar arquivos na branch sem publicar
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- content/media/instagram/2026-11-04/drafts/VOZ-RASALGETHI-PTBR.wav content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-NARRADO-RASALGETHI.mp4 content/media/instagram/2026-11-04/drafts/AUDITORIA-REEL-NARRADO.json
+          git commit -m "media(instagram): preservar voz Rasalgethi e MP4 narrado Defesa Civil 04NOV"
+          git push origin HEAD:refs/heads/instagram-reel-defesa-civil-04nov-2026
+          echo "Audio+MP4 preservados; publicação não iniciada."
