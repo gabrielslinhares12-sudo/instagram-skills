@@ -1,4 +1,5 @@
 name: Publicar fila diária do Instagram
+# Dry-run de validação 03NOV: tirinha 11h aprovada, Atacama 15h depende de música nativa.
 
 # Operação em GitHub-hosted Ubuntu: nenhum PC/runner GUTHY/Android necessário.
 # O cron roda em UTC; a fila guarda horários ISO UTC e previne duplicatas.
