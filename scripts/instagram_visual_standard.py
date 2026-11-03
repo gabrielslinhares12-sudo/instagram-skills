@@ -262,6 +262,67 @@ def verify_publication_route(approval: dict) -> None:
     raise VisualError("Modo de distribuição de carrossel não reconhecido.")
 
 
+def verify_reel_release(root: Path, post: dict) -> str:
+    """Fail closed: a Reel needs an immutable MP4, factual QC and owner go-ahead.
+
+    Metadata is a QC receipt, not a substitute for the immutable file SHA.
+    All distribution inputs must match the approved fingerprint; a new encode
+    demands a new approval. No social network request is performed here.
+    """
+    slug = post.get("id")
+    if not isinstance(slug, str) or not SAFE_ID.fullmatch(slug):
+        raise VisualError("Reel com identificador invalido.")
+    path = root / "content/approved" / slug / "approval.json"
+    if not path.is_file():
+        raise VisualError(f"Reel sem recibo de liberacao editorial: {slug}")
+    receipt = read_json(path)
+    media = post.get("media_urls")
+    hashes = post.get("media_sha256")
+    cover = post.get("cover_url")
+    if (not isinstance(media, list) or len(media) != 1
+            or not isinstance(hashes, list) or len(hashes) != 1
+            or not isinstance(hashes[0], str) or not HASH.fullmatch(hashes[0])):
+        raise VisualError(f"Reel sem MP4 e SHA-256 verificaveis: {slug}")
+    # A 40-char commit makes GitHub's raw URL immutable. A mutable branch,
+    # signed link or unapproved host must never be used for a release.
+    rx = (r"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/"
+          r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
+          r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO\\.mp4")
+    match = re.fullmatch(rx, media[0])
+    if not match or not isinstance(cover, str):
+        raise VisualError(f"Reel sem origem imutavel ou capa: {slug}")
+    if (not cover.startswith("https://raw.githubusercontent.com/"
+                             "gabrielslinhares12-sudo/instagram-skills/"
+                             + match.group(1) + "/content/media/instagram/2026-11-04/")
+            or not cover.endswith(".jpg")):
+        raise VisualError(f"Capa do Reel nao corresponde ao commit imutavel: {slug}")
+    if (receipt.get("id") != slug or receipt.get("kind") != "reel"
+            or receipt.get("preset_id") != "TUE-MESTRE-01"
+            or receipt.get("approved") is not True
+            or receipt.get("owner_authorized") is not True
+            or receipt.get("technical_video_qc_passed") is not True
+            or receipt.get("audio_qc_technical_passed") is not True
+            or receipt.get("caption_transcript_verified") is not True
+            or receipt.get("visual_geometry_qc_passed") is not True
+            or receipt.get("subtitles_embedded") is not True
+            or receipt.get("caption_segments", 0) < 20
+            or receipt.get("video_width") != 1080
+            or receipt.get("video_height") != 1920
+            or not 40 <= receipt.get("video_duration_seconds", 0) <= 45
+            or receipt.get("media_sha256") != hashes
+            or receipt.get("release_url") != media[0]
+            or receipt.get("cover_url") != cover
+            or receipt.get("owner_authorizes_only") != slug
+            or receipt.get("disclosure_review") != post.get("ai_disclosure_review")):
+        raise VisualError(f"QC de audio/video ou autorizacao incorreta: {slug}")
+    if (post.get("ai_origin") != "synthetic"
+            or post.get("ai_disclosure_review") != "mandatory_realistic_synthetic_audio"
+            or post.get("is_ai_generated") is not True
+            or receipt.get("synthetic_voice_disclosure_mandatory") is not True):
+        raise VisualError(f"Reel com narracao sintetica sem divulgacao obrigatoria: {slug}")
+    return slug
+
+
 def audit_queue(root: Path=ROOT) -> dict:
     verify_brand(root)
     schedule=read_json(root/"content/schedule.json")
@@ -435,8 +496,7 @@ def audit_queue(root: Path=ROOT) -> dict:
             verify_publication_route(approval)
             reviewed.append(slug)
         elif post.get("kind")=="reel":
-            # A capa nao comprova audio e MP4. Reels novos requerem liberacao editorial separada.
-            raise VisualError("Reel aprovado sem validador dedicado de audio e video; bloquear.")
+            reviewed.append(verify_reel_release(root, post))
         elif post.get("kind")=="post":
             # Memes may use their own visual language, but still require a
             # separate review of their exact image and an owner authorization.
