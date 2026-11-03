@@ -106,7 +106,7 @@
       "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
       "source_video_id": "OlUMyBWiZDQ",
-      "source_mp4": null,
+      "source_mp4": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-media-sal-mar-2026-11-03/instagram-reel-media/OlUMyBWiZDQ.mp4",
       "source_verified": true,
       "topic_id": "origem-do-sal-marinho",
       "reel_media_id": null,
@@ -115,8 +115,8 @@
       "story_published": false,
       "story_media_url": null,
       "story_cta_embedded": false,
-      "ai_origin": "unverified",
-      "approved": false,
+      "ai_origin": "synthetic",
+      "approved": true,
       "story_method": "native_reshare_published_reel",
       "story_parent_permalink": null,
       "story_native_reshare_confirmed": false,
@@ -127,8 +127,8 @@
       "story_no_external_link_sticker": true,
       "source_video_url": "https://www.youtube.com/shorts/OlUMyBWiZDQ",
       "source_video_title": "De onde vem todo o sal do mar?",
-      "download_status": "ORIGINAL_MP4_VERIFIED_DRIVE_PRIVATE_HOSTING_REQUIRED",
-      "source_selection_status": "source_integrity_verified_and_private_drive_copy_confirmed",
+      "download_status": "ORIGINAL_MP4_VERIFIED_FROM_SHARED_DRIVE_AND_PUBLIC_GITHUB",
+      "source_selection_status": "ORIGINAL_MP4_EXPORTED_AND_PUBLIC_SHA256_VERIFIED",
       "original_media_record": {
         "youtube_id": "OlUMyBWiZDQ",
         "archived_filename": "02-OlUMyBWiZDQ-original.mp4",
@@ -140,7 +140,9 @@
         "height": 1920,
         "duration_seconds": 50.5,
         "ffprobe_verified": true,
-        "public_meta_media_url_verified": false
+        "public_meta_media_url_verified": true,
+        "public_media_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-media-sal-mar-2026-11-03/instagram-reel-media/OlUMyBWiZDQ.mp4",
+        "drive_access_verified": true
       },
       "caption_draft": "🌊 O mar sempre foi salgado? De onde vem tanto sal?\n\nUma pista está nas rochas e na água dos rios, que carregam substâncias dissolvidas ao longo do tempo. E o oceano tem mais histórias para contar.\n\nVocê já tinha pensado nisso? Siga @temumaexplicacao para descobrir outras curiosidades reais.\n\n#TemUmaExplicacao #Curiosidades #Oceanos #Ciencia #Natureza",
       "caption_hashtags": [
@@ -149,7 +151,14 @@
         "#Oceanos",
         "#Ciencia",
         "#Natureza"
-      ]
+      ],
+      "scheduled_for": "2026-11-03T18:00:00-03:00",
+      "schedule_mode": "github_actions_time_scoped_meta_publish",
+      "publication_schedule_status": "armed_for_18h_not_yet_published",
+      "publication_workflow_url": "https://github.com/gabrielslinhares12-sudo/instagram-skills/blob/main/.github/workflows/instagram-sal-mar-reel-03nov.yml",
+      "import_verification_url": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41598899830",
+      "expected_destination": "temumaexplicacao",
+      "approval_note": "Proprietário solicitou agendar Reel do dia para às 18:00; upload do MP4 original verificado SHA256 no Drive e GitHub, conta Meta checada. Publicação futura somente após 18:00 BRT, 03NOV2026; não registrar como publicada antes de recibo."
     },
     {
       "day": "2026-11-04",
