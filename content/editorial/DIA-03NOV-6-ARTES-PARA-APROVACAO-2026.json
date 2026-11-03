@@ -2,7 +2,7 @@
   "date": "2026-11-03",
   "timezone": "America/Sao_Paulo",
   "preset": "TUE-MESTRE-01",
-  "status": "MEME_IN_GITHUB_QUEUE_11H_ATACAMA_PENDING_NATIVE_MUSIC",
+  "status": "ATACAMA_15H_NO_MUSIC_AUTHORIZED_AND_QUEUED",
   "user_requested_day_by_day_gate": true,
   "master_lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
   "folder_url": "https://drive.google.com/drive/folders/1i9SXkbz6rz5MpMR7Ic9XDH7BlJlPjvUr",
@@ -42,14 +42,19 @@
       ],
       "slides": 5,
       "owner_visual_approved": true,
-      "github_queue_approved": false,
+      "github_queue_approved": true,
       "github_queue_due_at": "2026-11-03T18:00:00Z",
       "publication_receipt_verified": false,
       "published": false,
       "scheduled_in_meta": false,
-      "native_music_required": true,
-      "blocker": "Instagram Graph API cannot include native carousel music; native app publishing or explicit consent for two-stage publication is required.",
-      "notes": "Five JPEG images archived with exact SHA-256 on public branch; slide 5 has no forward swipe cue."
+      "native_music_required": false,
+      "blocker": null,
+      "notes": "Aprovado pelo proprietário para publicar sem música no horário original 15h BRT. Ações GitHub tentam publicar na Meta; não é agendamento nativo da Meta. Publicação só comprovada com recibo real no ledger. Story nativo posterior separado.",
+      "owner_authorized_without_music": true,
+      "distribution_mode": "api_carousel_without_native_music",
+      "queued_in_github": true,
+      "technical_preflight_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41596674048",
+      "scheduled_execution_workflow": "https://github.com/gabrielslinhares12-sudo/instagram-skills/blob/main/.github/workflows/instagram-atacama-03nov-no-music.yml"
     }
   ],
   "files": [
