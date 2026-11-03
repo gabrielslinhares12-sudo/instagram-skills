@@ -283,6 +283,26 @@ class QueueTests(unittest.TestCase):
                 with self.assertRaises(QueueError):
                     validate_manifest(manifest(post))
 
+    def test_new_reel_mandatory_realistic_synthetic_voice_is_labeled(self):
+        due = "2026-11-04T21:00:00Z"
+        valid = item(id="tue-2026-11-04-18-defesa-civil-alerta",
+                     due_at=due, kind="reel",
+                     media_urls=[URL.replace("image.jpg", "video.mp4")],
+                     ai_origin="synthetic",
+                     ai_disclosure_review="mandatory_realistic_synthetic_audio",
+                     is_ai_generated=True)
+        post = validate_manifest(manifest(valid))[0]
+        self.assertIs(payload_for(post)["is_ai_generated"], True)
+        for fields in ({"is_ai_generated": False},
+                       {"ai_origin": "unverified"},
+                       {"ai_origin": "verified_non_synthetic"},
+                       {"ai_disclosure_review": "optional"},
+                       {"kind": "post"}):
+            with self.subTest(fields=fields):
+                invalid = dict(valid, **fields)
+                with self.assertRaises(QueueError):
+                    validate_manifest(manifest(invalid))
+
     def test_cloud_carousel_with_native_music_never_posts_silently(self):
         # Applies to legacy approved carousels as well as new ones.
         carousel = item(kind="carousel", media_urls=[URL, URL + "-two"])
