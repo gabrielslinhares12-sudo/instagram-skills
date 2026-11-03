@@ -343,6 +343,54 @@ def audit_queue(root: Path=ROOT) -> dict:
                 verify_publication_route(approval)
                 reviewed.append(slug)
                 continue
+            # Scope a one-off exception to five exact JPEGs that the owner
+            # visually approved for 03/11, with explicit later authorization
+            # to OMIT native music. No claim of mascot pixel equivalence.
+            # Other carousel packages must continue through full QC.
+            if slug=="tue-2026-11-03-15-atacama-florido":
+                folder=root/"content/media/instagram/2026-11-03/final"
+                record=root/"content/approved"/slug/"approval.json"
+                if not record.is_file():
+                    raise VisualError("Atacama sem aprovação específica para postagem sem música.")
+                approval=read_json(record)
+                names=[f"{i:02d}_03NOV_15H_ATACAMA_0{i-1}.jpg" for i in range(2,7)]
+                expected=[
+                    "08ca2c522f0768b8f3acd5307127e913eccfad0c23df5066ec5f07be6c1f2e5f",
+                    "b35b9e0af99f008b95a89f3f04652470a3d53717cf937c6dec589da3ecb60203",
+                    "e717e1338a5d4a68ef87a4b05fa0458a15d51a5f4d61f61659c0d0cc1c86fbff",
+                    "4df804be6371acbe6658e5f9b5592996aca73c90d8c0ca8d4cf98d1dd21a8988",
+                    "a3d750b169b5dea568f0271e10b449a2de1ae444e4ff6266b0df9c9977e9acc8",
+                ]
+                pinned="007a7fefb47b303316170c972e0ffdff7d8475dc"
+                prefix=("https://raw.githubusercontent.com/gabrielslinhares12-sudo/"
+                        "instagram-skills/"+pinned+"/content/media/instagram/2026-11-03/final/")
+                urls=[prefix+name for name in names]
+                if (approval.get("id")!=slug or approval.get("preset_id")!="TUE-MESTRE-01"
+                        or approval.get("approved") is not True
+                        or approval.get("owner_authorized") is not True
+                        or approval.get("visual_reviewed") is not True
+                        or approval.get("distribution_mode")!="api_carousel_without_native_music"
+                        or approval.get("owner_authorized_without_music") is not True
+                        or approval.get("precise_release_scope") != "EXACT_FIVE_JPEG_HASHES_ONLY__03NOV_15H"
+                        or approval.get("approved_visual_reference_sha256") !=
+                           "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
+                        or approval.get("original_mascot_pixel_match_verified") is not False
+                        or approval.get("media_sha256")!=expected
+                        or post.get("media_sha256")!=expected
+                        or post.get("media_urls")!=urls
+                        or post.get("distribution_mode")!=approval.get("distribution_mode")
+                        or post.get("owner_authorized_without_music") is not True):
+                    raise VisualError("O Atacama divergiu das artes, da rota ou da autorização do dono.")
+                for name,digest in zip(names,expected):
+                    image_file=folder/name
+                    if not image_file.is_file() or sha256(image_file)!=digest:
+                        raise VisualError("Atacama original ausente ou modificado.")
+                    with Image.open(image_file) as im:
+                        if im.format!="JPEG" or im.size!=(1080,1350):
+                            raise VisualError("O arquivo Atacama não é JPEG 1080x1350.")
+                verify_publication_route(approval)
+                reviewed.append(slug)
+                continue
             manifest=root/"content/approved"/slug/"visual-manifest.json"
             if not manifest.is_file():
                 raise VisualError(f"Carrossel aprovado sem verificacao de estilo: {slug}")
