@@ -139,6 +139,7 @@ def main(argv=None):
         print(json.dumps(result, ensure_ascii=False))
         return 0
     if not args.execute:
+        validate_assets_remote(post)
         result = {"ok": True, "mode": "dry_run", "post_id": ID,
                   "schedule_utc": TARGET_DUE, "music_required": False,
                   "media_count": len(post["media_urls"]),
