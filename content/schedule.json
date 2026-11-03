@@ -253,7 +253,7 @@
     },
     {
       "id": "tue-2026-11-04-18-defesa-civil-alerta",
-      "due_at": "2026-11-04T21:00:00Z",
+      "due_at": "2026-11-03T21:17:00Z",
       "username": "temumaexplicacao",
       "kind": "reel",
       "target_url": "https://www.instagram.com/temumaexplicacao/",
@@ -274,7 +274,7 @@
         "https://www.gov.br/mcom/pt-br/noticias/2026/copy_of_julho/como-receber-alertas-da-defesa-civil-sobre-situacoes-de-emergencia-no-celular",
         "https://www.gov.br/mdr/pt-br/assuntos/protecao-e-defesa-civil/defesa-civil-alerta/mas-o-que-e-defesa-civil-alerta"
       ],
-      "approval_note": "Autorização de continuidade do proprietário em 03/11/2026: completar o primeiro Reel, usar Meta API, publicar em 04/11 às 18h BRT. Voz gerada Rasalgethi com IA: etiqueta AI info obrigatória da Meta. MP4 imutável 42s com legendas e QC em content/approved/tue-2026-11-04-18-defesa-civil-alerta/approval.json. Sem música ou Story. Atualização técnica validada por job 41717386127: áudio AAC ~118kbps, vídeo H264 + faststart, SHA256 02f3044f..."
+      "approval_note": "Autorização de continuidade do proprietário em 03/11/2026: completar o primeiro Reel, usar Meta API, publicar em 04/11 às 18h BRT. Voz gerada Rasalgethi com IA: etiqueta AI info obrigatória da Meta. MP4 imutável 42s com legendas e QC em content/approved/tue-2026-11-04-18-defesa-civil-alerta/approval.json. Sem música ou Story. Atualização técnica validada por job 41717386127: áudio AAC ~118kbps, vídeo H264 + faststart, SHA256 02f3044f... ALTERAÇÃO EXPRESSA 03/11/2026 ~18:17 BRT: usuário ordenou 'Poste ele imediatamente'. Antecipar publicação para 03/11/2026 18:17 BRT, cancelando horário original de 04/11 às 18h; sem duplicação. Um único envio."
     }
   ]
 }
