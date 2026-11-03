@@ -78,7 +78,7 @@ def verify_reels_and_stories(reels_plan, feed_plan, publication_ledger=None):
                 and re.fullmatch(
                     r"https://raw\.githubusercontent\.com/gabrielslinhares12-sudo/"
                     r"instagram-skills/[a-f0-9]{40}/content/media/instagram/"
-                    r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO\.mp4",
+                    r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-(?:LEGENDADO|META)\.mp4",
                     reel["source_mp4"]
                 ) is not None
                 and reel.get("source_video_id") is None
