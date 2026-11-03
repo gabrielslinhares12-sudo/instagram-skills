@@ -1,5 +1,5 @@
 name: Publicar fila diária do Instagram
-# Dry-run seguro 04NOV: Reel original das 18h com voz Rasalgethi, legenda e AI info obrigatório; não publica no push.
+# Dry-run final 04NOV: Reel das 18h H.264/AAC118k, legendas, voz Rasalgethi, AI info obrigatório; push nunca publica.
 
 # Operação em GitHub-hosted Ubuntu: nenhum PC/runner GUTHY/Android necessário.
 # O cron roda em UTC; a fila guarda horários ISO UTC e previne duplicatas.
