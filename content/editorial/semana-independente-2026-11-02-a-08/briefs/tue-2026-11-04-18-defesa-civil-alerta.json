@@ -74,9 +74,9 @@
   "source_video_id": null,
   "source_mp4": null,
   "source_verified": false,
-  "ai_origin": "unverified",
-  "production_status": "VOICE_RASALGETHI_GENERATED_AND_MUXED__MP4_42S__PENDING_FINAL_QC_NOT_PUBLISHED",
-  "manual_visual_review_required": true,
+  "ai_origin": "synthetic",
+  "production_status": "FINAL_MP4_42S_RASALGETHI_25_CAPTIONS_APPROVED_FOR_QUEUE",
+  "manual_visual_review_required": false,
   "editorial_freshness_checked_at": "2026-11-03",
   "factual_caution": "Defesa Civil Alerta por Cell Broadcast não é o mesmo que SMS 40199. Não afirmar que qualquer aparelho, rede ou local recebe necessariamente a mensagem. Não imitar aviso autêntico em publicação sensacionalista.",
   "preview_media": {
@@ -125,12 +125,7 @@
     }
   ],
   "qc_pending": [
-    "Escutar e verificar a voz gerada (pronúncia de 40199, ritmo e naturalidade)",
-    "Conferir alinhamento perceptivo de todas as legendas com a fala",
-    "Revisão visual do Reel em tamanho de celular, direitos e fontes",
-    "Verificar se existe MP4 original no canal YouTube PT antes de usar no Instagram",
-    "Não agendar/publicar sem QC e autorização",
-    "Verificar audição integral e sincronismo perceptivo da narração Rasalgethi antes da publicação"
+    "Publicação ainda depende de confirmação da Meta no horário definido; Story e música excluídos."
   ],
   "cover_image": {
     "url": "https://gcdn.picsart.com/media-engine/91d3b2a7-79b7-42d0-9450-478e126e585f.jpg",
@@ -175,7 +170,7 @@
     "github_archival_workflow": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41705805123",
     "github_branch": "instagram-reel-defesa-civil-04nov-2026",
     "audio_balance": "Gerado com um crédito Picsart via integração; sem ativar API paga Google.",
-    "status": "voice_completed_in_video; final perceptual QC still pending; not published",
+    "status": "narration_merged_final_25_subtitle_groups_approved_release",
     "github_archive_status": "verified_success",
     "github_archive_video_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/final/Reel-Defesa-Civil-Rasalgethi.mp4",
     "github_archive_voice_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/final/Voz-Rasalgethi-Defesa-Civil.wav",
@@ -183,6 +178,21 @@
       "video": 27319519,
       "voice": 1862970
     },
-    "technical_qc": "passed: MP4 video 1080x1920 42s with audible AAC audio, WAV 38.811s"
-  }
+    "technical_qc": "passed: MP4 video 1080x1920 42s with audible AAC audio, WAV 38.811s",
+    "final_captioned_render_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/26930c086cf81bdb9e3fd43050f89c17953f0056/content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4"
+  },
+  "automated_qc": {
+    "word_level_speech_verified": true,
+    "caption_segments": 25,
+    "scene_validated": true,
+    "visual_geometry_checked": true,
+    "github_workflow_passed": true,
+    "audio_max_db": -4.8,
+    "final_media_sha256": "8215c8451426d08ff49b7a129ce64abead0658d8a0854e98fa4c253decca0d04",
+    "release_approved_via": "content/approved/tue-2026-11-04-18-defesa-civil-alerta/approval.json",
+    "manual_viewing_not_claimed": true
+  },
+  "final_release_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/26930c086cf81bdb9e3fd43050f89c17953f0056/content/media/instagram/2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-LEGENDADO.mp4",
+  "final_cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/26930c086cf81bdb9e3fd43050f89c17953f0056/content/media/instagram/2026-11-04/drafts/CAPA-Reel-Defesa-Civil.jpg",
+  "ai_disclosure_review": "mandatory_realistic_synthetic_audio"
 }
