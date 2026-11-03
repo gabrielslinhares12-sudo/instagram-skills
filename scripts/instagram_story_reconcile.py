@@ -20,8 +20,10 @@ ACCOUNT = "temumaexplicacao"
 # Editorial planning ID was frozen before the urgent post was published.
 # An explicit alias preserves weekly schedule integrity without fabricating
 # another post or rewriting the actual, immutable publication receipt.
-ALIASES = {"tue-2026-11-02-18-senha-impossivel":
-           "tue-2026-11-02-15-senha-impossivel"}
+ALIASES = {
+    "tue-2026-11-02-18-senha-impossivel": "tue-2026-11-02-15-senha-impossivel",
+    "tue-2026-11-03-18-reuniao-sobre-reuniao": "tue-2026-11-03-11-tirinha-reuniao",
+}
 CTA = "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!"
 
 
