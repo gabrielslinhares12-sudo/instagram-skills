@@ -1,0 +1,66 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "day": "2026-11-04",
+  "id": "tue-2026-11-04-18-defesa-civil-alerta",
+  "slot": "18:00",
+  "series_id": "reel-explicacao",
+  "kind": "reel",
+  "topic_id": "defesa-civil-alerta-celular",
+  "subject_id": "alerta-emergencia-cell-broadcast-sem-cadastro",
+  "title": "SEU CELULAR PODE TOCAR UMA SIRENE DO NADA?",
+  "hook": "SEU CELULAR PODE AVISAR SOBRE UM DESASTRE?",
+  "concept": "Reel de serviço público: diferenciar aviso emergencial por área e cadastro complementar SMS 40199.",
+  "sources": [
+    "https://www.gov.br/mcom/pt-br/noticias/2026/copy_of_julho/como-receber-alertas-da-defesa-civil-sobre-situacoes-de-emergencia-no-celular",
+    "https://www.gov.br/mdr/pt-br/assuntos/protecao-e-defesa-civil/defesa-civil-alerta/mas-o-que-e-defesa-civil-alerta"
+  ],
+  "format": "MP4 original 1080x1920 9:16, alvo 40–45 s, legendas inferiores, capa até cinco palavras, sem marca d'água",
+  "media_policy": "Produzir vídeo original primeiro para o YouTube Tem Uma Explicação em PT-BR; usar cenas reais autorizadas de chuva/Defesa Civil e grafismo original claramente ilustrativo; não fingir captura de alerta verdadeiro. Depois usar o MP4 fonte verificado na Meta; não fazer reupload de vídeo de terceiros.",
+  "narration_pt_br": "Seu celular pode emitir um alerta de emergência mesmo sem você instalar nenhum aplicativo. Não é vírus. É o Defesa Civil Alerta, que usa a rede 4G ou 5G para avisar aparelhos compatíveis em áreas de risco. Se aparecer um aviso sobre enxurrada, deslizamento ou vendaval, leia as instruções e siga o que a Defesa Civil orientar para aquela região. Já o SMS 40199 é outro serviço: você cadastra gratuitamente os CEPs que quer acompanhar. Um alerta pode interromper o seu dia, mas também pode dar tempo para se proteger. Tem uma explicação.",
+  "visual_plan": [
+    {
+      "segment": "0–6 s",
+      "shot": "Celular real em mesa com ilustração de aviso emergencial claramente rotulada como simulação",
+      "text": "SEU CELULAR PODE TE AVISAR?"
+    },
+    {
+      "segment": "6–16 s",
+      "shot": "B-roll autorizado de cidade sob chuva e interface conceitual de rede de antenas",
+      "text": "Defesa Civil Alerta • área de risco"
+    },
+    {
+      "segment": "16–29 s",
+      "shot": "Pessoas se abrigando, trecho de comunicado oficial com fonte e data verificáveis",
+      "text": "LEIA. SIGA AS ORIENTAÇÕES."
+    },
+    {
+      "segment": "29–38 s",
+      "shot": "Celular genérico enviando CEP ao número 40199, identificado como exemplo gráfico",
+      "text": "SMS 40199 = cadastro por CEP"
+    },
+    {
+      "segment": "38–45 s",
+      "shot": "Lúmino original em sobreposição e plano documental de céu após chuva, sem alterar o personagem",
+      "text": "UM ALERTA PODE PROTEGER."
+    }
+  ],
+  "cover_text": "ALERTA NO CELULAR?",
+  "caption": "📱 Uma mensagem pode ocupar a tela do celular para avisar sobre uma emergência na sua região. O Defesa Civil Alerta funciona em aparelhos compatíveis conectados às redes 4G/5G nas áreas atendidas, sem cadastro prévio. Quer receber alertas por SMS dos seus CEPs? Cadastre gratuitamente no 40199. Siga sempre a orientação oficial. #TemUmaExplicacao #DefesaCivil #AlertaDeEmergencia #Seguranca #Tecnologia",
+  "voice": "Google AI Studio (site), voz Rasalgethi, sem API paga",
+  "source_channel": "Tem Uma Explicação — YouTube PT",
+  "source_video_id": null,
+  "source_mp4": null,
+  "source_verified": false,
+  "ai_origin": "unverified",
+  "production_status": "SCRIPT_AND_MEDIA_PLAN_ONLY_MP4_NOT_CREATED",
+  "manual_visual_review_required": true,
+  "editorial_freshness_checked_at": "2026-11-03",
+  "factual_caution": "Defesa Civil Alerta por Cell Broadcast não é o mesmo que SMS 40199. Não afirmar que qualquer aparelho, rede ou local recebe necessariamente a mensagem. Não imitar aviso autêntico em publicação sensacionalista."
+}
