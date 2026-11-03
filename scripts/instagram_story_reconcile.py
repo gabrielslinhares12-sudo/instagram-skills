@@ -23,6 +23,7 @@ ACCOUNT = "temumaexplicacao"
 ALIASES = {
     "tue-2026-11-02-18-senha-impossivel": "tue-2026-11-02-15-senha-impossivel",
     "tue-2026-11-03-18-reuniao-sobre-reuniao": "tue-2026-11-03-11-tirinha-reuniao",
+    "tue-2026-11-03-12-deserto-florido-atacama": "tue-2026-11-03-15-atacama-florido",
 }
 CTA = "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!"
 
