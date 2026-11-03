@@ -1,0 +1,20 @@
+{
+  "topic": "Defesa Civil Alerta",
+  "day": "2026-11-04",
+  "title": "SEU CELULAR PODE TOCAR UMA SIRENE DO NADA?",
+  "video_status": "VOICE_ADDED__PENDING_PERCEPTUAL_QC__NOT_PUBLISHED",
+  "model": "gemini-2.5-flash-tts",
+  "voice_requested": "Rasalgethi",
+  "language": "pt-BR",
+  "voice_audio_start_in_video_seconds": 2,
+  "voice_duration_seconds": 36.250958,
+  "video_duration_seconds": 42.0,
+  "video_resolution": [
+    1080,
+    1920
+  ],
+  "voice_sha256": "94e4556088dc79c9b2c574f3a2f9dfd119be2b9265182d4309fc7cb6a719235c",
+  "video_sha256": "f48814aa99075c06242406fa4795309bdcd67ca85ba1ef5baac107a20be100b2",
+  "human_listening_qc": "pending",
+  "instagram_publication": "not_attempted"
+}
