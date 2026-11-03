@@ -2,84 +2,98 @@
   "date": "2026-11-03",
   "timezone": "America/Sao_Paulo",
   "preset": "TUE-MESTRE-01",
-  "status": "AWAITING_USER_VISUAL_REVIEW_BEFORE_NEXT_DAY",
+  "status": "MEME_IN_GITHUB_QUEUE_11H_ATACAMA_PENDING_NATIVE_MUSIC",
   "user_requested_day_by_day_gate": true,
   "master_lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
-  "folder_url": "https://drive.google.com/drive/folders/1bbk1sYZOsjP9miJNEGA3FipaELTSvbUi",
-  "preview_url": "https://drive.google.com/file/d/1ahnPquEYAvlzaVub9rQWxPzatyu0gMND/view",
-  "zip_url": "https://drive.google.com/file/d/1GCmGyz9pi2nlNd2-GgsCaAYlnEIlBWxi/view",
+  "folder_url": "https://drive.google.com/drive/folders/1i9SXkbz6rz5MpMR7Ic9XDH7BlJlPjvUr",
+  "preview_url": "https://drive.google.com/file/d/1nf960lxicVbkpcKJXxAUlfk_2KaJgyYp/view",
+  "zip_url": "https://drive.google.com/file/d/1JN9hp0jcHmLAtP-3LC8reUBw7dH9zdcY/view",
   "posts": [
     {
       "slot": "11:00",
       "kind": "single_image",
       "topic": "reuniao-sobre-reuniao",
       "images": [
-        "1ZCSRrB0jR7-1UADfG3LDTFQZAn39O_Dc"
+        "1M69j17KZ9YwUxW1naSXZmnW-ADHCVHCc"
       ],
+      "final_media_sha256": [
+        "3e242de8bca6e69f0e0ba56e30b2113f89f85e97904764777c27b1ef59378cf7"
+      ],
+      "owner_visual_approved": true,
+      "github_queue_approved": true,
+      "github_queue_due_at": "2026-11-03T14:00:00Z",
+      "publication_receipt_verified": false,
       "published": false,
-      "scheduled": false,
-      "approved": false,
-      "visual_status": "V3_REVISED_PENDING_OWNER_REVIEW",
-      "image_url": "https://drive.google.com/file/d/1ZCSRrB0jR7-1UADfG3LDTFQZAn39O_Dc/view",
-      "canonical_mascot_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
-      "revision_note": "Meme independente com começo (1 hora de reunião), desenvolvimento (sem pauta) e desfecho (marcar outra reunião). Lúmino recortado do PNG original, sem redesenho. Não incluir swipe por ser imagem única."
+      "scheduled_in_meta": false,
+      "queued_in_github": true,
+      "destination": "@temumaexplicacao",
+      "remark": "Ações GitHub publicam no horário; não confundir fila com agendamento confirmado na API da Meta."
     },
     {
       "slot": "15:00",
       "kind": "carousel",
       "topic": "deserto-florido-atacama",
       "images": [
-        "1yYHYbS1ddQ1aiGwTC3nXQgNlJfv0MQCi",
-        "1JqK8wpFW5f2xsMmDFQv07MiH7kWy8eCy",
-        "1AQnyUSXwI7zF2Rsd4jNAYpCeAhuvqQu8",
-        "1PxMAwf_zbehSTNOhX6d0AefltbRcSzus",
-        "1ZlZwZ_1Vle5kxc6USrPku2JI9L3o1vL6"
+        "1kHIiyAQfjTl4G3X_jogaPJkz0eSFUwqv",
+        "1Mfv-H-OYdH2CdK4hpGJZ2yAdUWB4tO_p",
+        "1gqoy0Bxh6QpQt_b9K9T9EVOi-IhLQdg4",
+        "1SJTfosCCyWZjMKCO8xnl2C5ByDIvsB9m",
+        "1g3P1gA9ica3PNb-eAh4pMU-_For_gmxm"
       ],
       "slides": 5,
+      "owner_visual_approved": true,
+      "github_queue_approved": false,
+      "github_queue_due_at": "2026-11-03T18:00:00Z",
+      "publication_receipt_verified": false,
       "published": false,
-      "scheduled": false,
-      "approved": false
+      "scheduled_in_meta": false,
+      "native_music_required": true,
+      "blocker": "Instagram Graph API cannot include native carousel music; native app publishing or explicit consent for two-stage publication is required.",
+      "notes": "Five JPEG images archived with exact SHA-256 on public branch; slide 5 has no forward swipe cue."
     }
   ],
   "files": [
     {
-      "name": "01_03NOV_11H_PLANTAO_REUNIOES.jpg",
-      "drive_id": "1n1Z5UVnE3cypXbZouaKOMwZpUPMruewl",
-      "drive_url": "https://drive.google.com/file/d/1n1Z5UVnE3cypXbZouaKOMwZpUPMruewl/view",
+      "name": "01_03NOV_11H_MEME_REUNIOES.jpg",
+      "drive_id": "1M69j17KZ9YwUxW1naSXZmnW-ADHCVHCc",
+      "drive_url": "https://drive.google.com/file/d/1M69j17KZ9YwUxW1naSXZmnW-ADHCVHCc/view",
       "size_px": "1080x1350"
     },
     {
-      "name": "02_03NOV_15H_ATACAMA_LAMINA_01.jpg",
-      "drive_id": "1yYHYbS1ddQ1aiGwTC3nXQgNlJfv0MQCi",
-      "drive_url": "https://drive.google.com/file/d/1yYHYbS1ddQ1aiGwTC3nXQgNlJfv0MQCi/view",
+      "name": "02_03NOV_15H_ATACAMA_01.jpg",
+      "drive_id": "1kHIiyAQfjTl4G3X_jogaPJkz0eSFUwqv",
+      "drive_url": "https://drive.google.com/file/d/1kHIiyAQfjTl4G3X_jogaPJkz0eSFUwqv/view",
       "size_px": "1080x1350"
     },
     {
-      "name": "03_03NOV_15H_ATACAMA_LAMINA_02.jpg",
-      "drive_id": "1JqK8wpFW5f2xsMmDFQv07MiH7kWy8eCy",
-      "drive_url": "https://drive.google.com/file/d/1JqK8wpFW5f2xsMmDFQv07MiH7kWy8eCy/view",
+      "name": "03_03NOV_15H_ATACAMA_02.jpg",
+      "drive_id": "1Mfv-H-OYdH2CdK4hpGJZ2yAdUWB4tO_p",
+      "drive_url": "https://drive.google.com/file/d/1Mfv-H-OYdH2CdK4hpGJZ2yAdUWB4tO_p/view",
       "size_px": "1080x1350"
     },
     {
-      "name": "04_03NOV_15H_ATACAMA_LAMINA_03.jpg",
-      "drive_id": "1AQnyUSXwI7zF2Rsd4jNAYpCeAhuvqQu8",
-      "drive_url": "https://drive.google.com/file/d/1AQnyUSXwI7zF2Rsd4jNAYpCeAhuvqQu8/view",
+      "name": "04_03NOV_15H_ATACAMA_03.jpg",
+      "drive_id": "1gqoy0Bxh6QpQt_b9K9T9EVOi-IhLQdg4",
+      "drive_url": "https://drive.google.com/file/d/1gqoy0Bxh6QpQt_b9K9T9EVOi-IhLQdg4/view",
       "size_px": "1080x1350"
     },
     {
-      "name": "05_03NOV_15H_ATACAMA_LAMINA_04.jpg",
-      "drive_id": "1PxMAwf_zbehSTNOhX6d0AefltbRcSzus",
-      "drive_url": "https://drive.google.com/file/d/1PxMAwf_zbehSTNOhX6d0AefltbRcSzus/view",
+      "name": "05_03NOV_15H_ATACAMA_04.jpg",
+      "drive_id": "1SJTfosCCyWZjMKCO8xnl2C5ByDIvsB9m",
+      "drive_url": "https://drive.google.com/file/d/1SJTfosCCyWZjMKCO8xnl2C5ByDIvsB9m/view",
       "size_px": "1080x1350"
     },
     {
-      "name": "06_03NOV_15H_ATACAMA_LAMINA_05.jpg",
-      "drive_id": "1ZlZwZ_1Vle5kxc6USrPku2JI9L3o1vL6",
-      "drive_url": "https://drive.google.com/file/d/1ZlZwZ_1Vle5kxc6USrPku2JI9L3o1vL6/view",
+      "name": "06_03NOV_15H_ATACAMA_05.jpg",
+      "drive_id": "1g3P1gA9ica3PNb-eAh4pMU-_For_gmxm",
+      "drive_url": "https://drive.google.com/file/d/1g3P1gA9ica3PNb-eAh4pMU-_For_gmxm/view",
       "size_px": "1080x1350"
     }
   ],
   "reel_18h": "OUTSIDE_SCOPE_IMAGE_ONLY_NOT_CREATED",
   "next_day": "DO_NOT_START_UNTIL_USER_REQUESTS",
-  "facts_source": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region"
+  "facts_source": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/desert-bloom-transforms-chiles-atacama-region",
+  "preflight_action_url": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41594117827",
+  "scheduler_dry_run_action_url": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41594372683",
+  "owner_followup_scheduled_for": "2026-11-03T15:30:00-03:00"
 }
