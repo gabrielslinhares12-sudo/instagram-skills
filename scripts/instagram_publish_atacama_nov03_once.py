@@ -39,7 +39,7 @@ EXPECTED = [
 NAMES = [f"{index + 1:02d}_03NOV_15H_ATACAMA_{index:02d}.jpg" for index in range(1, 6)]
 PINNED = "007a7fefb47b303316170c972e0ffdff7d8475dc"
 PREFIX = ("https://raw.githubusercontent.com/"
-          "gabrielslinhares12-sudo/instagram-skills/" + PINN +
+          "gabrielslinhares12-sudo/instagram-skills/" + PINNED +
           "/content/media/instagram/2026-11-03/final/")
 MAX_MEDIA = 3 * 1024 * 1024
 
