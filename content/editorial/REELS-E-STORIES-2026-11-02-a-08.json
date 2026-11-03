@@ -164,10 +164,10 @@
       "day": "2026-11-04",
       "slot": "18:00",
       "source_channel": "Tem Uma Explicação YouTube PT",
-      "source_video_id": "-yht5idVJL4",
+      "source_video_id": null,
       "source_mp4": null,
-      "source_verified": true,
-      "topic_id": "caes-sacodem-pelo-molhado",
+      "source_verified": false,
+      "topic_id": "defesa-civil-alerta-celular",
       "reel_media_id": null,
       "reel_published": false,
       "story_media_id": null,
@@ -184,31 +184,15 @@
       "story_text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "story_text_cta_verified": false,
       "story_no_external_link_sticker": true,
-      "source_video_url": "https://www.youtube.com/shorts/-yht5idVJL4",
-      "source_video_title": "Por que os cães se sacodem quando estão molhados?",
-      "download_status": "ORIGINAL_MP4_VERIFIED_DRIVE_PRIVATE_HOSTING_REQUIRED",
-      "source_selection_status": "source_integrity_verified_and_private_drive_copy_confirmed",
-      "original_media_record": {
-        "youtube_id": "-yht5idVJL4",
-        "archived_filename": "03--yht5idVJL4-original.mp4",
-        "drive_file_id": "1-xDNJksVyMNB6ZzqTH_RimFEy_663akZ",
-        "drive_file_url": "https://drive.google.com/file/d/1-xDNJksVyMNB6ZzqTH_RimFEy_663akZ/view",
-        "sha256": "ef7acfe9ce97ad93cb84e93fc7264962e9aaebbf28c449f638706bc6f12a659c",
-        "bytes": 43665991,
-        "width": 1080,
-        "height": 1920,
-        "duration_seconds": 55.2,
-        "ffprobe_verified": true,
-        "public_meta_media_url_verified": false
-      },
-      "caption_draft": "🐶 Um cachorro molhado pode transformar todo mundo ao redor em plateia de um banho inesperado.\n\nMas aquele sacode rápido tem uma função: ajuda a expulsar a água presa no pelo.\n\nSeu cachorro já fez isso do seu lado? Conta aqui! Siga @temumaexplicacao para mais descobertas.\n\n#TemUmaExplicacao #Cachorros #ComportamentoAnimal #CuriosidadesAnimais #Ciencia",
-      "caption_hashtags": [
-        "#TemUmaExplicacao",
-        "#Cachorros",
-        "#ComportamentoAnimal",
-        "#CuriosidadesAnimais",
-        "#Ciencia"
-      ]
+      "source_video_url": null,
+      "source_video_title": "SEU CELULAR PODE TOCAR UMA SIRENE DO NADA?",
+      "download_status": "NOT_STARTED_NEW_ORIGINAL_MP4_REQUIRED",
+      "source_selection_status": "PLANNED_2026_11_04_SOURCE_NOT_YET_CREATED_OR_PUBLISHED",
+      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-18-defesa-civil-alerta.json",
+      "caption_draft": "📱 Uma mensagem pode ocupar a tela do celular para avisar sobre uma emergência na sua região. O Defesa Civil Alerta funciona em aparelhos compatíveis conectados às redes 4G/5G nas áreas atendidas, sem cadastro prévio. Quer alertas por SMS dos seus CEPs? Cadastre gratuitamente no 40199. Siga as orientações oficiais. #TemUmaExplicacao #DefesaCivil #AlertaDeEmergencia #Seguranca #Tecnologia",
+      "production_requires": "Criar e verificar MP4 original no canal YouTube PT antes de importar Reel no Instagram; voz Google AI Studio Rasalgethi quando houver narração, não usar API paga.",
+      "approval_note": "Alterado em 03/11 a pedido de conteúdos úteis e atuais para 04/11; tema Defesa Civil Alerta substitui a pauta de cão molhado no slot, mas a mídia do cão permanece como arquivo histórico na revisão anterior do GitHub. NÃO publicar até produzir vídeo original, licenças/QC, verificar procedência e autorizar.",
+      "publication_status": "planning_only_not_scheduled"
     },
     {
       "day": "2026-11-05",
@@ -363,8 +347,8 @@
       "source_selection_status": "BLOCKED_NO_ADDITIONAL_VERIFIED_MP4_WITHOUT_GUTHY"
     }
   ],
-  "note": "O Reel de 02/11 foi publicado com recibo Meta. Quatro originais extras foram verificados e estão no Drive privado para 03-06/11, mas requerem URL pública de mídia e QC; manter approved=false. Para 07-08/11 faltam novos MP4s independentes. Nenhuma nova publicação automática é liberada por este plano.",
+  "note": "Em 04/11 o Reel planejado foi atualizado para Defesa Civil Alerta, priorizando utilidade e atualidade (fontes oficiais de 2026). Sem MP4: bloqueado para publicação até criar original YouTube PT e verificar arquivo. Registros publicados em outros dias preservados.",
   "ai_label_by_publisher": false,
   "synthetic_content_autopublish_allowed": false,
-  "progress_status": "2026-11-02_REEL_PUBLISHED_PLUS_FOUR_DRAFTS_ORIGINALS_VERIFIED_TWO_SOURCES_PENDING"
+  "progress_status": "2026-11-03_PLAN_04NOV_REEL_CIVIL_DEFENSE_ORIGINAL_PENDING"
 }
