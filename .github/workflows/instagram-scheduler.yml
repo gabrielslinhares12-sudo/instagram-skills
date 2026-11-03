@@ -1,5 +1,5 @@
 name: Publicar fila diária do Instagram
-# Dry-run de validação 03NOV: tirinha 11h aprovada, Atacama 15h depende de música nativa.
+# Dry-run seguro 04NOV: Reel original das 18h com voz Rasalgethi, legenda e AI info obrigatório; não publica no push.
 
 # Operação em GitHub-hosted Ubuntu: nenhum PC/runner GUTHY/Android necessário.
 # O cron roda em UTC; a fila guarda horários ISO UTC e previne duplicatas.
