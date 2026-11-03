@@ -192,12 +192,19 @@
       "caption_draft": "📱 Uma mensagem pode ocupar a tela do celular para avisar sobre uma emergência na sua região. O Defesa Civil Alerta funciona em aparelhos compatíveis conectados às redes 4G/5G nas áreas atendidas, sem cadastro prévio. Quer alertas por SMS dos seus CEPs? Cadastre gratuitamente no 40199. Siga as orientações oficiais. #TemUmaExplicacao #DefesaCivil #AlertaDeEmergencia #Seguranca #Tecnologia",
       "production_requires": "Criar e verificar MP4 original no canal YouTube PT antes de importar Reel no Instagram; voz Google AI Studio Rasalgethi quando houver narração, não usar API paga.",
       "approval_note": "Alterado em 03/11 a pedido de conteúdos úteis e atuais para 04/11; tema Defesa Civil Alerta substitui a pauta de cão molhado no slot, mas a mídia do cão permanece como arquivo histórico na revisão anterior do GitHub. NÃO publicar até produzir vídeo original, licenças/QC, verificar procedência e autorizar.",
-      "publication_status": "NOT_READY_DO_NOT_PUBLISH__VOICE_AND_FINAL_QC_PENDING",
+      "publication_status": "NOT_READY_FOR_PUBLICATION__PERCEPTUAL_QC_AND_YOUTUBE_SOURCE_REQUIRED",
       "preview_mp4_url": "https://gcdn.picsart.com/media-engine/a557a6b7-ccf5-42c5-9d12-8f2aca7868b7.mp4",
       "preview_mp4_duration_seconds": 42,
       "preview_mp4_resolution": "1080x1920",
       "preview_created_at": "2026-11-03",
-      "preview_status": "EXPORTED_42S_WITH_REAL_VIDEO_AND_LUMINO__RALSALGETHI_NARRATION_PENDING"
+      "preview_status": "NARRATION_RASALGETHI_COMPLETE__42S_MIXED__QC_PENDING",
+      "voice_model": "gemini-2.5-flash-tts",
+      "voice_id": "Rasalgethi",
+      "voice_language": "pt-BR",
+      "voice_audio_duration_seconds": 36.251,
+      "voice_audio_file": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/drafts/VOZ-RASALGETHI-PTBR.wav",
+      "narrated_mp4_file": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-NARRADO-RASALGETHI.mp4",
+      "voice_mix_status": "EXPORTED_AND_GITHUB_ARCHIVED"
     },
     {
       "day": "2026-11-05",
@@ -355,5 +362,5 @@
   "note": "Em 04/11 o Reel planejado foi atualizado para Defesa Civil Alerta, priorizando utilidade e atualidade (fontes oficiais de 2026). Sem MP4: bloqueado para publicação até criar original YouTube PT e verificar arquivo. Registros publicados em outros dias preservados.",
   "ai_label_by_publisher": false,
   "synthetic_content_autopublish_allowed": false,
-  "progress_status": "2026-11-03_04NOV_REEL_PREVIEW_MP4_CREATED_VOICE_AND_QC_PENDING"
+  "progress_status": "2026-11-03_04NOV_REEL_RASALGETHI_VOICE_GENERATED_MIXED_ARCHIVED_QC_PENDING"
 }
