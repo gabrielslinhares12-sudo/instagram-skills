@@ -14,11 +14,15 @@
       "kind": "single_image",
       "topic": "reuniao-sobre-reuniao",
       "images": [
-        "1n1Z5UVnE3cypXbZouaKOMwZpUPMruewl"
+        "1ZCSRrB0jR7-1UADfG3LDTFQZAn39O_Dc"
       ],
       "published": false,
       "scheduled": false,
-      "approved": false
+      "approved": false,
+      "visual_status": "V3_REVISED_PENDING_OWNER_REVIEW",
+      "image_url": "https://drive.google.com/file/d/1ZCSRrB0jR7-1UADfG3LDTFQZAn39O_Dc/view",
+      "canonical_mascot_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+      "revision_note": "Meme independente com começo (1 hora de reunião), desenvolvimento (sem pauta) e desfecho (marcar outra reunião). Lúmino recortado do PNG original, sem redesenho. Não incluir swipe por ser imagem única."
     },
     {
       "slot": "15:00",
