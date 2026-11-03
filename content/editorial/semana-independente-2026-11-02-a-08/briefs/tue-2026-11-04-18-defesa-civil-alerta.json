@@ -75,9 +75,11 @@
     "scene_url": "https://gcdn.picsart.com/picsart-mcp/1ad36c3a-574a-4469-8ff4-43d10b083698.json",
     "archive_branch": "instagram-reel-defesa-civil-04nov-2026",
     "archive_job": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41701754644",
-    "archive_status": "IN_PROGRESS",
+    "archive_status": "SUCCEEDED_VERIFIED_GITHUB_FILE",
     "final_voice_required": "Google AI Studio web, Rasalgethi (no paid API)",
-    "publish_ready": false
+    "publish_ready": false,
+    "archive_url": "https://github.com/gabrielslinhares12-sudo/instagram-skills/blob/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-SEM-NARRACAO.mp4",
+    "archive_raw_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/instagram-reel-defesa-civil-04nov-2026/content/media/instagram/2026-11-04/drafts/Reel-Defesa-Civil-42s-SEM-NARRACAO.mp4"
   },
   "visual_source_clips": [
     {
@@ -111,5 +113,13 @@
     "Revisar vídeo final e mixagem com áudio no celular",
     "Confirmar o MP4 final na Meta e não repetir o tema",
     "Não agendar ou publicar esta prévia sem voz"
-  ]
+  ],
+  "cover_image": {
+    "url": "https://gcdn.picsart.com/media-engine/91d3b2a7-79b7-42d0-9450-478e126e585f.jpg",
+    "download_url": "https://gcdn.picsart.com/media-engine/91d3b2a7-79b7-42d0-9450-478e126e585f.jpg?download=true&download_file_name=CAPA-Reel-Defesa-Civil-04NOV2026.jpg",
+    "size": "1080x1920",
+    "title": "ALERTA NO CELULAR?",
+    "lumino_original": true,
+    "storage": "Picsart temporary URL; Google Drive/Picsart Drive out of space"
+  }
 }
