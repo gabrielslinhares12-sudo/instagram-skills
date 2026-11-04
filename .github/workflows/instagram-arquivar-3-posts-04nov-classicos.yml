@@ -44,7 +44,6 @@ jobs:
           18-m87-03.jpg|https://gcdn.picsart.com/media-engine/651545a8-7a7e-4d7f-a287-283d25126680.jpg
           18-m87-04.jpg|https://gcdn.picsart.com/media-engine/b7b77827-d972-409f-95f7-39f5534b8776.jpg
           FILES
-          FILES
           python3 - <<'PY'
           import hashlib,json,pathlib
           from PIL import Image
