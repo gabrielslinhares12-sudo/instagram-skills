@@ -66,29 +66,29 @@
       "depends_on_other_post": false
     },
     {
-      "id": "tue-2026-11-04-11-pix-med-2026",
+      "id": "tue-2026-11-04-11-melaco-boston-1919",
       "day": "2026-11-04",
       "slot": "11:00",
-      "topic_id": "pix-med-fraude-2026",
-      "subject_id": "recuperacao-golpe-pix-mecanismo-devolucao",
+      "topic_id": "boston-inundacao-melaco-1919",
+      "subject_id": "tragedia-industrial-reservatorio-boston-1919",
       "series_id": "carrossel-educativo",
       "kind": "carousel",
-      "title": "GOLPE NO PIX? O QUE FAZER NOS PRIMEIROS MINUTOS",
-      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-11-pix-med-2026.json",
+      "title": "A CIDADE ENGOLIDA POR MELAÇO",
+      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-11-melaco-boston-1919.json",
       "approved": false,
       "part_of_series": false,
       "depends_on_other_post": false
     },
     {
-      "id": "tue-2026-11-04-15-sac-ar-17-graus",
+      "id": "tue-2026-11-04-15-ra-congelada",
       "day": "2026-11-04",
       "slot": "15:00",
-      "topic_id": "ar-condicionado-17-graus-mito",
-      "subject_id": "eficiencia-energetica-climatizacao-termometro",
-      "series_id": "sac-lumino",
+      "topic_id": "ra-madeireira-congela-sobrevive",
+      "subject_id": "fisiologia-crioprotetores-rana-sylvatica",
+      "series_id": "natureza-extraordinaria",
       "kind": "meme",
-      "title": "SAC DO CLIMA — O 17 °C QUE SAI CARO",
-      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-15-sac-ar-17-graus.json",
+      "title": "A RÃ QUE CONGELA E VOLTA À VIDA",
+      "brief_path": "content/editorial/semana-independente-2026-11-02-a-08/briefs/tue-2026-11-04-15-ra-congelada.json",
       "approved": false,
       "part_of_series": false,
       "depends_on_other_post": false
@@ -215,10 +215,10 @@
     "carousels": 7,
     "standalone_memes": 7,
     "distinct_topics": 14,
-    "distinct_series": 10,
+    "distinct_series": 11,
     "series_usage": {
       "parece-mentira": 2,
-      "sac-lumino": 3,
+      "sac-lumino": 2,
       "arquivo-improvavel": 1,
       "plantao-absurdo": 1,
       "carrossel-educativo": 1,
@@ -226,11 +226,13 @@
       "tribunal-pequenas": 2,
       "tribunal-fenomenos": 1,
       "rh-do-caos": 1,
-      "luz-seu-veredito": 1
+      "luz-seu-veredito": 1,
+      "natureza-extraordinaria": 1
     },
     "rotating_12_and_18": true
   },
   "feed_rotation_rule": "Nenhum formato é fixo por horário: carrosséis educativos, demais carrosséis e tirinhas alternam entre 11h e 15h. O Reel do YouTube às 18h permanece fila separada e dependente de MP4 verificado.",
   "schedule_override_note": "02/11: tirinha antecipada e publicada 13h51, Mar Cruzado transferido para 15h por solicitação do proprietário. IDs históricos são preservados; alteração não constitui agendamento nem publicação.",
-  "plan_revision_2026_11_03": "Em 04/11, o rascunho antigo de Marte às 11h e Museu dos Cabos às 15h foi substituído por temas de utilidade prática e conteúdo atualizado de 2026: Pix/MED e consumo do ar-condicionado. Produção e publicação ainda dependem de ativos, QC e liberação. Não reativar planos antigos para os dois horários."
+  "plan_revision_2026_11_03": "Em 04/11, o rascunho antigo de Marte às 11h e Museu dos Cabos às 15h foi substituído por temas de utilidade prática e conteúdo atualizado de 2026: Pix/MED e consumo do ar-condicionado. Produção e publicação ainda dependem de ativos, QC e liberação. Não reativar planos antigos para os dois horários.",
+  "plan_revision_2026_11_04": "Pedido corrigido: três posts principais às 11h, 15h e 18h e um Reel de teste EXTRA (trial, apenas não seguidores, graduação manual). A grade semanal 11h/15h foi substituída por Boston 1919 e rã madeireira congelada; 18h imagem M87 e Reel trial em arquivo editorial separado; antigo Reel Defesa Civil foi publicado no dia 03/11 e NÃO será reenviado. Antigos Pix/MED, ar 17 °C, Eiffel, pipoca, Falkirk foram cancelados desta grade."
 }
