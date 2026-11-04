@@ -21,7 +21,7 @@ class TimedReelTest(unittest.TestCase):
         return MockDateTime
 
     def test_original_media_matches_weekly_plan(self):
-        p=json.loads((BASE/"content/editorial/REELS-E-STORIES-2026-11-02-a-08.json").read_text())
+        p=json.loads((BASE/"content/editorial/REELS-E-STORIES-2026-11-02-a-08.json").read_text(encoding="utf-8"))
         reel=next(p for p in p["reels"] if p["day"]=="2026-11-03")
         self.assertTrue(reel["approved"])
         self.assertFalse(reel["reel_published"])
