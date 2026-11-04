@@ -107,15 +107,16 @@
       "published_at": "2026-11-03T21:21:53Z"
     },
     "tue-2026-11-04-boston-1919-carrossel-imediato": {
-      "status": "needs_review",
+      "status": "published",
       "fingerprint": "cd29d006322eae46c5e70ff5cf7b82dddf7b87cb0c83872d693c6325aeac8a54",
       "due_at": "2026-11-04T17:55:30Z",
       "claimed_at": "2026-11-04T18:01:22Z",
-      "error_type": "publication_not_confirmed",
-      "http_status": 400,
-      "code": 9004,
-      "subcode": 2207052,
-      "creation_id": "18102820949100158"
+      "creation_id": "18102820949100158",
+      "media_id": "17997771024013719",
+      "instagram_user_id": "17841433004716815",
+      "username": "temumaexplicacao",
+      "published_at": "2026-11-04T18:08:18.479483Z",
+      "recovery_same_creation_id": true
     }
   }
 }

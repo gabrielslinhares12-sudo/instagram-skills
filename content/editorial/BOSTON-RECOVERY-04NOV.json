@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "tue-2026-11-04-boston-1919-carrossel-imediato",
-  "status": "claimed",
+  "status": "published",
   "attempts_remaining": 0,
   "creation_id": "18102820949100158",
   "original_action_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41876614001",
@@ -18,5 +18,7 @@
   "publication_confirmed": false,
   "claimed_at": "2026-11-04T18:08:12.620413+00:00",
   "github_run_id": "41883990848",
-  "github_run_attempt": "1"
+  "github_run_attempt": "1",
+  "media_id": "17997771024013719",
+  "published_at": "2026-11-04T18:08:18.479483Z"
 }
