@@ -1,0 +1,93 @@
+name: Instagram TUE - Recover Titanic 18h missing, safe isolated publish
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-titanic-04nov-recover-after-trial.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-temumaexplicacao-publication
+  cancel-in-progress: false
+jobs:
+  recover_titanic:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Refresh verified receipt and build only-Titanic manifest, no Meta mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+          python3 - <<'PY'
+          import json, pathlib, hashlib
+          slug='tue-2026-11-04-18-titanic-sem-tarjas-v3'
+          schedule=json.loads(pathlib.Path('content/schedule.json').read_text(encoding='utf-8'))
+          ledger=json.loads(pathlib.Path('content/publication-state.json').read_text(encoding='utf-8'))
+          items=[x for x in schedule['posts'] if x['id']==slug]
+          assert len(items)==1, 'Missing/duplicate Titanic schedule'
+          item=items[0]
+          assert item['approved'] is True and item['kind']=='reel'
+          assert item['username']=='temumaexplicacao'
+          assert item['due_at']=='2026-11-04T21:00:00Z'
+          assert item.get('trial_reel') is not True
+          receipt=json.loads((pathlib.Path('content/approved')/slug/'approval.json').read_text(encoding='utf-8'))
+          assert receipt['approved'] is True and receipt['owner_authorized'] is True
+          assert receipt['release_url']==item['media_urls'][0]
+          assert receipt['media_sha256']==item['media_sha256']
+          assert receipt['cover_url']==item['cover_url']
+          mp4=pathlib.Path('content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS.mp4')
+          assert hashlib.sha256(mp4.read_bytes()).hexdigest()==receipt['media_sha256'][0]
+          previous=ledger['items'].get(slug)
+          assert previous is None or previous.get('status') in {'claimed','needs_review','published'}, 'Unexpected prior publication state'
+          manifest={'version':1,'posts':[item]}
+          pathlib.Path('/tmp/tue-only-titanic.json').write_text(json.dumps(manifest,ensure_ascii=False),encoding='utf-8')
+          print('TITANIC_QC_MATCH=1')
+          PY
+          python3 scripts/instagram_queue.py --manifest /tmp/tue-only-titanic.json --dry-run > /tmp/tue-titanic-plan.json
+          python3 - <<'PY'
+          import json,os
+          p=json.load(open('/tmp/tue-titanic-plan.json'))
+          assert len(p['items'])==1, 'Isolated queue must contain only Titanic'
+          row=p['items'][0]
+          assert row['id']=='tue-2026-11-04-18-titanic-sem-tarjas-v3'
+          if row['status']=='due':
+              with open(os.environ['GITHUB_ENV'],'a') as out:
+                  out.write('TITANIC_RECOVERY_DUE=true\n')
+              print('TITANIC_RECOVERY=due, unique and unclaimed')
+          elif row['status'] in {'claimed','needs_review','published','changed_after_claim'}:
+              print('TITANIC_RECOVERY=skip, previous claim or publication; no second attempt')
+          else:
+              raise SystemExit('Unsafe Titanic recovery status: '+row['status'])
+          PY
+      - name: Official Meta preflight then publish Titanic once
+        if: env.TITANIC_RECOVERY_DUE == 'true'
+        shell: bash
+        env:
+          INSTAGRAM_SCHEDULER_ENABLED: 'true'
+          FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
+          FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
+          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
+          INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+        run: |
+          set -euo pipefail
+          python3 scripts/instagram_preflight.py
+          python3 scripts/instagram_queue.py --manifest /tmp/tue-only-titanic.json --execute
+      - name: Report exact persisted receipt, no additional Meta action
+        if: always()
+        shell: bash
+        run: |
+          git fetch origin main
+          git show origin/main:content/publication-state.json | python3 -c "import sys,json;d=json.load(sys.stdin);r=d.get('items',{}).get('tue-2026-11-04-18-titanic-sem-tarjas-v3',{});print('TITANIC_STATUS='+str(r.get('status','not_claimed')));print('TITANIC_MEDIA_ID='+str(r.get('media_id','not_confirmed')))"
