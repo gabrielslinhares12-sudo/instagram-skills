@@ -2,7 +2,7 @@
   "version": 1,
   "preset_id": "TUE-MESTRE-01",
   "day": "2026-11-04",
-  "status": "REJECTED_VISUAL_TUE_MESTRE_01__DO_NOT_PUBLISH",
+  "status": "REJECTED_VISUAL__SUPERSEDED_BY_LOCAL_NEW_MASTERS_WAITING_MANUAL_REVIEW",
   "approved_by_owner_for_publication": false,
   "file_count": 10,
   "posts": {
@@ -125,5 +125,8 @@
   ],
   "single_post_15h_review_status": "Visual do post único também pendente de comparação, sem aprovação automática",
   "do_not_promote_to_schedule": true,
-  "supersession_requires": "new unique final assets, direct visual comparison with the exact approved master and human release; never re-label these hashes as approved"
+  "supersession_requires": "new unique final assets, direct visual comparison with the exact approved master and human release; never re-label these hashes as approved",
+  "original_rejected_art_immutable": true,
+  "replacement_reference": "five new separate master slides rendered from original Lúmino PNG and five archival Boston.gov photos",
+  "replacement_release_status": "awaiting specific image-file approval; no automatic queue promotion"
 }
