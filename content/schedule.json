@@ -308,6 +308,27 @@
         "https://content.boston.gov/news/100-years-ago-today-molasses-crashes-through-bostons-north-end"
       ],
       "approval_note": "Autorização do usuário no chat. Usar apenas cinco JPGs exatos fixados por SHA, sem música e sem Story; não alegar validação da identidade pixel a pixel. A política Meta pode aplicar etiquetas próprias."
+    },
+    {
+      "id": "tue-2026-11-04-18-titanic-sem-tarjas-v3",
+      "due_at": "2026-11-04T21:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "reel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "Titanic: os botes que partiram com lugares vazios",
+      "caption": "🚢 O Titanic tinha 20 botes salva-vidas. Mesmo que todos estivessem lotados, eles não seriam suficientes para todas as pessoas a bordo. E algumas embarcações partiram com lugares vazios.\n\nComo isso aconteceu? A história da evacuação revela um detalhe que tornou a tragédia ainda maior.\n\nVocê conhecia esse fato?\n\n#Titanic #Historia #Curiosidades #TemUmaExplicacao #ReelsBrasil",
+      "media_urls": [
+        "https://gcdn.picsart.com/media-engine/78a79dc3-9ace-46ef-905e-797ad8f6ec07.mp4"
+      ],
+      "approved": true,
+      "is_ai_generated": true,
+      "ai_origin": "synthetic",
+      "ai_disclosure_review": "mandatory_realistic_synthetic_audio",
+      "sources": [
+        "https://www.titanicinquiry.org/BOTInq/BOTReport/BOTRepBoats.php",
+        "https://www.senate.gov/about/powers-procedures/investigations/titanic.htm"
+      ],
+      "approval_note": "Proprietário aprovou a edição sem tarjas de legendas em 04/11/2026 e pediu agendamento hoje. Reel v3: 42s, 2160x3840, 60fps, narração Rasalgethi e texto branco sem fundo. Agendar 18h America/Sao_Paulo, com declaração Meta obrigatória de voz sintética; não repostar versão v2."
     }
   ]
 }
