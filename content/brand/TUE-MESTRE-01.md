@@ -1,5 +1,16 @@
 # TUE-MESTRE-01 — PADRÃO ORIGINAL LÚMINO
 
+## REGRA PRIORITÁRIA — REELS 9:16 SEM BORDAS (04/11/2026)
+
+**Aplica-se a todo Reel novo e a toda reedição do Instagram TUE.** Priorizar filmagens e fotografias já verticais (9:16), em alta resolução, com procedência verificável. Quando a fonte for horizontal, adaptar para **tela cheia usando crop 9:16 orientado ao sujeito**, preferencialmente a partir de original grande o bastante para manter a nitidez; nunca usar `contain`, letterbox, barras pretas, laterais vazias, esticamento, mosaico desfocado ou imagem pequena ampliada indiscriminadamente como solução automática.
+
+- **Seleção de mídia:** primeiro procurar arquivo vertical nativo ou tomada vertical; depois aceitar paisagem de alta resolução somente quando a região importante permanecer íntegra no corte; se nenhum recorte preservar a informação, trocar de fonte em vez de forçar o enquadramento.
+- **Resolução real:** verificar dimensões da região útil após corte, não apenas as dimensões do MP4 final. Para 1080×1920, evitar crop menor que 1080×1920; para 2160×3840, preferir crop de pelo menos 2160×3840; se isso não existir, registrar que houve interpolação, sem declarar ganho real de detalhe.
+- **Proveniência documental:** manter fotografias históricas fiéis; não inventar, completar ou alterar elementos de registro histórico com preenchimento gerativo sem identificação explícita de reconstrução. Registrar URLs e licenças dos arquivos originais.
+- **Edição:** proporção fixa de 9:16, preenchimento de toda a tela, enquadramento no sujeito principal, movimento discreto, tipografia limpa, legendas sincronizadas e dentro da área segura. Evitar blocos de texto, fundos vazios e cortes aleatórios da imagem.
+- **Portão de QC:** inspecionar quadro de abertura, cada cena e encerramento no formato final de celular; reprovar qualquer fundo sem intenção, barras, textura borrada, sujeito cortado, letras cortadas ou estiramento. A validação técnica de codec/fps/duração não equivale à aprovação visual. **Não publicar, programar ou marcar como aprovado enquanto uma cena falhar.**
+
+
 ## Referência visual oficial e única (aprovada pelo proprietário em 02/11/2026)
 
 ![Imagem-mestre TUE-MESTRE-01](REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg)
