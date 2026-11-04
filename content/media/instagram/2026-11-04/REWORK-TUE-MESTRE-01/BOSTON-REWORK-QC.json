@@ -1,0 +1,71 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "visual_reference_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "subject": "BOSTON",
+  "manual_visual_reviewed": false,
+  "approved": false,
+  "publication_blocked": true,
+  "pages": [
+    {
+      "file": "BOSTON-MESTRE01-01.jpg",
+      "sha256": "6edf2f17103e3896a9525938c49120805bbe59d3125864e0e2f0331c1b32d995",
+      "bytes": 683382,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/BostonMolassesDisaster.jpg",
+      "layout": "cover",
+      "swipe_cue": true
+    },
+    {
+      "file": "BOSTON-MESTRE01-02.jpg",
+      "sha256": "3423f97e5cb4cab68295e301241aeffd5908152bb3f01d972b3f18fe6ad86c8a",
+      "bytes": 418019,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/North%20End%20molasses%20tank.jpg",
+      "layout": "evidence",
+      "swipe_cue": true
+    },
+    {
+      "file": "BOSTON-MESTRE01-03.jpg",
+      "sha256": "b9d319db59c4fca6cb066d63b34c4a96819620109aceb28dc78351716145ead2",
+      "bytes": 698627,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Boston%20post-January%2016%2C%201919%2C.jpg",
+      "layout": "number",
+      "swipe_cue": true
+    },
+    {
+      "file": "BOSTON-MESTRE01-04.jpg",
+      "sha256": "998d69b628f202585cc16ac21c9f6f6913826caca1308f3a737e8ed3a8d3f696",
+      "bytes": 609439,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "source": "https://www.boston.com/wp-content/uploads/2019/01/prd-meth01-idx-bg.boston-17.jpg",
+      "layout": "news",
+      "swipe_cue": true
+    },
+    {
+      "file": "BOSTON-MESTRE01-05.jpg",
+      "sha256": "1e9e4d72415e075b13ed3a12b49bbf0ebda2e46fb5ab20629e02bf092a6e090a",
+      "bytes": 611605,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "source": "https://www.boston.com/wp-content/uploads/2019/01/prd-meth01-idx-bg.boston-1-5.jpg",
+      "layout": "end",
+      "swipe_cue": false
+    }
+  ]
+}
