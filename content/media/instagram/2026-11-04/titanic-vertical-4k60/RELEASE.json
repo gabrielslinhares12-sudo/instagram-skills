@@ -1,0 +1,38 @@
+{
+  "id": "tue-2026-11-04-18-titanic-vertical-clean-v2",
+  "version": 2,
+  "preset_id": "TUE-MESTRE-01",
+  "status": "final_render_verified_not_published_visual_approval_pending",
+  "title": "Titanic: os botes que partiram com lugares vazios",
+  "duration_seconds": 42,
+  "width": 2160,
+  "height": 3840,
+  "fps": 60,
+  "kind": "reel",
+  "voice": "Rasalgethi",
+  "synthetic_voice": true,
+  "is_ai_generated": true,
+  "ai_disclosure_required": true,
+  "music": false,
+  "story": false,
+  "published": false,
+  "full_bleed": true,
+  "images_stretched": false,
+  "source_photos_native_portrait": 3,
+  "source_photos_high_resolution_crop": 2,
+  "video_file": "REEL-TITANIC-VERTICAL-CLEAN-4K60.mp4",
+  "cover_file": "CAPA-TITANIC-VERTICAL-4K.jpg",
+  "video_sha256": "93a1b81541141cb2ac358f1da1913d41a717bc98ca4755712522fb1efc6839e2",
+  "cover_sha256": "f99a596c0e6000cba30e91a9929d5f3cb226490ceaed28e0a7c7267d2e6adb5b",
+  "source_photos": [
+    "https://commons.wikimedia.org/wiki/File:Scheepvaart,_schepen_op_naam,_scheepsrampen,_SFA003004215.jpg",
+    "https://commons.wikimedia.org/wiki/File:RMS_Titanic_3.jpg",
+    "https://commons.wikimedia.org/wiki/File:Titanicboat_12.jpg",
+    "https://commons.wikimedia.org/wiki/File:Een_reddingsboot_van_de_Titanic,_die_15_april_1912_bij_de_Noordpool_op_een_ijsberg_is_gelopen_en,_SFA002006965.jpg",
+    "https://commons.wikimedia.org/wiki/File:Titanic_lifeboat.jpg"
+  ],
+  "source_factual": [
+    "https://www.titanicinquiry.org/BOTInq/BOTReport/BOTRepBoats.php",
+    "https://www.senate.gov/about/powers-procedures/investigations/titanic.htm"
+  ]
+}
