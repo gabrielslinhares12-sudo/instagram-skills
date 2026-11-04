@@ -180,6 +180,12 @@
       "recovery_same_creation_id": false,
       "technical_note": "Eight-image parent album verified by official Meta GET.",
       "fingerprint": "3181420d793df3be4e974a8116f25b950960fb74bc5b7e4c7d29916af7921de5"
+    },
+    "tue-2026-11-04-extra-trial-sprites": {
+      "status": "claimed",
+      "fingerprint": "a9e54a6fbc31dbc310367e1bfcf9684f8f91a12027207c0b2dd53009c781ca7f",
+      "due_at": "2026-11-04T21:30:00Z",
+      "claimed_at": "2026-11-04T21:30:03Z"
     }
   }
 }
