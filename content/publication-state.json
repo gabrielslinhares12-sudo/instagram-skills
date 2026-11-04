@@ -186,6 +186,12 @@
       "fingerprint": "a9e54a6fbc31dbc310367e1bfcf9684f8f91a12027207c0b2dd53009c781ca7f",
       "due_at": "2026-11-04T21:30:00Z",
       "claimed_at": "2026-11-04T21:30:03Z"
+    },
+    "tue-2026-11-04-18-titanic-sem-tarjas-v3": {
+      "status": "claimed",
+      "fingerprint": "e7cc2074bffe3c52ef780122e3dde5e731833f1dd9aa3fc97f5e6884ae2eebfb",
+      "due_at": "2026-11-04T21:00:00Z",
+      "claimed_at": "2026-11-04T21:32:34Z"
     }
   }
 }
