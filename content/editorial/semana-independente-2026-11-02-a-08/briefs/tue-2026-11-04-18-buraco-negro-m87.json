@@ -1,0 +1,75 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "day": "2026-11-04",
+  "publication_requires_native_music": false,
+  "manual_visual_review_required": true,
+  "editorial_freshness_checked_at": "2026-11-04",
+  "id": "tue-2026-11-04-18-buraco-negro-m87",
+  "slot": "18:00",
+  "series_id": "raio-x-real",
+  "kind": "carousel",
+  "topic_id": "m87-primeira-sombra-buraco-negro",
+  "subject_id": "eht-radiointerferometria-imagem-m87-2019",
+  "title": "COMO FOTOGRAFARAM UM BURACO NEGRO?",
+  "hook": "FOTOGRAFARAM O INVISÍVEL?",
+  "concept": "Explicar por que o anel alaranjado é gás quente e a região escura é a sombra do buraco negro M87*, baseada em dados de radiotelescópios.",
+  "sources": [
+    "https://science.nasa.gov/resource/first-image-of-a-black-hole/",
+    "https://www.nsf.gov/news/astronomers-capture-first-image-black-hole",
+    "https://eventhorizontelescope.org/faq/can-we-really-photograph-black-hole-are-they-not-entirely-dark-no-light-can-escape-them"
+  ],
+  "factual_caution": "A primeira imagem não é uma foto óptica convencional; o centro escuro é a sombra, não o próprio horizonte de eventos. Distinguir vídeo ilustrativo de dados radiométricos; massa de M87* 6,5 bilhões de massas solares e distância ≈55 milhões anos-luz.",
+  "format": "4 JPEGs individuais 1080x1350 4:5; capa com imagem EHT real, demais com radioantenas e Hubble",
+  "media_policy": "NASA/EHT, ESA/Hubble e ESO/ALMA; atribuição adequada, não alterar imagem histórica que comprometa interpretação; Lúmino PNG original sobreposto.",
+  "slides": [
+    {
+      "headline": "FOTOGRAFARAM O INVISÍVEL?",
+      "new_information": "Em 10 de abril de 2019, o Event Horizon Telescope divulgou a primeira imagem da sombra de um buraco negro, na galáxia M87.",
+      "distinct_scene": "Registro real de M87* pelo EHT, com anel de gás quente e centro escuro.",
+      "visual_direction": "Capa com imagem EHT original sem recolorir dados; manchete amarela e Lúmino canônico.",
+      "source_credit": "https://science.nasa.gov/resource/first-image-of-a-black-hole/",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "ANTENAS PELO PLANETA TRABALHARAM JUNTAS",
+      "new_information": "Uma rede de observatórios de rádio em diversos continentes combinou suas observações para formar um telescópio virtual do tamanho da Terra.",
+      "distinct_scene": "Fotografia verdadeira do conjunto de antenas ALMA no Chile, integrante da rede EHT.",
+      "visual_direction": "Mostrar instrumento real e explicar interferometria sem confundir com um telescópio óptico.",
+      "source_credit": "https://www.nsf.gov/news/astronomers-capture-first-image-black-hole",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "UM GIGANTE A 55 MILHÕES DE ANOS-LUZ",
+      "new_information": "M87* possui cerca de 6,5 bilhões de vezes a massa do Sol e fica no centro da galáxia M87, distante cerca de 55 milhões de anos-luz.",
+      "distinct_scene": "Imagem real de M87 e jato de material captado pelo telescópio Hubble.",
+      "visual_direction": "Fundo de M87 com jato real; texto sobreposto sem fingir que o círculo preto é visível no Hubble.",
+      "source_credit": "https://science.nasa.gov/resource/first-image-of-a-black-hole/",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "O ANEL É LUZ; O CENTRO É SOMBRA",
+      "new_information": "O anel brilhante vem de gás quente perto do buraco negro; a área escura é a sombra obtida de dados de rádio reconstruídos computacionalmente.",
+      "distinct_scene": "Retorno à imagem EHT para distinguir matéria emissora de sombra observacional.",
+      "visual_direction": "Fecho didático com imagem histórica e comparação sobreposta, sem falso efeito visual.",
+      "source_credit": "https://eventhorizontelescope.org/faq/can-we-really-photograph-black-hole-are-they-not-entirely-dark-no-light-can-escape-them",
+      "uses_original_lumino": true,
+      "position_in_story": "síntese",
+      "swipe_cue": null
+    }
+  ],
+  "caption": "Como se fotografa algo de onde nem a luz consegue escapar? 📡 Em 2019, uma rede internacional de radiotelescópios registrou a sombra do buraco negro M87*. O anel alaranjado é emissão de matéria superaquecida; o centro escuro é a sombra, e a imagem foi reconstruída a partir de dados de rádio — não é uma foto comum. Imagens: EHT Collaboration, ESO/ALMA e ESA/Hubble. Fontes: NASA, NSF e EHT. #TemUmaExplicacao #BuracoNegro #Espaco #Ciencia #EHT",
+  "production_status": "4_jpeg_rendered_picsart_pending_github_archive"
+}
