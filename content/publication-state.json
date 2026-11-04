@@ -126,7 +126,14 @@
       "technical_note": "A recuperação manual publicou um contêiner de imagem FILHO, não o contêiner PAI CAROUSEL. O GET posterior da Meta confirmou media_type IMAGE para media_id 17997771024013719. A tentativa do carrossel original foi interrompida por 9004/2207052. Registro marcado needs_review para impedir duplicações.",
       "final_album_claimed_at": "2026-11-04T18:30:39.088792+00:00",
       "final_album_preflight_count": 8,
-      "final_album_children": []
+      "final_album_children": [
+        "18102825503100158",
+        "18102825521100158",
+        "18102825548100158",
+        "18102825572100158",
+        "18102825593100158"
+      ],
+      "final_album_parent": "18102825617100158"
     }
   }
 }
