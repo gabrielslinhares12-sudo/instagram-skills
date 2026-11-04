@@ -1,0 +1,44 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "day": "2026-11-04",
+  "publication_requires_native_music": false,
+  "manual_visual_review_required": true,
+  "editorial_freshness_checked_at": "2026-11-04",
+  "id": "tue-2026-11-04-15-ra-congelada",
+  "slot": "15:00",
+  "series_id": "natureza-extraordinaria",
+  "kind": "meme",
+  "topic_id": "ra-madeireira-congela-sobrevive",
+  "subject_id": "fisiologia-crioprotetores-rana-sylvatica",
+  "title": "A RÃ QUE CONGELA E VOLTA À VIDA",
+  "hook": "ESSA RÃ CONGELA! O CORAÇÃO PARA.",
+  "concept": "Poster único impactante, com quatro etapas explicativas, humor sutil de reinício de sistema e rã real do gênero Rana sylvatica.",
+  "sources": [
+    "https://www.nps.gov/dena/learn/nature/amphibians.htm",
+    "https://www.nps.gov/gaar/learn/nature/wood-frog-page-2.htm",
+    "https://commons.wikimedia.org/wiki/File:Wood_Frog_(Rana_sylvatica)_(25234151669).jpg"
+  ],
+  "factual_caution": "Não afirmar morte e ressuscitação real; funções vitais interrompem temporariamente; gelo se forma principalmente fora das células protegidas por glicose e outros crioprotetores. A foto mostra o animal em atividade, não congelado.",
+  "format": "1 JPEG 1080x1350, arte única 4:5, não carrossel",
+  "media_policy": "Fotografia de Rana sylvatica Wikimedia com atribuição; Lúmino PNG original sem redesenho. Humor é textual e não uma fotografia encenada.",
+  "slides": [
+    {
+      "headline": "ESSA RÃ CONGELA — E SOBREVIVE",
+      "new_information": "CENA 1: A rã madeireira enfrenta temperaturas abaixo de zero. CENA 2: O coração e a respiração podem parar durante o congelamento. CENA 3: O fígado libera glicose que ajuda a proteger as células. CENA 4: Na primavera, o animal descongela e volta à atividade; humor textual leve: natureza com reinicialização automática.",
+      "distinct_scene": "Imagem de uma rã madeireira real em ambiente vegetal, com manchete amarela, blocos informativos diferentes e Lúmino no canto, sem fingir filmagem de congelamento.",
+      "visual_direction": "Poster editorial fotográfico com tipografia de alto impacto e quatro informações narrativas condensadas; Lúmino original à direita e nota de que a foto mostra a espécie em atividade.",
+      "source_credit": "NPS https://www.nps.gov/gaar/learn/nature/wood-frog-page-2.htm ; foto de espécie https://commons.wikimedia.org/wiki/File:Wood_Frog_(Rana_sylvatica)_(25234151669).jpg",
+      "uses_original_lumino": true,
+      "position_in_story": "gancho → explicação → virada → punchline"
+    }
+  ],
+  "caption": "Tem animal que enfrenta o inverno no modo 'pausa'. 🐸❄️ A rã madeireira (*Rana sylvatica*) pode congelar, parar temporariamente de respirar e ter os batimentos cardíacos interrompidos. A glicose ajuda a proteger as células, e ela retoma a atividade quando descongela. Não é ressuscitação: é uma adaptação biológica extraordinária. Foto da espécie em atividade (Wikimedia Commons). Fonte: National Park Service. #TemUmaExplicacao #Natureza #Animais #Biologia #Curiosidades",
+  "production_status": "1_jpeg_rendered_picsart_pending_github_archive"
+}
