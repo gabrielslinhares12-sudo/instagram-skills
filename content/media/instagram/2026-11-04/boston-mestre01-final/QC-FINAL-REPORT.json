@@ -1,0 +1,211 @@
+{
+  "ok": true,
+  "standard": "TUE-MESTRE-01",
+  "original_lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "page_count": 5,
+  "unique_archival_photographs": 5,
+  "owner_approved": false,
+  "published": false,
+  "progress_dots_validated": true,
+  "last_page_has_no_forward_cue": true,
+  "photos_source": "Boston City Archives, via Boston.gov, 1916–1919",
+  "photo_sources_file": "FONTES.txt",
+  "slides": [
+    {
+      "slide": 1,
+      "mascot_mean_abs_error": 2.11,
+      "dot_centers": [
+        [
+          255,
+          214,
+          0
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ]
+      ],
+      "active_dot": 1,
+      "file": "TUE-BOSTON-MESTRE-01-01.jpg",
+      "bytes": 516860,
+      "format": "JPEG",
+      "dimensions": "1080x1350",
+      "4k_file": "TUE-BOSTON-MESTRE-01-01-4K.jpg",
+      "4k_bytes": 3056285,
+      "source_image_unique": true
+    },
+    {
+      "slide": 2,
+      "mascot_mean_abs_error": 2.1,
+      "dot_centers": [
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          255,
+          215,
+          1
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ]
+      ],
+      "active_dot": 2,
+      "file": "TUE-BOSTON-MESTRE-01-02.jpg",
+      "bytes": 534271,
+      "format": "JPEG",
+      "dimensions": "1080x1350",
+      "4k_file": "TUE-BOSTON-MESTRE-01-02-4K.jpg",
+      "4k_bytes": 3005092,
+      "source_image_unique": true
+    },
+    {
+      "slide": 3,
+      "mascot_mean_abs_error": 2.13,
+      "dot_centers": [
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          255,
+          214,
+          0
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ]
+      ],
+      "active_dot": 3,
+      "file": "TUE-BOSTON-MESTRE-01-03.jpg",
+      "bytes": 477893,
+      "format": "JPEG",
+      "dimensions": "1080x1350",
+      "4k_file": "TUE-BOSTON-MESTRE-01-03-4K.jpg",
+      "4k_bytes": 2725784,
+      "source_image_unique": true
+    },
+    {
+      "slide": 4,
+      "mascot_mean_abs_error": 2.12,
+      "dot_centers": [
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          255,
+          214,
+          0
+        ],
+        [
+          193,
+          194,
+          196
+        ]
+      ],
+      "active_dot": 4,
+      "file": "TUE-BOSTON-MESTRE-01-04.jpg",
+      "bytes": 510025,
+      "format": "JPEG",
+      "dimensions": "1080x1350",
+      "4k_file": "TUE-BOSTON-MESTRE-01-04-4K.jpg",
+      "4k_bytes": 2981757,
+      "source_image_unique": true
+    },
+    {
+      "slide": 5,
+      "mascot_mean_abs_error": 2.11,
+      "dot_centers": [
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          193,
+          194,
+          196
+        ],
+        [
+          255,
+          214,
+          0
+        ]
+      ],
+      "active_dot": 5,
+      "file": "TUE-BOSTON-MESTRE-01-05.jpg",
+      "bytes": 531342,
+      "format": "JPEG",
+      "dimensions": "1080x1350",
+      "4k_file": "TUE-BOSTON-MESTRE-01-05-4K.jpg",
+      "4k_bytes": 3100697,
+      "source_image_unique": true
+    }
+  ]
+}

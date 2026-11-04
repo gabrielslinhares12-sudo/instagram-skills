@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "pages": [
+    {
+      "page": 1,
+      "mascot_pixel_match_error": 2.103,
+      "dots": 5,
+      "active_dot": 1,
+      "sha256": "c81a8c877558bd423662fbe9eb6fdfe41ad679c5a10e87f5b4061858479251f2"
+    },
+    {
+      "page": 2,
+      "mascot_pixel_match_error": 2.078,
+      "dots": 5,
+      "active_dot": 2,
+      "sha256": "d49e502dd00182c707f6290e70f3f884325f33ef3611fd5c188679794e384812"
+    },
+    {
+      "page": 3,
+      "mascot_pixel_match_error": 2.147,
+      "dots": 5,
+      "active_dot": 3,
+      "sha256": "93a599b3ffbb8439ad5cbc00a97f1c1d0eb5ce36991135b9d6273fdfcc4304f5"
+    },
+    {
+      "page": 4,
+      "mascot_pixel_match_error": 2.132,
+      "dots": 5,
+      "active_dot": 4,
+      "sha256": "9dd014f273da311f8cb4439fa916672407071903ab473a580e39576ed09be8a1"
+    },
+    {
+      "page": 5,
+      "mascot_pixel_match_error": 2.154,
+      "dots": 5,
+      "active_dot": 5,
+      "sha256": "60aa71bbe867327db961778768afc46f9818424d425ce57d1ff3aabb2a25a120"
+    }
+  ],
+  "approved": false,
+  "published": false,
+  "source": "TUE-MESTRE-01 canonical PNG + five archived files",
+  "status": "EDITORIAL_VISUAL_REVIEW_PENDING"
+}

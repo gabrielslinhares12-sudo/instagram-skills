@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "standard_id": "TUE-MESTRE-01",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "production_mode": "individually_art_directed_v1",
+  "manual_visual_reviewed": false,
+  "owner_authorized": false,
+  "approved": false,
+  "pages": [
+    {
+      "number": 1,
+      "layout": "hero",
+      "file": "TUE-BOSTON-MESTRE-01-01.jpg",
+      "sha256": "c81a8c877558bd423662fbe9eb6fdfe41ad679c5a10e87f5b4061858479251f2",
+      "source_sha256": "c81a8c877558bd423662fbe9eb6fdfe41ad679c5a10e87f5b4061858479251f2",
+      "mascot_box": [
+        528,
+        490,
+        542,
+        563
+      ],
+      "headline": "A cidade foi engolida por melaço",
+      "swipe_cue": "Arraste para o lado →",
+      "dot_count": 5,
+      "active_dot": 1
+    },
+    {
+      "number": 2,
+      "layout": "split",
+      "file": "TUE-BOSTON-MESTRE-01-02.jpg",
+      "sha256": "d49e502dd00182c707f6290e70f3f884325f33ef3611fd5c188679794e384812",
+      "source_sha256": "d49e502dd00182c707f6290e70f3f884325f33ef3611fd5c188679794e384812",
+      "mascot_box": [
+        548,
+        559,
+        517,
+        537
+      ],
+      "headline": "Um tanque de 15 metros rompeu",
+      "swipe_cue": "Arraste para o lado →",
+      "dot_count": 5,
+      "active_dot": 2
+    },
+    {
+      "number": 3,
+      "layout": "diagram",
+      "file": "TUE-BOSTON-MESTRE-01-03.jpg",
+      "sha256": "93a599b3ffbb8439ad5cbc00a97f1c1d0eb5ce36991135b9d6273fdfcc4304f5",
+      "source_sha256": "93a599b3ffbb8439ad5cbc00a97f1c1d0eb5ce36991135b9d6273fdfcc4304f5",
+      "mascot_box": [
+        552,
+        590,
+        511,
+        531
+      ],
+      "headline": "8,7 milhões de litros",
+      "swipe_cue": "Arraste para o lado →",
+      "dot_count": 5,
+      "active_dot": 3
+    },
+    {
+      "number": 4,
+      "layout": "split",
+      "file": "TUE-BOSTON-MESTRE-01-04.jpg",
+      "sha256": "9dd014f273da311f8cb4439fa916672407071903ab473a580e39576ed09be8a1",
+      "source_sha256": "9dd014f273da311f8cb4439fa916672407071903ab473a580e39576ed09be8a1",
+      "mascot_box": [
+        568,
+        606,
+        492,
+        511
+      ],
+      "headline": "21 mortes, 150 feridos",
+      "swipe_cue": "Arraste para o lado →",
+      "dot_count": 5,
+      "active_dot": 4
+    },
+    {
+      "number": 5,
+      "layout": "diagram",
+      "file": "TUE-BOSTON-MESTRE-01-05.jpg",
+      "sha256": "60aa71bbe867327db961778768afc46f9818424d425ce57d1ff3aabb2a25a120",
+      "source_sha256": "60aa71bbe867327db961778768afc46f9818424d425ce57d1ff3aabb2a25a120",
+      "mascot_box": [
+        558,
+        578,
+        501,
+        521
+      ],
+      "headline": "O tanque já vazava",
+      "swipe_cue": null,
+      "dot_count": 5,
+      "active_dot": 5
+    }
+  ],
+  "sources": [
+    "https://content.boston.gov/news/100-years-ago-today-molasses-crashes-through-bostons-north-end",
+    "https://www.sec.state.ma.us/divisions/state-house-tours/did-you-know/Molasses-Flood.htm"
+  ],
+  "status": "READY_FOR_VISUAL_REVIEW_NOT_PUBLISHED",
+  "preview_file": "PREVIA-05-ARTES.png",
+  "preview_sha256": "5f40af8cb70d45a7d10f77606aeecd7ca3e1e1964d6e58cd215b0b2ceeed2c0b"
+}
