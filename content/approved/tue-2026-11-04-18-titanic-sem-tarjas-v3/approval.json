@@ -1,0 +1,32 @@
+{
+  "id": "tue-2026-11-04-18-titanic-sem-tarjas-v3",
+  "kind": "reel",
+  "preset_id": "TUE-MESTRE-01",
+  "approved": true,
+  "owner_authorized": true,
+  "owner_authorizes_only": "tue-2026-11-04-18-titanic-sem-tarjas-v3",
+  "technical_video_qc_passed": true,
+  "audio_qc_technical_passed": true,
+  "caption_transcript_verified": true,
+  "visual_geometry_qc_passed": true,
+  "subtitles_embedded": true,
+  "caption_segments": 25,
+  "video_width": 1080,
+  "video_height": 1920,
+  "video_duration_seconds": 42,
+  "fps": 60,
+  "caption_background": false,
+  "media_sha256": [
+    "c15b3a4ad9d0fd0cbebfa4fc03c8ed9ad6d67d847629546c76d1b8fef4465480"
+  ],
+  "release_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f4a7ec1572a048174bfd43ac6057a52638fa7ffb/content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS.mp4",
+  "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f4a7ec1572a048174bfd43ac6057a52638fa7ffb/content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/CAPA-TITANIC-SEM-TARJAS.jpg",
+  "disclosure_review": "mandatory_realistic_synthetic_audio",
+  "synthetic_voice_disclosure_mandatory": true,
+  "source_master": "TUE-Titanic-4K60-LEGENDAS-SEM-TARJAS-v3.mp4",
+  "source_facts": [
+    "https://www.titanicinquiry.org/BOTInq/BOTReport/BOTRepBoats.php",
+    "https://www.senate.gov/about/powers-procedures/investigations/titanic.htm"
+  ],
+  "owner_instruction": "Agende para postagem hoje no Instagram, em continuidade a edicao sem tarjas aprovada."
+}

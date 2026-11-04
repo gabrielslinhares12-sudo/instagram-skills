@@ -318,7 +318,7 @@
       "title": "Titanic: os botes que partiram com lugares vazios",
       "caption": "🚢 O Titanic tinha 20 botes salva-vidas. Mesmo que todos estivessem lotados, eles não seriam suficientes para todas as pessoas a bordo. E algumas embarcações partiram com lugares vazios.\n\nComo isso aconteceu? A história da evacuação revela um detalhe que tornou a tragédia ainda maior.\n\nVocê conhecia esse fato?\n\n#Titanic #Historia #Curiosidades #TemUmaExplicacao #ReelsBrasil",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS.mp4"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f4a7ec1572a048174bfd43ac6057a52638fa7ffb/content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS.mp4"
       ],
       "approved": true,
       "is_ai_generated": true,
@@ -328,7 +328,11 @@
         "https://www.titanicinquiry.org/BOTInq/BOTReport/BOTRepBoats.php",
         "https://www.senate.gov/about/powers-procedures/investigations/titanic.htm"
       ],
-      "approval_note": "Proprietário aprovou a edição sem tarjas de legendas em 04/11/2026 e pediu agendamento hoje. Reel v3: 42s, 2160x3840, 60fps, narração Rasalgethi e texto branco sem fundo. Agendar 18h America/Sao_Paulo, com declaração Meta obrigatória de voz sintética; não repostar versão v2."
+      "approval_note": "Proprietário aprovou a edição sem tarjas de legendas em 04/11/2026 e pediu agendamento hoje. Reel v3: 42s, 2160x3840, 60fps, narração Rasalgethi e texto branco sem fundo. Agendar 18h America/Sao_Paulo, com declaração Meta obrigatória de voz sintética; não repostar versão v2.",
+      "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/f4a7ec1572a048174bfd43ac6057a52638fa7ffb/content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/CAPA-TITANIC-SEM-TARJAS.jpg",
+      "media_sha256": [
+        "c15b3a4ad9d0fd0cbebfa4fc03c8ed9ad6d67d847629546c76d1b8fef4465480"
+      ]
     }
   ]
 }
