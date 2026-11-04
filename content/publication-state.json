@@ -123,7 +123,10 @@
       "carousel_published": false,
       "manual_cleanup_required": true,
       "do_not_retry": true,
-      "technical_note": "A recuperação manual publicou um contêiner de imagem FILHO, não o contêiner PAI CAROUSEL. O GET posterior da Meta confirmou media_type IMAGE para media_id 17997771024013719. A tentativa do carrossel original foi interrompida por 9004/2207052. Registro marcado needs_review para impedir duplicações."
+      "technical_note": "A recuperação manual publicou um contêiner de imagem FILHO, não o contêiner PAI CAROUSEL. O GET posterior da Meta confirmou media_type IMAGE para media_id 17997771024013719. A tentativa do carrossel original foi interrompida por 9004/2207052. Registro marcado needs_review para impedir duplicações.",
+      "final_album_claimed_at": "2026-11-04T18:30:39.088792+00:00",
+      "final_album_preflight_count": 8,
+      "final_album_children": []
     }
   }
 }
