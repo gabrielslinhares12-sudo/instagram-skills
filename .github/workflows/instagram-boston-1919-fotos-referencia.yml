@@ -1,0 +1,48 @@
+name: Obter arquivos historicos oficiais Boston 1919
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-boston-1919-fotos-referencia.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  arquivos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Preparar imagens historicas da Prefeitura de Boston
+        run: |
+          set -euo pipefail
+          mkdir -p boston-arquivo
+          urls=(
+            "https://content.boston.gov/sites/default/files/img/2019/m/molasses1_0.jpg"
+            "https://content.boston.gov/sites/default/files/img/2019/m/molasses1_1.jpg"
+            "https://content.boston.gov/sites/default/files/img/2019/m/molasses4_0.jpg"
+            "https://content.boston.gov/sites/default/files/img/2019/m/molasses6_0.jpg"
+          )
+          files=(tanque-antes.jpg destrocos-ponte.jpg panorama-destrocos.jpg limpeza-ruas.jpg)
+          for i in ${!urls[@]}; do
+            curl -fL --retry 4 --retry-all-errors --max-time 100 \
+              -A "Mozilla/5.0 (compatible; TUE-Studio-Editorial/1.0)" \
+              "${urls[$i]}" -o "boston-arquivo/${files[$i]}"
+            echo "${files[$i]} ${urls[$i]}" >> boston-arquivo/FONTES.txt
+          done
+          python3 - <<'PY'
+          import pathlib,struct
+          from PIL import Image
+          for p in pathlib.Path("boston-arquivo").glob("*.jpg"):
+              with Image.open(p) as im:
+                  im.verify()
+              with Image.open(p) as im:
+                  print(p.name, im.size, p.stat().st_size)
+                  assert im.width>400 and im.height>300
+          assert len(list(pathlib.Path("boston-arquivo").glob("*.jpg")))==4
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TUE-BOSTON-ARCHIVE-REAL-PHOTOS-1919
+          path: boston-arquivo/
+          if-no-files-found: error
+          retention-days: 4
