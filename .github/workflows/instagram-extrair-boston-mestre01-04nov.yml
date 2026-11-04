@@ -1,0 +1,94 @@
+name: Validar e separar cinco JPGs Boston TUE-MESTRE-01
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-extrair-boston-mestre01-04nov.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: boston-mestre-01-04nov-individualizar
+  cancel-in-progress: false
+jobs:
+  separar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout da branch de mídia, sem publicar
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: instagram-boston-mestre01-final-04nov
+          persist-credentials: true
+      - name: Instalar verificador de imagens
+        run: python3 -m pip install -q 'Pillow>=11,<13'
+      - name: Extrair JPGs e comprovar Lúmino e pontos individuais
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, hashlib, zipfile, pathlib
+          from PIL import Image
+          ROOT=pathlib.Path(".")
+          DEST=ROOT/"content/media/instagram/2026-11-04/boston-mestre01-final"
+          SRC=DEST.parent/"boston-mestre01-revisao/TUE-Boston-Carrossel-Instagram-5-Fotos.zip"
+          DEST.mkdir(parents=True,exist_ok=True)
+          with zipfile.ZipFile(SRC) as z:
+              names=[f"TUE-BOSTON-MESTRE-01-{i:02d}.jpg" for i in range(1,6)]
+              expected=names+["PREVIA-05-ARTES.png","QC-FINAL-REPORT.json","visual-manifest.json"]
+              assert sorted(z.namelist())==sorted(expected),"Pacote ZIP divergiu de cinco JPGs e recibos"
+              for name in expected:
+                  (DEST/name).write_bytes(z.read(name))
+          d=json.loads((DEST/"visual-manifest.json").read_text(encoding="utf-8"))
+          assert d["standard_id"]=="TUE-MESTRE-01" and len(d["pages"])==5
+          assert d["production_mode"]=="individually_art_directed_v1"
+          assert d["approved"] is False and d["owner_authorized"] is False
+          assert d["reference_visual_sha256"]=="571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
+          mascot=ROOT/"content/brand/lumino-original.png"
+          assert hashlib.sha256(mascot.read_bytes()).hexdigest()=="f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b"
+          base=Image.open(mascot).convert("RGBA")
+          results=[]
+          for idx,meta in enumerate(d["pages"]):
+              assert meta["number"]==idx+1
+              assert meta["dot_count"]==5 and meta["active_dot"]==idx+1
+              assert meta["swipe_cue"]==("Arraste para o lado →" if idx<4 else None)
+              p=DEST/meta["file"]
+              assert hashlib.sha256(p.read_bytes()).hexdigest()==meta["sha256"]
+              with Image.open(p) as im:
+                  assert im.format=="JPEG" and im.size==(1080,1350)
+                  img=im.convert("RGB")
+              x,y,w,h=meta["mascot_box"]
+              small=base.resize((w,h),Image.Resampling.LANCZOS)
+              pA=small.load();pB=img.load()
+              total=count=0
+              for yy in range(4,h-4,4):
+                  for xx in range(4,w-4,4):
+                      if pA[xx,yy][3]>=250:
+                          total+=sum(abs(pA[xx,yy][k]-pB[x+xx,y+yy][k]) for k in range(3))/3
+                          count+=1
+              assert count>100
+              err=total/count
+              assert err<28,(meta["number"],err)
+              active=[]
+              for j in range(5):
+                  rgb=img.getpixel((472+31*j,1275))
+                  if rgb[0]>200 and rgb[1]>155 and rgb[2]<110:
+                      active.append(j+1)
+              assert active==[idx+1],("Progresso visível incorreto",idx+1,active)
+              results.append({"page":idx+1,"mascot_pixel_match_error":round(err,3),"dots":5,"active_dot":idx+1,"sha256":meta["sha256"]})
+          out={"ok":True,"pages":results,"approved":False,"published":False,"source":"TUE-MESTRE-01 canonical PNG + five archived files","status":"EDITORIAL_VISUAL_REVIEW_PENDING"}
+          (DEST/"GH-QC-RELEASE.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print("BOSTON_FINAL_QC="+json.dumps(out,ensure_ascii=False))
+          PY
+      - name: Arquivar individualmente em branch isolada
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- content/media/instagram/2026-11-04/boston-mestre01-final
+          if git diff --cached --quiet; then
+            echo "Os cinco JPGs já estavam salvos"
+            exit 0
+          fi
+          git commit -m "media(instagram): cinco JPGs de Boston separados e validados com Lúmino e progressão exata"
+          git push origin HEAD:refs/heads/instagram-boston-mestre01-final-04nov
+          echo "NENHUMA PUBLICACAO FEITA"
