@@ -29,6 +29,7 @@ jobs:
               "${urls[$i]}" -o "boston-arquivo/${files[$i]}"
             echo "${files[$i]} ${urls[$i]}" >> boston-arquivo/FONTES.txt
           done
+          python3 -m pip install -q Pillow
           python3 - <<'PY'
           import pathlib,struct
           from PIL import Image
