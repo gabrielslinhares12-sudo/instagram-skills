@@ -68,6 +68,24 @@ jobs:
           except Exception as err:
               report['media_lookup']={'error_type':type(err).__name__,
                       'error_code':getattr(err,'code',None),'error_subcode':getattr(err,'subcode',None)}
+          # Dedicated published media identity: caption matching is insufficient
+          # because a carousel child has no inherited caption.
+          partial_id='17997771024013719'
+          try:
+              item=poster._request('GET',partial_id,
+                  params={'fields':'id,permalink,media_type,timestamp,caption,username'})
+              assert item.get('id')==partial_id
+              report['partial_published_media']={
+                'id':item['id'],'media_type':item.get('media_type'),
+                'timestamp':item.get('timestamp'),'permalink':item.get('permalink'),
+                'username':item.get('username'),
+                'caption_length':len(str(item.get('caption') or '')),
+                'carousel_confirmed':item.get('media_type')=='CAROUSEL_ALBUM'}
+          except Exception as err:
+              report['partial_published_media']={
+                'id':partial_id,'error_type':type(err).__name__,
+                'error_code':getattr(err,'code',None),
+                'error_subcode':getattr(err,'subcode',None)}
           dest=pathlib.Path('content/editorial/RECONCILIACAO-BOSTON-04NOV.json')
           dest.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           print('META_READ_ONLY_RECONCILE='+json.dumps(report,ensure_ascii=False))
