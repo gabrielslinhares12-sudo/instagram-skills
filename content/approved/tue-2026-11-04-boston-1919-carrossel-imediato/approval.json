@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "id": "tue-2026-11-04-boston-1919-carrossel-imediato",
+  "kind": "carousel",
+  "preset_id": "TUE-MESTRE-01",
+  "approved": true,
+  "visual_reviewed": true,
+  "owner_authorized": true,
+  "approval_source": "User explicitly approved the exact five-panel Boston style in the conversation and then said 'Perfeito, siga com a postagem imediatamente' and 'Agende o post para imediatamente no github' on 2026-11-04.",
+  "precise_release_scope": "ONLY_EXACT_FIVE_BOSTON_04NOV_NOV2026_JPEG_HASHES",
+  "approved_visual_reference_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "original_mascot_pixel_match_verified": false,
+  "authorized_visual_equivalence": "Owner approved visible composition; canonical Lumino PNG pixel equivalence is NOT asserted. Exception is restricted to the five exact JPEG hashes and is not reusable for other posts.",
+  "distribution_mode": "api_carousel_without_native_music",
+  "owner_authorized_without_music": true,
+  "native_music": false,
+  "story": false,
+  "post_immediately": true,
+  "published": false,
+  "meta_media_id": null,
+  "media_sha256": [
+    "08d7586dbd5128e6724961b70bd424f8304165fa98bf76f3b8c6b2911f5db342",
+    "73a1bc03a2e3ba6c4bd90b29a3a011554c1ee5aee65702f2c4dfe5c8c0b38be5",
+    "891858906de4b4c4110b242e7a3b47f12744b0d0896b54dc7989b5994fd94ff6",
+    "6257fa8efdb1d99678ae6d1e95be3dd1169e707363be4af7ae9915b18a46e136",
+    "9a859f7017e94f4c696e817e83fe96bc38fd51a0ae48ec27a7569f7501147336"
+  ],
+  "media_urls": [
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-01.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-02.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-03.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-04.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-05.jpg"
+  ],
+  "release_commit": "5771a6ee4c61f44561f77d4a0e0712f83d420f61",
+  "repository_path": "content/media/instagram/2026-11-04/boston-aprovado-publicacao",
+  "page_dimensions": [
+    1080,
+    1350
+  ],
+  "page_count": 5,
+  "source_images": [
+    "https://content.boston.gov/news/100-years-ago-today-molasses-crashes-through-bostons-north-end"
+  ],
+  "fact_checks": {
+    "tank_diameter_m_approx": 27,
+    "tank_height_m_approx": 15,
+    "volume_liters_approx": 8700000,
+    "dead": 21,
+    "injured_approx": 150
+  },
+  "caption": "Boston, 1919: uma cidade foi atingida por uma onda de melaço. 😮 O rompimento de um enorme reservatório liberou cerca de 8,7 milhões de litros, atingiu casas e ruas e provocou a morte de 21 pessoas. O desastre expôs graves falhas de segurança industrial e deixou lições que seguem atuais. 📚 Fonte: arquivos históricos da Prefeitura de Boston. Tem uma explicação. #TemUmaExplicacao #HistoriaReal #Boston #Curiosidades #Ciencia #Historia",
+  "ai_origin": "synthetic",
+  "content_style": "clearly_illustrated",
+  "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+  "approval_note": "Autorização do usuário no chat. Usar apenas cinco JPGs exatos fixados por SHA, sem música e sem Story; não alegar validação da identidade pixel a pixel. A política Meta pode aplicar etiquetas próprias."
+}
