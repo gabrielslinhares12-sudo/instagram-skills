@@ -127,9 +127,13 @@ def footer(im,i,n,credit):
     d.rectangle((0,1244*S,W,H),fill=PAPER)
     d.line((54*S,1241*S,1025*S,1241*S),fill=(206,201,191),width=2*S)
     # Tiny dynamic dots; no page numbers, yellow badges or boxes.
+    # Exact five-dot progress marker: slide i highlights dot (i+1).
+    # Last slide retains its fifth active dot but never shows a swipe arrow.
+    for j in range(n):
+        x=488+24*(j-(n-1)/2)
+        d.ellipse(((x-4)*S,1260*S,(x+4)*S,1268*S),
+                  fill=YELLOW if j==i else (191,193,195))
     if i<n-1:
-        for j in range(n):
-            d.ellipse(((422+24*j)*S,1260*S,(430+24*j)*S,1268*S),fill=YELLOW if j==i else (191,193,195))
         draw_text(d,(540,1277),"A R R A S T E   P A R A   O   L A D O",13,INK,"body",anchor="ma")
         d.line((797*S,1280*S,829*S,1280*S),fill=INK,width=2*S)
         d.line((829*S,1280*S,823*S,1275*S),fill=INK,width=2*S)
@@ -170,7 +174,7 @@ def paint_page(subject,data,idx,total,source):
         draw_text(d,(80,269),data["title"][1],78,maxw=860)
         stroke(d,80,374,590,368,6)
         photo(im,source,(72,469,805,620),seed=rng_seed,sepia=subject=="BOSTON",angle=2)
-        mascot(im,720,752,330)
+        mascot(im,625,735,430)
         brush(im,(64,1112,785,1186),rng_seed+10)
         draw_text(ImageDraw.Draw(im),(91,1114),data["emph"],55,INK,maxw=640)
         draw_text(ImageDraw.Draw(im),(72,414),data["fact"],21,INK,"bold",maxw=880)
@@ -183,13 +187,13 @@ def paint_page(subject,data,idx,total,source):
         stroke(d,466,449,1000,449,5)
         draw_text(d,(464,477),data["emph"],42,RED,maxw=545)
         draw_text(d,(76,1046),data["fact"],32,INK,"bold",maxw=940)
-        mascot(im,696,697,322)
+        mascot(im,640,700,400)
     elif kind=="number":
         brush(im,(52,184,1040,399),rng_seed)
         draw_text(d,(79,185),data["title"][0],100,INK,maxw=930)
         draw_text(d,(80,285),data["title"][1],85,INK,maxw=870)
         photo(im,source,(58,503,955,624),seed=rng_seed,sepia=subject=="BOSTON",angle=-1)
-        mascot(im,728,788,306)
+        mascot(im,660,780,375)
         draw_text(ImageDraw.Draw(im),(70,443),data["emph"],47,RED,maxw=960)
         draw_text(ImageDraw.Draw(im),(68,1164),data["fact"],26,INK,"bold",maxw=930)
     elif kind=="news":
@@ -200,7 +204,7 @@ def paint_page(subject,data,idx,total,source):
         draw_text(d,(467,470),data["emph"],51,RED,maxw=520)
         d.line((465*S,537*S,1000*S,537*S),fill=RED,width=5*S)
         draw_text(d,(480,585),data["fact"],25,INK,"bold",maxw=540)
-        mascot(im,728,818,310)
+        mascot(im,650,794,405)
     else:
         photo(im,source,(82,173,895,645),seed=rng_seed,sepia=subject=="BOSTON",angle=1)
         brush(im,(57,871,1000,1023),rng_seed)
@@ -208,7 +212,7 @@ def paint_page(subject,data,idx,total,source):
         draw_text(d,(80,945),data["title"][1] if len(data["title"])>1 else data["title"][0],59,INK,maxw=900)
         stroke(d,70,1055,520,1055,6)
         draw_text(d,(76,1081),data["emph"],44,RED,maxw=820)
-        mascot(im,746,740,284)
+        mascot(im,655,728,402)
         draw_text(d,(74,1181),data["fact"],22,INK,"bold",maxw=900)
     footer(im,idx,total,"FONTES: BOSTON CITY ARCHIVES / WIKIMEDIA" if subject=="BOSTON" else "FONTES: EHT / NSF / ESO / ESA")
     return im
@@ -216,10 +220,16 @@ def paint_page(subject,data,idx,total,source):
 def main():
     # The originals remain rejected; output goes ONLY to the distinct REWORK
     # directory and has no queue schedule side effects.
-    for family,pages in [("BOSTON",BOSTON),("M87",M87)]:
+    for family,pages in [("BOSTON",BOSTON)]:
         qc={"preset_id":"TUE-MESTRE-01","visual_reference_sha256":"571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9","lumino_sha256":EXPECTED,"subject":family,"manual_visual_reviewed":False,"approved":False,"publication_blocked":True,"pages":[]}
         for i,data in enumerate(pages):
-            pic=load_photo(data["src"])
+            try:
+                pic=load_photo(data["src"])
+            except Exception:
+                if i!=len(pages)-1: raise
+                # No invented fake archive photo if historical marker unavailable.
+                data=dict(data,src=BOSTON[0]["src"])
+                pic=load_photo(data["src"])
             im=paint_page(family,data,i,len(pages),pic)
             name=f"{family}-MESTRE01-{i+1:02d}.jpg"
             receipt=save(im,name)
@@ -227,7 +237,7 @@ def main():
             qc["pages"].append(receipt)
             print(f"REWORK_PAGE={family}:{name}:{receipt['sha256']}",flush=True)
         (OUT/f"{family}-REWORK-QC.json").write_text(json.dumps(qc,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print("REWORK_COMPLETE=9_JPEGS_NOT_APPROVED_NOT_PUBLISHED",flush=True)
+    print("REWORK_COMPLETE=5_BOSTON_JPEGS__ORIGINAL_LUMINO__FIVE_DOTS__NOT_PUBLISHED",flush=True)
 
 if __name__=="__main__":
     main()
