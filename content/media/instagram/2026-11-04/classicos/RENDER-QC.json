@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "preset_id": "TUE-MESTRE-01",
+  "day": "2026-11-04",
+  "status": "assets_rendered_technical_qc_pass",
+  "approved_by_owner_for_publication": false,
+  "file_count": 10,
+  "posts": {
+    "11h": [
+      "11-boston-01.jpg",
+      "11-boston-02.jpg",
+      "11-boston-03.jpg",
+      "11-boston-04.jpg",
+      "11-boston-05.jpg"
+    ],
+    "15h": [
+      "15-ra-congelada.jpg"
+    ],
+    "18h": [
+      "18-m87-01.jpg",
+      "18-m87-02.jpg",
+      "18-m87-03.jpg",
+      "18-m87-04.jpg"
+    ]
+  },
+  "assets": {
+    "11-boston-01.jpg": {
+      "sha256": "350e3e0847df5597934347d4838632e5773ac1112e95fe0b7c962d72d082d755",
+      "bytes": 348325,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    "11-boston-02.jpg": {
+      "sha256": "629f1c55ebbe71f6985b3164bd60855296fef1b0522855788d0c99fe7aaffb4a",
+      "bytes": 129707,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    "11-boston-03.jpg": {
+      "sha256": "ee2f9fb71123e134b42555d4f0cf4f70c761a2d9179f1603bfa13e974390439d",
+      "bytes": 341046,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    "11-boston-04.jpg": {
+      "sha256": "1d3c4c2595b3415b1a36fde2dc61f8d596ef445b697fdd16a9a21fcd7f577317",
+      "bytes": 418103,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    "11-boston-05.jpg": {
+      "sha256": "09c5cbd0853fbe81b3556ecb8cc52ee3d5d84ad353bbfdb7cfe4a1f1e3e5354f",
+      "bytes": 354562,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    "15-ra-congelada.jpg": {
+      "sha256": "d3bd584031053d96bf0d21c38c411dad7a2fe2606e6be3c53a6164bd65f54ed7",
+      "bytes": 239695,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    "18-m87-01.jpg": {
+      "sha256": "51e325cc5c64acb45b177c100703788d1f54b1e2bfe1af456dbe54cd5333933c",
+      "bytes": 122955,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    "18-m87-02.jpg": {
+      "sha256": "e7762d1917b60d33506b406351ed46bafadf738dd33468c9472084b56d8ef911",
+      "bytes": 159174,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    "18-m87-03.jpg": {
+      "sha256": "13a203b85d99d68b5432ceae664497116aec22d70b105493215bea5b8dd2cd3d",
+      "bytes": 162801,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    "18-m87-04.jpg": {
+      "sha256": "4c2aea3bfbc97c61a88623ee6830c365bb73217b10ddc8d65b8b5830905c09d0",
+      "bytes": 108418,
+      "dimensions": [
+        1080,
+        1350
+      ]
+    }
+  },
+  "original_lumino_overlay_asset": "content/brand/lumino-original.png",
+  "swipe_cue": "Somente nos slides não finais de carrossel",
+  "sources_external_licensed": true
+}
