@@ -107,7 +107,7 @@
       "published_at": "2026-11-03T21:21:53Z"
     },
     "tue-2026-11-04-boston-1919-carrossel-imediato": {
-      "status": "published",
+      "status": "needs_review",
       "fingerprint": "cd29d006322eae46c5e70ff5cf7b82dddf7b87cb0c83872d693c6325aeac8a54",
       "due_at": "2026-11-04T17:55:30Z",
       "claimed_at": "2026-11-04T18:01:22Z",
@@ -116,7 +116,14 @@
       "instagram_user_id": "17841433004716815",
       "username": "temumaexplicacao",
       "published_at": "2026-11-04T18:08:18.479483Z",
-      "recovery_same_creation_id": true
+      "recovery_same_creation_id": true,
+      "actual_media_type": "IMAGE",
+      "requested_media_type": "CAROUSEL_ALBUM",
+      "partial_image_published": true,
+      "carousel_published": false,
+      "manual_cleanup_required": true,
+      "do_not_retry": true,
+      "technical_note": "A recuperação manual publicou um contêiner de imagem FILHO, não o contêiner PAI CAROUSEL. O GET posterior da Meta confirmou media_type IMAGE para media_id 17997771024013719. A tentativa do carrossel original foi interrompida por 9004/2207052. Registro marcado needs_review para impedir duplicações."
     }
   }
 }
