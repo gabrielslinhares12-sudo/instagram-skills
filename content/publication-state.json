@@ -107,23 +107,23 @@
       "published_at": "2026-11-03T21:21:53Z"
     },
     "tue-2026-11-04-boston-1919-carrossel-imediato": {
-      "status": "needs_review",
+      "status": "published",
       "fingerprint": "cd29d006322eae46c5e70ff5cf7b82dddf7b87cb0c83872d693c6325aeac8a54",
       "due_at": "2026-11-04T17:55:30Z",
       "claimed_at": "2026-11-04T18:01:22Z",
-      "creation_id": "18102820949100158",
-      "media_id": "17997771024013719",
+      "creation_id": "18102825617100158",
+      "media_id": "17997558981020472",
       "instagram_user_id": "17841433004716815",
       "username": "temumaexplicacao",
-      "published_at": "2026-11-04T18:08:18.479483Z",
-      "recovery_same_creation_id": true,
-      "actual_media_type": "IMAGE",
+      "published_at": "2026-11-04T18:31:23+0000",
+      "recovery_same_creation_id": false,
+      "actual_media_type": "CAROUSEL_ALBUM",
       "requested_media_type": "CAROUSEL_ALBUM",
-      "partial_image_published": true,
-      "carousel_published": false,
-      "manual_cleanup_required": true,
+      "partial_image_published": false,
+      "carousel_published": true,
+      "manual_cleanup_required": false,
       "do_not_retry": true,
-      "technical_note": "A recuperação manual publicou um contêiner de imagem FILHO, não o contêiner PAI CAROUSEL. O GET posterior da Meta confirmou media_type IMAGE para media_id 17997771024013719. A tentativa do carrossel original foi interrompida por 9004/2207052. Registro marcado needs_review para impedir duplicações.",
+      "technical_note": "Five-image parent album verified by official Meta GET; old child was absent from feed.",
       "final_album_claimed_at": "2026-11-04T18:30:39.088792+00:00",
       "final_album_preflight_count": 8,
       "final_album_children": [
@@ -134,7 +134,16 @@
         "18102825593100158"
       ],
       "final_album_parent": "18102825617100158",
-      "final_album_media_id": "17997558981020472"
+      "final_album_media_id": "17997558981020472",
+      "previous_partial_attempt": {
+        "creation_id": "18102820949100158",
+        "media_id": "17997771024013719",
+        "published_at": "2026-11-04T18:08:18.479483Z",
+        "actual_media_type": "IMAGE",
+        "technical_note": "A recuperação manual publicou um contêiner de imagem FILHO, não o contêiner PAI CAROUSEL. O GET posterior da Meta confirmou media_type IMAGE para media_id 17997771024013719. A tentativa do carrossel original foi interrompida por 9004/2207052. Registro marcado needs_review para impedir duplicações."
+      },
+      "permalink": "https://www.instagram.com/p/DfVGyPgDLCS/",
+      "verified_child_count": 5
     }
   }
 }
