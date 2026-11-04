@@ -33,7 +33,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: LUMINO-CANONICO-SOURCE-04NOV
-          path: content/brand/lumino-original.png
+          path: |
+            content/brand/lumino-original.png
+            content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg
           if-no-files-found: error
           retention-days: 2
       - name: Guardar copia tecnica sem mudar original
