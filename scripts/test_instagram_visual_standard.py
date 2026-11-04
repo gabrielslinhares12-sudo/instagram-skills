@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 from PIL import Image, ImageDraw
-from instagram_visual_standard import ROOT, VisualError, verify_brand, validate_package, audit_queue, verify_reel_release, sha256
+from instagram_visual_standard import ROOT, VisualError, verify_brand, validate_package, audit_queue, verify_reel_release, verify_visible_progress_dots, sha256
 from render_instagram_carrossel import render
 
 class ReelReleaseTests(unittest.TestCase):
@@ -32,6 +32,41 @@ class ReelReleaseTests(unittest.TestCase):
         ):
             with self.subTest(changes=changes), self.assertRaises(VisualError):
                 verify_reel_release(ROOT, {**post, **changes})
+
+
+class ProgressDotsTests(unittest.TestCase):
+    @staticmethod
+    def draw_footer(count, active, missing=None):
+        im=Image.new("RGB",(1080,1350),(247,243,235))
+        draw=ImageDraw.Draw(im)
+        for j in range(1,count+1):
+            if j==missing:
+                continue
+            x=round(534+(j-1-(count-1)/2)*31)
+            rgb=(255,214,0) if j==active else (192,194,195)
+            draw.ellipse((x-8,1267,x+8,1283),fill=rgb)
+        return im
+
+    def test_correct_progress_for_any_allowed_carousel_length(self):
+        for length in (2,3,4,5,8,10,20):
+            for current in range(1,length+1):
+                with self.subTest(length=length,active=current):
+                    verify_visible_progress_dots(
+                        self.draw_footer(length,current),current,length)
+
+    def test_catches_wrong_active_dot_and_missing_dot(self):
+        with self.assertRaisesRegex(VisualError,"ponto 1"):
+            verify_visible_progress_dots(self.draw_footer(5,3),1,5)
+        with self.assertRaisesRegex(VisualError,"ausente"):
+            verify_visible_progress_dots(self.draw_footer(5,2,missing=4),2,5)
+
+    def test_catches_extra_yellow_on_inactive_dot(self):
+        im=self.draw_footer(5,1)
+        d=ImageDraw.Draw(im)
+        x=round(534+(2-(5-1)/2)*31)
+        d.ellipse((x-8,1267,x+8,1283),fill=(255,214,0))
+        with self.assertRaisesRegex(VisualError,"cor incorreta"):
+            verify_visible_progress_dots(im,1,5)
 
 
 class BrandTests(unittest.TestCase):
