@@ -135,7 +135,44 @@ def verify(root: Path = ROOT) -> dict:
             or preset.get("reference_style") !=
                 "EXCLUSIVAMENTE REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg aprovada em 02/11/2026, sem misturas nem grade fixa"):
         raise PresetError("Foi alterada a referência visual oficial de 02/11.")
+    # Permanent visual preflight for EVERY Instagram TUE format. The hash of
+    # the reference is not a substitute for opening and checking the image;
+    # nor does a prompt-similar generated character count as the PNG original.
+    gate = preset.get("visual", {}).get("production_safety_gate", {})
+    if (gate.get("status") != "ACTIVE_DEFAULT_ALL_INSTAGRAM_CONTENT_2026_11_04"
+            or gate.get("exact_visual_master") != VISUAL_MASTER
+            or gate.get("exact_visual_master_sha256") != VISUAL_MASTER_SHA
+            or gate.get("exact_lumino") != "content/brand/lumino-original.png"
+            or gate.get("exact_lumino_sha256") != LUMINO_SHA
+            or set(gate.get("applies_to", [])) != {
+                "cover", "carousel_inner_page", "single_post", "meme", "reel_cover"}
+            or len(gate.get("before_render", [])) < 3
+            or len(gate.get("before_delivery", [])) < 6
+            or "original_asset_pixel_match" not in gate.get("release_requires", [])
+            or "exact_carousel_dot_count_and_active_position" not in gate.get("release_requires", [])
+            or gate.get("image_generation_rule") !=
+                "Image generation can make source scenery only; final mascot always composited from original image bytes. Never ask image model to invent or replicate Lumino."):
+        raise PresetError("Trava permanente do visual-mestre/Lúmino/progresso foi alterada; produção bloqueada.")
     return preset
+
+
+def carousel_progress(total_pages: int, page: int) -> dict:
+    """Required footer contract: exactly N dots, one active, no false last cue.
+
+    This is a rendering specification, NOT proof that a JPEG matches it.
+    Production must still inspect the actual pixels in the final exports.
+    """
+    if (type(total_pages) is not int or type(page) is not int
+            or not 2 <= total_pages <= 20 or not 1 <= page <= total_pages):
+        raise PresetError("Número de lâminas ou posição inválida.")
+    return {
+        "dot_count": total_pages,
+        "active_dot_position": page,
+        "dot_colors": ["#F6B900" if i == page else "#BFC1C3"
+                       for i in range(1, total_pages + 1)],
+        "cue": "ARRASTE PARA O LADO →" if page < total_pages else None,
+        "visible_page_numbers": False,
+    }
 
 
 def check_brief(brief: dict, preset: dict) -> dict:
