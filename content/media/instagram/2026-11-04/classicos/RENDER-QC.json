@@ -2,7 +2,7 @@
   "version": 1,
   "preset_id": "TUE-MESTRE-01",
   "day": "2026-11-04",
-  "status": "assets_rendered_technical_qc_pass",
+  "status": "all_10_jpegs_verified_including_correct_m87_EHT_image",
   "approved_by_owner_for_publication": false,
   "file_count": 10,
   "posts": {
@@ -73,8 +73,8 @@
       ]
     },
     "18-m87-01.jpg": {
-      "sha256": "51e325cc5c64acb45b177c100703788d1f54b1e2bfe1af456dbe54cd5333933c",
-      "bytes": 122955,
+      "sha256": "8fd85694f811b139ebccf7ba9c66e86b9b82491719edcbc6bf5820a68b8d1078",
+      "bytes": 122915,
       "dimensions": [
         1080,
         1350
@@ -97,8 +97,8 @@
       ]
     },
     "18-m87-04.jpg": {
-      "sha256": "4c2aea3bfbc97c61a88623ee6830c365bb73217b10ddc8d65b8b5830905c09d0",
-      "bytes": 108418,
+      "sha256": "eb72424d9569a059aae216cd6685433db2507d1cda848c77f1d424a8ff5e57ef",
+      "bytes": 108224,
       "dimensions": [
         1080,
         1350
@@ -107,5 +107,7 @@
   },
   "original_lumino_overlay_asset": "content/brand/lumino-original.png",
   "swipe_cue": "Somente nos slides não finais de carrossel",
-  "sources_external_licensed": true
+  "sources_external_licensed": true,
+  "m87_image_01_and_04_corrected": true,
+  "m87_photo_original": "https://nsf-gov-resources.nsf.gov/2024-12/Event%20Horizon%20Black%20Hole%20Image.jpg"
 }
