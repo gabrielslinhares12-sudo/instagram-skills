@@ -64,6 +64,8 @@ jobs:
                             'timestamp':m.get('timestamp'),'media_type':m.get('media_type'),
                             'caption_matches_target':True})
               report['recent_media_count']=len(records)
+              report['recent_media_ids']=[str(x.get('id')) for x in records]
+              report['published_id_appears_in_feed']=any(str(x.get('id'))=='17997771024013719' for x in records)
               report['boston_matches']=matches
           except Exception as err:
               report['media_lookup']={'error_type':type(err).__name__,
