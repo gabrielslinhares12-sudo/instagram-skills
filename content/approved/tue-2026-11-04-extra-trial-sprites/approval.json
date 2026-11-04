@@ -19,14 +19,14 @@
   "trial_reel": true,
   "graduation_strategy": "MANUAL",
   "media_sha256": [
-    "402a341e18916f1caf0ac4f93924517b375369ab334d1af03a0ce97b68d9cbc0"
+    "77df3e5bfaa711ab8ed9f2d336427c92537d5ad453ae36b09cacb8228cb9f463"
   ],
-  "release_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/a1ef48dadfaf82cd1efd360225795ded4b8d0adb/content/media/instagram/2026-11-04/trial-sprites-v3-title3s/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4",
-  "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/a1ef48dadfaf82cd1efd360225795ded4b8d0adb/content/media/instagram/2026-11-04/trial-sprites-v3-title3s/CAPA-TRIAL-SPRITES-CLEAN.jpg",
+  "release_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/57bbfe00cf9bb90a49a4c38a0b02316b18a33b38/content/media/instagram/2026-11-04/trial-sprites-v4-no-top-title/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4",
+  "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/57bbfe00cf9bb90a49a4c38a0b02316b18a33b38/content/media/instagram/2026-11-04/trial-sprites-v4-no-top-title/CAPA-TRIAL-SPRITES-CLEAN.jpg",
   "disclosure_review": "mandatory_realistic_synthetic_audio",
   "synthetic_voice_disclosure_mandatory": true,
   "source_voice": "VOZ-RASALGETHI-SPRITES.wav",
-  "source_scene": "https://gcdn.picsart.com/picsart-mcp/6f80a61c-4d24-4b1a-a2c5-ed0b40fbe256.json",
-  "owner_instruction": "Title at top only 0-3 seconds; keep lower spoken captions.",
-  "opening_title_duration_seconds": 3
+  "source_scene": "https://gcdn.picsart.com/picsart-mcp/c7883f91-9168-4e59-969c-35511872a9f8.json",
+  "owner_instruction": "Remove upper title completely (0-48s); only one spoken subtitle at a time.",
+  "opening_title_duration_seconds": 0
 }
