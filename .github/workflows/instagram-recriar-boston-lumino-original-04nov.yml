@@ -1,0 +1,58 @@
+name: Recriar carrossel Boston 04NOV com Lúmino canônico e cinco pontos
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-recriar-boston-lumino-original-04nov.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-recriar-boston-lumino-original-04nov
+  cancel-in-progress: false
+jobs:
+  refazer-cinco-laminas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Instalar Pillow e NumPy
+        run: python3 -m pip install --disable-pip-version-check -q "Pillow>=11,<13" "numpy>=2,<3"
+      - name: Renderizar com PNG imutável do mascote e validar tamanho/hashes
+        run: |
+          set -euo pipefail
+          python3 scripts/render_tue_mestre_04nov_rework.py
+          python3 - <<'PY'
+          import json,hashlib,pathlib
+          from PIL import Image
+          folder=pathlib.Path('content/media/instagram/2026-11-04/REWORK-TUE-MESTRE-01')
+          receipt=json.loads((folder/'BOSTON-REWORK-QC.json').read_text())
+          assert receipt['preset_id']=='TUE-MESTRE-01'
+          assert receipt['lumino_sha256']=='f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b'
+          assert len(receipt['pages'])==5,receipt
+          for i,p in enumerate(receipt['pages']):
+              file=folder/p['file']
+              assert p['swipe_cue']==(i<4)
+              assert hashlib.sha256(file.read_bytes()).hexdigest()==p['sha256']
+              with Image.open(file) as im:
+                  assert im.format=='JPEG' and im.size==(1080,1350),file
+              print('QC_BOSTON',i+1,'de 5',p['sha256'])
+          assert receipt['approved'] is False and receipt['publication_blocked'] is True
+          print('QC_TECNICO=OK, PUBLICACAO_BLOQUEADA_ATE_REVISAO_VISUAL')
+          PY
+      - name: Preservar arquivos corrigidos sem habilitar publicação
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- content/media/instagram/2026-11-04/REWORK-TUE-MESTRE-01
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'media(instagram): Boston cinco páginas Lúmino original e paginação corrigida'
+          git pull --rebase origin main
+          git push origin HEAD:main
