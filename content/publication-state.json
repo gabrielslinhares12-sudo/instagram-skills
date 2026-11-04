@@ -188,10 +188,15 @@
       "claimed_at": "2026-11-04T21:30:03Z"
     },
     "tue-2026-11-04-18-titanic-sem-tarjas-v3": {
-      "status": "claimed",
+      "status": "published",
       "fingerprint": "e7cc2074bffe3c52ef780122e3dde5e731833f1dd9aa3fc97f5e6884ae2eebfb",
       "due_at": "2026-11-04T21:00:00Z",
-      "claimed_at": "2026-11-04T21:32:34Z"
+      "claimed_at": "2026-11-04T21:32:34Z",
+      "media_id": "18099450125649664",
+      "creation_id": "18102854810100158",
+      "instagram_user_id": "17841433004716815",
+      "page_id": "1385407341325017",
+      "published_at": "2026-11-04T21:33:47Z"
     }
   }
 }
