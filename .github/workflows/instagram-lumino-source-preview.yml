@@ -22,9 +22,9 @@ jobs:
           src=pathlib.Path('content/brand/lumino-original.png')
           assert hashlib.sha256(src.read_bytes()).hexdigest()=='f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b'
           im=Image.open(src).convert('RGBA')
-          im.thumbnail((520,540),Image.Resampling.LANCZOS)
+          im.thumbnail((360,375),Image.Resampling.LANCZOS)
           target=pathlib.Path('content/brand/lumino-original-mini-exato.webp')
-          im.save(target,'WEBP',quality=79,method=6,alpha_quality=98)
+          im.save(target,'WEBP',quality=63,method=6,alpha_quality=94)
           b=target.read_bytes()
           pathlib.Path('content/brand/lumino-original-mini-exato.b64').write_text(base64.b64encode(b).decode('ascii'),encoding='ascii')
           print('CANONICAL_MINI',im.size,len(b),hashlib.sha256(b).hexdigest())
