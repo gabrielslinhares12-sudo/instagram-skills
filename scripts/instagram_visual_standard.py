@@ -176,6 +176,31 @@ def verify_preview(folder: Path, data: dict) -> None:
         raise VisualError("Prévia não corresponde aos JPGs finais.")
 
 
+def verify_visible_progress_dots(image: Image.Image, index: int, count: int) -> None:
+    """Validate painted progress dots, not merely metadata.
+
+    The approved editorial footer uses small yellow/grey dots centered at
+    x=534, y=1275, with constant 31px spacing, dynamically distributed for
+    any 2..20 slides. Exactly the active index must be yellow; all others
+    must be neutral grey. This blocks previous generated-art incidents
+    where the first three slides showed the wrong count / active position.
+    """
+    if (not isinstance(image, Image.Image) or not 2 <= count <= 20
+            or not 1 <= index <= count):
+        raise VisualError("Parametros de progresso visual invalidos.")
+    positions=[round(534 + (j-(count-1)/2)*31) for j in range(count)]
+    for j,x in enumerate(positions,1):
+        r,g,b=image.convert("RGB").getpixel((x,1275))
+        yellow=(r>200 and g>160 and b<120 and r>g and g>b+55)
+        grey=(125<=r<=226 and 125<=g<=226 and 125<=b<=226
+              and max(r,g,b)-min(r,g,b)<=22)
+        if j==index:
+            if not yellow:
+                raise VisualError(f"Pagina {index}: ponto {j} nao esta amarelo no JPG final.")
+        elif not grey:
+            raise VisualError(f"Pagina {index}: ponto {j} ausente ou com cor incorreta.")
+
+
 def validate_package(manifest: Path, root: Path = ROOT) -> dict:
     spec = verify_brand(root)
     data = read_json(manifest)
@@ -219,6 +244,10 @@ def validate_package(manifest: Path, root: Path = ROOT) -> dict:
             if original.format!="JPEG" or original.size!=(1080,1350):
                 raise VisualError(f"Pagina {index}: imagem deve ser JPG 1080x1350.")
             im=original.convert("RGB")
+        if mode == INDIVIDUAL_MODE:
+            if page.get("dot_count")!=len(pages) or page.get("active_dot")!=index:
+                raise VisualError(f"Pagina {index}: progresso do carrossel nao corresponde a quantidade real.")
+            verify_visible_progress_dots(im,index,len(pages))
         yellow = _color_ratio(im,(20,118,1060,356),lambda r,g,b:r>190 and g>145 and b<115)
         red = _color_ratio(im,(855,15,1075,130),lambda r,g,b:r>125 and g<110 and b<110)
         light = _color_ratio(im,(16,920,1064,1250),lambda r,g,b:r>168 and g>147 and b>122)
