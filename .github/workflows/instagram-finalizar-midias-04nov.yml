@@ -1,0 +1,115 @@
+name: Finalizar medias corrigidas e Reel Trial 04NOV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-finalizar-midias-04nov.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-04nov-final-assets
+  cancel-in-progress: false
+
+jobs:
+  media:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Verificar fotos corrigidas, capa e Reel Trial com FFmpeg
+        env:
+          PHOTO_01: https://gcdn.picsart.com/media-engine/9a06b8a6-2244-4ea8-9ab1-742f0a41d479.jpg
+          PHOTO_04: https://gcdn.picsart.com/media-engine/7b5fe937-b013-408d-b5a5-f8d2c282ac1d.jpg
+          TRIAL_VIDEO: https://gcdn.picsart.com/media-engine/b3f4a520-e412-4341-af9b-b6f0ae65a171.mp4
+          TRIAL_COVER: https://gcdn.picsart.com/media-engine/44048a24-b5bb-4e52-be1f-f35cea60f316.jpg
+          TRIAL_VOICE: https://gcdn.picsart.com/cloud-storage/16a8b724-620e-4a78-b189-328836299bbd.wav
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python3 -m pip install -q 'Pillow>=11,<13'
+          ROOT=content/media/instagram/2026-11-04
+          IMG=$ROOT/classicos
+          OUT=$ROOT/trial-sprites
+          mkdir -p "$IMG" "$OUT"
+          curl -fLSs --retry 3 --retry-all-errors --max-time 120 "$PHOTO_01" -o "$IMG/18-m87-01.jpg"
+          curl -fLSs --retry 3 --retry-all-errors --max-time 120 "$PHOTO_04" -o "$IMG/18-m87-04.jpg"
+          curl -fLSs --retry 3 --retry-all-errors --max-time 200 "$TRIAL_VIDEO" -o "$OUT/REEL-SPRITES-48S-ORIGINAL.mp4"
+          curl -fLSs --retry 3 --retry-all-errors --max-time 120 "$TRIAL_VOICE" -o "$OUT/VOZ-RASALGETHI-SPRITES.wav"
+          curl -fLSs --retry 3 --retry-all-errors --max-time 120 "$TRIAL_COVER" -o "$OUT/CAPA-SPRITES.jpg"
+          ffmpeg -hide_banner -loglevel error -y -i "$OUT/REEL-SPRITES-48S-ORIGINAL.mp4" \
+            -map 0:v:0 -map 0:a:0 -c:v copy -c:a aac -b:a 128k -ar 48000 \
+            -movflags +faststart "$OUT/REEL-SPRITES-48S-TRIAL-META.mp4"
+          python3 - <<'PY'
+          import pathlib,json,hashlib,subprocess,wave,re
+          from PIL import Image
+          root=pathlib.Path('content/media/instagram/2026-11-04')
+          photo_names=[f'11-boston-{i:02d}.jpg' for i in range(1,6)]+['15-ra-congelada.jpg']+[f'18-m87-{i:02d}.jpg' for i in range(1,5)]
+          assets={}
+          for name in photo_names:
+              path=root/'classicos'/name
+              b=path.read_bytes()
+              assert len(b)>15_000,name
+              with Image.open(path) as im:
+                  im.verify()
+              with Image.open(path) as im:
+                  assert im.format=='JPEG' and im.size==(1080,1350),name
+              assets[name]={'sha256':hashlib.sha256(b).hexdigest(),'bytes':len(b),'dimensions':[1080,1350]}
+          video=root/'trial-sprites'/'REEL-SPRITES-48S-TRIAL-META.mp4'
+          cap=root/'trial-sprites'/'CAPA-SPRITES.jpg'
+          wav=root/'trial-sprites'/'VOZ-RASALGETHI-SPRITES.wav'
+          info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries',
+              'format=duration:stream=codec_type,codec_name,width,height,bit_rate,sample_rate,r_frame_rate','-of','json',str(video)]))
+          assert 47<=float(info['format']['duration'])<=49,info
+          assert any(x.get('codec_type')=='video' and x.get('codec_name')=='h264' and x.get('width')==1080 and x.get('height')==1920 for x in info['streams']),info
+          assert any(x.get('codec_type')=='audio' and x.get('codec_name')=='aac' and x.get('sample_rate')=='48000' and int(x.get('bit_rate','0'))<=135_000 for x in info['streams']),info
+          with Image.open(cap) as im:
+              assert im.format=='JPEG' and im.size==(1080,1920)
+          with wave.open(str(wav)) as w:
+              length=w.getnframes()/w.getframerate()
+              assert 46<=length<=49,length
+          meta={
+            'id':'tue-2026-11-04-extra-trial-sprites',
+            'kind':'reel','mode':'trial','graduation_strategy':'MANUAL',
+            'uploaded_to_meta':False,'published':False,'story':False,'music':False,
+            'preset_id':'TUE-MESTRE-01','video_file':video.name,'cover_file':cap.name,
+            'wav_file':wav.name,'duration':float(info['format']['duration']),
+            'caption_groups':30,'audio_language':'pt-BR','voice':'Rasalgethi',
+            'is_ai_generated':True,'ai_disclosure_mandatory':True,
+            'video_sha256':hashlib.sha256(video.read_bytes()).hexdigest(),
+            'cover_sha256':hashlib.sha256(cap.read_bytes()).hexdigest(),
+            'voice_sha256':hashlib.sha256(wav.read_bytes()).hexdigest(),
+            'video_bytes':video.stat().st_size,'speech_duration':length,
+            'visual_manual_review_performed':False,'trial_post_requires_API_eligibility':True}
+          (root/'trial-sprites'/'TRIAL-RELEASE.json').write_text(
+              json.dumps(meta,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          package=root/'classicos'/'RENDER-QC.json'
+          package_info=json.loads(package.read_text(encoding='utf-8'))
+          package_info['assets']=assets
+          package_info['status']='all_10_jpegs_verified_including_correct_m87_EHT_image'
+          package_info['m87_image_01_and_04_corrected']=True
+          package_info['m87_photo_original']='https://nsf-gov-resources.nsf.gov/2024-12/Event%20Horizon%20Black%20Hole%20Image.jpg'
+          package_info['approved_by_owner_for_publication']=False
+          package.write_text(json.dumps(package_info,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          print('POSTS_QC_OK='+json.dumps({'count':len(assets),'m87_01':assets['18-m87-01.jpg'],'m87_04':assets['18-m87-04.jpg']}))
+          print('TRIAL_QC_OK='+json.dumps(meta,ensure_ascii=False))
+          PY
+      - name: Preservar novos masters SHA-256 sem postar
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- content/media/instagram/2026-11-04/classicos/RENDER-QC.json \
+            content/media/instagram/2026-11-04/classicos/18-m87-01.jpg \
+            content/media/instagram/2026-11-04/classicos/18-m87-04.jpg \
+            content/media/instagram/2026-11-04/trial-sprites
+          git commit -m 'media(instagram): corrigir foto EHT e arquivar Reel Trial 48s Rasalgethi'
+          git pull --rebase origin main
+          git push origin HEAD:main
