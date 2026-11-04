@@ -1,4 +1,4 @@
-name: Arquivar Reel Titanic clean 04NOV - sem publicar
+name: Arquivar Reel Titanic vertical 4K60 04NOV - sem publicar
 on:
   push:
     branches: [main]
@@ -13,51 +13,83 @@ concurrency:
 jobs:
   archive:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: main
           fetch-depth: 1
           persist-credentials: true
-      - name: Download and verify final file before archiving
+      - name: Install video inspection tools
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Fetch exact 4K60 final, probe and make cover
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p content/media/instagram/2026-11-04/titanic-clean-final
-          VIDEO=content/media/instagram/2026-11-04/titanic-clean-final/REEL-TITANIC-CLEAN-META.mp4
-          COVER=content/media/instagram/2026-11-04/titanic-clean-final/CAPA-TITANIC-CLEAN.jpg
-          curl --fail --location --retry 3 --retry-all-errors --max-time 180 --silent --show-error \
-            'https://gcdn.picsart.com/media-engine/e824737f-ccfe-4a39-ad09-d3a29b9a5e04.mp4' -o "$VIDEO"
-          test "$(stat -c%s "$VIDEO")" -ge 1000000
+          DIR=content/media/instagram/2026-11-04/titanic-vertical-4k60
+          mkdir -p "$DIR"
+          VIDEO="$DIR/REEL-TITANIC-VERTICAL-CLEAN-4K60.mp4"
+          COVER="$DIR/CAPA-TITANIC-VERTICAL-4K.jpg"
+          curl -fsSL --retry 3 --retry-all-errors --max-time 480 \
+            'https://gcdn.picsart.com/media-engine/01b27b79-0662-47a0-8116-79ec47aa04d0.mp4' -o "$VIDEO"
+          test "$(stat -c%s "$VIDEO")" -gt 30000000
+          test "$(stat -c%s "$VIDEO")" -lt 99999999
           python3 - <<'PY'
-          import json,subprocess
-          path='content/media/instagram/2026-11-04/titanic-clean-final/REEL-TITANIC-CLEAN-META.mp4'
-          out=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,width,height,r_frame_rate','-of','json',path],text=True))
-          videos=[s for s in out['streams'] if s['codec_type']=='video']
-          audios=[s for s in out['streams'] if s['codec_type']=='audio']
-          assert len(videos)==1 and videos[0]['width']==1080 and videos[0]['height']==1920
-          assert videos[0]['codec_name']=='h264' and any(s['codec_name']=='aac' for s in audios)
-          assert 41.5<=float(out['format']['duration'])<=42.5
-          print('Validated MP4/H264/AAC 1080x1920 42 seconds')
+          import json,subprocess,pathlib
+          p=pathlib.Path('content/media/instagram/2026-11-04/titanic-vertical-4k60/REEL-TITANIC-VERTICAL-CLEAN-4K60.mp4')
+          d=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,width,height,r_frame_rate,sample_rate','-of','json',str(p)],text=True))
+          video=[x for x in d['streams'] if x['codec_type']=='video']
+          audio=[x for x in d['streams'] if x['codec_type']=='audio']
+          assert len(video)==1 and (video[0]['width'],video[0]['height'])==(2160,3840)
+          assert video[0]['codec_name']=='h264' and video[0]['r_frame_rate']=='60/1'
+          assert audio and audio[0]['codec_name']=='aac'
+          assert 41.5 <= float(d['format']['duration']) <= 42.5
+          print('QC technical: 9:16, 2160x3840, H.264, 60fps, AAC, 42s')
           PY
           ffmpeg -hide_banner -loglevel error -y -ss 1 -i "$VIDEO" -frames:v 1 -q:v 2 "$COVER"
           python3 - <<'PY'
           import hashlib,json,pathlib
-          root=pathlib.Path('content/media/instagram/2026-11-04/titanic-clean-final')
-          vid=root/'REEL-TITANIC-CLEAN-META.mp4'
-          cover=root/'CAPA-TITANIC-CLEAN.jpg'
-          manifest={'id':'tue-2026-11-04-18-titanic-clean','kind':'reel','duration_seconds':42,'width':1080,'height':1920,'fps':30,'voice':'Rasalgethi','synthetic_voice':True,'is_ai_generated':True,'music':False,'story':False,'published':False,'video_file':vid.name,'cover_file':cover.name,'video_sha256':hashlib.sha256(vid.read_bytes()).hexdigest(),'cover_sha256':hashlib.sha256(cover.read_bytes()).hexdigest()}
-          (root/'RELEASE.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
-          print('Video SHA256:',manifest['video_sha256'])
+          d=pathlib.Path('content/media/instagram/2026-11-04/titanic-vertical-4k60')
+          vid=d/'REEL-TITANIC-VERTICAL-CLEAN-4K60.mp4'
+          cover=d/'CAPA-TITANIC-VERTICAL-4K.jpg'
+          manifest={
+            'id':'tue-2026-11-04-18-titanic-vertical-clean-v2',
+            'version':2,
+            'preset_id':'TUE-MESTRE-01',
+            'status':'final_render_verified_not_published_visual_approval_pending',
+            'title':'Titanic: os botes que partiram com lugares vazios',
+            'duration_seconds':42,'width':2160,'height':3840,'fps':60,
+            'kind':'reel','voice':'Rasalgethi','synthetic_voice':True,
+            'is_ai_generated':True,'ai_disclosure_required':True,
+            'music':False,'story':False,'published':False,
+            'full_bleed':True,'images_stretched':False,
+            'source_photos_native_portrait':3,'source_photos_high_resolution_crop':2,
+            'video_file':vid.name,'cover_file':cover.name,
+            'video_sha256':hashlib.sha256(vid.read_bytes()).hexdigest(),
+            'cover_sha256':hashlib.sha256(cover.read_bytes()).hexdigest(),
+            'source_photos':[
+              'https://commons.wikimedia.org/wiki/File:Scheepvaart,_schepen_op_naam,_scheepsrampen,_SFA003004215.jpg',
+              'https://commons.wikimedia.org/wiki/File:RMS_Titanic_3.jpg',
+              'https://commons.wikimedia.org/wiki/File:Titanicboat_12.jpg',
+              'https://commons.wikimedia.org/wiki/File:Een_reddingsboot_van_de_Titanic,_die_15_april_1912_bij_de_Noordpool_op_een_ijsberg_is_gelopen_en,_SFA002006965.jpg',
+              'https://commons.wikimedia.org/wiki/File:Titanic_lifeboat.jpg'],
+            'source_factual':['https://www.titanicinquiry.org/BOTInq/BOTReport/BOTRepBoats.php',
+                              'https://www.senate.gov/about/powers-procedures/investigations/titanic.htm']
+          }
+          (d/'RELEASE.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('VIDEO_SHA256='+manifest['video_sha256'])
           PY
-      - name: Archive safely without publication
+      - name: Preserve verified files (no Meta API calls)
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add content/media/instagram/2026-11-04/titanic-clean-final
+          git add -- content/media/instagram/2026-11-04/titanic-vertical-4k60
           if git diff --cached --quiet; then echo 'Already archived'; exit 0; fi
-          git commit -m 'assets(instagram): arquivar Reel Titanic clean 04nov verificado sem publicar'
+          git commit -m 'media(instagram): master vertical 4K60 Titanic v2 verified'
+          git pull --rebase origin main
           git push origin HEAD:main
