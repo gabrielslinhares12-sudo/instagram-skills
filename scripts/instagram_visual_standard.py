@@ -481,6 +481,65 @@ def audit_queue(root: Path=ROOT) -> dict:
                 verify_publication_route(approval)
                 reviewed.append(slug)
                 continue
+            # Carrossel Boston 04NOV: autorização expressa do usuário para as
+            # CINCO artes exatas visivelmente aprovadas. Não declarar
+            # correspondência pixel-a-pixel do Lúmino (imagem ilustrada).
+            # Exceção de lançamento estritamente vinculada a SHA256, commit,
+            # ordem, legenda e rota Meta sem música. Não altera QC geral.
+            if slug == "tue-2026-11-04-boston-1919-carrossel-imediato":
+                folder=root/"content/media/instagram/2026-11-04/boston-aprovado-publicacao"
+                record=root/"content/approved"/slug/"approval.json"
+                if not record.is_file():
+                    raise VisualError("Boston 04NOV sem recibo editorial específico.")
+                approval=read_json(record)
+                expected=[
+                    "08d7586dbd5128e6724961b70bd424f8304165fa98bf76f3b8c6b2911f5db342",
+                    "73a1bc03a2e3ba6c4bd90b29a3a011554c1ee5aee65702f2c4dfe5c8c0b38be5",
+                    "891858906de4b4c4110b242e7a3b47f12744b0d0896b54dc7989b5994fd94ff6",
+                    "6257fa8efdb1d99678ae6d1e95be3dd1169e707363be4af7ae9915b18a46e136",
+                    "9a859f7017e94f4c696e817e83fe96bc38fd51a0ae48ec27a7569f7501147336",
+                ]
+                pinned="5771a6ee4c61f44561f77d4a0e0712f83d420f61"
+                prefix=("https://raw.githubusercontent.com/gabrielslinhares12-sudo/"
+                        "instagram-skills/"+pinned+
+                        "/content/media/instagram/2026-11-04/boston-aprovado-publicacao/")
+                urls=[prefix+f"BOSTON-CARROSSEL-FINAL-{i:02d}.jpg" for i in range(1,6)]
+                if (approval.get("id") != slug
+                        or approval.get("kind") != "carousel"
+                        or approval.get("preset_id") != "TUE-MESTRE-01"
+                        or approval.get("approved") is not True
+                        or approval.get("visual_reviewed") is not True
+                        or approval.get("owner_authorized") is not True
+                        or approval.get("precise_release_scope") !=
+                           "ONLY_EXACT_FIVE_BOSTON_04NOV_NOV2026_JPEG_HASHES"
+                        or approval.get("original_mascot_pixel_match_verified") is not False
+                        or approval.get("approved_visual_reference_sha256") !=
+                           "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
+                        or approval.get("media_sha256") != expected
+                        or approval.get("media_urls") != urls
+                        or approval.get("release_commit") != pinned
+                        or post.get("media_sha256") != expected
+                        or post.get("media_urls") != urls
+                        or post.get("caption") != approval.get("caption")
+                        or approval.get("distribution_mode") != "api_carousel_without_native_music"
+                        or approval.get("owner_authorized_without_music") is not True
+                        or post.get("distribution_mode") != "api_carousel_without_native_music"
+                        or post.get("owner_authorized_without_music") is not True
+                        or post.get("ai_origin") != "synthetic"
+                        or post.get("content_style") != "clearly_illustrated"
+                        or post.get("ai_disclosure_review") !=
+                           "no_mandatory_self_disclosure_for_stylized_still"):
+                    raise VisualError("Boston 04NOV não corresponde às cinco artes autorizadas.")
+                for i,digest in enumerate(expected,1):
+                    image_file=folder/f"BOSTON-CARROSSEL-FINAL-{i:02d}.jpg"
+                    if not image_file.is_file() or sha256(image_file)!=digest:
+                        raise VisualError("Arquivo aprovado do Boston ausente ou modificado.")
+                    with Image.open(image_file) as im:
+                        if im.format!="JPEG" or im.size!=(1080,1350):
+                            raise VisualError("Boston deve ter cinco JPGs 1080x1350.")
+                verify_publication_route(approval)
+                reviewed.append(slug)
+                continue
             manifest=root/"content/approved"/slug/"visual-manifest.json"
             if not manifest.is_file():
                 raise VisualError(f"Carrossel aprovado sem verificacao de estilo: {slug}")
