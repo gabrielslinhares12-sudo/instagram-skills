@@ -1,0 +1,63 @@
+name: Arquivar Reel Titanic clean 04NOV - sem publicar
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-arquivar-titanic-clean-04nov.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tue-titanic-04nov-archive
+  cancel-in-progress: false
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Download and verify final file before archiving
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/media/instagram/2026-11-04/titanic-clean-final
+          VIDEO=content/media/instagram/2026-11-04/titanic-clean-final/REEL-TITANIC-CLEAN-META.mp4
+          COVER=content/media/instagram/2026-11-04/titanic-clean-final/CAPA-TITANIC-CLEAN.jpg
+          curl --fail --location --retry 3 --retry-all-errors --max-time 180 --silent --show-error \
+            'https://gcdn.picsart.com/media-engine/e824737f-ccfe-4a39-ad09-d3a29b9a5e04.mp4' -o "$VIDEO"
+          test "$(stat -c%s "$VIDEO")" -ge 1000000
+          python3 - <<'PY'
+          import json,subprocess
+          path='content/media/instagram/2026-11-04/titanic-clean-final/REEL-TITANIC-CLEAN-META.mp4'
+          out=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,width,height,r_frame_rate','-of','json',path],text=True))
+          videos=[s for s in out['streams'] if s['codec_type']=='video']
+          audios=[s for s in out['streams'] if s['codec_type']=='audio']
+          assert len(videos)==1 and videos[0]['width']==1080 and videos[0]['height']==1920
+          assert videos[0]['codec_name']=='h264' and any(s['codec_name']=='aac' for s in audios)
+          assert 41.5<=float(out['format']['duration'])<=42.5
+          print('Validated MP4/H264/AAC 1080x1920 42 seconds')
+          PY
+          ffmpeg -hide_banner -loglevel error -y -ss 1 -i "$VIDEO" -frames:v 1 -q:v 2 "$COVER"
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('content/media/instagram/2026-11-04/titanic-clean-final')
+          vid=root/'REEL-TITANIC-CLEAN-META.mp4'
+          cover=root/'CAPA-TITANIC-CLEAN.jpg'
+          manifest={'id':'tue-2026-11-04-18-titanic-clean','kind':'reel','duration_seconds':42,'width':1080,'height':1920,'fps':30,'voice':'Rasalgethi','synthetic_voice':True,'is_ai_generated':True,'music':False,'story':False,'published':False,'video_file':vid.name,'cover_file':cover.name,'video_sha256':hashlib.sha256(vid.read_bytes()).hexdigest(),'cover_sha256':hashlib.sha256(cover.read_bytes()).hexdigest()}
+          (root/'RELEASE.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+          print('Video SHA256:',manifest['video_sha256'])
+          PY
+      - name: Archive safely without publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/media/instagram/2026-11-04/titanic-clean-final
+          if git diff --cached --quiet; then echo 'Already archived'; exit 0; fi
+          git commit -m 'assets(instagram): arquivar Reel Titanic clean 04nov verificado sem publicar'
+          git push origin HEAD:main
