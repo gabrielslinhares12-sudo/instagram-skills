@@ -1,0 +1,210 @@
+name: Instagram TUE - Trial Sprites clean 18h30 04NOV
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-trial-sprites-1830-04nov.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-temumaexplicacao-publication
+  cancel-in-progress: false
+jobs:
+  trial_sprites:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Stage and probe clean Trial Reel at 60 FPS - NO Meta calls
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          dir=content/media/instagram/2026-11-04/trial-sprites-v2-clean
+          mkdir -p "$dir"
+          curl -fsSL --retry 3 --retry-all-errors --max-time 360 \
+            'https://gcdn.picsart.com/media-engine/6cdab549-042a-409b-a412-d613552e057f.mp4' \
+            -o "$dir/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4"
+          ffmpeg -hide_banner -loglevel error -y -ss 1.0 \
+            -i "$dir/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4" \
+            -frames:v 1 -q:v 2 "$dir/CAPA-TRIAL-SPRITES-CLEAN.jpg"
+          python3 - <<'PY'
+          import json,pathlib,subprocess
+          p=pathlib.Path('content/media/instagram/2026-11-04/trial-sprites-v2-clean/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4')
+          d=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,width,height,r_frame_rate,sample_rate','-of','json',str(p)],text=True))
+          v=[x for x in d['streams'] if x['codec_type']=='video']
+          a=[x for x in d['streams'] if x['codec_type']=='audio']
+          assert len(v)==1 and v[0]['codec_name']=='h264'
+          assert (v[0]['width'],v[0]['height'])==(1080,1920) and v[0]['r_frame_rate']=='60/1'
+          assert a and a[0]['codec_name']=='aac' and a[0]['sample_rate']=='48000'
+          assert 47.5<float(d['format']['duration'])<48.5
+          assert 10000000<p.stat().st_size<200000000
+          print('TRIAL_VIDEO_QC=passed')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$dir/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4" "$dir/CAPA-TRIAL-SPRITES-CLEAN.jpg"
+          git commit -m 'media(instagram): verified 48s sprites Trial Reel 1080p60 clean'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Sign immutable Trial-only release and add 18h30 schedule entry
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib,subprocess
+          repo='gabrielslinhares12-sudo/instagram-skills'
+          slug='tue-2026-11-04-extra-trial-sprites'
+          base=pathlib.Path('content/media/instagram/2026-11-04/trial-sprites-v2-clean')
+          video=base/'REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4'
+          cover=base/'CAPA-TRIAL-SPRITES-CLEAN.jpg'
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          assert len(sha)==40
+          prefix='https://raw.githubusercontent.com/'+repo+'/'+sha+'/'
+          video_url=prefix+video.as_posix()
+          cover_url=prefix+cover.as_posix()
+          digest=hashlib.sha256(video.read_bytes()).hexdigest()
+          schedule=pathlib.Path('content/schedule.json')
+          data=json.loads(schedule.read_text(encoding='utf-8'))
+          assert not any(x['id']==slug for x in data['posts'])
+          entry={
+            'id':slug,'due_at':'2026-11-04T21:30:00Z',
+            'username':'temumaexplicacao','kind':'reel',
+            'target_url':'https://www.instagram.com/temumaexplicacao/',
+            'title':'O relâmpago que aparece acima das nuvens',
+            'caption':'⚡ Você sabia que existem relâmpagos que surgem acima das tempestades? Eles são chamados sprites vermelhos: descargas breves e surpreendentes na alta atmosfera. Astronautas já fotografaram esse fenômeno da Estação Espacial Internacional.\n\nVocê já tinha ouvido falar deles?\n\n#SpritesVermelhos #Ciencia #Atmosfera #Curiosidades #TemUmaExplicacao',
+            'media_urls':[video_url],'cover_url':cover_url,'media_sha256':[digest],
+            'approved':True,'trial_reel':True,'is_ai_generated':True,
+            'ai_origin':'synthetic','ai_disclosure_review':'mandatory_realistic_synthetic_audio',
+            'sources':['https://science.nasa.gov/earth/earth-observatory/red-sprites-above-the-us-and-central-america-86463/',
+                       'https://science.nasa.gov/earth/earth-observatory/elusive-sprite-captured-from-the-international-space-station-78487/'],
+            'approval_note':'Trial Reel aprovado pelo proprietario para 04NOV 18h30 Brasilia; MANUAL graduation. Nunca publicar em modo normal se trial_params for recusado. Legendas sem tarjas.'
+          }
+          data['posts'].append(entry)
+          schedule.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          approval=pathlib.Path('content/approved')/slug/'approval.json'
+          approval.parent.mkdir(parents=True,exist_ok=True)
+          receipt={
+            'id':slug,'kind':'reel','preset_id':'TUE-MESTRE-01',
+            'approved':True,'owner_authorized':True,'owner_authorizes_only':slug,
+            'technical_video_qc_passed':True,'audio_qc_technical_passed':True,
+            'caption_transcript_verified':True,'visual_geometry_qc_passed':True,
+            'subtitles_embedded':True,'caption_segments':22,
+            'video_width':1080,'video_height':1920,'video_duration_seconds':48,
+            'fps':60,'caption_background':False,'trial_reel':True,
+            'graduation_strategy':'MANUAL',
+            'media_sha256':[digest],'release_url':video_url,'cover_url':cover_url,
+            'disclosure_review':'mandatory_realistic_synthetic_audio',
+            'synthetic_voice_disclosure_mandatory':True,
+            'source_voice':'VOZ-RASALGETHI-SPRITES.wav',
+            'source_scene':'https://gcdn.picsart.com/picsart-mcp/3c8b118a-5c88-4875-ad97-fb4ee0f3d0f1.json',
+            'owner_instruction':'Reel teste hoje 18h30, independente de Reel regular 18h.'
+          }
+          approval.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          qa=pathlib.Path('scripts/instagram_visual_standard.py')
+          text=qa.read_text(encoding='utf-8')
+          needle='    if slug == "tue-2026-11-04-18-titanic-sem-tarjas-v3":'
+          assert needle in text
+          trial_block=[
+             '    if slug == "tue-2026-11-04-extra-trial-sprites":',
+             '        rx = (r"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/"',
+             '              r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"',
+             '              r"2026-11-04/trial-sprites-v2-clean/REEL-TRIAL-SPRITES-CLEAN-60FPS\\.mp4")',
+             '        media_on_disk = (root / "content/media/instagram/2026-11-04/trial-sprites-v2-clean"',
+             '                         / "REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4")',
+             '        if (not media_on_disk.is_file() or sha256(media_on_disk) != hashes[0]',
+             '                or receipt.get("caption_background") is not False or receipt.get("fps") != 60',
+             '                or receipt.get("trial_reel") is not True',
+             '                or receipt.get("graduation_strategy") != "MANUAL"',
+             '                or post.get("trial_reel") is not True):',
+             '            raise VisualError(f"Trial Sprites sem integridade ou modo de teste: {slug}")',
+             '    elif slug == "tue-2026-11-04-18-titanic-sem-tarjas-v3":'
+          ]
+          text=text.replace(needle,'\n'.join(trial_block),1)
+          needle_d='or not 40 <= receipt.get("video_duration_seconds", 0) <= 45'
+          assert needle_d in text
+          text=text.replace(needle_d,'or not 40 <= receipt.get("video_duration_seconds", 0) <= (50 if slug == "tue-2026-11-04-extra-trial-sprites" else 45)',1)
+          qa.write_text(text,encoding='utf-8')
+          print('TRIAL_RELEASE_IMMUTABLE='+sha)
+          print('TRIAL_MP4_SHA256='+digest)
+          PY
+          python3 -m pip install 'Pillow>=11,<13' -q
+          python3 scripts/instagram_visual_standard.py audit-queue
+          python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -q
+          git add -- content/schedule.json scripts/instagram_visual_standard.py content/approved/tue-2026-11-04-extra-trial-sprites/approval.json
+          git commit -m 'schedule(instagram): certified Trial Sprites 18h30 04NOV MANUAL'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Wait for 18h30 Brasilia, never publish early
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import datetime,time
+          now=lambda:datetime.datetime.now(datetime.timezone.utc)
+          target=datetime.datetime(2026,11,4,21,30,tzinfo=datetime.timezone.utc)
+          if now()>target+datetime.timedelta(minutes=80):
+              raise SystemExit('Trial window passed; cannot post late')
+          while now()<target:
+              time.sleep(min(15,(target-now()).total_seconds()))
+          print('TRIAL_WINDOW_OPEN=2026-11-04T21:30:00Z')
+          PY
+      - name: Reconcile publication ledger, isolate only this Trial item
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+          python3 - <<'PY'
+          import json,pathlib
+          path=pathlib.Path('content/schedule.json')
+          doc=json.loads(path.read_text(encoding='utf-8'))
+          slug='tue-2026-11-04-extra-trial-sprites'
+          selected=[x for x in doc['posts'] if x['id']==slug]
+          assert len(selected)==1 and selected[0].get('trial_reel') is True
+          assert selected[0]['due_at']=='2026-11-04T21:30:00Z'
+          pathlib.Path('/tmp/tue-trial-only.json').write_text(json.dumps({'version':1,'posts':selected},ensure_ascii=False),encoding='utf-8')
+          PY
+          python3 scripts/instagram_queue.py --manifest /tmp/tue-trial-only.json --dry-run > /tmp/tue-trial-plan.json
+          python3 - <<'PY'
+          import json,os
+          p=json.load(open('/tmp/tue-trial-plan.json'))
+          item=p['items'][0]
+          if item['status']=='due':
+              with open(os.environ['GITHUB_ENV'],'a') as f:
+                  f.write('TUE_TRIAL_DUE=true\n')
+              print('TRIAL_POST_ALLOWED=due')
+          elif item['status'] in {'published','claimed','needs_review','changed_after_claim'}:
+              print('TRIAL_POST_SKIP=previous_claim_or_result')
+          else:
+              raise SystemExit('Trial blocked by gate: '+item['status'])
+          PY
+      - name: Verify Meta permissions and publish only as Trial
+        if: env.TUE_TRIAL_DUE == 'true'
+        env:
+          INSTAGRAM_SCHEDULER_ENABLED: 'true'
+          FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
+          FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
+          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
+          INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/instagram_preflight.py
+          python3 scripts/instagram_queue.py --manifest /tmp/tue-trial-only.json --execute
+      - name: Read last publication receipt without resending
+        if: always()
+        shell: bash
+        run: |
+          git fetch origin main
+          git show origin/main:content/publication-state.json | python3 -c "import json,sys;d=json.load(sys.stdin);r=d.get('items',{}).get('tue-2026-11-04-extra-trial-sprites',{});print('TRIAL_STATUS='+str(r.get('status','not_claimed')));print('TRIAL_MEDIA_ID='+str(r.get('media_id','not_confirmed')))"
