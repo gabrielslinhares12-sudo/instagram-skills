@@ -105,6 +105,12 @@
       "instagram_user_id": "17841433004716815",
       "page_id": "1385407341325017",
       "published_at": "2026-11-03T21:21:53Z"
+    },
+    "tue-2026-11-04-boston-1919-carrossel-imediato": {
+      "status": "claimed",
+      "fingerprint": "cd29d006322eae46c5e70ff5cf7b82dddf7b87cb0c83872d693c6325aeac8a54",
+      "due_at": "2026-11-04T17:55:30Z",
+      "claimed_at": "2026-11-04T18:01:22Z"
     }
   }
 }
