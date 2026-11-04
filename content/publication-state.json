@@ -178,7 +178,8 @@
       "manual_cleanup_required": false,
       "verified_child_count": 8,
       "recovery_same_creation_id": false,
-      "technical_note": "Eight-image parent album verified by official Meta GET."
+      "technical_note": "Eight-image parent album verified by official Meta GET.",
+      "fingerprint": "3181420d793df3be4e974a8116f25b950960fb74bc5b7e4c7d29916af7921de5"
     }
   }
 }
