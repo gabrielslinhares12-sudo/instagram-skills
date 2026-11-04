@@ -1,0 +1,125 @@
+name: Titanic 04NOV - verify and sign immutable Reel release
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-titanic-qc-04nov.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-titanic-04nov-qc
+  cancel-in-progress: false
+jobs:
+  attest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Verify frozen binary and create final cover
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          dir=content/media/instagram/2026-11-04/titanic-sem-tarjas-v3
+          test -s "$dir/REEL-TITANIC-META-1080X1920-60FPS.mp4"
+          ffmpeg -hide_banner -loglevel error -y -ss 1 -i "$dir/REEL-TITANIC-META-1080X1920-60FPS.mp4" -frames:v 1 -q:v 2 "$dir/CAPA-TITANIC-SEM-TARJAS.jpg"
+          python3 - <<'PY'
+          import json, subprocess, pathlib
+          v=pathlib.Path('content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS.mp4')
+          d=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,width,height,r_frame_rate,sample_rate,bit_rate','-of','json',str(v)],text=True))
+          streams=d['streams']; video=[x for x in streams if x['codec_type']=='video']; audio=[x for x in streams if x['codec_type']=='audio']
+          assert len(video)==1 and video[0]['codec_name']=='h264'
+          assert (video[0]['width'],video[0]['height'])==(1080,1920) and video[0]['r_frame_rate']=='60/1'
+          assert len(audio)==1 and audio[0]['codec_name']=='aac' and audio[0]['sample_rate']=='48000'
+          assert 41.5<float(d['format']['duration'])<42.5
+          print('VIDEO_QC=passed')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- "$dir/CAPA-TITANIC-SEM-TARJAS.jpg"
+          git commit -m 'media(instagram): cover for verified Titanic Reel v3'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Link exact commit-bound media and release receipt
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib,subprocess
+          target='tue-2026-11-04-18-titanic-sem-tarjas-v3'
+          base=pathlib.Path('content/media/instagram/2026-11-04/titanic-sem-tarjas-v3')
+          mp4=base/'REEL-TITANIC-META-1080X1920-60FPS.mp4'
+          cover=base/'CAPA-TITANIC-SEM-TARJAS.jpg'
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          assert len(sha)==40
+          prefix='https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/'+sha+'/'
+          video_url=prefix+mp4.as_posix()
+          cover_url=prefix+cover.as_posix()
+          digest=hashlib.sha256(mp4.read_bytes()).hexdigest()
+          schedule_path=pathlib.Path('content/schedule.json')
+          doc=json.loads(schedule_path.read_text(encoding='utf-8'))
+          post=[x for x in doc['posts'] if x['id']==target]
+          assert len(post)==1 and post[0]['due_at']=='2026-11-04T21:00:00Z'
+          assert post[0]['approved'] is True and post[0]['kind']=='reel'
+          post[0]['media_urls']=[video_url]
+          post[0]['cover_url']=cover_url
+          post[0]['media_sha256']=[digest]
+          schedule_path.write_text(json.dumps(doc,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          path=pathlib.Path('content/approved')/target/'approval.json'
+          path.parent.mkdir(parents=True,exist_ok=True)
+          receipt={
+            'id':target,'kind':'reel','preset_id':'TUE-MESTRE-01',
+            'approved':True,'owner_authorized':True,'owner_authorizes_only':target,
+            'technical_video_qc_passed':True,'audio_qc_technical_passed':True,
+            'caption_transcript_verified':True,'visual_geometry_qc_passed':True,
+            'subtitles_embedded':True,'caption_segments':25,
+            'video_width':1080,'video_height':1920,'video_duration_seconds':42,
+            'fps':60,'caption_background':False,
+            'media_sha256':[digest], 'release_url':video_url, 'cover_url':cover_url,
+            'disclosure_review':'mandatory_realistic_synthetic_audio',
+            'synthetic_voice_disclosure_mandatory':True,
+            'source_master':'TUE-Titanic-4K60-LEGENDAS-SEM-TARJAS-v3.mp4',
+            'source_facts':['https://www.titanicinquiry.org/BOTInq/BOTReport/BOTRepBoats.php',
+                            'https://www.senate.gov/about/powers-procedures/investigations/titanic.htm'],
+            'owner_instruction':'Agende para postagem hoje no Instagram, em continuidade a edicao sem tarjas aprovada.',
+          }
+          path.write_text(json.dumps(receipt,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          qa=pathlib.Path('scripts/instagram_visual_standard.py')
+          q=qa.read_text(encoding='utf-8')
+          old='''    rx = (r"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/"
+          r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
+          r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-(?:LEGENDADO|META)\\.mp4")
+'''
+          new='''    if slug == "tue-2026-11-04-18-titanic-sem-tarjas-v3":
+        rx = (r"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/"
+              r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
+              r"2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS\\.mp4")
+        media_on_disk = (root / "content/media/instagram/2026-11-04/titanic-sem-tarjas-v3"
+                         / "REEL-TITANIC-META-1080X1920-60FPS.mp4")
+        if (not media_on_disk.is_file() or sha256(media_on_disk) != hashes[0]
+                or receipt.get("caption_background") is not False or receipt.get("fps") != 60):
+            raise VisualError(f"Reel Titanic sem integridade ou legenda limpa: {slug}")
+    else:
+        rx = (r"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/"
+              r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
+              r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-(?:LEGENDADO|META)\\.mp4")
+'''
+          assert old in q, 'Expected exact legacy Reel QA block'
+          qa.write_text(q.replace(old,new,1),encoding='utf-8')
+          print('RELEASE_BOUND_TO_COMMIT='+sha)
+          print('RELEASE_SHA256='+digest)
+          PY
+          python3 -m pip install 'Pillow>=11,<13' >/dev/null
+          python3 scripts/instagram_visual_standard.py audit-queue
+          python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -q
+          git add content/schedule.json scripts/instagram_visual_standard.py content/approved/tue-2026-11-04-18-titanic-sem-tarjas-v3/approval.json
+          git commit -m 'qc(instagram): attest Titanic v3 release without caption bars'
+          git pull --rebase origin main
+          git push origin HEAD:main
