@@ -314,7 +314,19 @@ def verify_reel_release(root: Path, post: dict) -> str:
         raise VisualError(f"Reel sem MP4 e SHA-256 verificaveis: {slug}")
     # A 40-char commit makes GitHub's raw URL immutable. A mutable branch,
     # signed link or unapproved host must never be used for a release.
-    if slug == "tue-2026-11-04-18-titanic-sem-tarjas-v3":
+    if slug == "tue-2026-11-04-extra-trial-sprites":
+        rx = (r"https://raw\.githubusercontent\.com/gabrielslinhares12-sudo/"
+              r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
+              r"2026-11-04/trial-sprites-v2-clean/REEL-TRIAL-SPRITES-CLEAN-60FPS\.mp4")
+        media_on_disk = (root / "content/media/instagram/2026-11-04/trial-sprites-v2-clean"
+                         / "REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4")
+        if (not media_on_disk.is_file() or sha256(media_on_disk) != hashes[0]
+                or receipt.get("caption_background") is not False or receipt.get("fps") != 60
+                or receipt.get("trial_reel") is not True
+                or receipt.get("graduation_strategy") != "MANUAL"
+                or post.get("trial_reel") is not True):
+            raise VisualError(f"Trial Sprites sem integridade ou modo de teste: {slug}")
+    elif slug == "tue-2026-11-04-18-titanic-sem-tarjas-v3":
         rx = (r"https://raw\.githubusercontent\.com/gabrielslinhares12-sudo/"
               r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
               r"2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS\.mp4")
@@ -347,7 +359,7 @@ def verify_reel_release(root: Path, post: dict) -> str:
             or receipt.get("caption_segments", 0) < 20
             or receipt.get("video_width") != 1080
             or receipt.get("video_height") != 1920
-            or not 40 <= receipt.get("video_duration_seconds", 0) <= 45
+            or not 40 <= receipt.get("video_duration_seconds", 0) <= (50 if slug == "tue-2026-11-04-extra-trial-sprites" else 45)
             or receipt.get("media_sha256") != hashes
             or receipt.get("release_url") != media[0]
             or receipt.get("cover_url") != cover

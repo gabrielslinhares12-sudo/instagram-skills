@@ -1,0 +1,31 @@
+{
+  "id": "tue-2026-11-04-extra-trial-sprites",
+  "kind": "reel",
+  "preset_id": "TUE-MESTRE-01",
+  "approved": true,
+  "owner_authorized": true,
+  "owner_authorizes_only": "tue-2026-11-04-extra-trial-sprites",
+  "technical_video_qc_passed": true,
+  "audio_qc_technical_passed": true,
+  "caption_transcript_verified": true,
+  "visual_geometry_qc_passed": true,
+  "subtitles_embedded": true,
+  "caption_segments": 22,
+  "video_width": 1080,
+  "video_height": 1920,
+  "video_duration_seconds": 48,
+  "fps": 60,
+  "caption_background": false,
+  "trial_reel": true,
+  "graduation_strategy": "MANUAL",
+  "media_sha256": [
+    "33c9bb766f9a9a75f4cff48cfcae816940f37e6931cc8aa89a719afa9aa7ba04"
+  ],
+  "release_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/eb982b4dbacc4ab9f698eee886fae1272022fb55/content/media/instagram/2026-11-04/trial-sprites-v2-clean/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4",
+  "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/eb982b4dbacc4ab9f698eee886fae1272022fb55/content/media/instagram/2026-11-04/trial-sprites-v2-clean/CAPA-TRIAL-SPRITES-CLEAN.jpg",
+  "disclosure_review": "mandatory_realistic_synthetic_audio",
+  "synthetic_voice_disclosure_mandatory": true,
+  "source_voice": "VOZ-RASALGETHI-SPRITES.wav",
+  "source_scene": "https://gcdn.picsart.com/picsart-mcp/3c8b118a-5c88-4875-ad97-fb4ee0f3d0f1.json",
+  "owner_instruction": "Reel teste hoje 18h30, independente de Reel regular 18h."
+}
