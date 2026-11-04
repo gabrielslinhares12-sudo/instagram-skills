@@ -29,6 +29,13 @@ jobs:
           pathlib.Path('content/brand/lumino-original-mini-exato.b64').write_text(base64.b64encode(b).decode('ascii'),encoding='ascii')
           print('CANONICAL_MINI',im.size,len(b),hashlib.sha256(b).hexdigest())
           PY
+      - name: Expor PNG canônico como artefato de download (sem novo desenho)
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMINO-CANONICO-SOURCE-04NOV
+          path: content/brand/lumino-original.png
+          if-no-files-found: error
+          retention-days: 2
       - name: Guardar copia tecnica sem mudar original
         run: |
           git config user.name 'github-actions[bot]'
