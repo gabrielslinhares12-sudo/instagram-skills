@@ -1,0 +1,121 @@
+name: Instagram TUE - Trial Sprites correction title exactly 3 seconds
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-trial-sprites-title3s-correction.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-trial-sprites-title3s-correction
+  cancel-in-progress: false
+jobs:
+  repair:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Download corrected 48s 60fps, preserve exact title-free timeline after 3s
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          source=content/media/instagram/2026-11-04/trial-sprites-v2-clean
+          target=content/media/instagram/2026-11-04/trial-sprites-v3-title3s
+          mkdir -p "$target"
+          curl -fsSL --retry 3 --retry-all-errors --max-time 360 \
+            'https://gcdn.picsart.com/media-engine/9c1b309b-d48d-4424-975f-e176d3362254.mp4' \
+            -o "$target/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4"
+          cp "$source/CAPA-TRIAL-SPRITES-CLEAN.jpg" "$target/CAPA-TRIAL-SPRITES-CLEAN.jpg"
+          python3 - <<'PY'
+          import json, pathlib, subprocess, hashlib
+          file=pathlib.Path('content/media/instagram/2026-11-04/trial-sprites-v3-title3s/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4')
+          p=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,width,height,r_frame_rate,sample_rate','-of','json',str(file)],text=True))
+          v=[x for x in p['streams'] if x['codec_type']=='video']
+          a=[x for x in p['streams'] if x['codec_type']=='audio']
+          assert len(v)==1 and (v[0]['width'],v[0]['height'])==(1080,1920)
+          assert v[0]['codec_name']=='h264' and v[0]['r_frame_rate']=='60/1'
+          assert a and a[0]['codec_name']=='aac' and a[0]['sample_rate']=='48000'
+          assert 47.5 < float(p['format']['duration']) < 48.5
+          assert 20000000 < file.stat().st_size < 50000000
+          print('CORRECTED_REEL_QC=passed')
+          print('SHA256='+hashlib.sha256(file.read_bytes()).hexdigest())
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- "$target"
+          git commit -m 'media(instagram): sprites top title only first three seconds'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Atomically update 18h30 Trial queue fingerprint, pinned bytes and QC approval
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, hashlib, pathlib, subprocess
+          slug='tue-2026-11-04-extra-trial-sprites'
+          old_dir='trial-sprites-v2-clean'
+          new_dir='trial-sprites-v3-title3s'
+          root=pathlib.Path('content/media/instagram/2026-11-04')/new_dir
+          filename='REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4'
+          covername='CAPA-TRIAL-SPRITES-CLEAN.jpg'
+          path=root/filename
+          assert path.is_file() and (root/covername).is_file()
+          state=json.loads(pathlib.Path('content/publication-state.json').read_text(encoding='utf-8'))
+          assert slug not in state['items'], 'Already claimed or published: do not change content or reupload'
+          commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          assert len(commit)==40
+          prefix='https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/'+commit+'/'
+          video_url=prefix+path.as_posix()
+          cover_url=prefix+(root/covername).as_posix()
+          digest=hashlib.sha256(path.read_bytes()).hexdigest()
+          sched=pathlib.Path('content/schedule.json')
+          data=json.loads(sched.read_text(encoding='utf-8'))
+          item=[post for post in data['posts'] if post['id']==slug]
+          assert len(item)==1 and item[0]['due_at']=='2026-11-04T21:30:00Z'
+          assert item[0].get('trial_reel') is True and item[0]['approved'] is True
+          item[0]['media_urls']=[video_url]
+          item[0]['cover_url']=cover_url
+          item[0]['media_sha256']=[digest]
+          item[0]['approval_note']='Revisao solicitada em 04NOV: titulo superior somente de 0 a 3 segundos. Restante do Reel sem titulo superior; legendas inferiores mantidas. Trial Reel MANUAL, nao promover ao feed. Publicar 18h30 BRT.'
+          sched.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          approval_path=pathlib.Path('content/approved')/slug/'approval.json'
+          approval=json.loads(approval_path.read_text(encoding='utf-8'))
+          assert approval['trial_reel'] is True and approval['owner_authorizes_only']==slug
+          approval.update({'media_sha256':[digest],'release_url':video_url,'cover_url':cover_url,
+                           'opening_title_duration_seconds':3,'caption_background':False,
+                           'source_scene':'https://gcdn.picsart.com/picsart-mcp/6f80a61c-4d24-4b1a-a2c5-ed0b40fbe256.json',
+                           'owner_instruction':'Title at top only 0-3 seconds; keep lower spoken captions.'})
+          approval_path.write_text(json.dumps(approval,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          qapath=pathlib.Path('scripts/instagram_visual_standard.py')
+          code=qapath.read_text(encoding='utf-8')
+          start=code.index('    if slug == "tue-2026-11-04-extra-trial-sprites":',code.index('def verify_reel_release('))
+          stop=code.index('    elif slug == "tue-2026-11-04-18-titanic-sem-tarjas-v3":',start)
+          trial=code[start:stop]
+          assert trial.count(old_dir)==2, 'Refusing unexpected QC matcher change'
+          trial=trial.replace(old_dir,new_dir)
+          trial=trial.replace('or receipt.get("trial_reel") is not True',
+                              'or receipt.get("opening_title_duration_seconds") != 3\n                or receipt.get("trial_reel") is not True')
+          qapath.write_text(code[:start]+trial+code[stop:],encoding='utf-8')
+          print('PINNED_MASTER_COMMIT='+commit)
+          print('NEW_SHA256='+digest)
+          PY
+          python3 -m pip install 'Pillow>=11,<13' -q
+          python3 scripts/instagram_visual_standard.py audit-queue
+          python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -q
+          git add -- content/schedule.json scripts/instagram_visual_standard.py content/approved/tue-2026-11-04-extra-trial-sprites/approval.json
+          git commit -m 'schedule(instagram): swap Trial Sprites 18h30 to title 3s corrected file'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Confirm 18h30 item is still unclaimed (never publish here)
+        shell: bash
+        run: |
+          git fetch origin main
+          git show origin/main:content/schedule.json | python3 -c "import json,sys;d=json.load(sys.stdin);p=next(x for x in d['posts'] if x['id']=='tue-2026-11-04-extra-trial-sprites'); assert p['trial_reel'] is True; assert 'trial-sprites-v3-title3s' in p['media_urls'][0]; print('TRIAL_CORRECTION_1830=scheduled')"
