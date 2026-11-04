@@ -146,11 +146,11 @@
       "no_external_link_sticker": true
     },
     {
-      "parent_id": "tue-2026-11-04-11-pix-med-2026",
+      "parent_id": "tue-2026-11-04-11-melaco-boston-1919",
       "parent_kind": "carousel",
       "day": "2026-11-04",
       "slot": "11:00",
-      "parent_topic_id": "pix-med-fraude-2026",
+      "parent_topic_id": "boston-inundacao-melaco-1919",
       "native_share_method": "share_existing_instagram_post_to_story",
       "parent_published": false,
       "parent_media_id": null,
@@ -160,17 +160,17 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "status": "awaiting_parent_publication",
+      "status": "planning_only_no_story_no_post_attempt",
       "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "text_cta_visible_verified": false,
       "no_external_link_sticker": true
     },
     {
-      "parent_id": "tue-2026-11-04-15-sac-ar-17-graus",
+      "parent_id": "tue-2026-11-04-15-ra-congelada",
       "parent_kind": "meme",
       "day": "2026-11-04",
       "slot": "15:00",
-      "parent_topic_id": "ar-condicionado-17-graus-mito",
+      "parent_topic_id": "ra-madeireira-congela-sobrevive",
       "native_share_method": "share_existing_instagram_post_to_story",
       "parent_published": false,
       "parent_media_id": null,
@@ -180,7 +180,7 @@
       "story_published": false,
       "story_media_id": null,
       "native_original_post_tappable_verified": false,
-      "status": "awaiting_parent_publication",
+      "status": "planning_only_no_story_no_post_attempt",
       "text_cta": "Gostou dessa? Então vai lá, curte o post e segue o Tem Uma Explicação para não perder as próximas!",
       "text_cta_visible_verified": false,
       "no_external_link_sticker": true
@@ -451,5 +451,5 @@
   "cta_mode": "native_story_text_overlay",
   "narration_required": false,
   "no_external_link_or_link_sticker": true,
-  "schedule_note": "Para 02/11, Mar Cruzado às 15h e Senha Impossível publicada antecipadamente; Story só após recibo, compartilhamento do próprio post, CTA escrito, sem URL adicional/áudio. 04/11: atualizada somente associação da fila de rascunhos ao Pix/MED 11h, SAC do Ar 15h, Defesa Civil 18h. Stories não fazem parte da execução solicitada e seguem pendentes até publicação nativa de post existente."
+  "schedule_note": "Para 02/11, Mar Cruzado às 15h e Senha Impossível publicada antecipadamente; Story só após recibo, compartilhamento do próprio post, CTA escrito, sem URL adicional/áudio. 04/11: atualizada somente associação da fila de rascunhos ao Pix/MED 11h, SAC do Ar 15h, Defesa Civil 18h. Stories não fazem parte da execução solicitada e seguem pendentes até publicação nativa de post existente. Correção 04/11: sincronizados IDs de planejamento com grade atual Boston 11h/rã 15h. Nenhum Story foi solicitado ou agendado para execução; estrutura mantida somente para passar validação da grade sem ativar Stories."
 }
