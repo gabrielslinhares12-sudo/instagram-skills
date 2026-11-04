@@ -34,11 +34,11 @@ MAX_POSTS = 366
 MAX_LATENESS = timedelta(hours=2)
 ITEM_FIELDS = frozenset({
     "id", "due_at", "username", "kind", "target_url", "caption", "media_urls", "approved",
-    "is_ai_generated", "ai_origin", "content_style", "ai_disclosure_review", "cover_url", "media_sha256", "title", "sources", "approval_note",
+    "is_ai_generated", "ai_origin", "content_style", "ai_disclosure_review", "cover_url", "media_sha256", "title", "sources", "approval_note", "trial_reel",
     "distribution_mode", "owner_authorized_without_music", "owner_authorized_two_step_music",
     "private_api_authorized", "music_track", "music_artist", "recovery_until",
 })
-PAYLOAD_OPTIONS = ("is_ai_generated", "cover_url")
+PAYLOAD_OPTIONS = ("is_ai_generated", "cover_url", "trial_reel")
 FINAL_STATES = frozenset({"claimed", "published", "needs_review", "awaiting_native_music"})
 
 
@@ -202,6 +202,15 @@ def validate_manifest(document: Any) -> list[dict[str, Any]]:
                 raise QueueError("New Instagram posts must not add optional AI labels.")
             if re.search(r"(?i)(feito\s+(?:por|com)\s+(?:i\.?a\.?|intelig[eê]ncia\s+artificial)|made\s+with\s+ai|ai[ -]*generated|#feito(?:por|com)ia)", caption):
                 raise QueueError("A legenda acrescenta uma atribuição de IA proibida pelo padrão TUE.")
+        if "trial_reel" in item:
+            if (item["trial_reel"] is not True or kind != "reel"
+                    or item.get("is_ai_generated") is not True
+                    or item.get("ai_origin") != "synthetic"
+                    or item.get("ai_disclosure_review") != "mandatory_realistic_synthetic_audio"
+                    or not item.get("cover_url")):
+                raise QueueError("Trial Reel requires exact trial_reel=true, video, cover and mandatory voice disclosure.")
+            # This is NOT share_to_feed=false alone: Meta must receive
+            # trial_params.graduation_strategy=MANUAL in the media container.
         if "cover_url" in item:
             if kind != "reel":
                 raise QueueError("cover_url is supported only for Reels.")
