@@ -1,0 +1,85 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "reference_standard_id": "TUE-MESTRE-01",
+  "reference_visual_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "lumino_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "status": "draft_review_no_publication",
+  "approved": false,
+  "owner_authorized": false,
+  "publication_attempted": false,
+  "day": "2026-11-04",
+  "publication_requires_native_music": false,
+  "manual_visual_review_required": true,
+  "editorial_freshness_checked_at": "2026-11-04",
+  "id": "tue-2026-11-04-11-melaco-boston-1919",
+  "slot": "11:00",
+  "series_id": "arquivo-improvavel",
+  "kind": "carousel",
+  "topic_id": "boston-inundacao-melaco-1919",
+  "subject_id": "tragedia-industrial-reservatorio-boston-1919",
+  "title": "A CIDADE ENGOLIDA POR MELAÇO",
+  "hook": "A CIDADE FOI ENGOLIDA... POR MELAÇO",
+  "concept": "História real e trágica do rompimento de um tanque industrial em Boston (1919), usando fotos autênticas e sem humor inadequado.",
+  "sources": [
+    "https://content.boston.gov/news/100-years-ago-today-molasses-crashes-through-bostons-north-end",
+    "https://www.loc.gov/resource/anrc.14968/",
+    "https://archives.lib.state.ma.us/server/api/core/bitstreams/041fa4e1-3de8-44f8-9fa6-490007ade732/content"
+  ],
+  "factual_caution": "Não romantizar vítimas; usar ≈8,7 milhões de litros para 2,3 milhões de galões, 21 mortos e cerca de 150 feridos. Distinguir pressão do reservatório de explosivos inexistentes.",
+  "format": "5 JPEGs 1080x1350, 4:5; foto histórica autêntica com sobreposição do Lúmino PNG",
+  "media_policy": "Fotografias de 1919 do Boston Public Library, Boston City Archives e jornal antigo, com licença de domínio público ou sem restrições declaradas; não criar fotografias falsas.",
+  "slides": [
+    {
+      "headline": "A CIDADE FOI ENGOLIDA POR MELAÇO",
+      "new_information": "Em 1919, uma inundação de melaço atingiu as ruas do North End, em Boston. Era um desastre industrial, não uma lenda.",
+      "distinct_scene": "Panorama histórico do acidente de 1919, preservado pela Biblioteca Pública de Boston.",
+      "visual_direction": "Capa documental foto autêntica; manchete em amarelo e Lúmino PNG intacto. Creditar BPL.",
+      "source_credit": "https://commons.wikimedia.org/wiki/File:BostonMolassesDisaster.jpg",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "UM TANQUE DE 15 METROS SE ROMPEU",
+      "new_information": "O enorme reservatório de melaço se rompeu em 15 de janeiro de 1919, perto dos trilhos do trem elevado.",
+      "distinct_scene": "Fotografia original de arquivo do reservatório antes do acidente no bairro North End.",
+      "visual_direction": "Tipografia forte e imagem do tanque; identificar que a foto de arquivo é anterior ao desastre.",
+      "source_credit": "https://content.boston.gov/news/100-years-ago-today-molasses-crashes-through-bostons-north-end",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "CERCA DE 8,7 MILHÕES DE LITROS",
+      "new_information": "A onda carregava 2,3 milhões de galões de melaço. Ruas, residências e estruturas ficaram destruídas.",
+      "distinct_scene": "Fotografia vertical de Boston após o desastre, com escombros entre construções históricas.",
+      "visual_direction": "Cena de rua real, cor sépia, métrica destacada, sem reconstrução visual falsificada.",
+      "source_credit": "https://content.boston.gov/news/100-years-ago-today-molasses-crashes-through-bostons-north-end",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "21 MORTES, CERCA DE 150 FERIDOS",
+      "new_information": "O desastre causou 21 mortes e feriu cerca de 150 pessoas. Foi uma tragédia humana com danos materiais expressivos.",
+      "distinct_scene": "Capa original de jornal do dia seguinte ao desastre com manchetes da época.",
+      "visual_direction": "Tom respeitoso, dado factual destacado; jornal de 1919 como fonte material real.",
+      "source_credit": "https://archives.lib.state.ma.us/server/api/core/bitstreams/041fa4e1-3de8-44f8-9fa6-490007ade732/content",
+      "uses_original_lumino": true,
+      "position_in_story": "desenvolvimento",
+      "swipe_cue": "Arraste para o lado →"
+    },
+    {
+      "headline": "UM ALERTA SOBRE SEGURANÇA INDUSTRIAL",
+      "new_information": "O acidente provocou uma longa investigação e se tornou referência sobre os riscos de instalações industriais mal projetadas.",
+      "distinct_scene": "Panorama amplo da área de Boston danificada, visto em novo corte com o Lúmino explicando.",
+      "visual_direction": "Fecho editorial de segurança industrial; sem números novos e sem chamada de arrastar.",
+      "source_credit": "https://content.boston.gov/news/100-years-ago-today-molasses-crashes-through-bostons-north-end",
+      "uses_original_lumino": true,
+      "position_in_story": "síntese",
+      "swipe_cue": null
+    }
+  ],
+  "caption": "Em 15 de janeiro de 1919, Boston viveu uma das tragédias industriais mais incomuns da história: o rompimento de um tanque lançou aproximadamente 8,7 milhões de litros de melaço pelo bairro North End. Foram 21 mortes e cerca de 150 feridos. Uma história real que mostra por que segurança em estruturas industriais importa. 📜 Registros: Boston Public Library, Prefeitura de Boston e arquivos de Massachusetts. #TemUmaExplicacao #HistoriaReal #Boston #Curiosidades #ArquivoImprovavel",
+  "production_status": "5_jpeg_rendered_picsart_pending_github_archive"
+}
