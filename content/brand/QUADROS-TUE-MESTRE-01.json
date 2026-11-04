@@ -110,6 +110,14 @@
       "story_engine": "curador apresenta relíquia banal → especialista tenta identificar → reviravolta absurda",
       "art_motif": "vitrines de museu fictício, plaquinhas de identificação cômicas, Lúmino PNG original como curador; nenhuma nova identidade visual",
       "format": "meme"
+    },
+    {
+      "id": "natureza-extraordinaria",
+      "name": "NATUREZA EXTRAORDINÁRIA",
+      "mission": "fatos de animais comprovados, em post único com humor leve e informação real",
+      "story_engine": "gancho surpreendente → mecanismo real → implicação → fecho de memória",
+      "art_motif": "fotografia verdadeira de animal com fonte e personagem Lúmino original sobreposto; poster editorial único, nunca fotomontagem enganosa",
+      "format": "meme"
     }
   ],
   "editorial_rotation": {
