@@ -33,17 +33,18 @@ jobs:
             fi
             curl -fsSL --retry 4 --retry-all-errors --max-time 180 "$url" -o "content/media/instagram/2026-11-04/classicos/$file"
           done <<'FILES'
-11-boston-01.jpg|https://gcdn.picsart.com/media-engine/86d595d0-3514-48b7-832f-7fe71d2f270a.jpg
-11-boston-02.jpg|https://gcdn.picsart.com/media-engine/d1b92e6b-8e51-40c2-9206-1adc0c3fb3ab.jpg
-11-boston-03.jpg|https://gcdn.picsart.com/media-engine/11bdc087-a999-4ae6-8956-d5c4cd8f8819.jpg
-11-boston-04.jpg|https://gcdn.picsart.com/media-engine/f28a5b40-8c60-4fa9-8d25-68a986a8cdce.jpg
-11-boston-05.jpg|https://gcdn.picsart.com/media-engine/8049a025-cc46-47f0-aa84-f3cdb0e47272.jpg
-15-ra-congelada.jpg|https://gcdn.picsart.com/media-engine/ff387180-09c7-4459-82f3-12d0e11ce6a0.jpg
-18-m87-01.jpg|https://gcdn.picsart.com/media-engine/63c7330e-d2f3-4e5f-8fec-f067c076407d.jpg
-18-m87-02.jpg|https://gcdn.picsart.com/media-engine/d02b98ed-d526-4ff3-825f-32813c7932af.jpg
-18-m87-03.jpg|https://gcdn.picsart.com/media-engine/651545a8-7a7e-4d7f-a287-283d25126680.jpg
-18-m87-04.jpg|https://gcdn.picsart.com/media-engine/b7b77827-d972-409f-95f7-39f5534b8776.jpg
-FILES
+          11-boston-01.jpg|https://gcdn.picsart.com/media-engine/86d595d0-3514-48b7-832f-7fe71d2f270a.jpg
+          11-boston-02.jpg|https://gcdn.picsart.com/media-engine/d1b92e6b-8e51-40c2-9206-1adc0c3fb3ab.jpg
+          11-boston-03.jpg|https://gcdn.picsart.com/media-engine/11bdc087-a999-4ae6-8956-d5c4cd8f8819.jpg
+          11-boston-04.jpg|https://gcdn.picsart.com/media-engine/f28a5b40-8c60-4fa9-8d25-68a986a8cdce.jpg
+          11-boston-05.jpg|https://gcdn.picsart.com/media-engine/8049a025-cc46-47f0-aa84-f3cdb0e47272.jpg
+          15-ra-congelada.jpg|https://gcdn.picsart.com/media-engine/ff387180-09c7-4459-82f3-12d0e11ce6a0.jpg
+          18-m87-01.jpg|https://gcdn.picsart.com/media-engine/63c7330e-d2f3-4e5f-8fec-f067c076407d.jpg
+          18-m87-02.jpg|https://gcdn.picsart.com/media-engine/d02b98ed-d526-4ff3-825f-32813c7932af.jpg
+          18-m87-03.jpg|https://gcdn.picsart.com/media-engine/651545a8-7a7e-4d7f-a287-283d25126680.jpg
+          18-m87-04.jpg|https://gcdn.picsart.com/media-engine/b7b77827-d972-409f-95f7-39f5534b8776.jpg
+          FILES
+          FILES
           python3 - <<'PY'
           import hashlib,json,pathlib
           from PIL import Image
