@@ -1,6 +1,6 @@
 {
   "id": "tue-2026-11-04-boston-1919-carrossel-imediato",
-  "time_checked": "2026-11-04T18:13:36.295001+00:00",
+  "time_checked": "2026-11-04T18:14:41.481337+00:00",
   "ledger_status": "needs_review",
   "creation_id": "18102820949100158",
   "media_publish_retry_allowed": false,
@@ -12,6 +12,17 @@
     "status": "Published: Media has been successfully published."
   },
   "recent_media_count": 8,
+  "recent_media_ids": [
+    "17896370313614659",
+    "18415064311090702",
+    "18180254872434730",
+    "18141640543620936",
+    "18154222987543257",
+    "18131786309499353",
+    "18107496023215107",
+    "18114706189871027"
+  ],
+  "published_id_appears_in_feed": false,
   "boston_matches": [],
   "partial_published_media": {
     "id": "17997771024013719",
