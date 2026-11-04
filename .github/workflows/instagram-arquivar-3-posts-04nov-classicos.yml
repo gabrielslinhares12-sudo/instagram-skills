@@ -1,0 +1,76 @@
+name: Arquivar três posts clássicos 04NOV
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-arquivar-3-posts-04nov-classicos.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-04nov-tres-classicos-download
+  cancel-in-progress: false
+jobs:
+  imagens:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Baixar dez artes individuais e garantir integridade
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet 'Pillow>=11,<13'
+          mkdir -p content/media/instagram/2026-11-04/classicos
+          while IFS='|' read -r file url; do
+            if test -f "content/media/instagram/2026-11-04/classicos/$file"; then
+              echo "Já arquivado: $file"; continue
+            fi
+            curl -fsSL --retry 4 --retry-all-errors --max-time 180 "$url" -o "content/media/instagram/2026-11-04/classicos/$file"
+          done <<'FILES'
+11-boston-01.jpg|https://gcdn.picsart.com/media-engine/86d595d0-3514-48b7-832f-7fe71d2f270a.jpg
+11-boston-02.jpg|https://gcdn.picsart.com/media-engine/d1b92e6b-8e51-40c2-9206-1adc0c3fb3ab.jpg
+11-boston-03.jpg|https://gcdn.picsart.com/media-engine/11bdc087-a999-4ae6-8956-d5c4cd8f8819.jpg
+11-boston-04.jpg|https://gcdn.picsart.com/media-engine/f28a5b40-8c60-4fa9-8d25-68a986a8cdce.jpg
+11-boston-05.jpg|https://gcdn.picsart.com/media-engine/8049a025-cc46-47f0-aa84-f3cdb0e47272.jpg
+15-ra-congelada.jpg|https://gcdn.picsart.com/media-engine/ff387180-09c7-4459-82f3-12d0e11ce6a0.jpg
+18-m87-01.jpg|https://gcdn.picsart.com/media-engine/63c7330e-d2f3-4e5f-8fec-f067c076407d.jpg
+18-m87-02.jpg|https://gcdn.picsart.com/media-engine/d02b98ed-d526-4ff3-825f-32813c7932af.jpg
+18-m87-03.jpg|https://gcdn.picsart.com/media-engine/651545a8-7a7e-4d7f-a287-283d25126680.jpg
+18-m87-04.jpg|https://gcdn.picsart.com/media-engine/b7b77827-d972-409f-95f7-39f5534b8776.jpg
+FILES
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          from PIL import Image
+          root=pathlib.Path('content/media/instagram/2026-11-04/classicos')
+          expected=['11-boston-01.jpg','11-boston-02.jpg','11-boston-03.jpg','11-boston-04.jpg','11-boston-05.jpg','15-ra-congelada.jpg','18-m87-01.jpg','18-m87-02.jpg','18-m87-03.jpg','18-m87-04.jpg']
+          assets={}
+          for fn in expected:
+              p=root/fn
+              b=p.read_bytes()
+              assert len(b)>15000,fn
+              with Image.open(p) as im:
+                  im.verify()
+              with Image.open(p) as im:
+                  assert im.format=='JPEG' and im.size==(1080,1350),(fn,im.format,im.size)
+              assets[fn]={'sha256':hashlib.sha256(b).hexdigest(),'bytes':len(b),'dimensions':[1080,1350]}
+          m={'version':1,'preset_id':'TUE-MESTRE-01','day':'2026-11-04','status':'assets_rendered_technical_qc_pass','approved_by_owner_for_publication':False,'file_count':10,'posts':{'11h':expected[:5],'15h':[expected[5]],'18h':expected[6:]},'assets':assets,'original_lumino_overlay_asset':'content/brand/lumino-original.png','swipe_cue':'Somente nos slides não finais de carrossel','sources_external_licensed':True}
+          (root/'RENDER-QC.json').write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('RENDER_QC='+json.dumps(m,ensure_ascii=False))
+          PY
+      - name: Guardar somente os JPEGs e recibo, sem publicar
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- content/media/instagram/2026-11-04/classicos
+          if git diff --cached --quiet; then
+            echo 'Já arquivado'; exit 0
+          fi
+          git commit -m 'media(instagram): 3 posts clássicos 04NOV, dez JPEGs e SHA-256'
+          git pull --rebase origin main
+          git push origin HEAD:main
