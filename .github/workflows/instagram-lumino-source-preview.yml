@@ -1,0 +1,39 @@
+name: Preparar extrato exato do Lumino original para correcoes
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-lumino-source-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Confirmar fonte oficial e gerar miniatura fiel com alfa
+        run: |
+          set -euo pipefail
+          python -m pip install -q Pillow
+          python - <<'PY'
+          from PIL import Image
+          import hashlib,base64,pathlib
+          src=pathlib.Path('content/brand/lumino-original.png')
+          assert hashlib.sha256(src.read_bytes()).hexdigest()=='f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b'
+          im=Image.open(src).convert('RGBA')
+          im.thumbnail((520,540),Image.Resampling.LANCZOS)
+          target=pathlib.Path('content/brand/lumino-original-mini-exato.webp')
+          im.save(target,'WEBP',quality=79,method=6,alpha_quality=98)
+          b=target.read_bytes()
+          pathlib.Path('content/brand/lumino-original-mini-exato.b64').write_text(base64.b64encode(b).decode('ascii'),encoding='ascii')
+          print('CANONICAL_MINI',im.size,len(b),hashlib.sha256(b).hexdigest())
+          PY
+      - name: Guardar copia tecnica sem mudar original
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/brand/lumino-original-mini-exato.webp content/brand/lumino-original-mini-exato.b64
+          git commit -m 'assets(instagram): extrato fiel do PNG original para edicao de 04NOV'
+          git pull --rebase origin main
+          git push origin HEAD:main
