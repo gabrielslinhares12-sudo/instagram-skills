@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/instagram-recriar-boston-lumino-original-04nov.yml'
+      - 'scripts/render_tue_mestre_04nov_rework.py'
   workflow_dispatch:
 permissions:
   contents: write
