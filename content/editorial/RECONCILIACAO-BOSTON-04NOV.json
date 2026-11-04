@@ -1,0 +1,16 @@
+{
+  "id": "tue-2026-11-04-boston-1919-carrossel-imediato",
+  "time_checked": "2026-11-04T18:05:06.604725+00:00",
+  "ledger_status": "needs_review",
+  "creation_id": "18102820949100158",
+  "media_publish_retry_allowed": false,
+  "instagram_user_id": "17841433004716815",
+  "source": "Read-only GET against official Meta Graph API; no POST",
+  "container": {
+    "id": "18102820949100158",
+    "status_code": "FINISHED",
+    "status": "Finished: Media has been uploaded and it is ready to be published."
+  },
+  "recent_media_count": 8,
+  "boston_matches": []
+}
