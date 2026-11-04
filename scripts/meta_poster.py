@@ -170,6 +170,13 @@ def validate_payload(kind: str, target_url: str, payload: Any,
             raise MetaError("Image posts and carousel items require JPEG media.")
     if "is_ai_generated" in payload and not isinstance(payload["is_ai_generated"], bool):
         raise MetaError("is_ai_generated must be a Boolean when supplied.")
+    if "trial_reel" in payload:
+        # Trial Reels are a distinct non-follower launch mode. Never silently
+        # publish as a normal Reel if an account is ineligible.
+        if payload["trial_reel"] is not True or kind != "reel":
+            raise MetaError("trial_reel must be true and applies only to Reels.")
+        if payload.get("is_ai_generated") is not True:
+            raise MetaError("Synthetic-voice trial Reels need mandatory AI disclosure.")
     if "cover_url" in payload:
         if kind != "reel":
             raise MetaError("cover_url is supported only for Reels.")
@@ -178,7 +185,7 @@ def validate_payload(kind: str, target_url: str, payload: Any,
         if cover_suffix and cover_suffix not in {".jpg", ".jpeg"}:
             raise MetaError("A Reel cover requires JPEG media.")
     allowed = {"kind", "target_url", "draft_text", "approved", "media_urls", "media", "scheduled_time",
-               "is_ai_generated", "cover_url"}
+               "is_ai_generated", "cover_url", "trial_reel"}
     if set(payload) - allowed:
         raise MetaError("The payload contains unsupported options.")
     return caption, urls
@@ -335,8 +342,16 @@ class MetaPoster:
             elif kind == "reel":
                 if "cover_url" in payload:
                     options["cover_url"] = payload["cover_url"]
+                trial = payload.get("trial_reel") is True
+                if trial:
+                    # As of Meta Content Publishing 2026: graduation_strategy
+                    # MANUAL keeps the Trial Reel out of followers' regular feed.
+                    # If Meta refuses trial_params, never retry as normal.
+                    options["trial_params"] = json.dumps(
+                        {"graduation_strategy": "MANUAL"}, separators=(",", ":"))
                 self._create_container({"media_type": "REELS", "video_url": media_urls[0],
-                                        "share_to_feed": "true", **options}, reel=True)
+                                        "share_to_feed": "false" if trial else "true",
+                                        **options}, reel=True)
             else:
                 self._create_container({"image_url": media_urls[0], **options})
             published = self._request("POST", f"{self.config.user_id}/media_publish",
