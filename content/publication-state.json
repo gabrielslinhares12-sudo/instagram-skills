@@ -146,7 +146,7 @@
       "verified_child_count": 5
     },
     "tue-2026-11-04-16-oncas": {
-      "status": "publishing",
+      "status": "published",
       "final_album_claimed_at": "2026-11-04T18:56:38.604387+00:00",
       "final_album_preflight_count": 9,
       "final_album_children": [
@@ -160,7 +160,25 @@
         "18102830261100158"
       ],
       "final_album_parent": "18102830282100158",
-      "final_album_media_id": "18631997524014006"
+      "final_album_media_id": "18631997524014006",
+      "previous_partial_attempt": {
+        "creation_id": null,
+        "media_id": null,
+        "published_at": null,
+        "actual_media_type": null,
+        "technical_note": null
+      },
+      "creation_id": "18102830282100158",
+      "media_id": "18631997524014006",
+      "permalink": "https://www.instagram.com/p/DfVJzrkF6aj/",
+      "published_at": "2026-11-04T19:00:01+0000",
+      "actual_media_type": "CAROUSEL_ALBUM",
+      "carousel_published": true,
+      "partial_image_published": false,
+      "manual_cleanup_required": false,
+      "verified_child_count": 8,
+      "recovery_same_creation_id": false,
+      "technical_note": "Eight-image parent album verified by official Meta GET."
     }
   }
 }
