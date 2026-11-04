@@ -275,6 +275,39 @@
         "https://www.gov.br/mdr/pt-br/assuntos/protecao-e-defesa-civil/defesa-civil-alerta/mas-o-que-e-defesa-civil-alerta"
       ],
       "approval_note": "Autorização de continuidade do proprietário em 03/11/2026: completar o primeiro Reel, usar Meta API, publicar em 04/11 às 18h BRT. Voz gerada Rasalgethi com IA: etiqueta AI info obrigatória da Meta. MP4 imutável 42s com legendas e QC em content/approved/tue-2026-11-04-18-defesa-civil-alerta/approval.json. Sem música ou Story. Atualização técnica validada por job 41717386127: áudio AAC ~118kbps, vídeo H264 + faststart, SHA256 02f3044f... ALTERAÇÃO EXPRESSA 03/11/2026 ~18:17 BRT: usuário ordenou 'Poste ele imediatamente'. Antecipar publicação para 03/11/2026 18:17 BRT, cancelando horário original de 04/11 às 18h; sem duplicação. Um único envio."
+    },
+    {
+      "id": "tue-2026-11-04-boston-1919-carrossel-imediato",
+      "due_at": "2026-11-04T17:55:30Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "A CIDADE ENGOLIDA POR MELAÇO — BOSTON 1919",
+      "caption": "Boston, 1919: uma cidade foi atingida por uma onda de melaço. 😮 O rompimento de um enorme reservatório liberou cerca de 8,7 milhões de litros, atingiu casas e ruas e provocou a morte de 21 pessoas. O desastre expôs graves falhas de segurança industrial e deixou lições que seguem atuais. 📚 Fonte: arquivos históricos da Prefeitura de Boston. Tem uma explicação. #TemUmaExplicacao #HistoriaReal #Boston #Curiosidades #Ciencia #Historia",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5771a6ee4c61f44561f77d4a0e0712f83d420f61/content/media/instagram/2026-11-04/boston-aprovado-publicacao/BOSTON-CARROSSEL-FINAL-05.jpg"
+      ],
+      "media_sha256": [
+        "08d7586dbd5128e6724961b70bd424f8304165fa98bf76f3b8c6b2911f5db342",
+        "73a1bc03a2e3ba6c4bd90b29a3a011554c1ee5aee65702f2c4dfe5c8c0b38be5",
+        "891858906de4b4c4110b242e7a3b47f12744b0d0896b54dc7989b5994fd94ff6",
+        "6257fa8efdb1d99678ae6d1e95be3dd1169e707363be4af7ae9915b18a46e136",
+        "9a859f7017e94f4c696e817e83fe96bc38fd51a0ae48ec27a7569f7501147336"
+      ],
+      "approved": true,
+      "distribution_mode": "api_carousel_without_native_music",
+      "owner_authorized_without_music": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "sources": [
+        "https://content.boston.gov/news/100-years-ago-today-molasses-crashes-through-bostons-north-end"
+      ],
+      "approval_note": "Autorização do usuário no chat. Usar apenas cinco JPGs exatos fixados por SHA, sem música e sem Story; não alegar validação da identidade pixel a pixel. A política Meta pode aplicar etiquetas próprias."
     }
   ]
 }
