@@ -10,6 +10,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 from pathlib import Path
 from urllib.request import Request, urlopen
 import hashlib, io, json, random, math, os
+import numpy as np
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"content/media/instagram/2026-11-04/REWORK-TUE-MESTRE-01"
@@ -40,16 +41,13 @@ def load_photo(url):
     return pic.convert("RGB")
 
 def base(seed):
-    rng=random.Random(seed)
-    im=Image.new("RGB",(W,H),PAPER)
-    # Actual paper grain, not a flat-color card
-    pixels=im.load()
-    for y in range(H):
-        for x in range(W):
-            v=rng.randrange(-8,9)
-            if x<45*S or y<35*S or x>W-40*S: v-=3
-            pixels[x,y]=(max(0,min(255,PAPER[0]+v)),max(0,min(255,PAPER[1]+v)),max(0,min(255,PAPER[2]+v)))
-    return im
+    # Grain in true RGB pixels (vectorized), not a plain-colored card.
+    rng=np.random.default_rng(seed)
+    grain=rng.integers(-8,9,size=(H,W),dtype=np.int16)
+    edge=np.zeros((H,W),dtype=np.int16)
+    edge[:35*S,:]=-3; edge[:,:45*S]-=3;edge[:,W-40*S:]-=3
+    rgb=np.stack([np.clip(c+grain+edge,0,255).astype(np.uint8) for c in PAPER],axis=2)
+    return Image.fromarray(rgb,"RGB")
 
 def rect(d,xy,color,width=0):
     d.rectangle(tuple(int(t*S) for t in xy),fill=color if width==0 else None,outline=color if width else None,width=width*S)
