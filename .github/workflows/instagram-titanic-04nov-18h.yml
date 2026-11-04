@@ -1,0 +1,122 @@
+name: Instagram TUE - Titanic sem tarjas 04NOV 18h BRT
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-titanic-04nov-18h.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: instagram-temumaexplicacao-publication
+  cancel-in-progress: false
+jobs:
+  publish_titanic:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Prepare Meta-compatible exact source (no publication yet)
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          dir=content/media/instagram/2026-11-04/titanic-sem-tarjas-v3
+          mkdir -p "$dir"
+          curl -fsSL --retry 3 --max-time 360 \
+            'https://gcdn.picsart.com/media-engine/e02c6cfd-e72e-494d-a03d-5d7a6c9c959b.mp4' \
+            -o /tmp/titanic-source.mp4
+          ffmpeg -hide_banner -loglevel error -y -i /tmp/titanic-source.mp4 \
+            -c:v copy -c:a aac -b:a 128k -ar 48000 -ac 2 -movflags +faststart \
+            "$dir/REEL-TITANIC-META-1080X1920-60FPS.mp4"
+          python3 - <<'PY'
+          import json, pathlib, subprocess
+          p=pathlib.Path('content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS.mp4')
+          d=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,width,height,r_frame_rate,sample_rate,bit_rate','-of','json',str(p)],text=True))
+          v=[x for x in d['streams'] if x['codec_type']=='video']
+          a=[x for x in d['streams'] if x['codec_type']=='audio']
+          assert len(v)==1 and (v[0]['width'],v[0]['height'])==(1080,1920)
+          assert v[0]['codec_name']=='h264' and v[0]['r_frame_rate']=='60/1'
+          assert a and a[0]['codec_name']=='aac' and a[0]['sample_rate']=='48000'
+          assert 41.5<float(d['format']['duration'])<42.5
+          assert 10000000<p.stat().st_size<300000000
+          print('META_MEDIA_PROBE=passed')
+          schedule=pathlib.Path('content/schedule.json')
+          document=json.loads(schedule.read_text('utf-8'))
+          ids=[x for x in document['posts'] if x['id']=='tue-2026-11-04-18-titanic-sem-tarjas-v3']
+          assert len(ids)==1 and ids[0]['due_at']=='2026-11-04T21:00:00Z' and ids[0]['approved'] is True
+          ids[0]['media_urls']=['https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS.mp4']
+          schedule.write_text(json.dumps(document,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          print('SCHEDULE_TARGET=2026-11-04T21:00:00Z')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/media/instagram/2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS.mp4 content/schedule.json
+          git commit -m 'media(instagram): prepare final Titanic Meta delivery and bind 18h queue'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Wait for 18h Brasilia (4 November 2026)
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import datetime,time
+          now=lambda:datetime.datetime.now(datetime.timezone.utc)
+          due=datetime.datetime(2026,11,4,21,0,tzinfo=datetime.timezone.utc)
+          cutoff=due+datetime.timedelta(hours=2)
+          if now()>=cutoff:
+              raise SystemExit('Deadline expired; never post late')
+          while now()<due:
+              time.sleep(min(15,(due-now()).total_seconds()))
+          print('PUBLICATION_WINDOW_OPEN=true')
+          PY
+      - name: Refresh ledger and require exact Titanic item due, no duplicates
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+          python3 scripts/instagram_queue.py --dry-run > /tmp/instagram-titanic-plan.json
+          python3 - <<'PY'
+          import json,os
+          d=json.load(open('/tmp/instagram-titanic-plan.json'))
+          target='tue-2026-11-04-18-titanic-sem-tarjas-v3'
+          row=next(x for x in d['items'] if x['id']==target)
+          due=[x['id'] for x in d['items'] if x['status']=='due']
+          if row['status']=='due' and due==[target]:
+              with open(os.environ['GITHUB_ENV'],'a') as f:
+                  f.write('TITANIC_POST_DUE=true\n')
+              print('READY=due and unique')
+          elif row['status'] in {'published','claimed','needs_review','changed_after_claim'}:
+              print('SAFE_SKIP=previous claim or publication, never duplicate')
+          else:
+              raise SystemExit('Queue gate blocks post with status '+row['status'])
+          PY
+      - name: Meta official preflight and publish once
+        if: env.TITANIC_POST_DUE == 'true'
+        env:
+          INSTAGRAM_SCHEDULER_ENABLED: 'true'
+          FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
+          FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
+          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
+          INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/instagram_preflight.py
+          python3 scripts/instagram_queue.py --execute
+      - name: Show confirmed ledger state without re-uploading
+        if: always()
+        shell: bash
+        run: |
+          git fetch origin main
+          git show origin/main:content/publication-state.json | python3 -c "import sys,json;d=json.load(sys.stdin);r=d.get('items',{}).get('tue-2026-11-04-18-titanic-sem-tarjas-v3',{}); print('FINAL_STATUS='+str(r.get('status','not_claimed'))); print('MEDIA_ID='+str(r.get('media_id','unconfirmed')))"
