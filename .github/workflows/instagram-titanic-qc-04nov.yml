@@ -93,26 +93,11 @@ jobs:
           path.write_text(json.dumps(receipt,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
           qa=pathlib.Path('scripts/instagram_visual_standard.py')
           q=qa.read_text(encoding='utf-8')
-          old='''    rx = (r"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/"
-          r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
-          r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-(?:LEGENDADO|META)\\.mp4")
-'''
-          new='''    if slug == "tue-2026-11-04-18-titanic-sem-tarjas-v3":
-        rx = (r"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/"
-              r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
-              r"2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS\\.mp4")
-        media_on_disk = (root / "content/media/instagram/2026-11-04/titanic-sem-tarjas-v3"
-                         / "REEL-TITANIC-META-1080X1920-60FPS.mp4")
-        if (not media_on_disk.is_file() or sha256(media_on_disk) != hashes[0]
-                or receipt.get("caption_background") is not False or receipt.get("fps") != 60):
-            raise VisualError(f"Reel Titanic sem integridade ou legenda limpa: {slug}")
-    else:
-        rx = (r"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/"
-              r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
-              r"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-(?:LEGENDADO|META)\\.mp4")
-'''
-          assert old in q, 'Expected exact legacy Reel QA block'
-          qa.write_text(q.replace(old,new,1),encoding='utf-8')
+          start=q.index('    rx = (r"https://raw')
+          end=q.index('    match = re.fullmatch(rx, media[0])',start)
+          assert 'Reel-Defesa-Civil' in q[start:end]
+          new_lines=["    if slug == \"tue-2026-11-04-18-titanic-sem-tarjas-v3\":","        rx = (r\"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/\"","              r\"instagram-skills/([a-f0-9]{40})/content/media/instagram/\"","              r\"2026-11-04/titanic-sem-tarjas-v3/REEL-TITANIC-META-1080X1920-60FPS\\.mp4\")","        media_on_disk = (root / \"content/media/instagram/2026-11-04/titanic-sem-tarjas-v3\"","                         / \"REEL-TITANIC-META-1080X1920-60FPS.mp4\")","        if (not media_on_disk.is_file() or sha256(media_on_disk) != hashes[0]","                or receipt.get(\"caption_background\") is not False or receipt.get(\"fps\") != 60):","            raise VisualError(f\"Reel Titanic sem integridade ou legenda limpa: {slug}\")","    else:","        rx = (r\"https://raw\\.githubusercontent\\.com/gabrielslinhares12-sudo/\"","              r\"instagram-skills/([a-f0-9]{40})/content/media/instagram/\"","              r\"2026-11-04/release/Reel-Defesa-Civil-Rasalgethi-(?:LEGENDADO|META)\\.mp4\")"]
+          qa.write_text(q[:start]+'\n'.join(new_lines)+'\n'+q[end:],encoding='utf-8')
           print('RELEASE_BOUND_TO_COMMIT='+sha)
           print('RELEASE_SHA256='+digest)
           PY
