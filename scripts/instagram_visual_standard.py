@@ -317,11 +317,12 @@ def verify_reel_release(root: Path, post: dict) -> str:
     if slug == "tue-2026-11-04-extra-trial-sprites":
         rx = (r"https://raw\.githubusercontent\.com/gabrielslinhares12-sudo/"
               r"instagram-skills/([a-f0-9]{40})/content/media/instagram/"
-              r"2026-11-04/trial-sprites-v2-clean/REEL-TRIAL-SPRITES-CLEAN-60FPS\.mp4")
-        media_on_disk = (root / "content/media/instagram/2026-11-04/trial-sprites-v2-clean"
+              r"2026-11-04/trial-sprites-v3-title3s/REEL-TRIAL-SPRITES-CLEAN-60FPS\.mp4")
+        media_on_disk = (root / "content/media/instagram/2026-11-04/trial-sprites-v3-title3s"
                          / "REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4")
         if (not media_on_disk.is_file() or sha256(media_on_disk) != hashes[0]
                 or receipt.get("caption_background") is not False or receipt.get("fps") != 60
+                or receipt.get("opening_title_duration_seconds") != 3
                 or receipt.get("trial_reel") is not True
                 or receipt.get("graduation_strategy") != "MANUAL"
                 or post.get("trial_reel") is not True):

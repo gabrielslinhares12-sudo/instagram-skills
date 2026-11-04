@@ -343,11 +343,11 @@
       "title": "O relâmpago que aparece acima das nuvens",
       "caption": "⚡ Você sabia que existem relâmpagos que surgem acima das tempestades? Eles são chamados sprites vermelhos: descargas breves e surpreendentes na alta atmosfera. Astronautas já fotografaram esse fenômeno da Estação Espacial Internacional.\n\nVocê já tinha ouvido falar deles?\n\n#SpritesVermelhos #Ciencia #Atmosfera #Curiosidades #TemUmaExplicacao",
       "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/eb982b4dbacc4ab9f698eee886fae1272022fb55/content/media/instagram/2026-11-04/trial-sprites-v2-clean/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4"
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/a1ef48dadfaf82cd1efd360225795ded4b8d0adb/content/media/instagram/2026-11-04/trial-sprites-v3-title3s/REEL-TRIAL-SPRITES-CLEAN-60FPS.mp4"
       ],
-      "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/eb982b4dbacc4ab9f698eee886fae1272022fb55/content/media/instagram/2026-11-04/trial-sprites-v2-clean/CAPA-TRIAL-SPRITES-CLEAN.jpg",
+      "cover_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/a1ef48dadfaf82cd1efd360225795ded4b8d0adb/content/media/instagram/2026-11-04/trial-sprites-v3-title3s/CAPA-TRIAL-SPRITES-CLEAN.jpg",
       "media_sha256": [
-        "33c9bb766f9a9a75f4cff48cfcae816940f37e6931cc8aa89a719afa9aa7ba04"
+        "402a341e18916f1caf0ac4f93924517b375369ab334d1af03a0ce97b68d9cbc0"
       ],
       "approved": true,
       "trial_reel": true,
@@ -358,7 +358,7 @@
         "https://science.nasa.gov/earth/earth-observatory/red-sprites-above-the-us-and-central-america-86463/",
         "https://science.nasa.gov/earth/earth-observatory/elusive-sprite-captured-from-the-international-space-station-78487/"
       ],
-      "approval_note": "Trial Reel aprovado pelo proprietario para 04NOV 18h30 Brasilia; MANUAL graduation. Nunca publicar em modo normal se trial_params for recusado. Legendas sem tarjas."
+      "approval_note": "Revisao solicitada em 04NOV: titulo superior somente de 0 a 3 segundos. Restante do Reel sem titulo superior; legendas inferiores mantidas. Trial Reel MANUAL, nao promover ao feed. Publicar 18h30 BRT."
     }
   ]
 }
