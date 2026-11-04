@@ -152,8 +152,8 @@ BOSTON=[
   {"title":["UMA CIDADE","SOTERRADA"],"emph":"POR MELAÇO.","fact":"BOSTON, 15 DE JANEIRO DE 1919","tag":"ARQUIVO REAL", "src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/BostonMolassesDisaster.jpg","kind":"cover"},
   {"title":["UM TANQUE","SE ROMPEU"],"emph":"15 METROS.","fact":"A ESTRUTURA NÃO RESISTIU.","tag":"A ORIGEM", "src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/North%20End%20molasses%20tank.jpg","kind":"evidence"},
   {"title":["8,7 MILHÕES","DE LITROS"],"emph":"INVADIRAM AS RUAS.","fact":"CASAS E TRILHOS FORAM ATINGIDOS.","tag":"O VOLUME", "src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Boston%20post-January%2016%2C%201919%2C.jpg","kind":"number"},
-  {"title":["21 PESSOAS","MORRERAM"],"emph":"150 FERIDOS.","fact":"UMA TRAGÉDIA, NÃO UMA LENDA.","tag":"AS VÍTIMAS", "src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/TheBostonDailyGlobe-frontpage-1919-1-16.jpg","kind":"news"},
-  {"title":["O DESASTRE","DEIXOU MARCAS"],"emph":"SEGURANÇA IMPORTA.","fact":"A INVESTIGAÇÃO MUDOU O DEBATE INDUSTRIAL.","tag":"O LEGADO", "src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Molasses%20Flood%20Historical%20Marker.jpg","kind":"end"}
+  {"title":["21 PESSOAS","MORRERAM"],"emph":"150 FERIDOS.","fact":"UMA TRAGÉDIA, NÃO UMA LENDA.","tag":"AS VÍTIMAS", "src":"https://www.boston.com/wp-content/uploads/2019/01/prd-meth01-idx-bg.boston-17.jpg","kind":"news"},
+  {"title":["O DESASTRE","DEIXOU MARCAS"],"emph":"SEGURANÇA IMPORTA.","fact":"A INVESTIGAÇÃO MUDOU O DEBATE INDUSTRIAL.","tag":"O LEGADO", "src":"https://www.boston.com/wp-content/uploads/2019/01/prd-meth01-idx-bg.boston-1-5.jpg","kind":"end"}
 ]
 M87=[
   {"title":["FOTOGRAFARAM","O INVISÍVEL?"],"emph":"SIM. EM 2019.","fact":"A PRIMEIRA SOMBRA DE UM BURACO NEGRO.","tag":"REGISTRO REAL", "src":"https://nsf-gov-resources.nsf.gov/2024-12/Event%20Horizon%20Black%20Hole%20Image.jpg","kind":"cover"},
@@ -214,7 +214,7 @@ def paint_page(subject,data,idx,total,source):
         draw_text(d,(76,1081),data["emph"],44,RED,maxw=820)
         mascot(im,655,728,402)
         draw_text(d,(74,1181),data["fact"],22,INK,"bold",maxw=900)
-    footer(im,idx,total,"FONTES: BOSTON CITY ARCHIVES / WIKIMEDIA" if subject=="BOSTON" else "FONTES: EHT / NSF / ESO / ESA")
+    footer(im,idx,total,"FONTE: ARQUIVOS BOSTON GLOBE / WIKIMEDIA" if subject=="BOSTON" else "FONTES: EHT / NSF / ESO / ESA")
     return im
 
 def main():
