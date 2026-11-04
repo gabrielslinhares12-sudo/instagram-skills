@@ -21,8 +21,9 @@ jobs:
             "https://content.boston.gov/sites/default/files/img/2019/m/molasses1_1.jpg"
             "https://content.boston.gov/sites/default/files/img/2019/m/molasses4_0.jpg"
             "https://content.boston.gov/sites/default/files/img/2019/m/molasses6_0.jpg"
+            "https://content.boston.gov/sites/default/files/img/2019/m/molasses3_0.jpg"
           )
-          files=(tanque-antes.jpg destrocos-ponte.jpg panorama-destrocos.jpg limpeza-ruas.jpg)
+          files=(tanque-antes.jpg destrocos-ponte.jpg panorama-destrocos.jpg limpeza-ruas.jpg vistoria-ponte.jpg)
           for i in ${!urls[@]}; do
             curl -fL --retry 4 --retry-all-errors --max-time 100 \
               -A "Mozilla/5.0 (compatible; TUE-Studio-Editorial/1.0)" \
@@ -39,7 +40,7 @@ jobs:
               with Image.open(p) as im:
                   print(p.name, im.size, p.stat().st_size)
                   assert im.width>400 and im.height>300
-          assert len(list(pathlib.Path("boston-arquivo").glob("*.jpg")))==4
+          assert len(list(pathlib.Path("boston-arquivo").glob("*.jpg")))==5
           PY
       - uses: actions/upload-artifact@v4
         with:
