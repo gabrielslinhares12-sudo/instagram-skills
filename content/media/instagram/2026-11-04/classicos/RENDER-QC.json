@@ -2,7 +2,7 @@
   "version": 1,
   "preset_id": "TUE-MESTRE-01",
   "day": "2026-11-04",
-  "status": "all_10_jpegs_verified_including_correct_m87_EHT_image",
+  "status": "REJECTED_VISUAL_TUE_MESTRE_01__DO_NOT_PUBLISH",
   "approved_by_owner_for_publication": false,
   "file_count": 10,
   "posts": {
@@ -109,5 +109,21 @@
   "swipe_cue": "Somente nos slides não finais de carrossel",
   "sources_external_licensed": true,
   "m87_image_01_and_04_corrected": true,
-  "m87_photo_original": "https://nsf-gov-resources.nsf.gov/2024-12/Event%20Horizon%20Black%20Hole%20Image.jpg"
+  "m87_photo_original": "https://nsf-gov-resources.nsf.gov/2024-12/Event%20Horizon%20Black%20Hole%20Image.jpg",
+  "manual_visual_qc_passed": false,
+  "visual_rejection_reason": "04NOV: capas e miolo de Boston e M87 usam fundo escuro genérico, barra amarela lisa em vez da pincelada aprovada, Lúmino pequeno como adesivo, cenas repetitivas e tipografia branca. Divergem da referência 02NOV (papel #F4EDE1, tinta #111111, pincel amarelo #FFD600, acento vermelho #D50E15, Lúmino grande, rodapé claro com pontos cinza/amarelo e texto discreto). Reprovado por proprietário: 'Os carrosseis que fez também estão fora do padrão.'",
+  "rejected_assets": [
+    "11-boston-01.jpg",
+    "11-boston-02.jpg",
+    "11-boston-03.jpg",
+    "11-boston-04.jpg",
+    "11-boston-05.jpg",
+    "18-m87-01.jpg",
+    "18-m87-02.jpg",
+    "18-m87-03.jpg",
+    "18-m87-04.jpg"
+  ],
+  "single_post_15h_review_status": "Visual do post único também pendente de comparação, sem aprovação automática",
+  "do_not_promote_to_schedule": true,
+  "supersession_requires": "new unique final assets, direct visual comparison with the exact approved master and human release; never re-label these hashes as approved"
 }
