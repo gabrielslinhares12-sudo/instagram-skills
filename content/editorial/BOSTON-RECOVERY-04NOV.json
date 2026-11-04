@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "tue-2026-11-04-boston-1919-carrossel-imediato",
-  "status": "authorized",
-  "attempts_remaining": 1,
+  "status": "claimed",
+  "attempts_remaining": 0,
   "creation_id": "18102820949100158",
   "original_action_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/41876614001",
   "read_only_audit": "content/editorial/RECONCILIACAO-BOSTON-04NOV.json",
@@ -15,5 +15,8 @@
   },
   "retry_method": "same_creation_id_media_publish_only",
   "safety": "No reupload. No creating containers. No retry of this recovery. Verify current account feed and finished container immediately before POST.",
-  "publication_confirmed": false
+  "publication_confirmed": false,
+  "claimed_at": "2026-11-04T18:08:12.620413+00:00",
+  "github_run_id": "41883990848",
+  "github_run_attempt": "1"
 }
