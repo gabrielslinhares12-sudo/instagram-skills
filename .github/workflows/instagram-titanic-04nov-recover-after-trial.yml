@@ -30,6 +30,8 @@ jobs:
           set -euo pipefail
           git fetch origin main
           git reset --hard origin/main
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           python3 - <<'PY'
           import json, pathlib, hashlib
           slug='tue-2026-11-04-18-titanic-sem-tarjas-v3'
