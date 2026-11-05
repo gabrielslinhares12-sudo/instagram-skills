@@ -1,0 +1,66 @@
+name: TUE 05NOV Lúmino origem - 6 artes canônicas sem publicação
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/tue_05nov_lumino_origin.py'
+      - '.github/workflows/tue-05nov-lumino-origin-render.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tue-05nov-lumino-origin-render
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar Pillow
+        run: python -m pip install Pillow==11.3.0
+      - name: Render seis artes com Lúmino original verificado
+        run: python scripts/tue_05nov_lumino_origin.py
+      - name: QC dimensional e narrativa
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import json
+          p=Path('content/media/instagram/2026-11-05/lumino-origem')
+          j=json.loads((p/'manifest.json').read_text())
+          assert j['approved'] is False and j['published'] is False
+          assert len(j['pages'])==6
+          for page in j['pages']:
+              with Image.open(p/page['file']) as im:
+                  assert im.size == (1080,1350) and im.format=='JPEG'
+          with Image.open(p/'PREVIA-06-ARTES.png') as im:
+              assert im.size==(972,810)
+          print("QC TECNICO OK; revisão visual/editorial ainda pendente")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tue-05nov-lumino-origem-6-artes
+          path: |
+            content/media/instagram/2026-11-05/lumino-origem/*.jpg
+            content/media/instagram/2026-11-05/lumino-origem/PREVIA-06-ARTES.png
+            content/media/instagram/2026-11-05/lumino-origem/manifest.json
+          retention-days: 7
+          if-no-files-found: error
+      - name: Release das imagens editoriais, não postagem
+        env:
+          GH_TOKEN: \${{ github.token }}
+        run: |
+          dir=content/media/instagram/2026-11-05/lumino-origem
+          tag=tue-05nov-lumino-origem-rascunho
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release upload "$tag" "$dir"/*.jpg "$dir"/PREVIA-06-ARTES.png "$dir"/manifest.json --clobber
+          else
+            gh release create "$tag" "$dir"/*.jpg "$dir"/PREVIA-06-ARTES.png "$dir"/manifest.json \
+              --title "Lúmino: origem fictícia - 6 artes TUE-MESTRE-01" \
+              --notes "Conteúdo ficcional, artes individuais 1080x1350, Lúmino PNG original. Apenas rascunho; não publicado nem aprovado pelo proprietário." \
+              --target main
+          fi
