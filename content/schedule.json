@@ -380,6 +380,39 @@
       "ai_disclosure_review": "mandatory_realistic_synthetic_audio",
       "sources": [],
       "approval_note": "Aprovado explicitamente pelo proprietário em 05/11: publicar este video enviado, primeira postagem do dia, 10h Brasilia. A versao de hospedagem atualmente fixada e conversao audiovisual do arquivo fornecido; prioridade substituir por original 4K60 antes do horario, sem alterar cenas ou narracao. Publicacao no Instagram via API oficial Meta, sem Story nem musica."
+    },
+    {
+      "id": "tue-2026-11-05-lumino-historia-final-aprovada",
+      "due_at": "2026-11-05T19:41:44Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "Quem é o Lúmino? A história do nosso detetive da curiosidade",
+      "caption": "💡🔎 QUEM É O LÚMINO?\n\nToda grande explicação começa com uma pergunta. Conheça a história do nosso detetive da curiosidade: uma lanterna que ilumina ideias e investiga os mistérios do mundo, do oceano às estrelas.\n\nEle segue três passos: observa, busca pistas e confere as explicações. Agora, a próxima pergunta é sua!\n\nQual mistério devemos investigar juntos?\n\n#TemUmaExplicacao #Lumino #Curiosidades #Ciencia #HistoriaDoLumino",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/ce0b441ac5303fd1eb477eeab148b48da6058639/content/media/instagram/2026-11-05/LUMINO-HISTORIA-FINAL-APROVADO/LUMINO-HISTORIA-FINAL-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/ce0b441ac5303fd1eb477eeab148b48da6058639/content/media/instagram/2026-11-05/LUMINO-HISTORIA-FINAL-APROVADO/LUMINO-HISTORIA-FINAL-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/ce0b441ac5303fd1eb477eeab148b48da6058639/content/media/instagram/2026-11-05/LUMINO-HISTORIA-FINAL-APROVADO/LUMINO-HISTORIA-FINAL-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/ce0b441ac5303fd1eb477eeab148b48da6058639/content/media/instagram/2026-11-05/LUMINO-HISTORIA-FINAL-APROVADO/LUMINO-HISTORIA-FINAL-04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/ce0b441ac5303fd1eb477eeab148b48da6058639/content/media/instagram/2026-11-05/LUMINO-HISTORIA-FINAL-APROVADO/LUMINO-HISTORIA-FINAL-05.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/ce0b441ac5303fd1eb477eeab148b48da6058639/content/media/instagram/2026-11-05/LUMINO-HISTORIA-FINAL-APROVADO/LUMINO-HISTORIA-FINAL-06.jpg"
+      ],
+      "media_sha256": [
+        "7d5b4ce12a307cb1a4a58de95c379646210134f5f286f296965fe3cfbf67ec88",
+        "8f009dcc82e9341d74c0e4fa899a1070b10b2422a381225adbc2dda3f124ca35",
+        "e242d3fd3b0a3fd5e8296ec8330b5d5aeace6dc198c0a7169b7a42bf003ce490",
+        "eaf58274cdc0f9edda32995d62ef8fdb6de3e91f36dafcdf303a5d2bb848c78a",
+        "3dad49f3b20b489209e1d4c2602b8c2e81c38e449b7d8499853dfaee21c1fb62",
+        "03375b61b262214559892a41258a9f40cda1f57031717acd92f4b6f97a127952"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "distribution_mode": "api_carousel_without_native_music",
+      "owner_authorized_without_music": true,
+      "sources": [],
+      "approval_note": "Usuario aprovou expressamente a postagem imediata das seis artes diferenciadas no chat em 2026-11-05; sem musica e sem story."
     }
   ]
 }
