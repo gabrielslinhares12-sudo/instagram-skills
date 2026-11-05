@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-05",
+  "title": "Quem é o Lúmino?",
+  "publication_target": "@temumaexplicacao",
+  "owner_authorization": "Poste isso imediatamente no nosso Instagram, muito bom!!",
+  "images_are_exact_owner_approved_20261105": true,
+  "visual_standard": "TUE-MESTRE-01",
+  "format": "JPEG",
+  "size": [
+    1080,
+    1350
+  ],
+  "ai_origin": "synthetic",
+  "kind": "carousel",
+  "images": [
+    {
+      "order": 1,
+      "name": "01-quem-e-o-lumino.jpg",
+      "sha256": "2b2fcc4478b952ff14a4675d1d296a4115ab500555caa7c33e17e9a24da2e2e2"
+    },
+    {
+      "order": 2,
+      "name": "02-onde-tudo-comecou.jpg",
+      "sha256": "0dfe3f51e75040b92b65ef47e65412aa8b1e67f3bf9c476c0e0894ab015f2cf3"
+    },
+    {
+      "order": 3,
+      "name": "03-nao-e-magia.jpg",
+      "sha256": "5ef0e6d6483d6977279ed0808511073cf1e5303bc3cd6c54c1fc685d283fe19b"
+    },
+    {
+      "order": 4,
+      "name": "04-do-oceano-as-estrelas.jpg",
+      "sha256": "faee5d2a43c763f29b007a212e6da8405e0950a6fca295d2ddd7c91fdb240871"
+    },
+    {
+      "order": 5,
+      "name": "05-ele-investiga-com-metodo.jpg",
+      "sha256": "a39e46e0f15f53848cc6386f567bfb6857906281b16a87953115798d724dfb7c"
+    },
+    {
+      "order": 6,
+      "name": "06-a-proxima-pergunta-e-sua.jpg",
+      "sha256": "3b451390fb3d1725dbbee22ec71355cff9608eb869debbbf9568ce3e6833ed52"
+    }
+  ],
+  "status": "staged_not_published"
+}
