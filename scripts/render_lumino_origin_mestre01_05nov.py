@@ -111,7 +111,7 @@ def page_1(im,pic):
     cinematic_background(im,pic,'left')
     header(im,'A HISTÓRIA DO LÚMINO','PERSONAGEM')
     headline(im,['QUEM É','O LÚMINO?'],56,189,width=555,sizes=(111,103),dy=126,brush_y=306)
-    mascot(im,428,212,790)
+    mascot(im,555,212,790)
     small_story(im,['Antes de qualquer resposta,','existiu uma pergunta.'],62,794,535)
     draw_text(ImageDraw.Draw(im),(65,1005),'E ASSIM NASCEU UMA NOVA LUZ.',28,RED,'bold',maxw=555)
 
@@ -119,7 +119,7 @@ def page_2(im,pic):
     cinematic_background(im,pic,'left')
     header(im,'A PRIMEIRA PERGUNTA','O UNIVERSO')
     headline(im,['UM MUNDO','CHEIO DE','MISTÉRIOS.'],55,185,width=554,sizes=(89,91,89),dy=102,brush_y=362)
-    mascot(im,437,228,790)
+    mascot(im,565,228,790)
     small_story(im,['Do céu noturno ao mar,','tudo merecia uma explicação.'],60,803,548)
     draw_text(ImageDraw.Draw(im),(62,1003),'O SEGREDO ERA NÃO PARAR DE PERGUNTAR.',24,RED,'bold',maxw=550)
 
@@ -139,7 +139,7 @@ def page_4(im,pic):
     cinematic_background(im,pic,'left')
     header(im,'A MISSÃO DE LÚMINO','EXPLORAR')
     headline(im,['DO FUNDO','DO OCEANO...'],49,182,width=588,sizes=(94,85),dy=116,brush_y=297)
-    mascot(im,434,242,792)
+    mascot(im,558,242,792)
     small_story(im,['Da natureza às estrelas,','cada pista abre outra história.'],58,822,554)
     draw_text(ImageDraw.Draw(im),(61,1029),'...ATÉ OS LIMITES DO CONHECIMENTO.',24,RED,'bold',maxw=565)
 
@@ -147,7 +147,7 @@ def page_5(im,pic):
     cinematic_background(im,pic,'left')
     header(im,'COMO ELE INVESTIGA','O MÉTODO')
     headline(im,['ELE NÃO','ADIVINHA.'],53,198,width=581,sizes=(96,100),dy=113,brush_y=307)
-    mascot(im,432,231,783)
+    mascot(im,561,231,783)
     small_story(im,['Lúmino observa, busca pistas','e confere cada explicação.'],54,777,560)
     draw_text(ImageDraw.Draw(im),(58,1005),'A CURIOSIDADE PRECISA DE EVIDÊNCIAS.',25,RED,'bold',maxw=568)
 
@@ -155,7 +155,7 @@ def page_6(im,pic):
     cinematic_background(im,pic,'left')
     header(im,'A PRÓXIMA AVENTURA','COM VOCÊ')
     headline(im,['AGORA É','COM VOCÊ.'],55,190,width=570,sizes=(104,102),dy=120,brush_y=305)
-    mascot(im,427,221,806)
+    mascot(im,561,221,806)
     small_story(im,['Ele não tem todas as respostas.','Quer encontrá-las com você.'],55,793,561)
     panel(im,(40,1040,1033,1174),(26,35,43,246))
     d=ImageDraw.Draw(im)
