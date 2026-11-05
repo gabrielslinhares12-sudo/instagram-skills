@@ -1,8 +1,9 @@
 import React from 'react';
 import {AbsoluteFill,interpolate,useCurrentFrame,useVideoConfig} from 'remotion';
-import {LuminoPuppet} from './actors/LuminoPuppet';
+import {LuminoPuppet,sampleActor} from './actors/LuminoPuppet';
+import {actorDrift,leverAngle,leverGripWrist,leverKnob,leverPivot,leverProgress,remap} from './actors/stageAction';
 const smooth=(x:number)=>{const t=Math.min(1,Math.max(0,x));return t*t*(3-2*t)};
-const remap=(t:number,a:number,b:number)=>smooth((t-a)/(b-a));
+
 /**
  * A single coherent dramatic action.
  * 0-2.5: arrive/scan; 2.5-5.7: physically raise magnifier to clue;
@@ -12,10 +13,11 @@ const remap=(t:number,a:number,b:number)=>smooth((t-a)/(b-a));
 export const LuminoActorTest:React.FC=()=>{
  const frame=useCurrentFrame(),{fps}=useVideoConfig(),t=frame/fps;
  const arrive=remap(t,.05,1.65),inspect=remap(t,2.45,3.8);
- const pull=remap(t,6.5,7.55),open=remap(t,7.52,8.35);
+ const pull=leverProgress(t),open=remap(t,7.92,8.83);
  const shutter=remap(t,8.0,8.85);
- const drift=interpolate(t,[0,2.8,6.0,9.5],[-180,0,0,-40],{extrapolateLeft:'clamp',extrapolateRight:'clamp'});
+ const drift=actorDrift(t); const knob=leverKnob(t);
  const light=1+open*.35; const steam=130+Math.sin(t*3)*12;
+ const magnify=Math.min(remap(t,2.7,3.7),1-remap(t,5.65,6.15));
  return <AbsoluteFill style={{backgroundColor:'#07151c'}}>
  <svg width="100%" height="100%" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid slice">
   <defs>
@@ -56,33 +58,68 @@ export const LuminoActorTest:React.FC=()=>{
     d={'M'+(222+i*38)+' '+(965-i*12)+'Q'+(204+i*40)+' '+(914-steam*.13)+' '+(233+i*38)+' '+(873-steam*.18)}
     fill="none" stroke="#edf5e9" opacity={(.18+inspect*.40)*(1-i*.17)} strokeWidth="11"/>)}
   <circle cx="264" cy="1000" r={65+inspect*35} fill="none" stroke="#f8d77c" strokeWidth="5" opacity={inspect*.45}/>
-  {/* Lever and hatch are causally linked to the character's right-hand gesture. */}
-  <g transform={'translate(830 1185) rotate('+(-27+pull*67)+')'}>
-    <rect x="-20" y="-98" width="39" height="126" rx="13" fill="#aa8452" stroke="#31271e" strokeWidth="12"/>
-    <circle cy="-106" r="39" fill="#f4cc62" stroke="#4d321d" strokeWidth="13"/>
+  {/* Solid control pedestal; the handle tip follows the gloved finger precisely. */}
+  <ellipse cx="905" cy="1320" rx="104" ry="27" fill="#050f15" opacity=".7"/>
+  <rect x="827" y="1249" width="162" height="75" rx="18"
+    fill="#473c30" stroke="#bca06d" strokeWidth="14"/>
+  <circle cx={leverPivot.x} cy={leverPivot.y} r="37"
+    fill="#47372a" stroke="#f0c777" strokeWidth="11"/>
+  <g transform={'translate('+leverPivot.x+' '+leverPivot.y+') rotate('+leverAngle(t)+')'}>
+    <path d="M0 -5V-108" stroke="#2c241e" strokeWidth="37" strokeLinecap="round"/>
+    <path d="M0 -5V-108" stroke="#cfaf72" strokeWidth="22" strokeLinecap="round"/>
+    <path d="M-6 -102L-6 -22" stroke="#fff1b6" strokeWidth="5" opacity=".45"/>
+    <circle cy="-108" r="36" fill="#f2cb70" stroke="#342717" strokeWidth="12"/>
+    <circle cx="-11" cy="-120" r="11" fill="#fff7d1" opacity=".72"/>
   </g>
-  <rect x="725" y="1170" width="205" height="62" rx="14" fill="#4c3c2c" stroke="#c4a76a" strokeWidth="15"/>
-  <path d="M700 1445L1080 1395L1080 1830L690 1865Z" fill="#070f14" stroke="#947958" strokeWidth="21"/>
-  <path d={'M692 1450L1080 1405L1080 '+(1408-open*210)+'L690 '+(1460-open*210)+'Z'} fill="url(#door)" stroke="#dfb56a" strokeWidth="15"/>
-  {open>0&&<path d={'M695 1475L1070 1443L1070 1870L700 1875Z'} fill="#ffcc69" opacity={open*.22}/>}
-  <ellipse cx="480" cy="1020" rx="510" ry="690" fill="url(#beam)" opacity={1+open*.3}/>
+  {/* A hatch with measurable depth, glowing descent and visible stair treads. */}
+  <path d="M690 1432L1080 1387L1080 1848L685 1884Z"
+    fill="#030c11" stroke="#947958" strokeWidth="22"/>
+  {open>0&&<>
+    <path d="M705 1459L1060 1417L1060 1820L705 1856Z"
+      fill="#f3bd63" opacity={open*.26}/>
+    {[0,1,2,3,4].map(i=><path key={i}
+      d={'M'+(748+i*10)+' '+(1510+i*63)+'L'+(1018-i*12)+' '+(1481+i*59)}
+      stroke="#d9ab6b" strokeWidth={12-i} opacity={open*(.8-i*.11)}/>)}
+    <path d="M770 1490L780 1832M986 1465L962 1818"
+      stroke="#a98761" strokeWidth="11" opacity={open*.84}/>
+    <path d="M730 1465L975 1437L1015 1590Z"
+      fill="#ffe1a2" opacity={open*.12}/>
+  </>}
+  <g transform={'translate(1080 1396) rotate('+(-open*40)+') translate(-1080 -1396)'}>
+    <path d="M690 1450L1080 1396L1080 1472L691 1560Z"
+      fill="url(#door)" stroke="#ddb56c" strokeWidth="17"/>
+    {[0,1,2].map(i=><path key={i}
+      d={'M'+(725+i*106)+' '+(1465-i*15)+'L'+(728+i*106)+' '+(1512-i*16)}
+      stroke="#362b21" opacity=".42" strokeWidth="10"/>)}
+  </g>
+  <ellipse cx="480" cy="1020" rx="510" ry="690"
+    fill="url(#beam)" opacity={1+open*.3}/>
+  <ellipse cx="270" cy="1002" rx={42+magnify*24} ry={29+magnify*19}
+    fill="#fff7c5" opacity={magnify*.23}/>
+  <path d="M220 1002L320 998" stroke="#ffe7a8"
+    strokeWidth="6" opacity={magnify*.5}/>
   {/* Shared local coordinate system: character's hand reaches the actual lever. */}
   <g transform={'translate('+(115+drift)+' 652) scale(1.05)'}>
     <LuminoPuppet time={t} gesture="demo" darkness={shutter*.3}/>
   </g>
+  {/* The near side of the lever passes in front of the glove during contact. */}
+  <circle cx={knob.x} cy={knob.y} r="22" fill="#ffe5a0"
+    stroke="#6f522b" strokeWidth="7" opacity={remap(t,6.4,6.85)*(1-remap(t,8.15,8.7))}/>
+  <circle cx={knob.x} cy={knob.y} r="42" fill="none" stroke="#ffedb0"
+    strokeWidth="5" opacity={pull*(1-pull)*1.4}/>
   {/* Room foreground crosses character to give occlusion and depth. */}
   <path d="M0 1570Q400 1500 730 1590L1080 1560V1920H0Z" fill="#14242a" opacity=".45"/>
   <path d="M0 1700Q400 1660 1080 1710" stroke="#c6a777" strokeWidth="8" opacity=".23" fill="none"/>
   <path d="M0 190L1080 100" stroke="#121d23" strokeWidth="25" opacity=".8"/>
  </svg>
  <div style={{position:'absolute',top:155,left:75,right:70,
-   fontSize:72,fontWeight:800,fontFamily:'sans-serif',letterSpacing:-2,
+   fontSize:66,fontWeight:800,fontFamily:'sans-serif',letterSpacing:-2,
    color:'#fff3cf',textShadow:'0 4px 14px #071015',
    opacity:1-remap(t,2.0,2.7)}}>O FAROL ESCONDE UM SEGREDO.</div>
  <div style={{position:'absolute',bottom:210,left:100,right:100,textAlign:'center',
   fontFamily:'sans-serif',fontSize:44,letterSpacing:1,color:'#f8e9bd',
   textShadow:'0 4px 9px #000',opacity:Math.min(1,remap(t,.5,1.5))}}>
-  {t<3?'ELE ENTRA NA CENA':t<6.3?'INVESTIGA UMA PISTA':t<8.3?'ACIONA O MECANISMO':'O MUNDO REAGE'}
+  {t<3?'O MISTÉRIO COMEÇA':t<6.45?'UMA PISTA NO VAPOR':t<8.35?'A ALAVANCA SE MOVE':'O ALÇAPÃO SE ABRE'}
  </div>
  </AbsoluteFill>;
 };

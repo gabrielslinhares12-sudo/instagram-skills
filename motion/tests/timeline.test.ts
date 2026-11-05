@@ -85,3 +85,25 @@ test('two-bone IK elbow is between reach radii and deterministic',()=>{
  assert.ok(Number.isFinite(elbow.x) && Number.isFinite(elbow.y));
  assert.ok(Math.abs(Math.hypot(elbow.x-a.x,elbow.y-a.y)-140)<1e-5);
 });
+
+
+import {actorDrift,leverGripWrist,leverKnob,leverProgress,wristFingerWorld} from '../src/actors/stageAction';
+test('the fingertip remains on the lever knob throughout the actual pull',()=>{
+ for(const t of [6.85,7.1,7.5,7.9,8.1]){
+  const wrist=sampleActor('demo',t).right;
+  const finger=wristFingerWorld(wrist,t);
+  const knob=leverKnob(t);
+  assert.ok(Math.hypot(finger.x-knob.x,finger.y-knob.y)<.01,'lost grip at '+t);
+ }
+ assert.equal(leverProgress(6.5),0);
+ assert.equal(leverProgress(8.4),1);
+ assert.equal(actorDrift(6),0);
+});
+test('the lever target never exceeds the two-bone arm reach during the pull',()=>{
+ const shoulder={x:506,y:549};
+ for(const t of [6.85,7.4,8.1]){
+  const w=leverGripWrist(t);
+  const d=Math.hypot(w.x-shoulder.x,w.y-shoulder.y);
+  assert.ok(d<280&&d>20,'arm stretch at '+t+': '+d);
+ }
+});

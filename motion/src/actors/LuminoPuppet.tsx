@@ -1,4 +1,5 @@
 import React,{useId} from 'react';
+import {leverGripWrist,remap} from './stageAction';
 
 /**
  * Lúmino is modeled as a native 2D actor, not an image or a masked PNG.
@@ -60,6 +61,12 @@ export function sampleActor(gesture:ActorGesture,time:number):PoseState{
  }else{
    p=poseMix(BASE,merge(BASE,POSES[gesture]),ease(t/.65));
  }
+ if(gesture==='demo'){
+   // Reach, grip and pull the world-space lever, then release before reacting.
+   const contact=remap(t,5.9,6.75)*(1-remap(t,8.15,8.75));
+   const grip=leverGripWrist(t);
+   p={...p,right:{x:mix(p.right.x,grip.x,contact),y:mix(p.right.y,grip.y,contact)}};
+ }
  const bob=Math.sin(t*2.6);
  return {...p,head:p.head+Math.sin(t*1.3)*1.1,
    body:p.body+Math.sin(t*1.8)*.7,
@@ -85,8 +92,10 @@ export const LuminoPuppet:React.FC<{time:number;gesture?:ActorGesture;darkness?:
  const leftS={x:212,y:548},rightS={x:506,y:549};
  const leftE=solveArm(leftS,pose.left,140,130,-1);
  const rightE=solveArm(rightS,pose.right,148,135,1);
- const blink=gesture==='react'?pose.eyes:(Math.sin(time*3.2)> .997?.23:pose.eyes);
- const light=clamp(pose.intensity*(1-darkness),.08,2);
+ const wink=(t:number,at:number)=>Math.max(0,1-Math.abs(t-at)/.12);
+ const blink=pose.eyes*(1-.75*Math.max(wink(time,2.2),wink(time,5.78),wink(time,8.65)));
+ const bulbPhase=.94+.06*Math.sin(time*2.4);
+ const light=clamp(pose.intensity*(1-darkness)*bulbPhase,.08,2);
  const L='url(#'+id('metal')+')',G='url(#'+id('gold')+')',
        J='url(#'+id('jacket')+')',GL='url(#'+id('glass')+')',
        W='url(#'+id('white')+')';
@@ -158,6 +167,10 @@ export const LuminoPuppet:React.FC<{time:number;gesture?:ActorGesture;darkness?:
   <path d="M247 545L327 632L301 678L227 617Z" fill="#d4b576" stroke="#3a3025" strokeWidth="11"/>
   <path d="M468 548L393 646L424 672L508 591Z" fill="#c5a264" stroke="#372b20" strokeWidth="11"/>
   <path d="M300 672L233 776L315 751" stroke="#554630" strokeWidth="9" fill="none"/>
+  <path d="M211 594Q200 675 172 740" stroke="#e1c282" strokeWidth="5" opacity=".5" fill="none"/>
+  <path d="M505 594Q538 679 526 746" stroke="#1a1d1c" strokeWidth="6" opacity=".62" fill="none"/>
+  <path d="M247 576L300 637M462 576L419 646" stroke="#ffdb91" strokeWidth="5" opacity=".46" fill="none"/>
+  <path d="M350 661L359 746L374 716" stroke="#bf9f60" strokeWidth="4" opacity=".65" fill="none"/>
   <path d="M426 686L490 768L431 770" stroke="#51432d" strokeWidth="9" fill="none"/>
   {[0,1,2].map((n)=><g key={n}>
     <circle cx={275+(n%2)*176} cy={665+n*37} r="17" fill={G} stroke="#45301d" strokeWidth="6"/>
@@ -176,10 +189,14 @@ export const LuminoPuppet:React.FC<{time:number;gesture?:ActorGesture;darkness?:
    <path d="M206 174Q357 109 510 179Q593 248 572 397Q544 509 392 525Q225 524 155 423Q117 290 206 174Z"
      fill={GL} stroke="#352719" strokeWidth="26"/>
    <path d="M213 196Q360 137 495 196" fill="none" stroke="#fff7c8" strokeWidth="22" opacity=".65"/>
+   <path d="M184 272Q173 350 204 424" fill="none" stroke="#ffffff" strokeWidth="11" strokeLinecap="round" opacity=".38"/>
+   <path d="M528 258Q549 325 531 389" fill="none" stroke="#ffe4a0" strokeWidth="7" strokeLinecap="round" opacity=".30"/>
+   <path d="M250 479Q367 511 475 475" fill="none" stroke="#fff5cd" strokeWidth="7" opacity=".25"/>
    <ellipse cx="373" cy="330" rx="116" ry="158" fill={'url(#'+id('bulb')+')'} opacity={clamp(light*.88)}/>
    <rect x="355" y="205" width="43" height="42" rx="8" fill={L} stroke="#6b431a" strokeWidth="8"/>
    <path d="M366 245V402M386 247V401" stroke="#fdf3ae" strokeWidth="10"/>
    <ellipse cx="375" cy="400" rx="51" ry="27" fill="#ffe89a" stroke="#e3aa2a" strokeWidth="7"/>
+   <ellipse cx="374" cy="311" rx={70+Math.sin(time*2.4)*3} ry="110" fill="#fffae2" opacity={.03+light*.045}/>
    <path d="M318 280Q351 250 368 303T419 286" stroke="#fff9dc" strokeWidth="10" fill="none" opacity={clamp(light)}/>
    {/* Cap and side hinge */}
    <path d="M197 205Q365 121 519 207L551 238Q365 179 173 244Z" fill={L} stroke="#241d16" strokeWidth="14"/>
@@ -211,6 +228,7 @@ export const LuminoPuppet:React.FC<{time:number;gesture?:ActorGesture;darkness?:
     <circle cx="-28" cy="-155" r="98" fill={'url(#'+id('lens')+')'} stroke="#291d13" strokeWidth="25"/>
     <circle cx="-28" cy="-155" r="94" fill="none" stroke={G} strokeWidth="19"/>
     <path d="M-79 -195Q-50 -227 -20 -212" fill="none" stroke="#d8ffff" strokeWidth="17" strokeLinecap="round" opacity=".86"/>
+    <path d="M8 -212Q34 -187 42 -153" fill="none" stroke="#effffe" strokeWidth="6" strokeLinecap="round" opacity=".45"/>
     <ellipse cx="4" cy="0" rx="46" ry="45" fill={W} stroke="#322925" strokeWidth="9"/>
     <path d="M-18 -12Q-28 -46 -8 -46Q19 -38 26 -3" fill={W} stroke="#47403b" strokeWidth="7"/>
     <path d="M-16 18Q6 35 30 16" stroke="#a7a7a0" strokeWidth="8" fill="none"/>

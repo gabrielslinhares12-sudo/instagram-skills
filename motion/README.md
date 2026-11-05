@@ -149,3 +149,11 @@ investigação da xícara, mão operando uma alavanca, alçapão abrindo e reaç
 Comando `npm run actor-demo`; render de PR em GitHub hospedado, sem narração nem postagem.
 Essa engine é o ponto de partida para outros personagens vetoriais com seus próprios corpos e rigs.
 **Não considerar o antigo RiggedCharacter como padrão final.**
+
+### Acabamento de atuação — revisão de 05/11/2026
+Reflexos adicionais no vidro, brilho respirando no bulbo, piscar com intervalos definidos,
+costuras e dobras do sobretudo, brilho da lupa e ritmo de gestos mais natural.
+A posição da alavanca e da ponta da luva agora vêm de `src/actors/stageAction.ts`,
+não de animações independentes. O alçapão tem dobradiça, degraus, luz no interior
+e abre durante o gesto. Testes validam aderência de contato e alcance do IK.
+A prévia continua ficcional, sem narração e sem publicação automática.
