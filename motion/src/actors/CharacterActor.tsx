@@ -10,7 +10,7 @@ export const CharacterActor:React.FC<{
  requireRig(id); // strict allowlist: unknown characters block the render
  switch(id){
   case 'lumino':
-   return <LuminoPuppet gesture={pose as ActorGesture} time={time}
+   return <LuminoPuppet width="100%" height="auto" gesture={pose as ActorGesture} time={time}
     darkness={Math.max(0,Math.min(1,1-light))}/>;
   default:
    throw new Error('Personagem sem modelo animado: '+id);

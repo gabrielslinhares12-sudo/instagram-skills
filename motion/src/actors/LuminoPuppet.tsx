@@ -77,8 +77,8 @@ export function solveArm(shoulder:Vec,wrist:Vec,a:number,b:number,bend:number):V
 }
 const Ellipse:React.FC<{x:number;y:number;rx:number;ry:number;fill:string;stroke?:string;sw?:number}>=({x,y,rx,ry,fill,stroke,sw})=>
  <ellipse cx={x} cy={y} rx={rx} ry={ry} fill={fill} stroke={stroke} strokeWidth={sw}/>;
-export const LuminoPuppet:React.FC<{time:number;gesture?:ActorGesture;darkness?:number}>=
- ({time,gesture='idle',darkness=0})=>{
+export const LuminoPuppet:React.FC<{time:number;gesture?:ActorGesture;darkness?:number;width?:string|number;height?:string|number}>=
+ ({time,gesture='idle',darkness=0,width=740,height=850})=>{
  const ids=useId().replace(/[^a-zA-Z0-9]/g,'');
  const id=(name:string)=>'lumino-'+ids+'-'+name;
  const pose=sampleActor(gesture,time);
@@ -103,7 +103,7 @@ export const LuminoPuppet:React.FC<{time:number;gesture?:ActorGesture;darkness?:
     <Ellipse x={0} y={0} rx={39} ry={37} fill="#1b1c1b"/>
    </g>
  </g>;
- return <svg viewBox="0 0 740 850" width="100%" height="100%" style={{overflow:'visible',display:'block'}}>
+ return <svg viewBox="0 0 740 850" width={width} height={height} style={{overflow:'visible',display:'block'}}>
  <defs>
   <linearGradient id={id('gold')} x1="0" y1="0" x2="1" y2=".9">
    <stop stopColor="#fff1a8"/><stop offset=".20" stopColor="#f6b936"/>
