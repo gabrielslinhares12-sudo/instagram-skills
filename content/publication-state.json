@@ -199,10 +199,15 @@
       "published_at": "2026-11-04T21:33:47Z"
     },
     "tue-2026-11-05-10-cavalo-de-troia": {
-      "status": "claimed",
+      "status": "published",
       "fingerprint": "b83da66bb3f2a541f7626fbeec9c0f10fd2e0255d72e651ef742fa3d54954de1",
       "due_at": "2026-11-05T13:00:00Z",
-      "claimed_at": "2026-11-05T13:00:21Z"
+      "claimed_at": "2026-11-05T13:00:21Z",
+      "media_id": "18400308016166039",
+      "creation_id": "18103015853100158",
+      "instagram_user_id": "17841433004716815",
+      "page_id": "1385407341325017",
+      "published_at": "2026-11-05T13:01:35Z"
     }
   }
 }
