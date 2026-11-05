@@ -96,24 +96,25 @@ def get_jpeg(fid, token):
     return response.content
 
 def verify_and_store():
-    token=oauth()
-    PREFIX.mkdir(parents=True,exist_ok=True)
-    for i, (fid, sha) in enumerate(FILES,1):
-        name=f"LUMINO-HISTORIA-FINAL-{i:02d}.jpg"
-        dest=PREFIX/name
-        data=get_jpeg(fid,token)
+    """Use the six approved original JPEGs already committed in GitHub, not private Drive."""
+    if not PREFIX.is_dir():
+        raise SafeBlock("approved_github_image_directory_not_found")
+    for i,(_,sha) in enumerate(FILES,1):
+        file=PREFIX/f"LUMINO-HISTORIA-FINAL-{i:02d}.jpg"
+        if not file.is_file():
+            raise SafeBlock(f"github_image_missing_{i}")
+        data=file.read_bytes()
         if hashlib.sha256(data).hexdigest()!=sha:
-            raise SafeBlock(f"drive_source_sha256_mismatch_or_private_file_{i}")
-        if len(data) > 4*1024*1024:
-            raise SafeBlock(f"image_too_large_{i}")
+            raise SafeBlock(f"github_image_sha256_mismatch_{i}")
+        if len(data)>4*1024*1024:
+            raise SafeBlock(f"github_image_too_large_{i}")
         try:
             with Image.open(BytesIO(data)) as im:
                 if im.format!="JPEG" or im.size!=(1080,1350):
-                    raise SafeBlock(f"image_format_or_resolution_mismatch_{i}")
+                    raise SafeBlock(f"github_image_invalid_format_or_resolution_{i}")
         except OSError:
-            raise SafeBlock(f"image_invalid_{i}")
-        dest.write_bytes(data)
-        print(f"MEDIA_{i}_SHA256_VERIFIED=true SIZE={len(data)}", flush=True)
+            raise SafeBlock(f"github_image_invalid_{i}")
+        print(f"APPROVED_MEDIA_{i}_SHA256_VERIFIED=true SIZE={len(data)}",flush=True)
 
 def stage_queue():
     current=read_document(QUEUE)
@@ -121,13 +122,10 @@ def stage_queue():
         raise SafeBlock("one_shot_post_already_in_queue_no_auto_retry")
     now=datetime.now(timezone.utc)
     due=(now-timedelta(seconds=35)).isoformat(timespec="seconds").replace("+00:00","Z")
-    # Commit immutable JPEG files before passing them to Meta.
+    # Original bytes are already committed and identified by immutable commit SHA.
     cmd("git","config","user.name","github-actions[bot]")
     cmd("git","config","user.email","41898282+github-actions[bot]@users.noreply.github.com")
-    cmd("git","add","--",str(PREFIX))
-    cmd("git","commit","-m","media(lumino): host six owner-approved originals for Meta carousel")
-    cmd("git","push","origin","HEAD:main")
-    pinned=cmd("git","rev-parse","HEAD")
+    pinned="ce0b441ac5303fd1eb477eeab148b48da6058639"
     urls=[f"https://raw.githubusercontent.com/{REPO}/{pinned}/{PREFIX.as_posix()}/LUMINO-HISTORIA-FINAL-{i:02d}.jpg" for i in range(1,7)]
     for i,(url,(_,sha)) in enumerate(zip(urls,FILES),1):
         # Meta needs to reach these URLs without GitHub credentials.
@@ -193,8 +191,7 @@ def main():
         raise SafeBlock("already_in_queue_needs_manual_reconciliation")
 
     verify_and_store()
-    # Do not touch Meta until six images are pinned in public GitHub.
-    post=stage_queue()
+    # Check the target identity and existing Instagram posts BEFORE queue registration.
     poster=FacebookPoster(FacebookConfig.from_env())
     preflight=check_preflight(poster)
     if not preflight.get("ok") or preflight.get("username")!="temumaexplicacao":
@@ -202,6 +199,8 @@ def main():
     if check_duplicate(poster):
         print(json.dumps({"status":"duplicate_confirmed","publication_attempted":False,"post_id":ID}),flush=True)
         return 0
+    # Do not mutate Instagram until public GitHub URL hashes and the queue are verified.
+    post=stage_queue()
     now=datetime.now(timezone.utc)
     state=validate_state(read_document(STATE,missing={"version":1,"items":{}}))
     if plan([post],state,now)[0]["status"]!="due":
