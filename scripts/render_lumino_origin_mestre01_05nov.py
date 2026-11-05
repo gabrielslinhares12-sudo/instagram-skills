@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from render_tue_mestre_04nov_rework import (
     W, H, S, PAPER, INK, YELLOW, RED, base, brush, mascot, photo, header,
-    footer, draw_text, stroke, get_font, load_photo,
+    footer, draw_text, stroke, get_font, load_photo, fitted_photo,
 )
 
 OUT = ROOT / 'content/media/instagram/2026-11-05/LUMINO-ORIGEM-MESTRE01-REFEITO'
@@ -78,80 +78,89 @@ def arrow(im,x0,y0,x1,y1):
 def photo_stripe(im, pic, x,y,w,h, angle=0):
     photo(im,pic,(x,y,w,h),seed=42,angle=angle)
 
+def cinematic_background(im,pic,text_side='left'):
+    """Bright full-bleed photographic composition; mask allows massive mascot foreground."""
+    fitted=fitted_photo(pic,1080,1244)
+    fitted=ImageEnhance.Color(fitted).enhance(.88)
+    fitted=ImageEnhance.Contrast(fitted).enhance(.91)
+    im.paste(fitted,(0,0))
+    veil=Image.new('RGBA',(W,1244*S),(0,0,0,0))
+    v=ImageDraw.Draw(veil)
+    v.rectangle((0,0,W,155*S),fill=(250,246,239,254))
+    for x in range(0,815*S,20*S):
+        alpha=max(0,int(245*(1-x/(815*S))**1.24))
+        if text_side=='left':a,b=x,x+20*S
+        else:a,b=W-x-20*S,W-x
+        v.rectangle((a,155*S,b,1244*S),fill=(248,245,238,alpha))
+    im.paste(veil,(0,0),veil)
+
+def small_story(im,lines,xx=67,yy=805,maxw=555):
+    panel(im,(xx-12,yy-19,xx+maxw+10,yy+128),(250,247,240,246))
+    d=ImageDraw.Draw(im)
+    for j,line in enumerate(lines):
+        draw_text(d,(xx,yy+j*45),line,28,INK,'bold',maxw=maxw)
+    stroke(d,xx,yy+117,xx+maxw-75,yy+117,5)
+
+def headline(im,lines,x,y,width=590,sizes=(91,91,91),dy=106,brush_y=0):
+    d=ImageDraw.Draw(im)
+    if brush_y:brush(im,(x-15,brush_y,x+width+15,brush_y+118),160+int(y))
+    for i,line in enumerate(lines):
+        draw_text(d,(x,y+i*dy),line,sizes[min(i,len(sizes)-1)],INK,'display',maxw=width)
+
 def page_1(im,pic):
-    header(im,'A HISTÓRIA DO LÚMINO','NOSSO PERSONAGEM')
-    brush(im,(50,190,1025,395),110)
-    draw_lines(im,['ANTES DE UMA','RESPOSTA...'],72,173,95,112)
-    photo_stripe(im,pic,50,446,945,608,angle=-1)
-    panel(im,(40,956,735,1085),(249,243,232,238))
-    draw_lines(im,['EXISTIU UMA','PERGUNTA.'],70,944,53,62)
-    mascot(im,592,608,455)
-    stroke(ImageDraw.Draw(im),65,1093,540,1093,7)
-    draw_text(ImageDraw.Draw(im),(72,1142),'E FOI ASSIM QUE SUA LUZ COMEÇOU.',25,INK,'bold',maxw=935)
+    cinematic_background(im,pic,'left')
+    header(im,'A HISTÓRIA DO LÚMINO','PERSONAGEM')
+    headline(im,['QUEM É','O LÚMINO?'],56,189,width=555,sizes=(111,103),dy=126,brush_y=306)
+    mascot(im,428,212,790)
+    small_story(im,['Antes de qualquer resposta,','existiu uma pergunta.'],62,794,535)
+    draw_text(ImageDraw.Draw(im),(65,1005),'E ASSIM NASCEU UMA NOVA LUZ.',28,RED,'bold',maxw=555)
 
 def page_2(im,pic):
-    header(im,'PRIMEIRA DESCOBERTA','O COMEÇO')
-    photo_stripe(im,pic,48,184,612,856,angle=-1)
-    panel(im,(447,193,1012,728),(249,243,232,250))
-    brush(im,(463,242,1006,335),117)
-    draw_lines(im,['O MUNDO','ERA CHEIO','DE MISTÉRIOS.'],487,239,56,76,maxw=494)
-    stroke(ImageDraw.Draw(im),489,475,958,475,5)
-    draw_text(ImageDraw.Draw(im),(488,515),'DO CÉU NOTURNO',29,RED,'bold',maxw=490)
-    draw_text(ImageDraw.Draw(im),(488,568),'À TERRA QUE PISAMOS.',24,INK,'bold',maxw=490)
-    mascot(im,596,733,424)
-    panel(im,(80,1080,1018,1185),(249,243,232,245))
-    draw_text(ImageDraw.Draw(im),(104,1100),'TODA DESCOBERTA COMEÇA COM UM “POR QUÊ?”.',27,INK,'bold',maxw=880)
+    cinematic_background(im,pic,'left')
+    header(im,'A PRIMEIRA PERGUNTA','O UNIVERSO')
+    headline(im,['UM MUNDO','CHEIO DE','MISTÉRIOS.'],55,185,width=554,sizes=(89,91,89),dy=102,brush_y=362)
+    mascot(im,437,228,790)
+    small_story(im,['Do céu noturno ao mar,','tudo merecia uma explicação.'],60,803,548)
+    draw_text(ImageDraw.Draw(im),(62,1003),'O SEGREDO ERA NÃO PARAR DE PERGUNTAR.',24,RED,'bold',maxw=550)
 
 def page_3(im,pic):
-    header(im,'A LUZ DA CURIOSIDADE','O PROPÓSITO')
-    brush(im,(54,179,1014,285),122)
-    draw_lines(im,['NÃO ERA MAGIA.'],75,174,83,88)
-    draw_lines(im,['ERA VONTADE','DE ENTENDER.'],80,280,72,81)
-    photo_stripe(im,pic,70,493,941,548,angle=1)
-    panel(im,(61,773,540,1036),(249,243,232,243))
-    draw_text(ImageDraw.Draw(im),(81,798),'UMA LUZ QUE',45,INK,'display',maxw=440)
-    draw_text(ImageDraw.Draw(im),(81,866),'ACENDE A CADA',42,INK,'display',maxw=450)
-    draw_text(ImageDraw.Draw(im),(81,934),'NOVA PERGUNTA.',39,RED,'display',maxw=440)
-    mascot(im,560,668,483)
-    stroke(ImageDraw.Draw(im),83,1083,956,1083,6)
-    draw_text(ImageDraw.Draw(im),(83,1120),'NÃO É SOBRE SABER TUDO.',30,INK,'bold',maxw=920)
+    cinematic_background(im,pic,'right')
+    header(im,'UM PERSONAGEM NASCE','A LUZ')
+    headline(im,['UMA LUZ','SE ACENDE.'],526,204,width=520,sizes=(95,87),dy=113,brush_y=310)
+    mascot(im,-178,239,839)
+    panel(im,(512,673,1025,989),(250,247,241,247))
+    d=ImageDraw.Draw(im)
+    draw_text(d,(536,692),'UMA LANTERNA QUE',37,INK,'display',maxw=450)
+    draw_text(d,(536,765),'NÃO ILUMINA SÓ',37,INK,'display',maxw=452)
+    draw_text(d,(536,838),'CAMINHOS.',47,RED,'display',maxw=450)
+    draw_text(d,(534,914),'ILUMINA IDEIAS.',35,INK,'bold',maxw=460)
 
 def page_4(im,pic):
-    header(im,'SEM LIMITE PARA EXPLORAR','OS MISTÉRIOS')
-    photo_stripe(im,pic,49,170,964,874,angle=0)
-    panel(im,(53,189,977,413),(249,243,232,246))
-    brush(im,(71,228,935,333),127)
-    draw_lines(im,['DO OCEANO...'],88,214,79,87)
-    draw_text(ImageDraw.Draw(im),(91,343),'A CURIOSIDADE NÃO CONHECE FRONTEIRAS.',23,RED,'bold',maxw=880)
-    mascot(im,592,606,440)
-    panel(im,(49,944,994,1112),(249,243,232,245))
-    draw_lines(im,['...ATÉ AS ESTRELAS.'],80,948,59,63)
-    draw_text(ImageDraw.Draw(im),(79,1036),'CIÊNCIA, NATUREZA E HISTÓRIAS REAIS.',24,RED,'bold',maxw=870)
-    stroke(ImageDraw.Draw(im),80,1150,845,1150,5)
+    cinematic_background(im,pic,'left')
+    header(im,'A MISSÃO DE LÚMINO','EXPLORAR')
+    headline(im,['DO FUNDO','DO OCEANO...'],49,182,width=588,sizes=(94,85),dy=116,brush_y=297)
+    mascot(im,434,242,792)
+    small_story(im,['Da natureza às estrelas,','cada pista abre outra história.'],58,822,554)
+    draw_text(ImageDraw.Draw(im),(61,1029),'...ATÉ OS LIMITES DO CONHECIMENTO.',24,RED,'bold',maxw=565)
 
 def page_5(im,pic):
-    header(im,'O MÉTODO DO DETETIVE','AS PISTAS')
-    brush(im,(53,178,1014,295),130)
-    draw_lines(im,['NÃO BASTA','ADIVINHAR.'],75,170,88,96)
-    photo_stripe(im,pic,64,404,577,654,angle=-2)
-    panel(im,(470,498,1007,800),(249,243,232,245))
-    draw_lines(im,['OBSERVAR.','INVESTIGAR.','CONFERIR.'],498,512,47,83,maxw=496)
-    for y in [573,655,738]: stroke(ImageDraw.Draw(im),498,y,914,y,3)
-    mascot(im,650,727,365)
-    panel(im,(53,1106,1014,1195),(249,243,232,250))
-    draw_text(ImageDraw.Draw(im),(79,1120),'AS PISTAS VALEM MAIS QUE OS CHUTES.',28,RED,'bold',maxw=926)
+    cinematic_background(im,pic,'left')
+    header(im,'COMO ELE INVESTIGA','O MÉTODO')
+    headline(im,['ELE NÃO','ADIVINHA.'],53,198,width=581,sizes=(96,100),dy=113,brush_y=307)
+    mascot(im,432,231,783)
+    small_story(im,['Lúmino observa, busca pistas','e confere cada explicação.'],54,777,560)
+    draw_text(ImageDraw.Draw(im),(58,1005),'A CURIOSIDADE PRECISA DE EVIDÊNCIAS.',25,RED,'bold',maxw=568)
 
 def page_6(im,pic):
-    header(im,'A HISTÓRIA CONTINUA','SUA VEZ')
-    photo_stripe(im,pic,50,180,962,845,angle=1)
-    panel(im,(51,192,1009,485),(249,243,232,245))
-    brush(im,(65,255,1000,380),134)
-    draw_lines(im,['A PRÓXIMA','PERGUNTA É SUA.'],75,204,73,98)
-    mascot(im,534,547,511)
-    panel(im,(59,1020,1015,1201),(249,243,232,249))
-    draw_text(ImageDraw.Draw(im),(88,1038),'QUAL MISTÉRIO VAMOS INVESTIGAR?',38,INK,'display',maxw=870)
-    stroke(ImageDraw.Draw(im),89,1111,992,1111,6)
-    draw_text(ImageDraw.Draw(im),(90,1143),'CONTE NOS COMENTÁRIOS.',31,RED,'bold',maxw=840)
+    cinematic_background(im,pic,'left')
+    header(im,'A PRÓXIMA AVENTURA','COM VOCÊ')
+    headline(im,['AGORA É','COM VOCÊ.'],55,190,width=570,sizes=(104,102),dy=120,brush_y=305)
+    mascot(im,427,221,806)
+    small_story(im,['Ele não tem todas as respostas.','Quer encontrá-las com você.'],55,793,561)
+    panel(im,(40,1040,1033,1174),(26,35,43,246))
+    d=ImageDraw.Draw(im)
+    draw_text(d,(69,1059),'QUAL MISTÉRIO VAMOS INVESTIGAR?',42,(255,243,206),'display',maxw=931)
+    draw_text(d,(73,1127),'CONTE NOS COMENTÁRIOS.',26,(255,211,32),'bold',maxw=901)
 
 def load_verified_photo(index):
     problems=[]
