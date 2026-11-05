@@ -101,3 +101,9 @@ obtida no site Google AI Studio, ajustes de sincronismo e revisão visual.
 ### QC de oito cenas
 O comando npm run pilot-qc gera montagem técnica de 24 segundos, com 3 segundos por cena.
 A ação pull_request renderiza esse QC; o vídeo é silencioso e não está liberado para postagem.
+
+### Render mestre 4K
+A opção 4k do workflow executa pilot-master e renderiza o episódio do
+manifesto (78s) em 2160x3840 a 60fps, **não** a demo de 12s.
+Esse render é manual, pode consumir muitos minutos do runner hospedado e
+permanece sem voz enquanto narration estiver null. Não é publicação.
