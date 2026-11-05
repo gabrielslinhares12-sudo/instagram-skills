@@ -1,0 +1,61 @@
+name: TUE Troia 05NOV - hospedar MP4 verificado sem postar
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tue-05nov-troia-stage-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: tue-troia-05nov-stage-once
+  cancel-in-progress: false
+jobs:
+  host-video:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Baixar do projeto Descript ja exportado sem reedicao
+        env:
+          SOURCE_URL: 'https://media.descriptusercontent.com/v3/proxy/remux?url=https%3A%2F%2Fapi.descript.com%2Fv2%2Fpublished_projects%2F336f37a5-7267-4465-a7ae-62d29cca8c5f%2Fhls%3Fexpiration%3D1793958976037%26signature%3Dc746b9730209e984f900b1217fdd5ac4ef8d4c64594e484ade82093c82e3325e&filename=Reel+do+Cavalo+de+Troia.mp4&mediaCacheBucketName=production-273614-media-cache&expiration=1793955376&signature=03db2cefc584cfc3e41c3c9f135f4f302c8a5ff203efcc07b2e42367b7273a3a'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p source
+          curl --fail --location --silent --show-error --retry 2 --max-time 420 "$SOURCE_URL" -o source/Cavalo_Troia_4K60_Meta_10h.mp4
+          test "$(stat -c%s source/Cavalo_Troia_4K60_Meta_10h.mp4)" -gt 1000000
+      - name: Validar resolucao, audio, 60 FPS e duracao exata
+        shell: bash
+        run: |
+          command -v ffprobe >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+          python3 - <<'PY'
+          import subprocess,json,os
+          path='source/Cavalo_Troia_4K60_Meta_10h.mp4'
+          data=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',path]))
+          v=next(s for s in data['streams'] if s['codec_type']=='video')
+          a=next((s for s in data['streams'] if s['codec_type']=='audio'),None)
+          sec=float(data['format']['duration'])
+          size=os.path.getsize(path)
+          info={'width':v['width'],'height':v['height'],'fps':v['r_frame_rate'],'duration':round(sec,3),'bytes':size,'audio':bool(a)}
+          print('VIDEO_QC',json.dumps(info))
+          assert v['width']==2160 and v['height']==3840, 'RESOLUCAO_4K_INVALIDA'
+          assert v['r_frame_rate']=='60/1', 'FPS_INVALIDO'
+          assert 59.80 <= sec <= 60.25, 'DURACAO_INVALIDA'
+          assert a and a['codec_type']=='audio', 'SEM_AUDIO'
+          assert size <= 100000000, 'MP4_TAMANHO_INVALIDO'
+          PY
+      - name: Hospedar MP4 como asset de release publica apenas para ingestao Meta
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag='tue-troia-20261105-1000-media'
+          name='Cavalo_Troia_4K60_Meta_10h.mp4'
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release view "$tag" --json assets --jq '.assets[].name' | grep -Fx "$name"
+            echo 'STAGED_ASSET_ALREADY_PRESENT'
+          else
+            gh release create "$tag" "source/$name" --title 'TUE Troia 05/11 10h - media tecnica Instagram' --notes 'Hospedagem tecnica para Meta API. O video nao foi publicado nas redes por este workflow.' --target main --prerelease --latest=false
+          fi
+          gh release view "$tag" --json assets --jq '.assets[] | {name: .name, size: .size, url: .url}'
