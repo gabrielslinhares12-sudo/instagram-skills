@@ -17,7 +17,7 @@ const lumino:RigManifest={
    path:'M150 -20 L850 -20 L880 580 L800 650 L720 710 L650 745 L455 755 L390 710 L405 625 L415 565 L250 570 L160 525 Z'},
   // The pointing sleeve+glove rotates around the coat shoulder.
   {bone:'rightArm',pivot:[745,760],
-   path:'M690 640 L760 680 L825 660 L865 620 L936 590 L1020 545 L1215 465 L1230 550 L1130 650 L1180 720 L1130 765 L1060 795 L1000 880 L890 930 L745 900 L690 860 L650 730 Z'},
+   path:'M690 640 L805 650 L845 600 L1000 520 L1230 420 L1280 420 L1280 820 L1070 850 L970 930 L835 945 L720 890 L680 760 Z'},
   // Gloved magnifier hand and lens use two contiguous mask islands.
   // The movement range is intentionally small to protect the eyeglass seam.
   {bone:'leftArm',pivot:[300,830],
@@ -36,10 +36,10 @@ const target:Record<Pose,{head:number;leftArm:number;rightArm:number;body:number
  arrive:{head:-.7,leftArm:0,rightArm:1.2,body:1.3},
  look:{head:-1.8,leftArm:.2,rightArm:1.0,body:0},
  point:{head:-.8,leftArm:0,rightArm:-5.5,body:-.7},
- inspect:{head:-2.5,leftArm:1.2,rightArm:.5,body:1},
+ inspect:{head:-2.5,leftArm:.35,rightArm:.5,body:1},
  listen:{head:1.9,leftArm:0,rightArm:1.3,body:0},
- react:{head:2.1,leftArm:.5,rightArm:3,body:-1.5},
- discover:{head:-2.2,leftArm:.5,rightArm:-4.5,body:1}
+ react:{head:2.1,leftArm:.25,rightArm:3,body:-1.5},
+ discover:{head:-2.2,leftArm:.25,rightArm:-4.5,body:1}
 };
 const smooth=(x:number)=>{const n=Math.min(1,Math.max(0,x));return n*n*(3-2*n);};
 export function actingPose(pose:Pose,time:number){
@@ -51,7 +51,7 @@ export function actingPose(pose:Pose,time:number){
  return {
   head:(desired.head*mix)+(Math.sin(time*1.3)*.6)+reactive*.4,
   rightArm:(desired.rightArm*mix)+(Math.sin(time*2.1)*.45),
-  leftArm:(desired.leftArm*mix)+(Math.sin(time*1.9)*.3),
+  leftArm:(desired.leftArm*mix)+(Math.sin(time*1.9)*.12),
   body:(desired.body*mix)+(breathe*.5),
   light:pose==='react'?Math.max(.3,1+reactive*.2):1,
  };

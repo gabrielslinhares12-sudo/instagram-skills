@@ -19,10 +19,10 @@ export const RiggedCharacter:React.FC<{
   head:act.head,leftArm:act.leftArm,rightArm:act.rightArm
  };
  const dim=Math.max(.22,Math.min(1,light));
- return <svg width="100%" height="100%"
+ return <svg width="100%" height="auto"
    viewBox={['0','0',rig.width,rig.height].join(' ')}
    preserveAspectRatio="xMidYMid meet"
-   style={{display:'block',overflow:'visible',pointerEvents:'none'}}>
+   style={{display:'block',width:'100%',height:'auto',aspectRatio:`${rig.width} / ${rig.height}`,overflow:'visible',pointerEvents:'none'}}>
    <defs>
     <radialGradient id={glowId}>
      <stop offset="0" stopColor="#ffeeb4" stopOpacity=".55"/>
