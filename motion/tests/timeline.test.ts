@@ -9,3 +9,17 @@ test('captions outside shot are blocked',()=>{const e=sample();e.scenes[1].capti
 test('title and caption do not overlap',()=>{const e=sample();e.scenes[0].captions.push({start:1,end:2,text:'duplicada'});assert.equal(episodeSchema.safeParse(e).success,false);});
 test('duplicate scene ids are blocked',()=>{const e=sample();e.scenes[1].id=e.scenes[0].id;assert.equal(episodeSchema.safeParse(e).success,false);});
 test('asset traversal and network URLs are blocked',()=>{for(const narration of ['../secret.wav','https://server/audio.wav']) assert.equal(episodeSchema.safeParse({...sample(),narration}).success,false);});
+
+import pilot from '../examples/ultimo-sinal-parte-1.json';
+test('pilot has 78 seconds at 60 fps and eight unique story beats',()=>{
+ const e=episodeSchema.parse(pilot);
+ assert.equal(totalFrames(e),4680);
+ assert.deepEqual(e.scenes.map(s=>s.beat),['flash','arrival','sign','tea','noise','hatch','blackout','voice']);
+});
+test('pilot is a silent technical preview, never an unapproved synthetic voice',()=>{
+ assert.equal(episodeSchema.parse(pilot).narration,null);
+});
+test('invalid story beat is rejected',()=>{
+ const e=sample();
+ assert.equal(episodeSchema.safeParse({...e,scenes:[{...e.scenes[0],beat:'unknown'}]}).success,false);
+});

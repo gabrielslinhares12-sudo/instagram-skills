@@ -6,8 +6,9 @@ export const episodeSchema = z.object({
   narration:asset.nullable().default(null),
   scenes:z.array(z.object({
     id:z.string().min(1), duration:z.number().min(1).max(90),
-    environment:z.enum(['laboratory','city','observatory']),
+    environment:z.enum(['laboratory','city','observatory','lighthouse','pier','cottage','underfloor','lantern']),
     heading:z.string().max(40).default(''),
+    beat:z.enum(['flash','arrival','sign','tea','noise','hatch','blackout','voice']).optional(),
     headingSeconds:z.number().min(0).max(3).default(0),
     actor:z.enum(['enter','float','discover']).default('float'),
     side:z.enum(['left','right']).default('right'),

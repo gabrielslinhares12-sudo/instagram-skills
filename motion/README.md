@@ -90,3 +90,10 @@ Referências consultadas em 04/11/2026:
 - https://www.remotion.dev/docs/third-party
 - https://www.remotion.dev/docs/license/pricing
 - https://docs.github.com/en/billing/concepts/product-billing/github-actions
+## Piloto: O Último Sinal
+Roteiro, com oito cenas e 78 segundos, em stories/o-ultimo-sinal-parte-1.md.
+Manifesto em examples/ultimo-sinal-parte-1.json. Cinco cenários vetoriais
+originais com oclusão de primeiro plano, luz ambiental e o Lúmino canônico.
+O PR renderiza uma prévia silenciosa de 12 segundos do piloto, não um Reel final.
+Gerar com npm run pilot-preview. A produção integral depende da voz Rasalgethi
+obtida no site Google AI Studio, ajustes de sincronismo e revisão visual.
