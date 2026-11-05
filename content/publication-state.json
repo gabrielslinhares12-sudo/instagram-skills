@@ -208,6 +208,12 @@
       "instagram_user_id": "17841433004716815",
       "page_id": "1385407341325017",
       "published_at": "2026-11-05T13:01:35Z"
+    },
+    "tue-2026-11-05-lumino-origem-aprovado": {
+      "status": "claimed",
+      "fingerprint": "3f66e88d0ef1501dd9932b37129d99fb9cfc40aab8448cf14f3e508dea669325",
+      "due_at": "2026-11-05T19:45:21Z",
+      "claimed_at": "2026-11-05T19:46:06Z"
     }
   }
 }
