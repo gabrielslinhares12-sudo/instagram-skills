@@ -14,7 +14,7 @@
   "pages": [
     {
       "filename": "LUMINO-MESTRE01-01.jpg",
-      "image_sha256": "9ead7483da77e744fda9bc98a1a680967e5ea7cd32fe44e244edd2d82338b9d9",
+      "image_sha256": "dc44337ef8d1134bedfcb23bce8d69abb425b381853c034a908609d74781be9d",
       "width": 1080,
       "height": 1350,
       "has_swipe_to_next": true,
@@ -24,7 +24,7 @@
     },
     {
       "filename": "LUMINO-MESTRE01-02.jpg",
-      "image_sha256": "c7f9eff1b8cb6b40bd01456d2bafce56776cf8b17f00404c7399edd55227abd6",
+      "image_sha256": "0a070c83a3bb8a77a064847381fb34fbed6147ae7d9f2d6c982d0032209266b0",
       "width": 1080,
       "height": 1350,
       "has_swipe_to_next": true,
@@ -34,7 +34,7 @@
     },
     {
       "filename": "LUMINO-MESTRE01-03.jpg",
-      "image_sha256": "b80dd313945cfa5f4b29475c3f1b4881ab0e895b834899c4da35d62fc4f0ef44",
+      "image_sha256": "89e9390bb0280f0a80578700d58b8f0efb7c2f2e407884a72ce721a3e54f23d7",
       "width": 1080,
       "height": 1350,
       "has_swipe_to_next": true,
@@ -44,7 +44,7 @@
     },
     {
       "filename": "LUMINO-MESTRE01-04.jpg",
-      "image_sha256": "e535f2dc05a4ed5a2e727c2967db9723839894b6691b0483d6c8826a0cd13804",
+      "image_sha256": "75eec6e8b6df802db2a4947571226799f62138b2ab8b9c9e652d1fdd0d97bd23",
       "width": 1080,
       "height": 1350,
       "has_swipe_to_next": true,
@@ -54,7 +54,7 @@
     },
     {
       "filename": "LUMINO-MESTRE01-05.jpg",
-      "image_sha256": "8308be07fbaddaf6d873dc3338575203c655e0b6d8aa54356054fed8816035e2",
+      "image_sha256": "294b21aa62123e429c13ac0f1143f2e190f577825b479b07ad7a76fc42843e3f",
       "width": 1080,
       "height": 1350,
       "has_swipe_to_next": true,
@@ -64,7 +64,7 @@
     },
     {
       "filename": "LUMINO-MESTRE01-06.jpg",
-      "image_sha256": "2570a5ea7902b7cc97e8720201d60194b7e56557c1392adaa23d4dc327608b2f",
+      "image_sha256": "5332bc6b0346aa96845213bbfef1e564a55d91abac58432500c637e0c7285716",
       "width": 1080,
       "height": 1350,
       "has_swipe_to_next": false,
