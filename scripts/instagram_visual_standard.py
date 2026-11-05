@@ -312,6 +312,44 @@ def verify_reel_release(root: Path, post: dict) -> str:
             or not isinstance(hashes, list) or len(hashes) != 1
             or not isinstance(hashes[0], str) or not HASH.fullmatch(hashes[0])):
         raise VisualError(f"Reel sem MP4 e SHA-256 verificaveis: {slug}")
+    # Um unico upload aprovado pelo usuario em 05NOV; demonstrar a origem
+    # sem fingir que o transcode Descript preservou os 60 FPS ou a resolucao 4K.
+    if slug == "tue-2026-11-05-10-cavalo-de-troia":
+        expected_sha = "922844fefb4f668eea141a50eff193eb020a2ae7f6ca4aef4d495792ffa78254"
+        media_on_disk = (root / "content/media/instagram/2026-11-05/odisseu-troia"
+                         / "Cavalo_Troia_4K60_Meta_10h.mp4")
+        expected_url = (
+            "https://raw.githubusercontent.com/gabrielslinhares12-sudo/"
+            "instagram-skills/705b24db115c4351d4e2b75f051d37d9018158f1/"
+            "content/media/instagram/2026-11-05/odisseu-troia/"
+            "Cavalo_Troia_4K60_Meta_10h.mp4")
+        if (media != [expected_url] or hashes != [expected_sha]
+                or not media_on_disk.is_file() or sha256(media_on_disk) != expected_sha
+                or receipt.get("owner_authorized") is not True
+                or receipt.get("approved") is not True
+                or receipt.get("owner_authorizes_only") != slug
+                or receipt.get("source_origin") != "user_attachment"
+                or receipt.get("source_original_sha256") !=
+                   "42da81f753f4251fc5262c33eca115b377f640792cddf6e3f84b4ce30b62f266"
+                or receipt.get("source_original_width") != 2160
+                or receipt.get("source_original_height") != 3840
+                or receipt.get("source_original_fps") != 60
+                or receipt.get("release_url") != expected_url
+                or receipt.get("media_sha256") != [expected_sha]
+                or receipt.get("encoded_width") != 720
+                or receipt.get("encoded_height") != 1280
+                or receipt.get("encoded_fps") != 30
+                or receipt.get("encoded_duration_seconds") != 60
+                or receipt.get("encoded_has_audio") is not True
+                or receipt.get("not_native_4k") is not True
+                or receipt.get("post_due_at") != post.get("due_at")
+                or receipt.get("disclosure_review") != post.get("ai_disclosure_review")
+                or post.get("ai_origin") != "synthetic"
+                or post.get("is_ai_generated") is not True
+                or post.get("ai_disclosure_review") !=
+                   "mandatory_realistic_synthetic_audio"):
+            raise VisualError("Troia 05NOV: arquivo ou aprovacao do usuario divergente.")
+        return slug
     # A 40-char commit makes GitHub's raw URL immutable. A mutable branch,
     # signed link or unapproved host must never be used for a release.
     if slug == "tue-2026-11-04-extra-trial-sprites":
