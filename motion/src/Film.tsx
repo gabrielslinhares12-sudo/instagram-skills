@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill,Audio,Img,OffthreadVideo,Sequence,interpolate,spring,staticFile,useCurrentFrame,useVideoConfig} from 'remotion';
 import {Scenery} from './Scenery';
-import {RiggedCharacter} from './actors/RiggedCharacter';
+import {CharacterActor} from './actors/CharacterActor';
 import {poseForBeat} from './actors/rigs';
 import {StoryScenery} from './StoryScenery';
 import {Episode,Scene,episodeSchema,frames} from './schema';
@@ -46,7 +46,7 @@ const Shot:React.FC<{scene:Scene}>=({scene})=>{
       opacity:actorEnter?interpolate(frame,[0,12],[0,1],clamp):1,
       filter:story?'drop-shadow(15px 26px 22px rgba(3,12,22,.65))':undefined
      }}>
-     <RiggedCharacter id={actor.id} pose={actor.pose} time={t} light={actorLight}/>
+     <CharacterActor id={actor.id} pose={actor.pose} time={t} light={actorLight}/>
     </div>
    </React.Fragment>;
   })}

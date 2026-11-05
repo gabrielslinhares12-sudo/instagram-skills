@@ -27,7 +27,7 @@ const STORY:Timed[]=[
  {time:2.2,state:{head:-1,left:{x:155,y:670},right:{x:617,y:550},gaze:-2,intensity:1}},
  {time:3.6,state:{head:-11,left:{x:177,y:492},right:{x:614,y:565},gaze:-9,intensity:1.2}},
  {time:5.5,state:{head:-6,left:{x:183,y:502},right:{x:627,y:559},gaze:-7,intensity:1.25}},
- {time:7.25,state:{head:5,left:{x:156,y:664},right:{x:682,y:642},gaze:9,intensity:1.22}},
+ {time:7.25,state:{head:5,left:{x:156,y:664},right:{x:680,y:497},gaze:9,intensity:1.22}},
  {time:8.35,state:{head:-13,body:-5,left:{x:128,y:598},right:{x:657,y:503},gaze:-9,eyes:.58,intensity:1.8}},
  {time:10,state:{head:2,body:1,left:{x:170,y:620},right:{x:625,y:540},gaze:4,eyes:1,intensity:1.4}}
 ];

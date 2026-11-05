@@ -78,7 +78,7 @@ export const LuminoActorTest:React.FC=()=>{
  <div style={{position:'absolute',top:155,left:75,right:70,
    fontSize:72,fontWeight:800,fontFamily:'sans-serif',letterSpacing:-2,
    color:'#fff3cf',textShadow:'0 4px 14px #071015',
-   opacity:1-remap(t,2.0,2.7)}}>LÚMINO NÃO É MAIS UMA FIGURINHA.</div>
+   opacity:1-remap(t,2.0,2.7)}}>O FAROL ESCONDE UM SEGREDO.</div>
  <div style={{position:'absolute',bottom:210,left:100,right:100,textAlign:'center',
   fontFamily:'sans-serif',fontSize:44,letterSpacing:1,color:'#f8e9bd',
   textShadow:'0 4px 9px #000',opacity:Math.min(1,remap(t,.5,1.5))}}>

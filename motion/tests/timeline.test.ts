@@ -75,7 +75,7 @@ test('native character has distinct timed head, eye and wrist motion',()=>{
  const a=sampleActor('demo',1),b=sampleActor('demo',4),c=sampleActor('demo',7.5);
  assert.notEqual(a.head,b.head);
  assert.ok(b.left.y<a.left.y-100);
- assert.ok(c.right.y>b.right.y+55);
+ assert.ok(c.right.y<b.right.y-40);
  assert.notEqual(b.gaze,c.gaze);
  assert.deepEqual(sampleActor('demo',4),b);
 });
