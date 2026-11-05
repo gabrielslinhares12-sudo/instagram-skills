@@ -1,0 +1,27 @@
+{
+  "name": "tue-motion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare-assets": "node scripts/prepare-assets.mjs",
+    "studio": "npm run prepare-assets && remotion studio src/index.ts",
+    "check": "tsc --noEmit && node --import tsx --test tests/*.test.ts && node scripts/prepare-assets.mjs",
+    "preview": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/tue-motion-preview.mp4 --scale=0.5 --codec=h264 --crf=20",
+    "render": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/tue-motion-4k.mp4 --codec=h264 --crf=18"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.540",
+    "remotion": "4.0.540",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "zod": "4.6.7",
+    "@fontsource/barlow-condensed": "5.2.8"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/react": "19.2.2",
+    "@types/node": "22.19.0",
+    "tsx": "4.20.6"
+  }
+}

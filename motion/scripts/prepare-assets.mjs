@@ -1,0 +1,12 @@
+import {createHash} from 'node:crypto';
+import {readFile, mkdir, copyFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+const root = fileURLToPath(new URL('../', import.meta.url));
+const brand = JSON.parse(await readFile(root + '../content/brand/TUE-MESTRE-01.json', 'utf8'));
+const source = root + '../' + brand.canonical_assets.lumino_path;
+const hash = createHash('sha256').update(await readFile(source)).digest('hex');
+if (hash !== brand.canonical_assets.lumino_sha256) throw new Error('Lúmino canônico alterado. Render bloqueado.');
+await mkdir(root + 'public', {recursive:true});
+await copyFile(source, root + 'public/lumino-original.png');
+await copyFile(root + 'node_modules/@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2', root + 'public/title.woff2');
+console.log('Lúmino original verificado; fonte local preparada.');
