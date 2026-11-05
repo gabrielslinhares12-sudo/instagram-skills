@@ -13,7 +13,7 @@ permissions:
   contents: read
 concurrency:
   group: tue-motion-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   render:
     runs-on: ubuntu-latest
