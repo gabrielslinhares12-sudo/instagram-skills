@@ -46,6 +46,8 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: tue-motion-${{ github.run_id }}
-          path: motion/out/*.mp4
+          path: |
+            motion/out/*.mp4
+            motion/public/lumino-original.png
           retention-days: 3
           if-no-files-found: error
