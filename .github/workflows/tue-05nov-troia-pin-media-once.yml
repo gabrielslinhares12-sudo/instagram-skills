@@ -1,0 +1,44 @@
+name: TUE Troia 05NOV - fixar MP4 publico para Meta
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tue-05nov-troia-pin-media-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: instagram-troia-05nov-pin-media
+  cancel-in-progress: false
+jobs:
+  pin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Preservar render aprovado com SHA imutavel
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: gabrielslinhares12-sudo/instagram-skills
+        shell: bash
+        run: |
+          set -euo pipefail
+          media='content/media/instagram/2026-11-05/odisseu-troia/Cavalo_Troia_4K60_Meta_10h.mp4'
+          mkdir -p "$(dirname "$media")"
+          gh release download tue-troia-20261105-1000-media --pattern Cavalo_Troia_4K60_Meta_10h.mp4 --dir "$(dirname "$media")" --clobber
+          printf '922844fefb4f668eea141a50eff193eb020a2ae7f6ca4aef4d495792ffa78254  %s\n' "$media" | sha256sum -c -
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git ls-tree -r HEAD --name-only | grep -Fx "$media"; then
+            echo 'MEDIA_ALREADY_PINNED'
+          else
+            git pull --rebase origin main
+            git add -- "$media"
+            git commit -m 'media(instagram): arquivo Troia 4K60 fixado para postagem 05NOV 10h'
+            git push origin HEAD:main
+          fi
+          echo "VIDEO_COMMIT_SHA=$(git rev-parse HEAD)"
+          echo "MEDIA_PATH=$media"
