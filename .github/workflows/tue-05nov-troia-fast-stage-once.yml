@@ -33,6 +33,7 @@ jobs:
       - name: Hospedar para acesso HTTPS da Meta sem publicacao social
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: gabrielslinhares12-sudo/instagram-skills
         run: |
           set -euo pipefail
           tag='tue-troia-20261105-1000-media'
