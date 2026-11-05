@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "request": "Agendar Cavalo de Troia como primeira postagem de 05/11/2026 no Instagram",
+  "id": "tue-2026-11-05-11-cavalo-de-troia",
+  "username": "temumaexplicacao",
+  "platform": "instagram",
+  "kind": "reel",
+  "local_time": "2026-11-05T11:00:00-03:00",
+  "due_at": "2026-11-05T14:00:00Z",
+  "timezone": "America/Sao_Paulo",
+  "status": "blocked_editorial_qc",
+  "scheduled": false,
+  "published": false,
+  "approved": false,
+  "title": "O Cavalo de Troia: a armadilha de Odisseu",
+  "caption": "Como um cavalo de madeira teria mudado o destino de Troia? 🐴🏛️ Segundo a mitologia grega, Odisseu transformou uma falsa oferenda na armadilha decisiva da guerra. E a parte mais surpreendente não foi o cavalo... foi o plano por trás dele.\n\n#MitologiaGrega #CavaloDeTroia #Odisseu #Historia #TemUmaExplicacao",
+  "source": {
+    "repository": "gabrielslinhares12-sudo/tem-uma-explicacao",
+    "private_release_tag": "odisseu-troia-source-20261105",
+    "file": "odisseu-original.mp4",
+    "sha256": "2d6e5ed6d2a7476b171adde63cba871677f25402fd49926ad2255941706411ad",
+    "frame_rate": 60,
+    "width": 1080,
+    "height": 1920,
+    "duration_seconds": 60.011,
+    "narration": "not_verified_google_ai_studio_rasalgethi",
+    "visual_qc": "not_approved"
+  },
+  "blocking_reasons": [
+    "Rasalgethi narration not generated or certified",
+    "Original is 1080x1920 rather than native 4K",
+    "Recognizability and physical-animation corrections remain unapproved",
+    "Original video is in a private draft release, not a verified public Meta-ingest URL"
+  ],
+  "allowed_next_step": "Complete animation and voice QC, stage final media at a verified public HTTPS URL, then schedule only if first slot is still future and prevent duplicate publication.",
+  "explicit_prohibition": "Do not mark as scheduled or publish this incomplete media.",
+  "project_constraints": [
+    "GitHub/Meta API only",
+    "no paid API",
+    "no GUTHY",
+    "no stories",
+    "no music",
+    "no publication without final media"
+  ],
+  "evidence": {
+    "source_release": "https://github.com/gabrielslinhares12-sudo/tem-uma-explicacao/releases/tag/untagged-baf39c1db5b3499cfa39",
+    "qc_report": "https://github.com/gabrielslinhares12-sudo/tem-uma-explicacao/blob/main/docs/QC_ODISSEU_TROIA_20261105.md"
+  }
+}
