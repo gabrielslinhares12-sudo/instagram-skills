@@ -107,3 +107,33 @@ A opção 4k do workflow executa pilot-master e renderiza o episódio do
 manifesto (78s) em 2160x3840 a 60fps, **não** a demo de 12s.
 Esse render é manual, pode consumir muitos minutos do runner hospedado e
 permanece sem voz enquanto narration estiver null. Não é publicação.
+
+## Rig 2D articulado de personagens
+
+O Lúmino agora usa `src/actors/RiggedCharacter.tsx` e `src/actors/rigs.ts`.
+Apenas **pixels do PNG canônico** compõem corpo, cabeça, braço com lupa e braço apontando;
+máscaras vetoriais dividem a arte em partes independentes, com juntas/rotação
+por quadro. Há poses `idle`, `arrive`, `look`, `point`, `inspect`, `listen`,
+`react` e `discover`. A luz de lanterna acompanha a atuação. Nenhuma boca,
+perna ou braço extra é inventado. Sem sincronização labial.
+
+Os próximos personagens entram por um manifesto em `rigs.ts`: caminho da arte
+autorizada, dimensões, caminhos das máscaras e articulações. Não reutilizar
+automaticamente o desenho do Lúmino como substituto. A mesma engine aceita
+múltiplos personagens por cena com `characters` no JSON:
+
+```json
+"characters": [
+ {"instance":"protagonista","id":"lumino","pose":"inspect","x":200,"y":660,"size":660,"enter":"glide"}
+]
+```
+
+Cada personagem precisa ser registrado e passar no QC visual. As poses e máscaras
+atuais são um **primeiro rig recortado da pose canônica**, não equivalem a um
+personagem desenhado de todos os ângulos, com esqueleto completo de caminhada.
+Nos movimentos amplos, o desenho ainda exigirá ilustrações oficiais adicionais
+e revisão das emendas; não se deve inventá-las por IA.
+
+O teste de regressão confirma que o personagem está articulado, as juntas se
+movem separadamente e a timeline aceita um elenco de múltiplas instâncias.
+A revisão visual do MP4 ainda é necessária antes da publicação.

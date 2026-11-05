@@ -30,3 +30,42 @@ test('24 second QC montage covers every story beat without caption overlap',()=>
  assert.equal(totalFrames(e),1440);
  assert.equal(e.scenes.length,8);
 });
+
+import {actingPose,hasRig,poseForBeat,requireRig} from '../src/actors/rigs';
+test('the canonical mascot is a 3-bone articulated rig from its original PNG',()=>{
+ const r=requireRig('lumino');
+ assert.equal(r.source,'lumino-original.png');
+ assert.equal(r.width,1230);
+ assert.equal(r.height,1278);
+ assert.deepEqual(r.parts.map(p=>p.bone),['head','rightArm','leftArm']);
+});
+test('different bones move independently and deterministically at 60 fps',()=>{
+ const t=1.2;
+ assert.deepEqual(actingPose('point',t),actingPose('point',t));
+ const pointing=actingPose('point',t);
+ const listening=actingPose('listen',t);
+ assert.ok(pointing.rightArm < listening.rightArm-3);
+ assert.notEqual(pointing.head,pointing.leftArm);
+ assert.notEqual(actingPose('inspect',.5).head,actingPose('inspect',1.5).head);
+});
+test('timeline can declare multiple uniquely-instanced approved characters',()=>{
+ const e=sample();
+ e.scenes[1].characters=[
+  {instance:'a',id:'lumino',pose:'point',x:75,y:700,size:530,enter:'none'},
+  {instance:'b',id:'lumino',pose:'listen',x:565,y:730,size:460,enter:'glide'}
+ ];
+ assert.equal(episodeSchema.safeParse(e).success,true);
+ e.scenes[1].characters[1].instance='a';
+ assert.equal(episodeSchema.safeParse(e).success,false);
+});
+test('unknown character ids are rejected, never replaced by a lookalike',()=>{
+ assert.equal(hasRig('random-stranger'),false);
+ const e=sample();
+ e.scenes[0].characters=[{instance:'unapproved',id:'random-stranger',pose:'idle',x:0,y:500,size:550,enter:'none'}];
+ assert.equal(episodeSchema.safeParse(e).success,false);
+});
+test('beat choreography is stable and explicit',()=>{
+ assert.equal(poseForBeat('hatch'),'point');
+ assert.equal(poseForBeat('noise'),'inspect');
+ assert.equal(poseForBeat('voice'),'discover');
+});
