@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-05",
+  "preset": "TUE-MESTRE-01",
+  "approved_visual_master_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "lumino_canonical_png_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "total_pages": 6,
+  "narrative": "Fictional mascot origin story",
+  "result": "six_new_individual_review_jpegs",
+  "approved": false,
+  "visual_reviewed": false,
+  "publication_blocked": true,
+  "manual_original_comparison_required": true,
+  "instagram_posted": false,
+  "pages": [
+    {
+      "filename": "LUMINO-MESTRE01-01.jpg",
+      "image_sha256": "9ead7483da77e744fda9bc98a1a680967e5ea7cd32fe44e244edd2d82338b9d9",
+      "width": 1080,
+      "height": 1350,
+      "has_swipe_to_next": true,
+      "photo_url": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1700&q=88",
+      "photographic_source_provider": "Unsplash",
+      "canonical_mascot": true
+    },
+    {
+      "filename": "LUMINO-MESTRE01-02.jpg",
+      "image_sha256": "c542a23fd57691e44323defc99100e18a5b0c38b296052eb468c08063f408ca2",
+      "width": 1080,
+      "height": 1350,
+      "has_swipe_to_next": true,
+      "photo_url": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1700&q=88",
+      "photographic_source_provider": "Unsplash",
+      "canonical_mascot": true
+    },
+    {
+      "filename": "LUMINO-MESTRE01-03.jpg",
+      "image_sha256": "b80dd313945cfa5f4b29475c3f1b4881ab0e895b834899c4da35d62fc4f0ef44",
+      "width": 1080,
+      "height": 1350,
+      "has_swipe_to_next": true,
+      "photo_url": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1700&q=88",
+      "photographic_source_provider": "Unsplash",
+      "canonical_mascot": true
+    },
+    {
+      "filename": "LUMINO-MESTRE01-04.jpg",
+      "image_sha256": "137a5241d647bf0b47e1488588c1b9c2aa794040a9def135e6b9d574fa533ea5",
+      "width": 1080,
+      "height": 1350,
+      "has_swipe_to_next": true,
+      "photo_url": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1700&q=88",
+      "photographic_source_provider": "Unsplash",
+      "canonical_mascot": true
+    },
+    {
+      "filename": "LUMINO-MESTRE01-05.jpg",
+      "image_sha256": "041cb06e57ac5dc0d48d7ba4aa7a65dd9a5b41c1483cc6ec0a98baabb6293e57",
+      "width": 1080,
+      "height": 1350,
+      "has_swipe_to_next": true,
+      "photo_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1700&q=88",
+      "photographic_source_provider": "Unsplash",
+      "canonical_mascot": true
+    },
+    {
+      "filename": "LUMINO-MESTRE01-06.jpg",
+      "image_sha256": "ac751d56cde83c3d13384f22faedb3a2986f566695ac8e375741e2e0d3251db7",
+      "width": 1080,
+      "height": 1350,
+      "has_swipe_to_next": false,
+      "photo_url": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1700&q=88",
+      "photographic_source_provider": "Unsplash",
+      "canonical_mascot": true
+    }
+  ],
+  "rights": "Unsplash photo sources, original TUE Lúmino source, editorial overlays",
+  "qa_notes": "6 individual 1080x1350 JPEGs, six progress dots, last slide no arrow; final artistic approval pending"
+}
