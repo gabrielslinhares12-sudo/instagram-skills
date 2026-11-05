@@ -13,7 +13,11 @@
     "pilot-full": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/ultimo-sinal-parte-1-completo.mp4 --props=examples/ultimo-sinal-parte-1.json --scale=0.5 --codec=h264 --crf=20",
     "pilot-qc": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/ultimo-sinal-8-cenas-qc.mp4 --props=examples/ultimo-sinal-qc.json --scale=0.5 --codec=h264 --crf=20",
     "pilot-master": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/ultimo-sinal-parte-1-4k.mp4 --props=examples/ultimo-sinal-parte-1.json --codec=h264 --crf=18",
-    "actor-demo": "npm run prepare-assets && remotion render src/index.ts LuminoActorTest out/lumino-personagem-remotion.mp4 --codec=h264 --crf=18 --concurrency=2"
+    "actor-demo": "npm run prepare-assets && remotion render src/index.ts LuminoActorTest out/lumino-personagem-remotion.mp4 --codec=h264 --crf=18 --concurrency=2",
+    "troia-score": "node scripts/create-odisseu-score.mjs",
+    "troia-full": "npm run prepare-assets && npm run troia-score && remotion render src/index.ts TroiaOdisseu60 out/odisseu-cavalo-troia-60s.mp4 --codec=h264 --crf=20 --concurrency=2",
+    "troia-4k": "npm run prepare-assets && npm run troia-score && remotion render src/index.ts TroiaOdisseu60 out/odisseu-cavalo-troia-60s-4k.mp4 --scale=2 --codec=h264 --crf=18 --concurrency=2",
+    "troia-qc": "npm run prepare-assets && npm run troia-score && remotion render src/index.ts TroiaOdisseu60 out/troia-qc.mp4 --frames=0-359 --codec=h264 --crf=21 --concurrency=2"
   },
   "dependencies": {
     "@remotion/cli": "4.0.540",
