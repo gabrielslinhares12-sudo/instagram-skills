@@ -171,6 +171,11 @@ export const LuminoPuppet:React.FC<{time:number;gesture?:ActorGesture;darkness?:
   <path d="M505 594Q538 679 526 746" stroke="#1a1d1c" strokeWidth="6" opacity=".62" fill="none"/>
   <path d="M247 576L300 637M462 576L419 646" stroke="#ffdb91" strokeWidth="5" opacity=".46" fill="none"/>
   <path d="M350 661L359 746L374 716" stroke="#bf9f60" strokeWidth="4" opacity=".65" fill="none"/>
+  {/* Tailored pockets, seam detail and cuffs without changing the khaki silhouette. */}
+  <path d="M183 689L265 682L261 733L193 744Z" fill="#63543d" opacity=".55" stroke="#c6a366" strokeWidth="5"/>
+  <path d="M444 691L515 681L513 724L451 737Z" fill="#655239" opacity=".54" stroke="#c8a86d" strokeWidth="5"/>
+  <path d="M198 695L254 695M453 696L506 693" fill="none" stroke="#f2d18a" strokeWidth="4" opacity=".55"/>
+  <path d="M253 739L218 763M477 736L504 758" fill="none" stroke="#403b2b" strokeWidth="5" opacity=".7"/>
   <path d="M426 686L490 768L431 770" stroke="#51432d" strokeWidth="9" fill="none"/>
   {[0,1,2].map((n)=><g key={n}>
     <circle cx={275+(n%2)*176} cy={665+n*37} r="17" fill={G} stroke="#45301d" strokeWidth="6"/>
@@ -232,12 +237,17 @@ export const LuminoPuppet:React.FC<{time:number;gesture?:ActorGesture;darkness?:
     <ellipse cx="4" cy="0" rx="46" ry="45" fill={W} stroke="#322925" strokeWidth="9"/>
     <path d="M-18 -12Q-28 -46 -8 -46Q19 -38 26 -3" fill={W} stroke="#47403b" strokeWidth="7"/>
     <path d="M-16 18Q6 35 30 16" stroke="#a7a7a0" strokeWidth="8" fill="none"/>
+    <path d="M-30 -8Q-26 12 -15 18M-13 -19Q-6 9 5 21M10 -18Q23 2 30 11" fill="none" stroke="#a9a79f" strokeWidth="5" opacity=".85"/>
+    <path d="M-30 -37Q-17 -54 7 -52" fill="none" stroke="#ffffff" strokeWidth="6" opacity=".72"/>
   </g>
   <g transform={'translate('+pose.right.x+' '+pose.right.y+')'}>
     <path d="M-17 4 Q-44 -18 -34 -42 Q-25 -60 0 -45 L20 -24 Q43 -45 55 -70 L100 -121 Q120 -134 135 -115 Q147 -97 131 -76 L79 -20 Q78 13 42 27Z"
       fill={W} stroke="#302823" strokeWidth="10" strokeLinejoin="round"/>
     <path d="M14 -21Q38 8 61 -5" fill="none" stroke="#77736b" strokeWidth="6"/>
     <path d="M42 -35L73 -48" stroke="#c2bbb0" strokeWidth="5"/>
+    <path d="M-22 9Q-3 28 20 23M30 9Q48 17 64 -4" fill="none" stroke="#a9a69d" strokeWidth="5"/>
+    <path d="M57 -63Q69 -85 92 -100M72 -34L93 -59" fill="none" stroke="#f9f7ef" strokeWidth="6" opacity=".7"/>
+    <path d="M-40 -29Q-53 -11 -40 6" stroke="#fffdf4" strokeWidth="7" opacity=".63" fill="none"/>
   </g>
  </g>
  </svg>;
