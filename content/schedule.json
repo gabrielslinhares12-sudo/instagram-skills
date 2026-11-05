@@ -405,14 +405,14 @@
         "3dad49f3b20b489209e1d4c2602b8c2e81c38e449b7d8499853dfaee21c1fb62",
         "03375b61b262214559892a41258a9f40cda1f57031717acd92f4b6f97a127952"
       ],
-      "approved": true,
+      "approved": false,
       "ai_origin": "synthetic",
       "content_style": "clearly_illustrated",
       "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
       "distribution_mode": "api_carousel_without_native_music",
       "owner_authorized_without_music": true,
       "sources": [],
-      "approval_note": "Usuario aprovou expressamente a postagem imediata das seis artes diferenciadas no chat em 2026-11-05; sem musica e sem story."
+      "approval_note": "DUPLICATE BLOCKED: Exact six approved Lúmino images already published by one-shot GitHub run 42096959917, Meta media 18031789529691012, https://www.instagram.com/p/DfX0PU_nzvf/. Do not publish again."
     }
   ]
 }
