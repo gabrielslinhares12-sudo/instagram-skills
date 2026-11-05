@@ -359,6 +359,27 @@
         "https://science.nasa.gov/earth/earth-observatory/elusive-sprite-captured-from-the-international-space-station-78487/"
       ],
       "approval_note": "Revisao solicitada em 04NOV: titulo superior totalmente removido (0-48s); somente legendas inferiores da fala. Sem sobreposicao de textos. Trial Reel MANUAL, nao promover ao feed. Publicar 18h30 BRT."
+    },
+    {
+      "id": "tue-2026-11-05-10-cavalo-de-troia",
+      "due_at": "2026-11-05T13:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "reel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "O Cavalo de Troia: o plano de Odisseu",
+      "caption": "Uma guerra que parecia não ter fim. Um cavalo de madeira diante dos portões. E uma armadilha que mudaria o destino de Troia. 🐎🏛️\n\nSegundo a mitologia grega, a maior arma de Odisseu foi sua inteligência.\n\n#CavaloDeTroia #Odisseu #MitologiaGrega #Historia #TemUmaExplicacao",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/705b24db115c4351d4e2b75f051d37d9018158f1/content/media/instagram/2026-11-05/odisseu-troia/Cavalo_Troia_4K60_Meta_10h.mp4"
+      ],
+      "media_sha256": [
+        "922844fefb4f668eea141a50eff193eb020a2ae7f6ca4aef4d495792ffa78254"
+      ],
+      "approved": true,
+      "is_ai_generated": true,
+      "ai_origin": "synthetic",
+      "ai_disclosure_review": "mandatory_realistic_synthetic_audio",
+      "sources": [],
+      "approval_note": "Aprovado explicitamente pelo proprietário em 05/11: publicar este video enviado, primeira postagem do dia, 10h Brasilia. A versao de hospedagem atualmente fixada e conversao audiovisual do arquivo fornecido; prioridade substituir por original 4K60 antes do horario, sem alterar cenas ou narracao. Publicacao no Instagram via API oficial Meta, sem Story nem musica."
     }
   ]
 }
