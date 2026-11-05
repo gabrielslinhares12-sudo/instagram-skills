@@ -50,17 +50,5 @@ jobs:
             content/media/instagram/2026-11-05/lumino-origem/manifest.json
           retention-days: 7
           if-no-files-found: error
-      - name: Release das imagens editoriais, não postagem
-        env:
-          GH_TOKEN: \${{ github.token }}
-        run: |
-          dir=content/media/instagram/2026-11-05/lumino-origem
-          tag=tue-05nov-lumino-origem-rascunho
-          if gh release view "$tag" >/dev/null 2>&1; then
-            gh release upload "$tag" "$dir"/*.jpg "$dir"/PREVIA-06-ARTES.png "$dir"/manifest.json --clobber
-          else
-            gh release create "$tag" "$dir"/*.jpg "$dir"/PREVIA-06-ARTES.png "$dir"/manifest.json \
-              --title "Lúmino: origem fictícia - 6 artes TUE-MESTRE-01" \
-              --notes "Conteúdo ficcional, artes individuais 1080x1350, Lúmino PNG original. Apenas rascunho; não publicado nem aprovado pelo proprietário." \
-              --target main
-          fi
+      - name: Exibir link do pacote sem publicar
+        run: echo "Pacote de seis imagens salvo como artifact do GitHub Actions. Sem acesso Meta nem releases."
