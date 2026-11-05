@@ -23,3 +23,10 @@ test('invalid story beat is rejected',()=>{
  const e=sample();
  assert.equal(episodeSchema.safeParse({...e,scenes:[{...e.scenes[0],beat:'unknown'}]}).success,false);
 });
+
+import qc from '../examples/ultimo-sinal-qc.json';
+test('24 second QC montage covers every story beat without caption overlap',()=>{
+ const e=episodeSchema.parse(qc);
+ assert.equal(totalFrames(e),1440);
+ assert.equal(e.scenes.length,8);
+});

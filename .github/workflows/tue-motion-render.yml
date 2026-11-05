@@ -5,8 +5,8 @@ on:
       quality:
         description: Qualidade do arquivo
         type: choice
-        options: [preview, pilot, 4k]
-        default: pilot
+        options: [preview, qc, pilot, 4k]
+        default: qc
   pull_request:
     paths: ['motion/**', '.github/workflows/tue-motion-render.yml']
 permissions:
@@ -32,10 +32,12 @@ jobs:
       - run: npm run check
       - name: Render preview or master
         env:
-          QUALITY: ${{ inputs.quality || 'pilot' }}
+          QUALITY: ${{ inputs.quality || 'qc' }}
         run: |
           if [ "$QUALITY" = "4k" ]; then
             npm run render -- --concurrency=2
+          elif [ "$QUALITY" = "qc" ]; then
+            npm run pilot-qc -- --concurrency=2
           elif [ "$QUALITY" = "pilot" ]; then
             npm run pilot-preview -- --concurrency=2
           else

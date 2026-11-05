@@ -97,3 +97,7 @@ originais com oclusão de primeiro plano, luz ambiental e o Lúmino canônico.
 O PR renderiza uma prévia silenciosa de 12 segundos do piloto, não um Reel final.
 Gerar com npm run pilot-preview. A produção integral depende da voz Rasalgethi
 obtida no site Google AI Studio, ajustes de sincronismo e revisão visual.
+
+### QC de oito cenas
+O comando npm run pilot-qc gera montagem técnica de 24 segundos, com 3 segundos por cena.
+A ação pull_request renderiza esse QC; o vídeo é silencioso e não está liberado para postagem.

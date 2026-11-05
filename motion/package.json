@@ -10,7 +10,8 @@
     "preview": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/tue-motion-preview.mp4 --scale=0.5 --codec=h264 --crf=20",
     "render": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/tue-motion-4k.mp4 --codec=h264 --crf=18",
     "pilot-preview": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/ultimo-sinal-parte-1-preview.mp4 --props=examples/ultimo-sinal-parte-1.json --frames=0-719 --scale=0.5 --codec=h264 --crf=20",
-    "pilot-full": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/ultimo-sinal-parte-1-completo.mp4 --props=examples/ultimo-sinal-parte-1.json --scale=0.5 --codec=h264 --crf=20"
+    "pilot-full": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/ultimo-sinal-parte-1-completo.mp4 --props=examples/ultimo-sinal-parte-1.json --scale=0.5 --codec=h264 --crf=20",
+    "pilot-qc": "npm run prepare-assets && remotion render src/index.ts TUEMotion out/ultimo-sinal-8-cenas-qc.mp4 --props=examples/ultimo-sinal-qc.json --scale=0.5 --codec=h264 --crf=20"
   },
   "dependencies": {
     "@remotion/cli": "4.0.540",
