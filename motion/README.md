@@ -157,3 +157,21 @@ A posição da alavanca e da ponta da luva agora vêm de `src/actors/stageAction
 não de animações independentes. O alçapão tem dobradiça, degraus, luz no interior
 e abre durante o gesto. Testes validam aderência de contato e alcance do IK.
 A prévia continua ficcional, sem narração e sem publicação automática.
+
+
+## Curta mitológico de 60 segundos: Odisseu e o Cavalo de Troia
+
+- Composição `TroiaOdisseu60`: dez atos de 6 segundos, 3600 quadros.
+- `npm run troia-full`: H.264, 1080×1920, 60 FPS, legendado; inclui trilha
+  sonora original sintetizada por `scripts/create-odisseu-score.mjs`.
+- `npm run troia-4k`: render manual 2160×3840 (quando o runner suportar).
+- `npm run troia-qc`: primeiros seis segundos para conferir o personagem.
+- Odisseu é um ator vetorial separado (`src/actors/OdysseusActor.tsx`),
+  com membros, roupas e rosto articulados; Lúmino aparece no mundo da história.
+- Roteiro em `stories/odisseu-cavalo-de-troia.md`; é mito, não história factual.
+- O MP4 técnico ainda não tem voz Rasalgethi porque a geração Google AI Studio
+  não pôde ser executada na sessão (saldo do navegador insuficiente).
+- Quando o áudio autêntico estiver disponível, salvar em
+  `public/audio/odisseu-rasalgethi.wav` e renderizar com a propriedade
+  `{"voicePath":"audio/odisseu-rasalgethi.wav"}` (após verificar duração).
+  Não substituir a voz nem afirmar que narração foi gravada se não foi.
