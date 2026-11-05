@@ -38,10 +38,10 @@ jobs:
         run: python3 -m pip install -q 'Pillow>=11,<13' 'requests>=2.32,<3'
       - name: Verify code compiles and target account is fixed
         run: |
-          python3 -m py_compile scripts/instagram_publish_lumino_05nov_approved_once.py
+          python3 -m py_compile scripts/instagram_publish_lumino_05nov_resume_once.py
           test "$INSTAGRAM_USERNAME" = "temumaexplicacao"
       - name: Download exactly six approved files, protect image hashes, publish only new Lúmino post
-        run: python3 scripts/instagram_publish_lumino_05nov_approved_once.py
+        run: python3 scripts/instagram_publish_lumino_05nov_resume_once.py
       - name: Preserve immutable processing and publication evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -55,3 +55,5 @@ jobs:
 # One-shot: only edits to this workflow file can re-trigger it, the ledger prevents re-publication.
 
 # Retry after verified immutable JPEGs were hosted in public GitHub; no retry after a publication claim.
+
+# Reconcile already-staged, SHA-verified post; no repeated upload or blind retry.
