@@ -27,7 +27,7 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean}>=({
   <ellipse cx={wrist.x} cy={wrist.y} rx="25" ry="29" fill="#db9c70" stroke="#362b2a" strokeWidth="7"/>
   <path d={'M'+(wrist.x+10)+' '+(wrist.y-8)+'l16 -17'} stroke="#e0b08b" strokeWidth="11" strokeLinecap="round"/>
  </g>};
- return <svg width="100%" height="100%" viewBox="0 0 370 600" style={{overflow:'visible',display:'block'}}>
+ return <svg width={370} height={600} viewBox="0 0 370 600" style={{overflow:'visible',display:'block'}}>
  <defs>
   <linearGradient id="bronze-greek" x1="0" y1="0" x2="1" y2=".8">
    <stop stopColor="#ffe5a1"/><stop offset=".27" stopColor="#bd864f"/>
