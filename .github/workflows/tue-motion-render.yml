@@ -5,8 +5,8 @@ on:
       quality:
         description: Qualidade do arquivo
         type: choice
-        options: [actor, preview, qc, pilot, 4k]
-        default: actor
+        options: [troia, troia-qc, troia-4k, actor, preview, qc, pilot, 4k]
+        default: troia
   pull_request:
     paths: ['motion/**', '.github/workflows/tue-motion-render.yml']
 permissions:
@@ -32,9 +32,15 @@ jobs:
       - run: npm run check
       - name: Render preview or master
         env:
-          QUALITY: ${{ inputs.quality || 'actor' }}
+          QUALITY: ${{ inputs.quality || 'troia' }}
         run: |
-          if [ "$QUALITY" = "actor" ]; then
+          if [ "$QUALITY" = "troia" ]; then
+            npm run troia-full
+          elif [ "$QUALITY" = "troia-qc" ]; then
+            npm run troia-qc
+          elif [ "$QUALITY" = "troia-4k" ]; then
+            npm run troia-4k
+          elif [ "$QUALITY" = "actor" ]; then
             npm run actor-demo
           elif [ "$QUALITY" = "4k" ]; then
             npm run pilot-master -- --concurrency=2
