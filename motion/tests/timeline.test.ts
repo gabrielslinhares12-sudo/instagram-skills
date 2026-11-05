@@ -69,3 +69,19 @@ test('beat choreography is stable and explicit',()=>{
  assert.equal(poseForBeat('noise'),'inspect');
  assert.equal(poseForBeat('voice'),'discover');
 });
+
+import {sampleActor,solveArm} from '../src/actors/LuminoPuppet';
+test('native character has distinct timed head, eye and wrist motion',()=>{
+ const a=sampleActor('demo',1),b=sampleActor('demo',4),c=sampleActor('demo',7.5);
+ assert.notEqual(a.head,b.head);
+ assert.ok(b.left.y<a.left.y-100);
+ assert.ok(c.right.y>b.right.y+55);
+ assert.notEqual(b.gaze,c.gaze);
+ assert.deepEqual(sampleActor('demo',4),b);
+});
+test('two-bone IK elbow is between reach radii and deterministic',()=>{
+ const a={x:210,y:540},b={x:180,y:490};
+ const elbow=solveArm(a,b,140,130,-1);
+ assert.ok(Number.isFinite(elbow.x) && Number.isFinite(elbow.y));
+ assert.ok(Math.abs(Math.hypot(elbow.x-a.x,elbow.y-a.y)-140)<1e-5);
+});

@@ -137,3 +137,15 @@ e revisão das emendas; não se deve inventá-las por IA.
 O teste de regressão confirma que o personagem está articulado, as juntas se
 movem separadamente e a timeline aceita um elenco de múltiplas instâncias.
 A revisão visual do MP4 ainda é necessária antes da publicação.
+
+## Lúmino como personagem animado, não recorte de PNG
+`src/actors/LuminoPuppet.tsx` é uma reconstrução vetorial articulada para a animação.
+Tem lantern head separado, olhar e LED animados, dois braços com IK de dois ossos,
+luvas, lupa seguindo a mão, casaco com caudas móveis e luz contextual.
+A arte canônica permanece como **referência de identidade**, mas o vetor animável
+é uma adaptação artística e depende de aprovação visual do proprietário.
+A demo `LuminoActorTest` mostra 10 segundos de interação **no mesmo mundo SVG**:
+investigação da xícara, mão operando uma alavanca, alçapão abrindo e reação do Lúmino.
+Comando `npm run actor-demo`; render de PR em GitHub hospedado, sem narração nem postagem.
+Essa engine é o ponto de partida para outros personagens vetoriais com seus próprios corpos e rigs.
+**Não considerar o antigo RiggedCharacter como padrão final.**
