@@ -1,0 +1,33 @@
+{
+  "id": "tue-2026-11-05-10-cavalo-de-troia",
+  "kind": "reel",
+  "approved": true,
+  "owner_authorized": true,
+  "owner_authorizes_only": "tue-2026-11-05-10-cavalo-de-troia",
+  "source_origin": "user_attachment",
+  "source_filename": "Odisseu_Cavalo_de_Troia_60s (1).mp4",
+  "source_original_sha256": "42da81f753f4251fc5262c33eca115b377f640792cddf6e3f84b4ce30b62f266",
+  "source_original_width": 2160,
+  "source_original_height": 3840,
+  "source_original_fps": 60,
+  "source_original_duration_seconds": 60,
+  "hosted_version_note": "Publicacao temporariamente ligada a render de distribuicao do Descript 720x1280 30 FPS, enquanto copia 4K60 continua preservada em Canva/BlitzReels/local.",
+  "release_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/705b24db115c4351d4e2b75f051d37d9018158f1/content/media/instagram/2026-11-05/odisseu-troia/Cavalo_Troia_4K60_Meta_10h.mp4",
+  "media_sha256": [
+    "922844fefb4f668eea141a50eff193eb020a2ae7f6ca4aef4d495792ffa78254"
+  ],
+  "encoded_width": 720,
+  "encoded_height": 1280,
+  "encoded_fps": 30,
+  "encoded_duration_seconds": 60,
+  "encoded_has_audio": true,
+  "post_due_at": "2026-11-05T13:00:00Z",
+  "post_time_zone": "America/Sao_Paulo",
+  "status": "owner_approved_distribution_copy",
+  "not_native_4k": true,
+  "published": false,
+  "ai_origin": "synthetic",
+  "disclosure_review": "mandatory_realistic_synthetic_audio",
+  "owner_message": "Esse é o vídeo que tem que ser postado. poste ás 10:00.",
+  "audit_note": "Aprovação do conteúdo pelo usuário; versão de distribuição reduz resolução, não confundir com fonte 4K original. Não publicar antes das 10h."
+}
