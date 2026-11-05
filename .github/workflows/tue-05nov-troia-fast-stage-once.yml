@@ -1,0 +1,46 @@
+name: TUE Troia 05NOV - staging rapido arquivo aprovado
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tue-05nov-troia-fast-stage-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: tue-troia-05nov-media-fast
+  cancel-in-progress: false
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Importar render Descript aprovado
+        env:
+          SOURCE_URL: 'https://media.descriptusercontent.com/v3/proxy/remux?url=https%3A%2F%2Fapi.descript.com%2Fv2%2Fpublished_projects%2F336f37a5-7267-4465-a7ae-62d29cca8c5f%2Fhls%3Fexpiration%3D1793959278769%26signature%3Df409fa0582f1e26a6fe5824726af55105401b734eb8676be577074ddef2a97b4&filename=Reel+do+Cavalo+de+Troia.mp4&mediaCacheBucketName=production-273614-media-cache&expiration=1793955679&signature=feb85a52479c448c0611bec90435a5bddbca12d169496c9dbfddee37b68d4fd7'
+        run: |
+          set -euo pipefail
+          mkdir -p media
+          curl -fLsS --retry 1 --max-time 500 "$SOURCE_URL" -o media/Cavalo_Troia_4K60_Meta_10h.mp4
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('media/Cavalo_Troia_4K60_Meta_10h.mp4')
+          size=p.stat().st_size
+          header=p.open('rb').read(16)
+          print('MP4_IMPORTED_BYTES',size)
+          assert 2000000 <= size < 100000000, 'VIDEO_SIZE_INVALID'
+          assert b'ftyp' in header, 'NOT_MP4_FILE'
+          PY
+      - name: Hospedar para acesso HTTPS da Meta sem publicacao social
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag='tue-troia-20261105-1000-media'
+          f='Cavalo_Troia_4K60_Meta_10h.mp4'
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release view "$tag" --json assets --jq '.assets[].name' | grep -Fx "$f"
+            echo 'ASSET_ALREADY_PRESERVED'
+          else
+            gh release create "$tag" "media/$f" --target main --title 'TUE Troia - 05NOV 10h - fonte Reel Meta' --notes 'Arquivo tecnico para Meta API. A release nao publica no Instagram.' --prerelease --latest=false
+          fi
+          gh release view "$tag" --json assets --jq '.assets[] | {name, size, url}'
