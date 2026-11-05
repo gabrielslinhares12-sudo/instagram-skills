@@ -1,38 +1,31 @@
 {
   "version": 1,
-  "request": "Agendar Cavalo de Troia como primeira postagem de 05/11/2026 no Instagram",
-  "id": "tue-2026-11-05-11-cavalo-de-troia",
+  "request": "Postar o MP4 fornecido explicitamente pelo usuario como primeira postagem em 05/11/2026 as 10h de Brasilia",
+  "id": "tue-2026-11-05-10-cavalo-de-troia",
   "username": "temumaexplicacao",
   "platform": "instagram",
   "kind": "reel",
-  "local_time": "2026-11-05T11:00:00-03:00",
-  "due_at": "2026-11-05T14:00:00Z",
+  "local_time": "2026-11-05T10:00:00-03:00",
+  "due_at": "2026-11-05T13:00:00Z",
   "timezone": "America/Sao_Paulo",
-  "status": "blocked_editorial_qc",
-  "scheduled": false,
+  "status": "scheduled_in_github_queue_awaiting_meta_confirmation",
+  "scheduled": true,
   "published": false,
-  "approved": false,
-  "title": "O Cavalo de Troia: a armadilha de Odisseu",
+  "approved": true,
+  "title": "O Cavalo de Troia: o plano de Odisseu",
   "caption": "Como um cavalo de madeira teria mudado o destino de Troia? 🐴🏛️ Segundo a mitologia grega, Odisseu transformou uma falsa oferenda na armadilha decisiva da guerra. E a parte mais surpreendente não foi o cavalo... foi o plano por trás dele.\n\n#MitologiaGrega #CavaloDeTroia #Odisseu #Historia #TemUmaExplicacao",
   "source": {
-    "repository": "gabrielslinhares12-sudo/tem-uma-explicacao",
-    "private_release_tag": "odisseu-troia-source-20261105",
-    "file": "odisseu-original.mp4",
-    "sha256": "2d6e5ed6d2a7476b171adde63cba871677f25402fd49926ad2255941706411ad",
-    "frame_rate": 60,
-    "width": 1080,
-    "height": 1920,
-    "duration_seconds": 60.011,
-    "narration": "not_verified_google_ai_studio_rasalgethi",
-    "visual_qc": "not_approved"
+    "source_filename": "Odisseu_Cavalo_de_Troia_60s (1).mp4",
+    "original_sha256": "42da81f753f4251fc5262c33eca115b377f640792cddf6e3f84b4ce30b62f266",
+    "source_resolution": "2160x3840",
+    "source_fps": 60,
+    "source_duration": 60,
+    "distribution": "Descript 720x1280 30fps",
+    "distribution_sha256": "922844fefb4f668eea141a50eff193eb020a2ae7f6ca4aef4d495792ffa78254",
+    "media_url": "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/705b24db115c4351d4e2b75f051d37d9018158f1/content/media/instagram/2026-11-05/odisseu-troia/Cavalo_Troia_4K60_Meta_10h.mp4"
   },
-  "blocking_reasons": [
-    "Rasalgethi narration not generated or certified",
-    "Original is 1080x1920 rather than native 4K",
-    "Recognizability and physical-animation corrections remain unapproved",
-    "Original video is in a private draft release, not a verified public Meta-ingest URL"
-  ],
-  "allowed_next_step": "Complete animation and voice QC, stage final media at a verified public HTTPS URL, then schedule only if first slot is still future and prevent duplicate publication.",
+  "blocking_reasons": [],
+  "allowed_next_step": "Executar automacao GH uma vez as 10h e registrar comprovante Meta em content/publication-state.json, sem publicar duplicado.",
   "explicit_prohibition": "Do not mark as scheduled or publish this incomplete media.",
   "project_constraints": [
     "GitHub/Meta API only",
@@ -45,5 +38,9 @@
   "evidence": {
     "source_release": "https://github.com/gabrielslinhares12-sudo/tem-uma-explicacao/releases/tag/untagged-baf39c1db5b3499cfa39",
     "qc_report": "https://github.com/gabrielslinhares12-sudo/tem-uma-explicacao/blob/main/docs/QC_ODISSEU_TROIA_20261105.md"
-  }
+  },
+  "execution_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/42000557614",
+  "preflight_run": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/42000361141",
+  "historical_11h_status": "substituido por solicitacao explicita 10h",
+  "note": "Agendado em workflow GitHub (nao em agendamento nativo Meta); aguardando execucao e recibo real de publicacao. A copia publica foi reduzida para 720p30 pelo Descript; original 4K60 esta preservado."
 }
