@@ -10,7 +10,7 @@ const Shot:React.FC<{scene:Scene}>=({scene})=>{
  const progress=frame/Math.max(1,frames(scene.duration)-1);
  const enter=spring({frame,fps,config:{damping:22,stiffness:85}});
  const story=Boolean(scene.beat);
- const staged=scene.beat==='tea'?{x:550,y:880,size:545}:scene.beat==='hatch'?{x:700,y:825,size:485}:scene.beat==='noise'?{x:0,y:820,size:650}:scene.beat==='sign'?{x:395,y:805,size:590}:null;
+ const staged=scene.beat==='tea'?{x:535,y:880,size:530}:scene.beat==='hatch'?{x:600,y:825,size:460}:scene.beat==='noise'?{x:0,y:820,size:650}:scene.beat==='sign'?{x:395,y:805,size:590}:null;
  const x=staged?.x??(story?(scene.side==='left'?0:235):(scene.side==='left'?35:300));
  const drift=scene.actor==='enter'?(1-enter)*160:0;
  const bob=Math.sin(t*1.8)*9;

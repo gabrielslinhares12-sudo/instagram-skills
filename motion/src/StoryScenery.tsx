@@ -98,9 +98,9 @@ export const StoryScenery:React.FC<{
             fill="#c9d8d0" stroke="#405a5a" strokeWidth="7"/>
           <path d="M360 979q85 -12 47 48t-48 0" fill="none"
             stroke="#c9d8d0" strokeWidth="15"/>
-          <rect x="575" y="962" width="120" height="86" rx="12"
+          <rect x="425" y="962" width="120" height="86" rx="12"
             fill="#c9d8d0" stroke="#405a5a" strokeWidth="7"/>
-          <path d="M590 915q-20 -35 0 -57t0 -51M637 910q-12 -35 7 -57"
+          <path d="M440 915q-20 -35 0 -57t0 -51M487 910q-12 -35 7 -57"
             stroke="#e2e7df" strokeWidth="8" fill="none" opacity={.5+.2*Math.sin(time*2)}/>
         </>}
         {beat==='noise'&&<>
