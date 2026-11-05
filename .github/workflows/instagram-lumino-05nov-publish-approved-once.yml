@@ -37,6 +37,11 @@ jobs:
         run: |
           python -m py_compile scripts/instagram_lumino_nov05_publish_from_github_once.py scripts/instagram_lumino_nov05_publish_once.py scripts/instagram_queue.py scripts/facebook_poster.py
           python -m unittest discover -s scripts -p 'test_instagram_queue.py' -q
+      - name: Configure durable publication ledger author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --ff-only origin main
       - name: Validate six already-hosted exact owner-approved images and publish ONLY this carousel
         run: python -u scripts/instagram_lumino_nov05_publish_from_github_once.py
       - name: Preserve upload and official publication receipt for safe review
