@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: f1f4e78fff1a81abbf2d9a0206f587f0a74fbf5a
+          ref: 951de5088aa4c179e649b8973c9372b20332cbc6
           persist-credentials: false
       - name: Instalar Blender open-source, ffmpeg e software rendering
         run: |
