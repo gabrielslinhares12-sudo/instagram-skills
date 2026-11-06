@@ -182,18 +182,123 @@ const Cow:React.FC<{x:number;y:number;size:number;t:number}>=({x,y,size,t})=><g 
  <ellipse cx="178" cy="-135" rx="31" ry="25" fill="#b79b89"/><circle cx="161" cy="-203" r="6"/><circle cx="196" cy="-206" r="6"/>
  </g>;
 const heroScaleForGait=(world:string,sea:boolean)=>world==='cave'?.88:sea?1.38:1.56;
+
+/** New original-master-verified inserts. Every tableau corresponds to a spoken
+ * event (the source movie was visually audited in 10s steps), not random B-roll.
+ */
+const ExtraActs:React.FC<{action:string;t:number;q:number}>=({action:a,t,q})=><g>
+ {a==='penelopeWaits'&&<>
+  <RoleActor role="penelope" x={710} y={1530} scale={1.52} t={t} gesture="reach"/>
+  <RoleActor role="telemachus" x={350} y={1570} scale={.78} t={t}/>
+  <path d="M120 1480H900" stroke="#ab8e6f" strokeWidth="17" opacity=".65"/>
+ </>}
+ {['ciconesClash','ciconesReinforcements','menRetreat'].includes(a)&&<>
+  {[0,1,2,3,4].map(i=><g key={i}>
+   <RoleActor role={i%2?'suitor':'crew'} x={105+i*210+(a==='menRetreat'?q*95*(i%2?-1:1):0)} y={1570+(i%2)*22} scale={.98+i*.04} t={t+i*.5} gesture={a==='menRetreat'?'reach':'work'}/>
+   <path d={'M'+(115+i*210)+' 1130l'+(i%2?-100:90)+' -280'} stroke="#aa8e6c" strokeWidth="14" strokeLinecap="round" opacity=".85"/>
+   <circle cx={105+i*210} cy={1215+(i%2)*20} r="39" fill="#8c5643" stroke="#cfb28c" strokeWidth="10"/>
+  </g>)}
+  {[0,1,2,3].map(i=><ellipse key={i} cx={i*320+50+q*120} cy={1630-i%2*18} rx={35+q*19} ry={11} fill="#dbb99c" opacity=".28"/>)}
+ </>}
+ {a==='poseidonPlea'&&<>
+   <Cyclops x={650} y={500} scale={1.55} t={t} push={false}/>
+   <path d={'M0 1250Q'+(380+q*160)+' '+(1130-q*100)+' 1080 1300'} stroke="#a1bdc8" strokeWidth="48" opacity=".33" fill="none"/>
+   <path d="M800 970L810 450M810 450L730 620M810 450L905 625" stroke="#d2b98b" strokeWidth="19" strokeLinecap="round" fill="none"/>
+ </>}
+ {a==='companionGhost'&&<>
+   <RoleActor role="crew" x={775} y={1470} scale={1.33} t={t} opacity={.22+.1*Math.sin(t*2.1)} gesture="reach"/>
+   {[0,1,2,3].map(i=><ellipse key={i} cx={680+i*72+Math.sin(t+i)*7} cy={1250-i*55} rx="72" ry="19" fill="#d3c9df" opacity=".08"/>)}
+ </>}
+ {a==='calypsoYearn'&&<>
+   <RoleActor role="calypso" x={760} y={1545} scale={1.52} t={t} gesture="reach"/>
+   <path d="M0 1490Q350 1390 1080 1430" stroke="#d9d1b1" strokeWidth="12" fill="none" opacity=".7"/>
+ </>}
+ {['nestorMeeting','ambushEscape'].includes(a)&&<>
+   <RoleActor role="telemachus" x={230+q*110} y={1530} scale={1.35} t={t} gesture={a==='nestorMeeting'?'reach':''}/>
+   {a==='nestorMeeting'&&<RoleActor role="seer" x={760} y={1520} scale={1.5} t={t} gesture="reach"/>}
+   {a==='ambushEscape'&&<><Ship x={620+q*90} y={1370} scale={.83} time={t} wave={.9}/>
+    {[0,1,2].map(i=><path key={i} d={'M'+(90+i*350)+' 1390l40 -190'} stroke="#d6b99a" strokeWidth="15"/>)}</>}
+ </>}
+ {a==='shoreKneel'&&<>
+   <path d="M180 1490Q390 1435 600 1490" stroke="#cab193" strokeWidth="24" opacity=".7" fill="none"/>
+   <ellipse cx={315} cy={1640} rx={150+q*20} ry={20} fill="#28323b" opacity=".3"/>
+   <path d="M380 1395L450 1490L350 1560" stroke="#b28365" strokeWidth="37" strokeLinecap="round" fill="none"/>
+ </>}
+ {a==='suitorStoolThrown'&&<>
+   <RoleActor role="suitor" x={890} y={1515} scale={1.34} t={t} gesture="reach"/>
+   <g transform={'translate('+(lerp(800,310,q))+' '+lerp(1170,1540,q)+') rotate('+(q*325)+')'}>
+    <rect x="-76" y="-30" width="160" height="39" fill="#916b47" stroke="#40362f" strokeWidth="13"/>
+    <path d="M-52 10l-12 110M57 12l18 105" stroke="#916b47" strokeWidth="29" strokeLinecap="round"/>
+   </g>
+ </>}
+ {['axeChallenge','arrowThroughAxes'].includes(a)&&<>
+    {[0,1,2,3,4,5,6,7,8,9,10,11].map(i=><g key={i} transform={'translate('+(140+i*74)+' 1370)'}>
+      <path d="M0 0V200" stroke="#9a7960" strokeWidth="15"/>
+      <path d="M-23 -13Q0 -42 30 -12L15 25L-20 22Z" fill="#adb2b2" stroke="#596269" strokeWidth="8"/>
+      <ellipse cx="4" cy="-3" rx="10" ry="15" fill="#4e4b46"/>
+     </g>)}
+    {a==='arrowThroughAxes'&&<path d={'M'+lerp(120,1050,q)+' 1368L'+(lerp(120,1050,q)+75)+' 1368'} stroke="#e6cb9b" strokeWidth="12" strokeLinecap="round"/>}
+ </>}
+ {a==='nurseAnnounces'&&<>
+  <RoleActor role="nurse" x={280} y={1550} scale={1.33} t={t} gesture="reach"/>
+  <RoleActor role="penelope" x={790} y={1550} scale={1.42} t={t}/>
+ </>}
+ {a==='horseMemory'&&<g transform="translate(485 1470)">
+    <g transform={'scale('+(.88+.12*q)+')'}>
+     <path d="M-208 -180H195V80H-208Z" fill="#a8734d" stroke="#543e32" strokeWidth="18"/>
+     <path d="M97 -164L145 -435L207 -457L252 -392L198 -340L185 -166Z" fill="#b18156" stroke="#503b2f" strokeWidth="17"/>
+     <path d="M207 -452L258 -420L275 -370L237 -352L185 -396" fill="#ac7b54" stroke="#584333" strokeWidth="12"/>
+     <circle cx="234" cy="-413" r="8" fill="#2f2b2d"/>
+     {[0,1,2,3,4].map(i=><path key={i} d={'M'+(145+i*17)+' -417l-22 -35'} stroke="#513d30" strokeWidth="14" strokeLinecap="round"/>)}
+     <path d="M-188 78V210M172 80V210" stroke="#9d6747" strokeWidth="44"/>
+     <path d="M-214 -150Q-326 -230 -280 -290" stroke="#674737" strokeWidth="27" fill="none"/>
+     <path d="M-245 230H238" stroke="#765039" strokeWidth="27"/>
+     <circle cx="-172" cy="220" r="46" fill="#654c3d" stroke="#b58e61" strokeWidth="16"/>
+     <circle cx="175" cy="220" r="46" fill="#654c3d" stroke="#b58e61" strokeWidth="16"/>
+     {[0,1,2,3].map(i=><path key={i} d={'M'+(-160+i*100)+' -170V70'} stroke="#d2a377" strokeWidth="9" opacity=".8"/>)}
+    </g>
+ </g>}
+ {a==='familyReunited'&&<>
+  <RoleActor role="penelope" x={735-q*110} y={1550} scale={1.48} t={t} gesture="reach"/>
+  <RoleActor role="telemachus" x={400+q*45} y={1575} scale={1.13} t={t} gesture="reach"/>
+ </>}
+ {['oarInland','oarTraveler','oarBuried'].includes(a)&&<>
+  <g transform={'translate('+(a==='oarBuried'?430:520+q*40)+' '+(a==='oarBuried'?1190:1120)+') rotate('+(a==='oarBuried'?lerp(-25,72,q):-27)+')'}>
+    <path d="M0 -400V340" stroke="#b7875d" strokeWidth="23" strokeLinecap="round"/>
+    <path d="M-32 -405Q0 -505 45 -398L52 -248H-27Z" fill="#cc9a68" stroke="#604732" strokeWidth="13"/>
+    <path d="M0 95V315" stroke="#65462e" strokeWidth="6"/>
+   </g>
+   {a==='oarBuried'&&<ellipse cx="600" cy="1610" rx={110+q*25} ry="18" fill="#8e765e"/>}
+   <RoleActor role="seer" x={895} y={1540} scale={1.32} t={t} gesture="reach"/>
+ </>}
+ {['oliveOrchard','laertesRecognition','ancestralTrees'].includes(a)&&<>
+  <RoleActor role="seer" x={710} y={1540} scale={1.44} t={t} gesture={a==='laertesRecognition'?'reach':''}/>
+  {[0,1,2].map(i=><g key={i} transform={'translate('+(50+i*350)+' 1300)'}>
+    <path d="M0 150V-350M0 -80Q-130 -200 -80 -340M0 -110Q150 -190 128 -350" stroke="#5c4b39" strokeWidth="34" fill="none" strokeLinecap="round"/>
+    <ellipse cy="-370" rx="142" ry="78" fill="#5b7458"/>
+    <ellipse cx="-90" cy="-405" rx="86" ry="51" fill="#72835d"/>
+   </g>)}
+ </>}
+ {['athenaCeasefire','peaceAssembly'].includes(a)&&<>
+  <RoleActor role="athena" x={525} y={1520} scale={1.67} t={t} gesture="reach"/>
+  {[0,1,2,3].map(i=><RoleActor key={i} role={i%2?'suitor':'crew'} x={100+i*292} y={1590} scale={.84} t={t} gesture={a==='peaceAssembly'?'reach':''}/>)}
+  <path d="M620 1270L690 755" stroke="#dcc495" strokeWidth="19" strokeLinecap="round"/>
+  <path d="M680 760l-32 80h67Z" fill="#e7c88a" stroke="#685d53" strokeWidth="8"/>
+ </>}
+ </g>;
+
 const actionIn=(action:string,...checks:string[])=>checks.includes(action);
 const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string}>=({action,time:t,duration:d,world})=>{
  const q=ease(t/Math.max(.5,d-.8)),a=action,p=clamp(t/d);
  const sea=SEA.has(world);
- const heroNo=new Set(['weavingNight','boulderSeals','lotusEnchantment','cyclopsArrival','cyclopsSleeping','giantsAttack','boatsDestroyed','circeWelcomes','enchantedCup','menTransform','motherAppears','wingedSirens','sacredHerd','crewHunger','forbiddenFeast','calypsoShelter','nausicaaFinds','telemachusSeeks','athenaGuides','dangerousReturn','sonApproaches','argosHears','argosLooks','suitorsFeast','bowAttempt','penelopeApproaches','facesUncertain','oliveTreeReveal','palaceRestored','familyAtOlive','islandPanorama']);
+ const heroNo=new Set(['penelopeWaits','penelopeLoom','loomUnravels','penelopeRefuses','nestorMeeting','ambushEscape','nurseAnnounces','weavingNight','boulderSeals','lotusEnchantment','cyclopsArrival','cyclopsSleeping','giantsAttack','boatsDestroyed','circeWelcomes','enchantedCup','menTransform','motherAppears','wingedSirens','sacredHerd','crewHunger','forbiddenFeast','calypsoShelter','nausicaaFinds','telemachusSeeks','athenaGuides','dangerousReturn','sonApproaches','argosHears','argosLooks','suitorsFeast','bowAttempt','penelopeApproaches','facesUncertain','oliveTreeReveal','palaceRestored','familyAtOlive','islandPanorama']);
  const showHero=!heroNo.has(a);
- const heroWalk=/Landing|Departure|Approaches|Rescue|Escape|Entry|Return|Approach|Meet|Plan|Rises|Greeting|shoreWake|caveDiscovery|fleetDeparture|lotusRescue|ithacaDiscovered|shepherdHut|nightPalaceEntry|shoreRescue|nausicaaFinds/i.test(a);
- const pose:WarriorPose=actionIn(a,'fatherSonMeet','motherAppears','handsPassGhost','penelopeApproaches','recognitionDawns','reunionEmbrace','familyAtOlive')?'embrace':
+ const heroWalk=/Landing|Departure|Approaches|Rescue|Escape|Entry|Return|Approach|Meet|Plan|Rises|Greeting|shoreWake|caveDiscovery|fleetDeparture|lotusRescue|ithacaDiscovered|shepherdHut|nightPalaceEntry|shoreRescue|nausicaaFinds|oarInland|oarTraveler|menRetreat/i.test(a);
+ const pose:WarriorPose=actionIn(a,'fatherSonMeet','sonEmbrace','familyReunited','motherAppears','handsPassGhost','penelopeApproaches','recognitionDawns','reunionEmbrace','familyAtOlive')?'embrace':
  actionIn(a,'argosGreeting','argosRises')?'pet':
  actionIn(a,'bagUnknotted','wineToGiant','enchantedCup','hermesHerb','raftCarpentry','oldNurseWashes','scarDiscovered','bowBends','arrowTargets','bedSecret')?'craft':
  actionIn(a,'darkStorm','shipBraces','poseidonRises','thunderBreaksShip','raftStorm','scyllaStrikes','giantsAttack')?'brace':
- actionIn(a,'motherAppears','facesUncertain','lyreLament','quietNight','odysseusWaits')?'grieve':
+ actionIn(a,'motherAppears','shoreKneel','facesUncertain','lyreLament','quietNight','odysseusWaits')?'grieve':
  actionIn(a,'cyclopsPlea','nameRevealed','seerWarns','fatherSonPlan')?'point':
  heroWalk?'walk':'listen';
  // Root translation is permitted only when legs actually run a moving gait.
@@ -205,15 +310,16 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
  const heroScale=heroScaleForGait(world,sea);
  const hero=<g transform={'translate('+heroX+' '+heroY+') scale('+heroScale+')'}><Odysseus time={t} pose={pose} speed={heroLocalSpeed} civilian={world==='argos'||world==='wash'||world==='penelope'||world==='bed'||world==='finale'||world==='ithaca'}/></g>;
  return <g>
+   <ExtraActs action={a} t={t} q={q}/>
    {/* Foreground props and supporting animation are action-specific, never generic camera pans of stills. */}
    {/* Distinct household action: Penelope's loom, its shuttle moves while the thread changes length. */}
-   {actionIn(a,'ithacaWaiting','weavingNight')&&<>
+   {actionIn(a,'ithacaWaiting','weavingNight','penelopeLoom','loomUnravels','penelopeRefuses')&&<>
     <RoleActor role="penelope" x={760} y={1530} scale={1.42} t={t} gesture="work"/>
     {a==='ithacaWaiting'&&<RoleActor role="telemachus" x={285} y={1530} scale={.82} t={t}/>}
     <g transform="translate(395 1000)">
      <path d="M-185 -100V570M165 -100V570M-185 -100H165M-185 570H165" stroke="#8f6548" strokeWidth="31" fill="none"/>
      {[0,1,2,3,4,5,6,7,8].map(i=><path key={i} d={'M'+(-153+i*36)+' -70V'+(210+q*190)} stroke="#e4c59c" strokeWidth="7" opacity=".9"/>)}
-     <rect x="-170" y="175" width="325" height={Math.max(35,145+(a==='weavingNight'?-q:q)*100)} fill="#b38c71" stroke="#d2b69b" strokeWidth="7" opacity=".88"/>
+     <rect x="-170" y="175" width="325" height={Math.max(35,145+((a==='weavingNight'||a==='loomUnravels')?-q:q)*100)} fill="#b38c71" stroke="#d2b69b" strokeWidth="7" opacity=".88"/>
      <path d={'M'+lerp(-170,155,cycle(t*1.3))+' 75h70'} stroke="#f6ddbc" strokeWidth="21" strokeLinecap="round"/>
     </g>
    </>}
@@ -308,7 +414,7 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
      <RoleActor role="nausicaa" x={780} y={1550} scale={1.5} t={t} gesture={a==='nausicaaFinds'?'reach':''}/>
      {(a==='lyreLament'||a==='pastRetold')&&<path d="M585 1130Q480 960 400 1090M585 1130Q670 940 750 1070M440 1040L680 1065" fill="none" stroke="#dbc28f" strokeWidth="19"/>}
     </>}
-   {actionIn(a,'telemachusSeeks','athenaGuides','dangerousReturn','ithacaDiscovered','sonApproaches','fatherSonMeet','fatherSonPlan')&&<>
+   {actionIn(a,'telemachusSeeks','athenaGuides','dangerousReturn','ithacaDiscovered','sonApproaches','fatherSonMeet','sonEmbrace','fatherSonPlan')&&<>
     <RoleActor role="telemachus" x={770-q*80} y={1560} scale={1.37} t={t} gesture={a==='fatherSonMeet'?'reach':''}/>
     {a==='athenaGuides'&&<RoleActor role="athena" x={280} y={1360} scale={1.2} t={t} opacity={.74} gesture="reach"/>}
    </>}
@@ -320,7 +426,7 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
     {[0,1,2].map(i=><ellipse key={i} cx={-80+i*80} cy="5" rx={28+Math.sin(t*7+i)*5} ry="9" fill="none" stroke="#d7ebdf" strokeWidth="6"/>)}</g>
     {a==='scarDiscovered'&&<path d="M452 1330l110 37" stroke="#8c5147" strokeWidth="11"/>}
    </>}
-   {actionIn(a,'suitorsFeast','bowAttempt','odysseusTakesBow','bowBends','arrowTargets','suitorsRecoil','hallSecured')&&<>
+   {actionIn(a,'suitorsFeast','bowAttempt','odysseusTakesBow','bowBends','arrowTargets','axeChallenge','arrowThroughAxes','suitorsRecoil','hallSecured')&&<>
     {[0,1,2].map(i=><RoleActor key={i} role="suitor" x={170+i*340} y={1530} scale={1.13+i*.08} t={t+i} gesture={a==='suitorsRecoil'?'reach':''} opacity={a==='hallSecured'?.4:1}/>)}
     {(a==='bowAttempt'||a==='odysseusTakesBow'||a==='bowBends'||a==='arrowTargets')&&<g transform="translate(555 1070)">
       <path d={'M-100 175Q'+(-230-q*110)+' 0 -100 -185'} stroke="#825c39" strokeWidth="24" fill="none"/>
@@ -351,7 +457,7 @@ export const OdysseyFullAnimation:React.FC<OdysseyAnimationProps>=({offsetSecond
  if(sampleSeconds?.length){const clip=3;const n=Math.min(sampleSeconds.length-1,Math.floor(frame/fps/clip));time=sampleSeconds[n]!+(frame/fps-n*clip)}
  time=clamp(time,0,ODYSSEY_TOTAL_SECONDS-.0001);
  const beat=getOdysseyBeat(time),local=time-beat.start,duration=beat.end-beat.start;
- const world=beat.action==='weavingNight'?'penelope':beat.action==='ithacaWaiting'?'ithaca':beat.location;
+ const world=(beat.action==='weavingNight'||beat.action==='penelopeLoom'||beat.action==='loomUnravels')?'penelope':beat.action==='ithacaWaiting'?'ithaca':beat.location;
  const first=ODYSSEY_BEATS.find(b=>b.chapter===beat.chapter)?.id===beat.id;
  // Direct cinematic cuts between discrete actions: no 0.2+0.28s fade-to-black at each of 110 beats.
  // Original fades cost ~50 seconds of repeated dark flashes across the feature film.
