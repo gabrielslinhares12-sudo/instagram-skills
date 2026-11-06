@@ -85,7 +85,7 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;spee
   </g>)}
   <g transform={'translate(180 320) rotate('+body+') translate(-180 -320) translate(0 '+gait.bodyY+')'}>
   <path d={'M116 244Q42 260 '+(50+swing)+' 354Q'+(22+swing)+' 450 '+(12+swing)+' 503Q91 497 163 444L247 244Z'}
-   fill="url(#cloak-greek)" stroke="#342127" strokeWidth="11"/>
+   fill={civilian?"#6a6357":"url(#cloak-greek)"} stroke="#342127" strokeWidth="11"/>
   <path d={'M104 266Q72 395 '+(27+swing)+' 485'} stroke="#eb9881" strokeWidth="7" opacity=".35" fill="none"/>
   {forearm({x:123,y:264},L,-1)}
   {forearm({x:233,y:257},R,1)}
