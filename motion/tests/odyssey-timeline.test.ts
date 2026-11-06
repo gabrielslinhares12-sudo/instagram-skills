@@ -40,11 +40,26 @@ test('narration-backed scene order matches inspected original episode storyboard
   [348,'PAI E FILHO'],[366,'ARGOS'],[384,'A CICATRIZ'],
   [406,'O ARCO DE ODISSEU'],[424,'DOZE MACHADOS'],
   [445,'PENÉLOPE DESCE AO SALÃO'],[465,'O SEGREDO DA OLIVEIRA'],
-  [486,'O REENCONTRO'],[505,'UM REMO EM TERRA FIRME'],
+  [482,'A LEMBRANÇA DE TROIA'],[486,'O REENCONTRO'],[505,'UM REMO EM TERRA FIRME'],
   [521,'O POMAR DE LAERTES'],[545,'A PAZ EM ÍTACA']
  ];
  for(const [second,chapter] of expected)
   assert.equal(getOdysseyBeat(second).chapter,chapter,'Original-film mismatch at '+second+'s');
  assert.equal(new Set(ODYSSEY_BEATS.map(x=>x.action)).size,ODYSSEY_BEATS.length);
  assert.ok(ODYSSEY_BEATS.length>=110);
+});
+
+test('Trojan-horse recollection plays exactly under the 08:00–08:05 spoken flashback',()=>{
+ const before=getOdysseyBeat(479.983333);
+ const horse=getOdysseyBeat(480);
+ const endHorse=getOdysseyBeat(484.983333);
+ const after=getOdysseyBeat(485);
+ assert.equal(before.chapter,'O SEGREDO DA OLIVEIRA');
+ assert.equal(horse.action,'horseMemory');
+ assert.equal(endHorse.action,'horseMemory');
+ assert.equal(horse.location,'troia');
+ assert.equal(horse.start,480);
+ assert.equal(horse.end,485);
+ assert.equal(after.chapter,'O REENCONTRO');
+ assert.notEqual(after.action,'horseMemory');
 });
