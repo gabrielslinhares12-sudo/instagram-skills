@@ -1,0 +1,177 @@
+# TUE Motion
+
+Base de animação de cenas para Instagram TUE, usando Remotion. Exportação 9:16,
+60 fps, composição 2160×3840. Prévia a 1080×1920. Não publica nem altera a fila.
+
+## Sem computador local
+
+O workflow **TUE Motion - render sem PC** usa `ubuntu-latest` hospedado pelo
+GitHub. Na aba Actions, execute `Run workflow` e escolha `preview` ou `4k`.
+O MP4 fica no artifact do run durante três dias. Após integrar na branch padrão,
+o disparo manual estará disponível. PRs que alteram esta base renderizam a demo.
+Não usa runner local, API paga de vídeo nem serviço AWS Lambda.
+
+O uso de runners padrão em repositórios públicos é gratuito segundo o GitHub;
+armazenamento e outras modalidades têm limites próprios. Remotion permite uso
+comercial gratuito por indivíduos e empresas de até três pessoas, sujeito aos
+termos. Não é uma garantia de gratuidade para qualquer tamanho de operação.
+
+## O que está implementado
+
+- Cenas sequenciais com duração configurável em JSON.
+- Três ambientes vetoriais originais de demonstração: laboratório, cidade e
+  observatório. São ilustrações editoriais; não representam registros reais.
+- Entrada, flutuação discreta e inclinação de descoberta do PNG original.
+- Câmera com aproximação, deslocamento lateral ou enquadramento estático.
+- Fundo opcional de fotografia/vídeo, cobrindo 9:16 sem esticar.
+- Narração global importada e efeitos sonoros por cena, com volume e duração.
+- Uma legenda por vez, sem caixa preta; título limitado a três segundos.
+- Validação de intervalos, assets locais, IDs e integridade do Lúmino.
+- Fonte Barlow Condensed empacotada localmente, sem dependência de Google Fonts
+  durante o render. Licença OFL no pacote `@fontsource/barlow-condensed`.
+
+## Primeiro teste
+
+```bash
+cd motion
+npm ci
+npm run check
+npm run preview
+npm run render
+npm run studio
+```
+
+A demo `examples/demo.json` dura 12 segundos e não tem áudio. Serve para testar
+cenários e composição, não é um Reel editorial final aprovado. A direção de arte
+precisa ser revisada contra `../content/brand/TUE-MESTRE-01.md` antes de cada post.
+O personagem canônico tem resolução própria: exportar 4K não inventa detalhe.
+Não existe rig de braços, novas poses nem sincronização labial nesta versão;
+o desenho original não é recortado, redesenhado ou deformado.
+
+## Novo episódio
+
+Duplique `examples/demo.json`. Mantenha `title`, `narration` e `scenes`.
+Cada cena possui `id`, `duration` em segundos, `environment`, `actor`, `side`,
+`camera`, `captions` e opcionalmente `background` / `sounds`.
+As legendas e sons usam segundos relativos ao início da própria cena.
+Os arquivos adicionais devem estar em `public/` e os caminhos são relativos a
+essa pasta. `prepare-assets` não apaga arquivos extras. Para renderizar na nuvem,
+os assets devem estar no checkout (por exemplo, `git add -f motion/public/audio.wav`)
+ou ser baixados por etapa explícita de preparação com origem/licença verificadas.
+Nunca adicionar credenciais.
+
+```json
+{
+  "background": {"kind":"video", "src":"footage/cena.mp4", "credit":"Autor, URL e licença"},
+  "sounds": [{"src":"audio/efeito.wav", "start":1, "duration":1.5, "volume":0.25}]
+}
+```
+
+```bash
+npm run preview -- --props=examples/meu-episodio.json
+```
+
+Para narração, informar `narration: "audio/voz.wav"` após gerar/baixar Rasalgethi
+pelo site Google AI Studio. Esta base importa áudio; não gera voz nem automatiza
+login. Ajustar duração e legendas ao áudio real. Conferir som e sincronismo no
+MP4, principalmente em cortes. Fotografias/vídeos exigem inspeção do recorte;
+`cover` não garante enquadramento correto por si só.
+
+## Escolha tecnológica
+
+Motion (`motiondivision/motion`) é uma biblioteca MIT de animação web.
+Remotion fornece composição e renderização de vídeos com tempo determinado por
+quadro. A documentação não oferece integração pronta com Framer Motion;
+combinar ambos adicionaria trabalho de sincronização sem necessidade nesta base.
+
+Referências consultadas em 04/11/2026:
+- https://github.com/motiondivision/motion
+- https://www.remotion.dev/docs/render
+- https://www.remotion.dev/docs/third-party
+- https://www.remotion.dev/docs/license/pricing
+- https://docs.github.com/en/billing/concepts/product-billing/github-actions
+## Piloto: O Último Sinal
+Roteiro, com oito cenas e 78 segundos, em stories/o-ultimo-sinal-parte-1.md.
+Manifesto em examples/ultimo-sinal-parte-1.json. Cinco cenários vetoriais
+originais com oclusão de primeiro plano, luz ambiental e o Lúmino canônico.
+O PR renderiza uma prévia silenciosa de 12 segundos do piloto, não um Reel final.
+Gerar com npm run pilot-preview. A produção integral depende da voz Rasalgethi
+obtida no site Google AI Studio, ajustes de sincronismo e revisão visual.
+
+### QC de oito cenas
+O comando npm run pilot-qc gera montagem técnica de 24 segundos, com 3 segundos por cena.
+A ação pull_request renderiza esse QC; o vídeo é silencioso e não está liberado para postagem.
+
+### Render mestre 4K
+A opção 4k do workflow executa pilot-master e renderiza o episódio do
+manifesto (78s) em 2160x3840 a 60fps, **não** a demo de 12s.
+Esse render é manual, pode consumir muitos minutos do runner hospedado e
+permanece sem voz enquanto narration estiver null. Não é publicação.
+
+## Rig 2D articulado de personagens
+
+O Lúmino agora usa `src/actors/RiggedCharacter.tsx` e `src/actors/rigs.ts`.
+Apenas **pixels do PNG canônico** compõem corpo, cabeça, braço com lupa e braço apontando;
+máscaras vetoriais dividem a arte em partes independentes, com juntas/rotação
+por quadro. Há poses `idle`, `arrive`, `look`, `point`, `inspect`, `listen`,
+`react` e `discover`. A luz de lanterna acompanha a atuação. Nenhuma boca,
+perna ou braço extra é inventado. Sem sincronização labial.
+
+Os próximos personagens entram por um manifesto em `rigs.ts`: caminho da arte
+autorizada, dimensões, caminhos das máscaras e articulações. Não reutilizar
+automaticamente o desenho do Lúmino como substituto. A mesma engine aceita
+múltiplos personagens por cena com `characters` no JSON:
+
+```json
+"characters": [
+ {"instance":"protagonista","id":"lumino","pose":"inspect","x":200,"y":660,"size":660,"enter":"glide"}
+]
+```
+
+Cada personagem precisa ser registrado e passar no QC visual. As poses e máscaras
+atuais são um **primeiro rig recortado da pose canônica**, não equivalem a um
+personagem desenhado de todos os ângulos, com esqueleto completo de caminhada.
+Nos movimentos amplos, o desenho ainda exigirá ilustrações oficiais adicionais
+e revisão das emendas; não se deve inventá-las por IA.
+
+O teste de regressão confirma que o personagem está articulado, as juntas se
+movem separadamente e a timeline aceita um elenco de múltiplas instâncias.
+A revisão visual do MP4 ainda é necessária antes da publicação.
+
+## Lúmino como personagem animado, não recorte de PNG
+`src/actors/LuminoPuppet.tsx` é uma reconstrução vetorial articulada para a animação.
+Tem lantern head separado, olhar e LED animados, dois braços com IK de dois ossos,
+luvas, lupa seguindo a mão, casaco com caudas móveis e luz contextual.
+A arte canônica permanece como **referência de identidade**, mas o vetor animável
+é uma adaptação artística e depende de aprovação visual do proprietário.
+A demo `LuminoActorTest` mostra 10 segundos de interação **no mesmo mundo SVG**:
+investigação da xícara, mão operando uma alavanca, alçapão abrindo e reação do Lúmino.
+Comando `npm run actor-demo`; render de PR em GitHub hospedado, sem narração nem postagem.
+Essa engine é o ponto de partida para outros personagens vetoriais com seus próprios corpos e rigs.
+**Não considerar o antigo RiggedCharacter como padrão final.**
+
+### Acabamento de atuação — revisão de 05/11/2026
+Reflexos adicionais no vidro, brilho respirando no bulbo, piscar com intervalos definidos,
+costuras e dobras do sobretudo, brilho da lupa e ritmo de gestos mais natural.
+A posição da alavanca e da ponta da luva agora vêm de `src/actors/stageAction.ts`,
+não de animações independentes. O alçapão tem dobradiça, degraus, luz no interior
+e abre durante o gesto. Testes validam aderência de contato e alcance do IK.
+A prévia continua ficcional, sem narração e sem publicação automática.
+
+
+## Curta mitológico de 60 segundos: Odisseu e o Cavalo de Troia
+
+- Composição `TroiaOdisseu60`: dez atos de 6 segundos, 3600 quadros.
+- `npm run troia-full`: H.264, 1080×1920, 60 FPS, legendado; inclui trilha
+  sonora original sintetizada por `scripts/create-odisseu-score.mjs`.
+- `npm run troia-4k`: render manual 2160×3840 (quando o runner suportar).
+- `npm run troia-qc`: primeiros seis segundos para conferir o personagem.
+- Odisseu é um ator vetorial separado (`src/actors/OdysseusActor.tsx`),
+  com membros, roupas e rosto articulados; Lúmino aparece no mundo da história.
+- Roteiro em `stories/odisseu-cavalo-de-troia.md`; é mito, não história factual.
+- O MP4 técnico ainda não tem voz Rasalgethi porque a geração Google AI Studio
+  não pôde ser executada na sessão (saldo do navegador insuficiente).
+- Quando o áudio autêntico estiver disponível, salvar em
+  `public/audio/odisseu-rasalgethi.wav` e renderizar com a propriedade
+  `{"voicePath":"audio/odisseu-rasalgethi.wav"}` (após verificar duração).
+  Não substituir a voz nem afirmar que narração foi gravada se não foi.

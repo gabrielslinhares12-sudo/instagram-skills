@@ -1,0 +1,176 @@
+{
+  "title": "Lúmino — O Último Sinal | Parte 1: A Luz Apagada",
+  "narration": null,
+  "scenes": [
+    {
+      "id": "o-farol-acenou",
+      "duration": 10,
+      "environment": "lighthouse",
+      "beat": "flash",
+      "heading": "O FAROL\nACENOU.",
+      "headingSeconds": 2.4,
+      "actor": "enter",
+      "side": "right",
+      "camera": "push",
+      "captions": [
+        {
+          "start": 2.6,
+          "end": 5.6,
+          "text": "O farol estava apagado havia trinta anos."
+        },
+        {
+          "start": 5.8,
+          "end": 9.5,
+          "text": "Até que três lampejos cortaram a noite."
+        }
+      ]
+    },
+    {
+      "id": "chegada-ao-cais",
+      "duration": 10,
+      "environment": "pier",
+      "beat": "arrival",
+      "actor": "float",
+      "side": "left",
+      "camera": "pan",
+      "captions": [
+        {
+          "start": 0.3,
+          "end": 4.6,
+          "text": "Lúmino chegou ao cais antes do amanhecer."
+        },
+        {
+          "start": 4.8,
+          "end": 9.7,
+          "text": "Não havia barcos nem vozes. Só o som da água."
+        }
+      ]
+    },
+    {
+      "id": "a-placa-e-as-pegadas",
+      "duration": 9,
+      "environment": "pier",
+      "beat": "sign",
+      "actor": "discover",
+      "side": "right",
+      "camera": "push",
+      "captions": [
+        {
+          "start": 0.3,
+          "end": 4,
+          "text": "A placa dizia que o farol fora desativado."
+        },
+        {
+          "start": 4.2,
+          "end": 8.8,
+          "text": "Mas havia pegadas molhadas logo abaixo."
+        }
+      ]
+    },
+    {
+      "id": "duas-xicaras",
+      "duration": 10,
+      "environment": "cottage",
+      "beat": "tea",
+      "actor": "float",
+      "side": "right",
+      "camera": "static",
+      "captions": [
+        {
+          "start": 0.3,
+          "end": 4.7,
+          "text": "Duas xícaras repousavam sobre a mesa."
+        },
+        {
+          "start": 4.9,
+          "end": 9.6,
+          "text": "Uma delas ainda soltava vapor."
+        }
+      ]
+    },
+    {
+      "id": "ruido-sob-o-chao",
+      "duration": 10,
+      "environment": "cottage",
+      "beat": "noise",
+      "actor": "discover",
+      "side": "left",
+      "camera": "pan",
+      "captions": [
+        {
+          "start": 0.3,
+          "end": 4.6,
+          "text": "Um ruído vinha debaixo das tábuas."
+        },
+        {
+          "start": 4.8,
+          "end": 9.6,
+          "text": "Quando Lúmino aproximou a luz, o som parou."
+        }
+      ]
+    },
+    {
+      "id": "a-argola-escondida",
+      "duration": 10,
+      "environment": "underfloor",
+      "beat": "hatch",
+      "actor": "discover",
+      "side": "right",
+      "camera": "push",
+      "captions": [
+        {
+          "start": 0.3,
+          "end": 4.5,
+          "text": "Uma argola escondia uma escada estreita."
+        },
+        {
+          "start": 4.7,
+          "end": 9.7,
+          "text": "Antes de descer, tudo escureceu."
+        }
+      ]
+    },
+    {
+      "id": "a-lampada-falhou",
+      "duration": 9,
+      "environment": "lantern",
+      "beat": "blackout",
+      "actor": "float",
+      "side": "left",
+      "camera": "push",
+      "captions": [
+        {
+          "start": 0.3,
+          "end": 4.4,
+          "text": "A lâmpada de Lúmino apagou."
+        },
+        {
+          "start": 4.6,
+          "end": 8.5,
+          "text": "E alguém sussurrou seu nome."
+        }
+      ]
+    },
+    {
+      "id": "a-voz-inesperada",
+      "duration": 10,
+      "environment": "lantern",
+      "beat": "voice",
+      "actor": "discover",
+      "side": "right",
+      "camera": "push",
+      "captions": [
+        {
+          "start": 0.4,
+          "end": 4.3,
+          "text": "A voz não vinha da escada nem do farol."
+        },
+        {
+          "start": 4.5,
+          "end": 9.3,
+          "text": "Vinha de dentro da própria lanterna."
+        }
+      ]
+    }
+  ]
+}

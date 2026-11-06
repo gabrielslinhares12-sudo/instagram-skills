@@ -1,0 +1,152 @@
+{
+  "title": "QC visual — O Último Sinal — 8 cenas",
+  "narration": null,
+  "scenes": [
+    {
+      "id": "o-farol-acenou",
+      "duration": 3,
+      "environment": "lighthouse",
+      "beat": "flash",
+      "heading": "O FAROL\nACENOU.",
+      "headingSeconds": 2,
+      "actor": "enter",
+      "side": "right",
+      "camera": "push",
+      "captions": [],
+      "sounds": []
+    },
+    {
+      "id": "chegada-ao-cais",
+      "duration": 3,
+      "environment": "pier",
+      "beat": "arrival",
+      "actor": "float",
+      "side": "left",
+      "camera": "pan",
+      "captions": [
+        {
+          "start": 0.1,
+          "end": 2.8,
+          "text": "Não havia barcos nem vozes. Só o som da água."
+        }
+      ],
+      "heading": "",
+      "headingSeconds": 0,
+      "sounds": []
+    },
+    {
+      "id": "a-placa-e-as-pegadas",
+      "duration": 3,
+      "environment": "pier",
+      "beat": "sign",
+      "actor": "discover",
+      "side": "right",
+      "camera": "push",
+      "captions": [
+        {
+          "start": 0.1,
+          "end": 2.8,
+          "text": "Mas havia pegadas molhadas logo abaixo."
+        }
+      ],
+      "heading": "",
+      "headingSeconds": 0,
+      "sounds": []
+    },
+    {
+      "id": "duas-xicaras",
+      "duration": 3,
+      "environment": "cottage",
+      "beat": "tea",
+      "actor": "float",
+      "side": "right",
+      "camera": "static",
+      "captions": [
+        {
+          "start": 0.1,
+          "end": 2.8,
+          "text": "Uma delas ainda soltava vapor."
+        }
+      ],
+      "heading": "",
+      "headingSeconds": 0,
+      "sounds": []
+    },
+    {
+      "id": "ruido-sob-o-chao",
+      "duration": 3,
+      "environment": "cottage",
+      "beat": "noise",
+      "actor": "discover",
+      "side": "left",
+      "camera": "pan",
+      "captions": [
+        {
+          "start": 0.1,
+          "end": 2.8,
+          "text": "Quando Lúmino aproximou a luz, o som parou."
+        }
+      ],
+      "heading": "",
+      "headingSeconds": 0,
+      "sounds": []
+    },
+    {
+      "id": "a-argola-escondida",
+      "duration": 3,
+      "environment": "underfloor",
+      "beat": "hatch",
+      "actor": "discover",
+      "side": "right",
+      "camera": "push",
+      "captions": [
+        {
+          "start": 0.1,
+          "end": 2.8,
+          "text": "Antes de descer, tudo escureceu."
+        }
+      ],
+      "heading": "",
+      "headingSeconds": 0,
+      "sounds": []
+    },
+    {
+      "id": "a-lampada-falhou",
+      "duration": 3,
+      "environment": "lantern",
+      "beat": "blackout",
+      "actor": "float",
+      "side": "left",
+      "camera": "push",
+      "captions": [
+        {
+          "start": 0.1,
+          "end": 2.8,
+          "text": "E alguém sussurrou seu nome."
+        }
+      ],
+      "heading": "",
+      "headingSeconds": 0,
+      "sounds": []
+    },
+    {
+      "id": "a-voz-inesperada",
+      "duration": 3,
+      "environment": "lantern",
+      "beat": "voice",
+      "actor": "discover",
+      "side": "right",
+      "camera": "push",
+      "captions": [
+        {
+          "start": 0.1,
+          "end": 2.8,
+          "text": "Vinha de dentro da própria lanterna."
+        }
+      ],
+      "heading": "",
+      "headingSeconds": 0,
+      "sounds": []
+    }
+  ]
+}

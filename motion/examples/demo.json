@@ -1,0 +1,9 @@
+{
+  "title":"Lúmino • Laboratório de histórias",
+  "narration":null,
+  "scenes":[
+    {"id":"laboratorio","duration":4,"environment":"laboratory","heading":"TODA HISTÓRIA\nCOMEÇA COM UMA PERGUNTA.","headingSeconds":3,"actor":"enter","side":"right","camera":"push","captions":[]},
+    {"id":"cidade","duration":4,"environment":"city","actor":"float","side":"left","camera":"pan","captions":[{"start":0.3,"end":3.7,"text":"Um olhar curioso muda a história."}]},
+    {"id":"observatorio","duration":4,"environment":"observatory","actor":"discover","side":"right","camera":"push","captions":[{"start":0.3,"end":3.7,"text":"Tem uma explicação."}]}
+  ]
+}

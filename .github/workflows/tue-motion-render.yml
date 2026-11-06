@@ -1,0 +1,61 @@
+name: TUE Motion - render sem PC
+on:
+  workflow_dispatch:
+    inputs:
+      quality:
+        description: Qualidade do arquivo
+        type: choice
+        options: [troia, troia-qc, troia-4k, actor, preview, qc, pilot, 4k]
+        default: troia
+  pull_request:
+    paths: ['motion/**', '.github/workflows/tue-motion-render.yml']
+permissions:
+  contents: read
+concurrency:
+  group: tue-motion-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: motion
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: motion/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run check
+      - name: Render preview or master
+        env:
+          QUALITY: ${{ inputs.quality || 'troia' }}
+        run: |
+          if [ "$QUALITY" = "troia" ]; then
+            npm run troia-full
+          elif [ "$QUALITY" = "troia-qc" ]; then
+            npm run troia-qc
+          elif [ "$QUALITY" = "troia-4k" ]; then
+            npm run troia-4k
+          elif [ "$QUALITY" = "actor" ]; then
+            npm run actor-demo
+          elif [ "$QUALITY" = "4k" ]; then
+            npm run pilot-master -- --concurrency=2
+          elif [ "$QUALITY" = "qc" ]; then
+            npm run pilot-qc -- --concurrency=2
+          elif [ "$QUALITY" = "pilot" ]; then
+            npm run pilot-preview -- --concurrency=2
+          else
+            npm run preview -- --concurrency=2
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tue-motion-${{ github.run_id }}
+          path: |
+            motion/out/*.mp4
+            motion/public/lumino-original.png
+          retention-days: 3
+          if-no-files-found: error
