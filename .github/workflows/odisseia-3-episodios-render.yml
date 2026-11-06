@@ -1,0 +1,77 @@
+name: Odisseia — render dos 3 episodios em 4K60 (revisao, sem postagem)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/odisseia-3-episodios-render.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-three-episodes-full-renders
+  cancel-in-progress: false
+jobs:
+  render-episode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        episode: [1, 2, 3]
+    env:
+      PART: ${{ matrix.episode }}
+    defaults:
+      run:
+        working-directory: motion
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 1f62f05fd6d979faa6869cbab398ae5140f6321f
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: motion/package-lock.json
+      - name: Dependencias livres e controle de roteiro
+        run: |
+          npm ci --no-audit --no-fund
+          npm run check
+          npm run prepare-assets
+      - name: Renderizar episodio completo no novo padrao 2160x3840 60fps
+        run: |
+          mkdir -p out
+          npx remotion render src/index.ts "OdysseySagaEpisode$PART" "out/odyssey-episode-$PART-visual-4k60.mp4" --scale=2 --codec=h264 --crf=19 --concurrency=2
+      - name: Inspecao tecnica de arquivo renderizado
+        run: |
+          set -euo pipefail
+          MP4="out/odyssey-episode-$PART-visual-4k60.mp4"
+          FFPROBE="$(find node_modules/@remotion -type f -name ffprobe -print -quit)"
+          FFMPEG="$(find node_modules/@remotion -type f -name ffmpeg -print -quit)"
+          "$FFPROBE" -v error -show_entries stream=codec_name,width,height,r_frame_rate:format=duration -of json "$MP4" >"out/episode-$PART-qc.json"
+          python3 - <<'PY'
+          import json,os
+          part=int(os.environ['PART'])
+          j=json.load(open('out/episode-%s-qc.json'%part))
+          v=next(s for s in j['streams'] if 'width' in s)
+          assert (v['codec_name'],v['width'],v['height'],v['r_frame_rate'])==('h264',2160,3840,'60/1'),v
+          expected={1:88.6,2:228.8,3:242.7}[part]
+          assert abs(float(j['format']['duration'])-expected)<0.05,j['format']
+          print('PASSOU_VIDEO',part,expected)
+          PY
+          for s in 5 15 30 50 75; do
+            "$FFMPEG" -v error -ss "$s" -i "$MP4" -frames:v 1 -vf scale=540:960 -y "out/episode-$PART-shot-$s.jpg" || true
+          done
+      - name: Arquivar imagem e video sem substituir o audio original
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: odisseia-episodio-${{ matrix.episode }}-imagem-4K60-QC
+          path: |
+            motion/out/odyssey-episode-*.mp4
+            motion/out/episode-*-qc.json
+            motion/out/episode-*-shot-*.jpg
+          retention-days: 7
+          if-no-files-found: warn
+# Imagem apenas; audio Rasalgethi sera montado sem alterar a fonte original.
+# Nao publica, agenda, adiciona selo IA ou acessa Meta API.
