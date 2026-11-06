@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "project": "Odisseia V8",
+  "source_master_seconds": 560.1,
+  "source_audio": "Rasalgethi_PTBR_original",
+  "version_state": "narrative_blocking_in_progress",
+  "publish_allowed": false,
+  "episodes": [
+    {
+      "episode": 1,
+      "start": 0,
+      "end": 88.6
+    },
+    {
+      "episode": 2,
+      "start": 88.6,
+      "end": 317.4
+    },
+    {
+      "episode": 3,
+      "start": 317.4,
+      "end": 560.1
+    }
+  ],
+  "rules": [
+    "no_global_actor_overlay",
+    "true_3d_depth_buffer",
+    "per_shot_cast_only",
+    "body_translation_requires_gait",
+    "prop_ownership_and_collision",
+    "explicit_setup_action_consequence",
+    "voice_timecode_must_match",
+    "visual_qc_required_before_4K60_or_posting"
+  ],
+  "episode01_shots": [
+    {
+      "id": "troy-burns",
+      "start": 0,
+      "end": 8,
+      "set": "troia-pier",
+      "cast": [
+        "Odysseus",
+        "crew"
+      ],
+      "props": [
+        "burning-city",
+        "ship",
+        "gangplank"
+      ],
+      "action": "The crew see Troy in ruins, board their actual vessel, and cast off.",
+      "consequence": "We leave Troy behind and establish why the men are sailing.",
+      "approved": false
+    },
+    {
+      "id": "fleet-at-sea",
+      "start": 8,
+      "end": 13,
+      "set": "sea-near-troy",
+      "cast": [
+        "Odysseus",
+        "crew"
+      ],
+      "props": [
+        "ship",
+        "oars",
+        "sail"
+      ],
+      "action": "The vessel leaves the quay; real oars and rudder propel it into the sea.",
+      "consequence": "The men are now travelling toward Ithaca.",
+      "approved": false
+    },
+    {
+      "id": "ithaca-waits",
+      "start": 13,
+      "end": 17,
+      "set": "ithaca-balcony",
+      "cast": [
+        "Penelope"
+      ],
+      "props": [
+        "palace",
+        "woven-cloth"
+      ],
+      "action": "Penelope looks to the empty horizon while the ship is away.",
+      "consequence": "Cut unmistakably to the separate place where someone waits.",
+      "approved": false
+    },
+    {
+      "id": "cicones-losses",
+      "start": 17,
+      "end": 28,
+      "set": "cicones-coast",
+      "cast": [
+        "Odysseus",
+        "crew",
+        "cicones"
+      ],
+      "props": [
+        "shields",
+        "spears",
+        "ship"
+      ],
+      "action": "Conflict draws reinforcements; men flee into the ship and it withdraws.",
+      "consequence": "The first losses force a retreat.",
+      "approved": false
+    },
+    {
+      "id": "lotus-forgets",
+      "start": 28,
+      "end": 38,
+      "set": "lotus-island",
+      "cast": [
+        "Odysseus",
+        "crew",
+        "lotus-people"
+      ],
+      "props": [
+        "fruit",
+        "ship"
+      ],
+      "action": "A sailor eats fruit and forgets his task; Odysseus physically leads him away.",
+      "consequence": "They abandon the island together.",
+      "approved": false
+    },
+    {
+      "id": "cave-enter",
+      "start": 38,
+      "end": 44,
+      "set": "cyclops-cave",
+      "cast": [
+        "Odysseus",
+        "crew"
+      ],
+      "props": [
+        "arch",
+        "food",
+        "torch"
+      ],
+      "action": "The men cross the real threshold, enter the cave and discover stored food.",
+      "consequence": "They are inside when the owner returns.",
+      "approved": false
+    },
+    {
+      "id": "giant-returns",
+      "start": 44,
+      "end": 49,
+      "set": "cyclops-cave",
+      "cast": [
+        "Odysseus",
+        "crew",
+        "Polyphemus",
+        "sheep"
+      ],
+      "props": [
+        "arch",
+        "sheep"
+      ],
+      "action": "The one-eyed giant and his flock come through the same passage; men recoil.",
+      "consequence": "Show his scale next to the humans before introducing the boulder.",
+      "approved": false
+    },
+    {
+      "id": "giant-seals",
+      "start": 49,
+      "end": 55,
+      "set": "cyclops-cave",
+      "cast": [
+        "Odysseus",
+        "crew",
+        "Polyphemus",
+        "sheep"
+      ],
+      "props": [
+        "arch",
+        "seal-boulder"
+      ],
+      "action": "Polyphemus grips and pushes a boulder bigger than the portal, closing the entire opening.",
+      "consequence": "The interior darkens; both crew and sheep have no exit.",
+      "approved": false
+    },
+    {
+      "id": "nobody-and-escape",
+      "start": 55,
+      "end": 76,
+      "set": "cyclops-cave",
+      "cast": [
+        "Odysseus",
+        "crew",
+        "Polyphemus",
+        "sheep"
+      ],
+      "props": [
+        "wine-bowl",
+        "wood-stake",
+        "ram",
+        "boulder"
+      ],
+      "action": "The giant drinks, sleeps, is blinded, moves the stone and the men escape beneath rams.",
+      "consequence": "The escape succeeds by changing the condition of the single blocked entrance.",
+      "approved": false
+    },
+    {
+      "id": "sea-curse",
+      "start": 76,
+      "end": 88.6,
+      "set": "seashore-and-sea",
+      "cast": [
+        "Odysseus",
+        "crew",
+        "Polyphemus"
+      ],
+      "props": [
+        "ship",
+        "sea",
+        "cliff"
+      ],
+      "action": "Odysseus shouts his identity from the departing ship; Polyphemus appeals to Poseidon.",
+      "consequence": "The god's curse threatens the voyage home.",
+      "approved": false
+    }
+  ],
+  "unfinished_episodes": [
+    2,
+    3
+  ]
+}
