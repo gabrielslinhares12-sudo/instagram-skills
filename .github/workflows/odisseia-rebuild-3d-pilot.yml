@@ -1,0 +1,68 @@
+name: Odisseia nova — 3D real, elenco rigado, prototipo de Troia (sem publicacao)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/odisseia-rebuild-3d-pilot.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: tue-odyssey-3d-rebuild-pilot
+  cancel-in-progress: false
+jobs:
+  real-3d-scene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 105
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: c2e3a24025109061473f0e9a180fc959bc1fc6a5
+          persist-credentials: false
+      - name: Instalar Blender open-source, ffmpeg e software rendering
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg libgl1-mesa-dri
+          blender --version | head -3
+      - name: Baixar modelos animados 3D de fonte CC0 original
+        run: |
+          git clone --depth=1 --single-branch https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0.git production/odyssey3d/assets
+          test -s production/odyssey3d/assets/LICENSE.txt
+          test -s production/odyssey3d/assets/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb
+          test -s production/odyssey3d/assets/addons/kaykit_character_pack_adventures/Characters/gltf/Rogue.glb
+          test -s production/odyssey3d/assets/addons/kaykit_character_pack_adventures/Characters/gltf/Barbarian.glb
+          python3 -m py_compile production/odyssey3d/scene01_departure.py
+      - name: Construir cena unica, rigging 3D e renderizar 7 quadros de QC
+        run: |
+          set -o pipefail
+          QC_PERCENT=50 blender --background --threads 2 --python production/odyssey3d/scene01_departure.py -- --still 2>&1 | tee /tmp/odyssey_blender_qc.log
+          grep 'ODYSSEY_SCENE_READY' /tmp/odyssey_blender_qc.log
+          grep 'ODYSSEY_IMPORT' /tmp/odyssey_blender_qc.log
+          test "$(find production/odyssey3d/out -name 'frame-*.png' | wc -l)" = 7
+      - name: Gerar folha de revisao fisica e dados da cena
+        if: success()
+        run: |
+          python3 - <<'PY'
+          from PIL import Image,ImageDraw
+          from pathlib import Path
+          p=Path('production/odyssey3d/out')
+          imgs=sorted(p.glob('frame-*.png'))
+          assert len(imgs)==7
+          contact=Image.new('RGB',(420*7,790),(16,23,30))
+          for i,img in enumerate(imgs):
+              im=Image.open(img).convert('RGB')
+              im.thumbnail((415,740))
+              contact.paste(im,(420*i+(420-im.width)//2,20))
+              ImageDraw.Draw(contact).text((420*i+10,760),img.stem,fill=(255,240,210))
+          contact.save(p/'ODYSSEY_REAL3D_STORYBOARD_QC.jpg',quality=92)
+          PY
+      - name: Arquivar evidencia visual do novo motor 3D (nao publica)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: odisseia-novo3d-troia-7-quadros-qc
+          path: |
+            production/odyssey3d/out/frame-*.png
+            production/odyssey3d/out/ODYSSEY_REAL3D_STORYBOARD_QC.jpg
+          retention-days: 14
+          if-no-files-found: warn
+# The old layered 2D engines are intentionally never invoked.
