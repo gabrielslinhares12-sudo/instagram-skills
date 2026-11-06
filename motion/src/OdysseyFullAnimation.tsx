@@ -328,7 +328,9 @@ export const OdysseyFullAnimation:React.FC<OdysseyAnimationProps>=({offsetSecond
  const beat=getOdysseyBeat(time),local=time-beat.start,duration=beat.end-beat.start;
  const world=beat.action==='weavingNight'?'penelope':beat.action==='ithacaWaiting'?'ithaca':beat.location;
  const first=ODYSSEY_BEATS.find(b=>b.chapter===beat.chapter)?.id===beat.id;
- const alpha=ease(local/.2)*ease((duration-local)/.28);
+ // Direct cinematic cuts between discrete actions: no 0.2+0.28s fade-to-black at each of 110 beats.
+ // Original fades cost ~50 seconds of repeated dark flashes across the feature film.
+ const alpha=1;
  const progress=clamp(local/duration);
  const zoom=beat.action==='boulderSeals'?1.07:beat.action==='prisonersWatch'?1.18:beat.action==='wineToGiant'?1.12:beat.action==='cyclopsArrival'?1:1.025+((Number(beat.id.split('-')[1])%3)*.035);
  const cameraX=(W-W*zoom)*.5, cameraY=(H-H*zoom)*.52;
