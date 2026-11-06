@@ -105,7 +105,7 @@ export const OdysseyGaitQC:React.FC=()=>{
  const speed=[96,48,64,122][shot];
  const scale=[1.68,1.95,1.82,1.68][shot];
  const initialX=[-112,-105,-88,-130][shot];
- const motion=initialX+t*speed*.96;
+ const motion=initialX+t*speed; // match planted-foot root velocity
  const y= [800,750,770,795][shot];
  const brightness=Math.min(1,t/.42,(SHOT-t)/.38);
  return <AbsoluteFill style={{background:'#112331'}}>
@@ -114,7 +114,7 @@ export const OdysseyGaitQC:React.FC=()=>{
     <svg width="1080" height="1920" viewBox="0 0 1080 1920" style={{position:'absolute',inset:0}}>
      <ellipse cx={motion+181*scale} cy={y+555*scale} rx={105*scale} ry={18*scale} fill="#161d27" opacity=".31"/>
      <g transform={`translate(${motion} ${y}) scale(${scale})`}>
-       <Odysseus time={t} pose={actorPose} speed={speed} night={shot===1||shot===3}/>
+       <Odysseus time={t} pose={actorPose} speed={speed/scale} night={shot===1||shot===3}/>
      </g>
      {[0,1,2,3,4,5].map(i=><circle key={i}
        cx={motion+176*scale - i*77} cy={y+548*scale-(i%2)*12}
