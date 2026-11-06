@@ -51,3 +51,5 @@ jobs:
 # Rerender correct full-frame composition; FFprobe dependency explicitly installed.
 
 # Artifact survives even if metadata tools are absent; independent FFprobe after download.
+
+# QC refresh after hip placement and gait-speed refinements verified on feature branch, 06NOV.
