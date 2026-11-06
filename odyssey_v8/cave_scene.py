@@ -92,13 +92,14 @@ class Figure:
    self.shield=ellipsoid(ren,(0,0,0),(1,1,1),COL['bronze'],res=24)
    self.shieldBoss=ellipsoid(ren,(0,0,0),(1,1,1),COL['bronze2'],res=18)
   Figure.pose(self,0,(0,0),0,False)
- def pose(self,t,root=(0,0),yaw=0,walk=False,afraid=False):
+ def pose(self,t,root=(0,0),yaw=0,walk=False,afraid=False,distance=0.0):
   s=self.scale;px,py=root
   # 3D world, Z is vertical; yaw rotates local X/Y in ground plane
   co=math.cos(yaw);si=math.sin(yaw)
   def xyz(x,y,z):return (px+s*(x*co-y*si),py+s*(x*si+y*co),s*z)
   sway=(.055*math.sin(5.4*t) if walk else .014*math.sin(t*1.3))
-  stride=.45*math.sin(7.1*t) if walk else 0
+  # Foot planting is tied to root travel distance, NOT an unrelated sine clock.
+  step_length=.90*s
   self.torso.SetPosition(*xyz(0,0,1.55+sway));self.torso.SetScale(.42*s,.27*s,.62*s)
   self.hips.SetPosition(*xyz(0,0,1.10+sway));self.hips.SetScale(.35*s,.3*s,.28*s)
   self.neck.SetPosition(*xyz(0,-.02,2.08+sway));self.neck.SetScale(.14*s,.15*s,.25*s)
@@ -115,10 +116,20 @@ class Figure:
    self.crest.SetPosition(*xyz(0,.025,2.85+sway));self.crest.SetScale(.125*s,.44*s,.18*s)
   # Articulated legs with planted ankles and marching knees, never root translation without gait.
   for i,side in enumerate([-1,1]):
-   off=side*stride
+   if walk:
+    phase=(distance/(2*step_length)+i*.5)%1.0
+    if phase<.5:
+     off=-step_length/(2*s)+phase*2*step_length/s
+     lift=0.0   # stance: root moves while planted world foot stays fixed
+    else:
+     swing=(phase-.5)*2
+     off=step_length/(2*s)-swing*step_length/s
+     lift=.32*math.sin(math.pi*swing) # airborne foot returns forward
+   else:
+    off=0.0;lift=0.0
    hip=xyz(side*.20,0,1.02+sway)
-   knee=xyz(side*.23,-off*.37,.53+max(off,0)*.12+sway)
-   foot=xyz(side*.23,-off,.16+max(0,off)*.20)
+   knee=xyz(side*.23,off*.42,.55+lift*.47+sway)
+   foot=xyz(side*.23,off,.16+lift)
    update_between(self.limbs[i*2+0],hip,knee)
    update_between(self.limbs[i*2+1],knee,foot)
    for a in [self.limbs[i*2+0][0],self.limbs[i*2+1][0]]:a.GetProperty().SetColor(*self.skin)
@@ -128,7 +139,7 @@ class Figure:
     elbow=xyz(side*.65,-.32,2.12+sway)
     hand=xyz(side*.42,-.52,2.70+sway)
    else:
-    arm=side*(.24*math.sin(7.1*t) if walk else .045*math.sin(t*1.5))
+    arm=side*(.24*math.cos(math.pi*distance/step_length) if walk else .045*math.sin(t*1.5))
     elbow=xyz(side*.48,-arm*.45,1.56+sway)
     hand=xyz(side*.43,-arm,1.11+sway)
    update_between(self.limbs[4+i*2],shoulder,elbow)
@@ -151,8 +162,8 @@ class Giant(Figure):
   # Mouth modeled as real dark geometry on face; tunic and rope belt.
   self.mouth=between(ren,(0,0,0),(0,0,1),.04,COL['ink'])
   self.belt.GetProperty().SetColor(*P((95,65,48)))
- def pose(self,t,root=(0,0),yaw=0,walk=False,afraid=False,pushing=False,rock_center=None):
-  super().pose(t,root,yaw,walk,False)
+ def pose(self,t,root=(0,0),yaw=0,walk=False,afraid=False,pushing=False,rock_center=None,distance=0.0):
+  super().pose(t,root,yaw,walk,False,distance=distance)
   s=self.scale;px,py=root
   co=math.cos(yaw);si=math.sin(yaw)
   def xyz(x,y,z):return (px+s*(x*co-y*si),py+s*(x*si+y*co),s*z)
@@ -284,7 +295,7 @@ class Scene:
    y=mix(8.8,2.2,q)
    x=xx-.6*q
    walk=t-offset>0 and t-offset<6
-   fig.pose(t+offset,(x,y),yaw=.05,walk=walk,afraid=t>=11.4)
+   fig.pose(t+offset,(x,y),yaw=.05,walk=walk,afraid=t>=11.4,distance=max(0.0,8.8-y))
   # Polyphemus must appear at the arch only AFTER the narration says he returned.
   if t<5.0:
    self.giant_visible=False
@@ -303,13 +314,13 @@ class Scene:
    obj.SetOrientation(0,0,0)
    obj.SetVisibility(False)
   actor.SetVisibility(t>=10.5)
-  root=(.25,mix(19.5,13.5,gq) if t<=11.3 else rock_y+4.65)
+  root=(.25,mix(24.4,20.4,gq) if t<=11.3 else rock_y+2.8)
   self.giant.pose(t,root,yaw=0.0,walk=5.0<=t<10.9 or 11.3<t<16.0,
-                  pushing=t>11.1,rock_center=(rock_x,rock_y,rock_z))
+                  pushing=t>11.1,rock_center=(rock_x,rock_y,rock_z),distance=max(0.0,24.4-root[1]))
   # Walking sheep follow the giant through the same passage behind the men.
   for i,(body,head,legs) in enumerate(self.sheep):
    sheep_t=sm((t-5.6-i*.35)/5.2)
-   yy=mix(19.8+i*.65,11.6+i*.3,sheep_t)
+   yy=mix(19.8+i*.65,5.5+i*.3,sm((t-5.6-i*.35)/9.7))
    xx=(-1.7,1.5,-.5)[i]
    bob=.05*math.sin(6*t+i)
    body.SetPosition(xx,yy,.78+bob)
@@ -319,7 +330,7 @@ class Scene:
     rear=-1 if k<2 else 1
     step=.21*math.sin(7.3*t+i+math.pi*k/2) if t<11 else 0
     leg.SetPosition(xx+side*.43,yy+rear*.21+step,.35)
-   for prop in [body,head,*legs]:prop.SetVisibility(5.4<=t<=11.15)
+   for prop in [body,head,*legs]:prop.SetVisibility(t>=5.4)
   # VTK actors of the giant managed as a single gated figure, not hiding random layers.
   visible=t>=5.0
   for prop in [self.giant.torso,self.giant.hips,self.giant.neck,self.giant.head,self.giant.nose,self.giant.belt,self.giant.oneEye,self.giant.onePupil,self.giant.brow[0],self.giant.mouth[0],self.giant.shadow,*self.giant.hands,*self.giant.feet,*[x[0] for x in self.giant.limbs]]:prop.SetVisibility(visible)
