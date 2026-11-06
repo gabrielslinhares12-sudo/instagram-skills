@@ -1,4 +1,4 @@
-name: Odisseia 07NOV — atuação Ítaca v2 4K60 (sem publicação)
+name: Odisseia 07NOV — atuação Ítaca v3 4K60 (sem publicação)
 on:
   push:
     branches: [main]
@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: odisseia-itaca-v2-qc
+  group: odisseia-itaca-v3-qc
   cancel-in-progress: false
 jobs:
   quality-check:
@@ -33,39 +33,40 @@ jobs:
       - name: Renderizar 12s reencenados em 4K real e 60 FPS
         run: |
           npm run prepare-assets
-          npx remotion render src/index.ts OdysseyHomeQC out/odisseia-retorno-personagens-12s-4k60-qc-v2.mp4 --scale=2 --codec=h264 --crf=17 --concurrency=2
+          npx remotion render src/index.ts OdysseyHomeQC out/odisseia-retorno-personagens-12s-4k60-qc-v3.mp4 --scale=2 --codec=h264 --crf=17 --concurrency=2
       - name: Auditar arquivo sem apt-get usando ferramentas Remotion
         shell: bash
         run: |
           set -euo pipefail
-          MP4="out/odisseia-retorno-personagens-12s-4k60-qc-v2.mp4"
+          MP4="out/odisseia-retorno-personagens-12s-4k60-qc-v3.mp4"
           FFMPEG="$(find node_modules/@remotion -type f -name ffmpeg -print -quit)"
           FFPROBE="$(find node_modules/@remotion -type f -name ffprobe -print -quit)"
           test -x "$FFMPEG" && test -x "$FFPROBE"
-          "$FFPROBE" -v error -show_entries stream=codec_name,width,height,r_frame_rate:format=duration -of json "$MP4" > out/odisseia-itaca-v2-tech-qc.json
+          "$FFPROBE" -v error -show_entries stream=codec_name,width,height,r_frame_rate:format=duration -of json "$MP4" > out/odisseia-itaca-v3-tech-qc.json
           python3 - <<'PY'
           import json,pathlib
-          file=pathlib.Path('out/odisseia-retorno-personagens-12s-4k60-qc-v2.mp4')
-          info=json.loads(pathlib.Path('out/odisseia-itaca-v2-tech-qc.json').read_text())
+          file=pathlib.Path('out/odisseia-retorno-personagens-12s-4k60-qc-v3.mp4')
+          info=json.loads(pathlib.Path('out/odisseia-itaca-v3-tech-qc.json').read_text())
           v=next(x for x in info['streams'] if 'width' in x)
           assert v['codec_name']=='h264',v
           assert (v['width'],v['height'],v['r_frame_rate'])==(2160,3840,'60/1'),v
           assert abs(float(info['format']['duration'])-12)<.1
           assert file.stat().st_size>1_000_000
-          print('QC_MP4_12S_4K60_V2_VALIDADO_SEM_PUBLICAR')
+          print('QC_MP4_12S_4K60_V3_VALIDADO_SEM_PUBLICAR')
           PY
           for stamp in 2 6 10; do
-            "$FFMPEG" -v error -ss "$stamp" -i "$MP4" -frames:v 1 -vf scale=540:960 -y "out/odisseia-itaca-v2-frame-${stamp}s.jpg"
+            "$FFMPEG" -v error -ss "$stamp" -i "$MP4" -frames:v 1 -vf scale=540:960 -y "out/odisseia-itaca-v3-frame-${stamp}s.jpg"
           done
       - name: Arquivar MP4 corrigido, evidencias e quadros visuais
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: odisseia-itaca-12s-atuacao-v2-4K60-QC
+          name: odisseia-itaca-12s-atuacao-v3-4K60-QC
           path: |
-            motion/out/odisseia-retorno-personagens-12s-4k60-qc-v2.mp4
-            motion/out/odisseia-itaca-v2-tech-qc.json
-            motion/out/odisseia-itaca-v2-frame-*.jpg
+            motion/out/odisseia-retorno-personagens-12s-4k60-qc-v3.mp4
+            motion/out/odisseia-itaca-v3-tech-qc.json
+            motion/out/odisseia-itaca-v3-frame-*.jpg
           retention-days: 7
           if-no-files-found: error
+# V3: corrigir personagens cortados, acao de acariciar Argos e composicao da cena de Penelope.
 # Esta rotina nao publica, agenda ou substitui os episodios integrais.
