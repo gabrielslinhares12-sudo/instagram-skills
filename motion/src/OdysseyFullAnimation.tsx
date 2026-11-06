@@ -101,6 +101,7 @@ const Ship:React.FC<{x:number;y:number;scale?:number;time:number;broken?:boolean
 const Cyclops:React.FC<{x:number;y:number;scale?:number;t:number;push?:boolean;asleep?:boolean}>=({x,y,scale=2.6,t,push=false,asleep=false})=>{
  const sway=Math.sin(t*1.35)*3,arm=push?Math.min(1,t/2):0;
  return <g transform={'translate('+x+' '+y+') scale('+scale+')'}>
+  <g transform={'translate(165 370) rotate('+(-arm*5.5)+') translate(-165 -370)'}>
   <ellipse cx="160" cy="542" rx="130" ry="15" fill="#090d18" opacity=".35"/>
   <path d="M78 381L61 537M229 378L256 537" stroke="#4f413d" strokeWidth="84" strokeLinecap="round"/>
   <path d="M78 380L62 520M229 373L251 520" stroke="#a58b75" strokeWidth="68" strokeLinecap="round"/>
@@ -119,6 +120,7 @@ const Cyclops:React.FC<{x:number;y:number;scale?:number;t:number;push?:boolean;a
    {asleep?<path d="M132 157Q166 178 201 157" stroke="#38313a" strokeWidth="11" fill="none"/>:<><ellipse cx="168" cy="155" rx="22" ry="26" fill="#d0ab73"/><circle cx="170" cy="157" r="14" fill="#302f34"/><circle cx="177" cy="149" r="5" fill="#fff0ce"/></>}
    <path d="M144 194Q167 204 190 194" stroke="#674f47" strokeWidth="9" fill="none"/>
    <path d="M88 200Q166 263 245 199" stroke="#504039" strokeWidth="10" fill="none"/>
+  </g>
   </g>
  </g>;
 };
@@ -177,6 +179,7 @@ const Cow:React.FC<{x:number;y:number;size:number;t:number}>=({x,y,size,t})=><g 
  <path d="M144 -242l-5 -52 31 40M179 -243l42 -43 -13 54" fill="#c9b187" stroke="#5c4f47" strokeWidth="6"/>
  <ellipse cx="178" cy="-135" rx="31" ry="25" fill="#b79b89"/><circle cx="161" cy="-203" r="6"/><circle cx="196" cy="-206" r="6"/>
  </g>;
+const heroScaleForGait=(world:string,sea:boolean)=>world==='cave'?.88:sea?1.38:1.56;
 const actionIn=(action:string,...checks:string[])=>checks.includes(action);
 const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string}>=({action,time:t,duration:d,world})=>{
  const q=ease(t/Math.max(.5,d-.8)),a=action,p=clamp(t/d);
@@ -191,10 +194,11 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
  actionIn(a,'motherAppears','facesUncertain','lyreLament','quietNight','odysseusWaits')?'grieve':
  actionIn(a,'cyclopsPlea','nameRevealed','seerWarns','fatherSonPlan')?'point':
  heroWalk?'walk':'listen';
- const heroX=heroWalk?lerp(105,270,ease(p)):180;
+ const heroX=heroWalk?105+165*clamp(t/d):180;
+ const heroLocalSpeed=heroWalk?(165/d)/heroScaleForGait(world,sea):undefined;
  const heroY=actionIn(a,'cyclopsArrival','boulderSeals','prisonersWatch','wineToGiant','cyclopsSleeping','stakePrepared','ramEscape','cyclopsPlea')?985:sea?760:730;
- const heroScale=world==='cave'?.88:sea?1.38:1.56;
- const hero=<g transform={'translate('+heroX+' '+heroY+') scale('+heroScale+')'}><Odysseus time={t} pose={pose} speed={heroWalk?115/heroScale:undefined} civilian={world==='argos'||world==='wash'||world==='penelope'||world==='bed'||world==='finale'||world==='ithaca'}/></g>;
+ const heroScale=heroScaleForGait(world,sea);
+ const hero=<g transform={'translate('+heroX+' '+heroY+') scale('+heroScale+')'}><Odysseus time={t} pose={pose} speed={heroLocalSpeed} civilian={world==='argos'||world==='wash'||world==='penelope'||world==='bed'||world==='finale'||world==='ithaca'}/></g>;
  return <g>
    {/* Foreground props and supporting animation are action-specific, never generic camera pans of stills. */}
    {/* Distinct household action: Penelope's loom, its shuttle moves while the thread changes length. */}
@@ -225,13 +229,13 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
     </g>)}
    {actionIn(a,'caveDiscovery','cyclopsArrival','boulderSeals','prisonersWatch','wineToGiant','cyclopsSleeping','stakePrepared','ramEscape','cyclopsPlea','nameRevealed')&&<>
      {a!=='caveDiscovery'&&<Cyclops x={140+(a==='boulderSeals'?q*15:0)} y={195} scale={2.5} t={t} push={a==='boulderSeals'} asleep={a==='cyclopsSleeping'||a==='stakePrepared'||a==='ramEscape'}/>}
-     {a==='boulderSeals'&&<><g transform="translate(350 950) scale(.8)"><Odysseus time={t} pose="brace"/></g><Boulder x={lerp(1190,545,ease(t/Math.max(1,d*.86)))} y={1260} scale={1.55} roll={-q*12}/></>}
-     {a==='cyclopsArrival'&&<Boulder x={1220} y={1270} scale={1.55}/>}
-     {a==='prisonersWatch'&&<Boulder x={545} y={1260} scale={1.55}/>}
+     {a==='boulderSeals'&&<><g transform="translate(350 950) scale(.8)"><Odysseus time={t} pose="brace"/></g><Boulder x={lerp(1190,545,ease(t/Math.max(1,d*.86)))} y={1260} scale={1.46} roll={-q*12}/></>}
+     {a==='cyclopsArrival'&&<Boulder x={1220} y={1270} scale={1.46}/>}
+     {a==='prisonersWatch'&&<Boulder x={545} y={1260} scale={1.46}/>}
      {a==='wineToGiant'&&<><path d="M690 1050L760 960L820 1032L800 1168Z" fill="#8d3c42" stroke="#e1bc8d" strokeWidth="12"/><path d="M810 1042Q890 950 910 1080" fill="none" stroke="#c28874" strokeWidth="30"/></>}
      {a==='stakePrepared'&&<path d={'M'+lerp(300,580,q)+' '+lerp(1455,1060,q)+'l330 -230'} stroke="#bb9663" strokeWidth="36" strokeLinecap="round" fill="none"/>}
      {a==='cyclopsPlea'&&<><path d="M515 820L565 905" stroke="#ab6c4d" strokeWidth="28"/><circle cx="580" cy="980" r="30" fill="#a47b60"/></>}
-     {a==='ramEscape'&&<Boulder x={545+q*820} y={1260} scale={1.55}/>} 
+     {a==='ramEscape'&&<Boulder x={545+q*820} y={1260} scale={1.46}/>} 
      {a==='ramEscape'&&[0,1,2].map(i=><g key={i} transform={'translate('+(160+i*280+q*65)+' 1590)'}><ellipse cx="0" cy="-85" rx="104" ry="63" fill="#d6c9a9" stroke="#5b504d" strokeWidth="9"/><ellipse cx="91" cy="-85" rx="42" ry="35" fill="#cdbf9f"/><path d="M-60 -42v62M48 -40v60" stroke="#a99375" strokeWidth="24"/></g>)}
     </>}
    {actionIn(a,'poseidonRises','darkStorm','shipBraces','raftStorm')&&[0,1,2,3,4,5].map(i=><path key={i} d={'M'+(i*220-130)+' '+(270+i%3*130)+'l'+(65+Math.sin(t*4+i)*15)+' 280'} stroke="#d4e7eb" strokeWidth={5+i%2*4} opacity=".65"/>)}
