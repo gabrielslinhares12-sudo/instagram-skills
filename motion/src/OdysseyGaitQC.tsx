@@ -102,7 +102,7 @@ export const OdysseyGaitQC:React.FC=()=>{
  const shot=Math.min(3,Math.floor(time/SHOT)), t=time-shot*SHOT;
  const p=palette[shot];
  const actorPose:WarriorPose=(['walk','creep','limp','run'] as const)[shot];
- const speed=[96,48,64,122][shot];
+ const speed=[120,58,78,155][shot]; // full strides scaled to actor dimensions
  const scale=[1.68,1.95,1.82,1.68][shot];
  const initialX=[-112,-105,-88,-130][shot];
  const motion=initialX+t*speed; // match planted-foot root velocity
