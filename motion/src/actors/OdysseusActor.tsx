@@ -1,5 +1,5 @@
 import React from 'react';
-import {kneeIK,sampleGait,type FootPose,type GaitStyle} from './gait';
+import {kneeIK,sampleGait,type GaitStyle} from './gait';
 export type WarriorPose='listen'|'plan'|'point'|'craft'|'climb'|'creep'|'run'|'open'|'victory'|'walk'|'limp'|'row'|'brace'|'grieve';
 type XY={x:number;y:number};
 const ease=(n:number)=>{const x=Math.min(1,Math.max(0,n));return x*x*(3-2*x);};
@@ -57,7 +57,7 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;spee
       const shoeTilt=foot.pitch;
       return <>
         <ellipse cx={ankle.x+10} cy="560" rx="50" ry="9" fill="#18262b"
-          opacity={foot.contact?.37:.13}/>
+          opacity={foot.contact ? 0.37 : 0.13}/>
         <path d={'M'+hip.x+' '+hip.y+'L'+knee.x+' '+knee.y} stroke="#342a27"
           strokeWidth="42" strokeLinecap="round"/>
         <path d={'M'+hip.x+' '+hip.y+'L'+knee.x+' '+knee.y} stroke="#c9956e"
