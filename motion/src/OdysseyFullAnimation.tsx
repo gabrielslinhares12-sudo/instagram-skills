@@ -181,7 +181,7 @@ const actionIn=(action:string,...checks:string[])=>checks.includes(action);
 const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string}>=({action,time:t,duration:d,world})=>{
  const q=ease(t/Math.max(.5,d-.8)),a=action,p=clamp(t/d);
  const sea=SEA.has(world);
- const heroNo=new Set(['weavingNight','lotusEnchantment','cyclopsArrival','cyclopsSleeping','giantsAttack','boatsDestroyed','circeWelcomes','enchantedCup','menTransform','motherAppears','wingedSirens','sacredHerd','crewHunger','forbiddenFeast','calypsoShelter','nausicaaFinds','telemachusSeeks','athenaGuides','dangerousReturn','sonApproaches','argosHears','argosLooks','suitorsFeast','bowAttempt','penelopeApproaches','facesUncertain','oliveTreeReveal','palaceRestored','familyAtOlive','islandPanorama']);
+ const heroNo=new Set(['weavingNight','boulderSeals','lotusEnchantment','cyclopsArrival','cyclopsSleeping','giantsAttack','boatsDestroyed','circeWelcomes','enchantedCup','menTransform','motherAppears','wingedSirens','sacredHerd','crewHunger','forbiddenFeast','calypsoShelter','nausicaaFinds','telemachusSeeks','athenaGuides','dangerousReturn','sonApproaches','argosHears','argosLooks','suitorsFeast','bowAttempt','penelopeApproaches','facesUncertain','oliveTreeReveal','palaceRestored','familyAtOlive','islandPanorama']);
  const showHero=!heroNo.has(a);
  const heroWalk=/Landing|Departure|Approaches|Rescue|Escape|Entry|Return|Approach|Meet|Plan|Rises|Greeting|shoreWake|caveDiscovery|fleetDeparture|lotusRescue|ithacaDiscovered|shepherdHut|nightPalaceEntry|shoreRescue|nausicaaFinds/i.test(a);
  const pose:WarriorPose=actionIn(a,'fatherSonMeet','motherAppears','handsPassGhost','penelopeApproaches','recognitionDawns','reunionEmbrace','familyAtOlive')?'embrace':
@@ -193,7 +193,7 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
  heroWalk?'walk':'listen';
  const heroX=heroWalk?lerp(105,270,ease(p)):180;
  const heroY=actionIn(a,'cyclopsArrival','boulderSeals','prisonersWatch','wineToGiant','cyclopsSleeping','stakePrepared','ramEscape','cyclopsPlea')?985:sea?760:730;
- const heroScale=world==='cave'?1.03:sea?1.38:1.56;
+ const heroScale=world==='cave'?.88:sea?1.38:1.56;
  const hero=<g transform={'translate('+heroX+' '+heroY+') scale('+heroScale+')'}><Odysseus time={t} pose={pose} speed={heroWalk?115/heroScale:undefined} civilian={world==='argos'||world==='wash'||world==='penelope'||world==='bed'||world==='finale'||world==='ithaca'}/></g>;
  return <g>
    {/* Foreground props and supporting animation are action-specific, never generic camera pans of stills. */}
@@ -206,13 +206,14 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
      <path d={'M'+(240+i*290)+' 1040q35 -90 75 -25q-40 39 -75 25Z'} fill="#b983ab" opacity={a==='lotusRescue'?1:.75}/>
     </g>)}
    {actionIn(a,'caveDiscovery','cyclopsArrival','boulderSeals','prisonersWatch','wineToGiant','cyclopsSleeping','stakePrepared','ramEscape','cyclopsPlea','nameRevealed')&&<>
-     {a!=='caveDiscovery'&&<Cyclops x={-95+(a==='boulderSeals'?q*75:0)} y={-90} t={t} push={a==='boulderSeals'} asleep={a==='cyclopsSleeping'||a==='stakePrepared'||a==='ramEscape'}/>}
-     {a==='boulderSeals'&&<Boulder x={lerp(1090,545,ease(t/Math.max(1,d*.74)))} y={1325} scale={1.01} roll={-q*25}/>}
-     {a==='cyclopsArrival'&&<Boulder x={990} y={1540} scale={.44}/>}
-     {a==='prisonersWatch'&&<Boulder x={550} y={1330} scale={1.01}/>}
+     {a!=='caveDiscovery'&&<Cyclops x={140+(a==='boulderSeals'?q*15:0)} y={195} scale={2.5} t={t} push={a==='boulderSeals'} asleep={a==='cyclopsSleeping'||a==='stakePrepared'||a==='ramEscape'}/>}
+     {a==='boulderSeals'&&<><g transform="translate(350 950) scale(.8)"><Odysseus time={t} pose="brace"/></g><Boulder x={lerp(1190,545,ease(t/Math.max(1,d*.86)))} y={1260} scale={1.55} roll={-q*12}/></>}
+     {a==='cyclopsArrival'&&<Boulder x={1220} y={1270} scale={1.55}/>}
+     {a==='prisonersWatch'&&<Boulder x={545} y={1260} scale={1.55}/>}
      {a==='wineToGiant'&&<><path d="M690 1050L760 960L820 1032L800 1168Z" fill="#8d3c42" stroke="#e1bc8d" strokeWidth="12"/><path d="M810 1042Q890 950 910 1080" fill="none" stroke="#c28874" strokeWidth="30"/></>}
      {a==='stakePrepared'&&<path d={'M'+lerp(300,580,q)+' '+lerp(1455,1060,q)+'l330 -230'} stroke="#bb9663" strokeWidth="36" strokeLinecap="round" fill="none"/>}
      {a==='cyclopsPlea'&&<><path d="M515 820L565 905" stroke="#ab6c4d" strokeWidth="28"/><circle cx="580" cy="980" r="30" fill="#a47b60"/></>}
+     {a==='ramEscape'&&<Boulder x={545+q*820} y={1260} scale={1.55}/>} 
      {a==='ramEscape'&&[0,1,2].map(i=><g key={i} transform={'translate('+(160+i*280+q*65)+' 1590)'}><ellipse cx="0" cy="-85" rx="104" ry="63" fill="#d6c9a9" stroke="#5b504d" strokeWidth="9"/><ellipse cx="91" cy="-85" rx="42" ry="35" fill="#cdbf9f"/><path d="M-60 -42v62M48 -40v60" stroke="#a99375" strokeWidth="24"/></g>)}
     </>}
    {actionIn(a,'poseidonRises','darkStorm','shipBraces','raftStorm')&&[0,1,2,3,4,5].map(i=><path key={i} d={'M'+(i*220-130)+' '+(270+i%3*130)+'l'+(65+Math.sin(t*4+i)*15)+' 280'} stroke="#d4e7eb" strokeWidth={5+i%2*4} opacity=".65"/>)}
@@ -306,10 +307,14 @@ export const OdysseyFullAnimation:React.FC<OdysseyAnimationProps>=({offsetSecond
  const first=ODYSSEY_BEATS.find(b=>b.chapter===beat.chapter)?.id===beat.id;
  const alpha=ease(local/.2)*ease((duration-local)/.28);
  const progress=clamp(local/duration);
+ const zoom=beat.action==='boulderSeals'?1.07:beat.action==='prisonersWatch'?1.18:beat.action==='wineToGiant'?1.12:beat.action==='cyclopsArrival'?1:1.025+((Number(beat.id.split('-')[1])%3)*.035);
+ const cameraX=(W-W*zoom)*.5, cameraY=(H-H*zoom)*.52;
  return <AbsoluteFill style={{backgroundColor:shade,overflow:'hidden'}}>
   <svg width={W} height={H} viewBox="0 0 1080 1920" style={{position:'absolute',inset:0,opacity:alpha}}>
-   <Stage world={beat.location} id={beat.id} time={local} progress={progress}/>
-   <OnlyScene action={beat.action} time={local} duration={duration} world={beat.location}/>
+   <g transform={'translate('+cameraX+' '+cameraY+') scale('+zoom+')'}>
+    <Stage world={beat.location} id={beat.id} time={local} progress={progress}/>
+    <OnlyScene action={beat.action} time={local} duration={duration} world={beat.location}/>
+   </g>
   </svg>
   {first&&<div style={{position:'absolute',top:175,left:75,right:75,color:'#f2debc',fontFamily:'Georgia,serif',fontSize:55,fontWeight:700,letterSpacing:2,textShadow:'0 2px 12px #14222a',opacity:ease(local/.5)*ease((4-local)/.8)}}>{beat.chapter}</div>}
  </AbsoluteFill>;
