@@ -35,21 +35,29 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Rodar testes de anatomia e estabilidade dos pes
         run: npm run check
+      - name: Usar FFmpeg e FFprobe embarcados no Remotion 4 sem apt-get
+        run: |
+          FFMPEG="$(find node_modules/@remotion -type f -name ffmpeg -print -quit)"
+          FFPROBE="$(find node_modules/@remotion -type f -name ffprobe -print -quit)"
+          test -n "$FFMPEG" && test -x "$FFMPEG"
+          test -n "$FFPROBE" && test -x "$FFPROBE"
+          echo "FFMPEG_BIN=$FFMPEG" >> "$GITHUB_ENV"
+          echo "FFPROBE_BIN=$FFPROBE" >> "$GITHUB_ENV"
       - name: Renderizar 14s nativos em 2160x3840 60FPS
         run: |
           mkdir -p out
-          npx remotion render src/index.ts OdysseyGaitQC out/OdysseyGaitQC_14s_4K60.mp4 --codec=h264 --crf=17 --concurrency=2
+          npx remotion render src/index.ts OdysseyGaitQC out/OdysseyGaitQC_14s_4K60.mp4 --scale=2 --codec=h264 --crf=17 --concurrency=2
       - name: Extrair quatro quadros para revisao visual, sem recomprimir o master
         run: |
           for stamp in 1 4 8 11; do
-            ffmpeg -v error -ss "$stamp" -i out/OdysseyGaitQC_14s_4K60.mp4 -frames:v 1 -y "out/qc_frame_${stamp}s.png"
+            "$FFMPEG_BIN" -v error -ss "$stamp" -i out/OdysseyGaitQC_14s_4K60.mp4 -frames:v 1 -y "out/qc_frame_${stamp}s.png"
           done
       - name: Validar formato do master do teste
         run: |
           python3 - <<'PY'
-          import json,subprocess
+          import json,subprocess,os
           path='out/OdysseyGaitQC_14s_4K60.mp4'
-          raw=subprocess.check_output(['ffprobe','-v','error','-of','json','-show_entries','stream=codec_type,codec_name,width,height,r_frame_rate:format=duration',path])
+          raw=subprocess.check_output([os.environ['FFPROBE_BIN'],'-v','error','-of','json','-show_entries','stream=codec_type,codec_name,width,height,r_frame_rate:format=duration',path])
           info=json.loads(raw)
           video=next(x for x in info['streams'] if x['codec_type']=='video')
           assert video['width']==2160 and video['height']==3840,video
