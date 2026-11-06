@@ -50,7 +50,7 @@ const Backdrop:React.FC<{scene:number;t:number}>=({scene,t})=>{
 
 const Argos:React.FC<{t:number}>=({t})=>{
  const lift=ease((t-.4)/1.4),tail=Math.sin(t*10)*lift*22;
- return <g transform={'translate('+(340+lift*38)+' '+(1485-lift*15)+')'}>
+ return <g transform={'translate('+(260+lift*38)+' '+(1485-lift*15)+')'}>
   <ellipse cx="-4" cy="25" rx="204" ry="22" opacity=".3" fill="#242d31"/>
   <path d="M-147 -127Q-215 -180 -242 -120" fill="none" stroke="#826144" strokeWidth="32" strokeLinecap="round" transform={'rotate('+tail+' -147 -127)'}/>
   {[[-126,0],[-44,15],[79,-5],[120,7]].map(([x,v],i)=><path key={i} d={'M'+x+' -104q'+v+' 66 '+(v-4)+' 108'} stroke="#9d774c" strokeWidth="30" strokeLinecap="round" fill="none"/>)}
@@ -70,7 +70,7 @@ const Argos:React.FC<{t:number}>=({t})=>{
 
 const Penelope:React.FC<{x:number;t:number}>=({x,t})=>{
  const step=ease((t-2)/1.4),reach=ease((t-2.65)/.8);
- return <g transform={'translate('+(x+step*175)+' 1640) scale(1.45)'}>
+ return <g transform={'translate('+(x+step*75)+' 1640) scale(1.45)'}>
    <ellipse cx="0" cy="24" rx="95" ry="16" fill="#262930" opacity=".3"/>
    <path d="M-65 -235L-98 0H101L73 -235Z" fill="#31545a" stroke="#1b343b" strokeWidth="11"/>
    <path d="M-49 -229L-75 -3M49 -229L73 -3" fill="none" stroke="#d6b886" strokeWidth="9"/>
@@ -134,19 +134,19 @@ export const OdysseyHomeQC:React.FC=()=>{
       </g>
     </>}
     {shot===1&&<>
-      <g transform="translate(675 790) scale(1.27)">
+      <g transform="translate(515 790) scale(1.27)">
         <Odysseus time={t} pose="listen" civilian/>
       </g>
-      <path d="M700 1370Q660 1440 595 1490" stroke="#ad8264" strokeWidth="40" strokeLinecap="round" fill="none"/>
+      <path d="M590 1370Q550 1440 555 1490" stroke="#ad8264" strokeWidth="40" strokeLinecap="round" fill="none"/>
       <path d="M606 1483l-22 12m35 -13l-23 20" stroke="#8d5450" strokeWidth="8"/>
       <Basin t={t}/>
       <Eurycleia t={t}/>
     </>}
     {shot===2&&<>
-      <g transform={'translate('+(710-ease((t-2)/1.5)*90)+' 840) scale(1.35)'}>
-        <Odysseus time={t} pose="listen" civilian/>
+      <g transform={'translate('+(575-ease((t-2)/1.5)*40)+' 840) scale(1.35)'}>
+        <Odysseus time={t} pose="open" civilian/>
       </g>
-      <Penelope x={180} t={t}/>
+      <Penelope x={240} t={t}/>
     </>}
    </svg>
   </div>
