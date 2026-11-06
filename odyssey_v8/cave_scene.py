@@ -250,7 +250,7 @@ class Scene:
    points.SetPoint(k,x*r,y*r,z*r)
   points.Modified()
   a=poly_actor(s,P((105,100,95)),self.ren,amb=.26,sp=.08)
-  a.SetScale(4.30,1.55,4.65)
+  a.SetScale(4.30,1.65,6.05)
   # Real rock chips, all parented to the boulder, not motion overlay.
   chips=[]
   for i in range(17):
@@ -294,7 +294,7 @@ class Scene:
   rock_q=sm((t-11.3)/4.8)
   rock_x=.10
   rock_y=mix(17.6,8.95,rock_q)
-  rock_z=4.55
+  rock_z=6.10
   actor,chips=self.boulder
   actor.SetPosition(rock_x,rock_y,rock_z)
   actor.SetOrientation(0,0,rock_q*2.5)
