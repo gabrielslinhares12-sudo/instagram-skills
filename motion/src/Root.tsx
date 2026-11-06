@@ -3,6 +3,7 @@ import {Composition} from 'remotion';
 import {Film} from './Film';
 import {LuminoActorTest} from './LuminoActorTest';
 import {TroiaFilm} from './TroiaFilm';
+import {OdysseyGaitTest} from './OdysseyGaitTest';
 import {OdysseyGaitQC} from './OdysseyGaitQC';
 import {episodeSchema,totalFrames,FPS} from './schema';
 import demo from '../examples/demo.json';
