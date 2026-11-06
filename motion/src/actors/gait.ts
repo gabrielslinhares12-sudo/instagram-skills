@@ -7,9 +7,9 @@ const clamp=(n:number,a:number,b:number)=>Math.min(b,Math.max(a,n));
 const smooth=(x:number)=>{const n=clamp(x,0,1);return n*n*(3-2*n);};
 const frac=(n:number)=>n-Math.floor(n);
 const profiles:Record<GaitStyle,{period:number;stance:number;lift:number;bob:number;lean:number}>={
- walk:{period:.96,stance:.64,lift:27,bob:8,lean:2.0},
- run:{period:.58,stance:.43,lift:59,bob:16,lean:7.6},
- creep:{period:1.48,stance:.73,lift:15,bob:4,lean:5.0},
+ walk:{period:.96,stance:.64,lift:27,bob:4.5,lean:2.0},
+ run:{period:.58,stance:.43,lift:59,bob:11,lean:7.6},
+ creep:{period:1.48,stance:.73,lift:15,bob:2.5,lean:5.0},
  limp:{period:1.24,stance:.71,lift:18,bob:7,lean:4.3},
  stand:{period:2.00,stance:1,lift:0,bob:1,lean:0}
 };
