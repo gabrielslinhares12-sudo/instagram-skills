@@ -8,7 +8,7 @@ const elbow=(a:XY,w:XY,bend:number):XY=>{
  const dx=w.x-a.x,dy=w.y-a.y;return {x:(a.x+w.x)/2+bend*dy*.25,y:(a.y+w.y)/2-bend*dx*.25};
 };
 /** Native 2D animation of the mythological Odysseus. Original drawing. */
-export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;speed?:number}>=({time,pose,night=false,speed})=>{
+export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;speed?:number;civilian?:boolean}>=({time,pose,night=false,speed,civilian=false})=>{
  const t=Math.max(0,time),k=ease(t/.7);
  const style:GaitStyle=pose==='run'?'run':pose==='creep'?'creep':pose==='limp'?'limp':pose==='walk'?'walk':'stand';
  const gait=sampleGait(t,style,speed??(style==='run'?122:style==='creep'?48:style==='limp'?64:96));
@@ -92,7 +92,7 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;spee
   <path d="M112 234Q180 207 244 238L264 352L235 409L122 410L96 352Z"
    fill="url(#fabric-greek)" stroke="#2e2928" strokeWidth="13"/>
   <path d="M126 249L238 248L231 349L127 347Z"
-   fill="url(#bronze-greek)" stroke="#4d362b" strokeWidth="11"/>
+   fill={civilian?"#8f775f":"url(#bronze-greek)"} stroke="#4d362b" strokeWidth="11"/>
   <path d="M125 280L232 273M127 311L233 308M128 336L230 333" stroke="#f9d496" strokeWidth="6" opacity=".63"/>
   <path d="M158 248Q168 303 179 346M208 250Q199 300 188 344"
    stroke="#503d32" strokeWidth="9" opacity=".55" fill="none"/>
@@ -115,12 +115,12 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;spee
    <ellipse cx="203" cy="179" rx="4" ry="5" fill="#0e1b20"/>
    <path d="M181 180L175 201L186 205" fill="none" stroke="#82563f" strokeWidth="6"/>
    <path d="M159 220Q181 230 207 218" fill="none" stroke="#64402f" strokeWidth="6"/>
-   <path d="M137 152Q181 118 223 151L221 130Q178 95 146 129Z"
+   {!civilian&&<><path d="M137 152Q181 118 223 151L221 130Q178 95 146 129Z"
     fill="url(#bronze-greek)" stroke="#3f2a26" strokeWidth="10"/>
    <path d="M140 130L142 103Q185 72 221 105L224 135" fill="url(#bronze-greek)"
     stroke="#352626" strokeWidth="8"/>
    <path d="M147 110Q174 52 218 67Q253 75 267 102Q214 79 170 100Z"
-    fill="url(#cloak-greek)" stroke="#3c242c" strokeWidth="9"/>
+    fill="url(#cloak-greek)" stroke="#3c242c" strokeWidth="9"/></>}
   </g>
   </g>
   {night&&<path d="M117 237Q178 218 247 242" stroke="#c1dae4" strokeWidth="6" opacity=".22"/>}
