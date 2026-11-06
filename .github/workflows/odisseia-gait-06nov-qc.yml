@@ -48,7 +48,10 @@ jobs:
               file=pathlib.Path(name)
               if not file.exists() or file.stat().st_size<1000000:
                   sys.exit("MP4 QC inexistente ou pequeno: "+name)
-              result=subprocess.run(["ffprobe","-v","error","-show_entries",
+              probe=next((p for p in pathlib.Path("node_modules/@remotion").rglob("ffprobe") if p.is_file()),None)
+              if probe is None:
+                  sys.exit("FFprobe empacotado no Remotion 4 nao encontrado")
+              result=subprocess.run([str(probe),"-v","error","-show_entries",
                   "stream=width,height,r_frame_rate,codec_name:format=duration",
                   "-of","json",name],capture_output=True,text=True,check=True)
               data=json.loads(result.stdout)
