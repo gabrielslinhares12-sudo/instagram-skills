@@ -1,6 +1,6 @@
 import React from 'react';
 import {kneeIK,sampleGait,type GaitStyle} from './gait';
-export type WarriorPose='listen'|'plan'|'point'|'craft'|'climb'|'creep'|'run'|'open'|'victory'|'walk'|'limp'|'row'|'brace'|'grieve'|'pet';
+export type WarriorPose='listen'|'plan'|'point'|'craft'|'climb'|'creep'|'run'|'open'|'victory'|'walk'|'limp'|'row'|'brace'|'grieve'|'pet'|'embrace';
 type XY={x:number;y:number};
 const ease=(n:number)=>{const x=Math.min(1,Math.max(0,n));return x*x*(3-2*x);};
 const between=(a:number,b:number,k:number)=>a+(b-a)*k;
@@ -16,9 +16,9 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;spee
  const running=pose==='run',rightTarget:XY=pose==='open'?{x:310,y:298}:
    pose==='point'||pose==='plan'?{x:316,y:164}:
    pose==='craft'?{x:330,y:218}:pose==='climb'?{x:260,y:151}:{x:265,y:369};
- const leftTarget:XY=pose==='pet'?{x:-22,y:438}:pose==='open'?{x:70,y:291}:pose==='craft'?{x:57,y:215}:
+ const leftTarget:XY=pose==='embrace'?{x:165,y:254}:pose==='pet'?{x:-22,y:438}:pose==='open'?{x:70,y:291}:pose==='craft'?{x:57,y:215}:
    pose==='creep'?{x:89,y:299}:{x:75,y:348};
- const R={x:between(267,rightTarget.x,k),y:between(342,rightTarget.y,k)+(moving?walk*(running?22:13):0)};
+ const R={x:between(267,pose==='embrace'?225:rightTarget.x,k),y:between(342,rightTarget.y,k)+(moving?walk*(running?22:13):0)};
  const L={x:between(80,leftTarget.x,k),y:between(345,leftTarget.y,k)-(moving?walk*(running?22:13):0)};
  const swing=Math.sin(t*1.4)*7+(moving?walk*(running?17:11):0);
  const body=gait.lean+Math.sin(t*1.7)*.7+(running?walk*1.8:0);
@@ -85,22 +85,26 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;spee
   </g>)}
   <g transform={'translate(180 320) rotate('+body+') translate(-180 -320) translate(0 '+gait.bodyY+')'}>
   <path d={'M116 244Q42 260 '+(50+swing)+' 354Q'+(22+swing)+' 450 '+(12+swing)+' 503Q91 497 163 444L247 244Z'}
-   fill={civilian?"#6a6357":"url(#cloak-greek)"} stroke="#342127" strokeWidth="11"/>
+   fill={civilian?"#283a55":"url(#cloak-greek)"} stroke="#342127" strokeWidth="11"/>
   <path d={'M104 266Q72 395 '+(27+swing)+' 485'} stroke="#eb9881" strokeWidth="7" opacity=".35" fill="none"/>
   {forearm({x:123,y:264},L,-1)}
   {forearm({x:233,y:257},R,1)}
   <path d="M112 234Q180 207 244 238L264 352L235 409L122 410L96 352Z"
-   fill="url(#fabric-greek)" stroke="#2e2928" strokeWidth="13"/>
-  <path d="M126 249L238 248L231 349L127 347Z"
-   fill={civilian?"#8f775f":"url(#bronze-greek)"} stroke="#4d362b" strokeWidth="11"/>
+   fill={civilian?"#8c7a61":"url(#fabric-greek)"} stroke="#2e2928" strokeWidth="13"/>
+  {!civilian&&<path d="M126 249L238 248L231 349L127 347Z"
+   fill="url(#bronze-greek)" stroke="#4d362b" strokeWidth="11"/>}
+  {civilian&&<><path d="M165 242Q154 316 143 358M196 243Q206 313 220 358" stroke="#d1b790" strokeWidth="8" opacity=".65" fill="none"/>
+   <path d="M118 321Q176 340 245 320" fill="none" stroke="#d1b790" strokeWidth="6"/>
+   <path d="M115 354L247 353" stroke="#544534" strokeWidth="20"/>
+   <path d="M115 365Q176 378 243 366" stroke="#b39e78" strokeWidth="6" fill="none"/></>}
   {!civilian&&<path d="M125 280L232 273M127 311L233 308M128 336L230 333" stroke="#f9d496" strokeWidth="6" opacity=".63"/>}
   {!civilian&&<path d="M158 248Q168 303 179 346M208 250Q199 300 188 344"
    stroke="#503d32" strokeWidth="9" opacity=".55" fill="none"/>}
-  <path d="M112 347H245L240 393H117Z" fill="#70513d" stroke="#302b2c" strokeWidth="8"/>
-  {[0,1,2,3,4].map(i=><path key={i} d={'M'+(128+i*26)+' 387l-12 43'}
+  {!civilian&&<path d="M112 347H245L240 393H117Z" fill="#70513d" stroke="#302b2c" strokeWidth="8"/>}
+  {!civilian&&[0,1,2,3,4].map(i=><path key={i} d={'M'+(128+i*26)+' 387l-12 43'}
    stroke="#b99160" strokeWidth="23" strokeLinecap="round"/>)}
-  <path d="M118 249L149 302L125 321L95 269Z" fill="#c7a071" stroke="#332a27" strokeWidth="9"/>
-  <path d="M240 251L211 298L234 319L265 269Z" fill="#b99570" stroke="#332a27" strokeWidth="9"/>
+  {!civilian&&<path d="M118 249L149 302L125 321L95 269Z" fill="#c7a071" stroke="#332a27" strokeWidth="9"/>}
+  {!civilian&&<path d="M240 251L211 298L234 319L265 269Z" fill="#b99570" stroke="#332a27" strokeWidth="9"/>}
   {!civilian&&<circle cx="181" cy="281" r="17" fill="#efc680" stroke="#6e4b2f" strokeWidth="6"/>}
   <path d="M152 208H214L208 243H156Z" fill="#b37b5d" stroke="#3d2c27" strokeWidth="8"/>
   <g transform={'translate(180 213) rotate('+(pose==='plan'?-3:pose==='victory'?4:0)+') translate(-180 -213)'}>
