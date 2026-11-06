@@ -232,7 +232,6 @@ def setup():
     scene.render.filepath=str(OUT/"frames"/"troia_departure_")
     scene.render.image_settings.color_mode="RGB"
     scene.render.image_settings.color_depth="8"
-    scene.render.file_extension=True
     bpy.context.view_layer.update()
     make_environment()
     ship=add_ship()
