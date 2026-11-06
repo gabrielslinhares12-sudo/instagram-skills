@@ -50,3 +50,5 @@ jobs:
           PY
         shell: bash
         working-directory: scripts
+
+# 06NOV Odyssey readiness: GET-only preflight; no publish actions or secrets in logs.
