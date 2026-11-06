@@ -218,7 +218,9 @@ def setup():
     scene.frame_start=FRAME_START
     scene.frame_end=SECONDS*FPS
     scene.render.fps=FPS
-    scene.render.engine="BLENDER_WORKBENCH"
+    scene.render.engine="BLENDER_EEVEE"
+    if getattr(scene,"eevee",None) and hasattr(scene.eevee,"taa_render_samples"):
+        scene.eevee.taa_render_samples=16
     scene.display.shading.light="STUDIO"
     scene.display.shading.color_type="MATERIAL"
     scene.display.shading.show_shadows=False
@@ -258,20 +260,40 @@ def setup():
         cam_obj.data.lens=lens
     # Three actual perspective camera setups, edited together as an intelligible
     # action. No 2-D pan and no overlay of a different character onto the set.
-    configure_cam(cam,(4.9,-10.9,4.25),(-1.4,1.2,2.10),37)
+    configure_cam(cam,(5.0,-11.5,4.55),(.65,1.0,2.05),31)
     camera_b_data=bpy.data.cameras.new("shoreline physical boarding POV")
     camera_b=bpy.data.objects.new("CAM-B boarding in one 3D world",camera_b_data)
     bpy.context.collection.objects.link(camera_b)
-    configure_cam(camera_b,(3.3,-7.8,3.55),(-1.95,-.75,1.60),39)
+    configure_cam(camera_b,(3.0,-7.5,3.40),(-.35,-.65,1.53),32)
     camera_c_data=bpy.data.cameras.new("departing galley 3D perspective")
     camera_c=bpy.data.objects.new("CAM-C ship sails away",camera_c_data)
     bpy.context.collection.objects.link(camera_c)
-    configure_cam(camera_c,(4.5,-10.0,4.5),(1.65,2.9,2.35),43)
+    configure_cam(camera_c,(4.85,-11.7,4.70),(2.20,3.20,2.25),35)
     scene.camera=cam
     for fr,obj,mark in [(1,cam,"A - Trojan coast"),(150,camera_b,"B - actual boarding"),(480,camera_c,"C - depart")]:
         scene.timeline_markers.new(mark,frame=fr).camera=obj
-    scene.world.color=(.46,.47,.51)
+    scene.world.color=(.46,.49,.55)
+    scene.world.use_nodes=True
+    bg=scene.world.node_tree.nodes.get("Background")
+    bg.inputs["Color"].default_value=(.40,.46,.53,1)
+    bg.inputs["Strength"].default_value=.83
+    # True PBR lighting instead of the black, unsupported Workbench studio shader.
+    def add_light(name,kind,location,color,energy,angle=0):
+        light=bpy.data.lights.new(name,kind)
+        light.energy=energy
+        light.color=color
+        if kind=="AREA":light.shape="DISK";light.size=angle
+        if kind=="SUN":light.angle=.12
+        obj=bpy.data.objects.new(name,light)
+        bpy.context.collection.objects.link(obj)
+        obj.location=location
+        obj.rotation_euler=(Vector((0,0,0))-obj.location).to_track_quat("-Z","Y").to_euler()
+    add_light("golden evening sunlight", "SUN", (-5,-7,14), (1.0,.81,.62),3.4)
+    add_light("sand bounce diffuse key", "AREA", (-1,-6,10), (1,.86,.69),1700,12)
+    add_light("ship fill to reveal faces", "AREA", (7,-2,8), (.66,.81,1.0),1200,10)
+    add_light("city flame amber rim", "AREA", (-10,9,7), (1,.45,.20),600,8)
     scene.view_settings.view_transform="Standard"
+    scene.view_settings.exposure=.65
     scene.render.filepath=str(OUT/"frames"/"troia_departure_")
     print("ODYSSEY_SCENE_READY","meshes",len([x for x in bpy.data.objects if x.type=="MESH"]),"rindex",scene.render.resolution_percentage,flush=True)
     blend=OUT/"odyssey_3d_departure.blend"
