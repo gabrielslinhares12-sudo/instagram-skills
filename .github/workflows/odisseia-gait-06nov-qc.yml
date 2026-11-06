@@ -34,15 +34,40 @@ jobs:
         run: |
           npm run prepare-assets
           npx remotion render src/index.ts OdysseyGaitQC out/odisseia-gait-4k60-qc.mp4 --scale=2 --codec=h264 --crf=19 --concurrency=2
+      - name: Animar retorno a Itaca - Argos, Euricleia e Penelope
+        run: |
+          npx remotion render src/index.ts OdysseyHomeQC out/odisseia-retorno-personagens-12s-4k60-qc.mp4 --scale=2 --codec=h264 --crf=18 --concurrency=2
+      - name: Conferir quadros reais dos dois renders e codecs
+        run: |
+          python3 - <<'PY'
+          import json, subprocess, pathlib, sys
+          for name,minimum in [
+              ("out/odisseia-gait-4k60-qc.mp4",13.9),
+              ("out/odisseia-retorno-personagens-12s-4k60-qc.mp4",11.9),
+          ]:
+              file=pathlib.Path(name)
+              if not file.exists() or file.stat().st_size<1000000:
+                  sys.exit("MP4 QC inexistente ou pequeno: "+name)
+              result=subprocess.run(["ffprobe","-v","error","-show_entries",
+                  "stream=width,height,r_frame_rate,codec_name:format=duration",
+                  "-of","json",name],capture_output=True,text=True,check=True)
+              data=json.loads(result.stdout)
+              v=next(s for s in data["streams"] if "width" in s)
+              dur=float(data["format"]["duration"])
+              assert (v["width"],v["height"],v["r_frame_rate"])==(2160,3840,"60/1"),(name,v)
+              assert dur>=minimum,(name,dur)
+              print("QC_4K60_PASS",name,"duration",dur,"codec",v["codec_name"],"bytes",file.stat().st_size)
+          PY
       - name: Validar saída e enviar para FFprobe independente
         run: |
           node -e "const fs=require('fs'); const s=fs.statSync('out/odisseia-gait-4k60-qc.mp4'); if(s.size<1000000)process.exit(1); console.log('RENDER_MP4_VALID_SIZE',s.size)"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: odisseia-20261106-caminhada-articulada-4K60-QC
+          name: odisseia-20261106-caminhada-e-retorno-4K60-QC
           path: |
             motion/out/odisseia-gait-4k60-qc.mp4
+            motion/out/odisseia-retorno-personagens-12s-4k60-qc.mp4
             motion/out/odisseia-gait-metadata.json
           retention-days: 7
           if-no-files-found: error
