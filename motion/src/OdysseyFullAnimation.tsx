@@ -186,6 +186,70 @@ const heroScaleForGait=(world:string,sea:boolean)=>world==='cave'?.88:sea?1.38:1
 /** New original-master-verified inserts. Every tableau corresponds to a spoken
  * event (the source movie was visually audited in 10s steps), not random B-roll.
  */
+
+/** Narration-locked memory at 08:00–08:05. Full horse silhouette (four legs,
+ * mane, visible head, muzzle and two turning wheels) advances through a
+ * large open city gate. Wooden statue remains rigid; wheels, pulling ropes,
+ * city guards and gate leaves move independently. Not a generic pan.
+ */
+const HorseMemory:React.FC<{t:number;q:number}>=({t,q})=>{
+ const advance=ease(clamp((t-.18)/4.45));
+ const gateOpen=ease(clamp(t/.95));
+ const x=-230+490*advance;
+ const wheels=advance*115;
+ return <g>
+  {/* The gate stays wide enough for the horse; rear door leaves visibly retract. */}
+  <rect x="160" y="730" width="820" height="855" fill="#34404a" stroke="#a28866" strokeWidth="27"/>
+  <path d="M185 1570V800Q196 540 565 527Q930 545 953 800V1570Z" fill="#4c5355" stroke="#ccb38e" strokeWidth="28"/>
+  <path d="M350 1540V825Q370 677 562 677Q774 684 800 836V1540Z" fill="#243340" stroke="#f0d4a4" strokeWidth="19"/>
+  <path d={'M366 805L'+(366-155*gateOpen)+' 850V1510L366 1530Z'} fill="#89684f" stroke="#c69e6b" strokeWidth="19"/>
+  <path d={'M794 803L'+(794+158*gateOpen)+' 860V1510L794 1525Z'} fill="#89684f" stroke="#c69e6b" strokeWidth="19"/>
+  {[0,1,2,3,4,5,6].map(i=><path key={i} d={'M'+(365-135*gateOpen+i%2*9)+' '+(910+i*91)+'h'+(i%2?45:65)} stroke="#ad8865" strokeWidth="8" opacity=".76"/>)}
+  <path d="M205 1487H956" stroke="#6d6660" strokeWidth="36" opacity=".66"/>
+  <g transform={'translate('+x+' '+(Math.sin(t*3)*3)+')'}>
+   {/* Rigid load-bearing timber chassis; unlike a real horse, these legs do not walk. */}
+   <ellipse cx="468" cy="1503" rx="395" ry="20" fill="#121d22" opacity=".28"/>
+   <path d="M132 1437H847L821 1494H155Z" fill="#674b39" stroke="#382d28" strokeWidth="20"/>
+   <path d="M203 1458H791" stroke="#b69165" strokeWidth="15"/>
+   {[240,756].map((cx,i)=><g key={i} transform={'translate('+cx+' 1515) rotate('+wheels+')'}>
+     <circle r="71" fill="#624737" stroke="#c99c6b" strokeWidth="15"/>
+     {[0,60,120,180,240,300].map(ang=><path key={ang} d="M0 0V-58" transform={'rotate('+ang+')'} stroke="#b48b5f" strokeWidth="10" strokeLinecap="round"/>)}
+     <circle r="21" fill="#d7b68b" stroke="#5a3f31" strokeWidth="9"/>
+    </g>)}
+   {[260,370,560,670].map((leg,i)=><g key={i} opacity={i===0||i===3?.8:1}>
+    <path d={'M'+leg+' 1135L'+(leg+(i%2?35:-25))+' 1385'} stroke="#392f2a" strokeWidth="73" strokeLinecap="round"/>
+    <path d={'M'+leg+' 1135L'+(leg+(i%2?35:-25))+' 1385'} stroke={i%2?'#997353':'#be8d60'} strokeWidth="59" strokeLinecap="round"/>
+    <path d={'M'+(leg+(i%2?35:-25)-43)+' 1401h91'} stroke="#5c4739" strokeWidth="29" strokeLinecap="round"/>
+   </g>)}
+   {/* Long rounded body, deep chest, recognizable arched neck and horse head. */}
+   <path d="M168 1010Q207 935 365 934L585 971Q662 1018 672 1137L630 1216L227 1209Q144 1159 168 1010Z" fill="#b48659" stroke="#503b31" strokeWidth="22"/>
+   <path d="M177 998Q320 947 523 998L600 1045" fill="none" stroke="#ddad78" strokeWidth="19" opacity=".8"/>
+   <path d="M533 1032L600 727Q625 638 686 660L736 718L706 951L656 1111Z" fill="#bf8d5d" stroke="#503b31" strokeWidth="22"/>
+   <path d="M630 723Q655 624 707 657L794 708L807 780Q786 835 707 835L665 793Z" fill="#d0a170" stroke="#4c3930" strokeWidth="19"/>
+   <path d="M710 664L698 602L738 649L762 624L763 699" fill="#ba8b5d" stroke="#4a3930" strokeWidth="17" strokeLinejoin="round"/>
+   <path d="M800 759Q820 776 801 793L769 803" fill="none" stroke="#815642" strokeWidth="13"/>
+   <ellipse cx="751" cy="717" rx="10" ry="11" fill="#292626"/>
+   <ellipse cx="787" cy="782" rx="7" ry="6" fill="#604534"/>
+   {[0,1,2,3,4,5].map(i=><path key={i} d={'M'+(610+i*13)+' '+(741-i*12)+'q-64 -28 -96 -72'} stroke="#654632" strokeWidth="14" strokeLinecap="round" fill="none"/>)}
+   <path d={'M172 1053Q'+(96-27*Math.sin(t*1.6))+' 919 '+(102-21*Math.sin(t*1.6))+' 868'} stroke="#674733" strokeWidth="33" strokeLinecap="round" fill="none"/>
+   {/* Wooden boards and braces maintain the giant statue's proportions. */}
+   {[205,288,371,454,535].map(i=><path key={i} d={'M'+i+' 974v217'} stroke="#d5a273" strokeWidth="12" opacity=".76"/>)}
+   <path d="M247 1040L551 1147M520 1000L254 1160" stroke="#815b43" strokeWidth="15" opacity=".65"/>
+   <rect x="370" y="1085" width="118" height="110" rx="6" fill="#8b6148" stroke="#dfbd8e" strokeWidth="12"/>
+   <path d="M387 1098L472 1180" stroke="#cba77b" strokeWidth="10"/>
+   <path d="M606 900Q656 932 695 939" stroke="#e0bc8e" strokeWidth="10" fill="none" opacity=".6"/>
+  </g>
+  {/* Guards signal the move, and their arms move independently from the statue. */}
+  <RoleActor role="crew" x={155+advance*55} y={1540} scale={.69} t={t} gesture="work"/>
+  <RoleActor role="suitor" x={925-advance*35} y={1540} scale={.75} t={t+.8} gesture="reach"/>
+  <path d={'M'+(x+777)+' 1122Q'+(x+820)+' 1260 '+(895-advance*25)+' 1365'} stroke="#d5ba8d" strokeWidth="11" fill="none" strokeLinecap="round"/>
+  {/* Foreground masonry masks the correct passage through the doorway. */}
+  <path d="M90 1575V735L181 650L256 727V1575Z" fill="#927861" stroke="#ddbd8f" strokeWidth="23"/>
+  <path d="M966 1575V730L1019 655L1065 735V1575Z" fill="#927861" stroke="#ddbd8f" strokeWidth="23"/>
+  {[0,1,2,3].map(i=><path key={i} d={'M'+(99+i*7)+' '+(870+i*169)+'h145M975 '+(857+i*171)+'h83'} stroke="#5f544c" strokeWidth="11" opacity=".5"/>)}
+ </g>;
+};
+
 const ExtraActs:React.FC<{action:string;t:number;q:number}>=({action:a,t,q})=><g>
  {a==='penelopeWaits'&&<>
   <RoleActor role="penelope" x={710} y={1530} scale={1.52} t={t} gesture="reach"/>
@@ -243,21 +307,7 @@ const ExtraActs:React.FC<{action:string;t:number;q:number}>=({action:a,t,q})=><g
   <RoleActor role="nurse" x={280} y={1550} scale={1.33} t={t} gesture="reach"/>
   <RoleActor role="penelope" x={790} y={1550} scale={1.42} t={t}/>
  </>}
- {a==='horseMemory'&&<g transform="translate(485 1470)">
-    <g transform={'scale('+(.88+.12*q)+')'}>
-     <path d="M-208 -180H195V80H-208Z" fill="#a8734d" stroke="#543e32" strokeWidth="18"/>
-     <path d="M97 -164L145 -435L207 -457L252 -392L198 -340L185 -166Z" fill="#b18156" stroke="#503b2f" strokeWidth="17"/>
-     <path d="M207 -452L258 -420L275 -370L237 -352L185 -396" fill="#ac7b54" stroke="#584333" strokeWidth="12"/>
-     <circle cx="234" cy="-413" r="8" fill="#2f2b2d"/>
-     {[0,1,2,3,4].map(i=><path key={i} d={'M'+(145+i*17)+' -417l-22 -35'} stroke="#513d30" strokeWidth="14" strokeLinecap="round"/>)}
-     <path d="M-188 78V210M172 80V210" stroke="#9d6747" strokeWidth="44"/>
-     <path d="M-214 -150Q-326 -230 -280 -290" stroke="#674737" strokeWidth="27" fill="none"/>
-     <path d="M-245 230H238" stroke="#765039" strokeWidth="27"/>
-     <circle cx="-172" cy="220" r="46" fill="#654c3d" stroke="#b58e61" strokeWidth="16"/>
-     <circle cx="175" cy="220" r="46" fill="#654c3d" stroke="#b58e61" strokeWidth="16"/>
-     {[0,1,2,3].map(i=><path key={i} d={'M'+(-160+i*100)+' -170V70'} stroke="#d2a377" strokeWidth="9" opacity=".8"/>)}
-    </g>
- </g>}
+ {a==='horseMemory'&&<HorseMemory t={t} q={q}/>} 
  {a==='familyReunited'&&<>
   <RoleActor role="penelope" x={735-q*110} y={1550} scale={1.48} t={t} gesture="reach"/>
   <RoleActor role="telemachus" x={400+q*45} y={1575} scale={1.13} t={t} gesture="reach"/>
@@ -291,7 +341,7 @@ const actionIn=(action:string,...checks:string[])=>checks.includes(action);
 const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string}>=({action,time:t,duration:d,world})=>{
  const q=ease(t/Math.max(.5,d-.8)),a=action,p=clamp(t/d);
  const sea=SEA.has(world);
- const heroNo=new Set(['penelopeWaits','penelopeLoom','loomUnravels','penelopeRefuses','nestorMeeting','ambushEscape','nurseAnnounces','weavingNight','boulderSeals','lotusEnchantment','cyclopsArrival','cyclopsSleeping','giantsAttack','boatsDestroyed','circeWelcomes','enchantedCup','menTransform','motherAppears','wingedSirens','sacredHerd','crewHunger','forbiddenFeast','calypsoShelter','nausicaaFinds','telemachusSeeks','athenaGuides','dangerousReturn','sonApproaches','argosHears','argosLooks','suitorsFeast','bowAttempt','penelopeApproaches','facesUncertain','oliveTreeReveal','palaceRestored','familyAtOlive','islandPanorama']);
+ const heroNo=new Set(['horseMemory','penelopeWaits','penelopeLoom','loomUnravels','penelopeRefuses','nestorMeeting','ambushEscape','nurseAnnounces','weavingNight','boulderSeals','lotusEnchantment','cyclopsArrival','cyclopsSleeping','giantsAttack','boatsDestroyed','circeWelcomes','enchantedCup','menTransform','motherAppears','wingedSirens','sacredHerd','crewHunger','forbiddenFeast','calypsoShelter','nausicaaFinds','telemachusSeeks','athenaGuides','dangerousReturn','sonApproaches','argosHears','argosLooks','suitorsFeast','bowAttempt','penelopeApproaches','facesUncertain','oliveTreeReveal','palaceRestored','familyAtOlive','islandPanorama']);
  const showHero=!heroNo.has(a);
  const heroWalk=/Landing|Departure|Approaches|Rescue|Escape|Entry|Return|Approach|Meet|Plan|Rises|Greeting|shoreWake|caveDiscovery|fleetDeparture|lotusRescue|ithacaDiscovered|shepherdHut|nightPalaceEntry|shoreRescue|nausicaaFinds|oarInland|oarTraveler|menRetreat/i.test(a);
  const pose:WarriorPose=actionIn(a,'fatherSonMeet','sonEmbrace','familyReunited','motherAppears','handsPassGhost','penelopeApproaches','recognitionDawns','reunionEmbrace','familyAtOlive')?'embrace':
