@@ -197,6 +197,24 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
  const hero=<g transform={'translate('+heroX+' '+heroY+') scale('+heroScale+')'}><Odysseus time={t} pose={pose} speed={heroWalk?115/heroScale:undefined} civilian={world==='argos'||world==='wash'||world==='penelope'||world==='bed'||world==='finale'||world==='ithaca'}/></g>;
  return <g>
    {/* Foreground props and supporting animation are action-specific, never generic camera pans of stills. */}
+   {/* Distinct household action: Penelope's loom, its shuttle moves while the thread changes length. */}
+   {actionIn(a,'ithacaWaiting','weavingNight')&&<>
+    <RoleActor role="penelope" x={760} y={1530} scale={1.42} t={t} gesture="work"/>
+    {a==='ithacaWaiting'&&<RoleActor role="telemachus" x={285} y={1530} scale={.82} t={t}/>}
+    <g transform="translate(395 1000)">
+     <path d="M-185 -100V570M165 -100V570M-185 -100H165M-185 570H165" stroke="#8f6548" strokeWidth="31" fill="none"/>
+     {[0,1,2,3,4,5,6,7,8].map(i=><path key={i} d={'M'+(-153+i*36)+' -70V'+(210+q*190)} stroke="#e4c59c" strokeWidth="7" opacity=".9"/>)}
+     <rect x="-170" y="175" width="325" height={Math.max(35,145+(a==='weavingNight'?-q:q)*100)} fill="#b38c71" stroke="#d2b69b" strokeWidth="7" opacity=".88"/>
+     <path d={'M'+lerp(-170,155,cycle(t*1.3))+' 75h70'} stroke="#f6ddbc" strokeWidth="21" strokeLinecap="round"/>
+    </g>
+   </>}
+   {/* Waking on the Ithacan shore and receiving help are separate visible events. */}
+   {actionIn(a,'shoreRescue','shoreWake')&&<>
+    <path d="M0 1430Q400 1280 1080 1435V1920H0Z" fill="#c1a783" opacity=".7"/>
+    {a==='shoreRescue'&&<RoleActor role="nausicaa" x={775} y={1550} scale={1.36} t={t} gesture="reach"/>}
+    {[0,1,2,3].map(i=><path key={i} d={'M'+(-100+i*330+q*28)+' '+(1360+i%2*45)+'q160 -38 280 0'} stroke="#d2dedd" strokeWidth="12" fill="none" opacity=".4"/>)}
+   </>}
+
    {actionIn(a,'burningTroia','fleetDeparture','rowingHome','lotusLanding','lotusRescue','nameRevealed','shipBraces','homeOnHorizon','windsReleased','fleetTrapped','boatsDestroyed','lastShipEscapes','waxInEars','tiedToMast','wingedSirens','rowingPastVoices','straitRevealed','whirlpoolTurns','scyllaStrikes','shipNarrowEscape','thunderBreaksShip','aloneAdrift','raftLaunch','raftStorm','giftsAboard','sleepingReturn')&&
      <Ship x={540+(actionIn(a,'rowingHome','lastShipEscapes','shipNarrowEscape','sleepingReturn')?q*105:0)} y={1355} scale={actionIn(a,'fleetDeparture','fleetTrapped','burningTroia')?.72:1.18} time={t} wave={world==='seaStorm'||world==='strait'?1.7:.5} broken={a==='thunderBreaksShip'}/>}
    {actionIn(a,'burningTroia','fleetDeparture','fleetTrapped','boatsDestroyed')&&[0,1,2].map(i=><Ship key={i} x={210+i*260} y={1100+i%2*50} scale={.4+i*.12} time={t+i} broken={a==='boatsDestroyed'&&i!==2}/>)}
@@ -304,6 +322,7 @@ export const OdysseyFullAnimation:React.FC<OdysseyAnimationProps>=({offsetSecond
  if(sampleSeconds?.length){const clip=3;const n=Math.min(sampleSeconds.length-1,Math.floor(frame/fps/clip));time=sampleSeconds[n]!+(frame/fps-n*clip)}
  time=clamp(time,0,ODYSSEY_TOTAL_SECONDS-.0001);
  const beat=getOdysseyBeat(time),local=time-beat.start,duration=beat.end-beat.start;
+ const world=beat.action==='weavingNight'?'penelope':beat.action==='ithacaWaiting'?'ithaca':beat.location;
  const first=ODYSSEY_BEATS.find(b=>b.chapter===beat.chapter)?.id===beat.id;
  const alpha=ease(local/.2)*ease((duration-local)/.28);
  const progress=clamp(local/duration);
@@ -312,8 +331,8 @@ export const OdysseyFullAnimation:React.FC<OdysseyAnimationProps>=({offsetSecond
  return <AbsoluteFill style={{backgroundColor:shade,overflow:'hidden'}}>
   <svg width={W} height={H} viewBox="0 0 1080 1920" style={{position:'absolute',inset:0,opacity:alpha}}>
    <g transform={'translate('+cameraX+' '+cameraY+') scale('+zoom+')'}>
-    <Stage world={beat.location} id={beat.id} time={local} progress={progress}/>
-    <OnlyScene action={beat.action} time={local} duration={duration} world={beat.location}/>
+    <Stage world={world} id={beat.id} time={local} progress={progress}/>
+    <OnlyScene action={beat.action} time={local} duration={duration} world={world}/>
    </g>
   </svg>
   {first&&<div style={{position:'absolute',top:175,left:75,right:75,color:'#f2debc',fontFamily:'Georgia,serif',fontSize:55,fontWeight:700,letterSpacing:2,textShadow:'0 2px 12px #14222a',opacity:ease(local/.5)*ease((4-local)/.8)}}>{beat.chapter}</div>}
