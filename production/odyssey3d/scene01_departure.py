@@ -151,6 +151,11 @@ def make_environment():
         cube("ruined burning house",(x,14.5+(i%2)*.28,3.0),( .5,.6,random.uniform(1.0,2.4)),ASH)
         for k in range(2):
             sphere("smoldering fire",(x+random.uniform(-.16,.15),14.3,4.0+k*.31),(.2,.2,.45),FIRE,8,5)
+    # City is separate from the gangplank sightline rather than touching the sail.
+    # Each piece keeps its own 3D world-space depth.
+    for city_ob in list(bpy.data.objects):
+        if any(tag in city_ob.name.lower() for tag in ("troy ","crenellation","masonry joint","ruined burning house","smoldering fire","smoke above")):
+            city_ob.location.x -= 5.2
     # Torches and boatside smoky atmosphere at physically separate z depths.
     for i in range(7):
         x=-10+i*1.55
@@ -216,13 +221,16 @@ def setup():
     scene.render.engine="BLENDER_WORKBENCH"
     scene.display.shading.light="STUDIO"
     scene.display.shading.color_type="MATERIAL"
-    scene.display.shading.show_shadows=True
+    scene.display.shading.show_shadows=False
     scene.display.shading.show_cavity=True
     scene.display.shading.cavity_type="BOTH"
     scene.display.shading.curvature_ridge_factor=1.1
     scene.display.shading.curvature_valley_factor=1.0
     scene.display.shading.background_type="WORLD"
-    scene.display.shading.studiolight_rotate_z=.9
+    scene.display.shading.studiolight_rotate_z=.25
+    scene.display.shading.background_type="WORLD"
+    available={x.name for x in bpy.context.preferences.studio_lights}
+    if "paint.sl" in available: scene.display.shading.studio_light="paint.sl"
     scene.render.film_transparent=False
     # Vertical native 60fps animation QC. Full master rendering will be 2160x3840.
     scene.render.resolution_x=1080
@@ -243,17 +251,26 @@ def setup():
     cam_data=bpy.data.cameras.new("35mm live-action composition")
     cam=bpy.data.objects.new("single real perspective camera",cam_data)
     bpy.context.collection.objects.link(cam)
-    cam.location=(11.2,-17.0,9.7)
-    direction=Vector((-.6,.7,2.45))-cam.location
-    cam.rotation_euler=direction.to_track_quat("-Z","Y").to_euler()
-    cam.data.type="PERSP"
-    cam.data.lens=32
+    def configure_cam(cam_obj,position,look_at,lens):
+        cam_obj.location=position
+        cam_obj.rotation_euler=(Vector(look_at)-cam_obj.location).to_track_quat("-Z","Y").to_euler()
+        cam_obj.data.type="PERSP"
+        cam_obj.data.lens=lens
+    # Three actual perspective camera setups, edited together as an intelligible
+    # action. No 2-D pan and no overlay of a different character onto the set.
+    configure_cam(cam,(4.9,-10.9,4.25),(-1.4,1.2,2.10),37)
+    camera_b_data=bpy.data.cameras.new("shoreline physical boarding POV")
+    camera_b=bpy.data.objects.new("CAM-B boarding in one 3D world",camera_b_data)
+    bpy.context.collection.objects.link(camera_b)
+    configure_cam(camera_b,(3.3,-7.8,3.55),(-1.95,-.75,1.60),39)
+    camera_c_data=bpy.data.cameras.new("departing galley 3D perspective")
+    camera_c=bpy.data.objects.new("CAM-C ship sails away",camera_c_data)
+    bpy.context.collection.objects.link(camera_c)
+    configure_cam(camera_c,(4.5,-10.0,4.5),(1.65,2.9,2.35),43)
     scene.camera=cam
-    # Dolly toward departing ship in same world, never a still-image pan.
-    cam.location=(11.2,-17,9.7);cam.keyframe_insert(data_path="location",frame=1)
-    cam.location=(8.5,-14.0,8.3);cam.keyframe_insert(data_path="location",frame=480)
-    cam.location=(8.5,-14.0,8.3);cam.keyframe_insert(data_path="location",frame=600)
-    scene.world.color=(.13,.15,.18)
+    for fr,obj,mark in [(1,cam,"A - Trojan coast"),(150,camera_b,"B - actual boarding"),(480,camera_c,"C - depart")]:
+        scene.timeline_markers.new(mark,frame=fr).camera=obj
+    scene.world.color=(.46,.47,.51)
     scene.view_settings.view_transform="Standard"
     scene.render.filepath=str(OUT/"frames"/"troia_departure_")
     print("ODYSSEY_SCENE_READY","meshes",len([x for x in bpy.data.objects if x.type=="MESH"]),"rindex",scene.render.resolution_percentage,flush=True)
