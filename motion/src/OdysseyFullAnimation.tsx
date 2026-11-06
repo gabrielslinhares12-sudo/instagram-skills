@@ -194,8 +194,11 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
  actionIn(a,'motherAppears','facesUncertain','lyreLament','quietNight','odysseusWaits')?'grieve':
  actionIn(a,'cyclopsPlea','nameRevealed','seerWarns','fatherSonPlan')?'point':
  heroWalk?'walk':'listen';
- const heroX=heroWalk?105+165*clamp(t/d):180;
- const heroLocalSpeed=heroWalk?(165/d)/heroScaleForGait(world,sea):undefined;
+ // Root translation is permitted only when legs actually run a moving gait.
+ // Petting, embracing and crafting must not slide on planted feet.
+ const rootMoves=heroWalk&&pose==='walk';
+ const heroX=rootMoves?105+165*clamp(t/d):180;
+ const heroLocalSpeed=rootMoves?(165/d)/heroScaleForGait(world,sea):undefined;
  const heroY=actionIn(a,'cyclopsArrival','boulderSeals','prisonersWatch','wineToGiant','cyclopsSleeping','stakePrepared','ramEscape','cyclopsPlea')?985:sea?760:730;
  const heroScale=heroScaleForGait(world,sea);
  const hero=<g transform={'translate('+heroX+' '+heroY+') scale('+heroScale+')'}><Odysseus time={t} pose={pose} speed={heroLocalSpeed} civilian={world==='argos'||world==='wash'||world==='penelope'||world==='bed'||world==='finale'||world==='ithaca'}/></g>;
