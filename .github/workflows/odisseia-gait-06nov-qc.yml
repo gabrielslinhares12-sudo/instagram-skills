@@ -34,6 +34,8 @@ jobs:
         run: |
           npm run prepare-assets
           npx remotion render src/index.ts OdysseyGaitQC out/odisseia-gait-4k60-qc.mp4 --scale=2 --codec=h264 --crf=19 --concurrency=2
+      - name: Instalar FFprobe para validação objetiva
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Conferir arquivo técnico por FFprobe
         run: |
           ffprobe -v error -show_entries stream=width,height,r_frame_rate -of json out/odisseia-gait-4k60-qc.mp4 > out/odisseia-gait-metadata.json
@@ -44,6 +46,7 @@ jobs:
           print('TRUE_4K_60FPS_AND_INDIVIDUAL_2D_ACTING_VERIFIED')
           PY
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
         with:
           name: odisseia-20261106-caminhada-articulada-4K60-QC
           path: |
@@ -52,3 +55,5 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 # Editorial hold: test animation, never post or schedule any IG feed.
+
+# Rerender correct full-frame composition; FFprobe dependency explicitly installed.
