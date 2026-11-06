@@ -77,8 +77,8 @@ const Penelope:React.FC<{x:number;t:number}>=({x,t})=>{
    <path d="M-93 -218Q-157 -179 -142 -106" fill="none" stroke="#31545a" strokeWidth="34" strokeLinecap="round"/>
    <path d="M-142 -107Q-134 -72 -102 -52" fill="none" stroke="#d6a384" strokeWidth="23" strokeLinecap="round"/>
    <circle cx="-102" cy="-52" r="18" fill="#d6a384"/>
-   <path d={'M70 -223Q128 -188 '+(118+reach*160)+' '+(-105-reach*90)} fill="none" stroke="#31545a" strokeWidth="34" strokeLinecap="round"/>
-   <circle cx={118+reach*160} cy={-105-reach*90} r="17" fill="#d6a384"/>
+   <path d={'M70 -223Q128 -188 '+(118+reach*60)+' '+(-105-reach*90)} fill="none" stroke="#31545a" strokeWidth="34" strokeLinecap="round"/>
+   <circle cx={118+reach*60} cy={-105-reach*90} r="17" fill="#d6a384"/>
    <path d="M-46 -260H48V-230H-46Z" fill="#c89476"/>
    <path d="M-78 -317Q-104 -228 -81 -169H-46L-38 -290Z M67 -316Q103 -256 82 -168H51L38 -291Z" fill="#292632"/>
    <ellipse cx="0" cy="-316" rx="71" ry="85" fill="#d7a484" stroke="#4d3530" strokeWidth="8"/>
@@ -92,13 +92,13 @@ const Penelope:React.FC<{x:number;t:number}>=({x,t})=>{
 
 const Eurycleia:React.FC<{t:number}>=({t})=>{
  const reach=ease((t-.35)/1.6),surprise=ease((t-2.5)/.5);
- return <g transform={'translate(275 '+(1650-surprise*28)+') scale(1.42)'}>
+ return <g transform={'translate(445 '+(1650-surprise*28)+') scale(1.42)'}>
   <ellipse cy="20" rx="80" ry="15" fill="#27262a" opacity=".3"/>
   <path d="M-67 -203L-99 12H98L75 -203Z" fill="#6c505b" stroke="#39313b" strokeWidth="9"/>
   <path d="M-46 -211L-58 -8M49 -206L70 -8" stroke="#c4a68f" strokeWidth="7" fill="none"/>
   <path d="M-78 -209Q-110 -155 -110 -103" stroke="#6c505b" strokeWidth="33" fill="none" strokeLinecap="round"/>
   <path d={'M-106 -102Q'+(-60+reach*45)+' '+(-67+reach*18)+' '+(55+reach*30)+' '+(-170+reach*70)} stroke="#c39e8b" strokeWidth="21" fill="none" strokeLinecap="round"/>
-  <circle cx={55+reach*30} cy={-80-reach*80} r="16" fill="#c39e8b"/>
+  <circle cx={55+reach*30} cy={-170+reach*70} r="16" fill="#c39e8b"/>
   <path d="M73 -208Q122 -166 116 -96" stroke="#6c505b" strokeWidth="30" fill="none" strokeLinecap="round"/>
   <circle cx="119" cy="-94" r="17" fill="#c39e8b"/>
   <path d="M-44 -256H47V-210H-44Z" fill="#c39e8b"/>
@@ -134,7 +134,7 @@ export const OdysseyHomeQC:React.FC=()=>{
       </g>
     </>}
     {shot===1&&<>
-      <g transform="translate(515 790) scale(1.27)">
+      <g transform="translate(420 790) scale(1.27)">
         <Odysseus time={t} pose="listen" civilian/>
       </g>
       <path d="M590 1370Q550 1440 555 1490" stroke="#ad8264" strokeWidth="40" strokeLinecap="round" fill="none"/>
@@ -143,8 +143,8 @@ export const OdysseyHomeQC:React.FC=()=>{
       <Eurycleia t={t}/>
     </>}
     {shot===2&&<>
-      <g transform={'translate('+(575-ease((t-2)/1.5)*40)+' 840) scale(1.35)'}>
-        <Odysseus time={t} pose="open" civilian/>
+      <g transform={'translate('+(560-ease((t-1.5)/1.5)*195)+' 840) scale(1.35)'}>
+        <Odysseus time={t} pose="embrace" civilian/>
       </g>
       <Penelope x={240} t={t}/>
     </>}
