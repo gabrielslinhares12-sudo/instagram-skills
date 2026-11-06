@@ -1,0 +1,62 @@
+name: Odisseia V7 — Cavalo de Troia, correção exata 08:00 a 08:05
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/odisseia-horse-memory-5s.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  horse-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: motion
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 4d2efaf74bcd5db3bf5be6d7b5484dc844bf1049
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: motion/package-lock.json
+      - name: Validar cenas, timecodes e compilacao
+        run: |
+          npm ci --no-audit --no-fund
+          npm run check
+          npm run prepare-assets
+      - name: Animar cavalo atraves do portao no exato ponto da voz — 4K 60 FPS
+        run: |
+          mkdir -p out
+          npx remotion render src/index.ts OdysseyHorseMemory5s out/odisseia-v7-flashback-cavalo-480a485-4k60.mp4 --scale=2 --codec=h264 --crf=18 --concurrency=2
+      - name: Verificar arquivo e amostrar quadros com movimento real
+        run: |
+          set -euo pipefail
+          MP4="out/odisseia-v7-flashback-cavalo-480a485-4k60.mp4"
+          FFPROBE="$(find node_modules/@remotion -type f -name ffprobe -print -quit)"
+          FFMPEG="$(find node_modules/@remotion -type f -name ffmpeg -print -quit)"
+          "$FFPROBE" -v error -show_entries stream=codec_name,width,height,r_frame_rate:format=duration -of json "$MP4" >out/horse-memory-qc.json
+          python3 - <<'PY'
+          import json
+          j=json.load(open('out/horse-memory-qc.json'))
+          v=next(s for s in j['streams'] if 'width' in s)
+          assert (v['width'],v['height'],v['r_frame_rate'])==(2160,3840,'60/1')
+          assert abs(float(j['format']['duration'])-5)<.05
+          PY
+          for sec in 0.25 1.25 2.50 3.75 4.75; do
+            "$FFMPEG" -v error -ss "$sec" -i "$MP4" -frames:v 1 -vf scale=540:960 -y "out/horse-memory-${sec}s.jpg"
+          done
+      - name: Salvar segmento e imagens de controle, sem publicacao
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: odisseia-v7-cavalo-0800-a-0805-4K60-QC
+          path: |
+            motion/out/odisseia-v7-flashback-cavalo-480a485-4k60.mp4
+            motion/out/horse-memory-qc.json
+            motion/out/horse-memory-*.jpg
+          retention-days: 7
+          if-no-files-found: warn
