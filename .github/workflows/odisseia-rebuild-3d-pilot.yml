@@ -21,7 +21,7 @@ jobs:
       - name: Instalar Blender open-source, ffmpeg e software rendering
         run: |
           sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg libgl1-mesa-dri python3-pil
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg libgl1-mesa-dri python3-pil python3-numpy
           blender --version | head -3
       - name: Baixar modelos animados 3D de fonte CC0 original
         run: |
