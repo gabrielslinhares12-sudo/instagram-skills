@@ -51,9 +51,9 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;spee
   {([[-1,gait.left],[1,gait.right]] as const).map(([side,foot],i)=><g key={i}>
     {(() => {
       const x=side<0?145:213;
-      const hip={x,y:397+gait.bodyY};
+      const hip={x,y:365+gait.bodyY}; // hip behind tunic; nearly straight support leg
       const ankle={x:x+side*12+foot.ankle.x,y:foot.ankle.y};
-      const knee=kneeIK(hip,ankle,94,94,-1);
+      const knee=kneeIK(hip,ankle,96,96,-1); // less crouched, full extension on stance
       const shoeTilt=foot.pitch;
       return <>
         <ellipse cx={ankle.x+10} cy="560" rx="50" ry="9" fill="#18262b"
