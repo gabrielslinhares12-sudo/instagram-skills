@@ -1,0 +1,66 @@
+name: Odisseia — novo padrao integral 4K60 QC (sem publicar)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/odisseia-anime-integral-qc.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-saga-integral-qc
+  cancel-in-progress: false
+jobs:
+  cinematographic-qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    defaults:
+      run:
+        working-directory: motion
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 4441e0f38706d74aa26069fba67b690f7912c487
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: motion/package-lock.json
+      - name: Instalar dependencias gratuitas
+        run: npm ci --no-audit --no-fund
+      - name: Compilar e validar 110 cenas e 3 episodios sem gaps
+        run: npm run check
+      - name: Renderizar quatro planos de atuacao consecutivos em 4K 60 FPS
+        run: |
+          npm run prepare-assets
+          npx remotion render src/index.ts OdysseySagaQC out/odisseia-polifemo-12s-4k60-QC.mp4 --frames=0-719 --scale=2 --codec=h264 --crf=18 --concurrency=2
+      - name: Medir resolucao, duracao e extrair quadros para revisao humana
+        run: |
+          set -euo pipefail
+          MP4="out/odisseia-polifemo-12s-4k60-QC.mp4"
+          FFPROBE="$(find node_modules/@remotion -type f -name ffprobe -print -quit)"
+          FFMPEG="$(find node_modules/@remotion -type f -name ffmpeg -print -quit)"
+          "$FFPROBE" -v error -show_entries stream=codec_name,width,height,r_frame_rate:format=duration -of json "$MP4" >out/odisseia-integral-tech-qc.json
+          python3 - <<'PY'
+          import json
+          j=json.load(open('out/odisseia-integral-tech-qc.json'))
+          v=next(s for s in j['streams'] if 'width' in s)
+          assert (v['codec_name'],v['width'],v['height'],v['r_frame_rate']) == ('h264',2160,3840,'60/1'),v
+          assert abs(float(j['format']['duration'])-12)<.1,j['format']
+          print('QUATRO_PLANOS_4K60_PASSOU_GATES_TECNICOS')
+          PY
+          for s in 1 2.5 3.5 5 6.5 8 9.5 11; do
+            "$FFMPEG" -v error -ss "$s" -i "$MP4" -frames:v 1 -vf scale=540:960 -y "out/odisseia-novo-pad-parte1-$s.jpg"
+          done
+      - name: Disponibilizar prova audiovisual para aprovacao editorial
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA-NOVO-PADRAO-12S-4K60-QC-SEM-PUBLICACAO
+          path: |
+            motion/out/odisseia-polifemo-12s-4k60-QC.mp4
+            motion/out/odisseia-integral-tech-qc.json
+            motion/out/odisseia-novo-pad-parte1-*.jpg
+          retention-days: 7
+          if-no-files-found: error
+# Workflow intentionally never publishes or reschedules social accounts.
