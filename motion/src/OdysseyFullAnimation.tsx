@@ -107,12 +107,14 @@ const Cyclops:React.FC<{x:number;y:number;scale?:number;t:number;push?:boolean;a
   <path d="M78 380L62 520M229 373L251 520" stroke="#a58b75" strokeWidth="68" strokeLinecap="round"/>
   <path d="M40 214Q155 151 276 220L290 385Q150 435 25 382Z" fill="#70615a" stroke="#342e32" strokeWidth="17"/>
   <path d="M56 347Q170 390 262 350L245 426L48 420Z" fill="#433a39"/>
+  {!push&&<>
   <path d={'M56 249Q'+(-10+arm*15)+' 290 '+(-25+arm*75)+' '+(405-arm*100)} stroke="#4b3e3c" strokeWidth="71" strokeLinecap="round" fill="none"/>
   <path d={'M56 249Q'+(-10+arm*15)+' 290 '+(-25+arm*75)+' '+(405-arm*100)} stroke="#a98b72" strokeWidth="55" strokeLinecap="round" fill="none"/>
   <circle cx={-25+arm*75} cy={405-arm*100} r="38" fill="#ab917b" stroke="#51443e" strokeWidth="9"/>
   <path d={'M255 249Q320 330 '+(315+arm*36)+' '+(383-arm*50)} stroke="#493b37" strokeWidth="71" strokeLinecap="round" fill="none"/>
   <path d={'M255 249Q320 330 '+(315+arm*36)+' '+(383-arm*50)} stroke="#a88b74" strokeWidth="54" strokeLinecap="round" fill="none"/>
   <circle cx={315+arm*36} cy={383-arm*50} r="39" fill="#ab917b" stroke="#51443e" strokeWidth="9"/>
+  </>}
   <g transform={'translate(0 '+sway+')'}>
    <path d="M93 78Q163 17 233 83L253 212Q170 271 66 214Z" fill="#b2967b" stroke="#463735" strokeWidth="15"/>
    <path d="M94 106Q126 18 214 57L240 106Q169 88 94 106Z" fill="#372f31"/>
@@ -231,8 +233,28 @@ const OnlyScene:React.FC<{action:string;time:number;duration:number;world:string
      <path d={'M'+(240+i*290)+' 1040q35 -90 75 -25q-40 39 -75 25Z'} fill="#b983ab" opacity={a==='lotusRescue'?1:.75}/>
     </g>)}
    {actionIn(a,'caveDiscovery','cyclopsArrival','boulderSeals','prisonersWatch','wineToGiant','cyclopsSleeping','stakePrepared','ramEscape','cyclopsPlea','nameRevealed')&&<>
-     {a!=='caveDiscovery'&&<Cyclops x={140+(a==='boulderSeals'?q*15:0)} y={195} scale={2.5} t={t} push={a==='boulderSeals'} asleep={a==='cyclopsSleeping'||a==='stakePrepared'||a==='ramEscape'}/>}
-     {a==='boulderSeals'&&<><g transform="translate(350 950) scale(.8)"><Odysseus time={t} pose="brace"/></g><Boulder x={lerp(1190,545,ease(t/Math.max(1,d*.86)))} y={1260} scale={1.46} roll={-q*12}/></>}
+     {a!=='caveDiscovery'&&<Cyclops x={a==='boulderSeals'?lerp(780,530,ease(t/Math.max(1,d*.86))):140} y={195} scale={2.5} t={t} push={a==='boulderSeals'} asleep={a==='cyclopsSleeping'||a==='stakePrepared'||a==='ramEscape'}/>}
+     {a==='boulderSeals'&&(()=>{
+       // Continuous blocking: giant advances from the right, rock travels from beside him
+       // to the exact cave center. Both articulated arms visibly remain in contact.
+       const advance=ease(t/Math.max(1,d*.86)),rockX=lerp(1100,545,advance),giantX=lerp(780,530,advance);
+       const left={x:rockX+285,y:1063-advance*28},right={x:rockX+451,y:1090-advance*15};
+       const upperL={x:giantX+56*2.5,y:195+249*2.5},upperR={x:giantX+255*2.5,y:195+249*2.5};
+       const armPath=(s:{x:number;y:number},e:{x:number;y:number},bend:number)=>
+         'M'+s.x+' '+s.y+'Q'+(s.x*.46+e.x*.54)+' '+(s.y+80+bend)+' '+e.x+' '+e.y;
+       return <g>
+        <g transform="translate(210 1090) scale(.64)"><Odysseus time={t} pose="brace"/></g>
+        <Boulder x={rockX} y={1260} scale={1.46} roll={-q*13}/>
+        {[{s:upperL,e:left,bend:-44},{s:upperR,e:right,bend:34}].map((arm,i)=><g key={i}>
+          <path d={armPath(arm.s,arm.e,arm.bend)} stroke="#453a3b" strokeWidth="122" fill="none" strokeLinecap="round"/>
+          <path d={armPath(arm.s,arm.e,arm.bend)} stroke="#a78a73" strokeWidth="101" fill="none" strokeLinecap="round"/>
+          <path d={armPath(arm.s,arm.e,arm.bend)} stroke="#d1ae8d" strokeWidth="16" fill="none" strokeLinecap="round" opacity=".6"/>
+          <ellipse cx={arm.e.x} cy={arm.e.y} rx="71" ry="67" fill="#b89a7e" stroke="#53433d" strokeWidth="16"/>
+          {[0,1,2].map(j=><path key={j} d={'M'+(arm.e.x-34+j*27)+' '+(arm.e.y-9)+'q-9 -32 -16 -32'} stroke="#8b6e60" strokeWidth="11" strokeLinecap="round" fill="none"/>)}
+         </g>)}
+        {[0,1,2,3].map(i=><ellipse key={i} cx={rockX-350+i*185} cy={1628-Math.sin(t*7+i)*18} rx={25+advance*22} ry={9+advance*6} fill="#baa99f" opacity={advance*(1-advance)*.7}/>)}
+       </g>;
+      })()}
      {a==='cyclopsArrival'&&<Boulder x={1220} y={1270} scale={1.46}/>}
      {a==='prisonersWatch'&&<Boulder x={545} y={1260} scale={1.46}/>}
      {a==='wineToGiant'&&<><path d="M690 1050L760 960L820 1032L800 1168Z" fill="#8d3c42" stroke="#e1bc8d" strokeWidth="12"/><path d="M810 1042Q890 950 910 1080" fill="none" stroke="#c28874" strokeWidth="30"/></>}
