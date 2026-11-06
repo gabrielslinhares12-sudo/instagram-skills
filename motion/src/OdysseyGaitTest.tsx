@@ -110,20 +110,20 @@ export const OdysseyGaitTest:React.FC=()=>{
     <Ship t={t} close={close}/>
     {!close&&<>
       <g transform={`translate(${60+t*72} 1161) scale(.59)`}>
-       <Crew t={t} phase={.12} speed={72} variant={0}/>
+       <Crew t={t} phase={.12} speed={72/.59} variant={0}/>
       </g>
       <g transform={`translate(${298+t*63} 1189) scale(.69)`}>
-       <Crew t={t} phase={.39} speed={63} variant={1}/>
+       <Crew t={t} phase={.39} speed={63/.69} variant={1}/>
       </g>
       <g transform={`translate(${496+t*47} 1214) scale(.51)`}>
-       <Crew t={t} phase={.63} speed={47} variant={2}/>
+       <Crew t={t} phase={.63} speed={47/.51} variant={2}/>
       </g>
     </>}
     {close&&<>
-      <g transform={`translate(742 1310) scale(1.0)`}><Crew t={local} phase={.3} speed={28} variant={2}/></g>
+      <g transform={`translate(742 1310) scale(1.0)`}><Crew t={local} phase={.3} speed={0} variant={2}/></g>
     </>}
     <g transform={`translate(${heroX} ${heroY}) scale(${scale})`}>
-      <Odysseus time={local} pose="walk" speed={close?67:93}/>
+      <Odysseus time={local} pose="walk" speed={close?67/1.53:93/1.42}/>
     </g>
     <path d="M0 1698Q364 1641 1080 1688V1920H0Z" fill="#79624f" opacity=".33"/>
     {Array.from({length:25},(_,i)=><circle key={i} cx={(i*83+t*73)%1140-30} cy={1440+(i*47)%385}
