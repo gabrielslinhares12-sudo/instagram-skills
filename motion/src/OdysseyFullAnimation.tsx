@@ -195,9 +195,13 @@ const heroScaleForGait=(world:string,sea:boolean)=>world==='cave'?.88:sea?1.38:1
 const HorseMemory:React.FC<{t:number;q:number}>=({t,q})=>{
  const advance=ease(clamp((t-.18)/4.45));
  const gateOpen=ease(clamp(t/.95));
- const x=-230+490*advance;
+ const x=-230+325*advance;
  const wheels=advance*115;
  return <g>
+  {/* Trojan cobblestone approach; never blue water at a city entrance. */}
+  <rect x="0" y="1527" width="1080" height="393" fill="#796451"/>
+  {[0,1,2,3,4].map(i=><path key={i} d={'M0 '+(1595+i*79)+'h1080'} stroke="#a88d73" strokeWidth="9" opacity=".5"/>)}
+  {[0,1,2,3,4,5].map(i=><path key={i} d={'M'+(120+i*182)+' 1540l-36 380'} stroke="#5d4f43" strokeWidth="8" opacity=".35"/>)}
   {/* The gate stays wide enough for the horse; rear door leaves visibly retract. */}
   <rect x="160" y="730" width="820" height="855" fill="#34404a" stroke="#a28866" strokeWidth="27"/>
   <path d="M185 1570V800Q196 540 565 527Q930 545 953 800V1570Z" fill="#4c5355" stroke="#ccb38e" strokeWidth="28"/>
