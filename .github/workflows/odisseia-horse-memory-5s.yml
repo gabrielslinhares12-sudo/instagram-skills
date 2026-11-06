@@ -1,4 +1,4 @@
-name: Odisseia V7 — Cavalo de Troia, correção exata 08:00 a 08:05
+name: Odisseia V7.1 — Cavalo de Troia, correção exata 08:00 a 08:05
 on:
   push:
     branches: [main]
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: 4d2efaf74bcd5db3bf5be6d7b5484dc844bf1049
+          ref: 09244fb6e1e977cd273338eda5f5be180926618a
           persist-credentials: false
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
         with:
