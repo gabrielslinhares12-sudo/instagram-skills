@@ -25,3 +25,26 @@ test('full cyclops blocking is its own action between entrance and escape',()=>{
  assert.ok(acts.indexOf('boulderSeals')<acts.indexOf('ramEscape'));
  assert.ok(acts.indexOf('boulderSeals')>=0);
 });
+
+test('narration-backed scene order matches inspected original episode storyboards',()=>{
+ const expected:[number,string][]=[
+  [2,'DEPOIS DE TROIA'],[22,'A PRIMEIRA PERDA'],[32,'O FRUTO DO ESQUECIMENTO'],
+  [45,'A CAVERNA DE POLIFEMO'],[62,'O HOMEM CHAMADO NINGUÉM'],
+  [80,'O PREÇO DE UM NOME'],[99,'OS VENTOS DE ÉOLO'],
+  [120,'O PORTO SEM SAÍDA'],[135,'O FEITIÇO DE CIRCE'],
+  [160,'NA TERRA DOS MORTOS'],[180,'O CANTO DAS SEREIAS'],
+  [193,'ENTRE CILA E CARÍBDIS'],[212,'O REBANHO DO SOL'],
+  [230,'SETE ANOS COM CALIPSO'],[249,'O TEAR DE PENÉLOPE'],
+  [266,'À PROCURA DO PAI'],[286,'UMA JANGADA NO MAR'],
+  [305,'ENTRE OS FEÁCIOS'],[327,'A PRAIA DE ÍTACA'],
+  [348,'PAI E FILHO'],[366,'ARGOS'],[384,'A CICATRIZ'],
+  [406,'O ARCO DE ODISSEU'],[424,'DOZE MACHADOS'],
+  [445,'PENÉLOPE DESCE AO SALÃO'],[465,'O SEGREDO DA OLIVEIRA'],
+  [486,'O REENCONTRO'],[505,'UM REMO EM TERRA FIRME'],
+  [521,'O POMAR DE LAERTES'],[545,'A PAZ EM ÍTACA']
+ ];
+ for(const [second,chapter] of expected)
+  assert.equal(getOdysseyBeat(second).chapter,chapter,'Original-film mismatch at '+second+'s');
+ assert.equal(new Set(ODYSSEY_BEATS.map(x=>x.action)).size,ODYSSEY_BEATS.length);
+ assert.ok(ODYSSEY_BEATS.length>=110);
+});
