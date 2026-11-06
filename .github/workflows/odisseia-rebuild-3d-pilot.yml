@@ -16,12 +16,12 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: c2e3a24025109061473f0e9a180fc959bc1fc6a5
+          ref: f1f4e78fff1a81abbf2d9a0206f587f0a74fbf5a
           persist-credentials: false
       - name: Instalar Blender open-source, ffmpeg e software rendering
         run: |
           sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg libgl1-mesa-dri
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg libgl1-mesa-dri python3-pil
           blender --version | head -3
       - name: Baixar modelos animados 3D de fonte CC0 original
         run: |
