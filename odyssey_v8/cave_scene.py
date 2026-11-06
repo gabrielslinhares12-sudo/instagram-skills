@@ -290,12 +290,18 @@ class Scene:
  def update(self,t):
   self.set_camera(t)
   # Crew enter together; feet move in phase with root displacement.
-  for fig,xx,offset in [(self.hero,-1.0,0),(self.sailor1,-2.1,-.65),(self.sailor2,.05,-1.15)]:
+  # Separate pedestrian lanes, then synchronized *attention* to the arriving giant.
+  # Cast never occupies the same patch of floor merely to fit a front-facing tableau.
+  for fig,xx,offset in [(self.hero,-2.4,0),(self.sailor1,.10,-.65),(self.sailor2,2.65,-1.15)]:
    q=sm((t-offset)/6.0)
    y=mix(8.8,2.2,q)
-   x=xx-.6*q
+   x=xx-.32*q
    walk=t-offset>0 and t-offset<6
-   fig.pose(t+offset,(x,y),yaw=.05,walk=walk,afraid=t>=11.4,distance=max(0.0,8.8-y))
+   # The sound of the giant causes a body turn; their faces rotate toward the door.
+   react_start=8.7+abs(offset)*.32
+   facing=math.pi*sm((t-react_start)/1.15)
+   fig.pose(t+offset,(x,y),yaw=facing,walk=walk,afraid=t>react_start+.65,
+            distance=max(0.0,8.8-y))
   # Polyphemus must appear at the arch only AFTER the narration says he returned.
   if t<5.0:
    self.giant_visible=False
