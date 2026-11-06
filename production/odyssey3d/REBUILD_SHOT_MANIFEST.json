@@ -1,0 +1,235 @@
+{
+  "project": "ODISSEIA_RECONSTRUCAO_3D",
+  "status": "PROTOTIPO_EM_REVISAO_NAO_PUBLICAR",
+  "source": {
+    "voice": "audio do master original Odisseia_O_regresso_a_Itaca_4K60.mp4",
+    "durationSeconds": 560.1,
+    "language": "pt-BR",
+    "reuseFromOldVisuals": false
+  },
+  "render": {
+    "masterWidth": 2160,
+    "masterHeight": 3840,
+    "fps": 60,
+    "deliveryCodec": "h264",
+    "prototypesMayBeLowerResolution": true
+  },
+  "rules": [
+    "Cada tomada renderizada em unico motor Blender 3D com camera real e depth buffer; nao compor fotos/pessoas por cima",
+    "Personagens 3D com rig e identidade constante; cada cena declara seu elenco; ninguem aparece fora do plano narrativo",
+    "Posicao do pe e velocidade do caminhar devem concordar; sem patinacao",
+    "Contato das maos, objetos e propulsao com preparacao, acao e consequencia visiveis",
+    "Nao reutilizar inserts genericos; redimensionar a cena sem mover figuras para fora do quadro",
+    "Cada bloco de 10 a 25 segundos faz sentido sem legenda; audio e imagem avaliados em conjunto",
+    "Sem aprovacao visual e dramatica nao produzir episodio completo nem publicar",
+    "Nenhuma acao da branch pode publicar Instagram; usar GitHub-hosted runner, sem API paga"
+  ],
+  "sequences": [
+    {
+      "id": "s01",
+      "from": 0,
+      "to": 17,
+      "location": "TROIA_COSTA",
+      "cast": [
+        "odisseu",
+        "remador_a",
+        "remador_b"
+      ],
+      "primaryAction": "Tropa atravessa areia e prancha, embarca em navio real, navio solta do cais e se afasta enquanto Troia arde",
+      "productionStatus": "PILOT_3D_INICIADO"
+    },
+    {
+      "id": "s02",
+      "from": 17,
+      "to": 28,
+      "location": "CICONES",
+      "cast": [
+        "odisseu",
+        "soldados_gregos",
+        "cicones"
+      ],
+      "primaryAction": "Saque -> reforcos surgem pelo caminho -> gregos perdem posicao e fogem",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s03",
+      "from": 28,
+      "to": 38,
+      "location": "LOTUS",
+      "cast": [
+        "odisseu",
+        "companheiro",
+        "lotofagos"
+      ],
+      "primaryAction": "Companheiro recebe fruto e esquece viagem; Odisseu segura seu braco e o tira da ilha",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s04",
+      "from": 38,
+      "to": 76,
+      "location": "POLIFEMO_CAVERNA",
+      "cast": [
+        "odisseu",
+        "companheiros",
+        "polifemo",
+        "carneiros"
+      ],
+      "primaryAction": "Entram -> gigante empurra rochedo fechando boca da caverna -> vinho -> estaca -> fuga sob carneiros",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s05",
+      "from": 76,
+      "to": 113,
+      "location": "MAR_EOLO",
+      "cast": [
+        "odisseu",
+        "tripulacao",
+        "eolo"
+      ],
+      "primaryAction": "Nome revelado -> furia divina -> saco dos ventos entregue e solto, navio e afastado da patria",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s06",
+      "from": 113,
+      "to": 148,
+      "location": "PORTO_LES_CIRCE",
+      "cast": [
+        "odisseu",
+        "lestrigoes",
+        "circe",
+        "tripulacao"
+      ],
+      "primaryAction": "Gigantes destroem barcos -> unico navio escapa -> pocao de Circe transforma marujos -> reversao",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s07",
+      "from": 148,
+      "to": 205,
+      "location": "SUBMUNDO_E_ESTREITO",
+      "cast": [
+        "odisseu",
+        "mae_fantasma",
+        "tripulacao",
+        "sereias",
+        "cila"
+      ],
+      "primaryAction": "Visita a mae intangivel -> marujos tampam ouvidos, amarram heroi -> travessia entre monstros",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s08",
+      "from": 205,
+      "to": 239,
+      "location": "ILHA_SOL_CALIPSO",
+      "cast": [
+        "odisseu",
+        "tripulacao",
+        "calipso"
+      ],
+      "primaryAction": "Abate proibido -> raio atinge casco -> unico sobrevivente chega a Calipso",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s09",
+      "from": 239,
+      "to": 276,
+      "location": "ITACA_PALACIO",
+      "cast": [
+        "penelope",
+        "telemaco",
+        "pretendentes"
+      ],
+      "primaryAction": "Penelope tece e destece; Telemaco deixa a corte e escapa de armadilha",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s10",
+      "from": 276,
+      "to": 316.167,
+      "location": "MAR_FEACIOS",
+      "cast": [
+        "odisseu",
+        "hermes",
+        "nausicaa",
+        "feacios"
+      ],
+      "primaryAction": "Jangada construida -> tempestade -> naufrago e acolhido e transportado",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s11",
+      "from": 316.167,
+      "to": 374,
+      "location": "ITACA_PRAIA_E_CABANA",
+      "cast": [
+        "odisseu",
+        "atena",
+        "telemaco",
+        "argos"
+      ],
+      "primaryAction": "Odysseu pisa em terra natal -> reencontro filho -> cao reconhece dono",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s12",
+      "from": 374,
+      "to": 435,
+      "location": "PALACIO_DE_ITACA",
+      "cast": [
+        "odisseu",
+        "ama",
+        "pretendentes"
+      ],
+      "primaryAction": "Cicatriz revelada ao lavar pe -> tensao do arco -> flecha atravessa doze machados",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s13",
+      "from": 435,
+      "to": 495,
+      "location": "QUARTO_DA_OLIVEIRA",
+      "cast": [
+        "odisseu",
+        "penelope"
+      ],
+      "primaryAction": "Confirma segredo cama enraizada -> memoria claramente marcada -> reconhecimento e abraco",
+      "productionStatus": "PENDENTE"
+    },
+    {
+      "id": "s14",
+      "from": 495,
+      "to": 560.1,
+      "location": "INTERIOR_E_POMAR_ITACA",
+      "cast": [
+        "odisseu",
+        "laertes",
+        "atena",
+        "habitantes"
+      ],
+      "primaryAction": "Remo levado para terra -> reencontro com Laertes -> Atena interrompe luta e a paz chega",
+      "productionStatus": "PENDENTE"
+    }
+  ],
+  "acceptance": {
+    "technical": [
+      "decode",
+      "frames",
+      "duration",
+      "audio",
+      "spatialResolution"
+    ],
+    "visual": [
+      "correctPhysicalInteraction",
+      "noCharacterCompositing",
+      "groundedGait",
+      "sceneContinuity",
+      "historicalReadability",
+      "originalNarrationSync"
+    ],
+    "publishAllowed": false
+  }
+}
