@@ -1,5 +1,6 @@
 import React from 'react';
-export type WarriorPose='listen'|'plan'|'point'|'craft'|'climb'|'creep'|'run'|'open'|'victory';
+import {kneeIK,sampleGait,type FootPose,type GaitStyle} from './gait';
+export type WarriorPose='listen'|'plan'|'point'|'craft'|'climb'|'creep'|'run'|'open'|'victory'|'walk'|'limp'|'row'|'brace'|'grieve';
 type XY={x:number;y:number};
 const ease=(n:number)=>{const x=Math.min(1,Math.max(0,n));return x*x*(3-2*x);};
 const between=(a:number,b:number,k:number)=>a+(b-a)*k;
@@ -7,17 +8,20 @@ const elbow=(a:XY,w:XY,bend:number):XY=>{
  const dx=w.x-a.x,dy=w.y-a.y;return {x:(a.x+w.x)/2+bend*dy*.25,y:(a.y+w.y)/2-bend*dx*.25};
 };
 /** Native 2D animation of the mythological Odysseus. Original drawing. */
-export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean}>=({time,pose,night=false})=>{
- const t=Math.max(0,time),k=ease(t/.7),walk=Math.sin(t*10);
+export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean;speed?:number}>=({time,pose,night=false,speed})=>{
+ const t=Math.max(0,time),k=ease(t/.7);
+ const style:GaitStyle=pose==='run'?'run':pose==='creep'?'creep':pose==='limp'?'limp':pose==='walk'?'walk':'stand';
+ const gait=sampleGait(t,style,speed??(style==='run'?122:style==='creep'?48:style==='limp'?64:96));
+ const walk=gait.armPhase,moving=style!=='stand';
  const running=pose==='run',rightTarget:XY=pose==='open'?{x:310,y:298}:
    pose==='point'||pose==='plan'?{x:316,y:164}:
    pose==='craft'?{x:330,y:218}:pose==='climb'?{x:260,y:151}:{x:265,y:369};
  const leftTarget:XY=pose==='open'?{x:70,y:291}:pose==='craft'?{x:57,y:215}:
    pose==='creep'?{x:89,y:299}:{x:75,y:348};
- const R={x:between(267,rightTarget.x,k),y:between(342,rightTarget.y,k)+(running?walk*22:0)};
- const L={x:between(80,leftTarget.x,k),y:between(345,leftTarget.y,k)-(running?walk*22:0)};
- const swing=Math.sin(t*1.4)*7+(running?walk*16:0);
- const body=Math.sin(t*1.7)*.7+(running?walk*1.8:0);
+ const R={x:between(267,rightTarget.x,k),y:between(342,rightTarget.y,k)+(moving?walk*(running?22:13):0)};
+ const L={x:between(80,leftTarget.x,k),y:between(345,leftTarget.y,k)-(moving?walk*(running?22:13):0)};
+ const swing=Math.sin(t*1.4)*7+(moving?walk*(running?17:11):0);
+ const body=gait.lean+Math.sin(t*1.7)*.7+(running?walk*1.8:0);
  const forearm=(shoulder:XY,wrist:XY,bend:number)=>{const e=elbow(shoulder,wrist,bend);
  return <g>
   <path d={'M'+shoulder.x+' '+shoulder.y+'Q'+e.x+' '+e.y+' '+wrist.x+' '+wrist.y} stroke="#2d2525" strokeWidth="48" strokeLinecap="round" fill="none"/>
@@ -43,19 +47,43 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean}>=({
    <stop stopColor="#f0dfb8"/><stop offset=".54" stopColor="#a99a79"/><stop offset="1" stopColor="#615a53"/>
   </linearGradient>
  </defs>
- <g transform={'translate(180 320) rotate('+body+') translate(-180 -320)'}>
-  {[{x:145,k:running?walk*25:0,dir:-1},{x:213,k:running?-walk*25:0,dir:1}].map((z,i)=><g key={i} transform={'translate('+z.k*.18+' '+Math.min(0,z.k)+')'}>
-   <path d={'M'+z.x+' 398L'+(z.x+z.dir*8)+' 470L'+(z.x+z.dir*30)+' 537'}
-    stroke="#362926" strokeWidth="47" strokeLinecap="round"/>
-   <path d={'M'+z.x+' 408L'+(z.x+z.dir*8)+' 470'}
-    stroke="#cc946a" strokeWidth="35" strokeLinecap="round"/>
-   <path d={'M'+(z.x+z.dir*8)+' 472L'+(z.x+z.dir*29)+' 537'}
-    stroke="#a57251" strokeWidth="32" strokeLinecap="round"/>
-   <path d={'M'+(z.x+z.dir*30)+' 528L'+(z.x+z.dir*13)+' 550L'+(z.x+z.dir*61)+' 558Z'}
-    fill="#342726" stroke="#1c1e20" strokeWidth="10"/>
-   <path d={'M'+(z.x+z.dir*11)+' 479L'+(z.x+z.dir*28)+' 519'}
-    stroke="#e6b67d" strokeWidth="7"/>
+ <g>
+  {([[-1,gait.left],[1,gait.right]] as const).map(([side,foot],i)=><g key={i}>
+    {(() => {
+      const x=side<0?145:213;
+      const hip={x,y:397+gait.bodyY};
+      const ankle={x:x+side*12+foot.ankle.x,y:foot.ankle.y};
+      const knee=kneeIK(hip,ankle,94,94,-1);
+      const shoeTilt=foot.pitch;
+      return <>
+        <ellipse cx={ankle.x+10} cy="560" rx="50" ry="9" fill="#18262b"
+          opacity={foot.contact?.37:.13}/>
+        <path d={'M'+hip.x+' '+hip.y+'L'+knee.x+' '+knee.y} stroke="#342a27"
+          strokeWidth="42" strokeLinecap="round"/>
+        <path d={'M'+hip.x+' '+hip.y+'L'+knee.x+' '+knee.y} stroke="#c9956e"
+          strokeWidth="32" strokeLinecap="round"/>
+        <path d={'M'+(hip.x+3)+' '+(hip.y+9)+'L'+(knee.x+4)+' '+(knee.y-7)}
+          stroke="#e3b28b" strokeWidth="7" opacity=".7"/>
+        <circle cx={knee.x} cy={knee.y} r="23" fill="#8b624a"
+          stroke="#352725" strokeWidth="6"/>
+        <circle cx={knee.x+4} cy={knee.y-5} r="11" fill="#d6ad77" opacity=".62"/>
+        <path d={'M'+knee.x+' '+knee.y+'L'+ankle.x+' '+ankle.y} stroke="#302926"
+          strokeWidth="42" strokeLinecap="round"/>
+        <path d={'M'+knee.x+' '+knee.y+'L'+ankle.x+' '+ankle.y} stroke="#b27e5c"
+          strokeWidth="31" strokeLinecap="round"/>
+        <path d={'M'+(knee.x+6)+' '+(knee.y+14)+'L'+(ankle.x+4)+' '+(ankle.y-17)}
+          stroke="#e8b87e" strokeWidth="6" opacity=".65"/>
+        <g transform={'translate('+ankle.x+' '+ankle.y+') rotate('+shoeTilt+')'}>
+          <path d="M-19 -7Q-7 -17 10 -15L17 -3Q35 -6 46 4L53 16L-25 16Z"
+            fill="#3d302c" stroke="#211e1e" strokeWidth="7"/>
+          <path d="M-13 4L32 4M-11 11L35 11" stroke="#af815b" strokeWidth="4"/>
+          {[0,1,2].map(i=><path key={i} d={'M'+(-10+i*12)+' -8l7 10'} 
+            stroke="#e3ad78" strokeWidth="3"/>)}
+        </g>
+      </>;
+    })()}
   </g>)}
+  <g transform={'translate(180 320) rotate('+body+') translate(-180 -320) translate(0 '+gait.bodyY+')'}>
   <path d={'M116 244Q42 260 '+(50+swing)+' 354Q'+(22+swing)+' 450 '+(12+swing)+' 503Q91 497 163 444L247 244Z'}
    fill="url(#cloak-greek)" stroke="#342127" strokeWidth="11"/>
   <path d={'M104 266Q72 395 '+(27+swing)+' 485'} stroke="#eb9881" strokeWidth="7" opacity=".35" fill="none"/>
@@ -93,6 +121,7 @@ export const Odysseus:React.FC<{time:number;pose:WarriorPose;night?:boolean}>=({
     stroke="#352626" strokeWidth="8"/>
    <path d="M147 110Q174 52 218 67Q253 75 267 102Q214 79 170 100Z"
     fill="url(#cloak-greek)" stroke="#3c242c" strokeWidth="9"/>
+  </g>
   </g>
   {night&&<path d="M117 237Q178 218 247 242" stroke="#c1dae4" strokeWidth="6" opacity=".22"/>}
  </g>
