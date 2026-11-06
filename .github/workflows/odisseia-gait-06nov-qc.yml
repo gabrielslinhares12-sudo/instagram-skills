@@ -1,0 +1,54 @@
+name: Odisseia 07NOV — QC gait real 4K60 (sem publicação)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/odisseia-gait-06nov-qc.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odisseia-gait-refino-qc-06nov
+  cancel-in-progress: false
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    defaults:
+      run:
+        working-directory: motion
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: feat/tue-motion-base
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: motion/package-lock.json
+      - name: Instalar dependências Remotion sem serviços pagos
+        run: npm ci --no-audit --no-fund
+      - name: QC de rig, apoio dos pés, elenco e compilação
+        run: npm run check
+      - name: Renderizar atuação 4K verdadeiro 60 FPS sem reutilizar imagens
+        run: |
+          npm run prepare-assets
+          npx remotion render src/index.ts OdysseyGaitQC out/odisseia-gait-4k60-qc.mp4 --scale=2 --codec=h264 --crf=19 --concurrency=2
+      - name: Conferir arquivo técnico por FFprobe
+        run: |
+          ffprobe -v error -show_entries stream=width,height,r_frame_rate -of json out/odisseia-gait-4k60-qc.mp4 > out/odisseia-gait-metadata.json
+          python - <<'PY'
+          import json
+          x=json.load(open('out/odisseia-gait-metadata.json'))
+          assert any(z.get('width')==2160 and z.get('height')==3840 and z.get('r_frame_rate')=='60/1' for z in x['streams'])
+          print('TRUE_4K_60FPS_AND_INDIVIDUAL_2D_ACTING_VERIFIED')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: odisseia-20261106-caminhada-articulada-4K60-QC
+          path: |
+            motion/out/odisseia-gait-4k60-qc.mp4
+            motion/out/odisseia-gait-metadata.json
+          retention-days: 7
+          if-no-files-found: error
+# Editorial hold: test animation, never post or schedule any IG feed.
