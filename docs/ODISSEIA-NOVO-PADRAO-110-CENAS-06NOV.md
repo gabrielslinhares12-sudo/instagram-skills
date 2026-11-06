@@ -26,3 +26,16 @@
 6. Somente após QC editorial completo liberar a publicação do episódio 1 e agendamento do episódio 2.
 
 **Nenhuma etapa deste processo contém publicação ou agendamento no Instagram.**
+
+
+## Revisão narrativa confirmada por quadros do master (06/11, 20:25 UTC)
+- O primeiro storyboard de 110 ações tinha **desalinhamento grave** com a narração original entre 224s e 317s (Calipso, tear de Penélope, Telêmaco e retorno pelos feácios). Não pode ser publicado.
+- Foi substituído no branch `feat/tue-motion-base` por **131 ações únicas organizadas em 30 capítulos** nos tempos efetivamente observados no MP4 original, com regressões em `motion/tests/odyssey-timeline.test.ts`.
+- O novo corte cria cenas distintas dos cícones, Penélope tecendo e desmanchando o tear, a viagem de Telêmaco, a jangada de Odisseu, os feácios, o barqueiro/o remo em terra firme, o pomar de Laertes e a paz com intervenção de Atena.
+- A física do ciclope foi refeita com ambos os braços tentando manter contato com a grande pedra; passou pela compilação e pelo QC 4K60 de curta duração, mas a atuação ainda precisa de revisão visual integral.
+- O sistema de 110 cortes ficava escuro ~0,48s entre ações; removido esse escurecimento artificial no código posterior.
+- Legendas originais **recuperadas da faixa inferior do próprio master via máscara de luminância**, sem OCR e sem API paga. Teste com áudio original, legenda e 2160×3840/60 FPS validado, salvo também no Drive:
+  https://drive.google.com/file/d/1SJEU8YnrYP2XhPs5JMLEI8nDZdXQTZye/view?usp=drivesdk
+- Script de montagem reproduzível: `motion/scripts/restore-odyssey-captions.sh`, na branch. Fonte MP4 original fornecida pelo usuário é necessária para mesclar a narração e as legendas; ela **não está no repositório GitHub**.
+- [Render de três episódios atualizado V5](https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/42288210740), em fila no momento desta anotação. Confirme Jobs e artifacts para seu estado atual.
+- Nenhum vídeo desta nova geração foi enviado ao Instagram; publicação depende de inspeção visual/editorial e da remontagem final da voz e legendas originais.
