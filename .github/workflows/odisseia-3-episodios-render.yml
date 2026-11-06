@@ -1,4 +1,4 @@
-name: Odisseia V3 — 3 episodios finais sem flashes nem skating 4K60
+name: Odisseia V4 — episodios com Polifemo articulado e cortes limpos 4K60
 on:
   push:
     branches: [main]
@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: 406f52dec04d93b86ca8b6162b09174a6aaa464f
+          ref: 4a1cc49dd8325113965727f401071af8a4fcab7f
           persist-credentials: false
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
         with:
@@ -66,7 +66,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: odisseia-v3-episodio-${{ matrix.episode }}-imagem-4K60-QC
+          name: odisseia-v4-episodio-${{ matrix.episode }}-imagem-4K60-QC
           path: |
             motion/out/odyssey-episode-*.mp4
             motion/out/episode-*-qc.json
