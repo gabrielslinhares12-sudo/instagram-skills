@@ -1,44 +1,55 @@
-/** Locked edit map for the recovered 560.10s Portuguese narration.
- * Each beat is a separate physical action, not a reused loop or stock still.
- * Boundaries are source-video timecodes; sub-beats are provisional until speech QC.
+/** Original-master-verified Odyssey timing map (560.1s), visually audited each 10s.
+ * Scene titles and chronology correspond to the real 2026 original with its burnt PT captions.
+ * New rigs must animate the action at the same spoken moment, never generic B-roll.
  */
-export type OdysseyBeat = {id:string;start:number;end:number;chapter:string;location:string;action:string;characters:string[]};
+export type OdysseyBeat={id:string;start:number;end:number;chapter:string;location:string;action:string;characters:string[]};
 type Section={start:number;end:number;title:string;place:string;beats:readonly string[]};
-const sections:Section[]=[
- {start:0,end:27,title:'O FIM DE TROIA',place:'troia',beats:['burningTroia','fleetDeparture','rowingHome','ithacaWaiting','weavingNight']},
- {start:27,end:39,title:'A TERRA DO LÓTUS',place:'lotus',beats:['lotusLanding','lotusOffering','lotusEnchantment','lotusRescue']},
- {start:39,end:76,title:'O CICLOPE POLIFEMO',place:'cave',beats:['caveDiscovery','cyclopsArrival','boulderSeals','prisonersWatch','wineToGiant','cyclopsSleeping','stakePrepared','ramEscape','cyclopsPlea','nameRevealed']},
- {start:76,end:89,title:'A MALDIÇÃO DO MAR',place:'seaStorm',beats:['poseidonRises','darkStorm','shipBraces']},
- {start:89,end:108,title:'O PRESENTE DE ÉOLO',place:'wind',beats:['aeolusGift','homeOnHorizon','bagUnknotted','windsReleased']},
- {start:108,end:122,title:'OS LESTRIGÕES',place:'harbor',beats:['fleetTrapped','giantsAttack','boatsDestroyed','lastShipEscapes']},
- {start:122,end:148,title:'CIRCE E OS ENCANTAMENTOS',place:'circe',beats:['circeWelcomes','enchantedCup','menTransform','hermesHerb','circeDefied','crewRestored']},
- {start:148,end:170,title:'O REINO DOS MORTOS',place:'hades',beats:['underworldGate','seerWarns','motherAppears','handsPassGhost']},
- {start:170,end:184,title:'O CANTO DAS SEREIAS',place:'sirens',beats:['waxInEars','tiedToMast','wingedSirens','rowingPastVoices']},
- {start:184,end:201,title:'CILA E CARÍBDIS',place:'strait',beats:['straitRevealed','whirlpoolTurns','scyllaStrikes','shipNarrowEscape']},
- {start:201,end:221,title:'O GADO DO SOL',place:'cattle',beats:['sacredHerd','crewHunger','forbiddenFeast','thunderBreaksShip','aloneAdrift']},
- {start:221,end:255,title:'OS ANOS COM CALIPSO',place:'calypso',beats:['calypsoShelter','odysseusWaits','hermesDecree','raftCarpentry','raftLaunch','raftStorm','shoreRescue']},
- {start:255,end:286,title:'OS FEÁCIOS',place:'phaeacia',beats:['nausicaaFinds','palaceWelcome','lyreLament','pastRetold','giftsAboard','sleepingReturn']},
- {start:286,end:317.4,title:'TELÊMACO',place:'journey',beats:['telemachusSeeks','athenaGuides','dangerousReturn','ithacaDiscovered','sonApproaches']},
- {start:317.4,end:358,title:'O REGRESSO A ÍTACA',place:'ithaca',beats:['shoreWake','athenaDisguise','shepherdHut','fatherSonMeet','fatherSonPlan','nightPalaceEntry']},
- {start:358,end:375,title:'ARGOS',place:'argos',beats:['argosHears','argosLooks','argosRises','argosGreeting']},
- {start:375,end:396,title:'A CICATRIZ',place:'wash',beats:['oldNurseWashes','scarDiscovered','nurseRecognizes','silenceAgreed']},
- {start:396,end:433,title:'O DESAFIO DO ARCO',place:'bow',beats:['suitorsFeast','bowAttempt','odysseusTakesBow','bowBends','arrowTargets','suitorsRecoil','hallSecured']},
- {start:433,end:455,title:'PENÉLOPE',place:'penelope',beats:['penelopeApproaches','facesUncertain','memoriesReturn','recognitionDawns']},
- {start:455,end:495,title:'A CAMA DE OLIVEIRA',place:'bed',beats:['bedSecret','oliveTreeReveal','proofOfHome','handsReach','reunionEmbrace','quietNight']},
- {start:495,end:560.1,title:'O LAR RECONQUISTADO',place:'finale',beats:['morningReckoning','fatherSonTogether','palaceRestored','familyAtOlive','shoreSunrise','seaAtPeace','islandPanorama','finalSilhouette']}
-];
 export const ODYSSEY_TOTAL_SECONDS=560.1;
+const sections:Section[]=[
+{"start":0,"end":17,"title":"DEPOIS DE TROIA","place":"troia","beats":["burningTroia","fleetDeparture","rowingHome","ithacaWaiting","penelopeWaits"]},
+{"start":17,"end":28,"title":"A PRIMEIRA PERDA","place":"troia","beats":["ciconesClash","ciconesReinforcements","menRetreat"]},
+{"start":28,"end":38,"title":"O FRUTO DO ESQUECIMENTO","place":"lotus","beats":["lotusLanding","lotusOffering","lotusEnchantment","lotusRescue"]},
+{"start":38,"end":55,"title":"A CAVERNA DE POLIFEMO","place":"cave","beats":["caveDiscovery","cyclopsArrival","boulderSeals","prisonersWatch"]},
+{"start":55,"end":76,"title":"O HOMEM CHAMADO NINGUÉM","place":"cave","beats":["wineToGiant","cyclopsSleeping","stakePrepared","cyclopsPlea","ramEscape"]},
+{"start":76,"end":88.6,"title":"O PREÇO DE UM NOME","place":"seaStorm","beats":["nameRevealed","poseidonPlea","darkStorm"]},
+{"start":88.6,"end":113,"title":"OS VENTOS DE ÉOLO","place":"wind","beats":["aeolusGift","homeOnHorizon","bagUnknotted","windsReleased"]},
+{"start":113,"end":127,"title":"O PORTO SEM SAÍDA","place":"harbor","beats":["fleetTrapped","giantsAttack","boatsDestroyed","lastShipEscapes"]},
+{"start":127,"end":148,"title":"O FEITIÇO DE CIRCE","place":"circe","beats":["circeWelcomes","enchantedCup","menTransform","hermesHerb","circeDefied","crewRestored"]},
+{"start":148,"end":175,"title":"NA TERRA DOS MORTOS","place":"hades","beats":["underworldGate","seerWarns","motherAppears","handsPassGhost","companionGhost"]},
+{"start":175,"end":188,"title":"O CANTO DAS SEREIAS","place":"sirens","beats":["waxInEars","tiedToMast","wingedSirens","rowingPastVoices"]},
+{"start":188,"end":205,"title":"ENTRE CILA E CARÍBDIS","place":"strait","beats":["straitRevealed","whirlpoolTurns","scyllaStrikes","shipNarrowEscape"]},
+{"start":205,"end":224,"title":"O REBANHO DO SOL","place":"cattle","beats":["sacredHerd","crewHunger","forbiddenFeast","thunderBreaksShip","aloneAdrift"]},
+{"start":224,"end":239,"title":"SETE ANOS COM CALIPSO","place":"calypso","beats":["calypsoShelter","odysseusWaits","calypsoYearn"]},
+{"start":239,"end":258,"title":"O TEAR DE PENÉLOPE","place":"penelope","beats":["suitorsFeast","penelopeLoom","weavingNight","loomUnravels","penelopeRefuses"]},
+{"start":258,"end":276,"title":"À PROCURA DO PAI","place":"journey","beats":["telemachusSeeks","athenaGuides","nestorMeeting","dangerousReturn","ambushEscape"]},
+{"start":276,"end":295,"title":"UMA JANGADA NO MAR","place":"calypso","beats":["hermesDecree","raftCarpentry","raftLaunch","raftStorm","shoreRescue"]},
+{"start":295,"end":316.167,"title":"ENTRE OS FEÁCIOS","place":"phaeacia","beats":["nausicaaFinds","palaceWelcome","lyreLament","pastRetold","giftsAboard","sleepingReturn"]},
+{"start":316.167,"end":338,"title":"A PRAIA DE ÍTACA","place":"ithaca","beats":["shoreWake","ithacaDiscovered","shoreKneel","athenaDisguise"]},
+{"start":338,"end":358,"title":"PAI E FILHO","place":"ithaca","beats":["shepherdHut","fatherSonMeet","fatherSonPlan","sonEmbrace"]},
+{"start":358,"end":374,"title":"ARGOS","place":"argos","beats":["argosHears","argosLooks","argosRises","argosGreeting"]},
+{"start":374,"end":396,"title":"A CICATRIZ","place":"wash","beats":["nightPalaceEntry","suitorStoolThrown","oldNurseWashes","scarDiscovered","nurseRecognizes","silenceAgreed"]},
+{"start":396,"end":416,"title":"O ARCO DE ODISSEU","place":"bow","beats":["bowAttempt","odysseusTakesBow","bowBends","arrowTargets"]},
+{"start":416,"end":435,"title":"DOZE MACHADOS","place":"bow","beats":["axeChallenge","arrowThroughAxes","suitorsRecoil","hallSecured"]},
+{"start":435,"end":455,"title":"PENÉLOPE DESCE AO SALÃO","place":"penelope","beats":["penelopeApproaches","facesUncertain","nurseAnnounces","recognitionDawns"]},
+{"start":455,"end":480,"title":"O SEGREDO DA OLIVEIRA","place":"bed","beats":["bedSecret","oliveTreeReveal","proofOfHome","memoriesReturn","horseMemory"]},
+{"start":480,"end":495,"title":"O REENCONTRO","place":"penelope","beats":["handsReach","reunionEmbrace","quietNight","familyReunited"]},
+{"start":495,"end":515,"title":"UM REMO EM TERRA FIRME","place":"journey","beats":["oarInland","oarTraveler","oarBuried"]},
+{"start":515,"end":528,"title":"O POMAR DE LAERTES","place":"finale","beats":["oliveOrchard","laertesRecognition","ancestralTrees"]},
+{"start":528,"end":560.1,"title":"A PAZ EM ÍTACA","place":"finale","beats":["morningReckoning","athenaCeasefire","peaceAssembly","familyAtOlive","seaAtPeace","finalSilhouette"]}
+];
 export const ODYSSEY_EPISODES=[
  {number:1,name:'A maldição de Poseidon',start:0,end:88.6},
  {number:2,name:'Monstros e deuses',start:88.6,end:317.4},
  {number:3,name:'O retorno a Ítaca',start:317.4,end:560.1},
 ] as const;
-export const ODYSSEY_BEATS:OdysseyBeat[]=sections.flatMap(s=>
+export const ODYSSEY_BEATS:OdysseyBeat[]=sections.flatMap((s,chapterIndex)=>
  s.beats.map((action,i)=>{
-   const start=s.start+(s.end-s.start)*i/s.beats.length;
-   const end=s.start+(s.end-s.start)*(i+1)/s.beats.length;
-   return {id:`s${sections.indexOf(s)+1}-${i+1}`,start,end,chapter:s.title,location:s.place,action,
-      characters: action.includes('cyclops')||action.includes('boulder')?['Odisseu','Polifemo']: action.includes('penelope')||action.includes('bed')?['Odisseu','Penélope']:['Odisseu']};
+  const start=s.start+(s.end-s.start)*i/s.beats.length;
+  const end=s.start+(s.end-s.start)*(i+1)/s.beats.length;
+  const characters=action.toLowerCase().includes('cyclops')||action.toLowerCase().includes('boulder')
+   ?['Odisseu','Polifemo']:(action.toLowerCase().includes('penelope')||action.toLowerCase().includes('bed'))
+   ?['Odisseu','Penélope']:action.toLowerCase().includes('telemachus')?['Telêmaco']:['Odisseu'];
+  return {id:`s${chapterIndex+1}-${i+1}`,start,end,chapter:s.title,location:s.place,action,characters};
  }));
 export const getOdysseyBeat=(seconds:number):OdysseyBeat=>{
  const s=Math.min(ODYSSEY_TOTAL_SECONDS-.0001,Math.max(0,seconds));
