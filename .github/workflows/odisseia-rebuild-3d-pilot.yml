@@ -21,7 +21,7 @@ jobs:
       - name: Instalar Blender open-source, ffmpeg e software rendering
         run: |
           sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg libgl1-mesa-dri python3-pil python3-numpy
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg libgl1-mesa-dri libegl1 libgles2 xvfb python3-pil python3-numpy
           blender --version | head -3
       - name: Baixar modelos animados 3D de fonte CC0 original
         run: |
@@ -34,7 +34,7 @@ jobs:
       - name: Construir cena unica, rigging 3D e renderizar 7 quadros de QC
         run: |
           set -o pipefail
-          QC_PERCENT=50 blender --background --threads 2 --python production/odyssey3d/scene01_departure.py -- --still 2>&1 | tee /tmp/odyssey_blender_qc.log
+          LIBGL_ALWAYS_SOFTWARE=1 QC_PERCENT=50 xvfb-run -a blender --background --threads 2 --python production/odyssey3d/scene01_departure.py -- --still 2>&1 | tee /tmp/odyssey_blender_qc.log
           grep 'ODYSSEY_SCENE_READY' /tmp/odyssey_blender_qc.log
           grep 'ODYSSEY_IMPORT' /tmp/odyssey_blender_qc.log
           test "$(find production/odyssey3d/out -name 'frame-*.png' | wc -l)" = 7
