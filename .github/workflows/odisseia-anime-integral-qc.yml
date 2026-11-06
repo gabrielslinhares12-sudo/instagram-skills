@@ -1,4 +1,4 @@
-name: Odisseia — novo padrao integral 4K60 QC (sem publicar)
+name: Odisseia — cenografia e rocha proporcionais V2 4K60 QC
 on:
   push:
     branches: [main]
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: 4441e0f38706d74aa26069fba67b690f7912c487
+          ref: 1f62f05fd6d979faa6869cbab398ae5140f6321f
           persist-credentials: false
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
         with:
@@ -56,7 +56,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: ODISSEIA-NOVO-PADRAO-12S-4K60-QC-SEM-PUBLICACAO
+          name: ODISSEIA-CICLOPE-V2-ROCHA-12S-4K60-QC
           path: |
             motion/out/odisseia-polifemo-12s-4k60-QC.mp4
             motion/out/odisseia-integral-tech-qc.json
