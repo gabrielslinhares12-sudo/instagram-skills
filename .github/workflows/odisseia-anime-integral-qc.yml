@@ -1,4 +1,4 @@
-name: Odisseia — V3 cinematografia e velocidade de apoio 4K60 QC
+name: Odisseia V4 QC — sem flashes escuros nem deslizamento
 on:
   push:
     branches: [main]
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: da669d17b7b131806ec08acd55c832e8dd9ccf36
+          ref: 406f52dec04d93b86ca8b6162b09174a6aaa464f
           persist-credentials: false
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
         with:
