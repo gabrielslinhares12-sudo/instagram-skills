@@ -1,4 +1,4 @@
-name: Odisseia — cenografia e rocha proporcionais V2 4K60 QC
+name: Odisseia — V3 cinematografia e velocidade de apoio 4K60 QC
 on:
   push:
     branches: [main]
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: 1f62f05fd6d979faa6869cbab398ae5140f6321f
+          ref: da669d17b7b131806ec08acd55c832e8dd9ccf36
           persist-credentials: false
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
         with:
@@ -56,7 +56,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: ODISSEIA-CICLOPE-V2-ROCHA-12S-4K60-QC
+          name: ODISSEIA-V3-FISICA-CICLOPE-12S-4K60-QC
           path: |
             motion/out/odisseia-polifemo-12s-4k60-QC.mp4
             motion/out/odisseia-integral-tech-qc.json
