@@ -31,8 +31,9 @@ const sections:Section[]=[
 {"start":396,"end":416,"title":"O ARCO DE ODISSEU","place":"bow","beats":["bowAttempt","odysseusTakesBow","bowBends","arrowTargets"]},
 {"start":416,"end":435,"title":"DOZE MACHADOS","place":"bow","beats":["axeChallenge","arrowThroughAxes","suitorsRecoil","hallSecured"]},
 {"start":435,"end":455,"title":"PENÉLOPE DESCE AO SALÃO","place":"penelope","beats":["penelopeApproaches","facesUncertain","nurseAnnounces","recognitionDawns"]},
-{"start":455,"end":480,"title":"O SEGREDO DA OLIVEIRA","place":"bed","beats":["bedSecret","oliveTreeReveal","proofOfHome","memoriesReturn","horseMemory"]},
-{"start":480,"end":495,"title":"O REENCONTRO","place":"penelope","beats":["handsReach","reunionEmbrace","quietNight","familyReunited"]},
+{"start":455,"end":480,"title":"O SEGREDO DA OLIVEIRA","place":"bed","beats":["bedSecret","oliveTreeReveal","proofOfHome","memoriesReturn"]},
+{"start":480,"end":485,"title":"A LEMBRANÇA DE TROIA","place":"troia","beats":["horseMemory"]},
+{"start":485,"end":495,"title":"O REENCONTRO","place":"penelope","beats":["handsReach","reunionEmbrace","quietNight","familyReunited"]},
 {"start":495,"end":515,"title":"UM REMO EM TERRA FIRME","place":"journey","beats":["oarInland","oarTraveler","oarBuried"]},
 {"start":515,"end":528,"title":"O POMAR DE LAERTES","place":"finale","beats":["oliveOrchard","laertesRecognition","ancestralTrees"]},
 {"start":528,"end":560.1,"title":"A PAZ EM ÍTACA","place":"finale","beats":["morningReckoning","athenaCeasefire","peaceAssembly","familyAtOlive","seaAtPeace","finalSilhouette"]}
