@@ -1,0 +1,57 @@
+{
+  "standard_id": "TUE-CINEFRAME-01",
+  "version": "0.1.0",
+  "status": "experimental",
+  "style": {
+    "visual": "2D/2.5D cinematografico; textura artesanal; contornos consistentes; sem plasticidade sintetica",
+    "palette": [
+      "azul-petroleo",
+      "bronze-ocre",
+      "marfim",
+      "vermelho-escuro"
+    ],
+    "character_consistency_rule": "todas as cenas usam a mesma ficha e imagem mestra de cada personagem"
+  },
+  "characters": [
+    {
+      "id": "odisseu_exp",
+      "display_name": "Odisseu — modelo experimental",
+      "canonical_description": "homem grego de meia idade, cabelos ondulados castanho-escuros, barba curta salpicada de grisalho, nariz marcante, porte atletico maduro, manto azul-petroleo e tunica areia, sem elmo; expressao cansada mas alerta",
+      "wardrobe_state": "regresso_a_itaca",
+      "height_relative_to_set": 1,
+      "master_reference": "references/characters/odisseu_exp/master.png",
+      "views": [
+        "front",
+        "profile",
+        "three-quarter"
+      ],
+      "expressions": [
+        "sleep",
+        "confusion",
+        "focus"
+      ],
+      "props": [
+        "manto"
+      ],
+      "reference_version": "v1",
+      "rights": "arte original a produzir; nao utilizar likeness de pessoa real"
+    }
+  ],
+  "sets": [
+    {
+      "id": "praia_itaca_exp",
+      "canonical_description": "costa rochosa de Itaca ao amanhecer, areia, mar calmo, vegetacao baixa e horizonte a leste",
+      "layout": "mar a direita, rochedos ao fundo esquerdo, entrada por faixa central de areia",
+      "master_reference": "references/sets/praia_itaca_exp/master.png",
+      "exits": [
+        "terra ao fundo"
+      ],
+      "lighting": "sol nascente pela direita",
+      "props": [
+        "manto",
+        "bau_de_presentes"
+      ],
+      "rights": "arte original a produzir"
+    }
+  ]
+}
