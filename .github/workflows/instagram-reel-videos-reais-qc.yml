@@ -94,17 +94,33 @@ jobs:
           S=ImageFont.truetype(reg,25)
           small=ImageFont.truetype(reg,21)
           def title_png(i,title,location):
+              # Overlay only subtitling on actual videos. No banner, no logo, no interface graphics.
               im=Image.new("RGBA",(720,1280),(0,0,0,0)); d=ImageDraw.Draw(im)
-              d.rounded_rectangle((24,30,697,113),radius=22,fill=(5,11,23,195))
-              d.text((48,48),"TEM UMA EXPLICAÇÃO",font=S,fill=(245,245,243,255))
-              d.rounded_rectangle((48,91,128,97),radius=3,fill=(246,195,77,255))
-              d.rounded_rectangle((24,141,697,274),radius=24,fill=(5,11,23,169))
-              words=title.split("|")
-              for j,line in enumerate(words[:2]):
-                  d.text((45,161+j*61),line,font=F,fill=(247,199,76,255))
-              d.rounded_rectangle((23,1178,697,1240),radius=16,fill=(5,11,23,199))
-              d.text((48,1197),location,font=small,fill=(224,234,241,255))
-              out=W/("title-%02d.png"%i);im.save(out);return out
+              subtitles={
+                0:"Um prédio alto pode balançar com o vento.",
+                1:"O vento exerce pressão sobre a estrutura.",
+                2:"A flexibilidade é prevista no projeto.",
+                3:"No topo, o balanço pode causar desconforto.",
+                4:"O Taipei 101 usa um amortecedor de massa.",
+                5:"Uma massa de 660 toneladas ajuda a controlar as oscilações.",
+                6:"Parte da energia do movimento é dissipada.",
+                7:"O segredo está no projeto. Tem uma explicação."
+              }
+              phrase=subtitles[i]; font=ImageFont.truetype(reg,30)
+              lines=[];line=""
+              for word in phrase.split():
+                  test=(line+" "+word).strip()
+                  if d.textbbox((0,0),test,font=font)[2] > 630:
+                      if line: lines.append(line)
+                      line=word
+                  else: line=test
+              if line: lines.append(line)
+              y=1095-(len(lines)-1)*22
+              for j,line in enumerate(lines):
+                  bbox=d.textbbox((0,0),line,font=font)
+                  x=(720-(bbox[2]-bbox[0]))//2
+                  d.text((x,y+j*43),line,font=font,fill=(255,255,251,255),stroke_width=4,stroke_fill=(15,15,15,238))
+              out=W/("subtitle-%02d.png"%i);im.save(out);return out
           scenes=[
             ("toronto",0,6,"PRÉDIOS ALTOS|BALANÇAM?","VÍDEO REAL • CIDADE MODERNA"),
             ("taipei",0,7,"O VENTO|EMPURRA","VÍDEO REAL • CENÁRIO URBANO"),
