@@ -44,31 +44,43 @@ jobs:
           def download(name):
               file = W / name
               if file.exists() and file.stat().st_size > 100000: return file
-              digest=hashlib.md5(name.encode()).hexdigest()
-              url="https://upload.wikimedia.org/wikipedia/commons/"+digest[0]+"/"+digest[:2]+"/"+urllib.parse.quote(name,safe="()_-.,")
-              fallback="https://commons.wikimedia.org/wiki/Special:Redirect/file/"+urllib.parse.quote(name,safe="()_-.,")
-              for i, remote in enumerate([url,fallback]):
+              id_by_name = {
+                "taipei_1.mp4":"6528707",
+                "building_1.mp4":"37349569",
+                "building_2.mp4":"37350038",
+                "taipei_2.mp4":"28405639"
+              }
+              identifier=id_by_name[name]
+              urls=[
+                "https://www.pexels.com/video/download/"+identifier+"/",
+                "https://www.pexels.com/video/download/"+identifier+"/?force=true"
+              ]
+              for remote in urls:
                   try:
-                      req=urllib.request.Request(remote,headers={"User-Agent":"TUE-Studio/1.0 (editorial nonprofit preview; source Wikimedia Commons)", "Accept":"*/*"})
-                      with urllib.request.urlopen(req,timeout=95) as src,open(file,"wb") as dst:
+                      req=urllib.request.Request(remote,headers={"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+                                                                 "Accept":"video/mp4,application/octet-stream,*/*","Referer":"https://www.pexels.com/"})
+                      with urllib.request.urlopen(req,timeout=90) as src,open(file,"wb") as dst:
                           while True:
                               block=src.read(1048576)
-                              if not block: break
+                              if not block:break
                               dst.write(block)
-                      if file.stat().st_size < 100000: raise RuntimeError("media too small")
-                      print("SAVED",name,file.stat().st_size,flush=True)
+                      if file.stat().st_size < 100000:raise RuntimeError("video too small")
+                      p=subprocess.check_output(["ffprobe","-v","error","-show_entries","stream=codec_type","-of","default=nw=1:nk=1",str(file)],text=True)
+                      if "video" not in p:raise RuntimeError("download was not video")
+                      print("SAVED_VIDEO",name,file.stat().st_size,flush=True)
                       return file
                   except Exception as ex:
-                      print("SOURCE_ATTEMPT_FAILED",name,remote,str(ex),flush=True)
+                      print("SOURCE_ATTEMPT_FAILED",name,str(ex),flush=True)
                       if file.exists():file.unlink()
-                      time.sleep(2)
+                      time.sleep(1)
               raise RuntimeError("Cannot obtain freely licensed real video "+name)
           sources={
-           "taipei":"Taipei_101_-_2013_12_9.webm",
-           "toronto":"Toronto_Skyline2.webm",
-           "toronto_short":"Toronto_Skyline.webm",
-           "sf":"City_skyline_(time_lapse).webm",
+           "taipei":"taipei_1.mp4",
+           "toronto":"building_1.mp4",
+           "toronto_short":"building_2.mp4",
+           "sf":"taipei_2.mp4",
           }
+          
           for k,v in sources.items():download(v)
           bold="/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
           reg="/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
@@ -88,14 +100,14 @@ jobs:
               d.text((48,1197),location,font=small,fill=(224,234,241,255))
               out=W/("title-%02d.png"%i);im.save(out);return out
           scenes=[
-            ("toronto",0,6,"PRÉDIOS ALTOS|BALANÇAM?","VÍDEO REAL • EDIFÍCIOS EM TORONTO"),
+            ("toronto",0,6,"PRÉDIOS ALTOS|BALANÇAM?","VÍDEO REAL • ARRANHA-CÉUS"),
             ("taipei",0,7,"O VENTO|EMPURRA","VÍDEO REAL • TAIPEI 101"),
             ("toronto_short",0,7,"FLEXIBILIDADE|CONTROLADA","VÍDEO REAL • ARRANHA-CÉUS"),
             ("toronto",12,6,"NO ALTO, O|MOVIMENTO CONTA","VÍDEO REAL • PANORAMA URBANO"),
             ("taipei",12,7,"TAIPEI 101|TAIWAN","VÍDEO REAL • TAIPEI 101"),
             ("taipei",19,9,"660 TONELADAS|EM MOVIMENTO","VÍDEO REAL + SIMULAÇÃO TÉCNICA"),
             ("toronto",25,7,"AMORTECEDOR|REDUZ A OSCILAÇÃO","VÍDEO REAL • EXEMPLO URBANO"),
-            ("sf",9,5,"PROJETADO|PARA FLEXIONAR","VÍDEO REAL • SÃO FRANCISCO"),
+            ("sf",9,5,"PROJETADO|PARA FLEXIONAR","VÍDEO REAL • TAIPEI"),
           ]
           assert sum(s[2] for s in scenes)==54
           # The technical overlay is real frame-by-frame procedural animation; no still-photo zoom is presented as recorded footage.
@@ -158,10 +170,10 @@ jobs:
           digest=H.sha256(OUT.read_bytes()).hexdigest()
           (W/"creditos.txt").write_text(
            "EDITORIAL: visual-motion documentary preview only; original Rasalgethi voice missing, do not publish.\n"
-           "CLIP 1 Taipei 101, Nesnad, CC BY 4.0: https://commons.wikimedia.org/wiki/File:Taipei_101_-_2013_12_9.webm\n"
-           "CLIP 2 Toronto Skyline2, LeoTor, CC BY 4.0: https://commons.wikimedia.org/wiki/File:Toronto_Skyline2.webm\n"
-           "CLIP 3 Toronto Skyline, LeoTor, CC BY 4.0: https://commons.wikimedia.org/wiki/File:Toronto_Skyline.webm\n"
-           "CLIP 4 San Francisco city skyline time lapse, Editor, CC BY 3.0: https://commons.wikimedia.org/wiki/File:City_skyline_(time_lapse).webm\n"
+           "CLIP 1 Taipei 101 (Pexels/Timo Volz): https://www.pexels.com/video/day-to-night-time-lapse-of-taipei-6528707/\n"
+           "CLIP 2 Modern Glass Skyscraper (Pexels/Harrun Muhammad): https://www.pexels.com/video/modern-glass-skyscraper-aerial-view-37349569/\n"
+           "CLIP 3 Modern Glass Skyscraper (Pexels/Harrun Muhammad): https://www.pexels.com/video/modern-glass-skyscraper-aerial-view-37350038/\n"
+           "CLIP 4 Taipei at Sunset (Pexels/Timo Volz): https://www.pexels.com/video/the-city-skyline-of-taipei-at-sunset-28405639/\n"
            "Simulação física vetorial desenhada por procedimento para explicar funcionamento, não é uma gravação real do amortecedor.\n"
            "Não exibir cidades diferentes como Taipei; créditos e etiquetas distinguem cada cidade.\n"
            "Audio: silence (requires verified Rasalgethi narration from original video before distribution).\n"
