@@ -42,6 +42,7 @@ def look_at(o,target):
  o.rotation_euler=(Vector(target)-o.location).to_track_quat("-Z","Y").to_euler()
 def import_rig(path,name,target_height,position):
  before=set(bpy.context.scene.objects)
+ earlier_actions=set(bpy.data.actions.keys())
  bpy.ops.import_scene.gltf(filepath=str(path))
  created=[o for o in bpy.context.scene.objects if o not in before]
  armatures=[o for o in created if o.type=="ARMATURE"]
@@ -65,6 +66,21 @@ def import_rig(path,name,target_height,position):
  root.rotation_euler=(0,0,position[3])
  bpy.context.view_layer.update()
  count=sum(len(obj.data.vertices) for obj in meshes)
+ new_actions=[action for action in bpy.data.actions if action.name not in earlier_actions]
+ action_label = "Push" if name=="POLYPHEMUS" else "Hit reaction"
+ acting = next((act for act in new_actions if act.name.startswith(action_label+"_Armature")),None)
+ if acting is None:
+  print("AVAILABLE_NEW_ACTING_ACTIONS",[a.name for a in new_actions if "Push" in a.name or "Hit" in a.name],flush=True)
+  raise RuntimeError("SOURCE_GLB_LACKS_ANIMATION_"+action_label)
+ rig=armatures[0]
+ rig.animation_data_clear()
+ track=rig.animation_data_create().nla_tracks.new()
+ track.name=name+"_BODY_ACTING_NOT_STATIC"
+ start=48 if name=="POLYPHEMUS" else 208
+ strip=track.strips.new(name+"_ACTION_"+action_label,start,acting)
+ strip.scale=3.45 if name=="POLYPHEMUS" else 2.0
+ strip.extrapolation="HOLD_FORWARD"
+ print("NATIVE_CHARACTER_ACTING",name,acting.name,"worldstart",start,"end",strip.frame_end,flush=True)
  clips=sorted(set(action.name for action in bpy.data.actions))
  print("SKINNED_ACTOR_IMPORTED",name,"height",round(target_height,2),"vertices",count,"actions",len(clips),flush=True)
  return root,armatures[0],count,clips
