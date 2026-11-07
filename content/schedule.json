@@ -24,6 +24,42 @@
       "approval_note": "Proprietário disse em 31/10/2026: Gostei dessa, agende para o primeiro post. Primeira postagem hoje 12h America/Sao_Paulo, imagem final aprovada exatamente da tirinha 4 quadros."
     },
     {
+      "id": "votos-validos-2026-11-01-v2-revisao",
+      "due_at": "2026-11-01T15:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "Como alguém vence com 46% dos votos depositados? — modelo hipotético",
+      "caption": "🗳️ Um candidato pode ter 46% dos votos depositados e 51,1% dos votos válidos? Sim — porque a base da conta muda! No nosso exemplo HIPOTÉTICO de uma eleição presidencial com 100 votos: A recebe 44, B recebe 46, e 10 são brancos ou nulos. Isso deixa 90 votos válidos, dos quais B tem 46, ou 51,1%. Brancos e nulos não são transferidos a ninguém. 💡 Qual outra dúvida sobre apuração você tem? #VotosVálidos #EducaçãoEleitoral #Lúmino #TemUmaExplicacao",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-05.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-06.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-07.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-08.jpg"
+      ],
+      "media_sha256": [
+        "25d742fe5963e5eb4cd67ebbd6115888fbd26aeffdecfd147b0a62a4da3984fb",
+        "4a00e7973bf7588aaf377fedbdfed5f133150098bd212b875fdaeca0ec85f086",
+        "ad4891ad5ab1e8a0ec8d29a6ceba6fef401f9f58a0476331be4607ee11fd5fff",
+        "7615a07fdcc2e0608b6d9c21765a1e98ca5f3a1895cb9146e9ce7e364003996c",
+        "c2195c7f812027515f01dada50a06cd1653bbaa98dadcfa65acd8301e8236fc9",
+        "0a6eeebdd0964389f0595232c3ef7f57a6fed579ff0a90636d672557fd56fa55",
+        "3cf461be96c1c3ae4f09f968e33a3205c05b0090e9c33ddef23b3302495be561",
+        "7d7ccbaa6f1a488da3b74ed30b4e57e7cb17b452fabc5ceb94f6ad475526d5dc"
+      ],
+      "approved": false,
+      "is_ai_generated": true,
+      "sources": [
+        "https://www.tse.jus.br/comunicacao/noticias/2026/Junho/sabe-o-que-e-o-sistema-eleitoral-majoritario-o-glossario-explica-1",
+        "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
+      ],
+      "approval_note": "RASCUNHO V2 — oito artes verificadas em dimensões e SHA; checagem editorial visual ainda pendente. Não publicar até confirmar fidelidade ao padrão aprovado."
+    },
+    {
       "id": "halloween-2026-10-31-historia-8-laminas",
       "due_at": "2026-11-01T17:43:00Z",
       "username": "temumaexplicacao",
@@ -62,42 +98,6 @@
       "owner_authorized_two_step_music": true
     },
     {
-      "id": "votos-validos-2026-11-01-v2-revisao",
-      "due_at": "2026-11-01T15:00:00Z",
-      "username": "temumaexplicacao",
-      "kind": "carousel",
-      "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "title": "Como alguém vence com 46% dos votos depositados? — modelo hipotético",
-      "caption": "🗳️ Um candidato pode ter 46% dos votos depositados e 51,1% dos votos válidos? Sim — porque a base da conta muda! No nosso exemplo HIPOTÉTICO de uma eleição presidencial com 100 votos: A recebe 44, B recebe 46, e 10 são brancos ou nulos. Isso deixa 90 votos válidos, dos quais B tem 46, ou 51,1%. Brancos e nulos não são transferidos a ninguém. 💡 Qual outra dúvida sobre apuração você tem? #VotosVálidos #EducaçãoEleitoral #Lúmino #TemUmaExplicacao",
-      "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-01.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-02.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-03.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-04.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-05.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-06.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-07.jpg",
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/db5df35cebbe2e6594a83c92402e2b0a46130814/content/staging/votos-validos-2026-11-01/votos-novo-08.jpg"
-      ],
-      "media_sha256": [
-        "25d742fe5963e5eb4cd67ebbd6115888fbd26aeffdecfd147b0a62a4da3984fb",
-        "4a00e7973bf7588aaf377fedbdfed5f133150098bd212b875fdaeca0ec85f086",
-        "ad4891ad5ab1e8a0ec8d29a6ceba6fef401f9f58a0476331be4607ee11fd5fff",
-        "7615a07fdcc2e0608b6d9c21765a1e98ca5f3a1895cb9146e9ce7e364003996c",
-        "c2195c7f812027515f01dada50a06cd1653bbaa98dadcfa65acd8301e8236fc9",
-        "0a6eeebdd0964389f0595232c3ef7f57a6fed579ff0a90636d672557fd56fa55",
-        "3cf461be96c1c3ae4f09f968e33a3205c05b0090e9c33ddef23b3302495be561",
-        "7d7ccbaa6f1a488da3b74ed30b4e57e7cb17b452fabc5ceb94f6ad475526d5dc"
-      ],
-      "approved": false,
-      "is_ai_generated": true,
-      "sources": [
-        "https://www.tse.jus.br/comunicacao/noticias/2026/Junho/sabe-o-que-e-o-sistema-eleitoral-majoritario-o-glossario-explica-1",
-        "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
-      ],
-      "approval_note": "RASCUNHO V2 — oito artes verificadas em dimensões e SHA; checagem editorial visual ainda pendente. Não publicar até confirmar fidelidade ao padrão aprovado."
-    },
-    {
       "id": "meme-voto-branco-nulo-2026-11-01-v2-revisao",
       "due_at": "2026-11-01T21:00:00Z",
       "username": "temumaexplicacao",
@@ -114,30 +114,6 @@
         "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-17-dias-votos-nulos-e-brancos-nao-anulam-a-eleicao"
       ],
       "approval_note": "RASCUNHO V2 — tirinha com Lúmino e texto factual TSE; JPEG 1080x1350 conferido via workflow. Não publicar até checagem visual final."
-    },
-    {
-      "id": "tue-2026-11-02-10-mar-cruzado-fato",
-      "due_at": "2026-11-02T18:10:00Z",
-      "username": "temumaexplicacao",
-      "kind": "post",
-      "target_url": "https://www.instagram.com/temumaexplicacao/",
-      "title": "O MAR VIROU UM TABULEIRO?",
-      "caption": "🌊 Parece que alguém desenhou quadrados no oceano. Mas a explicação está no movimento das ondas.\n\nQuando dois conjuntos de ondas chegam de direções diferentes, suas cristas podem se cruzar, formando um padrão que lembra um tabuleiro. Ondulações geradas longe da costa também podem se encontrar com ondas produzidas por ventos locais.\n\nEsses movimentos se sobrepõem: em alguns pontos a superfície fica mais elevada; em outros, menos. E o desenho nunca é estático. O mar está em movimento o tempo todo.\n\nA imagem é uma ilustração editorial do fenômeno. Na água de verdade, ondas cruzadas podem tornar as condições mais complexas, especialmente para pequenas embarcações.\n\nVocê já tinha visto falar no mar cruzado? 💡\n\n#TemUmaExplicacao #Oceanografia #Ciência #Curiosidades",
-      "media_urls": [
-        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-MAR-CRUZADO-01.jpg"
-      ],
-      "media_sha256": [
-        "745fb200df5051afc008d3898c26a71218dd0a85750acf5ec96f261979546d0f"
-      ],
-      "approved": false,
-      "ai_origin": "synthetic",
-      "content_style": "clearly_illustrated",
-      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
-      "sources": [
-        "https://www.noaa.gov/jetstream/ocean/waves",
-        "https://www.bom.gov.au/resources/learn-and-explore/marine-knowledge-centre/waves-and-swell"
-      ],
-      "approval_note": "POST BLOQUEADO POR QC a pedido do proprietário em 02/11 às 13h08; corrigir cinco lâminas com progressão visual sem repetir a mesma cena e manter Lúmino original. Prazo editorial alvo 15h10; não publicar até revisão completa e autorização no manifesto final."
     },
     {
       "id": "tue-2026-11-02-15-senha-impossivel",
@@ -195,6 +171,30 @@
         "https://www.bom.gov.au/resources/learn-and-explore/marine-knowledge-centre/waves-and-swell"
       ],
       "approval_note": "Lâminas 1–5 explicitamente aprovadas no chat após apresentação em 02/11. O usuário exigiu publicação imediata do carrossel das 15h e Story vinculado. Este é apenas um envio oficial do feed; música nativa e compartilhamento nativo no Story permanecem etapas distintas com prova exigida. Recuperação restrita ao dia 02/11."
+    },
+    {
+      "id": "tue-2026-11-02-10-mar-cruzado-fato",
+      "due_at": "2026-11-02T18:10:00Z",
+      "username": "temumaexplicacao",
+      "kind": "post",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "O MAR VIROU UM TABULEIRO?",
+      "caption": "🌊 Parece que alguém desenhou quadrados no oceano. Mas a explicação está no movimento das ondas.\n\nQuando dois conjuntos de ondas chegam de direções diferentes, suas cristas podem se cruzar, formando um padrão que lembra um tabuleiro. Ondulações geradas longe da costa também podem se encontrar com ondas produzidas por ventos locais.\n\nEsses movimentos se sobrepõem: em alguns pontos a superfície fica mais elevada; em outros, menos. E o desenho nunca é estático. O mar está em movimento o tempo todo.\n\nA imagem é uma ilustração editorial do fenômeno. Na água de verdade, ondas cruzadas podem tornar as condições mais complexas, especialmente para pequenas embarcações.\n\nVocê já tinha visto falar no mar cruzado? 💡\n\n#TemUmaExplicacao #Oceanografia #Ciência #Curiosidades",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/main/content/media/instagram/2026-11-02/TUE-02NOV-MAR-CRUZADO-01.jpg"
+      ],
+      "media_sha256": [
+        "745fb200df5051afc008d3898c26a71218dd0a85750acf5ec96f261979546d0f"
+      ],
+      "approved": false,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "sources": [
+        "https://www.noaa.gov/jetstream/ocean/waves",
+        "https://www.bom.gov.au/resources/learn-and-explore/marine-knowledge-centre/waves-and-swell"
+      ],
+      "approval_note": "POST BLOQUEADO POR QC a pedido do proprietário em 02/11 às 13h08; corrigir cinco lâminas com progressão visual sem repetir a mesma cena e manter Lúmino original. Prazo editorial alvo 15h10; não publicar até revisão completa e autorização no manifesto final."
     },
     {
       "id": "tue-2026-11-03-11-tirinha-reuniao",
@@ -413,6 +413,36 @@
       "owner_authorized_without_music": true,
       "sources": [],
       "approval_note": "DUPLICATE BLOCKED: Exact six approved Lúmino images already published by one-shot GitHub run 42096959917, Meta media 18031789529691012, https://www.instagram.com/p/DfX0PU_nzvf/. Do not publish again."
+    },
+    {
+      "id": "tue-2026-11-07-11-rh-do-caos-cadeira-vintage-5-artes",
+      "due_at": "2026-11-07T14:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "A cadeira pediu demissão — RH do Caos",
+      "caption": "🪑 A CADEIRA PEDIU DEMISSÃO! No RH do Lúmino, uma cadeira descobriu que foi contratada para sentar gente, mas acabou trabalhando como guarda-roupa. Sem aumento, com acúmulo de função e até aviso prévio das roupas! 😂\n\nNa sua casa também existe uma cadeira promovida a armário? Conta aqui!\n\n#TemUmaExplicacao #Lumino #RHdoCaos #Tirinhas #Humor",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/01-tirinha-vintage.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/02-tirinha-vintage.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/03-tirinha-vintage.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/04-tirinha-vintage.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/05-tirinha-vintage.jpg"
+      ],
+      "media_sha256": [
+        "e6445f43d5c7599125987c527fc05781357d6e2d7040df0041929947e45ba28a",
+        "4f9a088ed9f126ec474aa5140954368e86061aa4d7cb8aca5ce9bab04b33d62f",
+        "86088e45b4f7c0b887378d9f8aa3e1bab5613f378ebc3b61058d063b9a7dacea",
+        "f76f84d1b93b906561b78b675b27018c19fc4183441d384d17c152d8c8998211",
+        "ce54e848696fa8aa3874246ddc0935f584c686c7660da205aa540021d433ab41"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "distribution_mode": "api_carousel_without_native_music",
+      "owner_authorized_without_music": true,
+      "approval_note": "Proprietário aprovou em 07/11/2026 as cinco artes corrigidas e mandou agendar como primeiro post do dia."
     }
   ]
 }
