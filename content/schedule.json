@@ -443,6 +443,36 @@
       "distribution_mode": "api_carousel_without_native_music",
       "owner_authorized_without_music": true,
       "approval_note": "Proprietário aprovou em 07/11/2026 as cinco artes corrigidas e mandou agendar como primeiro post do dia."
+    },
+    {
+      "id": "tue-2026-11-07-15-nuvens-lenticulares-5-artes",
+      "due_at": "2026-11-07T18:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "Essas nuvens parecem OVNIs? — Nuvens lenticulares",
+      "caption": "☁️ ESSAS NUVENS PARECEM OVNIs? O céu às vezes cria formas que parecem discos voadores — mas isso tem uma explicação!\n\nAs nuvens lenticulares surgem quando o ar úmido atravessa regiões montanhosas e forma ondas atmosféricas. Quando a umidade condensa nessas ondas, aparecem camadas com formato de lente. Mesmo com vento, elas podem parecer paradas porque se formam continuamente na mesma região.\n\nVocê já viu uma nuvem assim? ☁️\n\n#TemUmaExplicacao #Lumino #NuvensLenticulares #Meteorologia #Ciencia #Curiosidades",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/01-nuvens-lenticulares.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/02-nuvens-lenticulares.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/03-nuvens-lenticulares.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/04-nuvens-lenticulares.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/05-nuvens-lenticulares.jpg"
+      ],
+      "media_sha256": [
+        "f4241da6d12dda32c554f7319c11d934323755ed673f814b3680223638f28930",
+        "567f0068b05a66c0c052a69b7dde07faf2474f68db347268105d498d0074863e",
+        "483808cf9ce29bd54f16c4958ab8838c86684d38ca0d00e216ef4a5719989ae9",
+        "aba33b558250363b5fc2cf73f6ee019c1133d2f82344c2dbfb079e15843b602b",
+        "dbd3c308f1996b2989d7053d82d50a0b37c5fdc910bfdce9b55944faa517bbe3"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "distribution_mode": "api_carousel_without_native_music",
+      "owner_authorized_without_music": true,
+      "approval_note": "Aprovadas exatamente as cinco artes finais em conversa de 07/11/2026; postar às 15h."
     }
   ]
 }

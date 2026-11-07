@@ -1,0 +1,35 @@
+{
+  "id": "tue-2026-11-07-15-nuvens-lenticulares-5-artes",
+  "preset_id": "TUE-MESTRE-01",
+  "approved": true,
+  "owner_authorized": true,
+  "visual_reviewed": true,
+  "original_mascot_pixel_match_verified": false,
+  "source_commit": "497c17aefb193b374729d186ebcaab0aa134edc2",
+  "release_commit": "fa11cdc06fadb8aabd585f6ca4171f0ed3acb457",
+  "source_png_sha256": [
+    "51cf2742520b076eed2ab3941b8fc827457a06ed392e8f37ba2bcf12449f538c",
+    "0b9b5a38e2786c9c547020a6875de303b3b30606730804dba9a39c4badfea3bb",
+    "ca5769b9443146a3d12c2fd750919c8f17be48568e83e1c506b021ed7c8caab3",
+    "ba53d169ee9aecc7c69291e596a8b897261bcc8427373265b13c3c672e3ccf58",
+    "6c0f858edb15c840493cb18d627ff550b48e802c1e92ced00ff669182c17c126"
+  ],
+  "approved_media_sha256": [
+    "f4241da6d12dda32c554f7319c11d934323755ed673f814b3680223638f28930",
+    "567f0068b05a66c0c052a69b7dde07faf2474f68db347268105d498d0074863e",
+    "483808cf9ce29bd54f16c4958ab8838c86684d38ca0d00e216ef4a5719989ae9",
+    "aba33b558250363b5fc2cf73f6ee019c1133d2f82344c2dbfb079e15843b602b",
+    "dbd3c308f1996b2989d7053d82d50a0b37c5fdc910bfdce9b55944faa517bbe3"
+  ],
+  "release_media_urls": [
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/01-nuvens-lenticulares.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/02-nuvens-lenticulares.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/03-nuvens-lenticulares.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/04-nuvens-lenticulares.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/fa11cdc06fadb8aabd585f6ca4171f0ed3acb457/content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/05-nuvens-lenticulares.jpg"
+  ],
+  "post_due_at": "2026-11-07T18:00:00Z",
+  "distribution_mode": "api_carousel_without_native_music",
+  "owner_authorized_without_music": true,
+  "approval_note": "Proprietário visualmente aprovou o carrossel final de cinco imagens de nuvens lenticulares em 07/11/2026 e solicitou agendamento às 15h. Exceção vinculada aos PNGs exatos; nenhum pixel-match do Lúmino canônico é afirmado."
+}
