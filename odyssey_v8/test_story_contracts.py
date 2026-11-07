@@ -13,6 +13,19 @@ class OdysseyShotContractTests(unittest.TestCase):
         cls.document = json.loads(PATH.read_text(encoding="utf-8"))
         cls.shots = cls.document["episode01_shots"]
 
+    def test_single_master_visual_standard_reference(self):
+        standard_rel = self.document["production_standard"]
+        self.assertEqual(standard_rel, "odyssey_v8/PADRAO_MESTRE_TUE_ANIMACAO.md")
+        master = Path(__file__).resolve().parent.parent / standard_rel
+        self.assertTrue(master.is_file(), "O padrao-mestre canonico deve existir")
+        text = master.read_text(encoding="utf-8")
+        for expected in ("TUE-ANIMACAO-MESTRE-01", "CHAR_ODYSSEUS", "SHOT_ID:",
+                         "Polifemo", "Rasalgethi", "2160", "60 FPS"):
+            self.assertIn(expected, text)
+        self.assertTrue(self.document["quality_gates"]["character_design_locked_before_render"])
+        self.assertTrue(self.document["quality_gates"]["visual_qc_required"])
+        self.assertFalse(self.document["publish_allowed"])
+
     def test_no_automatic_publishing_or_legacy_scenes(self):
         self.assertFalse(self.document["publish_allowed"])
         self.assertEqual(self.document["version_state"], "narrative_blocking_in_progress")
