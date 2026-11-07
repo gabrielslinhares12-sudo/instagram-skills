@@ -1,0 +1,24 @@
+name: Instagram TUE — recuperação sob demanda sem duplicar
+# Called only by a deliberate, audited kick file change or a manual dispatch.
+# Uses the same core publisher, QC gate, Meta checks, ledger and concurrency.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/ops/instagram-publish-kick.json'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Validar somente (padrão seguro)'
+        required: true
+        default: true
+        type: boolean
+permissions:
+  contents: write
+jobs:
+  publish_due_if_unclaimed:
+    uses: ./.github/workflows/instagram-scheduler.yml
+    with:
+      dry_run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+      allow_execute: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
+    secrets: inherit
