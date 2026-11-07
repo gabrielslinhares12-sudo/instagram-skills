@@ -120,7 +120,7 @@ def arrow(d,x,y,x2,y2,color):
         d.line((int(x2),int(y2),int(x2+17*math.cos(ang2)),int(y2+17*math.sin(ang2))),fill=color,width=5)
 def sim_png(t,num):
     im=paper();d=ImageDraw.Draw(im)
-    header(d,"AMORTECEDOR DE MASSA","ESQUEMA TÉCNICO ILUSTRATIVO")
+    header(d,"O AMORTECEDOR","ESQUEMA TÉCNICO ILUSTRATIVO")
     phi=2*math.pi*t/4.8
     xb=16*math.sin(phi)
     xm=8*math.sin(phi)-62*math.sin(phi-.45)
