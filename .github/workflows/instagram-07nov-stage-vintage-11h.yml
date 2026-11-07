@@ -1,10 +1,6 @@
 name: Instagram TUE — 07NOV preparar 11h tirinha vintage corrigida
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/instagram-07nov-stage-vintage-11h.yml'
   workflow_dispatch:
 
 permissions:
@@ -20,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 18
     env:
-      TUE_APPROVED_ZIP_TRANSFER_URL: 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-daf0-820e-9b2a-fb02c44b05e6/raw?se=2026-11-07T11%3A42%3A24Z&sp=r&sv=2026-02-06&sr=b&scid=eba302d3-59c0-5330-b36f-a3e69eab6fcf&skoid=fbc53507-c13f-4907-b4dd-0e03c91f5ad8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-11-07T10%3A15%3A47Z&ske=2026-11-08T10%3A15%3A47Z&sks=b&skv=2026-02-06&sig=vapUScYvgth/0EUyEKwwFht7wGAAC%2BB3WPZSR0taG6U%3D'
       GDRIVE_OAUTH_CLIENT_ID: ${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}
       GDRIVE_OAUTH_CLIENT_SECRET: ${{ secrets.GDRIVE_OAUTH_CLIENT_SECRET }}
       GDRIVE_OAUTH_REFRESH_TOKEN: ${{ secrets.GDRIVE_OAUTH_REFRESH_TOKEN }}
