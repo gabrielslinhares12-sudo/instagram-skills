@@ -1,0 +1,151 @@
+{
+  "project": "ODISSEIA_V9",
+  "status": "NARRATION_RECEIVED_IN_CHAT_NOT_YET_IN_GITHUB",
+  "origin": "user-supplied Google AI Studio speech WAV",
+  "narrator": "Rasalgethi (user declared; timbre not independently verified)",
+  "received_on": "2026-11-07",
+  "original_filename": "Generated Audio November 07, 2026 - 2_16AM.wav",
+  "sha256": "9be8b79920b318c76f23874d38d12f4f77b46f8a9871833612ac1efa82b5d667",
+  "size_bytes": 10586924,
+  "duration_seconds": 220.56,
+  "original_target_seconds": 185,
+  "excess_seconds": 35.56,
+  "audio": {
+    "codec": "pcm_s16le",
+    "channels": 1,
+    "sample_rate_hz": 24000,
+    "bit_depth": 16,
+    "sample_peak_dbfs": -0.72,
+    "rms_dbfs": -18.18,
+    "clipped_samples": 0
+  },
+  "estimated_scene_timing_method": "Paragraph word count plus low-energy pauses; estimated only, must be auditioned before timing lock",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "title": "Abertura — o arco",
+      "start_seconds": 0,
+      "end_seconds": 9.65,
+      "estimated_duration_seconds": 9.65
+    },
+    {
+      "scene_id": "S02",
+      "title": "A queda de Troia",
+      "start_seconds": 9.65,
+      "end_seconds": 22.67,
+      "estimated_duration_seconds": 13.02
+    },
+    {
+      "scene_id": "S03",
+      "title": "Cícones e lotófagos",
+      "start_seconds": 22.67,
+      "end_seconds": 34.585,
+      "estimated_duration_seconds": 11.915
+    },
+    {
+      "scene_id": "S04",
+      "title": "Polifemo",
+      "start_seconds": 34.585,
+      "end_seconds": 54.42,
+      "estimated_duration_seconds": 19.835
+    },
+    {
+      "scene_id": "S05",
+      "title": "Éolo e lestrigões",
+      "start_seconds": 54.42,
+      "end_seconds": 67.625,
+      "estimated_duration_seconds": 13.205
+    },
+    {
+      "scene_id": "S06",
+      "title": "Circe",
+      "start_seconds": 67.625,
+      "end_seconds": 80.36,
+      "estimated_duration_seconds": 12.735
+    },
+    {
+      "scene_id": "S07",
+      "title": "Mundo dos mortos",
+      "start_seconds": 80.36,
+      "end_seconds": 91.9,
+      "estimated_duration_seconds": 11.54
+    },
+    {
+      "scene_id": "S08",
+      "title": "Sereias",
+      "start_seconds": 91.9,
+      "end_seconds": 103.095,
+      "estimated_duration_seconds": 11.195
+    },
+    {
+      "scene_id": "S09",
+      "title": "Cila e Caríbdis",
+      "start_seconds": 103.095,
+      "end_seconds": 115.845,
+      "estimated_duration_seconds": 12.75
+    },
+    {
+      "scene_id": "S10",
+      "title": "O último navio",
+      "start_seconds": 115.845,
+      "end_seconds": 127.7,
+      "estimated_duration_seconds": 11.855
+    },
+    {
+      "scene_id": "S11",
+      "title": "Calipso",
+      "start_seconds": 127.7,
+      "end_seconds": 138.52,
+      "estimated_duration_seconds": 10.82
+    },
+    {
+      "scene_id": "S12",
+      "title": "Feácios e Ítaca",
+      "start_seconds": 138.52,
+      "end_seconds": 152.045,
+      "estimated_duration_seconds": 13.525
+    },
+    {
+      "scene_id": "S13",
+      "title": "Palácio tomado",
+      "start_seconds": 152.045,
+      "end_seconds": 167.09,
+      "estimated_duration_seconds": 15.045
+    },
+    {
+      "scene_id": "S14",
+      "title": "Reconhecimentos",
+      "start_seconds": 167.09,
+      "end_seconds": 182.38,
+      "estimated_duration_seconds": 15.29
+    },
+    {
+      "scene_id": "S15",
+      "title": "O arco e a luta",
+      "start_seconds": 182.38,
+      "end_seconds": 200.655,
+      "estimated_duration_seconds": 18.275
+    },
+    {
+      "scene_id": "S16",
+      "title": "Penélope, Laertes e paz",
+      "start_seconds": 200.655,
+      "end_seconds": 220.56,
+      "estimated_duration_seconds": 19.905
+    }
+  ],
+  "format_master": {
+    "width": 2160,
+    "height": 3840,
+    "fps": 60
+  },
+  "audio_transfer_pending": true,
+  "quality_review_pending": true,
+  "publishing_enabled": false,
+  "notes": [
+    "The attached WAV exists in the ChatGPT conversation only; it has not been uploaded to this GitHub repository.",
+    "Scene boundaries are provisional and not transcript-level forced alignment.",
+    "Do not speed up or edit the original audio to force 185 seconds.",
+    "A complete 3D movie does not yet exist."
+  ]
+}
