@@ -1,4 +1,5 @@
 name: Instagram 07NOV — recuperar publicacao das 11h com reconciliacao Meta
+# Tentativa validada após registrar aprovação restrita a cinco JPGs SHA-256.
 on:
   push:
     branches: [main]
