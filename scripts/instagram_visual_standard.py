@@ -414,12 +414,14 @@ def verify_reel_release(root: Path, post: dict) -> str:
     return slug
 
 
-def audit_queue(root: Path=ROOT) -> dict:
+def audit_queue(root: Path=ROOT, *, only_ids: set[str] | None = None) -> dict:
     verify_brand(root)
     schedule=read_json(root/"content/schedule.json")
     reviewed=[]
     pending_native_music=[]
     for post in schedule.get("posts",[]):
+        if only_ids is not None and post.get("id") not in only_ids:
+            continue
         if not post.get("approved") or str(post.get("due_at",""))[:10]<DATE_LIMIT:
             continue
         if post.get("kind")=="carousel":
@@ -733,10 +735,28 @@ def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode",choices=["verify-assets","verify-package","audit-queue"])
     parser.add_argument("--manifest",type=Path)
+    parser.add_argument("--only-due", action="store_true", help="Validar apenas posts devidos neste instante.")
+    parser.add_argument("--only-imminent", action="store_true", help="Validar apenas posts para os proximos 35 minutos.")
     args=parser.parse_args(argv)
     try:
         if args.mode=="verify-assets": result={"ok":True,"assets":list(verify_brand())[:3]}
-        elif args.mode=="audit-queue":result=audit_queue()
+        elif args.mode=="audit-queue":
+            if args.only_due or args.only_imminent:
+                from datetime import datetime, timedelta, timezone
+                from instagram_queue import read_document, validate_manifest, validate_state, plan, utc_time
+                schedule = validate_manifest(read_document(ROOT/"content/schedule.json"))
+                now = datetime.now(timezone.utc)
+                if args.only_imminent:
+                    ids = {p["id"] for p in schedule if p.get("approved") and
+                           now <= utc_time(p["due_at"]) <= now + timedelta(minutes=35)}
+                else:
+                    ledger = validate_state(read_document(ROOT/"content/publication-state.json"))
+                    ids = {p["id"] for p in schedule if p["id"] in
+                           {x["id"] for x in plan(schedule,ledger,now) if x["status"]=="due"}}
+                result = audit_queue(only_ids=ids)
+                result["selected_ids"] = sorted(ids)
+            else:
+                result = audit_queue()
         else:
             if args.manifest is None: raise VisualError("--manifest e obrigatorio.")
             result=validate_package(args.manifest.resolve())
