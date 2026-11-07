@@ -1,0 +1,1000 @@
+{
+  "project": "A ODISSEIA — O REGRESSO A ITACA",
+  "visual_source": "Owner-approved 60s Cavalo de Troia original first-film 2D style",
+  "hero_source_asset": "ODISSEU_ORIGINAL_TROIA_SPRITE_CANONICO.png",
+  "horse_source_asset": "CAVALO_TROIA_ORIGINAL_RGBA.png",
+  "audio_seconds": 220.56,
+  "audio_original_sha256": "9be8b79920b318c76f23874d38d12f4f77b46f8a9871833612ac1efa82b5d667",
+  "scene_count": 16,
+  "shot_count": 68,
+  "no_shot_reused": true,
+  "cyclops_height_m": 5.5,
+  "odysseus_height_m": 1.84,
+  "scale_ratio": 2.9891304347826084,
+  "editorial_qc_approved": false,
+  "publication_allowed": false,
+  "shots": [
+    {
+      "shot_id": "S01_A01",
+      "scene": 1,
+      "beat": 1,
+      "start_seconds_estimate": 0.0,
+      "end_seconds_estimate": 2.413,
+      "narrative_action": "Arco de madeira nas mãos do mendigo",
+      "environment_identity": "interior palácio micênico — arco em detalhe",
+      "cast": [
+        "beggar"
+      ],
+      "prop_identity": [
+        "bow"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S01_A02",
+      "scene": 1,
+      "beat": 2,
+      "start_seconds_estimate": 2.413,
+      "end_seconds_estimate": 4.825,
+      "narrative_action": "Pretendentes riem e levantam taças",
+      "environment_identity": "salão real com banquetas e pessoas ao fundo",
+      "cast": [
+        "antinoos",
+        "eurymachos"
+      ],
+      "prop_identity": [
+        "bronze cup"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S01_A03",
+      "scene": 1,
+      "beat": 3,
+      "start_seconds_estimate": 4.825,
+      "end_seconds_estimate": 7.238,
+      "narrative_action": "Mendigo tensiona a corda em silêncio",
+      "environment_identity": "salão com eixo visual dos doze machados",
+      "cast": [
+        "beggar"
+      ],
+      "prop_identity": [
+        "bow string"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S01_A04",
+      "scene": 1,
+      "beat": 4,
+      "start_seconds_estimate": 7.238,
+      "end_seconds_estimate": 9.65,
+      "narrative_action": "Olhar determinado revela algo oculto",
+      "environment_identity": "close com brasas e fundo do salão",
+      "cast": [
+        "beggar"
+      ],
+      "prop_identity": [
+        "face"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S02_A01",
+      "scene": 2,
+      "beat": 1,
+      "start_seconds_estimate": 9.65,
+      "end_seconds_estimate": 12.908,
+      "narrative_action": "Cavalo original se aproxima da muralha de Troia",
+      "environment_identity": "muralhas de Troia e quatro rodas no chão",
+      "cast": [
+        "odysseus",
+        "trojans"
+      ],
+      "prop_identity": [
+        "original horse"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S02_A02",
+      "scene": 2,
+      "beat": 2,
+      "start_seconds_estimate": 12.908,
+      "end_seconds_estimate": 16.165,
+      "narrative_action": "Cavalo atravessa integralmente portão aberto",
+      "environment_identity": "portão micênico duas folhas e rua interna",
+      "cast": [
+        "horse",
+        "trojans"
+      ],
+      "prop_identity": [
+        "gate"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S02_A03",
+      "scene": 2,
+      "beat": 3,
+      "start_seconds_estimate": 16.165,
+      "end_seconds_estimate": 19.422,
+      "narrative_action": "Tampa do cavalo abre e guerreiros descem",
+      "environment_identity": "rua noturna e escada física de madeira",
+      "cast": [
+        "odysseus",
+        "greek soldiers"
+      ],
+      "prop_identity": [
+        "horse trapdoor",
+        "rope ladder"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S02_A04",
+      "scene": 2,
+      "beat": 4,
+      "start_seconds_estimate": 19.422,
+      "end_seconds_estimate": 22.68,
+      "narrative_action": "Navios partem enquanto Troia arde",
+      "environment_identity": "cais, mar, muralhas ao fundo",
+      "cast": [
+        "odysseus",
+        "crew"
+      ],
+      "prop_identity": [
+        "ships"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S03_A01",
+      "scene": 3,
+      "beat": 1,
+      "start_seconds_estimate": 22.68,
+      "end_seconds_estimate": 25.657,
+      "narrative_action": "Cícones contra-atacam e derrubam gregos",
+      "environment_identity": "aldeia costeira em combate e saída para cais",
+      "cast": [
+        "odysseus",
+        "sailors",
+        "cicones"
+      ],
+      "prop_identity": [
+        "spears"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S03_A02",
+      "scene": 3,
+      "beat": 2,
+      "start_seconds_estimate": 25.657,
+      "end_seconds_estimate": 28.635,
+      "narrative_action": "Sobreviventes embarcam e remam para longe",
+      "environment_identity": "praia de embarque com navegação visível",
+      "cast": [
+        "odysseus",
+        "sailors"
+      ],
+      "prop_identity": [
+        "oars",
+        "ship"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S03_A03",
+      "scene": 3,
+      "beat": 3,
+      "start_seconds_estimate": 28.635,
+      "end_seconds_estimate": 31.613,
+      "narrative_action": "Um marinheiro come fruto do lótus e se distrai",
+      "environment_identity": "floresta insular densa com árvores e flores",
+      "cast": [
+        "sailor"
+      ],
+      "prop_identity": [
+        "lotus flower"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S03_A04",
+      "scene": 3,
+      "beat": 4,
+      "start_seconds_estimate": 31.613,
+      "end_seconds_estimate": 34.59,
+      "narrative_action": "Odisseu segura e arrasta marinheiro ao navio",
+      "environment_identity": "trilha entre floresta e praia",
+      "cast": [
+        "odysseus",
+        "sailor"
+      ],
+      "prop_identity": [
+        "arm contact"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S04_A01",
+      "scene": 4,
+      "beat": 1,
+      "start_seconds_estimate": 34.59,
+      "end_seconds_estimate": 37.069,
+      "narrative_action": "Três homens entram na caverna diante do gigante",
+      "environment_identity": "caverna completa e escala humana ao lado",
+      "cast": [
+        "odysseus",
+        "crew",
+        "cyclops"
+      ],
+      "prop_identity": [
+        "cave arch"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S04_A02",
+      "scene": 4,
+      "beat": 2,
+      "start_seconds_estimate": 37.069,
+      "end_seconds_estimate": 39.547,
+      "narrative_action": "Polifemo empurra pedra maior que a entrada",
+      "environment_identity": "mesma caverna — portal, piso e monólito",
+      "cast": [
+        "cyclops",
+        "crew"
+      ],
+      "prop_identity": [
+        "stone contact"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S04_A03",
+      "scene": 4,
+      "beat": 3,
+      "start_seconds_estimate": 39.547,
+      "end_seconds_estimate": 42.026,
+      "narrative_action": "Odisseu entrega vinho na mão do ciclope",
+      "environment_identity": "interior caverna — taça tem dimensão constante",
+      "cast": [
+        "odysseus",
+        "cyclops"
+      ],
+      "prop_identity": [
+        "wine bowl"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S04_A04",
+      "scene": 4,
+      "beat": 4,
+      "start_seconds_estimate": 42.026,
+      "end_seconds_estimate": 44.505,
+      "narrative_action": "Polifemo bebe, cambaleia e adormece",
+      "environment_identity": "mesmo salão rochoso com fogo ao lado",
+      "cast": [
+        "cyclops",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "bowl",
+        "fire"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S04_A05",
+      "scene": 4,
+      "beat": 5,
+      "start_seconds_estimate": 44.505,
+      "end_seconds_estimate": 46.984,
+      "narrative_action": "Marinheiros erguem estaca quente e cegam o olho",
+      "environment_identity": "fogo da caverna e olho central do ciclope",
+      "cast": [
+        "odysseus",
+        "sailors",
+        "cyclops"
+      ],
+      "prop_identity": [
+        "wood stake"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S04_A06",
+      "scene": 4,
+      "beat": 6,
+      "start_seconds_estimate": 46.984,
+      "end_seconds_estimate": 49.463,
+      "narrative_action": "Os homens se ocultam sob ovelhas e atravessam",
+      "environment_identity": "portal da caverna aberto e rebanho em fila",
+      "cast": [
+        "crew",
+        "sheep",
+        "cyclops"
+      ],
+      "prop_identity": [
+        "sheep wool"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S04_A07",
+      "scene": 4,
+      "beat": 7,
+      "start_seconds_estimate": 49.463,
+      "end_seconds_estimate": 51.941,
+      "narrative_action": "Odisseu revela nome gritando da popa",
+      "environment_identity": "mar próximo à costa e navio mantendo rumo",
+      "cast": [
+        "odysseus",
+        "crew"
+      ],
+      "prop_identity": [
+        "boat"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S04_A08",
+      "scene": 4,
+      "beat": 8,
+      "start_seconds_estimate": 51.941,
+      "end_seconds_estimate": 54.42,
+      "narrative_action": "Polifemo invoca Poseidon na costa",
+      "environment_identity": "falésia costeira, mar, gigante em escala",
+      "cast": [
+        "cyclops"
+      ],
+      "prop_identity": [
+        "sea",
+        "storm"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S05_A01",
+      "scene": 5,
+      "beat": 1,
+      "start_seconds_estimate": 54.42,
+      "end_seconds_estimate": 57.721,
+      "narrative_action": "Éolo entrega saco amarrado de couro",
+      "environment_identity": "pátio com árvores, ilhas e beira-mar",
+      "cast": [
+        "aiolos",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "leather bag"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S05_A02",
+      "scene": 5,
+      "beat": 2,
+      "start_seconds_estimate": 57.721,
+      "end_seconds_estimate": 61.023,
+      "narrative_action": "Dois marinheiros abrem saco enquanto O dorme",
+      "environment_identity": "convés do navio com O adormecido",
+      "cast": [
+        "two sailors",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "bag"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S05_A03",
+      "scene": 5,
+      "beat": 3,
+      "start_seconds_estimate": 61.023,
+      "end_seconds_estimate": 64.324,
+      "narrative_action": "Vento muda direção e afasta navio de Ítaca",
+      "environment_identity": "mar aberto com ilha distante fixa",
+      "cast": [
+        "crew"
+      ],
+      "prop_identity": [
+        "sails",
+        "waves"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S05_A04",
+      "scene": 5,
+      "beat": 4,
+      "start_seconds_estimate": 64.324,
+      "end_seconds_estimate": 67.625,
+      "narrative_action": "Lestrigões esmagam navios num porto estreito",
+      "environment_identity": "porto rochoso com vários barcos alinhados",
+      "cast": [
+        "giants",
+        "crew"
+      ],
+      "prop_identity": [
+        "boulders",
+        "ships"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S06_A01",
+      "scene": 6,
+      "beat": 1,
+      "start_seconds_estimate": 67.625,
+      "end_seconds_estimate": 70.809,
+      "narrative_action": "Circe oferece bebida no palácio verde",
+      "environment_identity": "palácio em bosque com mesa e taças",
+      "cast": [
+        "circe",
+        "sailors"
+      ],
+      "prop_identity": [
+        "goblets"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S06_A02",
+      "scene": 6,
+      "beat": 2,
+      "start_seconds_estimate": 70.809,
+      "end_seconds_estimate": 73.993,
+      "narrative_action": "Homens se transformam fisicamente em porcos",
+      "environment_identity": "mesmo palácio interior, sem troca de cenário",
+      "cast": [
+        "circe",
+        "sailors",
+        "pigs"
+      ],
+      "prop_identity": [
+        "magic",
+        "cups"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S06_A03",
+      "scene": 6,
+      "beat": 3,
+      "start_seconds_estimate": 73.993,
+      "end_seconds_estimate": 77.176,
+      "narrative_action": "Hermes entrega erva que protege Odisseu",
+      "environment_identity": "caminho sob árvores junto ao palácio",
+      "cast": [
+        "hermes",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "moly herb"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S06_A04",
+      "scene": 6,
+      "beat": 4,
+      "start_seconds_estimate": 77.176,
+      "end_seconds_estimate": 80.36,
+      "narrative_action": "Circe falha e devolve homens à forma humana",
+      "environment_identity": "mesmo palácio com reações distintas",
+      "cast": [
+        "circe",
+        "odysseus",
+        "sailors"
+      ],
+      "prop_identity": [
+        "magic reversed"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S07_A01",
+      "scene": 7,
+      "beat": 1,
+      "start_seconds_estimate": 80.36,
+      "end_seconds_estimate": 83.245,
+      "narrative_action": "Navio alcança costa envolta em névoa",
+      "environment_identity": "rio do mundo dos mortos com barco real",
+      "cast": [
+        "odysseus"
+      ],
+      "prop_identity": [
+        "boat"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S07_A02",
+      "scene": 7,
+      "beat": 2,
+      "start_seconds_estimate": 83.245,
+      "end_seconds_estimate": 86.13,
+      "narrative_action": "Tirésias anuncia perigos que restam",
+      "environment_identity": "costa fria, pedra e sombra espectral",
+      "cast": [
+        "tiresias",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "spectral hand"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S07_A03",
+      "scene": 7,
+      "beat": 3,
+      "start_seconds_estimate": 86.13,
+      "end_seconds_estimate": 89.015,
+      "narrative_action": "Odisseu reconhece a mãe e se aproxima",
+      "environment_identity": "mesma costa espectral, duas silhuetas",
+      "cast": [
+        "odysseus",
+        "anticleia"
+      ],
+      "prop_identity": [
+        "open arms"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S07_A04",
+      "scene": 7,
+      "beat": 4,
+      "start_seconds_estimate": 89.015,
+      "end_seconds_estimate": 91.9,
+      "narrative_action": "Abraço atravessa o espírito sem contato",
+      "environment_identity": "plano médio com braços não se tocando",
+      "cast": [
+        "odysseus",
+        "anticleia"
+      ],
+      "prop_identity": [
+        "transparent outline"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S08_A01",
+      "scene": 8,
+      "beat": 1,
+      "start_seconds_estimate": 91.9,
+      "end_seconds_estimate": 94.699,
+      "narrative_action": "Marinheiros protegem ouvidos com cera",
+      "environment_identity": "convés em movimento e mãos nos ouvidos",
+      "cast": [
+        "sailors"
+      ],
+      "prop_identity": [
+        "earwax"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S08_A02",
+      "scene": 8,
+      "beat": 2,
+      "start_seconds_estimate": 94.699,
+      "end_seconds_estimate": 97.498,
+      "narrative_action": "Odisseu é amarrado ao mastro pelo peito",
+      "environment_identity": "convés com cordas tensionadas e mastro",
+      "cast": [
+        "odysseus",
+        "sailors"
+      ],
+      "prop_identity": [
+        "mast",
+        "rope"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S08_A03",
+      "scene": 8,
+      "beat": 3,
+      "start_seconds_estimate": 97.498,
+      "end_seconds_estimate": 100.296,
+      "narrative_action": "Sereias cantam em pedras de mesma ilha",
+      "environment_identity": "ilha rochosa à direita da embarcação",
+      "cast": [
+        "sirens"
+      ],
+      "prop_identity": [
+        "rocks"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S08_A04",
+      "scene": 8,
+      "beat": 4,
+      "start_seconds_estimate": 100.296,
+      "end_seconds_estimate": 103.095,
+      "narrative_action": "Navio passa enquanto marinheiros ignoram gritos",
+      "environment_identity": "mesmo canal marinho, barco se afasta",
+      "cast": [
+        "crew",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "oars",
+        "rope"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S09_A01",
+      "scene": 9,
+      "beat": 1,
+      "start_seconds_estimate": 103.095,
+      "end_seconds_estimate": 106.282,
+      "narrative_action": "Plano aéreo revela redemoinho e seis cabeças",
+      "environment_identity": "estreito com Caríbdis esquerda e Cila direita",
+      "cast": [
+        "scylla",
+        "charybdis"
+      ],
+      "prop_identity": [
+        "vortex",
+        "rocks"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S09_A02",
+      "scene": 9,
+      "beat": 2,
+      "start_seconds_estimate": 106.282,
+      "end_seconds_estimate": 109.47,
+      "narrative_action": "Navio abraça parede direita evitando redemoinho",
+      "environment_identity": "geografia fixa do estreito, câmera embarcada",
+      "cast": [
+        "crew"
+      ],
+      "prop_identity": [
+        "ship",
+        "rock"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S09_A03",
+      "scene": 9,
+      "beat": 3,
+      "start_seconds_estimate": 109.47,
+      "end_seconds_estimate": 112.657,
+      "narrative_action": "Seis cabeças capturam seis marinheiros distintos",
+      "environment_identity": "parede rochosa, cabeça e braços atingem",
+      "cast": [
+        "scylla",
+        "six sailors"
+      ],
+      "prop_identity": [
+        "six necks"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S09_A04",
+      "scene": 9,
+      "beat": 4,
+      "start_seconds_estimate": 112.657,
+      "end_seconds_estimate": 115.845,
+      "narrative_action": "Odisseu vê seis postos vazios após escapar",
+      "environment_identity": "convés, bancos vazios e mar em movimento",
+      "cast": [
+        "odysseus"
+      ],
+      "prop_identity": [
+        "empty rowing benches"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S10_A01",
+      "scene": 10,
+      "beat": 1,
+      "start_seconds_estimate": 115.845,
+      "end_seconds_estimate": 118.737,
+      "narrative_action": "Famintos observam rebanho sagrado do Sol",
+      "environment_identity": "pastagem ensolarada com sete bois",
+      "cast": [
+        "crew"
+      ],
+      "prop_identity": [
+        "sacred cattle"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S10_A02",
+      "scene": 10,
+      "beat": 2,
+      "start_seconds_estimate": 118.737,
+      "end_seconds_estimate": 121.63,
+      "narrative_action": "Homens sacrificam bois enquanto O descobre",
+      "environment_identity": "acampamento entre pastagens e praia",
+      "cast": [
+        "crew",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "sacrifice fire"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S10_A03",
+      "scene": 10,
+      "beat": 3,
+      "start_seconds_estimate": 121.63,
+      "end_seconds_estimate": 124.523,
+      "narrative_action": "Zeus atinge mastro com raio e parte navio",
+      "environment_identity": "mar revolto, raio, casco quebrando",
+      "cast": [
+        "crew"
+      ],
+      "prop_identity": [
+        "mast",
+        "lightning"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S10_A04",
+      "scene": 10,
+      "beat": 4,
+      "start_seconds_estimate": 124.523,
+      "end_seconds_estimate": 127.415,
+      "narrative_action": "Só Odisseu emerge agarrado ao destroço",
+      "environment_identity": "mar após tempestade com um destroço",
+      "cast": [
+        "odysseus"
+      ],
+      "prop_identity": [
+        "wreck"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S11_A01",
+      "scene": 11,
+      "beat": 1,
+      "start_seconds_estimate": 127.415,
+      "end_seconds_estimate": 130.266,
+      "narrative_action": "Calipso encontra Odisseu desacordado",
+      "environment_identity": "praia paradisíaca com floresta e cascata",
+      "cast": [
+        "calypso",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "shore"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S11_A02",
+      "scene": 11,
+      "beat": 2,
+      "start_seconds_estimate": 130.266,
+      "end_seconds_estimate": 133.118,
+      "narrative_action": "Calipso oferece imortalidade; O olha o mar",
+      "environment_identity": "terraço insular, costa e horizonte",
+      "cast": [
+        "calypso",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "outstretched hand"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S11_A03",
+      "scene": 11,
+      "beat": 3,
+      "start_seconds_estimate": 133.118,
+      "end_seconds_estimate": 135.969,
+      "narrative_action": "Hermes ordena libertação de Odisseu",
+      "environment_identity": "bosque sagrado na ilha",
+      "cast": [
+        "hermes",
+        "calypso",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "message"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S11_A04",
+      "scene": 11,
+      "beat": 4,
+      "start_seconds_estimate": 135.969,
+      "end_seconds_estimate": 138.82,
+      "narrative_action": "Odisseu constrói jangada e parte de fato",
+      "environment_identity": "praia com tábuas, cordas e jangada",
+      "cast": [
+        "odysseus"
+      ],
+      "prop_identity": [
+        "raft"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S12_A01",
+      "scene": 12,
+      "beat": 1,
+      "start_seconds_estimate": 138.82,
+      "end_seconds_estimate": 142.126,
+      "narrative_action": "Nausícaa encontra Odisseu exausto",
+      "environment_identity": "praia feácia com vegetação e areia",
+      "cast": [
+        "nausicaa",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "shore"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
