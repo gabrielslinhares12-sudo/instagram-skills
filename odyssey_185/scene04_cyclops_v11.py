@@ -153,16 +153,28 @@ for frame,y in [(1,8.0),(90,8.0),(150,8.6),(260,10.1),(360,10.35)]:
 # Attach central oversized eye geometry to head bone so it moves with acting.
 bone=next((b for b in cyclops_arm.pose.bones if "head" in b.name.lower()),None)
 if bone is None:raise RuntimeError("HUMANOID_RIG_HEAD_BONE_NOT_FOUND")
-# Blind two eyes with worn leather mask and leave one huge centered eye.
-mask=ico("cyclops eye-cover mask",(0,0,0),(.28,.1,.18),cloth,2)
-mask.parent=cyclops_arm;mask.parent_type="BONE";mask.parent_bone=bone.name
-mask.location=(0,-.12,.045)
-large=ico("the one central Cyclops eye",(0,0,0),(.11,.055,.105),eye,3)
-large.parent=cyclops_arm;large.parent_type="BONE";large.parent_bone=bone.name
-large.location=(0,-.25,.05)
-pupil=ico("one iris",(0,0,0),(.05,.028,.065),iris,3)
-pupil.parent=cyclops_arm;pupil.parent_type="BONE";pupil.parent_bone=bone.name
-pupil.location=(0,-.302,.05)
+# Attach one large, recognizable cyclopean eye to an actual skinned head
+# bone, using WORLD-SPACE placement to avoid arbitrary bone-local placement.
+scene.frame_set(1)
+bpy.context.view_layer.update()
+headworld=cyclops_arm.matrix_world @ bone.head
+forward=(polyphemus.matrix_world.to_quaternion() @ Vector((0,-1,0))).normalized()
+def facepart(name,at,scale,ma):
+ ob=ico(name,at,scale,ma,3)
+ bpy.context.view_layer.update()
+ world=ob.matrix_world.copy()
+ ob.parent=cyclops_arm;ob.parent_type="BONE";ob.parent_bone=bone.name
+ ob.matrix_world=world
+ return ob
+mask_position=headworld+Vector((0,0,.18))+forward*.44
+facepart("Cyclops brow covers both natural human eye sockets",mask_position,
+ (.60,.37,.33),cloth)
+facepart("ONE_ONLY_CYCLOPEAN_WHITE_EYE",mask_position+forward*.26,
+ (.40,.28,.34),eye)
+facepart("ONE_ONLY_AMBER_IRIS",mask_position+forward*.51,
+ (.18,.13,.17),iris)
+facepart("ONE_ONLY_BLACK_PUPIL",mask_position+forward*.63,
+ (.088,.06,.084),material("dark central one pupil",(.017,.011,.008)))
 # Set: light escapes through opening until sealed; boulder blocks the beam.
 def lamp(name,kind,xyz,energy,color,size=3):
  L=bpy.data.lights.new(name,kind);L.energy=energy;L.color=color
@@ -173,10 +185,37 @@ def lamp(name,kind,xyz,energy,color,size=3):
 lamp("Dusk key daylight","AREA",(1,-7,9),2200,(.83,.78,.60),7)
 lamp("Cold cave bounce","AREA",(0,8,7),650,(.18,.35,.60),4)
 lamp("Rim cyclops","AREA",(10,2,8),1100,(.80,.38,.21),5)
-cam=bpy.data.cameras.new("35mm dramatic scale camera")
-ob=bpy.data.objects.new("Stage continuity camera",cam);scene.collection.objects.link(ob)
-scene.camera=ob
-ob.location=(16.7,-29.0,11.4);look_at(ob,(2.4,2.8,3.5));cam.lens=19;cam.clip_end=140
+lamp("warm evening bounce","AREA",(-6,-5,12),1500,(1,.69,.37),9)
+lamp("soft overcast bounce","AREA",(6,-12,9),1300,(.55,.62,.83),12)
+# Physically shaded texture detail, not uniformly grey plastic surfaces.
+for rocky in [rockmat,sandmat]:
+ ns=rocky.node_tree.nodes
+ bs=ns.get("Principled BSDF")
+ texnode=ns.new("ShaderNodeTexNoise")
+ texnode.inputs["Scale"].default_value=8 if rocky==rockmat else 18
+ texnode.inputs["Detail"].default_value=4
+ bump=ns.new("ShaderNodeBump")
+ bump.inputs["Strength"].default_value=.3
+ bump.inputs["Distance"].default_value=.09
+ rocky.node_tree.links.new(texnode.outputs["Fac"],bump.inputs["Height"])
+ rocky.node_tree.links.new(bump.outputs["Normal"],bs.inputs["Normal"])
+cam=bpy.data.cameras.new("18mm wide geographic situation")
+ob=bpy.data.objects.new("Wide shows giant, cave mouth, and stone simultaneously",cam)
+scene.collection.objects.link(ob);scene.camera=ob
+ob.location=(16.7,-29.0,11.4);look_at(ob,(2.4,2.8,3.5));cam.lens=18;cam.clip_end=180
+close_cam=bpy.data.cameras.new("25mm actual body effort and face")
+close_ob=bpy.data.objects.new("Close real character action",close_cam)
+scene.collection.objects.link(close_ob)
+close_ob.location=(18,-18,8.7);look_at(close_ob,(7.3,2.1,3.6));close_cam.lens=24;close_cam.clip_end=180
+inside_cam=bpy.data.cameras.new("27mm trapped crew consequence")
+inside_ob=bpy.data.objects.new("Inside cavern no exit",inside_cam)
+scene.collection.objects.link(inside_ob)
+inside_ob.location=(1.5,10.8,5.7);look_at(inside_ob,(0,2.7,2.9))
+inside_cam.lens=26;inside_cam.clip_end=180
+for fr,which,marker in [(1,ob,"OPEN_CAVE_GIANT_VISIBLE"),
+ (125,close_ob,"GIGANTIC_HANDS_PUSH_MONOLITH"),
+ (286,inside_ob,"TRAPPED_CREW_AFTER_CLOSURE")]:
+ p=scene.timeline_markers.new(marker,frame=fr);p.camera=which
 try:
  scene.view_settings.view_transform="AgX"
 except Exception:
