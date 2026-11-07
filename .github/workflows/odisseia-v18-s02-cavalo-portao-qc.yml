@@ -1,13 +1,8 @@
+# DEPRECATED: User explicitly selected the current 2D TUE format on 2026-11-07.
+# This experimental 3D pipeline is archived and no longer runs on push.
 name: Odisseia V18 - S02 cavalo 3D real atravessando portao de Troia (QC privado)
-on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/odisseia-v18-s02-cavalo-portao-qc.yml'
-      - 'odyssey_185/scene02_trojan_horse_v18.py'
-      - 'odyssey_185/ara3d_troiano_a_v18.json'
-      - 'odyssey_185/ara3d_troiano_b_v18.json'
-  workflow_dispatch:
+on: workflow_dispatch
+
 permissions:
   contents: read
 concurrency:
