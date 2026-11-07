@@ -42,7 +42,7 @@
 
 **Narração integral (sem alterações):** “Um velho mendigo ergueu um arco diante de dezenas de guerreiros. Ninguém imaginava quem ele realmente era.”
 
-**Elenco / figurinos:** CHAR_ODYSSEUS:mendigo; CHAR_ANTINOOS; CHAR_EURYMACHOS; CHAR_PRETENDENTE_A; CHAR_PRETENDENTE_B; CHAR_PENELOPE. **Set:** `SET_PALACIO_SALAO`. **Props rastreáveis:** `PROP_ARCO_REAL`, `PROP_MACHADOS_12`, `PROP_TACA_BRONZE`, `PROP_TOCHA_SALAO`.
+**Elenco / figurinos:** CHAR_ODYSSEUS:mendigo; CHAR_ANTINOOS; CHAR_EURYMACHOS; CHAR_PRETENDENTE_A; CHAR_PRETENDENTE_B. **Set:** `SET_PALACIO_SALAO`. **Props rastreáveis:** `PROP_ARCO_REAL`, `PROP_MACHADOS_12`, `PROP_TACA_BRONZE`, `PROP_TOCHA_SALAO`.
 
 **Direção de arte e luz:** flashforward no salão micênico: pilares de madeira, reboco pigmentado, bancos e comida; luz âmbar de tochas com sombras volumétricas. Odisseu veste linho rasgado e manto cinza, rosto envelhecido por disfarce, sem capacete.
 
@@ -371,7 +371,7 @@
 
 **Narração integral (sem alterações):** “Penélope anunciou uma prova: quem armasse o arco de Odisseu e atravessasse doze machados com uma flecha poderia desposá-la. Todos falharam. O mendigo conseguiu. Era o rei. Com Telêmaco, derrotou os pretendentes.”
 
-**Elenco / figurinos:** CHAR_ODYSSEUS:mendigo; CHAR_TELEMACHUS; CHAR_ANTINOOS; CHAR_EURYMACHOS; CHAR_PRETENDENTE_A; CHAR_PRETENDENTE_B. **Set:** `SET_PALACIO_SALAO`. **Props rastreáveis:** `PROP_ARCO_REAL`, `PROP_FLECHA_REAL`, `PROP_MACHADOS_12`, `PROP_ESCUDO_PRETENDENTE`, `PROP_TACA_BRONZE`.
+**Elenco / figurinos:** CHAR_ODYSSEUS:mendigo; CHAR_TELEMACHUS; CHAR_ANTINOOS; CHAR_EURYMACHOS; CHAR_PRETENDENTE_A; CHAR_PRETENDENTE_B; CHAR_PENELOPE. **Set:** `SET_PALACIO_SALAO`. **Props rastreáveis:** `PROP_ARCO_REAL`, `PROP_FLECHA_REAL`, `PROP_MACHADOS_12`, `PROP_ESCUDO_PRETENDENTE`, `PROP_TACA_BRONZE`.
 
 **Direção de arte e luz:** Mesmo salão do prólogo, mesmas marcas do arco, das mesas e do piso. Pretendentes vestem túnicas e mantos nobres diferentes; 12 machados reais alinhados na profundidade.
 
