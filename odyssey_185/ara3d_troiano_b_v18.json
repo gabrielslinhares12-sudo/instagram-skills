@@ -1,0 +1,52 @@
+{
+  "name": "TROIANO_B_GATE_HORSE_ROPE_PULLER",
+  "seed": 9057,
+  "gender": 1,
+  "age": 0.31,
+  "muscle": 0.48,
+  "weight": 0.4,
+  "height": 0.53,
+  "proportions": 0.72,
+  "african": 0.05,
+  "asian": 0.04,
+  "caucasian": 0.91,
+  "skin": "auto",
+  "skinTint": "#b88b6a",
+  "eyes": "brownlight",
+  "eyebrows": "eyebrow003",
+  "hair": "short04",
+  "hairTint": "#2c1f17",
+  "facialHair": "none",
+  "beardColor": "#39271c",
+  "outfit": "none",
+  "top": "tunic",
+  "bottom": "wrapper_knee",
+  "underwear": true,
+  "shoes": "sandals",
+  "hat": "none",
+  "accessories": [
+    "waist_sash"
+  ],
+  "garmentStyles": {
+    "tunic": {
+      "pattern": "solid",
+      "color": "#577689",
+      "color2": "#b2a08b"
+    },
+    "wrapper_knee": {
+      "pattern": "solid",
+      "color": "#b2a08b"
+    },
+    "waist_sash": {
+      "pattern": "solid",
+      "color": "#68543c"
+    }
+  },
+  "detail": "medium",
+  "rig": "game",
+  "faceBones": true,
+  "animations": true,
+  "weapon": "none",
+  "carry": "none",
+  "expression": "concerned"
+}
