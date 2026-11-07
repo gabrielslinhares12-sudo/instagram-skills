@@ -1,0 +1,41 @@
+{
+  "schema": "instagram_tue_reel_preflight_v1",
+  "id": "tue-2026-11-07-18-predios-altos-balancam",
+  "account": "temumaexplicacao",
+  "title": "Por que prédios altos balançam?",
+  "scheduled_local": "2026-11-07T18:00:00-03:00",
+  "scheduled_utc": "2026-11-07T21:00:00Z",
+  "kind": "reel",
+  "original_media": {
+    "filename": "07nov_18h_predios_altos_balancam.mp4",
+    "library_path": "/Instagram TUE/07nov_18h_predios_altos_balancam.mp4",
+    "library_file_id": "libfile_1aa847cd880481918f57ee714b6e5405",
+    "bytes_reported": 40532889,
+    "duration_seconds_reported": 54,
+    "dimensions_reported": "1080x1920",
+    "frame_rate_reported": 30,
+    "audio_reported": "AAC",
+    "raw_bytes_available_to_publisher": false,
+    "caution": "Video technical specs are from earlier production context and have NOT been independently verified in this session."
+  },
+  "draft_caption": "🏙️ PRÉDIOS ALTOS BALANÇAM? Sim — e isso faz parte da engenharia!\n\nO vento exerce forças laterais, e arranha-céus são projetados para ter certa flexibilidade. Estruturas resistentes e sistemas de amortecimento ajudam a controlar o movimento. Alguns edifícios ainda usam grandes massas móveis para reduzir as oscilações.\n\nO importante é que o movimento fique dentro dos limites considerados no projeto. Você teria coragem de morar no último andar?\n\n#TemUmaExplicacao #EngenhariaCivil #ArranhaCeus #Curiosidades #Ciencia",
+  "caption_status": "draft_to_match_exact_video_after_preview",
+  "publishing_method": "official_meta_api_via_github_actions",
+  "music": false,
+  "story": false,
+  "stage": "BLOCKED_AWAITING_AUTHORIZED_MEDIA_BYTES",
+  "approved_for_queue": false,
+  "sha256_verified": false,
+  "media_public_url": null,
+  "meta_receipt": null,
+  "duplicate_guard": "Before adding to content/schedule.json check content/publication-state.json and exact Meta permalink; do not upload twice.",
+  "actions_to_release": [
+    "Obtain actual MP4 bytes with authorization, do not use a guessed sandbox or public URL.",
+    "Verify ffprobe duration, video dimensions, framerate, codecs, play-through, captions, audio sync and image content.",
+    "Keep original narration and edit; never replace footage, never mark complete before QC.",
+    "Stage original MP4 on public HTTPS media origin accessible to Meta; compute SHA256 and record immutable URL.",
+    "Add exactly one approved reel to content/schedule.json for 2026-11-07T21:00:00Z only if QA passes.",
+    "Verify preflight Meta permissions, matching Instagram account, successful publication with media id and permalink."
+  ],
+  "evidence_note": "MP4 was located in the project's Library (40,532,889 bytes), but programmatic raw-file access was rejected; no production binary was uploaded and no 18:00 publication is confirmed."
+}
