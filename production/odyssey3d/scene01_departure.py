@@ -117,20 +117,34 @@ def add_ship():
     plank=cube("gangplank attached to shoreline",(-1.68,-1.57,.61),(.92,3.20,.14),WOODLIGHT,.07)
     plank.rotation_euler[0]=.24
     for i in range(6):
-        cube("gangplank cross grip",(-1.68,-2.82+i*.47,.64+i*.06),(.80,.10,.04),WOOD)
+        grip=cube("gangplank cross grip",(-1.68,-2.82+i*.47,.64+i*.06),(.80,.10,.04),WOOD)
+        # Keep decking fastened to plank during physical retraction, not scattered across beach.
+        bpy.context.view_layer.update()
+        old_world=grip.matrix_world.copy()
+        grip.parent=plank
+        grip.matrix_world=old_world
     # Movement after crew is physically on board.
     root.location=(1.2,1.3,.03);root.keyframe_insert(data_path="location",frame=1)
     root.location=(1.2,1.3,.03);root.keyframe_insert(data_path="location",frame=480)
     root.location=(2.8,5.9,.06);root.keyframe_insert(data_path="location",frame=600)
     root.rotation_euler=(0,0,0);root.keyframe_insert(data_path="rotation_euler",frame=480)
     root.rotation_euler=(.018,-.02,.065);root.keyframe_insert(data_path="rotation_euler",frame=600)
-    # Physical progression: plank is drawn aboard only at departure.
-    plank.scale=(1,1,1);plank.keyframe_insert(data_path="scale",frame=470)
-    plank.scale=(1,.04,1);plank.keyframe_insert(data_path="scale",frame=505)
+    # Retract intact gangplank into the boat after last sailor's feet touch deck.
+    # The six grips are parented, hence cannot remain floating on the beach.
+    plank.location=(-1.68,-1.57,.61)
+    plank.keyframe_insert(data_path="location",frame=470)
+    plank.rotation_euler[0]=.24
+    plank.keyframe_insert(data_path="rotation_euler",frame=470)
+    plank.location=(-1.68,.85,1.04)
+    plank.keyframe_insert(data_path="location",frame=530)
+    plank.rotation_euler[0]=0.0
+    plank.keyframe_insert(data_path="rotation_euler",frame=530)
     return root
 def make_environment():
-    cube("one walkable sandy beach",(0,-3.3,-.19),(26,15,.32),SANDHI)
-    cube("one water surface behind landing",(0,8,-.15),(50,22,.08),SEA)
+    # Actual coastline: dry sand ends at y=-0.6, water begins beyond that line.
+    # The ship floats on water rather than sitting above the beach geometry.
+    cube("one walkable sandy beach",(0,-7.2,-.19),(26,13.2,.32),SANDHI)
+    cube("one water surface behind landing",(0,12,-.15),(50,25.2,.08),SEA)
     for i in range(26):
         x=random.uniform(-12,11);y=random.uniform(-10,-2)
         size=random.uniform(.15,.65)
@@ -157,9 +171,8 @@ def make_environment():
         if any(tag in city_ob.name.lower() for tag in ("troy ","crenellation","masonry joint","ruined burning house","smoldering fire","smoke above")):
             city_ob.location.x -= 5.2
     # Torches and boatside smoky atmosphere at physically separate z depths.
-    for i in range(7):
-        x=-10+i*1.55
-        sphere("smoke above Troy",(x,13.1,5.0+i%2*.7),(.60,.35,.38),ASH,10,6)
+    # Don't make floating gray balls stand in for volumetric smoke.
+    # For this storyboard retain ruined walls and ember-colored fire only.
     for i in range(21):
         x=-10+i*.9
         beam("shore scattered charred wood",(x,-5+sin(i)*2,-.02),(x+.23,-4.9+sin(i)*2,-.01),.05,WOOD)
@@ -186,31 +199,52 @@ def actor(name,file,ship,origin,arrival,enter,finish,scale=.9):
     root.scale=(scale,scale,scale)
     for rig in arm:
         walk=find_action(acts,"Walking_A")
+        idle=find_action(acts,"Idle")
         if walk:
             rig.animation_data_clear();anim=rig.animation_data_create()
-            track=anim.nla_tracks.new();track.name="true bone locomotion"
-            strip=track.strips.new("walk feet and knees",1,walk)
+            track=anim.nla_tracks.new();track.name="actual bone locomotion then stationary on deck"
+            strip=track.strips.new("walk only while actor translates",max(1,enter),walk)
             dur=max(1,strip.action_frame_end-strip.action_frame_start)
+            strip.repeat=max(1,(finish-enter)/dur)
             strip.frame_end=finish
-            strip.repeat=max(1,(finish-1)/dur)
             strip.blend_type="REPLACE"
+            if idle:
+                idle_strip=track.strips.new("idle after boarding, no frozen walk",finish+1,idle)
+                idle_duration=max(1,idle_strip.action_frame_end-idle_strip.action_frame_start)
+                idle_strip.repeat=max(1,(600-finish-1)/idle_duration)
+                idle_strip.frame_end=600
+                idle_strip.blend_type="REPLACE"
             print("ODYSSEY_RIG_BONES",name, [b.name for b in rig.data.bones[:12]],flush=True)
-    # Root location is relative to the ship root. Ship remains motionless until frame 480.
-    # Beach actor trajectories each have a separate lane and start time:
-    # approach -> gangplank -> ship deck -> stop. No clones, teleportation or cutout masks.
-    ox,oy=origin; ax,ay=arrival
+            print("ODYSSEY_ACTING",name,"WALK",walk.name,"IDLE",idle.name if idle else None,"ENTER",enter,"FINISH",finish,flush=True)
+    # All actors use *one* physical gangplank. Approach it in separate start
+    # intervals, go up along its centerline and arrive at three distinct deck spots.
+    # Convert WORLD path into ship-parent local coordinates (ship stays still until 480).
+    ox,oy=origin
+    ax,ay=arrival
+    def local(world):return (world[0]-1.2, world[1]-1.3,world[2]-.03)
+    duration=finish-enter
     keys=[
-        (1,(ox,oy,0)),
-        (enter,(ox,oy,0)),
-        (int(enter+(finish-enter)*.42), (ox+(ax-ox)*.50, oy+(ay-oy)*.50,.12)),
-        (finish,(ax,ay,.84)),
-        (600,(ax,ay,.84))
+        (1,             (ox,oy,.07)),
+        (enter,         (ox,oy,.07)),
+        (int(enter+.20*duration), (-3.7,-4.0,.07)),
+        (int(enter+.42*duration), (-1.68,-2.88,.28)),
+        (int(enter+.64*duration), (-1.68,-1.00,.70)),
+        (int(enter+.81*duration), (-1.68,.28,1.02)),
+        (finish,        (ax,ay,1.04)),
+        (600,           (ax,ay,1.04))
     ]
-    for frame,xyz in keys:
-        root.location=xyz;root.keyframe_insert(data_path="location",frame=frame)
-    # Model local forward is +Y; set orientation based on movement path.
-    heading=math.atan2(ay-oy,ax-ox)
-    root.rotation_euler=(0,0,heading-math.pi/2)
+    for frame,world in keys:
+        root.location=local(world)
+        root.keyframe_insert(data_path="location",frame=frame)
+    # Face the actual direction of the plank as soon as actor reaches it.
+    for fr,heading in [(enter,-.10),(int(enter+.25*duration),0.85),
+                       (int(enter+.45*duration),math.pi/2),
+                       (int(enter+.80*duration),math.pi/2),
+                       (finish,1.25)]:
+        root.rotation_euler=(0,0,heading-math.pi/2)
+        root.keyframe_insert(data_path="rotation_euler",frame=fr)
+    print("ODYSSEY_ACTOR_PATH",name,"START",origin,"PLANK",(-1.68,-2.88),
+          "DECK",arrival,flush=True)
     return root
 def setup():
     bpy.ops.object.select_all(action="SELECT");bpy.ops.object.delete(use_global=False)
@@ -247,9 +281,9 @@ def setup():
     ship=add_ship()
     prefix=ASSETS/"addons"/"kaykit_character_pack_adventures"/"Characters"/"gltf"
     # KayKit 3D humanoids are CC0. Each is a real armature/animated mesh.
-    actor("ODYSSEUS bronze leader",prefix/"Knight.glb",ship,(-7.5,-5.4),(-.75,-.17),1,440,.83)
-    actor("ROWER 01 distinct rogue",prefix/"Rogue.glb",ship,(-9.4,-4.75),(-1.6,.15),58,465,.83)
-    actor("ROWER 02 distinct barbarian",prefix/"Barbarian.glb",ship,(-8.9,-7.0),(.0,.10),112,479,.87)
+    actor("ODYSSEUS bronze leader",prefix/"Knight.glb",ship,(-7.5,-5.4),(-.95,1.10),1,385,.78)
+    actor("ROWER 01 distinct rogue",prefix/"Rogue.glb",ship,(-9.4,-4.75),(.15,1.18),70,432,.76)
+    actor("ROWER 02 distinct barbarian",prefix/"Barbarian.glb",ship,(-8.9,-7.0),(1.25,1.12),135,473,.78)
     cam_data=bpy.data.cameras.new("35mm live-action composition")
     cam=bpy.data.objects.new("single real perspective camera",cam_data)
     bpy.context.collection.objects.link(cam)
@@ -260,23 +294,23 @@ def setup():
         cam_obj.data.lens=lens
     # Three actual perspective camera setups, edited together as an intelligible
     # action. No 2-D pan and no overlay of a different character onto the set.
-    configure_cam(cam,(5.0,-11.5,4.55),(.65,1.0,2.05),31)
+    configure_cam(cam,(4.5,-10.5,5.20),(-.45,1.30,2.25),38)
     camera_b_data=bpy.data.cameras.new("shoreline physical boarding POV")
     camera_b=bpy.data.objects.new("CAM-B boarding in one 3D world",camera_b_data)
     bpy.context.collection.objects.link(camera_b)
-    configure_cam(camera_b,(3.0,-7.5,3.40),(-.35,-.65,1.53),32)
+    configure_cam(camera_b,(2.6,-8.2,4.55),(-1.40,-1.0,1.50),26)
     camera_c_data=bpy.data.cameras.new("departing galley 3D perspective")
     camera_c=bpy.data.objects.new("CAM-C ship sails away",camera_c_data)
     bpy.context.collection.objects.link(camera_c)
-    configure_cam(camera_c,(4.85,-11.7,4.70),(2.20,3.20,2.25),35)
+    configure_cam(camera_c,(4.85,-11.0,5.45),(1.40,2.30,2.25),38)
     scene.camera=cam
     for fr,obj,mark in [(1,cam,"A - Trojan coast"),(150,camera_b,"B - actual boarding"),(480,camera_c,"C - depart")]:
         scene.timeline_markers.new(mark,frame=fr).camera=obj
     scene.world.color=(.46,.49,.55)
     scene.world.use_nodes=True
     bg=scene.world.node_tree.nodes.get("Background")
-    bg.inputs["Color"].default_value=(.40,.46,.53,1)
-    bg.inputs["Strength"].default_value=.83
+    bg.inputs["Color"].default_value=(.31,.37,.43,1)
+    bg.inputs["Strength"].default_value=.35
     # True PBR lighting instead of the black, unsupported Workbench studio shader.
     def add_light(name,kind,location,color,energy,angle=0):
         light=bpy.data.lights.new(name,kind)
@@ -288,12 +322,13 @@ def setup():
         bpy.context.collection.objects.link(obj)
         obj.location=location
         obj.rotation_euler=(Vector((0,0,0))-obj.location).to_track_quat("-Z","Y").to_euler()
-    add_light("golden evening sunlight", "SUN", (-5,-7,14), (1.0,.81,.62),3.4)
-    add_light("sand bounce diffuse key", "AREA", (-1,-6,10), (1,.86,.69),1700,12)
-    add_light("ship fill to reveal faces", "AREA", (7,-2,8), (.66,.81,1.0),1200,10)
-    add_light("city flame amber rim", "AREA", (-10,9,7), (1,.45,.20),600,8)
+    add_light("golden evening sunlight", "SUN", (-5,-7,14), (1.0,.81,.62),1.6)
+    add_light("sand bounce diffuse key", "AREA", (-1,-6,10), (1,.86,.69),600,12)
+    add_light("ship fill to reveal faces", "AREA", (7,-2,8), (.66,.81,1.0),420,10)
+    add_light("city flame amber rim", "AREA", (-10,9,7), (1,.45,.20),260,8)
     scene.view_settings.view_transform="Standard"
-    scene.view_settings.exposure=.65
+    scene.view_settings.look="Medium High Contrast"
+    scene.view_settings.exposure=-.65
     scene.render.filepath=str(OUT/"frames"/"troia_departure_")
     print("ODYSSEY_SCENE_READY","meshes",len([x for x in bpy.data.objects if x.type=="MESH"]),"rindex",scene.render.resolution_percentage,flush=True)
     blend=OUT/"odyssey_3d_departure.blend"
