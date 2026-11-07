@@ -1,0 +1,52 @@
+{
+  "name": "EURYMACHOS_CALCULATING_DISTINCT_MY_S01_V18",
+  "seed": 8144,
+  "gender": 1,
+  "age": 0.46,
+  "muscle": 0.42,
+  "weight": 0.38,
+  "height": 0.59,
+  "proportions": 0.72,
+  "african": 0.05,
+  "asian": 0.04,
+  "caucasian": 0.91,
+  "skin": "auto",
+  "skinTint": "#c5a181",
+  "eyes": "brownlight",
+  "eyebrows": "eyebrow003",
+  "hair": "short04",
+  "hairTint": "#121218",
+  "facialHair": "short_beard",
+  "beardColor": "#121218",
+  "outfit": "none",
+  "top": "tunic",
+  "bottom": "wrapper_knee",
+  "underwear": true,
+  "shoes": "sandals",
+  "hat": "none",
+  "accessories": [
+    "waist_sash"
+  ],
+  "garmentStyles": {
+    "tunic": {
+      "pattern": "solid",
+      "color": "#63547b",
+      "color2": "#8c7b89"
+    },
+    "wrapper_knee": {
+      "pattern": "solid",
+      "color": "#8c7b89"
+    },
+    "waist_sash": {
+      "pattern": "solid",
+      "color": "#b59b5b"
+    }
+  },
+  "detail": "medium",
+  "rig": "game",
+  "faceBones": true,
+  "animations": true,
+  "weapon": "none",
+  "carry": "none",
+  "expression": "concerned"
+}
