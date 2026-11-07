@@ -30,7 +30,13 @@
     "prop_ownership_and_collision",
     "explicit_setup_action_consequence",
     "voice_timecode_must_match",
-    "visual_qc_required_before_4K60_or_posting"
+    "visual_qc_required_before_4K60_or_posting",
+    "persistent_character_identity",
+    "complete_helmet_costume_and_prop_construction",
+    "narration_to_visual_shot_direction",
+    "complete_scene_topology",
+    "no_cloned_cast_or_motion_fill",
+    "fail_closed_art_and_story_review"
   ],
   "episode01_shots": [
     {
@@ -222,5 +228,14 @@
   "unfinished_episodes": [
     2,
     3
-  ]
+  ],
+  "production_standard": "odyssey_v8/PADRAO_MESTRE_TUE_ANIMACAO.md",
+  "quality_gates": {
+    "character_design_locked_before_render": true,
+    "complete_props_and_set_required": true,
+    "original_voice_timeline_required": true,
+    "real_3d_depth_required": true,
+    "visual_qc_required": true,
+    "publication_blocked_until_approved": true
+  }
 }
