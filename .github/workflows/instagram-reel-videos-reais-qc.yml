@@ -176,7 +176,7 @@ jobs:
           }
           (W/"metadata.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
           print("PREVIEW_RENDERED",str(OUT),json.dumps(data),digest,flush=True)
-          
+          PY
       - name: Upload private editorial review artifact (never publishes)
         uses: actions/upload-artifact@v4
         with:
