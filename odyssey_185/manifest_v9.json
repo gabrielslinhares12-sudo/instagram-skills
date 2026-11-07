@@ -1,0 +1,381 @@
+{
+  "version": "ODYSSEY-185-3D-BLENDER-V9",
+  "target_seconds": 185,
+  "format": {
+    "width": 2160,
+    "height": 3840,
+    "fps": 60,
+    "codec": "h264",
+    "audio": "AAC 48kHz stereo"
+  },
+  "language": "pt-BR",
+  "voice": {
+    "engine": "Google AI Studio web",
+    "name": "Rasalgethi",
+    "api_paid": false,
+    "source_audio_ready": false
+  },
+  "engine": "Blender 3D rigged scenes plus FFmpeg + GitHub Actions (cloud, no GUTHY, no Runway)",
+  "source": "homero / adaptação de roteiro fornecida pelo usuário",
+  "publication": {
+    "enabled": false,
+    "reason": "QC artístico, físico, legendas e áudio final pendentes"
+  },
+  "production_status": "narrative_manifest_created_not_rendered",
+  "art_direction": {
+    "era": "Mycenaean Late Bronze Age",
+    "look": "high-end stylized realism",
+    "no": "no 2D overlays, no slides, no Roman armour, no classical marble temples, no repeated motions, no fake still-motion"
+  },
+  "asset_contracts": {
+    "Odysseus": {
+      "same_face_between_variants": true,
+      "variants": [
+        "guerreiro",
+        "viajante",
+        "mendigo",
+        "revelado"
+      ],
+      "greek_bronze_age": true
+    },
+    "Polifemo": {
+      "height_m": 5.5,
+      "eye_count": 1,
+      "portal_boulder_blocking": "larger_than_opening"
+    },
+    "ship": {
+      "fixed_world_scale": true,
+      "mast_tied_to_hull": true
+    },
+    "trojan_horse": {
+      "legs": 4,
+      "neck": true,
+      "head": true,
+      "doors": true
+    },
+    "Argos": {
+      "one_unique_old_dog": true
+    },
+    "bow": {
+      "keep_prop_identical_between_s01_s15": true
+    },
+    "axes": {
+      "count": 12,
+      "arrow_passes_eyes": true
+    },
+    "olive_bed": {
+      "built_into_living_tree": true
+    }
+  },
+  "scene_count": 16,
+  "scenes": [
+    {
+      "id": "S01",
+      "title": "Abertura - O Arco",
+      "location": "salão micênico",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "duration_seconds": 7,
+      "cast": [
+        "Odisseu_mendigo",
+        "Antinoo",
+        "Eurimaco",
+        "pretendentes"
+      ],
+      "action_contract": "close-up de arco; Odisseu tenciona corda; pretendentes zombam; olhar determinado",
+      "narration": "Um velho mendigo ergueu um arco diante de dezenas de guerreiros. Ninguém imaginava quem ele realmente era.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S02",
+      "title": "A Queda de Troia",
+      "location": "Troia e praia",
+      "start_seconds": 7,
+      "end_seconds": 17,
+      "duration_seconds": 10,
+      "cast": [
+        "Odisseu_guerreiro",
+        "tripulacao",
+        "troianos"
+      ],
+      "action_contract": "cavalo anatômico entra pela porta; homens emergem e abrem portão; frota zarpa",
+      "narration": "Era Odisseu, o estrategista que ajudara a destruir Troia com um gigantesco cavalo de madeira. Após dez anos de guerra, ele finalmente partiu para casa.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S03",
+      "title": "Cícones e lotófagos",
+      "location": "costa cícone e ilha do lótus",
+      "start_seconds": 17,
+      "end_seconds": 25,
+      "duration_seconds": 8,
+      "cast": [
+        "Odisseu_viajante",
+        "tripulacao",
+        "cicones",
+        "lotofagos"
+      ],
+      "action_contract": "retirada sob ataque; fruto comido; Odisseu retém braço e leva marinheiro à embarcação",
+      "narration": "Mas a viagem começou com tragédias. Na terra dos cícones, perdeu homens em combate. Entre os lotófagos, precisou resgatar companheiros que haviam esquecido o próprio lar.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S04",
+      "title": "Polifemo",
+      "location": "caverna de Polifemo e costa",
+      "start_seconds": 25,
+      "end_seconds": 43,
+      "duration_seconds": 18,
+      "cast": [
+        "Odisseu_viajante",
+        "tripulacao",
+        "Polifemo",
+        "ovelhas"
+      ],
+      "action_contract": "gigante fecha entrada com rocha maior que passagem; vinho; estaca sem gore; homens fogem sob ovelhas; invocação a Poseidon",
+      "narration": "Em uma caverna, foram aprisionados por Polifemo, um gigante de um olho só. Odisseu o embriagou, disse chamar-se Ninguém e cegou o monstro. Seus homens escaparam escondidos sob ovelhas. Mas, ao revelar seu verdadeiro nome, Odisseu provocou a vingança de Poseidon.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S05",
+      "title": "Éolo e lestrigões",
+      "location": "convés e porto estreito",
+      "start_seconds": 43,
+      "end_seconds": 53,
+      "duration_seconds": 10,
+      "cast": [
+        "Odisseu_viajante",
+        "tripulacao",
+        "Eolo",
+        "lestrigoes"
+      ],
+      "action_contract": "saco recebido e aberto por marinheiros; rajada muda rota; pedras destroem os navios; um foge",
+      "narration": "Éolo lhe entregou um saco contendo os ventos perigosos. Seus homens o abriram por engano, afastando a frota de Ítaca. Depois, gigantes lestrigões destruíram quase todos os navios.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S06",
+      "title": "Circe",
+      "location": "ilha Eéia palácio",
+      "start_seconds": 53,
+      "end_seconds": 64,
+      "duration_seconds": 11,
+      "cast": [
+        "Odisseu_viajante",
+        "tripulacao",
+        "Circe",
+        "Hermes"
+      ],
+      "action_contract": "marinheiro bebe e vira porco no mesmo volume físico; Hermes oferece erva; resistência e reversão",
+      "narration": "Na ilha de Circe, seus companheiros foram transformados em porcos. Protegido por Hermes, Odisseu resistiu à magia e conseguiu libertá-los. Mas, antes de continuar, recebeu uma ordem terrível.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S07",
+      "title": "Mundo dos mortos",
+      "location": "costa dos mortos",
+      "start_seconds": 64,
+      "end_seconds": 74,
+      "duration_seconds": 10,
+      "cast": [
+        "Odisseu_viajante",
+        "Tiresias",
+        "Anticleia"
+      ],
+      "action_contract": "Tirésias adverte; Odisseu tenta abraçar mãe, não consegue; permanece imóvel abalado",
+      "narration": "Ele precisou descer aos limites do mundo dos mortos. Ali, Tirésias revelou os perigos restantes. Odisseu também encontrou a própria mãe, mas não conseguiu abraçá-la.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S08",
+      "title": "Sereias",
+      "location": "rochedos e convés",
+      "start_seconds": 74,
+      "end_seconds": 85,
+      "duration_seconds": 11,
+      "cast": [
+        "Odisseu_viajante",
+        "tripulacao",
+        "sereias"
+      ],
+      "action_contract": "marinheiros tapam ouvidos e amarram Odisseu ao mastro; ele se debate sem mover sua base; navio cruza os rochedos",
+      "narration": "Depois vieram as sereias. Seu canto atraía navegantes para a morte. Odisseu pediu para ser amarrado ao mastro, enquanto seus homens remavam com os ouvidos protegidos.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S09",
+      "title": "Cila e Caríbdis",
+      "location": "estreito rochoso",
+      "start_seconds": 85,
+      "end_seconds": 96,
+      "duration_seconds": 11,
+      "cast": [
+        "Odisseu_viajante",
+        "tripulacao",
+        "Cila",
+        "Caribdis"
+      ],
+      "action_contract": "plano aéreo fixa lado do redemoinho e seis cabeças; seis marinheiros retirados; vazio do convés",
+      "narration": "Em um estreito mortal, precisou escolher entre Caríbdis, um redemoinho gigantesco, e Cila, um monstro de seis cabeças. O navio escapou, mas seis marinheiros morreram.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S10",
+      "title": "O último navio",
+      "location": "Trinácia e tempestade",
+      "start_seconds": 96,
+      "end_seconds": 108,
+      "duration_seconds": 12,
+      "cast": [
+        "Odisseu_viajante",
+        "tripulacao"
+      ],
+      "action_contract": "marinheiros matam bois sagrados; raio atinge mastro; barco quebra; Odisseu sobe a destroço sozinho",
+      "narration": "Famintos, seus homens desobedeceram à ordem de não tocar nos rebanhos sagrados do Sol. Zeus destruiu o último navio com um raio. Todos morreram, menos Odisseu.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S11",
+      "title": "Calipso",
+      "location": "Ogígia",
+      "start_seconds": 108,
+      "end_seconds": 119,
+      "duration_seconds": 11,
+      "cast": [
+        "Odisseu_viajante",
+        "Calipso",
+        "Hermes"
+      ],
+      "action_contract": "Calipso acolhe náufrago; ele olha Ítaca no horizonte; Hermes chega; construção e partida na jangada",
+      "narration": "Ele chegou à ilha de Calipso, que o manteve ali por sete anos e lhe ofereceu a imortalidade. Mas Odisseu só desejava voltar para Penélope e Telêmaco.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S12",
+      "title": "Feácios e Ítaca",
+      "location": "Esquéria e praia Ítaca",
+      "start_seconds": 119,
+      "end_seconds": 130,
+      "duration_seconds": 11,
+      "cast": [
+        "Odisseu_viajante",
+        "Nausicaa",
+        "Alcinoo",
+        "feacios"
+      ],
+      "action_contract": "Nausícaa encontra náufrago; relato na mesa; feácios o levam; Odisseu toca o solo da pátria",
+      "narration": "Depois de outra tempestade, foi acolhido pelos feácios. Ao conhecerem sua história, eles o levaram de navio até Ítaca. Vinte anos depois, ele estava em casa.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S13",
+      "title": "Palácio tomado",
+      "location": "palácio Ítaca",
+      "start_seconds": 130,
+      "end_seconds": 145,
+      "duration_seconds": 15,
+      "cast": [
+        "Penelope",
+        "Telemaco",
+        "Antinoo",
+        "Eurimaco",
+        "pretendentes",
+        "Atena",
+        "Odisseu_mendigo",
+        "Eumeu"
+      ],
+      "action_contract": "pretendentes desperdiçam víveres; Penélope tece e desmancha tecido; Telêmaco busca notícias; Atena disfarça o herói",
+      "narration": "Mas seu palácio estava ocupado por pretendentes que queriam se casar com Penélope e tomar o reino. Ela resistia. Seu filho Telêmaco, agora adulto, também procurava notícias do pai.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S14",
+      "title": "Reconhecimentos",
+      "location": "cabana e palácio Ítaca",
+      "start_seconds": 145,
+      "end_seconds": 157,
+      "duration_seconds": 12,
+      "cast": [
+        "Odisseu_mendigo",
+        "Telemaco",
+        "Atena",
+        "Argos",
+        "Euricleia",
+        "Eumeu"
+      ],
+      "action_contract": "identidade revelada a Telêmaco na cabana; Argos reconhece o dono; Euricleia reconhece cicatriz no joelho",
+      "narration": "Disfarçado de mendigo, Odisseu reencontrou Telêmaco e preparou a vingança. Seu velho cão Argos o reconheceu. Mais tarde, a ama Euricleia descobriu sua identidade pela cicatriz.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S15",
+      "title": "O arco e a luta",
+      "location": "salão do palácio",
+      "start_seconds": 157,
+      "end_seconds": 170,
+      "duration_seconds": 13,
+      "cast": [
+        "Odisseu_mendigo",
+        "Odisseu_revelado",
+        "Telemaco",
+        "Antinoo",
+        "Eurimaco",
+        "pretendentes"
+      ],
+      "action_contract": "pretendentes fracassam; arco retesado; flecha atravessa 12 machados alinhados; pai e filho retomam o salão",
+      "narration": "Penélope anunciou uma prova: quem armasse o arco de Odisseu e atravessasse doze machados com uma flecha poderia desposá-la. Todos falharam. O mendigo conseguiu. Era o rei. Com Telêmaco, derrotou os pretendentes.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    },
+    {
+      "id": "S16",
+      "title": "Penélope, Laertes e paz",
+      "location": "quarto da oliveira e Ítaca",
+      "start_seconds": 170,
+      "end_seconds": 185,
+      "duration_seconds": 15,
+      "cast": [
+        "Odisseu_revelado",
+        "Penelope",
+        "Laertes",
+        "Atena",
+        "Telemaco",
+        "parentes_pretendentes"
+      ],
+      "action_contract": "segredo do leito enraizado; abraço do casal; reconciliação com Laertes; Atena interrompe violência; família vê mar",
+      "narration": "Penélope ainda duvidou, até ele revelar o segredo da cama construída sobre uma oliveira viva. Ela o reconheceu. Odisseu reencontrou o pai, Laertes, e Atena encerrou a vingança. Depois de vinte anos, finalmente estava em casa. Tem uma explicação.",
+      "animation_required": true,
+      "material_3d_required": true,
+      "approved_for_render": false
+    }
+  ]
+}
