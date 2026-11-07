@@ -2,18 +2,18 @@
 
 **ID:** TUE-ANIMACAO-MESTRE-01
 **ESCOPO:** Odisseia integral, versões compactas, episódios e novas cenas mitológicas deste projeto.
-**STATUS:** DIREÇÃO VIGENTE. Os vídeos e protótipos existentes permanecem NÃO APROVADOS até inspeção real.
+**STATUS:** DIREÇÃO VIGENTE. Atualização 07/11/2026: o usuário esclareceu que **animação 3D NÃO é exigida**. Retornar ao método anterior de animação 2D articulada, preservando a identidade visual do vídeo de Troia que serviu de referência. Os testes e protótipos não aprovados continuam bloqueados.
 **FONTE NORMATIVA ÚNICA:** este arquivo. Não recriar padrões concorrentes; alterações futuras devem editar aqui.
 
 ## 0. Princípios obrigatórios e resolução de conflitos
 
 1. **Design completo precede o movimento.** Rosto, porte, idade, silhueta, roupa, armadura, capacete, gestos, paleta e props devem distinguir imediatamente cada personagem, mesmo sem texto ou narração.
-2. **Produção final é animação 3D cinematográfica de realismo estilizado**: elenco, cenários e objetos no mesmo espaço, profundidade/oclusão reais, contato, peso e câmeras motivadas. Arte 2D ilustrada, cut-out e motion servem somente como conceito, storyboard ou teste intermediário; não substituir por slides, fotos flutuantes, recortes genéricos ou figuras simplesmente deslizando.
+2. **Produção final pode ser animação 2D articulada cinematográfica**: retomar a estética e a construção visual já utilizadas no vídeo de Odisseu/Cavalo de Troia, com personagens reconhecíveis, rigs/partes articuladas, ações contínuas, profundidade em camadas coerentes, contato e peso visuais, cenários consistentes e câmeras motivadas. **3D é opcional, não pré-requisito e não pode atrasar o vídeo**. Não substituir a ação por slides, fotos flutuantes, recortes genéricos, personagens deslizando nem colagens incoerentes.
 3. **Narrativa visual é preparação → ação → consequência.** Nunca reciclar caminhadas de ida e volta, duplicar personagem, teleportar adereços, colocar protagonista global em todos os planos ou usar cenários sobrepostos sem relação espacial.
 4. **Roteiro completo e visualmente dirigível antes do render:** timecodes, fala exata, casting com IDs persistentes, figurinos por fase, câmera, plano, set, arquitetura, clima, escala, objetos, movimentos articulados, contatos, expressões, direção de luz, foley e sincronização de legendas; cada plano contém instruções suficientes para ser reproduzido.
 5. **Elmo com construção verdadeira:** calota, contorno, encaixe, crista firmemente presa, protetores, amarras, volume, metal, reflexos e sombras, em frente/perfil/três-quartos. Nunca uma massa genérica ou casco esférico. A versão guerreira pode ter bronze/crina como licença estilizada; na Grécia micênica histórica a aparência exige pesquisa e decisão visual documentada. **Odisseu não usa elmo automaticamente ao regressar à Ítaca.**
 6. **Cenários habitáveis:** costa/vegetação/pedra/água/navio/cordame/carga/edificações e ambientes internos com escala, planta, passagens, materiais, iluminação, detalhes com função, distâncias e continuidade.
-7. **Sem custo de API e sem dependência de Work/Runway:** preferir Blender, VTK, FFmpeg e GitHub Actions com limites reais de CPU e execução informados. Produzir sem PC local sempre que a infraestrutura permitir, sem prometer render grátis ilimitado.
+7. **Sem custo de API e sem dependência de Work/Runway:** preferir o fluxo anterior de **Remotion ou Python/Pillow/NumPy** para animação de personagens articulados, render com FFmpeg e execução em GitHub Actions. Blender é opcional; não substituir esse fluxo por renders 3D pesados sem instrução expressa. Respeitar limites reais de CPU e infraestrutura.
 8. **Formato final-alvo:** vertical 9:16, 2160 × 3840, 60 FPS, trilha e voz Rasalgethi PT-BR quando original disponível, legendas inferiores; exportação escalonada deve ser identificada como upscale e não detalhamento 4K nativo.
 9. **Prioridade factual:** base narrativa em Homero e na narração master; diferenças devem estar identificadas como adaptação. Na Odisseia XIII os feácios deixam Odisseu **adormecido** na costa com seus bens e partem; ele desperta depois. Os testes anteriores de desembarque consciente com passarela pertencem a uma adaptação visual, não ao cânone.
 10. **QC editorial bloqueante:** o render técnico não é aprovação artística. Sem publicação e sem agendamento enquanto narratividade, atuação, consistência, som e legendas não forem revisados integralmente.
@@ -35,8 +35,9 @@
 - Divisão prevista: EP01 0–88,6 s, EP02 88,6–317,4 s, EP03 317,4–560,1 s.
 - Cada fala deve ser verificada contra cenas do roteiro e legenda original. Um timecode aproximado NÃO aprova nenhum frame.
 
-## Motor novo
-- Cenas tridimensionais independentes, com geometria, escala, profundidade/oclusão e câmera em um único espaço 3D.
+## Motor de animação aprovado — sem 3D obrigatório
+- **Método anterior como primeira opção:** animação 2D com personagens articulados e poses distintas por plano. Usar rigs em partes (tronco, cabeça, braços, mãos, pernas, capa) com trajetórias, interpolação e poses dirigidas pelo roteiro; compor em Remotion ou Python/Pillow/NumPy e codificar com FFmpeg. Não apresentar animação de câmeras sobre imagens paradas como animação dos personagens.
+- Oclusão, escala visual, pontos de contato e deslocamento precisam ser coerentes no cenário 2D/2.5D; não exigir motor 3D.
 - Personagens articulados com mãos, ombros, joelhos, tornozelos e marcha vinculados ao deslocamento do corpo. Não é permitido deslizar uma figura estática.
 - O plano deve mostrar **preparação → ação concreta → consequência**: abrir o portão, atravessar, fechá-lo; embarcar, remar, deixar o cais; chegar à entrada, empurrar a PEDRA MAIOR QUE A PORTA, ver saída completamente bloqueada.
 - Objetos têm dono e física: palmas tocam o objeto durante todo empurrão; pés apoiam no solo; ninguém atravessa a parede sem passagem explícita; uma pedra que deveria vedar a abertura deve ser maior do que ela.
@@ -45,8 +46,8 @@
 - Transições respeitam direções de deslocamento e posições do plano anterior; lentes/cortes só mudam com motivação narrativa.
 
 ## Modelo de produção, sem APIs pagas, sem PC
-- Open-source: VTK para verificação espacial rápida; Blender com personagens 3D CC0 rigados para aprimoramento visual e render cloud no GitHub Actions.
-- A primeira sequência experimental é a **caverna de Polifemo (38–55 s)**, porque exige personagens entrando, gigante retornando e rocha vedando a passagem — um teste exigente da integração 3D. Uma versão de bloqueio técnico 720 × 1280/30 FPS NÃO é o produto 4K final.
+- Open-source: retomar arte 2D articulada com Remotion ou Python/Pillow/NumPy/FFmpeg, usando GitHub Actions quando aplicável. Render Blender/VTK 3D é um teste opcional e fica fora do caminho principal.
+- O teste da **caverna de Polifemo (38–55 s)** continua útil, mas sua aprovação exige clareza narrativa e qualidade visual no estilo 2D articulado, não geometria 3D. Um teste 720 × 1280/30 FPS NÃO é o produto 4K final.
 - Novo storyboard por plano, casting e objetos antes de render. Se um teste falha visualmente, corrigir o sistema e refazer o plano, não empilhar elementos por cima.
 - Audio Rasalgethi e legendas do master originais: preservação; o vídeo do Github pode ser silencioso por não expor o master privado no repositório.
 
@@ -72,7 +73,7 @@
 4. início, mudança e consequência visíveis na imagem; nenhuma caminhada de enchimento, retorno sem razão, personagem clonado ou cena reciclada;
 5. continuidade do mesmo personagem e da mesma peça ao mudar câmera, luz, tomada ou episódio.
 
-**Estética-alvo:** épico mitológico grego de **realismo estilizado cinematográfico**, com formas legíveis, anatomia convincente, materialidade artesanal, detalhes em bronze, tecido, couro, pedra, madeira, sal e desgaste; atmosfera histórica, aventura e emoção contida. Uma versão 2D ilustrada pode servir como *concept art* e animatic, mas o produto integral segue os requisitos espaciais do motor 3D independente.
+**Estética-alvo:** épico mitológico grego de **realismo estilizado cinematográfico**, com formas legíveis, anatomia convincente, materialidade artesanal, detalhes em bronze, tecido, couro, pedra, madeira, sal e desgaste; atmosfera histórica, aventura e emoção contida. Uma versão **2D articulada com movimentos reais dos personagens** pode ser o produto final, seguindo o vídeo de Troia como referência; manter profundidade, gestos, contatos, consistência e continuidade em todas as cenas.
 
 ### Arte 2. Personagens: ID estável e reconhecimento
 
@@ -124,7 +125,7 @@ Cada personagem nomeado recebe **CHAR_ID imutável**, model sheet/turnaround (fr
 
 ### Arte 4. Cenários completos, com função dramática
 
-- Todo cenário tem **planta de piso, elevações, coordenadas, ponto de entrada/saída, iluminação motivada e zonas transitáveis**. O elenco e objetos coexistem em geometria 3D, compartilham escala, projeção, colisão, sombras/oclusão.
+- Todo cenário tem **planta de piso, elevações, coordenadas, ponto de entrada/saída, iluminação motivada e zonas transitáveis**. O elenco e objetos coexistem em cenários coerentes, com escala e projeção consistentes, contatos desenhados por rig/pose, sombras e oclusão 2D/2.5D adequadas; **geometria 3D não é obrigatória**.
 - A costa de Ítaca: baía rochosa crível, oliveiras e vegetação mediterrânea, relevo distante, transição água-praia/pedra, horizonte/luz de manhã, cargas/presentes e embarcação com geometria naval coerente. **Não inventar cais/passarela em uma adaptação fiel da chegada narrada no poema.**
 - Navio: proa/poppa reconhecíveis, casco com bordas, bancos, remos, mastreação, cordames, carga. Manobras devem decorrer de vento/remadores/leme e contatos.
 - Caverna de Polifemo: uma única abertura contínua, profundidade interna, posição de ovelhas/alimentos, rocha proporcional. A fuga respeita a posição anterior da pedra.
@@ -179,7 +180,7 @@ Esse exemplo **não substitui timecodes**, que dependem da narração original s
 
 ### Arte 7. Prompt-mestre para gerar/dirigir novas cenas
 
-> Produza [SHOT_ID] da Odisseia em 3D cinematográfico estilizado com identidade visual fixa segundo esta bíblia: CHAR_IDs constantes, proporções e figurinos adequados à fase, rosto/silhueta reconhecíveis de plano para plano, objetos e cenários com construção completa e escala verificável, elmo de bronze apenas quando narrativamente presente e fisicamente bem modelado. Mostre preparação, ação específica e consequência dentro de um único mundo 3D com profundidade real, contato de mãos e pés, física consistente, câmera motivada, luz/materialidade cinematográficas e atuação emocional discreta. Use o timecode e a fala exata do master, sem inventar acontecimentos nem repetir cenas. Descreva cada batida de blocking, elementos presentes e ausentes, câmera, set, som e continuidade antes da geração. Rejeite clones, rosto flutuante, cascos amorfos, movimento em skate, sobreposição 2D, objetos sem dono, passagem impossível, escala instável, corte que teleporta, cenário vazio, desvio do roteiro, nova voz não autorizada e qualquer plano que não passe no QC visual real.
+> Produza [SHOT_ID] da Odisseia em animação 2D articulada cinematográfica estilizada com identidade visual fixa segundo esta bíblia: CHAR_IDs constantes, proporções e figurinos adequados à fase, rosto/silhueta reconhecíveis de plano para plano, objetos e cenários com construção completa e escala verificável, elmo de bronze apenas quando narrativamente presente e fisicamente bem modelado. Mostre preparação, ação específica e consequência dentro de uma composição espacial 2D/2.5D coerente com personagens articulados, oclusão e profundidade visual, contato de mãos e pés, física consistente, câmera motivada, luz/materialidade cinematográficas e atuação emocional discreta. Use o timecode e a fala exata do master, sem inventar acontecimentos nem repetir cenas. Descreva cada batida de blocking, elementos presentes e ausentes, câmera, set, som e continuidade antes da geração. Rejeite clones, rosto flutuante, cascos amorfos, movimento em skate, colagens incoerentes, objetos sem dono, passagem impossível, escala instável, corte que teleporta, cenário vazio, desvio do roteiro, nova voz não autorizada e qualquer plano que não passe no QC visual real.
 
 ### Arte 8. Critérios de aceitação *fail closed*
 
