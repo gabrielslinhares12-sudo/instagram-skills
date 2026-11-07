@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""ODISSEIA TUE: actual frame-by-frame 2D articulated animation.
+"""ODISSEIA TUE: TECHNICAL PROTOTYPE ONLY — REJECTED CAST STYLE, NOT THE MASTER.
+The approved visual models MUST be extracted/reused from the original 60s
+Odisseu/Cavalo de Troia film (see PADRAO_CANONICO_CAVALO_DE_TROIA_LOCK.md).
+Do NOT use this file to generate the final film with generic replacement figures.
+
+ODISSEIA TUE: actual frame-by-frame 2D articulated animation.
 No Blender, no static-image zoompan, no overlays of characters onto photos.
 Scenes are painted every frame with multi-joint actors and physically staged props.
 Private voice passed by --voice, never generated or downloaded by this program.
