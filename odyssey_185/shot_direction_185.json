@@ -992,7 +992,7 @@
           "end_seconds": 151,
           "frames": 180,
           "lens": "85 mm olhar do cão",
-          "action": "Corte de deslocamento ao portão do palácio: Argos, idoso e de pelagem manchada, ergue a cabeça e reconhece o mendigo; este controla lágrima e segue.",
+          "action": "Corte de deslocamento ao portão do palácio: Argos, idoso e de pelagem manchada, ergue a cabeça e reconhece o mendigo; Odisseu contém lágrimas, e o cão repousa a cabeça pela última vez.",
           "foley": "respiração do animal"
         },
         {
@@ -1029,7 +1029,8 @@
         "CHAR_ANTINOOS",
         "CHAR_EURYMACHOS",
         "CHAR_PRETENDENTE_A",
-        "CHAR_PRETENDENTE_B"
+        "CHAR_PRETENDENTE_B",
+        "CHAR_PENELOPE"
       ],
       "set_id": "SET_PALACIO_SALAO",
       "props": [
@@ -1050,7 +1051,7 @@
           "end_seconds": 160,
           "frames": 180,
           "lens": "50 mm mãos e reações",
-          "action": "Duas tentativas distintas fracassam; Antínoo força o arco e Eurímaco desvia o olhar, ambos visivelmente contrariados no mesmo salão.",
+          "action": "Penélope anuncia a prova do arco, entrega a arma e se retira; Antínoo e Eurímaco tentam armá-lo, falham e se entreolham contrariados.",
           "foley": "madeira tensa"
         },
         {
@@ -1176,5 +1177,6 @@
       ],
       "approved": false
     }
-  ]
+  ],
+  "asset_registry": "odyssey_185/asset_registry_185.json"
 }
