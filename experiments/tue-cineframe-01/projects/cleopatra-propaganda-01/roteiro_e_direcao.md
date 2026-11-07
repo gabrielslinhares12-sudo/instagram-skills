@@ -3,7 +3,9 @@
 **Padrão:** TUE-CINEFRAME-01 (experimental, independente)
 **Roteiro original:** 07/11/2026
 **Status:** prévia visual de 30s renderizada localmente; longa de ~55s e narração Rasalgethi PENDENTES.
-**Resolução-alvo:** 2160 × 3840, 60 FPS. A prévia atual é 540 × 960, 30 FPS; sem afirmação de 4K nativo.
+**Resolução obrigatória para novos pilotos de avaliação:** 2160 × 3840, 60 FPS, 9:16, sem upscale apresentado como 4K nativo.
+**Material histórico:** a prévia de 30 segundos em 540 × 960/30 FPS não atende à regra agora vigente e passa a ser considerada exclusivamente animatic diagnóstico, não piloto de aprovação.
+**Entrega obrigatória de qualquer novo piloto válido:** após QC, fazer upload à pasta TUE-CINEFRAME-01 no Google Drive, verificar o arquivo e enviar o link direto de visualização na conversa. Sem envio verificável, não declarar entregue.
 **Não publicar/agendar.**
 
 ## Narração integral para Google AI Studio / Rasalgethi
