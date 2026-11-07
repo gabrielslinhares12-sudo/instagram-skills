@@ -2,10 +2,12 @@
 
 **Projeto:** Tem Uma Explicação • **Meta:** 185 s • 9:16 • mestre 2160×3840/60 fps • PT-BR • narrador **Rasalgethi / Google AI Studio**.
 
+> **ALERTA EDITORIAL — 07/11/2026: prévia 3D integral de 220,56s REPROVADA.** Não publicar nem reutilizar as cenas; falha de narrativa, atuação e escala. Ver [REPROVACAO_VISUAL_V9_TESTE_220S_20261107.md](REPROVACAO_VISUAL_V9_TESTE_220S_20261107.md). O WAV Rasalgethi foi fornecido na conversa, com duração 220,56 s, mas o arquivo original ainda não está neste repositório; as marcações 185s do manifest são históricas, não sincronizadas ao áudio real. Próxima etapa é um teste de 10–15s com ação 3D inteligível, antes de recriar o filme.
+
 ## Estado verificável
 
 - manifest_v9.json: 16 cenas contíguas cobrindo 0–185 s, roteiro integral do usuário.
-- narracao_rasalgethi.txt: 446 palavras, **texto preparado, sem WAV gerado**.
+- narracao_rasalgethi.txt: 446 palavras; **WAV Rasalgethi fornecido pelo usuário na conversa, ainda não transferido ao GitHub. Duração do áudio: 220,56 segundos.**
 - shotplan_64_v9.json: 64 tomadas com ações e cortes independentes, preparação, execução e consequência.
 - cast_props_v9.json: identidades persistentes e dimensões de objetos.
 - render_hook_3d.py: **somente piloto novo da abertura (7 s)**, com geometria 3D no Blender; sem arte reprovada V5/V7.1.
@@ -17,7 +19,7 @@ O roteiro e os contratos não são um filme pronto. A produção só poderá ser
 
 GitHub Actions (runner gratuito dentro da franquia) + Blender open source + assets 3D CC0 verificados + FFmpeg. Texturas PBR/HDRI podem ser obtidas de fontes CC0 como Poly Haven. Não utilizar Runway, Guthy, API paga, motion/slideshow, sobreposição de atores, nem personagens genéricos.
 
-A interface web gratuita do Google AI Studio precisa gerar **um único áudio integral** na voz Rasalgethi. Após obter o áudio, medir a duração com ffprobe e ajustar as tomadas ao ritmo real, preservando 185 s como alvo editorial sem acelerar artificialmente a voz.
+O usuário já forneceu o WAV integral da narração Rasalgethi no ChatGPT (220,56s). Transferir o áudio **já existente** para o ambiente de renderização; não tentar gerar uma nova voz. Ajustar as tomadas à duração real sem acelerar artificialmente a voz. A meta anterior de 185s deixou de ser aplicável à faixa original.
 
 ## Render reproduzível para teste NÃO publicável
 
