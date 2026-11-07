@@ -1,0 +1,72 @@
+name: Odisseia V10 - personagem real articulado + Polifemo QC (nao publicar)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v10-rigged-actor-qc.yml'
+      - 'odyssey_185/rigged_cyclops_test_v10.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-v10-rigged-human-cyclops-qc
+  cancel-in-progress: false
+jobs:
+  prove-real-characters-and-action:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Verify no synthetic mannequins and validate Blender source
+        run: |
+          python3 -m py_compile odyssey_185/rigged_cyclops_test_v10.py
+          grep -q 'bpy.ops.import_scene.gltf' odyssey_185/rigged_cyclops_test_v10.py
+          grep -q 'REAL_SKINNED_CHARACTER_ASSET_MISSING' odyssey_185/rigged_cyclops_test_v10.py
+      - name: Clone MIT Ara3D character generator at reviewed commit
+        run: |
+          git clone -q https://github.com/olatunde85/3d-gen.git ara3d
+          git -C ara3d checkout --detach 1e647c97293208d03ab226b87993dc7e910bdacb
+          test -f ara3d/LICENSE
+          grep -qi mit ara3d/LICENSE
+      - name: Build real CC0 human geometry + rig and mocap animations locally
+        working-directory: ara3d
+        timeout-minutes: 38
+        run: |
+          npm ci --no-audit --no-fund
+          npm run setup-assets
+          mkdir -p out
+          npm run export -- --preset "The Soldier" --detail medium --formats glb --out out
+          find out -type f -name '*.glb' -size +150k -print | tee /tmp/real-character-glbs.log
+          test -s /tmp/real-character-glbs.log
+      - name: Install free Blender on GitHub hosted CPU
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg xvfb libgl1-mesa-dri
+          blender --version | head -n 2
+      - name: Render source-skinned cyclops physically blocking cave entrance
+        timeout-minutes: 40
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -o pipefail
+          xvfb-run -a blender --background --threads 2 --python odyssey_185/rigged_cyclops_test_v10.py 2>&1 | tee /tmp/odyssey-rigged-qc.log
+          grep -q 'ODYSSEY_REAL_RIGGED_CAST_QC_READY_NOT_FINAL' /tmp/odyssey-rigged-qc.log
+          test "$(find odyssey_185/out/rigged_v10 -name 'S04_polyphemus_*.png' | wc -l)" -eq 3
+          test -s odyssey_185/out/rigged_v10/scene_technical_qc.json
+      - name: Archive ONLY source-linked rigged QC for human visual review
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_V10_POLIFEMO_REAL_RIG_TEST_NAO_PUBLICAR
+          path: |
+            odyssey_185/out/rigged_v10/S04_polyphemus_*.png
+            odyssey_185/out/rigged_v10/scene_technical_qc.json
+            /tmp/odyssey-rigged-qc.log
+          retention-days: 14
+          if-no-files-found: warn
+# No paid API, no local GUTHY, no social publishing, no 'final' claims.
