@@ -1,26 +1,30 @@
 name: Publicar fila diária do Instagram
-# Dry-run final 04NOV: Reel das 18h H.264/AAC118k, legendas, voz Rasalgethi, AI info obrigatório; push nunca publica.
-
-# Operação em GitHub-hosted Ubuntu: nenhum PC/runner GUTHY/Android necessário.
-# O cron roda em UTC; a fila guarda horários ISO UTC e previne duplicatas.
-# Referencia visual oficial, travada por SHA: content/brand/REFERENCIA-VISUAL-OFICIAL-TUE-MESTRE-01-02NOV2026.jpg
+# GitHub cron e best-effort: primary + independent backup are staggered.
+# Times in UTC for 11h, 15h, 18h America/Sao_Paulo.
 on:
   push:
     branches: [main]
     paths:
       - '.github/workflows/instagram-scheduler.yml'
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '2,12,22,32,42,52 14,18,21 * * *'
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Conferir a fila sem publicar'
+        description: 'Conferir sem publicar'
         required: true
         default: true
         type: boolean
+  workflow_call:
+    inputs:
+      dry_run:
+        description: 'Conferir sem publicar (backup)'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: instagram-temumaexplicacao-publication
@@ -30,83 +34,99 @@ jobs:
   queue:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    # Somente runner GitHub-hosted; nunca usar Windows/self-hosted.
     timeout-minutes: 15
     permissions:
       contents: write
+    env:
+      QUEUE_DRY_RUN: ${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.dry_run) || (github.event_name == 'workflow_call' && inputs.dry_run)) && 'true' || 'false' }}
+      INSTAGRAM_SCHEDULER_ENABLED: ${{ vars.INSTAGRAM_SCHEDULER_ENABLED || 'true' }}
+      INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+      FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
+      FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
+      FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
+      INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Checkout main with durable ledger writes
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: main
           fetch-depth: 1
           persist-credentials: true
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+      - name: Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
-      - name: Testar publicação e fila sem rede
+      - name: Detect due items quickly; skip expensive QC when nothing is due
+        id: gate
         run: |
-          python3 -m unittest discover -s scripts -p 'test_*poster.py' -v
-          python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -v
-          python3 -m unittest discover -s scripts -p 'test_instagram_preflight.py' -v
-          python3 -m unittest discover -s scripts -p 'test_instagram_story_reconcile.py' -v
-      - name: Aplicar padrao editorial canônico antes de qualquer publicação
+          python3 scripts/instagram_queue.py --dry-run > /tmp/instagram-queue-plan.json
+          cat /tmp/instagram-queue-plan.json
+          python3 - <<'PY'
+          import json, os
+          plan=json.load(open("/tmp/instagram-queue-plan.json",encoding="utf-8"))
+          due=[x for x in plan["items"] if x["status"]=="due"]
+          with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as fp:
+              fp.write("due="+("true" if due else "false")+"\n")
+          print("DUE_ITEM_IDS="+",".join(x["id"] for x in due),flush=True)
+          PY
+      - name: Test one-shot queue and monitoring contracts
+        if: steps.gate.outputs.due == 'true' || github.event_name == 'push'
         run: |
-          python3 -m pip install 'Pillow>=11,<13'
+          python3 -m unittest discover -s scripts -p 'test_*poster.py' -q
+          python3 -m unittest discover -s scripts -p 'test_instagram_queue.py' -q
+          python3 -m unittest discover -s scripts -p 'test_instagram_preflight.py' -q
+          python3 -m unittest discover -s scripts -p 'test_instagram_schedule_guard.py' -q
+      - name: Validate exact due media without blocking due to another future post
+        if: steps.gate.outputs.due == 'true' || github.event_name == 'push'
+        run: |
+          python3 -m pip install -q 'Pillow>=11,<13'
           python3 scripts/instagram_visual_standard.py verify-assets
           python3 scripts/instagram_preset_mestre.py verify
-          python3 -m unittest discover -s scripts -p 'test_instagram_preset_mestre.py' -v
-          python3 scripts/validate_instagram_weekly_briefs.py
-          python3 scripts/instagram_visual_standard.py audit-queue
-      - name: Configurar identidade da automação para o registro
+          python3 scripts/instagram_visual_standard.py audit-queue --only-due
+      - name: Check Meta permissions before claiming and uploading
+        if: steps.gate.outputs.due == 'true' && env.QUEUE_DRY_RUN != 'true'
+        run: python3 scripts/instagram_preflight.py
+      - name: Configure ledger author
+        if: steps.gate.outputs.due == 'true' && env.QUEUE_DRY_RUN != 'true'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-      - name: Conferir ou executar somente a publicação devida
-        env:
-          QUEUE_DRY_RUN: ${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.dry_run)) && 'true' || 'false' }}
-          INSTAGRAM_SCHEDULER_ENABLED: ${{ vars.INSTAGRAM_SCHEDULER_ENABLED || 'true' }}
-          FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
-          FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
-          FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
-          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
-          INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+      - name: Publish once, with immutable Git claim before the Meta mutation
+        if: steps.gate.outputs.due == 'true' && env.QUEUE_DRY_RUN != 'true'
         run: |
-          echo 'GitHub-hosted Instagram scheduler: nenhum PC ou dispositivo local.'
-          if [ "$QUEUE_DRY_RUN" = 'true' ]; then
-            python3 scripts/instagram_queue.py --dry-run > /tmp/instagram-queue-plan.json
-            python3 scripts/instagram_cloud_report.py /tmp/instagram-queue-plan.json
-          else
-            # Preflight before claiming a due item; missing grants must not
-            # consume its one-shot publication slot.
-            python3 scripts/instagram_queue.py --dry-run > /tmp/instagram-queue-plan.json
-            python3 scripts/instagram_cloud_report.py /tmp/instagram-queue-plan.json
-            if python3 -c 'import json; d=json.load(open("/tmp/instagram-queue-plan.json", encoding="utf-8")); raise SystemExit(0 if any(x["status"] == "due" for x in d["items"]) else 1)'; then
-              python3 scripts/instagram_preflight.py
-            fi
-            python3 scripts/instagram_queue.py --execute
-          fi
-      # Reconcilia publicação e permalink do post original; não cria Story independente.
-      - name: Conciliar Stories vinculados apos comprovante do feed
-        # Read-only permalink validation after Meta receipt. Native repost,
-        # textual CTA and Story receipt remain independently pending.
-        # Safe to rerun: publication ledger prevents duplicate feed uploads.
-        if: success()
+          set -o pipefail
+          python3 scripts/instagram_queue.py --execute | tee /tmp/instagram-publish-result.json
+          python3 - <<'PY'
+          import json
+          result=json.load(open("/tmp/instagram-publish-result.json",encoding="utf-8"))
+          if result.get("status")!="published" or not result.get("media_id"):
+              raise SystemExit("POST_NOT_CONFIRMED_INSPECT_LEDGER_AND_META_BEFORE_RETRY")
+          print("PUBLISHED_MEDIA_ID="+result["media_id"],flush=True)
+          PY
+      - name: Read Meta permalink as independent confirmation
+        if: steps.gate.outputs.due == 'true' && env.QUEUE_DRY_RUN != 'true'
         env:
-          FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
-          FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
-          FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
-          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
-          INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+          PYTHONPATH: scripts
         run: |
-          python3 scripts/instagram_story_reconcile.py --execute
-          if ! git diff --quiet -- content/editorial/STORIES-VINCULADOS-2026-11-02-a-08.json; then
-            git add content/editorial/STORIES-VINCULADOS-2026-11-02-a-08.json
-            git commit -m 'ops(stories): registrar post original confirmado e Story nativo pendente'
-            git push origin HEAD:main
-          fi
-      - name: Preservar registro local para recuperação
+          python3 - <<'PY'
+          import json,os
+          from facebook_poster import FacebookPoster,FacebookConfig
+          result=json.load(open("/tmp/instagram-publish-result.json",encoding="utf-8"))
+          poster=FacebookPoster(FacebookConfig.from_env())
+          identity=poster.check_identity()
+          assert identity.get("username")=="temumaexplicacao", "WRONG_TARGET_ACCOUNT"
+          actual=poster._request("GET",result["media_id"],params={"fields":"id,permalink,media_type"},timeout=40)
+          assert str(actual.get("id"))==str(result["media_id"]) and actual.get("permalink"),"MISSING_META_RECEIPT"
+          print("INSTAGRAM_VERIFIED_PERMALINK="+actual["permalink"],flush=True)
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf-8") as fp:
+              fp.write("Instagram post confirmado: "+actual["permalink"]+"\n")
+          PY
+      - name: Flag unconfirmed publication 12 minutes after each slot
+        if: always() && github.event_name == 'schedule'
+        run: python3 scripts/instagram_schedule_guard.py --mode postflight
+      - name: Archive durable ledger
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: instagram-ledger-${{ github.run_id }}-${{ github.run_attempt }}
           path: content/publication-state.json
