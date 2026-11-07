@@ -21,7 +21,7 @@
     "enabled": false,
     "reason": "QC artístico, físico, legendas e áudio final pendentes"
   },
-  "production_status": "narrative_manifest_created_not_rendered",
+  "production_status": "full_direction_written_no_complete_film_rendered",
   "art_direction": {
     "era": "Mycenaean Late Bronze Age",
     "look": "high-end stylized realism",
@@ -384,5 +384,10 @@
       "approved_for_render": false
     }
   ],
-  "production_standard": "odyssey_v8/PADRAO_MESTRE_TUE_ANIMACAO.md"
+  "production_standard": "odyssey_v8/PADRAO_MESTRE_TUE_ANIMACAO.md",
+  "full_direction_script": "odyssey_185/ROTEIRO_DIRECAO_COMPLETA_TUE_MESTRE_01.md",
+  "shot_direction_contract": "odyssey_185/shot_direction_185.json",
+  "directed_shot_count": 74,
+  "direction_status": "written_awaiting_audio_timing_and_visual_QC",
+  "direction_approval": false
 }
