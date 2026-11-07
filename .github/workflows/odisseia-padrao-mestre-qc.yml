@@ -8,6 +8,9 @@ on:
       - 'odyssey_v8/episode01_shot_contracts.json'
       - 'odyssey_v8/test_story_contracts.py'
       - 'odyssey_185/manifest_v9.json'
+      - 'odyssey_185/ROTEIRO_DIRECAO_COMPLETA_TUE_MESTRE_01.md'
+      - 'odyssey_185/shot_direction_185.json'
+      - 'odyssey_185/test_direction_contracts.py'
       - '.github/workflows/odisseia-padrao-mestre-qc.yml'
   workflow_dispatch:
 
@@ -27,6 +30,8 @@ jobs:
           python-version: '3.11'
       - name: Validar shot contracts e identidade visual
         run: python3 -m unittest discover -s odyssey_v8 -p 'test_story_contracts.py' -v
+      - name: Validar roteiro 185s por tomadas e fala original
+        run: python3 -m unittest discover -s odyssey_185 -p 'test_direction_contracts.py' -v
       - name: Verificar manifesto e exclusividade do padrao
         run: |
           python3 - <<'PY'
