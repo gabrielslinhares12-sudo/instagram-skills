@@ -1,0 +1,71 @@
+name: Odisseia V8.5 — Blender 3D rapido via imagem pronta (QC)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/odisseia-blender-container-qc.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-blender-container-qc
+  cancel-in-progress: false
+jobs:
+  rigged-three-dimensional-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 01e29892adfdcef4d9a16ee40cc1aeab3bf675fb
+          persist-credentials: false
+      - name: Validar espaco dos personagens e impedir sobreposicoes
+        run: |
+          python3 production/odyssey3d/test_scene01_geometry.py
+      - name: Baixar apenas rigs gratuitos CC0
+        run: |
+          git clone --depth=1 --single-branch https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0.git production/odyssey3d/assets
+          test -s production/odyssey3d/assets/LICENSE.txt
+          test -s production/odyssey3d/assets/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb
+      - name: Render 3D com Blender pronto em container (sem apt grande)
+        run: |
+          set -euo pipefail
+          docker pull ghcr.io/blenderkit/headless-blender:blender-4.0
+          docker run --rm --user "$(id -u):$(id -g)"             --volume "$PWD:/workspace" --workdir /workspace             --env QC_PERCENT=50 --env LIBGL_ALWAYS_SOFTWARE=1             --entrypoint /bin/bash             ghcr.io/blenderkit/headless-blender:blender-4.0 -lc '
+              set -e
+              B=/home/headless/blender/blender
+              test -x "$B"
+              "$B" --version | head -n 3
+              if command -v xvfb-run >/dev/null 2>&1; then
+                xvfb-run -a "$B" --background --threads 2 --python production/odyssey3d/scene01_departure.py -- --still
+              else
+                "$B" --background --threads 2 --python production/odyssey3d/scene01_departure.py -- --still
+              fi
+            '
+          test "$(find production/odyssey3d/out -maxdepth 1 -name 'frame-*.png' | wc -l)" = 7
+      - name: Criar storyboard de QC com 7 pontos reais de atuacao
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          p=Path('production/odyssey3d/out')
+          names=sorted(p.glob('frame-*.png'))
+          assert len(names)==7
+          for name in names:
+              assert name.stat().st_size>25000,(name,'blank render')
+          # Use ImageMagick if present; fallback is the 7 PNG stills.
+          if subprocess.run(['which','montage'],capture_output=True).returncode==0:
+              subprocess.run(['montage',*[str(x) for x in names],'-resize','300x534',
+                  '-tile','7x1','-geometry','+4+18',str(p/'storyboard_V85.jpg')],check=True)
+          print('ODYSSEY_3D_V85_VISUAL_QC=ready_for_human_review; publish=false')
+          PY
+      - name: Arquivar somente QC interno; sem Instagram
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_V85_BLENDER_RIGS_3D_NO_OVERLAP_STILLS
+          path: |
+            production/odyssey3d/out/frame-*.png
+            production/odyssey3d/out/storyboard_V85.jpg
+          retention-days: 7
+          if-no-files-found: warn
+# NEVER publish or schedule. Existing V5/V7.1 are disapproved.
