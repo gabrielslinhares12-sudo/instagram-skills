@@ -150,7 +150,10 @@ cam=bpy.data.cameras.new("35mm dramatic scale camera")
 ob=bpy.data.objects.new("Stage continuity camera",cam);scene.collection.objects.link(ob)
 scene.camera=ob
 ob.location=(9,-19,6.4);look_at(ob,(0,1,2.5));cam.lens=37;cam.clip_end=140
-scene.view_settings.view_transform="AgX" if "AgX" in {t.identifier for t in bpy.types.ColorManagedViewSettings.bl_rna.properties["view_transform"].enum_items} else "Standard"
+try:
+ scene.view_settings.view_transform="AgX"
+except Exception:
+ scene.view_settings.view_transform="Standard"
 assert cyclops_verts>4500 and crew_verts>4500
 stage={
 "scene":"S04","physical":"cave boulder push with imported skinned Ara3D actors",
