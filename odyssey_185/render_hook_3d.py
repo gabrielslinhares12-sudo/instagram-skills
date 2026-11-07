@@ -64,7 +64,8 @@ def parent_world(ob,parent):
     bpy.context.view_layer.update();mw=ob.matrix_world.copy()
     ob.parent=parent;ob.matrix_world=mw
 def empty(name,loc,parent=None):
-    ob=bpy.data.objects.new(name,None);bpy.context.collection.objects.link(ob);ob.location=loc
+    ob=bpy.data.objects.new(name,None);bpy.context.collection.objects.link(ob)
+    ob.location=(loc[0],loc[1],loc[2] if len(loc)>2 else 0.0)
     if parent:parent_world(ob,parent)
     return ob
 def arc(name,points,ma,thickness=.028,parent=None):
