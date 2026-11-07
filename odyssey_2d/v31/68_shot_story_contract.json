@@ -998,3 +998,389 @@
       "continuous_spatial_blocking_required": true,
       "artist_qc_approved": false
     },
+    {
+      "shot_id": "S12_A02",
+      "scene": 12,
+      "beat": 2,
+      "start_seconds_estimate": 142.126,
+      "end_seconds_estimate": 145.433,
+      "narrative_action": "Odisseu conta história em banquete feácio",
+      "environment_identity": "salão com rei e ouvintes, tochas e mesas",
+      "cast": [
+        "odysseus",
+        "alcinous"
+      ],
+      "prop_identity": [
+        "cup"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S12_A03",
+      "scene": 12,
+      "beat": 3,
+      "start_seconds_estimate": 145.433,
+      "end_seconds_estimate": 148.739,
+      "narrative_action": "Feácios transportam Odisseu adormecido",
+      "environment_identity": "mar noturno com barco e vela",
+      "cast": [
+        "crew",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "ship"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S12_A04",
+      "scene": 12,
+      "beat": 4,
+      "start_seconds_estimate": 148.739,
+      "end_seconds_estimate": 152.045,
+      "narrative_action": "Rei toca a terra de Ítaca pela primeira vez",
+      "environment_identity": "colinas de Ítaca e praia do amanhecer",
+      "cast": [
+        "odysseus"
+      ],
+      "prop_identity": [
+        "earth"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S13_A01",
+      "scene": 13,
+      "beat": 1,
+      "start_seconds_estimate": 152.045,
+      "end_seconds_estimate": 155.806,
+      "narrative_action": "Pretendentes desperdiçam vinho e comida",
+      "environment_identity": "salão lotado do palácio de Ítaca",
+      "cast": [
+        "antinoos",
+        "eurymachus",
+        "penelope"
+      ],
+      "prop_identity": [
+        "banquet table"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S13_A02",
+      "scene": 13,
+      "beat": 2,
+      "start_seconds_estimate": 155.806,
+      "end_seconds_estimate": 159.567,
+      "narrative_action": "Penélope trabalha no tear durante o dia",
+      "environment_identity": "quarto do tear com fios e bancada",
+      "cast": [
+        "penelope"
+      ],
+      "prop_identity": [
+        "loom"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S13_A03",
+      "scene": 13,
+      "beat": 3,
+      "start_seconds_estimate": 159.567,
+      "end_seconds_estimate": 163.329,
+      "narrative_action": "Penélope desfaz discretamente trabalho à noite",
+      "environment_identity": "mesmo quarto com iluminação noturna",
+      "cast": [
+        "penelope"
+      ],
+      "prop_identity": [
+        "unweaving"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S13_A04",
+      "scene": 13,
+      "beat": 4,
+      "start_seconds_estimate": 163.329,
+      "end_seconds_estimate": 167.09,
+      "narrative_action": "Telêmaco busca pai e Atena orienta",
+      "environment_identity": "pátio do palácio, entrada de Eumeu",
+      "cast": [
+        "telemachus",
+        "athena"
+      ],
+      "prop_identity": [
+        "staff"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S14_A01",
+      "scene": 14,
+      "beat": 1,
+      "start_seconds_estimate": 167.09,
+      "end_seconds_estimate": 170.912,
+      "narrative_action": "Atena revela Odisseu a Telêmaco em cabana",
+      "environment_identity": "casa rústica de Eumeu, entrada real",
+      "cast": [
+        "odysseus",
+        "telemachus",
+        "eumaeus"
+      ],
+      "prop_identity": [
+        "disguise"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S14_A02",
+      "scene": 14,
+      "beat": 2,
+      "start_seconds_estimate": 170.912,
+      "end_seconds_estimate": 174.735,
+      "narrative_action": "Pai e filho se abraçam, mãos se encontram",
+      "environment_identity": "interior cabana com lareira e vigas",
+      "cast": [
+        "odysseus",
+        "telemachus"
+      ],
+      "prop_identity": [
+        "embrace contact"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S14_A03",
+      "scene": 14,
+      "beat": 3,
+      "start_seconds_estimate": 174.735,
+      "end_seconds_estimate": 178.558,
+      "narrative_action": "Argos reconhece dono e deita pela última vez",
+      "environment_identity": "pátio de Ítaca com cão envelhecido",
+      "cast": [
+        "argos",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "dog"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S14_A04",
+      "scene": 14,
+      "beat": 4,
+      "start_seconds_estimate": 178.558,
+      "end_seconds_estimate": 182.38,
+      "narrative_action": "Euricleia vê cicatriz enquanto lava os pés",
+      "environment_identity": "salão menor com bacia e água",
+      "cast": [
+        "eurycleia",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "scar",
+        "water"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S15_A01",
+      "scene": 15,
+      "beat": 1,
+      "start_seconds_estimate": 182.38,
+      "end_seconds_estimate": 186.949,
+      "narrative_action": "Pretendentes fracassam ao tentar armar arco",
+      "environment_identity": "salão e arco com pretendentes alternados",
+      "cast": [
+        "suitors"
+      ],
+      "prop_identity": [
+        "bow"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S15_A02",
+      "scene": 15,
+      "beat": 2,
+      "start_seconds_estimate": 186.949,
+      "end_seconds_estimate": 191.517,
+      "narrative_action": "Mendigo arma arco e flecha atravessa 12 machados",
+      "environment_identity": "mesmo salão, doze machados geometricamente alinhados",
+      "cast": [
+        "beggar"
+      ],
+      "prop_identity": [
+        "bow",
+        "arrow",
+        "12 axes"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S15_A03",
+      "scene": 15,
+      "beat": 3,
+      "start_seconds_estimate": 191.517,
+      "end_seconds_estimate": 196.086,
+      "narrative_action": "Odisseu revela identidade e começa retaliação",
+      "environment_identity": "salão agora com portas fechadas",
+      "cast": [
+        "odysseus",
+        "antinoos"
+      ],
+      "prop_identity": [
+        "bow",
+        "shield"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S15_A04",
+      "scene": 15,
+      "beat": 4,
+      "start_seconds_estimate": 196.086,
+      "end_seconds_estimate": 200.655,
+      "narrative_action": "Telêmaco e Odisseu vencem juntos",
+      "environment_identity": "salão após luta, escala e posição constantes",
+      "cast": [
+        "odysseus",
+        "telemachus",
+        "suitors"
+      ],
+      "prop_identity": [
+        "swords"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S16_A01",
+      "scene": 16,
+      "beat": 1,
+      "start_seconds_estimate": 200.655,
+      "end_seconds_estimate": 205.631,
+      "narrative_action": "Segredo da cama sobre oliveira viva",
+      "environment_identity": "quarto micênico, cama enraizada à árvore",
+      "cast": [
+        "odysseus",
+        "penelope"
+      ],
+      "prop_identity": [
+        "rooted bed"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S16_A02",
+      "scene": 16,
+      "beat": 2,
+      "start_seconds_estimate": 205.631,
+      "end_seconds_estimate": 210.608,
+      "narrative_action": "Penélope reconhece e abraça marido",
+      "environment_identity": "mesmo quarto e cama não se move",
+      "cast": [
+        "penelope",
+        "odysseus"
+      ],
+      "prop_identity": [
+        "embrace"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S16_A03",
+      "scene": 16,
+      "beat": 3,
+      "start_seconds_estimate": 210.608,
+      "end_seconds_estimate": 215.584,
+      "narrative_action": "Odisseu encontra Laertes e Atena encerra luta",
+      "environment_identity": "pomar micênico e família reunida",
+      "cast": [
+        "odysseus",
+        "laertes",
+        "athena"
+      ],
+      "prop_identity": [
+        "peace"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    },
+    {
+      "shot_id": "S16_A04",
+      "scene": 16,
+      "beat": 4,
+      "start_seconds_estimate": 215.584,
+      "end_seconds_estimate": 220.56,
+      "narrative_action": "Família contempla mar ao amanhecer em Ítaca",
+      "environment_identity": "colinas, palácio, mar e oliveiras",
+      "cast": [
+        "odysseus",
+        "penelope",
+        "telemachus"
+      ],
+      "prop_identity": [
+        "sunrise"
+      ],
+      "audio_sync": "EDITORIAL ESTIMATE — VERIFY AGAINST ORIGINAL AUDIO",
+      "pose_keyframes_required": 4,
+      "continuous_spatial_blocking_required": true,
+      "artist_qc_approved": false
+    }
+  ]
+}
