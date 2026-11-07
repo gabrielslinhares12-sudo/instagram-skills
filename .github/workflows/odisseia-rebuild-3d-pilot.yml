@@ -1,4 +1,4 @@
-name: Odisseia nova — 3D real, elenco rigado, prototipo de Troia (sem publicacao)
+name: Odisseia V8.4 — embarque rigado coerente, revisão 3D
 on:
   push:
     branches: [main]
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: 7a026894e4c753364abc41eae13668d78d3e96ea
+          ref: f3395334564d029c9710296402bc41e6423593a6
           persist-credentials: false
       - name: Instalar Blender open-source, ffmpeg e software rendering
         run: |
@@ -37,6 +37,8 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE=1 QC_PERCENT=50 xvfb-run -a blender --background --threads 2 --python production/odyssey3d/scene01_departure.py -- --still 2>&1 | tee /tmp/odyssey_blender_qc.log
           grep 'ODYSSEY_SCENE_READY' /tmp/odyssey_blender_qc.log
           grep 'ODYSSEY_IMPORT' /tmp/odyssey_blender_qc.log
+          grep 'ODYSSEY_ACTOR_PATH' /tmp/odyssey_blender_qc.log
+          grep 'ODYSSEY_ACTING' /tmp/odyssey_blender_qc.log
           test "$(find production/odyssey3d/out -name 'frame-*.png' | wc -l)" = 7
       - name: Gerar folha de revisao fisica e dados da cena
         if: success()
