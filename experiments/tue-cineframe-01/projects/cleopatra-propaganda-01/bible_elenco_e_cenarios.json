@@ -1,0 +1,284 @@
+{
+  "standard_id": "TUE-CINEFRAME-01",
+  "project_id": "cleopatra-propaganda-01",
+  "version": "0.1",
+  "status": "experimental",
+  "accuracy_note": "Todas as fisionomias, roupas, props e cenários são propostas visuais originais, não reconstituições arqueológicas certificadas.",
+  "global_art_direction": {
+    "style": "2D/2.5D editorial cinematográfico com contorno escuro, sombreado de tinta e papiro discreto",
+    "palette": [
+      "#123F50",
+      "#B79351",
+      "#F1E3C9",
+      "#702D32"
+    ],
+    "rig": "sprites por partes com âncoras anatômicas e opacidade/oclusão por camada; sem teletransporte ou movimento em loop",
+    "qc": "cada personagem visto em frente/perfil/3-4 e expressões; conferir face e vestido entre tomadas"
+  },
+  "characters": [
+    {
+      "id": "CLEO_EXP_01",
+      "name": "Cleópatra VII",
+      "function": "protagonista e governante",
+      "age_visual": "aproximadamente 35 anos",
+      "physiognomy": "rosto oval com maxilar firme, nariz marcado, sobrancelhas escuras arqueadas; cabelos negros em tranças agrupadas até ombros; olhos castanhos amendoados; porte ereto e expressivo; traços de design imaginados, não retrato comprovado",
+      "costume": "túnica marfim cruzada de tecido leve; gola circular azul-petróleo com linhas ouro; diadema dourado estilizado com detalhe de uraeus; capa azul-petróleo de tecido pesado; sandálias de couro",
+      "palette": [
+        "azul-petróleo",
+        "marfim",
+        "ouro envelhecido"
+      ],
+      "expression_states": [
+        "observadora",
+        "concentrada",
+        "estrategista",
+        "irritada sem caricatura",
+        "resoluta"
+      ],
+      "rig_parts": [
+        "head_neck",
+        "eyelids",
+        "torso",
+        "upper_arm_L",
+        "forearm_L",
+        "hand_L",
+        "upper_arm_R",
+        "forearm_R",
+        "hand_R",
+        "pelvis",
+        "thigh_L",
+        "shin_L",
+        "foot_L",
+        "thigh_R",
+        "shin_R",
+        "foot_R",
+        "cape_L",
+        "cape_R"
+      ],
+      "pivot_contract": "pés fixos ao apoiar, punho e dedos seguram objetos no mesmo ponto, cabelo e capa secundários",
+      "props": [
+        "mapa do Mediterrâneo",
+        "selo dinástico",
+        "papiro"
+      ],
+      "shots": [
+        "SH01",
+        "SH02",
+        "SH05",
+        "SH11"
+      ]
+    },
+    {
+      "id": "OCT_EXP_01",
+      "name": "Otaviano (futuro Augusto)",
+      "function": "adversário político",
+      "age_visual": "adulto jovem de cerca de 30 anos",
+      "physiognomy": "face angular, cabelo castanho curto ondulado, olhos claros estilizados, postura contida e olhar firme",
+      "costume": "túnica romana branca com borda vinho e toga de drapeado marfim; coroa de louros apenas em representação posterior, não em todos os planos",
+      "palette": [
+        "marfim",
+        "vinho",
+        "bronze"
+      ],
+      "expression_states": [
+        "calculista",
+        "público determinado",
+        "atento",
+        "vitorioso contido"
+      ],
+      "rig_parts": [
+        "head",
+        "torso",
+        "upper_arm_L",
+        "forearm_L",
+        "hand_L",
+        "upper_arm_R",
+        "forearm_R",
+        "hand_R",
+        "pelvis",
+        "thighs",
+        "shins",
+        "feet",
+        "toga_fabric"
+      ],
+      "props": [
+        "pergaminho político",
+        "selo romano"
+      ],
+      "shots": [
+        "SH03",
+        "SH04",
+        "SH08"
+      ]
+    },
+    {
+      "id": "SCR_EXP_01",
+      "name": "Escriba romano (personagem composto fictício)",
+      "function": "representação de comunicação política romana, não figura histórica identificada",
+      "age_visual": "30-40",
+      "physiognomy": "cabelos castanhos curtos, barba rala, traços marcados pela atividade manual, olhos atentos",
+      "costume": "túnica de linho ocre e manto vermelho escuro, bolsa de documentos, sandálias",
+      "palette": [
+        "ocre",
+        "vinho",
+        "castanho"
+      ],
+      "expression_states": [
+        "concentrado",
+        "inquieto",
+        "executando ordens"
+      ],
+      "rig_parts": [
+        "head",
+        "torso",
+        "shoulder_L",
+        "elbow_L",
+        "hand_L",
+        "shoulder_R",
+        "elbow_R",
+        "hand_R",
+        "legs",
+        "feet"
+      ],
+      "props": [
+        "pena",
+        "tinteiro",
+        "tablilha de cera",
+        "rolo de papiro"
+      ],
+      "shots": [
+        "SH03",
+        "SH04"
+      ]
+    },
+    {
+      "id": "ADVISOR_EXP_01",
+      "name": "Conselheiro alexandrino (personagem composto fictício)",
+      "function": "visualiza debate estratégico na corte, não indivíduo documentado",
+      "age_visual": "45-55",
+      "physiognomy": "cabelos grisalhos ondulados, barba curta, expressão ponderada, gestos discretos",
+      "costume": "túnica areia, manto azul escuro, bolsa pequena com rolos",
+      "palette": [
+        "areia",
+        "azul petróleo",
+        "cobre"
+      ],
+      "expression_states": [
+        "ponderando",
+        "apontando",
+        "discordando com respeito"
+      ],
+      "rig_parts": [
+        "head",
+        "torso",
+        "shoulders",
+        "forearms",
+        "hands",
+        "legs",
+        "feet",
+        "robe_fabric"
+      ],
+      "props": [
+        "mapa",
+        "tabletes de cera"
+      ],
+      "shots": [
+        "SH02"
+      ]
+    },
+    {
+      "id": "CROWD_EXP",
+      "name": "Figuração genérica sem identidades repetidas",
+      "function": "multidão histórica e espectadores posteriores",
+      "variants": "6 silhuetas distintas, alturas e roupas diferentes por época, sem clones visuais",
+      "props": [
+        "pergaminho",
+        "painéis de madeira",
+        "chapéus por época"
+      ],
+      "shots": [
+        "SH07",
+        "SH08",
+        "SH09",
+        "SH10"
+      ]
+    }
+  ],
+  "sets": [
+    {
+      "id": "ALEX_LIB",
+      "name": "Sala de estudos e estratégia em Alexandria",
+      "scale": "portas de altura superior a dois atores; mesa larga e mapa fixo",
+      "entrances": [
+        "arco da esquerda",
+        "terraço de fundo"
+      ],
+      "props": [
+        "mapa papiro",
+        "pesos de pedra",
+        "rolos"
+      ],
+      "lighting": "sol refletido pelo porto, da esquerda",
+      "shots": [
+        "SH02",
+        "SH05"
+      ]
+    },
+    {
+      "id": "ROMAN_FORUM",
+      "name": "Área pública e sala de escrita romanas",
+      "scale": "colunas e mesas com distância legível",
+      "entrances": [
+        "porta principal à direita"
+      ],
+      "props": [
+        "tábua de cera",
+        "pergaminhos",
+        "tinteiro"
+      ],
+      "lighting": "luz de tarde",
+      "shots": [
+        "SH03",
+        "SH04"
+      ]
+    },
+    {
+      "id": "ACTIUM_SEA",
+      "name": "Mar em Ácio, representação inspirada em 31 a.C.",
+      "scale": "navios com remos, vela, proa e ondas coerentes",
+      "entrances": [
+        "flanco esquerdo e direito"
+      ],
+      "props": [
+        "navios",
+        "remos",
+        "estandartes"
+      ],
+      "lighting": "luz diurna com céu levemente turvo",
+      "shots": [
+        "SH06",
+        "SH07"
+      ]
+    },
+    {
+      "id": "CULTURAL_MEMORY",
+      "name": "Teatro e projeção cinematográfica em épocas distintas",
+      "scale": "palco e projetor dimensionados para pessoas",
+      "entrances": [
+        "coxias",
+        "porta do auditório"
+      ],
+      "props": [
+        "cortina",
+        "rolo de filme",
+        "projetor"
+      ],
+      "lighting": "teatro âmbar e projeção azulada",
+      "shots": [
+        "SH09",
+        "SH10",
+        "SH11"
+      ]
+    }
+  ]
+}
