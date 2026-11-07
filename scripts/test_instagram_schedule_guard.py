@@ -33,9 +33,18 @@ class TestInstagramScheduleGuard(unittest.TestCase):
         report=inspect(sample_posts(),ledger(),clock(14,12))
         self.assertEqual(gate(report,"postflight")[0]["status"],"queued_unconfirmed")
     def test_publication_receipt_satisfies_postflight(self):
-        data={"tue-11":{"status":"published","media_id":"12345"}}
+        data={"tue-11":{"status":"published","media_id":"12345","published_at":"2026-11-08T14:03:10Z"}}
         report=inspect(sample_posts(),ledger(data),clock(14,20))
         self.assertEqual(gate(report,"postflight"),[])
+    def test_published_after_eight_minutes_is_late(self):
+        data={"tue-11":{"status":"published","media_id":"12345",
+                        "published_at":"2026-11-08T14:10:00Z"}}
+        report=inspect(sample_posts(),ledger(data),clock(14,15))
+        self.assertEqual(gate(report,"postflight")[0]["status"],"published_late")
+    def test_unverifiable_receipt_time_is_flagged(self):
+        data={"tue-11":{"status":"published","media_id":"12345"}}
+        report=inspect(sample_posts(),ledger(data),clock(14,20))
+        self.assertEqual(gate(report,"postflight")[0]["status"],"published_time_unverified")
     def test_claim_in_progress_sends_alert(self):
         data={"tue-11":{"status":"claimed"}}
         report=inspect(sample_posts(),ledger(data),clock(14,13))
