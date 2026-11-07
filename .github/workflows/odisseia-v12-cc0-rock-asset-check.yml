@@ -1,0 +1,25 @@
+name: Odisseia V12 - verificar rochas e caverna real em CC0 (sem custo)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v12-cc0-rock-asset-check.yml'
+      - 'odyssey_185/download_cc0_rocksets_v12.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-cc0-real-photogrammetry-assets:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Verify source and CC0 model API structure
+        run: |
+          python3 -m py_compile odyssey_185/download_cc0_rocksets_v12.py
+          python3 odyssey_185/download_cc0_rocksets_v12.py --metadata-only
+      - name: No private audio, images or publication touched
+        run: echo 'POLY_HAVEN_CC0_SOURCE_PREFLIGHT_ONLY_NO_PUBLICATION'
+# Powered by Poly Haven: official CC0 asset metadata. No paid APIs.
