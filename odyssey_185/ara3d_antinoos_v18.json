@@ -1,0 +1,52 @@
+{
+  "name": "ANTINOOS_AGGRESSIVE_DISTINCT_MY_S01_V18",
+  "seed": 7015,
+  "gender": 1,
+  "age": 0.48,
+  "muscle": 0.91,
+  "weight": 0.71,
+  "height": 0.66,
+  "proportions": 0.72,
+  "african": 0.05,
+  "asian": 0.04,
+  "caucasian": 0.91,
+  "skin": "auto",
+  "skinTint": "#bb8a68",
+  "eyes": "brownlight",
+  "eyebrows": "eyebrow003",
+  "hair": "short04",
+  "hairTint": "#261912",
+  "facialHair": "short_beard",
+  "beardColor": "#261912",
+  "outfit": "none",
+  "top": "tunic",
+  "bottom": "wrapper_knee",
+  "underwear": true,
+  "shoes": "sandals",
+  "hat": "none",
+  "accessories": [
+    "waist_sash"
+  ],
+  "garmentStyles": {
+    "tunic": {
+      "pattern": "solid",
+      "color": "#8d3e26",
+      "color2": "#a77d41"
+    },
+    "wrapper_knee": {
+      "pattern": "solid",
+      "color": "#a77d41"
+    },
+    "waist_sash": {
+      "pattern": "solid",
+      "color": "#c39b57"
+    }
+  },
+  "detail": "medium",
+  "rig": "game",
+  "faceBones": true,
+  "animations": true,
+  "weapon": "none",
+  "carry": "none",
+  "expression": "angry"
+}
