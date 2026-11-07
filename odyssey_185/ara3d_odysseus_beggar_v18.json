@@ -1,0 +1,52 @@
+{
+  "name": "ODYSSEUS_IDENTICAL_FACE_BEGGAR_S01_V18",
+  "seed": 2002,
+  "gender": 1,
+  "age": 0.62,
+  "muscle": 0.72,
+  "weight": 0.47,
+  "height": 0.53,
+  "proportions": 0.72,
+  "african": 0.05,
+  "asian": 0.04,
+  "caucasian": 0.91,
+  "skin": "auto",
+  "skinTint": "#c5a486",
+  "eyes": "brownlight",
+  "eyebrows": "eyebrow003",
+  "hair": "short04",
+  "hairTint": "#2c1f17",
+  "facialHair": "short_beard",
+  "beardColor": "#39271c",
+  "outfit": "none",
+  "top": "tunic",
+  "bottom": "wrapper_knee",
+  "underwear": true,
+  "shoes": "sandals",
+  "hat": "none",
+  "accessories": [
+    "waist_sash"
+  ],
+  "garmentStyles": {
+    "tunic": {
+      "pattern": "solid",
+      "color": "#58564b",
+      "color2": "#696457"
+    },
+    "wrapper_knee": {
+      "pattern": "solid",
+      "color": "#696457"
+    },
+    "waist_sash": {
+      "pattern": "solid",
+      "color": "#4f3427"
+    }
+  },
+  "detail": "medium",
+  "rig": "game",
+  "faceBones": true,
+  "animations": true,
+  "weapon": "none",
+  "carry": "none",
+  "expression": "serious"
+}
