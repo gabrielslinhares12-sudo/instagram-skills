@@ -93,41 +93,96 @@ scenes=[
   ("sf",0,5,"PROJETADO|PARA FLEXIONAR","VÍDEO REAL • CENÁRIO URBANO"),
 ]
 assert sum(s[2] for s in scenes)==54
-# The technical overlay is real frame-by-frame procedural animation; no still-photo zoom is presented as recorded footage.
+# TUE-MESTRE-01 editorial diagram: IVORY paper, BLACK ink, YELLOW paint, RED signal.
+# Real kinematics, no neon-blue science fiction sphere or decorative UI.
+PAPER=(250,248,241,255); INK=(26,24,22,255)
+YELLOW=(251,194,40,255); RED=(214,40,41,255)
+MUTED=(110,106,98,255)
+BIG=ImageFont.truetype(bold,47)
+MID=ImageFont.truetype(reg,26)
+SMALL=ImageFont.truetype(reg,20)
+STRONG=ImageFont.truetype(bold,27)
+def paper():
+    im=Image.new("RGBA",(720,1280),PAPER)
+    d=ImageDraw.Draw(im)
+    for k in range(0,1280,50):d.line((0,k,720,k),fill=(232,229,221,150),width=1)
+    for k in range(0,720,50):d.line((k,0,k,1280),fill=(232,229,221,150),width=1)
+    return im
+def header(d,title,subtitle):
+    d.polygon([(38,108),(649,102),(654,173),(40,180)],fill=YELLOW)
+    d.text((54,113),title,font=BIG,fill=INK)
+    d.text((53,211),subtitle,font=MID,fill=INK)
+def arrow(d,x,y,x2,y2,color):
+    d.line((int(x),int(y),int(x2),int(y2)),fill=color,width=5)
+    ang=math.atan2(y2-y,x2-x)
+    for k in (-1,1):
+        ang2=ang+math.pi+k*.45
+        d.line((int(x2),int(y2),int(x2+17*math.cos(ang2)),int(y2+17*math.sin(ang2))),fill=color,width=5)
 def sim_png(t,num):
-    im=Image.new("RGBA",(720,1280),(0,0,0,0)); d=ImageDraw.Draw(im)
-    d.rounded_rectangle((50,380,670,1120),radius=36,fill=(8,16,30,224),outline=(207,218,230,70),width=2)
-    d.text((90,420),"AMORTECEDOR DE MASSA",font=ImageFont.truetype(bold,32),fill=(244,244,242,255))
-    d.text((90,465),"ESQUEMA EM MOVIMENTO",font=ImageFont.truetype(reg,24),fill=(164,204,226,255))
-    # visualization: moving supporting frame and the deliberately counteracting mass
-    phi=2*math.pi*t/3.6
-    tilt=19*math.sin(phi)
-    x=360+62*math.sin(phi+1.14)
-    y=776+5*math.sin(phi)
-    pivot=(360+tilt,555)
-    d.line([(190+tilt,530),(530+tilt,530)],fill=(220,236,242,230),width=13)
-    d.line([(225+tilt,536),(x-45,y-103)],fill=(200,214,223,245),width=9)
-    d.line([(495+tilt,536),(x+45,y-103)],fill=(200,214,223,245),width=9)
-    for rad,rgba in [(146,(237,178,45,25)),(134,(237,178,45,30)),(118,(219,166,49,255))]:
-        d.ellipse((x-rad,y-rad,x+rad,y+rad),fill=rgba)
-    for delta,color in [(-38,(249,219,119,100)),(-15,(254,221,109,180)),(28,(125,87,25,100))]:
-        d.arc((x-110+delta,y-105,x+110+delta,y+100),70,285,fill=color,width=5)
-    # actual mechanical connection visualization: hydraulic units work through damping resistance
-    lx=x-70;rx=x+70
-    d.line([(lx,y+110),(212,990)], fill=(103,209,225,255),width=15)
-    d.line([(rx,y+110),(508,990)], fill=(103,209,225,255),width=15)
-    d.rounded_rectangle((180,985,540,1010),radius=12,fill=(194,206,220,255))
-    d.text((121,1040),"SISTEMA DE DISSIPAÇÃO",font=ImageFont.truetype(reg,24),fill=(212,236,236,255))
-    path=W/("sim-%04d.png"%num);im.save(path);return path
+    im=paper();d=ImageDraw.Draw(im)
+    header(d,"AMORTECEDOR DE MASSA","ESQUEMA TÉCNICO ILUSTRATIVO")
+    phi=2*math.pi*t/4.8
+    xb=16*math.sin(phi)
+    xm=8*math.sin(phi)-62*math.sin(phi-.45)
+    sx=360+xb;mx=360+xm;y=692;rad=106
+    d.line((sx-215,398,sx+215,398),fill=INK,width=14)
+    d.line((sx-215,333,sx-215,472),fill=INK,width=10)
+    d.line((sx+215,333,sx+215,472),fill=INK,width=10)
+    for offset in [-55,55]:
+        d.line((sx+offset,398,mx+offset,y-rad+12),fill=INK,width=5)
+    d.ellipse((mx-rad,y-rad,mx+rad,y+rad),fill=YELLOW,outline=INK,width=7)
+    d.text((mx-71,y-25),"660 t",font=BIG,fill=INK)
+    # Damper cylinders connected between suspended mass and moving structural base
+    for sign in [-1,1]:
+        ax=mx+sign*63;bx=sx+sign*162
+        d.line((ax,y+90,bx,958),fill=INK,width=14)
+        d.ellipse((ax-8,y+82,ax+8,y+98),fill=RED)
+        cx=.54*ax+.46*bx;cy=.54*(y+90)+.46*958
+        d.ellipse((cx-15,cy-15,cx+15,cy+15),fill=MUTED,outline=INK,width=2)
+    d.line((sx-225,963,sx+225,963),fill=INK,width=13)
+    d.line((360,330,360,987),fill=(155,151,143,120),width=2)
+    if abs(xb)>3:arrow(d,360,302,360+xb,302,RED)
+    if abs(xm-xb)>3:arrow(d,sx,840,mx,840,INK)
+    d.line((58,1023,90,1023),fill=RED,width=5)
+    d.text((103,1008),"ESTRUTURA EM MOVIMENTO",font=STRONG,fill=INK)
+    d.line((58,1074,90,1074),fill=INK,width=5)
+    d.text((103,1059),"MASSA E AMORTECEDORES",font=STRONG,fill=INK)
+    d.text((50,1194),"SIMULAÇÃO DIDÁTICA · DESLOCAMENTO EXAGERADO",font=SMALL,fill=MUTED)
+    out=W/("sim-%04d.png"%num);im.save(out);return out
+def plot_png(t,num):
+    im=paper();d=ImageDraw.Draw(im)
+    header(d,"MENOS OSCILAÇÃO","COMPARAÇÃO ILUSTRATIVA DA RESPOSTA")
+    x0,x1=80,650
+    for y0,amp,label,col in [(532,78,"SEM AMORTECEDOR",RED),(846,29,"COM AMORTECEDOR",INK)]:
+        d.text((82,y0-150),label,font=STRONG,fill=INK)
+        d.line((x0,y0,x1,y0),fill=MUTED,width=2)
+        end=int(x0+(x1-x0)*min(1,t/6.3))
+        pts=[]
+        for x in range(x0,end+1,3):
+            phase=6*math.pi*(x-x0)/(x1-x0)
+            pts.append((x,int(y0-amp*math.exp(-.04*phase)*math.sin(phase))))
+        if len(pts)>1:d.line(pts,fill=col,width=6)
+        if pts:
+            px,py=pts[-1]
+            d.ellipse((px-8,py-8,px+8,py+8),fill=YELLOW,outline=INK,width=2)
+        d.text((80,y0+104),"TEMPO  →",font=SMALL,fill=MUTED)
+    d.line((80,1090,635,1090),fill=YELLOW,width=9)
+    d.text((80,1116),"Menos movimento; energia dissipada.",font=MID,fill=INK)
+    d.text((50,1194),"GRÁFICO DIDÁTICO · SEM ESCALA",font=SMALL,fill=MUTED)
+    out=W/("plot-%04d.png"%num);im.save(out);return out
+
 for i,(src,start,duration,title,place) in enumerate(scenes):
     over=title_png(i,title,place)
     target=W/("scene-%02d.mp4"%i)
     filename=W/sources[src]
     filt="[0:v]fps=30,scale=720:1280:force_original_aspect_ratio=increase,crop=720:1280,eq=contrast=1.035:saturation=1.12,setsar=1[base];[base][1:v]overlay=0:0:shortest=1"
     inputs=["-stream_loop","-1","-ss",str(start),"-i",str(filename),"-loop","1","-framerate","30","-i",str(over)]
-    if i==5:
-        for n in range(duration*30):sim_png(n/30,n)
-        inputs.extend(["-framerate","30","-i",str(W/"sim-%04d.png")])
+    if i in (5,6):
+        for n in range(duration*30):
+            if i==5: sim_png(n/30,n)
+            else: plot_png(n/30,n)
+        pathpattern="sim-%04d.png" if i==5 else "plot-%04d.png"
+        inputs.extend(["-framerate","30","-i",str(W/pathpattern)])
         filt+="[titled];[titled][2:v]overlay=0:0:shortest=1[v]"
     else:
         filt+="[v]"
@@ -164,9 +219,9 @@ digest=H.sha256(OUT.read_bytes()).hexdigest()
 manifest={
  "standard":"TUE-MESTRE-01","reel":"predios-altos-balancam","output":str(OUT.relative_to(ROOT)),
  "sha256":digest,"duration_seconds":54,"format":"720x1280@30 for QC",
- "contains_real_video":True,"real_footage_count":4,"animated_diagram_seconds":9,
+ "contains_real_video":True,"real_footage_count":4,"animated_diagram_seconds":16,
  "voice_status":"MISSING_RASALGETHI_MUST_REUSE_ORIGINAL","owner_approved":False,
- "safe_to_schedule":False,"safe_to_publish":False,"photographs_as_moving_video":False,
+ "safe_to_schedule":False,"safe_to_publish":False,"visual_style":"TUE_MESTRE_01_ivory_yellow_black_red","photographs_as_moving_video":False,
  "sources":[x for x in sources.values()]
 }
 (W/"metadata.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
