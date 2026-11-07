@@ -1,0 +1,36 @@
+name: Odisseia V19 - extrair referencia visual Troia aprovada (somente leitura)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v19-extrair-estilo-troia.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inspect-existing-owned-2d-reference:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: true
+      - name: Extract representative frames from prior owner-approved Trojan video
+        run: |
+          set -euo pipefail
+          sudo DEBIAN_FRONTEND=noninteractive apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ffmpeg >/dev/null
+          SRC=content/media/instagram/2026-11-05/odisseu-troia/Cavalo_Troia_4K60_Meta_10h.mp4
+          test -s "$SRC"
+          mkdir -p odyssey_2d/reference
+          for t in 3 14 28 43 54; do
+            ffmpeg -hide_banner -loglevel error -ss "$t" -i "$SRC" -frames:v 1 -vf 'scale=360:640' -q:v 4 -y \
+              "odyssey_2d/reference/TROIA_2D_APROVADA_$(printf '%02d' "$t")s.jpg"
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add odyssey_2d/reference/*.jpg
+          git diff --cached --quiet && exit 0
+          git commit -m 'reference(odyssey-v19): extract prior owner-approved Trojan animation visual palette'
+          git push origin HEAD:main
+# Reference extraction does not publish content or regenerate media.
