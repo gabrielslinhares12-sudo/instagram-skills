@@ -1,0 +1,91 @@
+name: Odisseia V11 - render animacao 12s Polifemo 3D real (QC privado)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v11-polifemo-mocap-motion-preview.yml'
+      - 'odyssey_185/scene04_motion_preview_v11.py'
+      - 'odyssey_185/ara3d_polyphemus_v11.json'
+      - 'odyssey_185/ara3d_odysseus_v11.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-v11-polyphemus-continuous-preview
+  cancel-in-progress: false
+jobs:
+  render-continuity-stills:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 95
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Validate new period cast and true mocap Blender action
+        run: |
+          set -euo pipefail
+          python3 -m py_compile odyssey_185/scene04_cyclops_v11.py odyssey_185/scene04_motion_preview_v11.py
+          python3 -m json.tool odyssey_185/ara3d_polyphemus_v11.json >/dev/null
+          python3 -m json.tool odyssey_185/ara3d_odysseus_v11.json >/dev/null
+          grep -q 'strip.scale' odyssey_185/scene04_cyclops_v11.py
+          grep -q 'POLYPHEMUS_SINGLE' odyssey_185/scene04_cyclops_v11.py || true
+      - name: Retrieve audited MIT licensed skinned human creation engine
+        run: |
+          git clone -q https://github.com/olatunde85/3d-gen.git ara3d
+          git -C ara3d checkout --detach 1e647c97293208d03ab226b87993dc7e910bdacb
+          grep -qi mit ara3d/LICENSE
+      - name: Generate BOTH time-period distinct rigged humans with real mocap clips
+        working-directory: ara3d
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run setup-assets
+          mkdir -p out/polyphemus out/odysseus
+          npm run export -- --params ../odyssey_185/ara3d_polyphemus_v11.json --formats glb --out out/polyphemus
+          npm run export -- --params ../odyssey_185/ara3d_odysseus_v11.json --formats glb --out out/odysseus
+          test "$(find out/polyphemus -name '*.glb' -size +150k | wc -l)" -eq 1
+          test "$(find out/odysseus -name '*.glb' -size +150k | wc -l)" -eq 1
+      - name: Install Blender 3D and glTF numpy importer on GitHub runner
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg xvfb libgl1-mesa-dri python3-numpy
+          blender --version | head -n 2
+      - name: Render 180 distinct motion frames with native Blender mocap and interactive boulder
+        timeout-minutes: 58
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -o pipefail
+          xvfb-run -a blender --background --threads 2 --python odyssey_185/scene04_motion_preview_v11.py 2>&1 | tee /tmp/odyssey-v11-acting.log
+          grep -q 'NATIVE_CHARACTER_ACTING POLYPHEMUS' /tmp/odyssey-v11-acting.log
+          grep -q 'ODYSSEY_V11_REAL_3D_CONTINUOUS_MOTION_FRAMES 180' /tmp/odyssey-v11-acting.log
+          test "$(find odyssey_185/out/cyclops_v11/continuous_motion_frames -name 'frame-*.png' | wc -l)" -eq 180
+          test -s odyssey_185/out/cyclops_v11/scene_technical_qc.json
+      - name: Encode actual continuous body + rock motion to silent MP4
+        run: |
+          set -euo pipefail
+          ffmpeg -hide_banner -loglevel error -y -framerate 15 -pattern_type glob \
+            -i 'odyssey_185/out/cyclops_v11/continuous_motion_frames/frame-*.png' \
+            -c:v libx264 -preset medium -crf 21 -pix_fmt yuv420p \
+            -movflags +faststart odyssey_185/out/cyclops_v11/S04_POLIFEMO_MOCAP_12S_SILENT_QC.mp4
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height,r_frame_rate -of json \
+            odyssey_185/out/cyclops_v11/S04_POLIFEMO_MOCAP_12S_SILENT_QC.mp4 \
+            > odyssey_185/out/cyclops_v11/motion_probe.json
+      - name: Archive private continuous 3D video for narrative review
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_V11_POLIFEMO_MOCAP_12S_QC_NAO_PUBLICAR
+          path: |
+            odyssey_185/out/cyclops_v11/S04_POLIFEMO_MOCAP_12S_SILENT_QC.mp4
+            odyssey_185/out/cyclops_v11/motion_probe.json
+            odyssey_185/out/cyclops_v11/S04_polyphemus_*.png
+            odyssey_185/out/cyclops_v11/scene_technical_qc.json
+            /tmp/odyssey-v11-acting.log
+          retention-days: 14
+          if-no-files-found: warn
+# user-origin Rasalgethi audio preserved separately; no paid API, GUTHY or publishing.
