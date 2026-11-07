@@ -429,6 +429,67 @@ def audit_queue(root: Path=ROOT) -> dict:
             # Exception scoped to the eight ORIGINAL Halloween files approved on
             # 31/10, now re-authorized for the two-step music workflow on 01/11.
             # Never allow other legacy posts to bypass the individual-art QC.
+            # Exceptional owner release: five corrected vintage comic pages, 07NOV.
+            # Scope is STRICTLY to these five pinned, user-approved JPEGs.
+            # This does not assert a pixelwise match to the canonical mascot.
+            # Every other carousel continues through the normal full visual gate.
+            if slug == "tue-2026-11-07-11-rh-do-caos-cadeira-vintage-5-artes":
+                record = root / "content/approved" / slug / "approval.json"
+                if not record.is_file():
+                    raise VisualError("Tirinha 07NOV sem registro de aprovacao do proprietario.")
+                approval = read_json(record)
+                pinned = "5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177"
+                folder = root / "content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE"
+                prefix = ("https://raw.githubusercontent.com/gabrielslinhares12-sudo/"
+                          "instagram-skills/" + pinned + "/"
+                          "content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/")
+                expected = [
+                    "e6445f43d5c7599125987c527fc05781357d6e2d7040df0041929947e45ba28a",
+                    "4f9a088ed9f126ec474aa5140954368e86061aa4d7cb8aca5ce9bab04b33d62f",
+                    "86088e45b4f7c0b887378d9f8aa3e1bab5613f378ebc3b61058d063b9a7dacea",
+                    "f76f84d1b93b906561b78b675b27018c19fc4183441d384d17c152d8c8998211",
+                    "ce54e848696fa8aa3874246ddc0935f584c686c7660da205aa540021d433ab41",
+                ]
+                urls = [prefix + f"{i:02d}-tirinha-vintage.jpg" for i in range(1, 6)]
+                if (approval.get("id") != slug
+                        or approval.get("preset_id") != "TUE-MESTRE-01"
+                        or approval.get("approved") is not True
+                        or approval.get("owner_authorized") is not True
+                        or approval.get("visual_reviewed") is not True
+                        or approval.get("scope") != "EXACT_FIVE_TIRINHAS_VINTAGE_07NOV2026_ONLY"
+                        or approval.get("original_mascot_pixel_match_verified") is not False
+                        or approval.get("approved_visual_reference_sha256") !=
+                           "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9"
+                        or approval.get("release_commit") != pinned
+                        or approval.get("source_archive_sha256") !=
+                           "11593b93accea3e03f06fc4d9e94bd6c31ab12f0eacc973e6740f3d656ba62fe"
+                        or approval.get("post_due_at") != "2026-11-07T14:00:00Z"
+                        or post.get("due_at") != approval.get("post_due_at")
+                        or approval.get("media_sha256") != expected
+                        or approval.get("media_urls") != urls
+                        or post.get("media_sha256") != expected
+                        or post.get("media_urls") != urls
+                        or post.get("distribution_mode") != "api_carousel_without_native_music"
+                        or approval.get("distribution_mode") != post.get("distribution_mode")
+                        or approval.get("owner_authorized_without_music") is not True
+                        or post.get("owner_authorized_without_music") is not True
+                        or post.get("ai_origin") != "synthetic"
+                        or post.get("content_style") != "clearly_illustrated"
+                        or post.get("ai_disclosure_review") !=
+                           "no_mandatory_self_disclosure_for_stylized_still"):
+                    raise VisualError("Tirinha 07NOV diverge das cinco artes aprovadas.")
+                if not isinstance(approval.get("approval_note"), str) or not approval["approval_note"].strip():
+                    raise VisualError("Tirinha 07NOV sem anotacao de aprovacao.")
+                for i, digest in enumerate(expected, 1):
+                    image_file = folder / f"{i:02d}-tirinha-vintage.jpg"
+                    if not image_file.is_file() or sha256(image_file) != digest:
+                        raise VisualError(f"Tirinha 07NOV arquivo {i} ausente ou modificado.")
+                    with Image.open(image_file) as im:
+                        if im.format != "JPEG" or im.size != (1080, 1350):
+                            raise VisualError(f"Tirinha 07NOV arquivo {i} fora de 1080x1350.")
+                verify_publication_route(approval)
+                reviewed.append(slug)
+                continue
             if slug=="halloween-2026-10-31-historia-8-laminas":
                 pinned="f32ed0dae986e38ff058d3ba84f02b6a5c4b94fb"
                 prefix=("https://raw.githubusercontent.com/gabrielslinhares12-sudo/"
