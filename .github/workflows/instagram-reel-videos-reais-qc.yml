@@ -45,20 +45,20 @@ jobs:
               file = W / name
               if file.exists() and file.stat().st_size > 100000: return file
               id_by_name = {
-                "taipei_1.mp4":"mixkit-aerial-shot-of-a-busy-avenue-in-the-city-2034-large.mp4",
-                "building_1.mp4":"mixkit-aerial-shot-of-buildings-in-a-city-1670-large.mp4",
-                "building_2.mp4":"mixkit-daytime-city-traffic-aerial-view-56-large.mp4",
-                "taipei_2.mp4":"mixkit-drone-flying-over-a-city-at-sunset-44804-large.mp4"
+                "taipei_1.mp4":"mixkit-aerial-shot-of-a-busy-avenue-in-the-city-2034_clip_1.mp4",
+                "building_1.mp4":"mixkit-aerial-shot-of-buildings-in-a-city-1670_clip_1.mp4",
+                "building_2.mp4":"mixkit-aerial-view-of-a-city-during-the-morning-1617_clip_1.mp4",
+                "taipei_2.mp4":"mixkit-aerial-panorama-of-a-big-city-at-night-42352_clip_1.mp4"
               }
               identifier=id_by_name[name]
               urls=[
-                "https://assets.mixkit.co/videos/preview/"+identifier,
-                "https://assets.mixkit.co/videos/preview/"+identifier.replace("-large.mp4","-medium.mp4")
+                "https://huggingface.co/datasets/FastVideo/Mixkit-Src/resolve/main/Traffic/"+identifier+"?download=true",
+                "https://huggingface.co/datasets/FastVideo/Mixkit-Src/resolve/main/Traffic/"+identifier+"?download=true".replace("-large.mp4","-medium.mp4")
               ]
               for remote in urls:
                   try:
                       req=urllib.request.Request(remote,headers={"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
-                                                                 "Accept":"video/mp4,application/octet-stream,*/*","Referer":"https://www.pexels.com/"})
+                                                                 "Accept":"video/mp4,application/octet-stream,*/*","Referer":"https://huggingface.co/"})
                       with urllib.request.urlopen(req,timeout=90) as src,open(file,"wb") as dst:
                           while True:
                               block=src.read(1048576)
@@ -103,11 +103,11 @@ jobs:
             ("toronto",0,6,"PRÉDIOS ALTOS|BALANÇAM?","VÍDEO REAL • CIDADE MODERNA"),
             ("taipei",0,7,"O VENTO|EMPURRA","VÍDEO REAL • CENÁRIO URBANO"),
             ("toronto_short",0,7,"FLEXIBILIDADE|CONTROLADA","VÍDEO REAL • CIDADE MODERNA"),
-            ("toronto",12,6,"NO ALTO, O|MOVIMENTO CONTA","VÍDEO REAL • PANORAMA URBANO"),
-            ("taipei",12,7,"TAIPEI 101|TAIWAN","VÍDEO REAL • CENÁRIO URBANO"),
-            ("taipei",19,9,"660 TONELADAS|EM MOVIMENTO","VÍDEO REAL + SIMULAÇÃO TÉCNICA"),
-            ("toronto",25,7,"AMORTECEDOR|REDUZ A OSCILAÇÃO","VÍDEO REAL • EXEMPLO URBANO"),
-            ("sf",9,5,"PROJETADO|PARA FLEXIONAR","VÍDEO REAL • CENÁRIO URBANO"),
+            ("toronto",0,6,"NO ALTO, O|MOVIMENTO CONTA","VÍDEO REAL • PANORAMA URBANO"),
+            ("taipei",0,7,"TAIPEI 101|TAIWAN","VÍDEO REAL • CENÁRIO URBANO"),
+            ("taipei",0,9,"660 TONELADAS|EM MOVIMENTO","VÍDEO REAL + SIMULAÇÃO TÉCNICA"),
+            ("toronto",0,7,"AMORTECEDOR|REDUZ A OSCILAÇÃO","VÍDEO REAL • EXEMPLO URBANO"),
+            ("sf",0,5,"PROJETADO|PARA FLEXIONAR","VÍDEO REAL • CENÁRIO URBANO"),
           ]
           assert sum(s[2] for s in scenes)==54
           # The technical overlay is real frame-by-frame procedural animation; no still-photo zoom is presented as recorded footage.
@@ -141,7 +141,7 @@ jobs:
               target=W/("scene-%02d.mp4"%i)
               filename=W/sources[src]
               filt="[0:v]fps=30,scale=720:1280:force_original_aspect_ratio=increase,crop=720:1280,eq=contrast=1.035:saturation=1.12,setsar=1[base];[base][1:v]overlay=0:0:shortest=1"
-              inputs=["-ss",str(start),"-i",str(filename),"-loop","1","-framerate","30","-i",str(over)]
+              inputs=["-stream_loop","-1","-ss",str(start),"-i",str(filename),"-loop","1","-framerate","30","-i",str(over)]
               if i==5:
                   for n in range(duration*30):sim_png(n/30,n)
                   inputs.extend(["-framerate","30","-i",str(W/"sim-%04d.png")])
