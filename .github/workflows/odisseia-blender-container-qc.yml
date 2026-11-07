@@ -1,4 +1,4 @@
-name: Odisseia V8.5 — Blender 3D rapido via imagem pronta (QC)
+name: Odisseia V8.7 — Troia em chamas e passadico acoplado (QC)
 on:
   push:
     branches: [main]
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: 01e29892adfdcef4d9a16ee40cc1aeab3bf675fb
+          ref: ba25c1eafcddf6ba6ab0ad32bd0e98221a7c2b6b
           persist-credentials: false
       - name: Validar espaco dos personagens e impedir sobreposicoes
         run: |
@@ -62,7 +62,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: ODISSEIA_V85_BLENDER_RIGS_3D_NO_OVERLAP_STILLS
+          name: ODISSEIA_V87_BLENDER_FIRE_AND_STOWED_RAMP_QC
           path: |
             production/odyssey3d/out/frame-*.png
             production/odyssey3d/out/storyboard_V85.jpg
