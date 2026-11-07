@@ -28,10 +28,19 @@ class CloudRunnerTests(unittest.TestCase):
         self.assertEqual(brand["output"]["max_pages"], 20)
         self.assertEqual(brand["output"]["automatic_api_max_pages"], 10)
 
-    def test_only_central_scheduler_has_automatic_cron(self):
+    def test_primary_and_backup_use_one_verified_cloud_publisher(self):
         cloud = (ROOT / ".github/workflows/instagram-scheduler.yml").read_text(encoding="utf-8")
         legacy = (ROOT / ".github/workflows/halloween-31out-2026.yml").read_text(encoding="utf-8")
-        self.assertIn("cron: '*/10 * * * *'", cloud)
+        backup = (ROOT / ".github/workflows/instagram-scheduler-backup.yml").read_text(encoding="utf-8")
+        self.assertIn("cron: '2,12,22,32,42,52 14,18,21 * * *'", cloud)
+        self.assertIn("cron: '5,15,25,35,45,55 14,18,21 * * *'", backup)
+        self.assertIn("workflow_call:", cloud)
+        self.assertIn("uses: ./.github/workflows/instagram-scheduler.yml", backup)
+        self.assertIn("secrets: inherit", backup)
+        self.assertNotIn("python3 scripts/instagram_queue.py --execute", backup)
+        self.assertIn("group: instagram-temumaexplicacao-publication", cloud)
+        self.assertIn("python3 scripts/instagram_schedule_guard.py --mode postflight", cloud)
+        self.assertIn("audit-queue --only-due", cloud)
         self.assertIn("runs-on: ubuntu-latest", cloud)
         self.assertNotIn("runs-on: [self-hosted", cloud.split("jobs:", 1)[1])
         self.assertIn("cancel-in-progress: false", cloud)
@@ -60,7 +69,7 @@ class CloudRunnerTests(unittest.TestCase):
         source = (ROOT / "scripts/instagram_queue.py").read_text(encoding="utf-8")
         self.assertIn('status = "requires_native_music"', source)
         self.assertIn('owner_authorized_without_music") is not True', source)
-        self.assertIn('status"] == "due"', (ROOT / ".github/workflows/instagram-scheduler.yml").read_text(encoding="utf-8"))
+        self.assertIn('x["status"]=="due"', (ROOT / ".github/workflows/instagram-scheduler.yml").read_text(encoding="utf-8"))
         self.assertIn("needs_review", source)
         self.assertIn('MAX_LATENESS = timedelta(hours=2)', source)
 
