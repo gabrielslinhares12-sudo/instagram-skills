@@ -1,0 +1,94 @@
+name: Odisseia V13b - elenco distinto e continuidade da caverna (QC privado)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v13b-distinct-cast-qc.yml'
+      - 'odyssey_185/scene04_scanrock_v13bb.py'
+      - 'odyssey_185/ara3d_polyphemus_v11.json'
+      - 'odyssey_185/download_cc0_rocksets_v12.py'
+      - 'odyssey_185/ara3d_odysseus_v11.json'
+      - 'odyssey_185/ara3d_sailor_distinct_v13.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-v13-cave-blocking-qc
+  cancel-in-progress: false
+jobs:
+  render-continuity-stills:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 95
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Validate new period cast and true mocap Blender action
+        run: |
+          set -euo pipefail
+          python3 -m py_compile odyssey_185/scene04_scanrock_v13bb.py
+          python3 -m json.tool odyssey_185/ara3d_polyphemus_v11.json >/dev/null
+          python3 -m json.tool odyssey_185/ara3d_odysseus_v11.json >/dev/null
+          python3 -m json.tool odyssey_185/ara3d_sailor_distinct_v13.json >/dev/null
+          grep -q 'strip.scale' odyssey_185/scene04_scanrock_v13bb.py
+          grep -q 'POLYPHEMUS_SINGLE' odyssey_185/scene04_scanrock_v13bb.py || true
+      - name: Retrieve audited MIT licensed skinned human creation engine
+        run: |
+          git clone -q https://github.com/olatunde85/3d-gen.git ara3d
+          git -C ara3d checkout --detach 1e647c97293208d03ab226b87993dc7e910bdacb
+          grep -qi mit ara3d/LICENSE
+      - name: Generate three truly distinct skinned humans with real mocap
+        working-directory: ara3d
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run setup-assets
+          mkdir -p out/polyphemus out/odysseus out/sailor
+          npm run export -- --params ../odyssey_185/ara3d_polyphemus_v11.json --formats glb --out out/polyphemus
+          npm run export -- --params ../odyssey_185/ara3d_odysseus_v11.json --formats glb --out out/odysseus
+          npm run export -- --params ../odyssey_185/ara3d_sailor_distinct_v13.json --formats glb --out out/sailor
+          test "$(find out/polyphemus -name '*.glb' -size +150k | wc -l)" -eq 1
+          test "$(find out/odysseus -name '*.glb' -size +150k | wc -l)" -eq 1
+          test "$(find out/sailor -name '*.glb' -size +150k | wc -l)" -eq 1
+      - name: Retrieve genuine CC0 rock and boulder scanned 3D geometry with PBR
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          python3 odyssey_185/download_cc0_rocksets_v12.py --out odyssey_185/out/cc0_rocks
+          test -s odyssey_185/out/cc0_rocks/coastal_cliff_01/receipt.json
+          test -s odyssey_185/out/cc0_rocks/namaqualand_boulder_02/receipt.json
+      - name: Install Blender 3D and glTF numpy importer on GitHub runner
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg xvfb libgl1-mesa-dri python3-numpy
+          blender --version | head -n 2
+      - name: Render 5 continuity frames for QC (not final film)
+        timeout-minutes: 36
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -o pipefail
+          xvfb-run -a blender --background --threads 2 --python odyssey_185/scene04_scanrock_v13bb.py 2>&1 | tee /tmp/odyssey-v12-acting.log
+          grep -q 'NATIVE_CHARACTER_ACTING POLYPHEMUS' /tmp/odyssey-v12-acting.log
+          grep -q 'V12_CC0_PHOTOGRAMMETRY_ASSETS_STAGED' /tmp/odyssey-v12-acting.log
+          grep -q 'ODYSSEY_V13_GROUNDED_ARCH_AND_BLOCKING_CONTRACT_VALID' /tmp/odyssey-v12-acting.log
+          grep -q 'ODYSSEY_V13B_DISTINCT_CAST_BLOCKING_QC_NOT_FINAL' /tmp/odyssey-v12-acting.log
+          test "$(find odyssey_185/out/scanrock_v13b -name 'S04_v13b_scanrock_*.png' | wc -l)" -eq 5
+          test -s odyssey_185/out/scanrock_v13b/scene_technical_qc.json
+      - name: Archive V13 test frames and technical evidence (NO publication)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_V13B_ELENCO_DISTINTO_CAVE_QC_NAO_PUBLICAR
+          path: |
+            odyssey_185/out/scanrock_v13b/S04_v13b_scanrock_*.png
+            odyssey_185/out/scanrock_v13b/scene_technical_qc.json
+            odyssey_185/out/scanrock_v13b/scanrock_sources.json
+            /tmp/odyssey-v12-acting.log
+          retention-days: 14
+          if-no-files-found: warn
+# user-origin Rasalgethi audio preserved separately; no paid API, GUTHY or publishing.
