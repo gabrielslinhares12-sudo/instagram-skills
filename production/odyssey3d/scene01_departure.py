@@ -82,7 +82,7 @@ def add_ship():
     hull.parent=root
     def parent(ob):
         if ob!=root:ob.parent=root;return ob
-    deck=parent(cube("deck at human feet", (0,0,.98),(5.8,1.42,.16),WOODLIGHT,.05))
+    deck=parent(cube("deck at human feet", (0,0,.98),(6.15,2.05,.16),WOODLIGHT,.05))
     # Ribs, railings and rowing thwarts in true perspective.
     for i,x in enumerate([-2.45,-1.75,-1.05,-.35,.35,1.05,1.75,2.45]):
         parent(cube("thwart %02d"%i,(x,0,1.08),(.10,1.86,.10),WOODLIGHT,.02))
