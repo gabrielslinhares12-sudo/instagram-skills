@@ -1,0 +1,14 @@
+{
+  "film": "A ODISSEIA - O REGRESSO A ITACA",
+  "version": "V34 - tecnica, nao aprovada artisticamente",
+  "source_visual": "Cavalo de Troia original: hero puppet extracted from owner's 60s film, original horse layer",
+  "scene_count": 16,
+  "shot_count": 68,
+  "unique_narrative_actions_in_contract": 68,
+  "audio": {"origin":"user supplied Rasalgethi original", "sha256":"9be8b79920b318c76f23874d38d12f4f77b46f8a9871833612ac1efa82b5d667", "duration_seconds":220.56, "used_original_voice":true, "score":"original subdued soundtrack V27"},
+  "video": {"width":720,"height":1280,"fps":30,"duration_seconds":220.56,"codec":"h264","audio_codec":"aac","audio_channels":2},
+  "measured": {"full_video_decode_pass":true, "frames":6616,"consecutive_frames_unique_not_aesthetic_proof":true, "shot_midframes_all_distinct":true},
+  "limitations": ["O plano 2D e a escala precisam de revisao artistica adicional", "Os personagens secundarios ainda sao procedurais e nao sao assets finais desenhados por animador", "A sincronizacao de legendas e por frase estimada, nao por palavra confirmada", "Exportacao 720p30: nao e 4K60 nativo", "Ainda nao passou QC editorial de atuacao/gestos e props"],
+  "editorial_approved":false,
+  "publish_allowed":false
+}
