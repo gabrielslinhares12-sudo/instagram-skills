@@ -7,6 +7,7 @@
 **Alvo de entrega:** vertical 9:16 · 2160 × 3840 · 60 FPS · realismo estilizado 3D · PT-BR  
 **Voz:** Rasalgethi — Google AI Studio (interface web, sem API paga)  
 **Estado de produção:** ROTEIRO DE DIREÇÃO EDITORIAL; não indica áudio gerado, cena renderizada, aprovação ou autorização de publicação.  
+**Cadastro do elenco e dos objetos:** [44 identidades e 52 props](asset_registry_185.json). Os registros são especificações de design, ainda não modelos 3D construídos.  
 **FONTE DAS FALAS:** texto fornecido pelo usuário, preservado literalmente e também presente em `odyssey_185/manifest_v9.json`.
 
 > **Regra de composição:** a S01 é um flashforward de suspense para o arco. S02 retorna a Troia; S02–S16 percorrem a história temporalmente. O retorno ao salão em S15 é um reencontro visual com o prólogo, não reutilização preguiçosa de tomada. A narrativa histórica é uma adaptação condensada do poema atribuído a Homero, não reconstituição documental de arqueologia.
@@ -41,7 +42,7 @@
 
 **Narração integral (sem alterações):** “Um velho mendigo ergueu um arco diante de dezenas de guerreiros. Ninguém imaginava quem ele realmente era.”
 
-**Elenco / figurinos:** CHAR_ODYSSEUS:mendigo; CHAR_ANTINOOS; CHAR_EURYMACHOS; CHAR_PRETENDENTE_A; CHAR_PRETENDENTE_B. **Set:** `SET_PALACIO_SALAO`. **Props rastreáveis:** `PROP_ARCO_REAL`, `PROP_MACHADOS_12`, `PROP_TACA_BRONZE`, `PROP_TOCHA_SALAO`.
+**Elenco / figurinos:** CHAR_ODYSSEUS:mendigo; CHAR_ANTINOOS; CHAR_EURYMACHOS; CHAR_PRETENDENTE_A; CHAR_PRETENDENTE_B; CHAR_PENELOPE. **Set:** `SET_PALACIO_SALAO`. **Props rastreáveis:** `PROP_ARCO_REAL`, `PROP_MACHADOS_12`, `PROP_TACA_BRONZE`, `PROP_TOCHA_SALAO`.
 
 **Direção de arte e luz:** flashforward no salão micênico: pilares de madeira, reboco pigmentado, bancos e comida; luz âmbar de tochas com sombras volumétricas. Odisseu veste linho rasgado e manto cinza, rosto envelhecido por disfarce, sem capacete.
 
@@ -356,7 +357,7 @@
 **Tomadas e marcação de movimento:**
 
 - **S14-T01 · 02:25–02:28 · 50 mm dois rostos:** Atena restaura aparência de Odisseu na cabana; Telêmaco percebe semelhança, aproxima-se e abraça o pai; Eumeu permanece no mesmo ambiente. **Foley:** respiração e tema de reencontro.
-- **S14-T02 · 02:28–02:31 · 85 mm olhar do cão:** Corte de deslocamento ao portão do palácio: Argos, idoso e de pelagem manchada, ergue a cabeça e reconhece o mendigo; este controla lágrima e segue. **Foley:** respiração do animal.
+- **S14-T02 · 02:28–02:31 · 85 mm olhar do cão:** Corte de deslocamento ao portão do palácio: Argos, idoso e de pelagem manchada, ergue a cabeça e reconhece o mendigo; Odisseu contém lágrimas, e o cão repousa a cabeça pela última vez. **Foley:** respiração do animal.
 - **S14-T03 · 02:31–02:34 · 50 mm mãos/rosto:** Euricleia inclina-se e lava as pernas do visitante na bacia; descobre cicatriz alta na coxa, interrompe a ação, expressa surpresa. **Foley:** água e metal.
 - **S14-T04 · 02:34–02:37 · 85 mm dedos e olhos:** Odisseu segura delicadamente a mão de Euricleia e pede silêncio com olhar; ela recompõe a expressão sem abandonar o objeto. **Foley:** silêncio.
 
@@ -378,7 +379,7 @@
 
 **Tomadas e marcação de movimento:**
 
-- **S15-T01 · 02:37–02:40 · 50 mm mãos e reações:** Duas tentativas distintas fracassam; Antínoo força o arco e Eurímaco desvia o olhar, ambos visivelmente contrariados no mesmo salão. **Foley:** madeira tensa.
+- **S15-T01 · 02:37–02:40 · 50 mm mãos e reações:** Penélope anuncia a prova do arco, entrega a arma e se retira; Antínoo e Eurímaco tentam armá-lo, falham e se entreolham contrariados. **Foley:** madeira tensa.
 - **S15-T02 · 02:40–02:42 · 85 mm close:** Odisseu recebe o mesmo arco da S01, posiciona pés e arma a corda com facilidade mecânica e tensão corporal real. **Foley:** corda.
 - **S15-T03 · 02:42–02:44 · 35 mm em eixo:** Lançamento: flecha avança na linha formada pelos doze olhais de machados, com trajetória contínua, sai pelo último. **Foley:** disparo.
 - **S15-T04 · 02:44–02:46 · 50 mm reverso:** Antínoo reconhece perigo; Odisseu retira o capuz e revela firmeza do rosto; Telêmaco vem para seu lado. **Foley:** silêncio e respiro.
