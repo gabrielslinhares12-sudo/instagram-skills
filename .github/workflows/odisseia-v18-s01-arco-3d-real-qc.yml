@@ -1,0 +1,88 @@
+name: Odisseia V18 - S01 arco cinematografico com elenco rigado (QC privado)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v18-s01-arco-3d-real-qc.yml'
+      - 'odyssey_185/scene01_bow_rigged_v18.py'
+      - 'odyssey_185/ara3d_odysseus_beggar_v18.json'
+      - 'odyssey_185/ara3d_antinoos_v18.json'
+      - 'odyssey_185/ara3d_eurymachos_v18.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-v18-s01-cinematic-private
+  cancel-in-progress: false
+jobs:
+  render-real-cinematic-s01:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Gate correct identity and genuine bone animated interaction
+        run: |
+          set -euo pipefail
+          python3 -m py_compile odyssey_185/scene01_bow_rigged_v18.py
+          python3 -m py_compile odyssey_185/render_hook_3d.py
+          for f in odyssey_185/ara3d_*_v18.json; do python3 -m json.tool "$f" >/dev/null; done
+          grep -q 'S01_V18_REAL_SKINNED_FRAME' odyssey_185/scene01_bow_rigged_v18.py
+          grep -q 'hand_target' odyssey_185/scene01_bow_rigged_v18.py
+      - name: Create true skinned ancient cast from licensed source and verify distinct models
+        timeout-minutes: 38
+        run: |
+          set -euo pipefail
+          git clone -q https://github.com/olatunde85/3d-gen.git ara3d
+          git -C ara3d checkout --detach 1e647c97293208d03ab226b87993dc7e910bdacb
+          grep -qi mit ara3d/LICENSE
+          cd ara3d
+          npm ci --no-audit --no-fund
+          npm run setup-assets
+          mkdir -p out/odysseus out/antinoos out/eurymachos
+          npm run export -- --params ../odyssey_185/ara3d_odysseus_beggar_v18.json --formats glb --out out/odysseus
+          npm run export -- --params ../odyssey_185/ara3d_antinoos_v18.json --formats glb --out out/antinoos
+          npm run export -- --params ../odyssey_185/ara3d_eurymachos_v18.json --formats glb --out out/eurymachos
+          for human in odysseus antinoos eurymachos; do
+            test "$(find out/"$human" -name '*.glb' -size +150k | wc -l)" -eq 1
+          done
+      - name: Install Blender open-source renderer and FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg xvfb libgl1-mesa-dri python3-numpy
+      - name: Render 150 actual continuous 3D character animation frames
+        timeout-minutes: 58
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          xvfb-run -a blender --background --threads 2 --python odyssey_185/scene01_bow_rigged_v18.py -- --preview 2>&1 | tee /tmp/odyssey-v18-s01.log
+          test "$(grep -c 'V18_REAL_RIGGED_ACTOR' /tmp/odyssey-v18-s01.log)" -eq 3
+          test "$(grep -c 'V18_3D_HAND_IK' /tmp/odyssey-v18-s01.log)" -eq 4
+          grep -q 'S01_V18_3D_TRUE_ANIMATION_150_FRAMES_QC_NOT_FINAL' /tmp/odyssey-v18-s01.log
+          test "$(find odyssey_185/out/s01_v18/frames -name 'frame-*.png' | wc -l)" -eq 150
+      - name: Encode actual animated MP4 and prove distinct frames
+        run: |
+          set -euo pipefail
+          SRC=odyssey_185/out/s01_v18
+          ffmpeg -hide_banner -loglevel error -y -framerate 30 -start_number 0 -i "$SRC/frames/frame-%04d.png" \
+            -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p \
+            -r 30 -movflags +faststart "$SRC/ODISSEIA_V18_S01_ARCO_ATUACAO_3D_5s_QC.mp4"
+          python3 odyssey_185/qc_native_motion_v16.py "$SRC/ODISSEIA_V18_S01_ARCO_ATUACAO_3D_5s_QC.mp4" --report "$SRC/native_motion_qc.json"
+          test -s "$SRC/native_motion_qc.json"
+      - name: Archive genuine S01 MP4 and technical QC without publishing
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_V18_S01_ARCO_ELENCO_RIGADO_5SEG_QC_NAO_PUBLICAR
+          path: |
+            odyssey_185/out/s01_v18/*.mp4
+            odyssey_185/out/s01_v18/*.json
+            /tmp/odyssey-v18-s01.log
+          retention-days: 14
+          if-no-files-found: warn
+# The 3D clip is an editorial preview only, not master or publication.
