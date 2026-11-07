@@ -25,6 +25,21 @@ def validate(path: Path):
     for key, value in [("width", 2160), ("height", 3840), ("fps", 60), ("aspect_ratio", "9:16")]:
         if output.get(key) != value:
             errors.append(f"output.{key} esperado {value}")
+    for key, value in [("source_quality", "native_master"), ("upscale_as_native", False), ("pilot_quality", "same_as_final"), ("review_pilot_must_be_native", True)]:
+        if output.get(key) != value:
+            errors.append(f"output.{key} esperado {value}")
+    delivery = data.get("delivery") or {}
+    delivery_contract = {
+        "required": True,
+        "platform": "google_drive",
+        "folder_id": "1pX6O2cugZ5-T1eb4gHGvb6wZ5MH7aTXU",
+        "verify_uploaded_file_metadata": True,
+        "send_video_view_link_in_chat": True,
+        "instagram_publish": False,
+    }
+    for key, value in delivery_contract.items():
+        if delivery.get(key) != value:
+            errors.append(f"delivery.{key} esperado {value}")
     shots = data.get("shots")
     if not isinstance(shots, list) or not shots:
         errors.append("shots vazio")
