@@ -34,3 +34,16 @@
 
 ## Estado real
 Protótipo V8 da caverna produzido em 3D independente. A marcha e o empurrão estão sendo refinados. Isso NÃO prova qualidade cinematográfica de uma série completa. Próximo marco é aprovação visual de uma sequência com elenco/atuação e linguagem inteligível, não número de cenas.
+
+
+## Direção de arte e identidade visual — obrigatório para novas cenas (06/11/2026)
+
+**Documento normativo:** [DIRECAO_VISUAL_E_BIBLIA_DE_PERSONAGENS.md](DIRECAO_VISUAL_E_BIBLIA_DE_PERSONAGENS.md).
+
+- Antes de qualquer render, definir **CHAR_ID, modelo de rosto/silhueta, figurino por fase, paleta, pose e adereços** de cada ator. Nenhum clone entre papéis; o mesmo ator mantém sua identidade ao longo do filme.
+- **Roteiro por plano é obrigatório**, com fala original/timecode, elenco, cenário completo e objetos, direção artística, câmera, blocking temporal (preparação → ação → consequência), continuidade e critérios de QC. Prompt genérico ou narração isolada não autoriza gerar cena.
+- **Elmo e figurinos:** construir partes e fixações com proporções coerentes; crista, laterais e encaixe devem funcionar em close e perfil. Elmo heroico só na fase narrativa apropriada: Odisseu deve ser reconhecível mesmo sem ele.
+- **Cenografia física e legível:** embarcação, cordames, pisos, terra, rocha, portas, interiores, vegetação e elementos secundários precisam de escala, materiais e função; não são enfeites sobrepostos.
+- O visual pode ser estilizado como ilustração épica, **mas o filme final permanece 3D real**, com oclusão, profundidade e interação física, como determina a seção "Motor novo". Animatics 2D são intermediários, não entrega cinematográfica aprovada.
+- **Fidelidade narrativa:** no canto XIII de Homero, os feácios deixam Odisseu **adormecido** na costa de Ítaca e partem; a sequência de passarela e desembarque consciente usada em testes 2D é adaptação, não o relato original. A voz original e a documentação de qualquer adaptação prevalecem sobre cenas demonstrativas.
+- Acrescentar verificação visual da identidade e de detalhes de elmo, roupas, estruturas, props e atmosfera ao QC *fail closed*. Nenhuma alteração aqui autoriza publicação ou reclassifica renders existentes como aprovados.
