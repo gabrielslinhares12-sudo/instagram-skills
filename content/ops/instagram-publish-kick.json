@@ -2,7 +2,8 @@
   "version": 1,
   "purpose": "read-only safe recovery wake-up smoke test; only due, approved, unclaimed posts can be published",
   "date": "2026-11-07",
-  "slot_reference": "11:00 / 15:00 / 18:00 America/Sao_Paulo",
-  "request_id": "dry-smoke-07nov-1245",
-  "control": "same Git durable claim, Meta preflight, exact media QC and duplicate prevention; no target currently due"
+  "slot_reference": "2026-11-07 15:00 America/Sao_Paulo",
+  "request_id": "publish-07nov-1539-20261107T183900Z",
+  "control": "publish approved due only; workflow Git concurrency, durable claim, QC and Meta preflight; do not duplicate",
+  "requested_at": "2026-11-07T18:39:00Z"
 }
