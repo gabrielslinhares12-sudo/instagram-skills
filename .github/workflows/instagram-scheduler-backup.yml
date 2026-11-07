@@ -1,0 +1,27 @@
+name: Instagram TUE — redundancia independente 11h 15h 18h
+# A different scheduled workflow invokes the SAME validated publisher.
+# Fixed cross-workflow concurrency plus Git claim prevent double posting.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-scheduler-backup.yml'
+  schedule:
+    - cron: '5,15,25,35,45,55 14,18,21 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Conferir sem publicar'
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  fallback:
+    uses: ./.github/workflows/instagram-scheduler.yml
+    with:
+      dry_run: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+    secrets: inherit
