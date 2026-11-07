@@ -389,5 +389,8 @@
   "shot_direction_contract": "odyssey_185/shot_direction_185.json",
   "directed_shot_count": 74,
   "direction_status": "written_awaiting_audio_timing_and_visual_QC",
-  "direction_approval": false
+  "direction_approval": false,
+  "asset_registry": "odyssey_185/asset_registry_185.json",
+  "character_identity_count": 44,
+  "prop_identity_count": 52
 }
