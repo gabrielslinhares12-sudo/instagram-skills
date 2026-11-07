@@ -1,0 +1,82 @@
+name: Odisseia V18 - S02 cavalo 3D real atravessando portao de Troia (QC privado)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v18-s02-cavalo-portao-qc.yml'
+      - 'odyssey_185/scene02_trojan_horse_v18.py'
+      - 'odyssey_185/ara3d_troiano_a_v18.json'
+      - 'odyssey_185/ara3d_troiano_b_v18.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-v18-s02-real-3d-horse-qc
+  cancel-in-progress: false
+jobs:
+  render-s02:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Validate 3D source and stable Trojan character identities
+        run: |
+          set -euo pipefail
+          python3 -m py_compile odyssey_185/scene02_trojan_horse_v18.py
+          for p in odyssey_185/ara3d_troiano_a_v18.json odyssey_185/ara3d_troiano_b_v18.json; do python3 -m json.tool "$p" >/dev/null; done
+          grep -q 'FOUR_INDEPENDENT' odyssey_185/scene02_trojan_horse_v18.py
+          grep -q 'IK' odyssey_185/scene02_trojan_horse_v18.py
+      - name: Generate 2 distinct true skinned Trojan walking rigs from pinned MIT source
+        timeout-minutes: 40
+        run: |
+          set -euo pipefail
+          git clone -q https://github.com/olatunde85/3d-gen.git ara3d
+          git -C ara3d checkout --detach 1e647c97293208d03ab226b87993dc7e910bdacb
+          grep -qi mit ara3d/LICENSE
+          cd ara3d
+          npm ci --no-audit --no-fund
+          npm run setup-assets
+          mkdir -p out/troiano_a out/troiano_b
+          npm run export -- --params ../odyssey_185/ara3d_troiano_a_v18.json --formats glb --out out/troiano_a
+          npm run export -- --params ../odyssey_185/ara3d_troiano_b_v18.json --formats glb --out out/troiano_b
+          test "$(find out/troiano_a -name '*.glb' -size +150k | wc -l)" -eq 1
+          test "$(find out/troiano_b -name '*.glb' -size +150k | wc -l)" -eq 1
+      - name: Install Blender and FFmpeg free open source
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg xvfb libgl1-mesa-dri python3-numpy
+      - name: Render 150 genuine 3D animation frames of horse crossing gate with rope grips
+        timeout-minutes: 65
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          xvfb-run -a blender --background --threads 2 --python odyssey_185/scene02_trojan_horse_v18.py -- --preview 2>&1 | tee /tmp/odyssey-v18-s02.log
+          test "$(grep -c 'S02_NATIVE_RIGGED_TROJAN_WALK' /tmp/odyssey-v18-s02.log)" -eq 2
+          test "$(grep -c 'S02_TROJAN_ROPE_REAL_HAND_IK' /tmp/odyssey-v18-s02.log)" -eq 2
+          test "$(find odyssey_185/out/s02_v18/frames -name 'frame-*.png' | wc -l)" -eq 150
+          grep -q 'ODYSSEY_S02_V18_NATIVE_150_FRAMES_NOT_FINAL' /tmp/odyssey-v18-s02.log
+      - name: Encode 5s S02 MP4 and independently measure actual frame movement
+        run: |
+          set -euo pipefail
+          SRC=odyssey_185/out/s02_v18
+          ffmpeg -hide_banner -loglevel error -y -framerate 30 -start_number 0 -i "$SRC/frames/frame-%04d.png" \
+            -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -r 30 -movflags +faststart "$SRC/ODISSEIA_V18_S02_CAVALO_TROIA_3D_QC_5s.mp4"
+          python3 odyssey_185/qc_native_motion_v16.py "$SRC/ODISSEIA_V18_S02_CAVALO_TROIA_3D_QC_5s.mp4" --report "$SRC/native_motion_qc.json"
+      - name: Archive MP4 only for visual QC; never publish
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_V18_S02_REAL_3D_CAVALO_ENTRA_PORTAO_QC_NAO_PUBLICAR
+          path: |
+            odyssey_185/out/s02_v18/*.mp4
+            odyssey_185/out/s02_v18/*.json
+            /tmp/odyssey-v18-s02.log
+          retention-days: 14
+          if-no-files-found: warn
+# Deliberately 5s technical QC only, no narration, no final film.
