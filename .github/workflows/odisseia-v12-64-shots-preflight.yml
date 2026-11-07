@@ -1,0 +1,32 @@
+name: Odisseia V12 - full 16 scenes and 64 shots preflight (NO render)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v12-64-shots-preflight.yml'
+      - 'odyssey_185/film_v12_64shots_220s_manifest.json'
+      - 'odyssey_185/validate_full_film_v12.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-v12-full-film-64-shot-story-contract
+  cancel-in-progress: true
+jobs:
+  validate-fully-staged-film-contract:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Validate 16 sets, 64 actions, 13234 native master frames
+        run: |
+          python3 -m py_compile odyssey_185/validate_full_film_v12.py
+          python3 odyssey_185/validate_full_film_v12.py
+          test -s odyssey_185/out/v12_film_contract_qc.json
+      - name: Refuse any publication or final render declaration
+        run: |
+          if grep -q 'FINISHED_APPROVED' odyssey_185/out/v12_film_contract_qc.json; then exit 1; fi
+          echo 'ODISSEIA_V12_STORY_ONLY_FULL_3D_RENDER_NOT_YET_DONE'
+# Does not require external secret, user audio, artifacts, paid API or GUTHY.
