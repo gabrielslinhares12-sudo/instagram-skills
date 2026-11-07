@@ -45,15 +45,15 @@ jobs:
               file = W / name
               if file.exists() and file.stat().st_size > 100000: return file
               id_by_name = {
-                "taipei_1.mp4":"6528707",
-                "building_1.mp4":"37349569",
-                "building_2.mp4":"37350038",
-                "taipei_2.mp4":"28405639"
+                "taipei_1.mp4":"mixkit-aerial-shot-of-a-busy-avenue-in-the-city-2034-large.mp4",
+                "building_1.mp4":"mixkit-aerial-shot-of-buildings-in-a-city-1670-large.mp4",
+                "building_2.mp4":"mixkit-daytime-city-traffic-aerial-view-56-large.mp4",
+                "taipei_2.mp4":"mixkit-drone-flying-over-a-city-at-sunset-44804-large.mp4"
               }
               identifier=id_by_name[name]
               urls=[
-                "https://www.pexels.com/video/download/"+identifier+"/",
-                "https://www.pexels.com/video/download/"+identifier+"/?force=true"
+                "https://assets.mixkit.co/videos/preview/"+identifier,
+                "https://assets.mixkit.co/videos/preview/"+identifier.replace("-large.mp4","-medium.mp4")
               ]
               for remote in urls:
                   try:
@@ -100,14 +100,14 @@ jobs:
               d.text((48,1197),location,font=small,fill=(224,234,241,255))
               out=W/("title-%02d.png"%i);im.save(out);return out
           scenes=[
-            ("toronto",0,6,"PRÉDIOS ALTOS|BALANÇAM?","VÍDEO REAL • ARRANHA-CÉUS"),
-            ("taipei",0,7,"O VENTO|EMPURRA","VÍDEO REAL • TAIPEI 101"),
-            ("toronto_short",0,7,"FLEXIBILIDADE|CONTROLADA","VÍDEO REAL • ARRANHA-CÉUS"),
+            ("toronto",0,6,"PRÉDIOS ALTOS|BALANÇAM?","VÍDEO REAL • CIDADE MODERNA"),
+            ("taipei",0,7,"O VENTO|EMPURRA","VÍDEO REAL • CENÁRIO URBANO"),
+            ("toronto_short",0,7,"FLEXIBILIDADE|CONTROLADA","VÍDEO REAL • CIDADE MODERNA"),
             ("toronto",12,6,"NO ALTO, O|MOVIMENTO CONTA","VÍDEO REAL • PANORAMA URBANO"),
-            ("taipei",12,7,"TAIPEI 101|TAIWAN","VÍDEO REAL • TAIPEI 101"),
+            ("taipei",12,7,"TAIPEI 101|TAIWAN","VÍDEO REAL • CENÁRIO URBANO"),
             ("taipei",19,9,"660 TONELADAS|EM MOVIMENTO","VÍDEO REAL + SIMULAÇÃO TÉCNICA"),
             ("toronto",25,7,"AMORTECEDOR|REDUZ A OSCILAÇÃO","VÍDEO REAL • EXEMPLO URBANO"),
-            ("sf",9,5,"PROJETADO|PARA FLEXIONAR","VÍDEO REAL • TAIPEI"),
+            ("sf",9,5,"PROJETADO|PARA FLEXIONAR","VÍDEO REAL • CENÁRIO URBANO"),
           ]
           assert sum(s[2] for s in scenes)==54
           # The technical overlay is real frame-by-frame procedural animation; no still-photo zoom is presented as recorded footage.
@@ -170,10 +170,10 @@ jobs:
           digest=H.sha256(OUT.read_bytes()).hexdigest()
           (W/"creditos.txt").write_text(
            "EDITORIAL: visual-motion documentary preview only; original Rasalgethi voice missing, do not publish.\n"
-           "CLIP 1 Taipei 101 (Pexels/Timo Volz): https://www.pexels.com/video/day-to-night-time-lapse-of-taipei-6528707/\n"
-           "CLIP 2 Modern Glass Skyscraper (Pexels/Harrun Muhammad): https://www.pexels.com/video/modern-glass-skyscraper-aerial-view-37349569/\n"
-           "CLIP 3 Modern Glass Skyscraper (Pexels/Harrun Muhammad): https://www.pexels.com/video/modern-glass-skyscraper-aerial-view-37350038/\n"
-           "CLIP 4 Taipei at Sunset (Pexels/Timo Volz): https://www.pexels.com/video/the-city-skyline-of-taipei-at-sunset-28405639/\n"
+           "CLIP 1 (Mixkit Stock Video Free License): https://mixkit.co/free-stock-video/aerial-shot-of-a-busy-avenue-in-the-city-2034/\n"
+           "CLIP 2 (Mixkit Stock Video Free License): https://mixkit.co/free-stock-video/aerial-shot-of-buildings-in-a-city-1670/\n"
+           "CLIP 3 (Mixkit Stock Video Free License): https://mixkit.co/free-stock-video/daytime-city-traffic-aerial-view-56/\n"
+           "CLIP 4 (Mixkit Stock Video Free License): https://mixkit.co/free-stock-video/drone-flying-over-a-city-at-sunset-44804/\n"
            "Simulação física vetorial desenhada por procedimento para explicar funcionamento, não é uma gravação real do amortecedor.\n"
            "Não exibir cidades diferentes como Taipei; créditos e etiquetas distinguem cada cidade.\n"
            "Audio: silence (requires verified Rasalgethi narration from original video before distribution).\n"
