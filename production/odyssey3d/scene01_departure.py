@@ -37,6 +37,11 @@ LINEN=mat("old wind-filled linen sail",(.69,.62,.44))
 STONE=mat("weathered Troy sandstone",(.34,.32,.27))
 STONEHI=mat("stone edge",(.46,.43,.36))
 FIRE=mat("burning Troy amber",(.96,.25,.038))
+# Warm, physical flame meshes anchored to the city (no 2D orange overlays).
+fire_bsdf=FIRE.node_tree.nodes.get("Principled BSDF")
+if fire_bsdf and "Emission Color" in fire_bsdf.inputs:
+    fire_bsdf.inputs["Emission Color"].default_value=(1.0,.24,.028,1.0)
+    fire_bsdf.inputs["Emission Strength"].default_value=1.3
 ASH=mat("ash dark",(.17,.19,.21))
 SKY=mat("smoky air",(.18,.19,.21))
 def cube(name,loc,scale,material,bev=0):
@@ -170,6 +175,28 @@ def make_environment():
         cube("ruined burning house",(x,14.5+(i%2)*.28,3.0),( .5,.6,random.uniform(1.0,2.4)),ASH)
         for k in range(2):
             sphere("smoldering fire",(x+random.uniform(-.16,.15),14.3,4.0+k*.31),(.2,.2,.45),FIRE,8,5)
+    # War-torn Troy is recognizable before anyone boards: three damaged
+    # battlements burn in world-space. Flame cones start on the stone parapet,
+    # flicker through actual mesh transforms, and cast the visual consequence
+    # of the city's destruction. No photo, cutout or composited background.
+    for j,fx in enumerate([-12.4,-9.8,-7.3]):
+        for k in range(3):
+            height=.95+.18*k+.14*(j%2)
+            bpy.ops.mesh.primitive_cone_add(vertices=9,radius1=.24+.08*k,
+                radius2=.012,depth=height,
+                location=(fx+.27*(k-1),12.32,4.44+height*.48))
+            flame=bpy.context.object
+            flame.name="Troy wall physical flame %02d_%02d"%(j,k)
+            flame.data.materials.append(FIRE)
+            for frame in (1,73,155,242,330,410,490,600):
+                flicker=1+.18*math.sin(frame*.067+j+k*1.9)
+                flame.scale.z=flicker
+                flame.keyframe_insert(data_path="scale",frame=frame)
+    # Real stone rubble is on the battlements, not floating in camera space.
+    for i in range(8):
+        bx=-13.6+i*.86
+        cube("collapsed Troy parapet fragment", (bx,12.02,4.35+i%2*.08),
+             (.39,.35,.24),STONE,.04)
     # City is separate from the gangplank sightline rather than touching the sail.
     # Each piece keeps its own 3D world-space depth.
     for city_ob in list(bpy.data.objects):
