@@ -378,7 +378,7 @@
 
 **Tomadas e marcação de movimento:**
 
-- **S15-T01 · 02:37–02:40 · 50 mm mãos e reações:** Duas tentativas distintas fracassam; Antínoo força o arco e Eurímaco desvia o olhar, Penélope observando da lateral se presente no enquadramento. **Foley:** madeira tensa.
+- **S15-T01 · 02:37–02:40 · 50 mm mãos e reações:** Duas tentativas distintas fracassam; Antínoo força o arco e Eurímaco desvia o olhar, ambos visivelmente contrariados no mesmo salão. **Foley:** madeira tensa.
 - **S15-T02 · 02:40–02:42 · 85 mm close:** Odisseu recebe o mesmo arco da S01, posiciona pés e arma a corda com facilidade mecânica e tensão corporal real. **Foley:** corda.
 - **S15-T03 · 02:42–02:44 · 35 mm em eixo:** Lançamento: flecha avança na linha formada pelos doze olhais de machados, com trajetória contínua, sai pelo último. **Foley:** disparo.
 - **S15-T04 · 02:44–02:46 · 50 mm reverso:** Antínoo reconhece perigo; Odisseu retira o capuz e revela firmeza do rosto; Telêmaco vem para seu lado. **Foley:** silêncio e respiro.
