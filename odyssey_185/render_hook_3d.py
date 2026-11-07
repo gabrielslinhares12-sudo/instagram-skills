@@ -201,7 +201,10 @@ def run():
     s.world.node_tree.nodes["Background"].inputs["Color"].default_value=(.07,.065,.067,1)
     s.world.node_tree.nodes["Background"].inputs["Strength"].default_value=.26
     s.view_settings.view_transform="Standard"
-    s.view_settings.look="Medium High Contrast"
+    try:
+        s.view_settings.look="Medium High Contrast"
+    except (TypeError,ValueError):
+        s.view_settings.look="None"  # Blender 3.0 CI without color-management look catalog
     animate()
     bpy.ops.wm.save_as_mainfile(filepath=str(OUT/"odyssey_185_scene01_blocking.blend"))
     if "--stills" in sys.argv:
