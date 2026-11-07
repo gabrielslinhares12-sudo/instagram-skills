@@ -3,7 +3,8 @@
 Technical evidence only, not the approved final film.
 Requires CC0 Ara3D Gen exported GLBs; never replace cast with primitives.
 """
-import bpy, math, os, sys, json, glob
+import bpy, math, os, sys, json, glob, random
+random.seed(20261107)
 from mathutils import Vector
 from pathlib import Path
 
