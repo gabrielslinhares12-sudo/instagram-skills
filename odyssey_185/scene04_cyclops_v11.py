@@ -19,7 +19,8 @@ def material(name, rgb, metal=0, rough=.7, emission=0):
   bs.inputs["Emission Color"].default_value=(*rgb,1)
   bs.inputs["Emission Strength"].default_value=emission
  return m
-rockmat=material("Stone basalt rough PBR",(.15,.17,.20))
+rockmat=material("weathered warm volcanic cave basalt",(.21,.18,.14))
+stone_dark=material("deep shadow interior cave",(.025,.029,.031))
 sandmat=material("Aegean wet sand",(.24,.19,.12))
 wood=material("Aged olive wood",(.24,.13,.06))
 cloth=material("Ancient pale linen",(.53,.41,.25))
@@ -100,23 +101,32 @@ scene.world.color=(.035,.048,.065)
 try: scene.eevee.taa_render_samples=28
 except Exception: pass
 
-# Exact cave dimensions: a 5.6m opening, 6.4m high; boulder covers it.
-cube("solid coastline rock platform",(0,1,-.50),(40,23,1),sandmat)
-cube("cave left continuous rock wall",(-6.5,5,4),(7.5,7,8),rockmat,.28)
-cube("cave right continuous rock wall",(6.5,5,4),(7.5,7,8),rockmat,.28)
-cube("cave top solid lintel",(0,5,7.3),(5.9,7,2.0),rockmat,.35)
-cube("dark far cave wall",(0,9.0,3.7),(5.4,1.5,7.4),rockmat,.14)
-for i in range(25):
- x=((i*19)%23)-11.4;y=(((i*7)%20)-4.0)
- if abs(x)<3.5 and y<3: continue
- sc=.75+(i%5)*.35
- ico("irregular geologic scree %02d"%i,(x,y,sc*.31),(sc,sc*.9,sc*.7),rockmat,2)
+# 5.6m natural entrance in an irregular basalt cliff, no cube-room walls.
+ico("irregular beach landform",(0,1,-4.1),(27,24,4.3),sandmat,4)
+for side in (-1,1):
+ for i in range(16):
+  x=side*(4.85+((i*7)%5)*.64)
+  y=5.4+(i//5)*2.5
+  z=1.8+((i*11)%7)*.83
+  sx=1.55+(i%4)*.28;sy=2.35+(i%3)*.43;sz=1.9+(i%5)*.35
+  ico("natural fractured wall "+str(side)+" "+str(i),(x,y,z),(sx,sy,sz),rockmat,3)
+for i in range(11):
+ x=-3.8+i*.76
+ z=8.0+.58*math.sqrt(max(0,1-(x/5.5)**2))
+ ico("basalt cave mouth arch "+str(i),(x,5.7,z),(1.3,2.2,1.55),rockmat,3)
+ico("dark cavern recess shadow beyond passage",(0,13.2,3.5),(3.6,3.6,4.4),stone_dark,3)
+for i in range(47):
+ x=((i*47)%260)/10-13.0
+ y=((i*29)%180)/10-3.5
+ if abs(x)<2.9 and y<5:continue
+ sc=.3+((i*7)%11)*.1
+ ico("coast fractured basalt scree %02d"%i,(x,y,sc*.31),(sc,sc*.92,sc*.61),rockmat,2)
 # The stone is demonstrably bigger than mouth: width 6.5m, height 7.0m.
 rock=ico("Monolithic boulder larger than cave opening",(6.35,1.4,3.55),(3.18,2.25,3.65),rockmat,3)
 tex=bpy.data.textures.new("Pitted stone relief","CLOUDS")
 tex.noise_scale=.55
 modifier=rock.modifiers.new("Basalt natural fractures","DISPLACE")
-modifier.texture=tex;modifier.strength=.22
+modifier.texture=tex;modifier.strength=.72
 # The boulder translates from open to sealed entrance. Does not teleport.
 for frame,x in [(1,6.35),(60,6.35),(145,4.45),(230,2.3),(315,0),(360,0)]:
  rock.location.x=x;rock.keyframe_insert("location",frame=frame)
