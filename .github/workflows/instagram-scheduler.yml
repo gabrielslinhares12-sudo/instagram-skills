@@ -22,6 +22,11 @@ on:
         required: false
         default: false
         type: boolean
+      allow_execute:
+        description: 'Autorização de execução de um recovery-kick já validado'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -38,7 +43,7 @@ jobs:
     permissions:
       contents: write
     env:
-      QUEUE_DRY_RUN: ${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.dry_run) || (github.event_name == 'workflow_call' && inputs.dry_run)) && 'true' || 'false' }}
+      QUEUE_DRY_RUN: ${{ (inputs.dry_run || (github.event_name == 'push' && inputs.allow_execute != true)) && 'true' || 'false' }}
       INSTAGRAM_SCHEDULER_ENABLED: ${{ vars.INSTAGRAM_SCHEDULER_ENABLED || 'true' }}
       INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
       FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
