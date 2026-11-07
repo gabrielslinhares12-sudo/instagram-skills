@@ -77,7 +77,14 @@ def fetch_access_token():
 
 def download_exact_zip(token):
     url = f"https://www.googleapis.com/drive/v3/files/{SOURCE_DRIVE_FILE}?alt=media"
-    with urlopen(Request(url, headers={"Authorization": "Bearer " + token}), timeout=90) as r:
+    if token:
+        request = Request(url, headers={"Authorization": "Bearer " + token})
+    else:
+        transfer = os.getenv("TUE_APPROVED_ZIP_TRANSFER_URL", "")
+        if not transfer.startswith("https://sdmntprbrazilsouth.oaiusercontent.com/files/"):
+            raise RuntimeError("missing_provenance_locked_transfer_url")
+        request = Request(transfer, headers={"User-Agent": "TUE-GitHub-Approved-Media-Transfer"})
+    with urlopen(request, timeout=90) as r:
         data = r.read(32_000_001)
     if len(data) > 32_000_000 or sha(data) != SOURCE_ZIP_SHA:
         raise RuntimeError("downloaded_package_not_exact_approved_zip")
@@ -174,7 +181,13 @@ def main():
     if POST_ID in validate_state(read_document(LEDGER))["items"]:
         raise RuntimeError("existing_publishing_claim")
     verify_meta_destination()
-    package = download_exact_zip(fetch_access_token())
+    try:
+        drive_token = fetch_access_token()
+    except RuntimeError as exc:
+        if str(exc) != "missing_private_drive_oauth_credentials":
+            raise
+        drive_token = None
+    package = download_exact_zip(drive_token)
     images = verified_jpegs(package)
     DEST.mkdir(parents=True, exist_ok=True)
     for filename, data, _ in images:
