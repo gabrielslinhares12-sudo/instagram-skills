@@ -78,6 +78,34 @@ class Direction185Tests(unittest.TestCase):
         self.assertFalse(self.contract["film_generated"])
         self.assertFalse(self.contract["audio_generated"])
 
+    def test_each_actor_and_prop_has_a_unique_design_record(self):
+        registry = json.loads((ROOT / "odyssey_185" / "asset_registry_185.json").read_text(encoding="utf-8"))
+        self.assertEqual(registry["production_standard"], MASTER)
+        self.assertEqual(self.contract["asset_registry"], "odyssey_185/asset_registry_185.json")
+        self.assertEqual(self.manifest["asset_registry"], "odyssey_185/asset_registry_185.json")
+        cast = {actor.split(":")[0] for scene in self.contract["scenes"] for actor in scene["cast"]}
+        props = {prop for scene in self.contract["scenes"] for prop in scene["props"]}
+        self.assertEqual(cast, set(registry["character_assets"]))
+        self.assertEqual(props, set(registry["prop_assets"]))
+        self.assertEqual(registry["character_count"], len(cast))
+        self.assertEqual(registry["prop_count"], len(props))
+        self.assertFalse(registry["all_assets_physically_rendered"])
+        for identity in registry["character_assets"].values():
+            for field in ("silhouette", "facial_identity", "palette", "costume", "acting_identity"):
+                self.assertGreater(len(identity[field]), 12)
+            self.assertEqual(identity["model_status"], "DESIGN_SPECIFICATION_ONLY")
+        for asset in registry["prop_assets"].values():
+            self.assertTrue(asset["design_and_physics"].strip())
+
+    def test_script_cast_matches_contract_per_scene(self):
+        for scene in self.contract["scenes"]:
+            part = self.text.split("### " + scene["id"] + " —", 1)[1].split("\n### ", 1)[0]
+            line = next(line for line in part.splitlines() if line.startswith("**Elenco / figurinos:**"))
+            for actor in scene["cast"]:
+                self.assertIn(actor, line)
+        self.assertNotIn("CHAR_PENELOPE", self.contract["scenes"][0]["cast"])
+        self.assertIn("CHAR_PENELOPE", self.contract["scenes"][14]["cast"])
+
     def test_ithaca_is_faithful_to_sleeping_arrival(self):
         ithaca = self.contract["scenes"][11]
         self.assertIn("adormecido", ithaca["continuity"])
