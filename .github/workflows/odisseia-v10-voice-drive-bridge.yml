@@ -1,0 +1,50 @@
+name: Odisseia V10 - recuperar WAV original do Drive sem GUTHY
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v10-voice-drive-bridge.yml'
+      - 'odyssey_185/voice_drive_bridge_v10.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-v10-original-audio-bridge
+  cancel-in-progress: false
+jobs:
+  validate-and-import-original:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 12
+    env:
+      GDRIVE_OAUTH_CLIENT_ID: ${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}
+      GDRIVE_OAUTH_CLIENT_SECRET: ${{ secrets.GDRIVE_OAUTH_CLIENT_SECRET }}
+      GDRIVE_OAUTH_REFRESH_TOKEN: ${{ secrets.GDRIVE_OAUTH_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Validate unchanged WAV importer
+        run: |
+          python3 -m py_compile odyssey_185/voice_drive_bridge_v10.py
+          python3 odyssey_185/voice_drive_bridge_v10.py --check
+      - name: Retrieve original private WAV if authorized OAuth is available
+        id: import
+        run: |
+          if [ -z "$GDRIVE_OAUTH_CLIENT_ID" ] || [ -z "$GDRIVE_OAUTH_CLIENT_SECRET" ] || [ -z "$GDRIVE_OAUTH_REFRESH_TOKEN" ]; then
+            echo 'ODISSEIA_DRIVE_OAUTH_MISSING: wave original preserved in connected Google Drive; no unauthorized sharing'
+            echo "audio_ready=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          python3 odyssey_185/voice_drive_bridge_v10.py
+          echo "audio_ready=true" >> "$GITHUB_OUTPUT"
+      - name: Store only checked original audio and QC for later Blender jobs
+        if: steps.import.outputs.audio_ready == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_V10_RASALGETHI_ORIGINAL_220S_PRIVADO_NAO_PUBLICAR
+          path: |
+            odyssey_185/out/voice/ODISSEIA_V9_RASALGETHI_220s.wav
+            odyssey_185/out/voice/ODISSEIA_V9_RASALGETHI_220s.qc.json
+          retention-days: 30
+          if-no-files-found: error
+# Private Drive, no public permissions, no API TTS, no social publication.
