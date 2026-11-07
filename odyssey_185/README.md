@@ -4,6 +4,8 @@
 
 > **ALERTA EDITORIAL — 07/11/2026: prévia 3D integral de 220,56s REPROVADA.** Não publicar nem reutilizar as cenas; falha de narrativa, atuação e escala. Ver [REPROVACAO_VISUAL_V9_TESTE_220S_20261107.md](REPROVACAO_VISUAL_V9_TESTE_220S_20261107.md). O WAV Rasalgethi foi fornecido na conversa, com duração 220,56 s, mas o arquivo original ainda não está neste repositório; as marcações 185s do manifest são históricas, não sincronizadas ao áudio real. Próxima etapa é um teste de 10–15s com ação 3D inteligível, antes de recriar o filme.
 
+> **V10 — áudio original seguro e reestruturação real de rigging (07/11):** o WAV original de 220,56s está no Drive privado (`1ei0GDUAAPNdkQtDuYSiumq4R4d4-U58k`, 10.586.924 bytes, SHA-256 `9be8b79920b318c76f23874d38d12f4f77b46f8a9871833612ac1efa82b5d667`). O contrato de cenas retimadas está em `manifest_v10_audio_locked.json`; **os cortes ainda são aproximados**. O workflow `odisseia-v10-rigged-actor-qc.yml` testa gratuitamente personagens humanos riggados Ara3D/MakeHuman em Blender com a cena S04, não publica nem monta o filme. O workflow privado `odisseia-v10-voice-drive-bridge.yml` exige OAuth do Drive no repositório; a checagem encontrou os secrets ausentes, então não copiou o áudio. **O filme integral cinematográfico ainda não foi renderizado ou aprovado.**
+
 ## Estado verificável
 
 - manifest_v9.json: 16 cenas contíguas cobrindo 0–185 s, roteiro integral do usuário.
