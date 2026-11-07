@@ -15,7 +15,7 @@ sc=bpy.context.scene;sc.render.engine="BLENDER_EEVEE"
 sc.render.resolution_x=540;sc.render.resolution_y=960
 sc.render.resolution_percentage=70;sc.render.fps=30
 sc.render.image_settings.file_format="PNG"
-sc.render.frame_start=1;sc.render.frame_end=N
+sc.frame_start=1;sc.frame_end=N
 sc.eevee.taa_render_samples=10
 sc.world.use_nodes=True
 sc.world.node_tree.nodes["Background"].inputs["Color"].default_value=(.26,.18,.12,1)
