@@ -281,9 +281,9 @@ def setup():
     ship=add_ship()
     prefix=ASSETS/"addons"/"kaykit_character_pack_adventures"/"Characters"/"gltf"
     # KayKit 3D humanoids are CC0. Each is a real armature/animated mesh.
-    actor("ODYSSEUS bronze leader",prefix/"Knight.glb",ship,(-7.5,-5.4),(-.95,1.10),1,385,.78)
-    actor("ROWER 01 distinct rogue",prefix/"Rogue.glb",ship,(-9.4,-4.75),(.15,1.18),70,432,.76)
-    actor("ROWER 02 distinct barbarian",prefix/"Barbarian.glb",ship,(-8.9,-7.0),(1.25,1.12),135,473,.78)
+    actor("ODYSSEUS bronze leader",prefix/"Knight.glb",ship,(-7.5,-5.4),(-1.50,1.85),1,385,.78)
+    actor("ROWER 01 distinct rogue",prefix/"Rogue.glb",ship,(-9.4,-4.75),(.50,1.85),70,432,.76)
+    actor("ROWER 02 distinct barbarian",prefix/"Barbarian.glb",ship,(-8.9,-7.0),(2.40,.85),135,473,.78)
     cam_data=bpy.data.cameras.new("35mm live-action composition")
     cam=bpy.data.objects.new("single real perspective camera",cam_data)
     bpy.context.collection.objects.link(cam)
