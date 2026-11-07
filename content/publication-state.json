@@ -232,10 +232,15 @@
       "published_at": "2026-11-07T15:14:32Z"
     },
     "tue-2026-11-07-15-nuvens-lenticulares-5-artes": {
-      "status": "claimed",
+      "status": "published",
       "fingerprint": "26f0165954e2b684a70dca748b0598081dc5d47e65e3953e0acbd164b738529b",
       "due_at": "2026-11-07T18:00:00Z",
-      "claimed_at": "2026-11-07T18:40:04Z"
+      "claimed_at": "2026-11-07T18:40:04Z",
+      "media_id": "18473187160136551",
+      "creation_id": "18103643231100158",
+      "instagram_user_id": "17841433004716815",
+      "page_id": "1385407341325017",
+      "published_at": "2026-11-07T18:40:45Z"
     }
   }
 }
