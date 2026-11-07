@@ -1,0 +1,36 @@
+{
+  "project": "Odisseia V8",
+  "stage": "V8.6 actual 10-second 3D animation plus V8.7 corrected static storyboard",
+  "source_run_id": 42318435925,
+  "source_workflow_url": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/42318435925",
+  "visual_patch_run_id": 42319154392,
+  "duration_seconds": 10,
+  "rendered_video": {
+    "status": "passed_technical_QC",
+    "width": 540,
+    "height": 960,
+    "fps": 30,
+    "codec": "h264",
+    "audio": "source-original-Portuguese-AAC-48kHz",
+    "frames": "300 genuine Blender rig frames, no interpolated stills"
+  },
+  "approved_for_social": false,
+  "limitations": [
+    "V8.6 continuous 10s movie predates V8.7 in-world Trojan flames and child-of-ship gangplank patch",
+    "First ~1.6 seconds have nearly identical frames: establishing shot currently too static",
+    "Crowding and medieval/fantasy low-poly costuming need art-direction rework; not cinematic quality",
+    "Proof-of-concept only, not 4K60; remaining Odyssey scenes not yet rebuilt",
+    "Subtitles not yet rebuilt for this animation",
+    "Audio muxed from user's original source video; source video stays private and unpublished"
+  ],
+  "useful_changes": [
+    "Original V5/V7 removed from working pipeline",
+    "Independent physical 3D scene with KayKit CC0 rigged meshes",
+    "Shared gangplank route and automated minimum interpersonal clearance",
+    "Scene exposure fixed and overexposure reduced",
+    "Separate flame and boat-stow improvements passed V8.7 still-image QC"
+  ],
+  "next_decision": "Rebuild cast/Greek costume authenticity and first shot motion before approving or rendering full Odyssey at 4K60",
+  "release_status": "blocked_until_artistic_and_narrative_QC",
+  "instagram_posting": false
+}
