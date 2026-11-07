@@ -1,0 +1,41 @@
+{
+  "name": "POLYPHEMUS_MYTHIC_BRONZE_AGE_ONE_EYE",
+  "seed": 1117,
+  "gender": 1,
+  "age": 0.73,
+  "muscle": 1,
+  "weight": 0.79,
+  "height": 0.74,
+  "proportions": 0.32,
+  "african": 0.04,
+  "asian": 0.03,
+  "caucasian": 0.93,
+  "skin": "auto",
+  "skinTint": "#b18a6e",
+  "eyes": "brownlight",
+  "eyebrows": "eyebrow003",
+  "hair": "none",
+  "facialHair": "full_beard",
+  "beardColor": "#30251b",
+  "outfit": "none",
+  "top": "none",
+  "bottom": "loincloth",
+  "underwear": false,
+  "shoes": "none",
+  "hat": "none",
+  "accessories": [],
+  "garmentStyles": {
+    "loincloth": {
+      "pattern": "hide",
+      "color": "#6d5033",
+      "color2": "#35261a"
+    }
+  },
+  "detail": "medium",
+  "rig": "game",
+  "faceBones": true,
+  "animations": true,
+  "weapon": "none",
+  "carry": "none",
+  "expression": "angry"
+}
