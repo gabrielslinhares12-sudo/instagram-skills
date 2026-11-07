@@ -1,0 +1,31 @@
+{
+  "id": "tue-2026-11-07-11-rh-do-caos-cadeira-vintage-5-artes",
+  "preset_id": "TUE-MESTRE-01",
+  "approved": true,
+  "owner_authorized": true,
+  "visual_reviewed": true,
+  "approved_visual_reference_sha256": "571f7f31012e8265c784c66f68c1f5847906f02a1e533559c2ea5624551833e9",
+  "original_mascot_pixel_match_verified": false,
+  "scope": "EXACT_FIVE_TIRINHAS_VINTAGE_07NOV2026_ONLY",
+  "release_commit": "5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177",
+  "media_sha256": [
+    "e6445f43d5c7599125987c527fc05781357d6e2d7040df0041929947e45ba28a",
+    "4f9a088ed9f126ec474aa5140954368e86061aa4d7cb8aca5ce9bab04b33d62f",
+    "86088e45b4f7c0b887378d9f8aa3e1bab5613f378ebc3b61058d063b9a7dacea",
+    "f76f84d1b93b906561b78b675b27018c19fc4183441d384d17c152d8c8998211",
+    "ce54e848696fa8aa3874246ddc0935f584c686c7660da205aa540021d433ab41"
+  ],
+  "media_urls": [
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/01-tirinha-vintage.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/02-tirinha-vintage.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/03-tirinha-vintage.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/04-tirinha-vintage.jpg",
+    "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/5adfe5f3cf95b9e8a8d5bfdd587baf1f549cb177/content/media/instagram/2026-11-07/RH-DO-CAOS-VINTAGE/05-tirinha-vintage.jpg"
+  ],
+  "source_archive_drive_id": "1V45K8RswS7TtvQCpY7ai6xVo7jiTQg1H",
+  "source_archive_sha256": "11593b93accea3e03f06fc4d9e94bd6c31ab12f0eacc973e6740f3d656ba62fe",
+  "post_due_at": "2026-11-07T14:00:00Z",
+  "distribution_mode": "api_carousel_without_native_music",
+  "owner_authorized_without_music": true,
+  "approval_note": "User expressly requested on 07 November 2026 that these exact five corrected vintage comic images be the first Instagram post of the day. Exceptions only for this immutable set; no claim that the exact original Lúmino asset is pixelwise composited. QA checks each SHA and 4:5 format."
+}
