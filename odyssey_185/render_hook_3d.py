@@ -193,6 +193,11 @@ def run():
     bpy.ops.object.select_all(action="SELECT");bpy.ops.object.delete(use_global=False)
     s=bpy.context.scene;s.frame_start=1;s.frame_end=FRAMES;s.render.fps=FPS
     s.render.engine="BLENDER_EEVEE"
+    # Keep the high-sample stills intact. The animated blocking preview needs far fewer
+    # samples so it completes within GitHub-hosted Actions CPU time limits.
+    preview_mode="--preview" in sys.argv
+    s.eevee.taa_render_samples=int(os.environ.get("QC_RENDER_SAMPLES", "12" if preview_mode else "64"))
+    print("ODYSSEY_185_QC_RENDER_SAMPLES",s.eevee.taa_render_samples,"preview",preview_mode,flush=True)
     s.render.resolution_x=720;s.render.resolution_y=1280
     s.render.resolution_percentage=int(os.environ.get("QC_PERCENT","70"))
     s.render.image_settings.file_format="PNG"
