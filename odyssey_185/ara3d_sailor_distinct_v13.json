@@ -1,0 +1,52 @@
+{
+  "name": "EURYLOCHUS_DISTINCT_CAVE_SAILOR_V13",
+  "seed": 3159,
+  "gender": 1,
+  "age": 0.49,
+  "muscle": 0.57,
+  "weight": 0.55,
+  "height": 0.53,
+  "proportions": 0.6,
+  "african": 0.05,
+  "asian": 0.04,
+  "caucasian": 0.91,
+  "skin": "auto",
+  "skinTint": "#957158",
+  "eyes": "darkbrown",
+  "eyebrows": "eyebrow003",
+  "hair": "short04",
+  "hairTint": "#0f0f16",
+  "facialHair": "none",
+  "beardColor": "#17121a",
+  "outfit": "none",
+  "top": "tunic",
+  "bottom": "wrapper_knee",
+  "underwear": true,
+  "shoes": "sandals",
+  "hat": "none",
+  "accessories": [
+    "waist_sash"
+  ],
+  "garmentStyles": {
+    "tunic": {
+      "pattern": "solid",
+      "color": "#3d5e66",
+      "color2": "#1e3035"
+    },
+    "wrapper_knee": {
+      "pattern": "solid",
+      "color": "#665040"
+    },
+    "waist_sash": {
+      "pattern": "solid",
+      "color": "#482e24"
+    }
+  },
+  "detail": "medium",
+  "rig": "game",
+  "faceBones": true,
+  "animations": true,
+  "weapon": "none",
+  "carry": "none",
+  "expression": "fearful"
+}
