@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "purpose": "read-only safe recovery wake-up smoke test; only due, approved, unclaimed posts can be published",
+  "date": "2026-11-07",
+  "slot_reference": "11:00 / 15:00 / 18:00 America/Sao_Paulo",
+  "request_id": "dry-smoke-07nov-1245",
+  "control": "same Git durable claim, Meta preflight, exact media QC and duplicate prevention; no target currently due"
+}
