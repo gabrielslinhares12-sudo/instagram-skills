@@ -283,9 +283,15 @@ for obj in removed:bpy.data.objects.remove(obj,do_unlink=True)
 # geological enclosure with an excavated, physically open arched passage.
 reference=import_scan("coastal_cliff_01","PBR_REFERENCE_ONLY",
         (55,55,55),(8.0,6.0,8.0),0)
-photo_mat=next((m for obj in reference.children_recursive if obj.type=="MESH"
+scan_descendants=[]
+def _gather_descendants(obj):
+    for child in obj.children:
+        scan_descendants.append(child)
+        _gather_descendants(child)
+_gather_descendants(reference)
+photo_mat=next((m for obj in scan_descendants if obj.type=="MESH"
        for m in obj.data.materials if m),rockmat)
-for obj in list(reference.children_recursive):
+for obj in reversed(scan_descendants):
     bpy.data.objects.remove(obj,do_unlink=True)
 bpy.data.objects.remove(reference,do_unlink=True)
 bpy.ops.mesh.primitive_cube_add(size=1,location=(0,8.0,6.1))
