@@ -1,0 +1,50 @@
+name: Odisseia - contrato do padrao-mestre unico
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'odyssey_v8/PADRAO_MESTRE_TUE_ANIMACAO.md'
+      - 'odyssey_v8/episode01_shot_contracts.json'
+      - 'odyssey_v8/test_story_contracts.py'
+      - 'odyssey_185/manifest_v9.json'
+      - '.github/workflows/odisseia-padrao-mestre-qc.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar-padrao:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validar shot contracts e identidade visual
+        run: python3 -m unittest discover -s odyssey_v8 -p 'test_story_contracts.py' -v
+      - name: Verificar manifesto e exclusividade do padrao
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('.')
+          standard='odyssey_v8/PADRAO_MESTRE_TUE_ANIMACAO.md'
+          text=(root/standard).read_text(encoding='utf-8')
+          assert 'TUE-ANIMACAO-MESTRE-01' in text
+          assert 'CHAR_ODYSSEUS' in text and 'SHOT_ID:' in text
+          for filename in ('odyssey_v8/episode01_shot_contracts.json','odyssey_185/manifest_v9.json'):
+              manifest=json.loads((root/filename).read_text(encoding='utf-8'))
+              assert manifest['production_standard']==standard, filename
+          for old in ('odyssey_v8/PRODUCTION_RULES.md',
+                      'odyssey_v8/DIRECAO_VISUAL_E_BIBLIA_DE_PERSONAGENS.md',
+                      'docs/ODISSEIA-NOVO-PADRAO-110-CENAS-06NOV.md'):
+              assert not (root/old).exists(), old
+          print('PADRAO_MESTRE_UNICO_OK')
+          PY
+
+# Apenas valida documentacao e contratos. Nao renderiza, publica ou agenda videos.
