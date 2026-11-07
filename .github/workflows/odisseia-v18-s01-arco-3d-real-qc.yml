@@ -1,14 +1,8 @@
+# DEPRECATED: User explicitly selected the current 2D TUE format on 2026-11-07.
+# This experimental 3D pipeline is archived and no longer runs on push.
 name: Odisseia V18 - S01 arco cinematografico com elenco rigado (QC privado)
-on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/odisseia-v18-s01-arco-3d-real-qc.yml'
-      - 'odyssey_185/scene01_bow_rigged_v18.py'
-      - 'odyssey_185/ara3d_odysseus_beggar_v18.json'
-      - 'odyssey_185/ara3d_antinoos_v18.json'
-      - 'odyssey_185/ara3d_eurymachos_v18.json'
-  workflow_dispatch:
+on: workflow_dispatch
+
 permissions:
   contents: read
 concurrency:
