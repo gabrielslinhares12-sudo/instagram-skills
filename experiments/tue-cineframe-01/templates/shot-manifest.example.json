@@ -9,9 +9,11 @@
     "width": 2160,
     "height": 3840,
     "fps": 60,
-    "preview_width": 720,
-    "preview_height": 1280,
-    "master_is_native": false
+    "source_quality": "native_master",
+    "upscale_as_native": false,
+    "pilot_quality": "same_as_final",
+    "review_pilot_must_be_native": true,
+    "codec": "h264"
   },
   "voice": {
     "voice_id": "Rasalgethi",
@@ -103,5 +105,13 @@
         "movimento em loop"
       ]
     }
-  ]
+  ],
+  "delivery": {
+    "required": true,
+    "platform": "google_drive",
+    "folder_id": "1pX6O2cugZ5-T1eb4gHGvb6wZ5MH7aTXU",
+    "verify_uploaded_file_metadata": true,
+    "send_video_view_link_in_chat": true,
+    "instagram_publish": false
+  }
 }
