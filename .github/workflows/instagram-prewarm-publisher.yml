@@ -1,0 +1,91 @@
+name: Instagram TUE — lancamento antecipado no horario
+# Warms up just before 11h / 15h / 18h BRT. Safe backups remain.
+# GitHub timing is best-effort; do NOT claim second-exact guarantee.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/instagram-prewarm-publisher.yml'
+  schedule:
+    - cron: '57 13,17,20 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  prewarm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    env:
+      FACEBOOK_USER_ACCESS_TOKEN: ${{ secrets.FACEBOOK_USER_ACCESS_TOKEN }}
+      FACEBOOK_PAGE_ID: ${{ vars.FACEBOOK_PAGE_ID }}
+      FACEBOOK_INSTAGRAM_USER_ID: ${{ vars.FACEBOOK_INSTAGRAM_USER_ID }}
+      INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
+      INSTAGRAM_USERNAME: ${{ vars.INSTAGRAM_USERNAME || 'temumaexplicacao' }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Find the exact scheduled owner-approved post and detect prior claims
+        id: check
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime,timedelta,timezone
+          from pathlib import Path
+          import os
+          from instagram_queue import read_document,validate_manifest,validate_state,utc_time
+          now=datetime.now(timezone.utc)
+          slots=[now.replace(hour=h,minute=0,second=0,microsecond=0) for h in (14,18,21)]
+          targets=[slot for slot in slots if -timedelta(minutes=12)<=slot-now<=timedelta(minutes=8)]
+          ready=False
+          if targets and os.environ.get("GITHUB_EVENT_NAME")=="schedule":
+              due=targets[0]
+              posts=validate_manifest(read_document(Path("content/schedule.json")))
+              state=validate_state(read_document(Path("content/publication-state.json")))
+              approved=[p for p in posts if utc_time(p["due_at"])==due and p["approved"] is True]
+              ready=(len(approved)==1 and approved[0]["id"] not in state["items"])
+              print("SLOT="+due.isoformat()+" READY="+str(ready),flush=True)
+          else:
+              print("DRY_RUN_OR_NO_NEARBY_SLOT_NO_PUBLISH",flush=True)
+          with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as out:
+              out.write("ready="+("true" if ready else "false")+"\n")
+          PY
+      - name: Prevalidate artwork and Meta permissions before release minute
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          python3 -m pip install -q 'Pillow>=11,<13'
+          python3 scripts/instagram_visual_standard.py audit-queue --only-imminent
+          python3 scripts/instagram_preflight.py
+      - name: Wait only until the exact due UTC slot
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime,timedelta,timezone
+          import time
+          now=datetime.now(timezone.utc)
+          slots=[now.replace(hour=h,minute=0,second=0,microsecond=0) for h in (14,18,21)]
+          target=next((x for x in slots if -timedelta(minutes=12)<=x-now<=timedelta(minutes=8)),None)
+          if target is None:
+              raise SystemExit("NO_TARGET_SLOT")
+          seconds=max(0,(target-now).total_seconds())
+          if seconds>480:
+              raise SystemExit("SAFETY_BLOCK_EXCESSIVE_WAIT")
+          print("SLEEP_TO_DUE_SECONDS="+str(round(seconds)),flush=True)
+          time.sleep(seconds)
+          print("RELEASE_GATE_OPEN_UTC="+datetime.now(timezone.utc).isoformat(),flush=True)
+          PY
+  publish:
+    if: github.event_name == 'schedule' && needs.prewarm.outputs.ready == 'true'
+    needs: prewarm
+    permissions:
+      contents: write
+    uses: ./.github/workflows/instagram-scheduler.yml
+    with:
+      dry_run: false
+      allow_execute: true
+    secrets: inherit
