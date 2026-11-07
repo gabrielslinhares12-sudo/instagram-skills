@@ -1,0 +1,62 @@
+{
+  "scene": "S02 — A Queda de Troia",
+  "version": "V32",
+  "status": "PREVIEW_NOT_APPROVED",
+  "full_film_completed": false,
+  "frames": 391,
+  "fps": 30,
+  "resolution": "720x1280",
+  "duration_seconds": 13.0333,
+  "unique_decoded_frames": 391,
+  "identical_consecutive_frames": 0,
+  "low_motion_frames": 15,
+  "four_nonduplicated_story_actions": [
+    "wooden horse with Trojan pullers approaches Mycenaean gate",
+    "physical hinged doors open and original horse travels through opening",
+    "latch opens; distinct Greek soldiers climb down actual ladder",
+    "Odysseus on ship sailing from burning Troy"
+  ],
+  "motion_by_shot": [
+    {
+      "from": 0,
+      "to": 3.26,
+      "mean_gray_change": 0.4855,
+      "low_change_frames": 9
+    },
+    {
+      "from": 3.26,
+      "to": 6.52,
+      "mean_gray_change": 1.7908,
+      "low_change_frames": 1
+    },
+    {
+      "from": 6.52,
+      "to": 9.78,
+      "mean_gray_change": 0.1508,
+      "low_change_frames": 5
+    },
+    {
+      "from": 9.78,
+      "to": 13.03,
+      "mean_gray_change": 0.695,
+      "low_change_frames": 0
+    }
+  ],
+  "original_horse_asset_sha256": "c6a5d1b2aeef11f7947aeef6f629a26255c1fd344aa5a34f756684fbd28177eb",
+  "original_odysseus_asset_sha256": "e4558245651dafb4c8c195cc06640a779dc20ff5b48e1d5c8d411646e404fd49",
+  "original_rasalgethi_wav_sha256": "9be8b79920b318c76f23874d38d12f4f77b46f8a9871833612ac1efa82b5d667",
+  "audio_timestamp_estimate": [
+    9.65,
+    22.68
+  ],
+  "use_of_rejected_v27_scenes": false,
+  "visual_quality_review_pending": true,
+  "known_issues": [
+    "new Trojan extras need more detailed model",
+    "native canvas 720x1280, 30fps; not final 4K60",
+    "subtitles not yet aligned",
+    "audible alignment of original words still editorially estimated",
+    "new modeled background uses first-film palette, not original editable layers"
+  ],
+  "posted": false
+}
