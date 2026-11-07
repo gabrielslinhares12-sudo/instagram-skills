@@ -219,6 +219,12 @@
       "instagram_user_id": "17841433004716815",
       "page_id": "1385407341325017",
       "published_at": "2026-11-05T19:47:05Z"
+    },
+    "tue-2026-11-07-11-rh-do-caos-cadeira-vintage-5-artes": {
+      "status": "claimed",
+      "fingerprint": "f03927c009605f9aacbe8c3505e1feaa1a89e3b7668717e267b0938476479a9e",
+      "due_at": "2026-11-07T14:00:00Z",
+      "claimed_at": "2026-11-07T15:13:40Z"
     }
   }
 }
