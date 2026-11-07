@@ -1,0 +1,31 @@
+name: Odisseia V14 - validar script Blender e CC0 do novo monolito (sem render)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v14-preflight.yml'
+      - 'odyssey_185/scene04_scanrock_v14.py'
+      - 'odyssey_185/download_cc0_rocksets_v14.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-scene-and-assets:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Check Python syntax of continuous cave and download code
+        run: |
+          set -euo pipefail
+          python3 -m py_compile odyssey_185/scene04_scanrock_v14.py odyssey_185/download_cc0_rocksets_v14.py
+          grep -q 'V14_CAVE_ONE_CONNECTED_GEOMETRIC_OBJECT' odyssey_185/scene04_scanrock_v14.py
+          grep -q 'boulder_01' odyssey_185/scene04_scanrock_v14.py
+          grep -q 's_model' odyssey_185/scene04_scanrock_v14.py
+      - name: Check official CC0 model availability without downloading textures
+        run: |
+          set -euo pipefail
+          python3 odyssey_185/download_cc0_rocksets_v14.py --metadata-only
+          echo 'Only technical stage source validated; no 3D approval, no publication' >> "$GITHUB_STEP_SUMMARY"
