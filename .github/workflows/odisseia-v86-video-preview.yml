@@ -1,0 +1,68 @@
+name: Odisseia V8.6 — animacao 3D real Troia 10 segundos (preview)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/odisseia-v86-video-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-v86-real-3d-video
+  cancel-in-progress: false
+jobs:
+  complete-real-animation-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 4374a0e51114134918ba5459a0d868af2d2d745a
+          persist-credentials: false
+      - name: Validar personagens fisicamente separados e suas trajetorias
+        run: |
+          python3 production/odyssey3d/test_scene01_geometry.py
+      - name: Preparar personagens 3D rigados e gratuitos (CC0)
+        run: |
+          git clone --depth=1 --single-branch https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0.git production/odyssey3d/assets
+          test -s production/odyssey3d/assets/LICENSE.txt
+          test -s production/odyssey3d/assets/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb
+      - name: Renderizar 300 quadros reais do rig 3D em Blender, nao slideshow
+        run: |
+          set -euo pipefail
+          docker pull ghcr.io/blenderkit/headless-blender:blender-4.0
+          docker run --rm --user "$(id -u):$(id -g)"             --volume "$PWD:/workspace" --workdir /workspace             --env QC_PERCENT=50 --env LIBGL_ALWAYS_SOFTWARE=1             --entrypoint /bin/bash             ghcr.io/blenderkit/headless-blender:blender-4.0 -lc '
+              set -e
+              B=/home/headless/blender/blender
+              test -x "$B"
+              if command -v xvfb-run >/dev/null 2>&1; then
+                xvfb-run -a "$B" --background --threads 2 --python production/odyssey3d/scene01_departure.py -- --preview
+              else
+                "$B" --background --threads 2 --python production/odyssey3d/scene01_departure.py -- --preview
+              fi
+            '
+          test "$(find production/odyssey3d/out/preview_frames -maxdepth 1 -name 'frame-*.png' | wc -l)" = 300
+      - name: Codificar MP4 30fps com ffmpeg livre (sem instalacao apt)
+        run: |
+          set -euo pipefail
+          python3 -m venv /tmp/odyssey-ffmpeg
+          /tmp/odyssey-ffmpeg/bin/pip install --disable-pip-version-check -q imageio-ffmpeg
+          FF=$(/tmp/odyssey-ffmpeg/bin/python -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())")
+          "$FF" -hide_banner -loglevel error -y -framerate 30             -i production/odyssey3d/out/preview_frames/frame-%04d.png             -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p             -movflags +faststart production/odyssey3d/out/ODISSEIA_V86_TROIA_3D_ANIMACAO_QC_10S_30FPS.mp4
+          "$FF" -hide_banner -i production/odyssey3d/out/ODISSEIA_V86_TROIA_3D_ANIMACAO_QC_10S_30FPS.mp4             -f null - 2>&1 | tail -4
+          echo "AUDIT: animation=actual Blender rig & camera; video=10s; sound=not-in-repository; publish=false"
+      - name: Preservar MP4 e amostras para revisao, sem publicar
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_V86_3D_REAL_ANIMATED_10S_QC_NOT_FINAL
+          path: |
+            production/odyssey3d/out/ODISSEIA_V86_TROIA_3D_ANIMACAO_QC_10S_30FPS.mp4
+            production/odyssey3d/out/preview_frames/frame-0000.png
+            production/odyssey3d/out/preview_frames/frame-0075.png
+            production/odyssey3d/out/preview_frames/frame-0150.png
+            production/odyssey3d/out/preview_frames/frame-0225.png
+            production/odyssey3d/out/preview_frames/frame-0299.png
+          retention-days: 7
+          if-no-files-found: warn
+# No paid API. Never schedules/publishes. Master Rasalgethi voice is attached
+# after downloading the video; do not expose the private master on GitHub.
