@@ -19,8 +19,8 @@ def material(name, rgb, metal=0, rough=.7, emission=0):
   bs.inputs["Emission Color"].default_value=(*rgb,1)
   bs.inputs["Emission Strength"].default_value=emission
  return m
-rockmat=material("weathered warm volcanic cave basalt",(.21,.18,.14))
-stone_dark=material("deep shadow interior cave",(.025,.029,.031))
+rockmat=material("deep blue-gray layered volcanic basalt",(.105,.113,.117))
+stone_dark=material("deep shadow interior cave",(.035,.042,.045))
 sandmat=material("Aegean wet sand",(.24,.19,.12))
 wood=material("Aged olive wood",(.24,.13,.06))
 cloth=material("Ancient pale linen",(.53,.41,.25))
@@ -38,6 +38,12 @@ def cube(name,pos,dim,mat,bevel=.05):
 def ico(name,pos,scale,mat,subdiv=2):
  bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=subdiv,radius=1,location=pos)
  o=bpy.context.object;o.name=name;o.scale=scale;o.data.materials.append(mat)
+ # Rigged human anatomy stays skinned; only rock geometry gets physical breakup.
+ if mat==rockmat or mat==sandmat:
+  bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
+  for v in o.data.vertices:
+   v.co *= random.uniform(.86,1.14)
+ for p in o.data.polygons:p.use_smooth=True
  return o
 def look_at(o,target):
  o.rotation_euler=(Vector(target)-o.location).to_track_quat("-Z","Y").to_euler()
@@ -114,7 +120,7 @@ for i in range(11):
  x=-3.8+i*.76
  z=8.0+.58*math.sqrt(max(0,1-(x/5.5)**2))
  ico("basalt cave mouth arch "+str(i),(x,5.7,z),(1.3,2.2,1.55),rockmat,3)
-ico("dark cavern recess shadow beyond passage",(0,13.2,3.5),(3.6,3.6,4.4),stone_dark,3)
+ico("dark cavern recess shadow beyond passage",(0,19.0,3.5),(3.6,3.6,4.4),stone_dark,3)
 for i in range(47):
  x=((i*47)%260)/10-13.0
  y=((i*29)%180)/10-3.5
@@ -166,15 +172,15 @@ def facepart(name,at,scale,ma):
  ob.parent=cyclops_arm;ob.parent_type="BONE";ob.parent_bone=bone.name
  ob.matrix_world=world
  return ob
-mask_position=headworld+Vector((0,0,.18))+forward*.44
+mask_position=headworld+Vector((0,0,.24))+forward*.20
 facepart("Cyclops brow covers both natural human eye sockets",mask_position,
- (.60,.37,.33),cloth)
-facepart("ONE_ONLY_CYCLOPEAN_WHITE_EYE",mask_position+forward*.26,
- (.40,.28,.34),eye)
-facepart("ONE_ONLY_AMBER_IRIS",mask_position+forward*.51,
- (.18,.13,.17),iris)
-facepart("ONE_ONLY_BLACK_PUPIL",mask_position+forward*.63,
- (.088,.06,.084),material("dark central one pupil",(.017,.011,.008)))
+ (.18,.55,.23),cloth)
+facepart("ONE_ONLY_CYCLOPEAN_WHITE_EYE",mask_position+forward*.13,
+ (.12,.38,.28),eye)
+facepart("ONE_ONLY_AMBER_IRIS",mask_position+forward*.23,
+ (.076,.17,.18),iris)
+facepart("ONE_ONLY_BLACK_PUPIL",mask_position+forward*.31,
+ (.055,.080,.095),material("dark central one pupil",(.017,.011,.008)))
 # Set: light escapes through opening until sealed; boulder blocks the beam.
 def lamp(name,kind,xyz,energy,color,size=3):
  L=bpy.data.lights.new(name,kind);L.energy=energy;L.color=color
@@ -202,15 +208,15 @@ for rocky in [rockmat,sandmat]:
 cam=bpy.data.cameras.new("18mm wide geographic situation")
 ob=bpy.data.objects.new("Wide shows giant, cave mouth, and stone simultaneously",cam)
 scene.collection.objects.link(ob);scene.camera=ob
-ob.location=(16.7,-29.0,11.4);look_at(ob,(2.4,2.8,3.5));cam.lens=18;cam.clip_end=180
+ob.location=(12.8,-20.8,8.2);look_at(ob,(3.0,3.8,3.7));cam.lens=18;cam.clip_end=180
 close_cam=bpy.data.cameras.new("25mm actual body effort and face")
 close_ob=bpy.data.objects.new("Close real character action",close_cam)
 scene.collection.objects.link(close_ob)
-close_ob.location=(18,-18,8.7);look_at(close_ob,(7.3,2.1,3.6));close_cam.lens=24;close_cam.clip_end=180
+close_ob.location=(10,-12.5,7.1);look_at(close_ob,(6.3,1.7,3.9));close_cam.lens=26;close_cam.clip_end=180
 inside_cam=bpy.data.cameras.new("27mm trapped crew consequence")
 inside_ob=bpy.data.objects.new("Inside cavern no exit",inside_cam)
 scene.collection.objects.link(inside_ob)
-inside_ob.location=(1.5,10.8,5.7);look_at(inside_ob,(0,2.7,2.9))
+inside_ob.location=(1.2,13.1,4.9);look_at(inside_ob,(0,5.0,2.8))
 inside_cam.lens=26;inside_cam.clip_end=180
 for fr,which,marker in [(1,ob,"OPEN_CAVE_GIANT_VISIBLE"),
  (125,close_ob,"GIGANTIC_HANDS_PUSH_MONOLITH"),
