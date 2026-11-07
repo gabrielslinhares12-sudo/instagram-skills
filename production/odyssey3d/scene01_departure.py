@@ -129,13 +129,18 @@ def add_ship():
     root.location=(2.8,5.9,.06);root.keyframe_insert(data_path="location",frame=600)
     root.rotation_euler=(0,0,0);root.keyframe_insert(data_path="rotation_euler",frame=480)
     root.rotation_euler=(.018,-.02,.065);root.keyframe_insert(data_path="rotation_euler",frame=600)
-    # Retract intact gangplank into the boat after last sailor's feet touch deck.
-    # The six grips are parented, hence cannot remain floating on the beach.
-    plank.location=(-1.68,-1.57,.61)
+    # Retract the entire gangplank *into the ship's local coordinates*.
+    # Without parenting it sailed off as a detached wooden plank in frame 540.
+    # The deck grips are already children of plank and move as a single object.
+    bpy.context.view_layer.update()
+    world_before=plank.matrix_world.copy()
+    plank.parent=root
+    plank.matrix_world=world_before
+    plank.location=(-2.88,-2.87,.58)  # world (-1.68,-1.57,.61) at ship departure
     plank.keyframe_insert(data_path="location",frame=470)
     plank.rotation_euler[0]=.24
     plank.keyframe_insert(data_path="rotation_euler",frame=470)
-    plank.location=(-1.68,.85,1.04)
+    plank.location=(-2.0,-.1,1.01)    # fully stowed on deck; now follows ship
     plank.keyframe_insert(data_path="location",frame=530)
     plank.rotation_euler[0]=0.0
     plank.keyframe_insert(data_path="rotation_euler",frame=530)
@@ -338,6 +343,19 @@ def setup():
             scene.frame_set(frame)
             scene.render.filepath=str(OUT/("frame-%03d.png"%frame))
             bpy.ops.render.render(write_still=True)
+    elif "--preview" in sys.argv:
+        # Genuine rig-bone animation: 10 seconds at 30 fps, sampled from the
+        # 60-fps source action at every SECOND frame. Never interpolate stills.
+        scene.render.resolution_percentage=50
+        scene.render.image_settings.file_format="PNG"
+        frames=OUT/"preview_frames"
+        frames.mkdir(exist_ok=True)
+        for i,frame in enumerate(range(1,601,2)):
+            scene.frame_set(frame)
+            scene.render.filepath=str(frames/("frame-%04d.png"%i))
+            bpy.ops.render.render(write_still=True)
+            if i%30==0:print("ODYSSEY_REAL_ANIMATION_FRAME",i,"of 300",flush=True)
+        print("ODYSSEY_3D_PREVIEW_FRAMES_READY",len(list(frames.glob("frame-*.png"))),flush=True)
     elif "--render" in sys.argv:
         scene.render.filepath=str(OUT/"frames"/"troia_departure_")
         os.makedirs(OUT/"frames",exist_ok=True)
