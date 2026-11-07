@@ -1,0 +1,1354 @@
+{
+  "project": "ODYSSEY-185-V9",
+  "seconds": 185,
+  "frames_at_master_fps": 11100,
+  "fps": 60,
+  "shot_count": 64,
+  "scene_count": 16,
+  "locked_camera_lens_choices": [
+    24,
+    35,
+    50,
+    85
+  ],
+  "cutting_rule": "one main action and its immediate result per shot; no still-pan substitute; no duplicate action used for a different plot beat",
+  "scene_shotplan": [
+    {
+      "scene_id": "S01",
+      "shot_count": 3,
+      "shots": [
+        {
+          "id": "S01-P01",
+          "start_seconds": 0,
+          "end_seconds": 2,
+          "duration_seconds": 2,
+          "camera_lens_mm": 85,
+          "action": "Arco de madeira real, mãos envelhecidas seguram o punho; corda vibra após teste",
+          "setting": "salão micênico",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S01",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S01-P02",
+          "start_seconds": 2,
+          "end_seconds": 5,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Câmera recua e revela mendigo diante dos pretendentes distintos; um ergue taça",
+          "setting": "salão micênico",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S01",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S01-P03",
+          "start_seconds": 5,
+          "end_seconds": 7,
+          "duration_seconds": 2,
+          "camera_lens_mm": 85,
+          "action": "Odisseu ergue os olhos em silêncio, sem trocar de posição",
+          "setting": "salão micênico",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S01",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S02",
+      "shot_count": 5,
+      "shots": [
+        {
+          "id": "S02-P01",
+          "start_seconds": 7,
+          "end_seconds": 9,
+          "duration_seconds": 2,
+          "camera_lens_mm": 24,
+          "action": "Plano amplo da porta de Troia aberta e cavalo de quatro pernas esperando no exterior",
+          "setting": "Troia e praia",
+          "cast_available": [
+            "Odisseu_guerreiro",
+            "tripulacao",
+            "troianos"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S02",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S02-P02",
+          "start_seconds": 9,
+          "end_seconds": 11,
+          "duration_seconds": 2,
+          "camera_lens_mm": 35,
+          "action": "O cavalo é arrastado para DENTRO pelo mesmo vão, rodas e cordas tracionadas",
+          "setting": "Troia e praia",
+          "cast_available": [
+            "Odisseu_guerreiro",
+            "tripulacao",
+            "troianos"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S02",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S02-P03",
+          "start_seconds": 11,
+          "end_seconds": 13,
+          "duration_seconds": 2,
+          "camera_lens_mm": 35,
+          "action": "Homens armados dentro do cavalo entram, descem por cordas e alcançam o pavimento",
+          "setting": "Troia e praia",
+          "cast_available": [
+            "Odisseu_guerreiro",
+            "tripulacao",
+            "troianos"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S02",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S02-P04",
+          "start_seconds": 13,
+          "end_seconds": 15,
+          "duration_seconds": 2,
+          "camera_lens_mm": 35,
+          "action": "Guerreiros abrem os portões por dentro; força transmitida a dobradiças e madeira",
+          "setting": "Troia e praia",
+          "cast_available": [
+            "Odisseu_guerreiro",
+            "tripulacao",
+            "troianos"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S02",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S02-P05",
+          "start_seconds": 15,
+          "end_seconds": 17,
+          "duration_seconds": 2,
+          "camera_lens_mm": 24,
+          "action": "Odisseu embarca enquanto cidade arde ao fundo; navios partem ao amanhecer",
+          "setting": "Troia e praia",
+          "cast_available": [
+            "Odisseu_guerreiro",
+            "tripulacao",
+            "troianos"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S02",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S03",
+      "shot_count": 2,
+      "shots": [
+        {
+          "id": "S03-P01",
+          "start_seconds": 17,
+          "end_seconds": 21,
+          "duration_seconds": 4,
+          "camera_lens_mm": 35,
+          "action": "Cícones contra-atacam; dois guerreiros gregos recuam, montam na mesma nau e afastam-se",
+          "setting": "costa cícone e ilha do lótus",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "cicones",
+            "lotofagos"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S03",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S03-P02",
+          "start_seconds": 21,
+          "end_seconds": 25,
+          "duration_seconds": 4,
+          "camera_lens_mm": 50,
+          "action": "Marinheiro come o lótus e abandona remo; Odisseu o segura pelo braço e leva de volta",
+          "setting": "costa cícone e ilha do lótus",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "cicones",
+            "lotofagos"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S03",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S04",
+      "shot_count": 6,
+      "shots": [
+        {
+          "id": "S04-P01",
+          "start_seconds": 25,
+          "end_seconds": 28,
+          "duration_seconds": 3,
+          "camera_lens_mm": 24,
+          "action": "Polifemo entra pela caverna acima de homens e ovelhas, fixa escala de 5,5 m",
+          "setting": "caverna de Polifemo e costa",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Polifemo",
+            "ovelhas"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S04",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S04-P02",
+          "start_seconds": 28,
+          "end_seconds": 31,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Ciclope usa corpo e mãos para mover pedra maior que toda a entrada, vedando abertura",
+          "setting": "caverna de Polifemo e costa",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Polifemo",
+            "ovelhas"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S04",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S04-P03",
+          "start_seconds": 31,
+          "end_seconds": 35,
+          "duration_seconds": 4,
+          "camera_lens_mm": 50,
+          "action": "Odisseu oferece vinho; Polifemo bebe, cambaleia e adormece; estaca preparada",
+          "setting": "caverna de Polifemo e costa",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Polifemo",
+            "ovelhas"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S04",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S04-P04",
+          "start_seconds": 35,
+          "end_seconds": 38,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Cegamento sem gore; gigante leva mãos ao olho único e perde o controle",
+          "setting": "caverna de Polifemo e costa",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Polifemo",
+            "ovelhas"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S04",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S04-P05",
+          "start_seconds": 38,
+          "end_seconds": 41,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Homens passam sob carneiros enquanto gigante apalpa só o dorso dos animais",
+          "setting": "caverna de Polifemo e costa",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Polifemo",
+            "ovelhas"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S04",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S04-P06",
+          "start_seconds": 41,
+          "end_seconds": 43,
+          "duration_seconds": 2,
+          "camera_lens_mm": 50,
+          "action": "Do navio Odisseu revela nome; Polifemo em terra invoca Poseidon",
+          "setting": "caverna de Polifemo e costa",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Polifemo",
+            "ovelhas"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S04",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S05",
+      "shot_count": 3,
+      "shots": [
+        {
+          "id": "S05-P01",
+          "start_seconds": 43,
+          "end_seconds": 46,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Éolo entrega saco fechado ao protagonista; homens contemplam Ítaca",
+          "setting": "convés e porto estreito",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Eolo",
+            "lestrigoes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S05",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S05-P02",
+          "start_seconds": 46,
+          "end_seconds": 49,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Tripulantes abrem saco enquanto o herói dorme; vento infla vela, barco desvia",
+          "setting": "convés e porto estreito",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Eolo",
+            "lestrigoes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S05",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S05-P03",
+          "start_seconds": 49,
+          "end_seconds": 53,
+          "duration_seconds": 4,
+          "camera_lens_mm": 24,
+          "action": "Gigantes lestrigões lançam rochas e destroem navios cercados; a nau do herói escapa",
+          "setting": "convés e porto estreito",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Eolo",
+            "lestrigoes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S05",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S06",
+      "shot_count": 4,
+      "shots": [
+        {
+          "id": "S06-P01",
+          "start_seconds": 53,
+          "end_seconds": 56,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Circe oferece poção; companheiro bebe e a transformação volumétrica para porco inicia",
+          "setting": "ilha Eéia palácio",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Circe",
+            "Hermes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S06",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S06-P02",
+          "start_seconds": 56,
+          "end_seconds": 58,
+          "duration_seconds": 2,
+          "camera_lens_mm": 50,
+          "action": "Hermes oferece moly protetor; Odisseu segura a erva na mão",
+          "setting": "ilha Eéia palácio",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Circe",
+            "Hermes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S06",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S06-P03",
+          "start_seconds": 58,
+          "end_seconds": 61,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Odisseu resiste ao feitiço, encara Circe e exige reversão",
+          "setting": "ilha Eéia palácio",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Circe",
+            "Hermes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S06",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S06-P04",
+          "start_seconds": 61,
+          "end_seconds": 64,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Os homens voltam à forma humana; Circe aponta a rota para os mortos",
+          "setting": "ilha Eéia palácio",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Circe",
+            "Hermes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S06",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S07",
+      "shot_count": 3,
+      "shots": [
+        {
+          "id": "S07-P01",
+          "start_seconds": 64,
+          "end_seconds": 67,
+          "duration_seconds": 3,
+          "camera_lens_mm": 24,
+          "action": "Nau chega à costa sombria; Tirésias aparece e adverte Odisseu",
+          "setting": "costa dos mortos",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Tiresias",
+            "Anticleia"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S07",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S07-P02",
+          "start_seconds": 67,
+          "end_seconds": 70,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Anticleia estende os braços; filho corre para abraçar",
+          "setting": "costa dos mortos",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Tiresias",
+            "Anticleia"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S07",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S07-P03",
+          "start_seconds": 70,
+          "end_seconds": 74,
+          "duration_seconds": 4,
+          "camera_lens_mm": 85,
+          "action": "Braços atravessam espírito materno; Odisseu permanece devastado e recua",
+          "setting": "costa dos mortos",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Tiresias",
+            "Anticleia"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S07",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S08",
+      "shot_count": 4,
+      "shots": [
+        {
+          "id": "S08-P01",
+          "start_seconds": 74,
+          "end_seconds": 77,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Tripulação aplica cera aos ouvidos; dois marinheiros prendem Odisseu ao mastro",
+          "setting": "rochedos e convés",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "sereias"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S08",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S08-P02",
+          "start_seconds": 77,
+          "end_seconds": 80,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Sereias visíveis sobre rochedos entoam canto; cordas tensionam com corpo do herói",
+          "setting": "rochedos e convés",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "sereias"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S08",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S08-P03",
+          "start_seconds": 80,
+          "end_seconds": 83,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Ele exige ser solto, mas ninguém ouve; remadores continuam com ritmo",
+          "setting": "rochedos e convés",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "sereias"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S08",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S08-P04",
+          "start_seconds": 83,
+          "end_seconds": 85,
+          "duration_seconds": 2,
+          "camera_lens_mm": 24,
+          "action": "Nau sai do alcance do canto; Odisseu relaxa e cordas deixam de esticar",
+          "setting": "rochedos e convés",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "sereias"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S08",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S09",
+      "shot_count": 4,
+      "shots": [
+        {
+          "id": "S09-P01",
+          "start_seconds": 85,
+          "end_seconds": 88,
+          "duration_seconds": 3,
+          "camera_lens_mm": 24,
+          "action": "Plano vertical estabelece esquerda redemoinho Caríbdis, direita rocha com seis cabeças Cila",
+          "setting": "estreito rochoso",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Cila",
+            "Caribdis"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S09",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S09-P02",
+          "start_seconds": 88,
+          "end_seconds": 91,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Timoneiro aproxima navio de Cila, afastando-o do vórtice sem teletransporte",
+          "setting": "estreito rochoso",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Cila",
+            "Caribdis"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S09",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S09-P03",
+          "start_seconds": 91,
+          "end_seconds": 94,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Cada uma das seis cabeças apanha um tripulante distinto; Odisseu tenta alcançá-los",
+          "setting": "estreito rochoso",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Cila",
+            "Caribdis"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S09",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S09-P04",
+          "start_seconds": 94,
+          "end_seconds": 96,
+          "duration_seconds": 2,
+          "camera_lens_mm": 85,
+          "action": "Odisseu olha bancos vazios enquanto embarcação segue seu curso",
+          "setting": "estreito rochoso",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao",
+            "Cila",
+            "Caribdis"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S09",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S10",
+      "shot_count": 4,
+      "shots": [
+        {
+          "id": "S10-P01",
+          "start_seconds": 96,
+          "end_seconds": 99,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Marinheiros famintos observam bois do Sol; sacrificam animal enquanto Odisseu não vê",
+          "setting": "Trinácia e tempestade",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S10",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S10-P02",
+          "start_seconds": 99,
+          "end_seconds": 101,
+          "duration_seconds": 2,
+          "camera_lens_mm": 50,
+          "action": "Odisseu descobre sacrifício e tenta impedir tarde demais",
+          "setting": "Trinácia e tempestade",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S10",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S10-P03",
+          "start_seconds": 101,
+          "end_seconds": 104,
+          "duration_seconds": 3,
+          "camera_lens_mm": 24,
+          "action": "Raio parte o mastro durante tempestade; navio se quebra, peças seguem gravidade",
+          "setting": "Trinácia e tempestade",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S10",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S10-P04",
+          "start_seconds": 104,
+          "end_seconds": 108,
+          "duration_seconds": 4,
+          "camera_lens_mm": 50,
+          "action": "Odisseu submerso agarra um destroço, emerge e fica completamente sozinho",
+          "setting": "Trinácia e tempestade",
+          "cast_available": [
+            "Odisseu_viajante",
+            "tripulacao"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S10",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S11",
+      "shot_count": 4,
+      "shots": [
+        {
+          "id": "S11-P01",
+          "start_seconds": 108,
+          "end_seconds": 111,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Calipso encontra náufrago e o acolhe na ilha verde sem câmeras orbitais",
+          "setting": "Ogígia",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Calipso",
+            "Hermes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S11",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S11-P02",
+          "start_seconds": 111,
+          "end_seconds": 114,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Anos passam com Odisseu no mesmo rochedo olhando o mar, triste e sereno",
+          "setting": "Ogígia",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Calipso",
+            "Hermes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S11",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S11-P03",
+          "start_seconds": 114,
+          "end_seconds": 116,
+          "duration_seconds": 2,
+          "camera_lens_mm": 35,
+          "action": "Hermes chega e anuncia libertação; Calipso aceita, apesar da tristeza",
+          "setting": "Ogígia",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Calipso",
+            "Hermes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S11",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S11-P04",
+          "start_seconds": 116,
+          "end_seconds": 119,
+          "duration_seconds": 3,
+          "camera_lens_mm": 24,
+          "action": "Odisseu termina uma jangada real e a lança ao mar",
+          "setting": "Ogígia",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Calipso",
+            "Hermes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S11",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S12",
+      "shot_count": 4,
+      "shots": [
+        {
+          "id": "S12-P01",
+          "start_seconds": 119,
+          "end_seconds": 122,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Odisseu naufraga na praia dos feácios; Nausícaa o encontra e presta auxílio",
+          "setting": "Esquéria e praia Ítaca",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Nausicaa",
+            "Alcinoo",
+            "feacios"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S12",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S12-P02",
+          "start_seconds": 122,
+          "end_seconds": 125,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Banquete; Odisseu conta suas aventuras a Alcínoo e à corte",
+          "setting": "Esquéria e praia Ítaca",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Nausicaa",
+            "Alcinoo",
+            "feacios"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S12",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S12-P03",
+          "start_seconds": 125,
+          "end_seconds": 127,
+          "duration_seconds": 2,
+          "camera_lens_mm": 24,
+          "action": "Feácios transportam homem adormecido de volta a Ítaca",
+          "setting": "Esquéria e praia Ítaca",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Nausicaa",
+            "Alcinoo",
+            "feacios"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S12",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S12-P04",
+          "start_seconds": 127,
+          "end_seconds": 130,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Odisseu desperta, reconhece a ilha e ajoelha para tocar solo com mãos",
+          "setting": "Esquéria e praia Ítaca",
+          "cast_available": [
+            "Odisseu_viajante",
+            "Nausicaa",
+            "Alcinoo",
+            "feacios"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S12",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S13",
+      "shot_count": 5,
+      "shots": [
+        {
+          "id": "S13-P01",
+          "start_seconds": 130,
+          "end_seconds": 133,
+          "duration_seconds": 3,
+          "camera_lens_mm": 24,
+          "action": "Palácio em geral; pretendentes Antínoo e Eurímaco desperdiçam comida e discutem",
+          "setting": "palácio Ítaca",
+          "cast_available": [
+            "Penelope",
+            "Telemaco",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes",
+            "Atena",
+            "Odisseu_mendigo",
+            "Eumeu"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S13",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S13-P02",
+          "start_seconds": 133,
+          "end_seconds": 136,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Penélope diante da corte nega casamento; perfil firme e contido",
+          "setting": "palácio Ítaca",
+          "cast_available": [
+            "Penelope",
+            "Telemaco",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes",
+            "Atena",
+            "Odisseu_mendigo",
+            "Eumeu"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S13",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S13-P03",
+          "start_seconds": 136,
+          "end_seconds": 139,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Ela tece ao dia e desfaz o mesmo tecido ao escurecer",
+          "setting": "palácio Ítaca",
+          "cast_available": [
+            "Penelope",
+            "Telemaco",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes",
+            "Atena",
+            "Odisseu_mendigo",
+            "Eumeu"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S13",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S13-P04",
+          "start_seconds": 139,
+          "end_seconds": 142,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Telêmaco busca notícias e retorna; sua aparência persiste",
+          "setting": "palácio Ítaca",
+          "cast_available": [
+            "Penelope",
+            "Telemaco",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes",
+            "Atena",
+            "Odisseu_mendigo",
+            "Eumeu"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S13",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S13-P05",
+          "start_seconds": 142,
+          "end_seconds": 145,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Atena disfarça Odisseu de mendigo, que chega à cabana de Eumeu",
+          "setting": "palácio Ítaca",
+          "cast_available": [
+            "Penelope",
+            "Telemaco",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes",
+            "Atena",
+            "Odisseu_mendigo",
+            "Eumeu"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S13",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S14",
+      "shot_count": 4,
+      "shots": [
+        {
+          "id": "S14-P01",
+          "start_seconds": 145,
+          "end_seconds": 148,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Atena restitui momentaneamente aparência de Odisseu; Telêmaco reconhece pai",
+          "setting": "cabana e palácio Ítaca",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Telemaco",
+            "Atena",
+            "Argos",
+            "Euricleia",
+            "Eumeu"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S14",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S14-P02",
+          "start_seconds": 148,
+          "end_seconds": 151,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Pai e filho se abraçam de fato, roupas respondem ao contato",
+          "setting": "cabana e palácio Ítaca",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Telemaco",
+            "Atena",
+            "Argos",
+            "Euricleia",
+            "Eumeu"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S14",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S14-P03",
+          "start_seconds": 151,
+          "end_seconds": 154,
+          "duration_seconds": 3,
+          "camera_lens_mm": 85,
+          "action": "Argos reconhece Odisseu sem falar; ergue cabeça e depois repousa",
+          "setting": "cabana e palácio Ítaca",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Telemaco",
+            "Atena",
+            "Argos",
+            "Euricleia",
+            "Eumeu"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S14",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S14-P04",
+          "start_seconds": 154,
+          "end_seconds": 157,
+          "duration_seconds": 3,
+          "camera_lens_mm": 85,
+          "action": "Euricleia lava perna do mendigo, encontra cicatriz e ele pede silêncio",
+          "setting": "cabana e palácio Ítaca",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Telemaco",
+            "Atena",
+            "Argos",
+            "Euricleia",
+            "Eumeu"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S14",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S15",
+      "shot_count": 4,
+      "shots": [
+        {
+          "id": "S15-P01",
+          "start_seconds": 157,
+          "end_seconds": 160,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Todos tentam armar arco sem sucesso; eixo espacial e objetos permanecem estáveis",
+          "setting": "salão do palácio",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Odisseu_revelado",
+            "Telemaco",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S15",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S15-P02",
+          "start_seconds": 160,
+          "end_seconds": 163,
+          "duration_seconds": 3,
+          "camera_lens_mm": 85,
+          "action": "Mendigo pega arco da cena inicial e dispara por doze machados alinhados",
+          "setting": "salão do palácio",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Odisseu_revelado",
+            "Telemaco",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S15",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S15-P03",
+          "start_seconds": 163,
+          "end_seconds": 166,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Odisseu revela identidade; pretendentes se assustam, Telêmaco pega arma",
+          "setting": "salão do palácio",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Odisseu_revelado",
+            "Telemaco",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S15",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S15-P04",
+          "start_seconds": 166,
+          "end_seconds": 170,
+          "duration_seconds": 4,
+          "camera_lens_mm": 35,
+          "action": "Pai e filho derrotam usurpadores com combate de ação e recuperação, sem loops",
+          "setting": "salão do palácio",
+          "cast_available": [
+            "Odisseu_mendigo",
+            "Odisseu_revelado",
+            "Telemaco",
+            "Antinoo",
+            "Eurimaco",
+            "pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S15",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "scene_id": "S16",
+      "shot_count": 5,
+      "shots": [
+        {
+          "id": "S16-P01",
+          "start_seconds": 170,
+          "end_seconds": 173,
+          "duration_seconds": 3,
+          "camera_lens_mm": 50,
+          "action": "Penélope sugere mover cama; Odisseu reage porque reconhece segredo da oliveira",
+          "setting": "quarto da oliveira e Ítaca",
+          "cast_available": [
+            "Odisseu_revelado",
+            "Penelope",
+            "Laertes",
+            "Atena",
+            "Telemaco",
+            "parentes_pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S16",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S16-P02",
+          "start_seconds": 173,
+          "end_seconds": 176,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Quarto revela a árvore viva integrada à cama sem usar imagens sobrepostas",
+          "setting": "quarto da oliveira e Ítaca",
+          "cast_available": [
+            "Odisseu_revelado",
+            "Penelope",
+            "Laertes",
+            "Atena",
+            "Telemaco",
+            "parentes_pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S16",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S16-P03",
+          "start_seconds": 176,
+          "end_seconds": 179,
+          "duration_seconds": 3,
+          "camera_lens_mm": 85,
+          "action": "Penélope abraça o marido, contato físico e emoção contida",
+          "setting": "quarto da oliveira e Ítaca",
+          "cast_available": [
+            "Odisseu_revelado",
+            "Penelope",
+            "Laertes",
+            "Atena",
+            "Telemaco",
+            "parentes_pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S16",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S16-P04",
+          "start_seconds": 179,
+          "end_seconds": 182,
+          "duration_seconds": 3,
+          "camera_lens_mm": 35,
+          "action": "Odisseu abraça pai Laertes; Atena interrompe revide com gesto de paz",
+          "setting": "quarto da oliveira e Ítaca",
+          "cast_available": [
+            "Odisseu_revelado",
+            "Penelope",
+            "Laertes",
+            "Atena",
+            "Telemaco",
+            "parentes_pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S16",
+          "requires_action_consequence": true,
+          "approved": false
+        },
+        {
+          "id": "S16-P05",
+          "start_seconds": 182,
+          "end_seconds": 185,
+          "duration_seconds": 3,
+          "camera_lens_mm": 24,
+          "action": "Odisseu, Penélope e Telêmaco observam Ítaca; câmera se afasta ao amanhecer",
+          "setting": "quarto da oliveira e Ítaca",
+          "cast_available": [
+            "Odisseu_revelado",
+            "Penelope",
+            "Laertes",
+            "Atena",
+            "Telemaco",
+            "parentes_pretendentes"
+          ],
+          "animation_type": "rigged characters and real 3D physically contacted objects",
+          "source_scene": "S16",
+          "requires_action_consequence": true,
+          "approved": false
+        }
+      ]
+    }
+  ],
+  "fully_implemented_shots": 0,
+  "rendered_master": false,
+  "publication_allowed": false
+}
