@@ -19,6 +19,7 @@ TZ = ZoneInfo("America/Sao_Paulo")
 SLOTS = (11, 15, 18)
 MINUTES_BEFORE = 35
 MINUTES_AFTER = 12
+MAX_ACCEPTABLE_PUBLISH_DELAY = 8
 
 
 def inspect(posts, ledger, now, day=None):
@@ -46,7 +47,17 @@ def inspect(posts, ledger, now, day=None):
         elif claimed is None:
             status = "queued_unconfirmed" if now >= due else "queued"
         elif claimed["status"] == "published":
-            status = "published"
+            actual = claimed.get("published_at")
+            try:
+                recorded_at = datetime.fromisoformat(actual.replace("Z","+00:00")) if actual else None
+                if recorded_at is None or recorded_at.tzinfo is None:
+                    status = "published_time_unverified"
+                elif recorded_at > due + timedelta(minutes=MAX_ACCEPTABLE_PUBLISH_DELAY):
+                    status = "published_late"
+                else:
+                    status = "published"
+            except (ValueError, AttributeError):
+                status = "published_time_unverified"
         elif claimed["status"] in {"needs_review", "claimed", "awaiting_native_music"}:
             status = claimed["status"]
         else:
@@ -56,6 +67,7 @@ def inspect(posts, ledger, now, day=None):
             "id": item["id"] if item else None, "status": status,
             "minutes_to_due": round((due-now).total_seconds()/60),
             "media_id": claimed.get("media_id") if claimed else None,
+            "published_at": claimed.get("published_at") if claimed else None,
         }
         expected.append(report)
     return {"date": day.isoformat(), "timezone": "America/Sao_Paulo",
