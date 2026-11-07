@@ -435,6 +435,74 @@ def audit_queue(root: Path=ROOT, *, only_ids: set[str] | None = None) -> dict:
             # Scope is STRICTLY to these five pinned, user-approved JPEGs.
             # This does not assert a pixelwise match to the canonical mascot.
             # Every other carousel continues through the normal full visual gate.
+            # Single, explicitly owner-approved 07NOV 15h cloud carousel.
+            # Verify the five ORIGINAL PNGs and deterministic Instagram JPEGs.
+            # This is NOT a claim of pixel-identical canonical mascot composition.
+            if slug == "tue-2026-11-07-15-nuvens-lenticulares-5-artes":
+                record = root / "content/approved" / slug / "approval.json"
+                if not record.is_file():
+                    raise VisualError("Nuvens 07NOV 15h sem autorizacao das cinco imagens.")
+                release = read_json(record)
+                source_pin = "497c17aefb193b374729d186ebcaab0aa134edc2"
+                png_hashes = [
+                    "51cf2742520b076eed2ab3941b8fc827457a06ed392e8f37ba2bcf12449f538c",
+                    "0b9b5a38e2786c9c547020a6875de303b3b30606730804dba9a39c4badfea3bb",
+                    "ca5769b9443146a3d12c2fd750919c8f17be48568e83e1c506b021ed7c8caab3",
+                    "ba53d169ee9aecc7c69291e596a8b897261bcc8427373265b13c3c672e3ccf58",
+                    "6c0f858edb15c840493cb18d627ff550b48e802c1e92ced00ff669182c17c126",
+                ]
+                jpg_hashes = [
+                    "f4241da6d12dda32c554f7319c11d934323755ed673f814b3680223638f28930",
+                    "567f0068b05a66c0c052a69b7dde07faf2474f68db347268105d498d0074863e",
+                    "483808cf9ce29bd54f16c4958ab8838c86684d38ca0d00e216ef4a5719989ae9",
+                    "aba33b558250363b5fc2cf73f6ee019c1133d2f82344c2dbfb079e15843b602b",
+                    "dbd3c308f1996b2989d7053d82d50a0b37c5fdc910bfdce9b55944faa517bbe3",
+                ]
+                folder = root / "content/media/instagram/2026-11-07/nuvens-lenticulares-15h"
+                pinned = release.get("release_commit", "")
+                prefix = ("https://raw.githubusercontent.com/gabrielslinhares12-sudo/"
+                          "instagram-skills/" + pinned + "/"
+                          "content/media/instagram/2026-11-07/nuvens-lenticulares-15h/final/")
+                expected_urls = [prefix + f"{i:02d}-nuvens-lenticulares.jpg" for i in range(1, 6)]
+                if (release.get("id") != slug or release.get("source_commit") != source_pin
+                        or not isinstance(pinned, str) or not re.fullmatch(r"[a-f0-9]{40}", pinned)
+                        or release.get("preset_id") != "TUE-MESTRE-01"
+                        or release.get("owner_authorized") is not True
+                        or release.get("visual_reviewed") is not True
+                        or release.get("approved") is not True
+                        or release.get("source_png_sha256") != png_hashes
+                        or release.get("approved_media_sha256") != jpg_hashes
+                        or post.get("media_sha256") != jpg_hashes
+                        or post.get("media_urls") != expected_urls
+                        or release.get("release_media_urls") != expected_urls
+                        or post.get("due_at") != "2026-11-07T18:00:00Z"
+                        or release.get("post_due_at") != post.get("due_at")
+                        or post.get("kind") != "carousel"
+                        or post.get("ai_origin") != "synthetic"
+                        or release.get("original_mascot_pixel_match_verified") is not False
+                        or release.get("distribution_mode") != "api_carousel_without_native_music"
+                        or post.get("distribution_mode") != release.get("distribution_mode")
+                        or release.get("owner_authorized_without_music") is not True
+                        or post.get("owner_authorized_without_music") is not True
+                        or not isinstance(release.get("approval_note"), str)
+                        or len(release["approval_note"].strip()) < 20):
+                    raise VisualError("Nuvens 07NOV 15h diverge do lote exato aprovado.")
+                for i, (png_digest, jpg_digest) in enumerate(zip(png_hashes, jpg_hashes), 1):
+                    original = folder / "aprovados-originais" / f"{i:02d}.png"
+                    output = folder / "final" / f"{i:02d}-nuvens-lenticulares.jpg"
+                    if not original.is_file() or sha256(original) != png_digest:
+                        raise VisualError(f"Nuvens 07NOV PNG original {i} adulterado.")
+                    if not output.is_file() or sha256(output) != jpg_digest:
+                        raise VisualError(f"Nuvens 07NOV JPEG final {i} adulterado.")
+                    with Image.open(original) as src:
+                        if src.format != "PNG" or src.size != (1122, 1402):
+                            raise VisualError(f"Nuvens 07NOV origem {i} invalida.")
+                    with Image.open(output) as dst:
+                        if dst.format != "JPEG" or dst.size != (1080, 1350):
+                            raise VisualError(f"Nuvens 07NOV formato {i} invalido.")
+                verify_publication_route(release)
+                reviewed.append(slug)
+                continue
             if slug == "tue-2026-11-07-11-rh-do-caos-cadeira-vintage-5-artes":
                 record = root / "content/approved" / slug / "approval.json"
                 if not record.is_file():
