@@ -1,0 +1,106 @@
+name: Odisseia V16 - Polifemo REAL animated Blender clip 5s (QC privado)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-v16-real-motion-5s-qc.yml'
+      - 'odyssey_185/scene04_scanrock_v16.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-v16-real-motion-private-qc
+  cancel-in-progress: false
+jobs:
+  render-true-3d-motion:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 95
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Validate renderer and 3 distinct model identities
+        run: |
+          set -euo pipefail
+          python3 -m py_compile odyssey_185/scene04_scanrock_v16.py odyssey_185/download_cc0_rocksets_v14.py
+          python3 -m json.tool odyssey_185/ara3d_polyphemus_v11.json >/dev/null
+          python3 -m json.tool odyssey_185/ara3d_odysseus_v11.json >/dev/null
+          python3 -m json.tool odyssey_185/ara3d_sailor_distinct_v13.json >/dev/null
+          grep -q 'ODYSSEY_V16_FRAME' odyssey_185/scene04_scanrock_v16.py
+          grep -q 'scene.frame_set(f)' odyssey_185/scene04_scanrock_v16.py
+      - name: Build pinned CC0-compatible rigged characters with mocap actions
+        working-directory: .
+        timeout-minutes: 40
+        run: |
+          set -euo pipefail
+          git clone -q https://github.com/olatunde85/3d-gen.git ara3d
+          git -C ara3d checkout --detach 1e647c97293208d03ab226b87993dc7e910bdacb
+          grep -qi mit ara3d/LICENSE
+          cd ara3d
+          npm ci --no-audit --no-fund
+          npm run setup-assets
+          mkdir -p out/polyphemus out/odysseus out/sailor
+          npm run export -- --params ../odyssey_185/ara3d_polyphemus_v11.json --formats glb --out out/polyphemus
+          npm run export -- --params ../odyssey_185/ara3d_odysseus_v11.json --formats glb --out out/odysseus
+          npm run export -- --params ../odyssey_185/ara3d_sailor_distinct_v13.json --formats glb --out out/sailor
+          for character in polyphemus odysseus sailor; do
+            test "$(find out/"$character" -name '*.glb' -size +150k | wc -l)" -eq 1
+          done
+      - name: Fetch genuine Poly Haven scan meshes and PBR material
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          python3 odyssey_185/download_cc0_rocksets_v14.py --out odyssey_185/out/cc0_rocks
+          test -s odyssey_185/out/cc0_rocks/coastal_cliff_01/receipt.json
+          test -s odyssey_185/out/cc0_rocks/boulder_01/receipt.json
+      - name: Prepare Blender 3D and FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg xvfb libgl1-mesa-dri python3-numpy
+          blender --version | head -n 2
+      - name: Render 150 consecutive animated 3D frames without slides
+        timeout-minutes: 70
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          xvfb-run -a blender --background --threads 2 --python odyssey_185/scene04_scanrock_v16.py -- --preview 2>&1 | tee /tmp/odyssey-v16-animated.log
+          grep -q 'NATIVE_CHARACTER_ACTING POLYPHEMUS' /tmp/odyssey-v16-animated.log
+          grep -q 'ODYSSEY_V16_ANIMATED_FRAMES_READY_NOT_APPROVED' /tmp/odyssey-v16-animated.log
+          test "$(find odyssey_185/out/scanrock_v16/moving_frames -name 'frame-*.png' | wc -l)" -eq 150
+          test -s odyssey_185/out/scanrock_v16/moving_frames_qc.json
+      - name: Encode five seconds of genuine 3D animation as review MP4
+        run: |
+          set -euo pipefail
+          SRC=odyssey_185/out/scanrock_v16
+          ffmpeg -hide_banner -loglevel error -y -framerate 30 -start_number 0 \
+            -i "$SRC/moving_frames/frame-%04d.png" \
+            -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p \
+            -r 30 -movflags +faststart "$SRC/ODISSEIA_POLIFEMO_V16_5SEG_3D_ANIMADO_QC_NAO_PUBLICAR.mp4"
+          ffprobe -v error -select_streams v:0 -show_entries stream=width,height,r_frame_rate,nb_frames -of json \
+            "$SRC/ODISSEIA_POLIFEMO_V16_5SEG_3D_ANIMADO_QC_NAO_PUBLICAR.mp4"
+          python3 - <<'PY'
+          import json,subprocess
+          src="odyssey_185/out/scanrock_v16/ODISSEIA_POLIFEMO_V16_5SEG_3D_ANIMADO_QC_NAO_PUBLICAR.mp4"
+          data=json.loads(subprocess.check_output(["ffprobe","-v","error","-select_streams","v:0","-show_entries","stream=nb_frames,r_frame_rate,width,height","-of","json",src]))
+          v=data["streams"][0]
+          assert int(v["nb_frames"])==150, v
+          assert v["r_frame_rate"]=="30/1", v
+          assert (int(v["width"]),int(v["height"]))==(378,672),v
+          print("ODYSSEY_V16_5S_NATIVE_3D_MOTION_VIDEO_READY_QC_ONLY_NOT_FINAL")
+          PY
+      - name: Preserve actual MP4 and QC evidence, never publish
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_V16_5SEG_ANIMACAO_3D_REAL_QC_NAO_PUBLICAR
+          path: |
+            odyssey_185/out/scanrock_v16/*.mp4
+            odyssey_185/out/scanrock_v16/*.json
+            /tmp/odyssey-v16-animated.log
+          retention-days: 14
+          if-no-files-found: warn
+# Never publish. No Runway, GUTHY, paid speech API, social post or audio changes.
