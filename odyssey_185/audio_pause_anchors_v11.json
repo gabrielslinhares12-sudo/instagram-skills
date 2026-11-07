@@ -1,0 +1,185 @@
+{
+  "project": "ODYSSEY_V11",
+  "source": "Original user-supplied Rasalgethi Google AI Studio WAV",
+  "sha256": "9be8b79920b318c76f23874d38d12f4f77b46f8a9871833612ac1efa82b5d667",
+  "duration_sec": 220.56,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "analysis": "10ms RMS energy; low-energy windows < -42 dBFS; choose natural silent midpoint near script scene paragraph boundaries",
+  "status": "audio_pauses_verified_boundaries_not_forced_word_alignment",
+  "scenes": [
+    {
+      "id": "S01",
+      "name": "Abertura do arco",
+      "audio_start_sec": 0,
+      "audio_end_sec": 9.65,
+      "duration_sec": 9.65,
+      "end_pause_window_sec": [
+        9.23,
+        10.07
+      ]
+    },
+    {
+      "id": "S02",
+      "name": "Cavalo de Troia",
+      "audio_start_sec": 9.65,
+      "audio_end_sec": 22.68,
+      "duration_sec": 13.03,
+      "end_pause_window_sec": [
+        22.17,
+        23.19
+      ]
+    },
+    {
+      "id": "S03",
+      "name": "Cicones e lotofagos",
+      "audio_start_sec": 22.68,
+      "audio_end_sec": 34.59,
+      "duration_sec": 11.91,
+      "end_pause_window_sec": [
+        34.05,
+        35.13
+      ]
+    },
+    {
+      "id": "S04",
+      "name": "Polifemo",
+      "audio_start_sec": 34.59,
+      "audio_end_sec": 54.42,
+      "duration_sec": 19.83,
+      "end_pause_window_sec": [
+        53.8,
+        55.04
+      ]
+    },
+    {
+      "id": "S05",
+      "name": "Eolo e lestrigoes",
+      "audio_start_sec": 54.42,
+      "audio_end_sec": 67.625,
+      "duration_sec": 13.205,
+      "end_pause_window_sec": [
+        67.05,
+        68.2
+      ]
+    },
+    {
+      "id": "S06",
+      "name": "Circe",
+      "audio_start_sec": 67.625,
+      "audio_end_sec": 80.36,
+      "duration_sec": 12.735,
+      "end_pause_window_sec": [
+        79.96,
+        80.76
+      ]
+    },
+    {
+      "id": "S07",
+      "name": "Mundo dos mortos",
+      "audio_start_sec": 80.36,
+      "audio_end_sec": 91.9,
+      "duration_sec": 11.54,
+      "end_pause_window_sec": [
+        91.49,
+        92.31
+      ]
+    },
+    {
+      "id": "S08",
+      "name": "Sereias",
+      "audio_start_sec": 91.9,
+      "audio_end_sec": 103.095,
+      "duration_sec": 11.195,
+      "end_pause_window_sec": [
+        102.54,
+        103.65
+      ]
+    },
+    {
+      "id": "S09",
+      "name": "Cila e Caribdis",
+      "audio_start_sec": 103.095,
+      "audio_end_sec": 115.845,
+      "duration_sec": 12.75,
+      "end_pause_window_sec": [
+        115.03,
+        116.66
+      ]
+    },
+    {
+      "id": "S10",
+      "name": "Rebanhos do Sol",
+      "audio_start_sec": 115.845,
+      "audio_end_sec": 127.415,
+      "duration_sec": 11.57,
+      "end_pause_window_sec": [
+        127.03,
+        127.8
+      ]
+    },
+    {
+      "id": "S11",
+      "name": "Calipso",
+      "audio_start_sec": 127.415,
+      "audio_end_sec": 138.82,
+      "duration_sec": 11.405,
+      "end_pause_window_sec": [
+        138.51,
+        139.13
+      ]
+    },
+    {
+      "id": "S12",
+      "name": "Feacios",
+      "audio_start_sec": 138.82,
+      "audio_end_sec": 152.045,
+      "duration_sec": 13.225,
+      "end_pause_window_sec": [
+        151.63,
+        152.46
+      ]
+    },
+    {
+      "id": "S13",
+      "name": "Pretendentes e palacio",
+      "audio_start_sec": 152.045,
+      "audio_end_sec": 167.09,
+      "duration_sec": 15.045,
+      "end_pause_window_sec": [
+        166.55,
+        167.63
+      ]
+    },
+    {
+      "id": "S14",
+      "name": "Telêmaco Argos Euricleia",
+      "audio_start_sec": 167.09,
+      "audio_end_sec": 182.38,
+      "duration_sec": 15.29,
+      "end_pause_window_sec": [
+        182.01,
+        182.75
+      ]
+    },
+    {
+      "id": "S15",
+      "name": "Prova do arco",
+      "audio_start_sec": 182.38,
+      "audio_end_sec": 200.655,
+      "duration_sec": 18.275,
+      "end_pause_window_sec": [
+        200.22,
+        201.09
+      ]
+    },
+    {
+      "id": "S16",
+      "name": "Penelope oliveira Laertes",
+      "audio_start_sec": 200.655,
+      "audio_end_sec": 220.56,
+      "duration_sec": 19.905,
+      "end_pause_window_sec": null
+    }
+  ]
+}
