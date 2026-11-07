@@ -18,12 +18,17 @@
 [ ] Ritmo, som e fala estão sincronizados à narração validada
 [ ] Legenda inferior correta (até 2 linhas), sem interface inicial nem marca d'água
 [ ] Sequência funciona sem som, só pela ação
+[ ] Piloto entregue é 2160×3840, 9:16, 60 FPS, testado no MP4 real (metadados de ffprobe)
+[ ] Fontes/composição têm qualidade de origem apropriada; upscale artificial não se declara 4K nativo
+[ ] Arquivo MP4 foi enviado à pasta experimental exclusiva do Google Drive
+[ ] Arquivo, tamanho e pasta foram confirmados por metadados de leitura do Drive
+[ ] Link direto para assistir ao MP4 foi compartilhado na conversa, sem inventar URL
 [ ] Nenhum conteúdo é apresentado como 4K nativo quando apenas ampliado
 [ ] Custos e licenças registrados, com zero despesas por padrão
 
 ## Gates de liberação
 RASCUNHO -> REFERÊNCIAS APROVADAS -> CENAS APROVADAS -> MONTAGEM QC -> APROVAÇÃO EDITORIAL -> EXPORTAÇÃO.
-Gates não são automáticos. A publicação não é parte deste modelo. A reprovação devolve somente a tomada/etapa com falha para correção.
+Gates não são automáticos. **A entrega exige upload ao Drive e envio de link na conversa após leitura de confirmação.** A publicação nas redes não é parte deste modelo. A reprovação devolve somente a tomada/etapa com falha para correção.
 
 ## Métricas de comparação com o padrão atual
 Tempo de produção por minuto aceito; proporção de tomadas aproveitadas; gasto estimado e efetivo; consistência dos personagens; clareza da história; legibilidade sem som; naturalidade de gesto; qualidade da fala/legenda. Somente com comparativo e autorização alterar qualquer pipeline vigente.
