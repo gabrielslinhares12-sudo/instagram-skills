@@ -1,0 +1,75 @@
+name: Odisseia V9 185s - abertura arco 3D real (QC privado)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/odisseia-185-3d-hook-qc.yml'
+      - 'odyssey_185/render_hook_3d.py'
+      - 'odyssey_185/validate_manifest.py'
+      - 'odyssey_185/manifest_v9.json'
+      - 'odyssey_185/narracao_rasalgethi.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: odyssey-185-new-true3d-hook
+  cancel-in-progress: false
+jobs:
+  render-new-3d-hook:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 95
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Validate 16-scene story contract and full PT-BR voice script
+        run: |
+          python3 -m py_compile odyssey_185/render_hook_3d.py odyssey_185/validate_manifest.py
+          python3 odyssey_185/validate_manifest.py
+      - name: Install only free and local 3D animation tooling
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg xvfb libgl1-mesa-dri libegl1 libgles2
+          blender --version | head -n 2
+      - name: Render six actual frames from new 3D scene
+        run: |
+          set -euo pipefail
+          LIBGL_ALWAYS_SOFTWARE=1 QC_PERCENT=65 xvfb-run -a blender --background --threads 2 --python odyssey_185/render_hook_3d.py -- --stills 2>&1 | tee /tmp/odyssey-185-stills.log
+          grep 'ODYSSEY_185_SCENE01_BLOCKING_3D_COMPLETE_NOT_FINAL' /tmp/odyssey-185-stills.log
+          test "$(find odyssey_185/out -maxdepth 1 -name 'scene01-*.png' | wc -l)" -eq 6
+      - name: Render 210 individually animated 3D frames at QC resolution
+        run: |
+          set -euo pipefail
+          LIBGL_ALWAYS_SOFTWARE=1 QC_PERCENT=65 xvfb-run -a blender --background --threads 2 --python odyssey_185/render_hook_3d.py -- --preview 2>&1 | tee /tmp/odyssey-185-preview.log
+          grep 'ODYSSEY_185_ANIMATED_FRAMES 210 210' /tmp/odyssey-185-preview.log
+          test "$(find odyssey_185/out/frames -name 'frame-*.png' | wc -l)" -eq 210
+      - name: Encode real 3D animation to 7 second H264 clip
+        run: |
+          set -euo pipefail
+          ffmpeg -hide_banner -loglevel error -y -framerate 30 -start_number 1 \
+            -i odyssey_185/out/frames/frame-%04d.png \
+            -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p \
+            -movflags +faststart odyssey_185/out/ODISSEIA_V9_3D_ARCO_7S_QC.mp4
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate:format=duration -of json \
+            odyssey_185/out/ODISSEIA_V9_3D_ARCO_7S_QC.mp4 >odyssey_185/out/video_probe.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open('odyssey_185/out/video_probe.json'))
+          v=next(s for s in p['streams'] if 'width' in s)
+          assert v['codec_name']=='h264' and v['r_frame_rate']=='30/1'
+          assert abs(float(p['format']['duration'])-7)<.02,p
+          print('PASS 7sec native 3D frame QC; master 185sec NOT DONE; publication BLOCKED')
+          PY
+      - name: Archive QC assets only - never publish to Instagram
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ODISSEIA_185_V9_ARCO_3D_ANIMADO_QC_NAO_PUBLICAR
+          path: |
+            odyssey_185/out/ODISSEIA_V9_3D_ARCO_7S_QC.mp4
+            odyssey_185/out/scene01-*.png
+            odyssey_185/out/preflight.json
+            odyssey_185/out/video_probe.json
+          retention-days: 14
+          if-no-files-found: warn
+# Strictly isolated: no paid API, no GUTHY, no Runway, no publishing, no old V5/V7 visuals.
