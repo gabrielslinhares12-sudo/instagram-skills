@@ -1,0 +1,107 @@
+{
+  "standard_id": "TUE-CINEFRAME-01",
+  "version": "0.1.0",
+  "status": "experimental",
+  "project": "piloto_itaca_tue_cineframe_01",
+  "release_policy": "never_auto_publish",
+  "output": {
+    "aspect_ratio": "9:16",
+    "width": 2160,
+    "height": 3840,
+    "fps": 60,
+    "preview_width": 720,
+    "preview_height": 1280,
+    "master_is_native": false
+  },
+  "voice": {
+    "voice_id": "Rasalgethi",
+    "language": "pt-BR",
+    "source": "audio original somente se autorizado",
+    "audio_file": null
+  },
+  "references": "templates/character-bible.example.json",
+  "shots": [
+    {
+      "shot_id": "S01_T01",
+      "scene_id": "S01",
+      "duration_sec": 6,
+      "characters": [
+        "odisseu_exp"
+      ],
+      "set_id": "praia_itaca_exp",
+      "action": "Odisseu adormecido respira e move lentamente a mao sobre a areia",
+      "preparation": "corpo imovel coberto por manto",
+      "consequence": "dedos encontram a areia",
+      "start_state": "deitado inconsciente na praia",
+      "end_state": "comeca a despertar",
+      "camera": "plano medio lateral; lente 50mm, camera fixa na altura do rosto",
+      "physical_contacts": "corpo apoiado na areia, tecido toca o solo",
+      "lighting": "amanhecer suave de direita",
+      "narration_exact": "Ao chegar a Itaca, Odisseu ainda dormia.",
+      "audio_timecode": "00:00-00:06",
+      "motion_mode": "rig_2d",
+      "start_reference": "references/shots/S01_T01_start.png",
+      "end_reference": "references/shots/S01_T01_end.png",
+      "negative_constraints": [
+        "rosto diferente",
+        "mao extra",
+        "deslizamento",
+        "zoom em imagem estatica"
+      ]
+    },
+    {
+      "shot_id": "S01_T02",
+      "scene_id": "S01",
+      "duration_sec": 6,
+      "characters": [
+        "odisseu_exp"
+      ],
+      "set_id": "praia_itaca_exp",
+      "action": "Odisseu abre os olhos e se ergue apoiando a palma da mao no chao",
+      "preparation": "olhos fechados, cabeca sobre manto",
+      "consequence": "tronco elevado, rosto voltado ao mar",
+      "start_state": "deitado, olhos fechados",
+      "end_state": "sentado apoiado em uma mao",
+      "camera": "close de tres-quartos; lente 65mm; leve recuo acompanhando o tronco",
+      "physical_contacts": "palma pressionada no solo ate sustentacao do corpo",
+      "lighting": "mesmo amanhecer, continuidade de sombra",
+      "narration_exact": "Quando despertou, o lugar lhe pareceu estranho.",
+      "audio_timecode": "00:06-00:12",
+      "motion_mode": "rig_2d",
+      "start_reference": "references/shots/S01_T02_start.png",
+      "end_reference": "references/shots/S01_T02_end.png",
+      "negative_constraints": [
+        "troca de figurino",
+        "bracos duplicados",
+        "olhar para camera sem motivo"
+      ]
+    },
+    {
+      "shot_id": "S01_T03",
+      "scene_id": "S01",
+      "duration_sec": 6,
+      "characters": [
+        "odisseu_exp"
+      ],
+      "set_id": "praia_itaca_exp",
+      "action": "Odisseu observa a costa e vira a cabeca buscando reconhecer a terra",
+      "preparation": "sentado com mao apoiada na areia",
+      "consequence": "olhar fixa os rochedos distantes",
+      "start_state": "sentado olhando o mar",
+      "end_state": "sentado olhando a terra",
+      "camera": "over-shoulder; lente 35mm; pan curto do mar para os rochedos",
+      "physical_contacts": "pes e mao mantem apoio no mesmo terreno",
+      "lighting": "mesma luz do amanhecer",
+      "narration_exact": "Era a sua propria ilha, escondida pelo nevoeiro.",
+      "audio_timecode": "00:12-00:18",
+      "motion_mode": "rig_2d",
+      "start_reference": "references/shots/S01_T03_start.png",
+      "end_reference": "references/shots/S01_T03_end.png",
+      "negative_constraints": [
+        "troca de geografia",
+        "nuvens piscando",
+        "movimento em loop"
+      ]
+    }
+  ]
+}
