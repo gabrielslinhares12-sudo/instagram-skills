@@ -1,0 +1,34 @@
+{
+  "project": "Instagram TUE — Odyssey V8 rebuild",
+  "review_at": "2026-11-06",
+  "source": "3D Blender compositor independent of V5/V7.1",
+  "run_id": 42318028351,
+  "stage": "V8.5: 7 physically rendered 3D checkpoints at frames [1,80,180,300,420,540,599]",
+  "publish_approved": false,
+  "editorial_approved": false,
+  "technical_checks": {
+    "github_workflow": "success",
+    "story_contract": "passed: three characters with intended separated board paths",
+    "xy_world_minimum_clearance_m": 1.01,
+    "illumination": "improved; previous seven stills mean ~43.7% near-white channel values, V8.5 ~0.0%",
+    "actual_continuous_animation": "unconfirmed until V8.6 MP4 full sequence inspection"
+  },
+  "observed_defects": [
+    "Gangplank became visibly separated from vessel on departure near frame 540 in V8.5; V8.6 patch parents it to hull and retracts it to deck",
+    "No obvious flames or ruins to establish the burning of Troy in first ~2 seconds; physically anchored flames added for next V8.7 QC",
+    "KayKit CC0 character proportions are simplified/cartoonlike; this is blocking, not approved cinematic character look",
+    "Early establishing frames do not show the cast entering; action must be visually and narratively recognizable in full moving sequence",
+    "A successful geometry test does not prove no awkward overlap due camera perspective, size of weapons or body motion"
+  ],
+  "blocking_next_steps": [
+    "Play actual 300-frame 10-second V8.6 video with the 0:10 original Portuguese narration; screen every action and inspect stride, boarding, retraction and sail departure",
+    "Reject/reshoot any unnatural mesh intersection, sliding foot or disconnected plank",
+    "Rebuild authentic Greek costume and stronger Trojan city destruction, not just color-grade cartoon figures",
+    "Only after semantic QC in real video continue the next independently authored shot toward episode 1 and eventually the trilogy",
+    "Never publish or schedule previews"
+  ],
+  "old_generations": [
+    "V5 rejected",
+    "V7.1 rejected"
+  ]
+}
