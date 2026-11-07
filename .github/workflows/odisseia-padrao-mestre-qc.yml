@@ -10,6 +10,7 @@ on:
       - 'odyssey_185/manifest_v9.json'
       - 'odyssey_185/ROTEIRO_DIRECAO_COMPLETA_TUE_MESTRE_01.md'
       - 'odyssey_185/shot_direction_185.json'
+      - 'odyssey_185/asset_registry_185.json'
       - 'odyssey_185/test_direction_contracts.py'
       - '.github/workflows/odisseia-padrao-mestre-qc.yml'
   workflow_dispatch:
