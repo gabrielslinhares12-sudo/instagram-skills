@@ -96,31 +96,32 @@ for i in range(25):
  sc=.75+(i%5)*.35
  ico("irregular geologic scree %02d"%i,(x,y,sc*.31),(sc,sc*.9,sc*.7),rockmat,2)
 # The stone is demonstrably bigger than mouth: width 6.5m, height 7.0m.
-rock=ico("Monolithic boulder larger than cave opening",(5.25,0,3.5),(3.4,2.45,3.65),rockmat,3)
+rock=ico("Monolithic boulder larger than cave opening",(6.35,1.4,3.55),(3.18,2.25,3.65),rockmat,3)
 tex=bpy.data.textures.new("Pitted stone relief","CLOUDS")
 tex.noise_scale=.55
 modifier=rock.modifiers.new("Basalt natural fractures","DISPLACE")
 modifier.texture=tex;modifier.strength=.22
 # The boulder translates from open to sealed entrance. Does not teleport.
-for frame,x in [(1,5.25),(80,5.1),(145,3.7),(230,1.75),(315,0),(360,0)]:
+for frame,x in [(1,6.35),(60,6.35),(145,4.45),(230,2.3),(315,0),(360,0)]:
  rock.location.x=x;rock.keyframe_insert("location",frame=frame)
  rock.rotation_euler=(0,(5.25-x)*.027,(5.25-x)*.013)
  rock.keyframe_insert("rotation_euler",frame=frame)
 
-models=sorted(Path("ara3d/out").rglob("*.glb"))
-print("ARA3D_GLBS_FOUND",*[str(f) for f in models],flush=True)
-if not models:raise RuntimeError("ARA3D_REAL_CHARACTER_GLBS_NOT_FOUND")
-model=models[0]
-polyphemus,cyclops_arm,cyclops_verts,clips=import_rig(model,"POLYPHEMUS",(5.5),(8.25,-.2,0,3.14))
-crew1,crew_arm1,crew_verts,crew_clips=import_rig(model,"ODYSSEUS",(1.84),(-1.55,3.4,0,0))
-crew2,crew_arm2,_,_=import_rig(model,"SAILOR",(1.77),(1.4,3.7,0,.3))
+p_model=next(iter(Path("ara3d/out/polyphemus").glob("*.glb")),None)
+o_model=next(iter(Path("ara3d/out/odysseus").glob("*.glb")),None)
+if p_model is None or o_model is None:
+ raise RuntimeError("PERIOD_GLB_ASSET_MISSING_BOTH_CHARACTERS")
+print("PERIOD_ACCURATE_ASSETS",p_model,o_model,flush=True)
+polyphemus,cyclops_arm,cyclops_verts,clips=import_rig(p_model,"POLYPHEMUS",(5.5),(11.1,1.0,0,-1.5707963))
+crew1,crew_arm1,crew_verts,crew_clips=import_rig(o_model,"ODYSSEUS",(1.84),(-1.55,8.0,0,0))
+crew2,crew_arm2,_,_=import_rig(o_model,"SAILOR",(1.77),(1.4,8.6,0,.3))
 # Cyclops follows boulder while firmly grounded, planted feet in every still.
-for frame,x in [(1,8.25),(80,8.2),(145,6.95),(230,4.85),(315,3.2),(360,3.2)]:
+for frame,x in [(1,11.1),(60,11.1),(145,9.2),(230,7.0),(315,4.8),(360,4.8)]:
  polyphemus.location.x=x;polyphemus.keyframe_insert("location",frame=frame)
 # Sailors recoil deeper into cave, explicitly trapped as light shuts off.
-for frame,y in [(1,3.4),(90,3.55),(150,4.05),(260,5.1),(360,5.4)]:
+for frame,y in [(1,8.0),(90,8.0),(150,8.6),(260,10.1),(360,10.35)]:
  crew1.location.y=y;crew1.keyframe_insert("location",frame=frame)
- crew2.location.y=y+.3;crew2.keyframe_insert("location",frame=frame)
+ crew2.location.y=y+.7;crew2.keyframe_insert("location",frame=frame)
 # Lightweight patches aren't allowed as primary anatomy: the CC0 skinned
 # mesh must be the visible character; this is an identifiable cyclops eye.
 # Attach central oversized eye geometry to head bone so it moves with acting.
@@ -149,7 +150,7 @@ lamp("Rim cyclops","AREA",(10,2,8),1100,(.80,.38,.21),5)
 cam=bpy.data.cameras.new("35mm dramatic scale camera")
 ob=bpy.data.objects.new("Stage continuity camera",cam);scene.collection.objects.link(ob)
 scene.camera=ob
-ob.location=(9,-19,6.4);look_at(ob,(0,1,2.5));cam.lens=37;cam.clip_end=140
+ob.location=(16.7,-29.0,11.4);look_at(ob,(2.4,2.8,3.5));cam.lens=19;cam.clip_end=140
 try:
  scene.view_settings.view_transform="AgX"
 except Exception:
@@ -157,16 +158,16 @@ except Exception:
 assert cyclops_verts>4500 and crew_verts>4500
 stage={
 "scene":"S04","physical":"cave boulder push with imported skinned Ara3D actors",
-"stone_width_m":6.8,"cave_opening_m":5.6,
+"stone_width_m":6.36,"cave_opening_m":5.6,
 "stone_height_m":7.3,"opening_height_m":6.4,
 "actors":[{"name":"Polyphemus","height_m":5.5,"skinned_vertices":cyclops_verts},
           {"name":"Odysseus","height_m":1.84,"skinned_vertices":crew_verts}],
-"clip_names":clips[:25],"release_status":"test_not_final",
+"clip_names":[n for n in clips if n.startswith("Push")][:8],"release_status":"STILLS_ONLY_QC_NOT_FINAL",
 "narration_not_attached":True,"published":False}
 (OUT/"scene_technical_qc.json").write_text(json.dumps(stage,indent=2),encoding="utf-8")
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT/"S04_POLYPHEMUS_RIGGED_TEST.blend"))
 # Three stages, compare first/middle/end for legible causal blocking.
-for f in [1,180,360]:
+for f in [1,90,180,270,360]:
  scene.frame_set(f)
  scene.render.filepath=str(OUT/f"S04_polyphemus_{f:03d}.png")
  bpy.ops.render.render(write_still=True)
