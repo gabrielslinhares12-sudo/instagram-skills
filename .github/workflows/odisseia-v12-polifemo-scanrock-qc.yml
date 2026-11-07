@@ -72,7 +72,7 @@ jobs:
           grep -q 'NATIVE_CHARACTER_ACTING POLYPHEMUS' /tmp/odyssey-v12-acting.log
           grep -q 'V12_CC0_PHOTOGRAMMETRY_ASSETS_STAGED' /tmp/odyssey-v12-acting.log
           grep -q 'ODYSSEY_V12_SCANROCK_RIGGED_CYCLOPS_QC_NOT_FINAL' /tmp/odyssey-v12-acting.log
-          test "$(find odyssey_185/out/cyclops_v11 -name 'S04_v12_scanrock_*.png' | wc -l)" -eq 5
+          test "$(find odyssey_185/out/scanrock_v12 -name 'S04_v12_scanrock_*.png' | wc -l)" -eq 5
           test -s odyssey_185/out/scanrock_v12/scene_technical_qc.json
       - name: Archive QC stills, real render log and motion metadata (NO publication)
         if: always()
@@ -80,7 +80,7 @@ jobs:
         with:
           name: ODISSEIA_V12_POLIFEMO_SCANROCK_CC0_QC_NAO_PUBLICAR
           path: |
-            odyssey_185/out/scanrock_v12/S04_polyphemus_*.png
+            odyssey_185/out/scanrock_v12/S04_v12_scanrock_*.png
             odyssey_185/out/scanrock_v12/scene_technical_qc.json
             odyssey_185/out/scanrock_v12/scanrock_sources.json
             /tmp/odyssey-v12-acting.log
