@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths: ['.github/workflows/instagram-reel-videos-reais-qc.yml']
-  issues:
+  pull_request:
     types: [opened]
   workflow_dispatch:
 permissions:
@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build_reel_with_recorded_footage:
-    if: github.event_name != 'issues' || github.event.issue.title == 'RENDER-TUE-07NOV-REAL-VIDEO-QC'
+    if: github.event_name != 'pull_request' || github.event.pull_request.title == 'RENDER-TUE-07NOV-REAL-VIDEO-QC'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
