@@ -1,0 +1,811 @@
+{
+  "schema_version": 1,
+  "project": "Tem Uma Explicação — Odisseia 185s",
+  "production_standard": "odyssey_v8/PADRAO_MESTRE_TUE_ANIMACAO.md",
+  "script_path": "odyssey_185/ROTEIRO_DIRECAO_COMPLETA_TUE_MESTRE_01.md",
+  "source": "descriptions authored for the 185s production script",
+  "character_count": 44,
+  "prop_count": 52,
+  "character_assets": {
+    "CHAR_ODYSSEUS": {
+      "id": "CHAR_ODYSSEUS",
+      "kind": "humano protagonista",
+      "silhouette": "adulto maduro, 45 anos artísticos; ombros largos, pescoço forte, andar ponderado",
+      "facial_identity": "nariz pronunciado, olhos castanhos profundos, barba castanho-escura com grisalho, cabelos ondulados; cicatriz na coxa",
+      "palette": "bronze envelhecido, ocre, vermelho queimado, cinza-marinho",
+      "costume": "guerreiro: túnica ocre, cuirassa real de bronze/couro, manto vermelho, elmo crista completo; viajante: túnica gasta sem elmo; mendigo: capuz e pano puído; revelado: roupa civil do palácio",
+      "acting_identity": "reação contida, mãos firmes, olhar estratégico e postura que muda conscientemente por fase",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_ANTINOOS": {
+      "id": "CHAR_ANTINOOS",
+      "kind": "pretendente antagonista",
+      "silhouette": "alto, robusto, peito largo e queixo projetado",
+      "facial_identity": "pele bronzeada, barba escura aparada, cicatriz discreta na sobrancelha, cabelos curtos",
+      "palette": "açafrão queimado, vinho, ouro",
+      "costume": "túnica rica e manto açafrão com broches espessos; não carrega o elmo do herói",
+      "acting_identity": "ocupa espaço de modo invasivo, ri com a boca aberta, gestos agressivos com taça",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_EURYMACHOS": {
+      "id": "CHAR_EURYMACHOS",
+      "kind": "pretendente manipulador",
+      "silhouette": "esguio e elegante, altura média, mãos de dedos longos",
+      "facial_identity": "rosto comprido, cabelos pretos penteados, barba desenhada estreita",
+      "palette": "púrpura acinzentado, marfim, bronze",
+      "costume": "manto púrpura-acastanhado, fibula delicada, túnica de linho branco",
+      "acting_identity": "gestos pequenos de influência, sorriso contido, nunca o mesmo ciclo de Antínoo",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_PRETENDENTE_A": {
+      "id": "CHAR_PRETENDENTE_A",
+      "kind": "pretendente secundário",
+      "silhouette": "homem baixo, pescoço largo e postura folgada",
+      "facial_identity": "cabelo castanho cacheado, rosto redondo sem barba",
+      "palette": "azul-chumbo, areia",
+      "costume": "túnica de linho escuro, cinto de couro, bracelete simples",
+      "acting_identity": "bebe de modo desleixado; reage tarde ao arco",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_PRETENDENTE_B": {
+      "id": "CHAR_PRETENDENTE_B",
+      "kind": "pretendente secundário",
+      "silhouette": "homem alto, ombros estreitos",
+      "facial_identity": "pele clara, barba castanho-clara, nariz arrebitado, cabelo curto",
+      "palette": "verde-oliva, creme",
+      "costume": "túnica verde e manto marfim sem adornos caros",
+      "acting_identity": "aponta e provoca com mão esquerda; medo rápido no desfecho",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TRIPULANTE_A": {
+      "id": "CHAR_TRIPULANTE_A",
+      "kind": "tripulante aqueu",
+      "silhouette": "homem atlético de altura média, pernas fortes",
+      "facial_identity": "barba castanha em ponta, cabelo castanho preso atrás",
+      "palette": "linho areia, azul-ardósia",
+      "costume": "túnica natural, faixa de couro, sandálias marrons",
+      "acting_identity": "remador firme; no lótus perde foco ocular e relaxa braços antes de ser trazido de volta",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TRIPULANTE_B": {
+      "id": "CHAR_TRIPULANTE_B",
+      "kind": "tripulante aqueu",
+      "silhouette": "homem baixo e robusto, ombros arredondados",
+      "facial_identity": "barba ruiva curta, sardas, cabelo avermelhado",
+      "palette": "terracota, bege",
+      "costume": "túnica ocre, manto terracota curto, sandálias com tiras largas",
+      "acting_identity": "impulsivo, gestos ansiosos; abre saco de Éolo em ação específica",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TRIPULANTE_C": {
+      "id": "CHAR_TRIPULANTE_C",
+      "kind": "tripulante aqueu",
+      "silhouette": "homem alto e magro, tronco longo",
+      "facial_identity": "cabelos pretos curtos, barba rala, bochechas angulosas",
+      "palette": "azul acinzentado, oliva",
+      "costume": "túnica azul escuro já desbotada e cinto trançado",
+      "acting_identity": "ajuda nos remos e no controle de amarras, olhar atento aos riscos",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TROIANO_A": {
+      "id": "CHAR_TROIANO_A",
+      "kind": "habitante de Troia",
+      "silhouette": "homem maduro médio, antebraços musculosos",
+      "facial_identity": "barba cheia preta e nariz largo",
+      "palette": "vermelho escuro, linho",
+      "costume": "túnica bordada troiana e faixa de cintura vermelha",
+      "acting_identity": "puxa cordas do cavalo, peso para trás e pegada contínua",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TROIANO_B": {
+      "id": "CHAR_TROIANO_B",
+      "kind": "habitante de Troia",
+      "silhouette": "homem jovem, alto e delgado",
+      "facial_identity": "cabelos dourados longos, sem barba",
+      "palette": "marfim, azul ultramarino discreto",
+      "costume": "túnica clara com detalhes geométricos locais",
+      "acting_identity": "orienta cavalo e observa batente, movimentos separados dos de A",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_CICONE_A": {
+      "id": "CHAR_CICONE_A",
+      "kind": "combatente cícone",
+      "silhouette": "homem largo de ombros e altura média",
+      "facial_identity": "rosto quadrado, barba grisalha curta",
+      "palette": "cinza-oliva, couro escuro",
+      "costume": "túnica de guerra com escudo em madeira/couro",
+      "acting_identity": "avança em contra-ataque com base de pés plantada",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_CICONE_B": {
+      "id": "CHAR_CICONE_B",
+      "kind": "combatente cícone",
+      "silhouette": "mais baixo, braços muito fortes",
+      "facial_identity": "cabelo negro preso, sem barba, maçãs do rosto marcadas",
+      "palette": "marrom, vinho",
+      "costume": "túnica marrom com correias grossas",
+      "acting_identity": "flanqueia sem duplicar caminho do guerreiro A",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_LOTOFAGO_A": {
+      "id": "CHAR_LOTOFAGO_A",
+      "kind": "habitante da ilha do lótus",
+      "silhouette": "adulto esguio, expressão plácida",
+      "facial_identity": "cabelos longos claros e olhos suaves, rosto oval",
+      "palette": "areia, verde-sálvia",
+      "costume": "linho solto e cinto vegetal, sem armadura",
+      "acting_identity": "oferece fruto com palma aberta sem ameaçar",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_POLYPHEMUS": {
+      "id": "CHAR_POLYPHEMUS",
+      "kind": "ciclope",
+      "silhouette": "gigante de 5,5m na adaptação, peito largo, abdome pesado e mãos de grande volume",
+      "facial_identity": "único olho central no alto do rosto, cabelo grosso sujo, barba desalinhada, pele áspera",
+      "palette": "cinza-terra, marrom escuro",
+      "costume": "couro rústico e tecido grosso de pastor, sem elmo",
+      "acting_identity": "movimento lento com massa real; duas mãos empurram pedra maior que abertura; joelhos e calcanhares sustentam",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_OVELHA_A": {
+      "id": "CHAR_OVELHA_A",
+      "kind": "animal ovelha",
+      "silhouette": "grande carneiro com ombros robustos",
+      "facial_identity": "lã branca espessa, focinho escuro e chifres em espiral",
+      "palette": "branco e caramelo",
+      "costume": "lã modelada e movimentos quadrúpedes reais",
+      "acting_identity": "caminha com pegada de quatro cascos; abriga um marinheiro no plano de fuga",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_OVELHA_B": {
+      "id": "CHAR_OVELHA_B",
+      "kind": "animal ovelha",
+      "silhouette": "ovelha média de corpo mais curto",
+      "facial_identity": "lã cinza-clara, cabeça pequena e orelha pendente",
+      "palette": "cinza, marfim",
+      "costume": "lã ondulada em tufos distintos",
+      "acting_identity": "passo mais lento, espaço próprio para a fuga",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_OVELHA_C": {
+      "id": "CHAR_OVELHA_C",
+      "kind": "animal ovelha",
+      "silhouette": "ovelha grande, pescoço comprido",
+      "facial_identity": "lã branca com manchas castanhas no dorso",
+      "palette": "marfim, castanho",
+      "costume": "lã curta perto do focinho e mais longa nas costas",
+      "acting_identity": "passagem sequencial por abertura e contato com o ciclope",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_AIOLOS": {
+      "id": "CHAR_AIOLOS",
+      "kind": "entidade divina Éolo",
+      "silhouette": "homem adulto maduro alto e magro, costas retas",
+      "facial_identity": "barba branca curta, cabelos grisalhos ondulados, olhos vivos",
+      "palette": "azul do céu, prata e ocre",
+      "costume": "manto azul e roupa de linho com padrões de vento abstratos",
+      "acting_identity": "oferece saco com duas mãos; postura serena e bem diferente dos reis mortais",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_LESTRIGAO_A": {
+      "id": "CHAR_LESTRIGAO_A",
+      "kind": "gigante lestrigão",
+      "silhouette": "gigante musculoso de ombros largos, com proporção própria distinta do ciclope",
+      "facial_identity": "dois olhos, nariz achatado, barba espessa curta",
+      "palette": "pedra escura, couro",
+      "costume": "túnica de peles, braçadeiras ásperas",
+      "acting_identity": "arremessa pedras com antecipação e transferência de peso",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_LESTRIGAO_B": {
+      "id": "CHAR_LESTRIGAO_B",
+      "kind": "gigante lestrigão",
+      "silhouette": "gigante alto e esguio com braços longos",
+      "facial_identity": "dois olhos, cabelo encaracolado escuro, mandíbula estreita",
+      "palette": "marrom ferrugem, carvão",
+      "costume": "manto rústico curto e cinto grosso",
+      "acting_identity": "arremesso por cima do ombro com timing diferente do gigante A",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_CIRCE": {
+      "id": "CHAR_CIRCE",
+      "kind": "feiticeira Circe",
+      "silhouette": "mulher adulta esguia e ereta, gestos controlados",
+      "facial_identity": "olhos verdes, cabelo longo negro, rosto oval e expressão enigmática",
+      "palette": "verde-esmeralda, cobre, ouro fosco",
+      "costume": "túnica verde-cobre longa, broches de folha, mangas soltas",
+      "acting_identity": "magia por braços e dedos elegantes, sem gestos amplos repetitivos",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_HERMES": {
+      "id": "CHAR_HERMES",
+      "kind": "deus mensageiro",
+      "silhouette": "jovem adulto esguio e veloz, postura relaxada",
+      "facial_identity": "olhos claros vivos, cabelo castanho curto, rosto juvenil",
+      "palette": "ocre claro, azul celeste, bronze claro",
+      "costume": "capa leve e vestimenta de mensageiro coerente com Idade do Bronze estilizada",
+      "acting_identity": "chega com ação funcional, entrega erva; sem desaparecer com corte arbitrário",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TIRESIAS": {
+      "id": "CHAR_TIRESIAS",
+      "kind": "profeta espectral",
+      "silhouette": "homem idoso magro e encurvado, ombros delicados",
+      "facial_identity": "olhos sem foco, barba grisalha fina, cabelo longo esbranquiçado",
+      "palette": "azul-fumo, prata fria",
+      "costume": "manto ritual translúcido mantendo volume 3D",
+      "acting_identity": "aponta lentamente com mão e cabeça, expressão serena",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_ANTICLEIA": {
+      "id": "CHAR_ANTICLEIA",
+      "kind": "espírito mãe de Odisseu",
+      "silhouette": "mulher madura de ombros suaves",
+      "facial_identity": "rosto maternal com olhos castanhos, cabelos escuros já grisalhos presos",
+      "palette": "cinza-azul, marfim frio",
+      "costume": "vestido translúcido em camadas, sem perder legibilidade volumétrica",
+      "acting_identity": "estende braços com ternura; intangibilidade espiritual deliberada",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_SEREIA_A": {
+      "id": "CHAR_SEREIA_A",
+      "kind": "criatura sereia",
+      "silhouette": "corpo feminino aviano com asas plumas, postura elevada no rochedo",
+      "facial_identity": "rosto anguloso, olhos negros, cabelo escuro curto",
+      "palette": "azul petróleo, bronze",
+      "costume": "penugem e tecido fino integrados ao corpo",
+      "acting_identity": "canto etéreo silencioso visualmente, bico não obrigatório; gestos suaves de asas",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_SEREIA_B": {
+      "id": "CHAR_SEREIA_B",
+      "kind": "criatura sereia",
+      "silhouette": "corpo feminino aviano mais baixo e asas mais longas",
+      "facial_identity": "rosto oval pálido, cabelo ruivo escuro ondulado",
+      "palette": "verde-alga, cobre",
+      "costume": "penas verdes escuras e tecido cobre",
+      "acting_identity": "canto de contraponto, movimento de asa assimétrico em relação à A",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TRIPULANTE_D": {
+      "id": "CHAR_TRIPULANTE_D",
+      "kind": "tripulante aqueu",
+      "silhouette": "jovem esguio de pernas longas",
+      "facial_identity": "pele escura, cabelos curtos cacheados, sem barba",
+      "palette": "cinza-claro, ferrugem",
+      "costume": "túnica cinza, bracelete couro",
+      "acting_identity": "remador da fileira traseira; posição individual rastreável na perda",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TRIPULANTE_E": {
+      "id": "CHAR_TRIPULANTE_E",
+      "kind": "tripulante aqueu",
+      "silhouette": "adulto robusto de ombros largos",
+      "facial_identity": "barba longa castanha, cabeça parcialmente calva",
+      "palette": "verde profundo, bege",
+      "costume": "túnica verde escuro, lenço bege",
+      "acting_identity": "trabalha na vela e possui trajetória própria na cena de Cila",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TRIPULANTE_F": {
+      "id": "CHAR_TRIPULANTE_F",
+      "kind": "tripulante aqueu",
+      "silhouette": "homem baixo de corpo magro",
+      "facial_identity": "bigode fino, cabelo preto preso com fita",
+      "palette": "azul claro gasto, couro",
+      "costume": "túnica azul clara, cinto de ferramentas simples",
+      "acting_identity": "navegador de proa; tem destino rastreável no ataque de Cila",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_SCYLLA": {
+      "id": "CHAR_SCYLLA",
+      "kind": "monstro Cila",
+      "silhouette": "corpo cavernoso preso à falésia, seis cabeças/pescoços independentes",
+      "facial_identity": "cada cabeça tem focinho, textura e olhos próprios, mas compartilham base corporal coerente",
+      "palette": "roxo-rocha, verde escuro",
+      "costume": "pele escamosa e cicatrizes naturais, sem peças de armadura",
+      "acting_identity": "seis ataques em tempos diferentes, escala constante, contato sem gore",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_CALYPSO": {
+      "id": "CHAR_CALYPSO",
+      "kind": "ninfa Calipso",
+      "silhouette": "mulher adulta de porte sereno, movimentos calmos",
+      "facial_identity": "cabelos longos castanhos dourados, olhos âmbar, rosto arredondado",
+      "palette": "creme, verde-água, dourado fosco",
+      "costume": "vestes fluidas claras de tecido leve, sandálias delicadas",
+      "acting_identity": "oferece mão e recolhe-a após rejeição, sentimento contido",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_NAUSICAA": {
+      "id": "CHAR_NAUSICAA",
+      "kind": "princesa feácia",
+      "silhouette": "jovem adulta alta, postura gentil e reservada",
+      "facial_identity": "rosto oval, pele bronzeada, cabelos castanho-claros presos em trançados",
+      "palette": "azul pálido, marfim",
+      "costume": "túnica azul-clara de linho, cinto suave e manto leve",
+      "acting_identity": "aproxima-se com cautela e acolhimento, respeita distância inicial",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_ALCINOUS": {
+      "id": "CHAR_ALCINOUS",
+      "kind": "rei feácio Alcínoo",
+      "silhouette": "homem maduro de corpo largo e postura solene",
+      "facial_identity": "barba prateada curta, cabelo cinza, sobrancelhas grossas",
+      "palette": "azul-marinho, ouro antigo",
+      "costume": "manto azul com broche espiralado, túnica branca",
+      "acting_identity": "ouve e decide sentado com gestos firmes, não replica Éolo",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_PHAEACIAN_A": {
+      "id": "CHAR_PHAEACIAN_A",
+      "kind": "marinheiro feácio",
+      "silhouette": "homem alto magro, braços compridos",
+      "facial_identity": "barba castanha estreita, cabelo castanho preso",
+      "palette": "azul dessaturado, areia",
+      "costume": "túnica azul lavada e cinto de corda",
+      "acting_identity": "remador traseiro e apoio nas costas do herói durante desembarque",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_PHAEACIAN_B": {
+      "id": "CHAR_PHAEACIAN_B",
+      "kind": "marinheiro feácio",
+      "silhouette": "homem baixo robusto, ombros fortes",
+      "facial_identity": "cabelos curtos escuros, barba curta, nariz largo",
+      "palette": "ocre, madeira",
+      "costume": "túnica areia e sandálias robustas",
+      "acting_identity": "apoio das pernas do herói, descarga de presentes",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_PHAEACIAN_C": {
+      "id": "CHAR_PHAEACIAN_C",
+      "kind": "marinheiro feácio",
+      "silhouette": "homem mais idoso de tronco fino",
+      "facial_identity": "barba branca curta, cabelos grisalhos, olhos baixos",
+      "palette": "cinza azulado, marfim",
+      "costume": "manto cinza-azul sobre túnica creme",
+      "acting_identity": "conduz navio e supervisiona retorno ao barco",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_PENELOPE": {
+      "id": "CHAR_PENELOPE",
+      "kind": "rainha Penélope",
+      "silhouette": "mulher madura alta de postura elegante e firme",
+      "facial_identity": "olhos expressivos castanhos, cabelo trançado escuro, rosto levemente alongado",
+      "palette": "marfim, violeta, azul profundo",
+      "costume": "linho de boa qualidade com faixa azul-violeta, adornos mínimos",
+      "acting_identity": "tece e desmancha com precisão; testa Odisseu sem choro constante",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_TELEMACHUS": {
+      "id": "CHAR_TELEMACHUS",
+      "kind": "filho Telêmaco",
+      "silhouette": "jovem adulto atlético mas mais esguio que o pai",
+      "facial_identity": "rosto semelhante mas não igual ao de Odisseu, barba curta escura, cabelo penteado",
+      "palette": "azul-acinzentado, bege",
+      "costume": "túnica linho, capa azul-ardósia, sandálias",
+      "acting_identity": "de inseguro a decidido, movimentos mais rápidos que o pai",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_ATHENA": {
+      "id": "CHAR_ATHENA",
+      "kind": "deusa Atena",
+      "silhouette": "mulher adulta imponente de postura retilínea, altura visual distinta",
+      "facial_identity": "olhos cinzentos claros, cabelos escuros presos sob peça de bronze",
+      "palette": "bronze dourado, azul petróleo, branco",
+      "costume": "armadura de bronze estruturada com braçadeiras, lança e manto branco-azul",
+      "acting_identity": "transformações por geometria e luz, gestos precisos e contidos",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_EUMAEUS": {
+      "id": "CHAR_EUMAEUS",
+      "kind": "pastor Eumeu",
+      "silhouette": "homem mais velho de ombros caídos de trabalho",
+      "facial_identity": "barba grisalha, rosto largo com sulcos, nariz achatado",
+      "palette": "marrom terra, verde oliva",
+      "costume": "túnica simples de lã, cinto gasto e sandálias",
+      "acting_identity": "gestos de hospitalidade e trabalho, respeitoso e físico",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_ARGOS": {
+      "id": "CHAR_ARGOS",
+      "kind": "cão Argos",
+      "silhouette": "cão idoso de porte médio, magro e lento",
+      "facial_identity": "pelagem marrom e branca manchada, orelha caída, olhos cansados",
+      "palette": "marrom quente, branco",
+      "costume": "pelagem com tufos e focinho esbranquiçado",
+      "acting_identity": "ergue cabeça com esforço e reconhece pelo olhar; não precisa correr",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_EURYKLEIA": {
+      "id": "CHAR_EURYKLEIA",
+      "kind": "ama Euricleia",
+      "silhouette": "mulher idosa baixa, mãos finas e costas arredondadas",
+      "facial_identity": "rosto gentil enrugado, cabelos grisalhos presos",
+      "palette": "creme, areia",
+      "costume": "túnica bege e manto creme, poucos adornos",
+      "acting_identity": "gestos cuidadosos da bacia ao descobrir a cicatriz da coxa",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_LAERTES": {
+      "id": "CHAR_LAERTES",
+      "kind": "pai Laertes",
+      "silhouette": "idoso de estatura média, curvatura de idade, braços de agricultor",
+      "facial_identity": "barba branca longa, cabelo branco esparso, rosto angular similar ao filho",
+      "palette": "ocre-claro, oliva",
+      "costume": "túnica de lavoura, capa de lã e sandálias gastas",
+      "acting_identity": "reconhecimento pelo corpo e choro contido; abraço mais frágil",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    },
+    "CHAR_PARENTE_PRETENDENTE_A": {
+      "id": "CHAR_PARENTE_PRETENDENTE_A",
+      "kind": "parente de pretendente",
+      "silhouette": "homem adulto com postura rígida e olhar hostil",
+      "facial_identity": "cabelos negros grisalhos na têmpora, nariz largo, barba curta",
+      "palette": "preto terroso, vinho",
+      "costume": "túnica escura com cinto e lança micênica",
+      "acting_identity": "avança em vingança e abaixa a arma ao comando de Atena",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_MODEL_SHEET_RIG_AND_VISUAL_QC"
+    }
+  },
+  "prop_assets": {
+    "PROP_ARCO_REAL": {
+      "id": "PROP_ARCO_REAL",
+      "design_and_physics": "Arco de madeira micênico resistente, curva e linha persistentes da S01 à S15; funcionamento real da tensão da corda e retenção pela mão.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_MACHADOS_12": {
+      "id": "PROP_MACHADOS_12",
+      "design_and_physics": "Doze cabeças de machados 3D com olhais alinhados sobre bases estáveis; flecha atravessa abertura real e não metal sólido.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_TACA_BRONZE": {
+      "id": "PROP_TACA_BRONZE",
+      "design_and_physics": "Objeto físico persistente taca bronze: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_TOCHA_SALAO": {
+      "id": "PROP_TOCHA_SALAO",
+      "design_and_physics": "Objeto físico persistente tocha salao: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_CAVALO_TROIA": {
+      "id": "PROP_CAVALO_TROIA",
+      "design_and_physics": "Cavalo oco grande com corpo, cabeça, pescoço, quatro patas, suporte de rolagem, vigas interiores e portinhola com passagem para humanos.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_PORTAO_TROIA": {
+      "id": "PROP_PORTAO_TROIA",
+      "design_and_physics": "Portão com batentes articulados, gonzos, fechos e passagem superior/lateral suficiente para cavalo e soldados.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_CORDA_FUGA": {
+      "id": "PROP_CORDA_FUGA",
+      "design_and_physics": "Objeto físico persistente corda fuga: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_NAVIO_01": {
+      "id": "PROP_NAVIO_01",
+      "design_and_physics": "Mesmo casco, proa e popa, mastro, banco de remos e leme entre as viagens; danos acumulados são mudanças narrativas, não redesign por tomada.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_MASTRO_01": {
+      "id": "PROP_MASTRO_01",
+      "design_and_physics": "Mastro solidário ao casco, fixação de cordas e velas; recebe impacto de Zeus com ruptura em S10.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_ESCUDO_CICONE": {
+      "id": "PROP_ESCUDO_CICONE",
+      "design_and_physics": "Objeto físico persistente escudo cicone: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_FRUTO_LOTUS": {
+      "id": "PROP_FRUTO_LOTUS",
+      "design_and_physics": "Objeto físico persistente fruto lotus: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_REMO_A": {
+      "id": "PROP_REMO_A",
+      "design_and_physics": "Objeto físico persistente remo a: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_ARCO_CAVERNA": {
+      "id": "PROP_ARCO_CAVERNA",
+      "design_and_physics": "Abertura de caverna única com escala persistente entre entrada, chegada de Polifemo, bloqueio e fuga.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_PEDRA_SELAMENTO": {
+      "id": "PROP_PEDRA_SELAMENTO",
+      "design_and_physics": "Rocha única fisicamente maior que a abertura da caverna, com pegada possível por ambas as mãos de Polifemo, atrito e repouso bloqueando o vão.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_TACA_VINHO": {
+      "id": "PROP_TACA_VINHO",
+      "design_and_physics": "Taça com escala de Polifemo, segura por dedos do gigante e entregue pela mão humana com perspectiva coerente.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_ESTACA": {
+      "id": "PROP_ESTACA",
+      "design_and_physics": "Objeto físico persistente estaca: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_CARNEIRO": {
+      "id": "PROP_CARNEIRO",
+      "design_and_physics": "Objeto físico persistente carneiro: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_SACO_VENTOS": {
+      "id": "PROP_SACO_VENTOS",
+      "design_and_physics": "Saco de couro selado com costuras e nó visível; abertura desencadeia ação da vela e do mar.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_NAVIO_FROTA": {
+      "id": "PROP_NAVIO_FROTA",
+      "design_and_physics": "Objeto físico persistente navio frota: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_ROCHAS_GIGANTES": {
+      "id": "PROP_ROCHAS_GIGANTES",
+      "design_and_physics": "Objeto físico persistente rochas gigantes: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_COPA_CIRCE": {
+      "id": "PROP_COPA_CIRCE",
+      "design_and_physics": "Taça com volume real e transição da mão da feiticeira à do marinheiro, queda e colisão com piso.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_ERWA_MOLY": {
+      "id": "PROP_ERWA_MOLY",
+      "design_and_physics": "Objeto físico persistente erwa moly: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_PORTA_PALACIO": {
+      "id": "PROP_PORTA_PALACIO",
+      "design_and_physics": "Objeto físico persistente porta palacio: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_MANTO_CIRCE": {
+      "id": "PROP_MANTO_CIRCE",
+      "design_and_physics": "Objeto físico persistente manto circe: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_LAMPADEIRA_RITUAL": {
+      "id": "PROP_LAMPADEIRA_RITUAL",
+      "design_and_physics": "Objeto físico persistente lampadeira ritual: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_CORDAS_MASTRO": {
+      "id": "PROP_CORDAS_MASTRO",
+      "design_and_physics": "Cordas 3D com espessura, trajetória e ponto de ancoragem consistente no mastro; tensão reage ao corpo de Odisseu.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_CERA_AUDITIVA": {
+      "id": "PROP_CERA_AUDITIVA",
+      "design_and_physics": "Objeto físico persistente cera auditiva: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_REMOS": {
+      "id": "PROP_REMOS",
+      "design_and_physics": "Remos modelados com contato nas mãos e reação fluida da água, remadores em fases distintas.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_REDEMOINHO_CHARYBDIS": {
+      "id": "PROP_REDEMOINHO_CHARYBDIS",
+      "design_and_physics": "Vórtice volumétrico com força radial de água e posição fixa em relação à falésia de Cila.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_REBANHO_SOL": {
+      "id": "PROP_REBANHO_SOL",
+      "design_and_physics": "Bois com anatomia e escala constante, distintas das ovelhas da caverna.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_FOGO_SACRIFICIO": {
+      "id": "PROP_FOGO_SACRIFICIO",
+      "design_and_physics": "Objeto físico persistente fogo sacrificio: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_DESTROCO": {
+      "id": "PROP_DESTROCO",
+      "design_and_physics": "Fragmento com material do próprio navio atingido pelo raio; é o apoio do único sobrevivente.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_ROCHA_OGIGIA": {
+      "id": "PROP_ROCHA_OGIGIA",
+      "design_and_physics": "Objeto físico persistente rocha ogigia: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_JANGADA": {
+      "id": "PROP_JANGADA",
+      "design_and_physics": "Jangada montada por madeira e nós do mesmo set, com peso, flutuação e ação de embarcar.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_CORDA_JANGADA": {
+      "id": "PROP_CORDA_JANGADA",
+      "design_and_physics": "Objeto físico persistente corda jangada: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_MACHADO_MADEIRA": {
+      "id": "PROP_MACHADO_MADEIRA",
+      "design_and_physics": "Objeto físico persistente machado madeira: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_NAVIO_FEACIO": {
+      "id": "PROP_NAVIO_FEACIO",
+      "design_and_physics": "Embarcação feácia distinta do navio aqueu, bancos para remadores, lugar do passageiro adormecido, percurso até a margem.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_PRESENTES_FEACIOS": {
+      "id": "PROP_PRESENTES_FEACIOS",
+      "design_and_physics": "Ânforas, caixas e tecidos transportados e depositados junto ao herói adormecido em Ítaca, persistentes após partida do navio.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_VELO_VIAGEM": {
+      "id": "PROP_VELO_VIAGEM",
+      "design_and_physics": "Objeto físico persistente velo viagem: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_TEAR_PENELOPE": {
+      "id": "PROP_TEAR_PENELOPE",
+      "design_and_physics": "Tear em pé com fios, teia, lançadeira e tecido que cresce de dia e é desfeito à noite mantendo mesmo arranjo.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_MANTA_TEAR": {
+      "id": "PROP_MANTA_TEAR",
+      "design_and_physics": "Objeto físico persistente manta tear: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_PORTA_SALAO": {
+      "id": "PROP_PORTA_SALAO",
+      "design_and_physics": "Objeto físico persistente porta salao: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_BACIA_BRONZE": {
+      "id": "PROP_BACIA_BRONZE",
+      "design_and_physics": "Objeto físico persistente bacia bronze: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_AGUA_BACIA": {
+      "id": "PROP_AGUA_BACIA",
+      "design_and_physics": "Objeto físico persistente agua bacia: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_CICATRIZ_COXA": {
+      "id": "PROP_CICATRIZ_COXA",
+      "design_and_physics": "Marca única na parte superior da coxa de Odisseu, descoberta durante lavagem pela ama; posição invariável sob troca de figurino.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_PORTAO_PALACIO": {
+      "id": "PROP_PORTAO_PALACIO",
+      "design_and_physics": "Objeto físico persistente portao palacio: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_FLECHA_REAL": {
+      "id": "PROP_FLECHA_REAL",
+      "design_and_physics": "Flecha única de madeira/bronze que percorre fisicamente a linha dos doze olhais.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_ESCUDO_PRETENDENTE": {
+      "id": "PROP_ESCUDO_PRETENDENTE",
+      "design_and_physics": "Objeto físico persistente escudo pretendente: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_LEITO_OLIVEIRA": {
+      "id": "PROP_LEITO_OLIVEIRA",
+      "design_and_physics": "Cama construída em torno de oliveira viva, com poste estrutural feito do tronco enraizado; imóvel e dimensionalmente coerente.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_TRONCO_OLIVEIRA": {
+      "id": "PROP_TRONCO_OLIVEIRA",
+      "design_and_physics": "Tronco enraizado que integra cama e piso; comprova identidade, não móvel removível.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_LANCA_ATENA": {
+      "id": "PROP_LANCA_ATENA",
+      "design_and_physics": "Objeto físico persistente lanca atena: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    },
+    "PROP_ARMAS_PAZ": {
+      "id": "PROP_ARMAS_PAZ",
+      "design_and_physics": "Objeto físico persistente armas paz: modelar 3D com forma reconhecível, escala fixada ao set, material da Idade do Bronze e ponto de contato identificado; registrar medidas de asset antes de render.",
+      "model_status": "DESIGN_SPECIFICATION_ONLY",
+      "approval": "PENDING_GEOMETRY_COLLISION_AND_QC"
+    }
+  },
+  "all_assets_physically_rendered": false,
+  "publish_allowed": false
+}
