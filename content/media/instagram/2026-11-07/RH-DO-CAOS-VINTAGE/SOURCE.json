@@ -1,0 +1,28 @@
+{
+  "drive_zip_id": "1V45K8RswS7TtvQCpY7ai6xVo7jiTQg1H",
+  "source_zip_sha256": "11593b93accea3e03f06fc4d9e94bd6c31ab12f0eacc973e6740f3d656ba62fe",
+  "schedule_time": "2026-11-07T14:00:00Z",
+  "status": "media_staged_not_published",
+  "media": [
+    {
+      "file": "01-tirinha-vintage.jpg",
+      "sha256": "e6445f43d5c7599125987c527fc05781357d6e2d7040df0041929947e45ba28a"
+    },
+    {
+      "file": "02-tirinha-vintage.jpg",
+      "sha256": "4f9a088ed9f126ec474aa5140954368e86061aa4d7cb8aca5ce9bab04b33d62f"
+    },
+    {
+      "file": "03-tirinha-vintage.jpg",
+      "sha256": "86088e45b4f7c0b887378d9f8aa3e1bab5613f378ebc3b61058d063b9a7dacea"
+    },
+    {
+      "file": "04-tirinha-vintage.jpg",
+      "sha256": "f76f84d1b93b906561b78b675b27018c19fc4183441d384d17c152d8c8998211"
+    },
+    {
+      "file": "05-tirinha-vintage.jpg",
+      "sha256": "ce54e848696fa8aa3874246ddc0935f584c686c7660da205aa540021d433ab41"
+    }
+  ]
+}
