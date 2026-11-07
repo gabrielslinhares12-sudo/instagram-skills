@@ -25,7 +25,13 @@
   "art_direction": {
     "era": "Mycenaean Late Bronze Age",
     "look": "high-end stylized realism",
-    "no": "no 2D overlays, no slides, no Roman armour, no classical marble temples, no repeated motions, no fake still-motion"
+    "no": "no 2D overlays, no slides, no Roman armour, no classical marble temples, no repeated motions, no fake still-motion",
+    "master_standard": "odyssey_v8/PADRAO_MESTRE_TUE_ANIMACAO.md",
+    "identity_lock": true,
+    "detailed_props_and_sets_required": true,
+    "physical_interaction_required": true,
+    "shot_by_shot_visual_direction_required": true,
+    "original_rasalgethi_where_available": true
   },
   "asset_contracts": {
     "Odysseus": {
@@ -377,5 +383,6 @@
       "material_3d_required": true,
       "approved_for_render": false
     }
-  ]
+  ],
+  "production_standard": "odyssey_v8/PADRAO_MESTRE_TUE_ANIMACAO.md"
 }
