@@ -4,7 +4,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/odisseia-v13b-distinct-cast-qc.yml'
-      - 'odyssey_185/scene04_scanrock_v13bb.py'
+      - 'odyssey_185/scene04_scanrock_v13b.py'
       - 'odyssey_185/ara3d_polyphemus_v11.json'
       - 'odyssey_185/download_cc0_rocksets_v12.py'
       - 'odyssey_185/ara3d_odysseus_v11.json'
@@ -29,12 +29,12 @@ jobs:
       - name: Validate new period cast and true mocap Blender action
         run: |
           set -euo pipefail
-          python3 -m py_compile odyssey_185/scene04_scanrock_v13bb.py
+          python3 -m py_compile odyssey_185/scene04_scanrock_v13b.py
           python3 -m json.tool odyssey_185/ara3d_polyphemus_v11.json >/dev/null
           python3 -m json.tool odyssey_185/ara3d_odysseus_v11.json >/dev/null
           python3 -m json.tool odyssey_185/ara3d_sailor_distinct_v13.json >/dev/null
-          grep -q 'strip.scale' odyssey_185/scene04_scanrock_v13bb.py
-          grep -q 'POLYPHEMUS_SINGLE' odyssey_185/scene04_scanrock_v13bb.py || true
+          grep -q 'strip.scale' odyssey_185/scene04_scanrock_v13b.py
+          grep -q 'POLYPHEMUS_SINGLE' odyssey_185/scene04_scanrock_v13b.py || true
       - name: Retrieve audited MIT licensed skinned human creation engine
         run: |
           git clone -q https://github.com/olatunde85/3d-gen.git ara3d
@@ -72,7 +72,7 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -o pipefail
-          xvfb-run -a blender --background --threads 2 --python odyssey_185/scene04_scanrock_v13bb.py 2>&1 | tee /tmp/odyssey-v12-acting.log
+          xvfb-run -a blender --background --threads 2 --python odyssey_185/scene04_scanrock_v13b.py 2>&1 | tee /tmp/odyssey-v12-acting.log
           grep -q 'NATIVE_CHARACTER_ACTING POLYPHEMUS' /tmp/odyssey-v12-acting.log
           grep -q 'V12_CC0_PHOTOGRAMMETRY_ASSETS_STAGED' /tmp/odyssey-v12-acting.log
           grep -q 'ODYSSEY_V13_GROUNDED_ARCH_AND_BLOCKING_CONTRACT_VALID' /tmp/odyssey-v12-acting.log
