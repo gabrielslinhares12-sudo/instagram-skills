@@ -23,7 +23,7 @@
   "publishing_method": "official_meta_api_via_github_actions",
   "music": false,
   "story": false,
-  "stage": "BLOCKED_AWAITING_AUTHORIZED_MEDIA_BYTES",
+  "stage": "PRIVATE_QC_RECREATION_DRAFT",
   "approved_for_queue": false,
   "sha256_verified": false,
   "media_public_url": null,
@@ -37,5 +37,57 @@
     "Add exactly one approved reel to content/schedule.json for 2026-11-07T21:00:00Z only if QA passes.",
     "Verify preflight Meta permissions, matching Instagram account, successful publication with media id and permalink."
   ],
-  "evidence_note": "MP4 was located in the project's Library (40,532,889 bytes), but programmatic raw-file access was rejected; no production binary was uploaded and no 18:00 publication is confirmed."
+  "evidence_note": "MP4 was located in the project's Library (40,532,889 bytes), but programmatic raw-file access was rejected; no production binary was uploaded and no 18:00 publication is confirmed.",
+  "recreation": {
+    "requested_on": "2026-11-07",
+    "standard": "TUE-MESTRE-01",
+    "replacement_for_original": true,
+    "render_version": "CGI preview v2",
+    "created_in_chat": true,
+    "subject": "Por que prédios altos balançam?",
+    "duration_seconds": 54,
+    "final_encoded_resolution": "1080x1920",
+    "final_encoded_fps": 60,
+    "native_render_resolution": "540x960",
+    "native_temporal_sampling_fps": 16,
+    "interpolation_note": "Output has resized frames and repeated samples; do not claim native 4K60.",
+    "video_sha256": "334ed3d6fc75c4216bc7c0be2de2d267fdd03f4e22e3582af641e61a0ce58f8c",
+    "video_bytes": 7598211,
+    "audio": "Original ambient SFX only, NO Rasalgethi narration",
+    "status": "PRIVATE_QC_PREVIEW_NOT_APPROVED",
+    "scenes": [
+      "CGI skyline with flexible skyscraper",
+      "3D wind load on facade",
+      "moving load-bearing steel truss",
+      "high-floor interior pendulum",
+      "stylized model of Taipei 101",
+      "660-ton tuned mass damper mechanism",
+      "side-by-side response with and without damping",
+      "safe-sway engineering conclusion"
+    ],
+    "qc_technical": {
+      "duration_verified": true,
+      "video_frames_verified": 3240,
+      "video_codec": "H.264",
+      "sfx_codec": "AAC in second preview",
+      "audio_voice": false,
+      "unique_motion_observed": true
+    },
+    "qc_editorial": {
+      "visual_reviewed": true,
+      "source_footage_real": false,
+      "source_claims_verified": true,
+      "mascot_canonical_included": false,
+      "owner_approved": false,
+      "ready_for_publication": false,
+      "why_blocked": "Simplified CGI is only a preview; visual realism and mandatory authentic Rasalgethi spoken audio have not passed the final release gate."
+    },
+    "voice_text_available": "TUE_REELS_07NOV_18H_NARRACAO_RASALGETHI.txt",
+    "factual_sources": [
+      "https://www.taipei-101.com.tw/tw/observatory/feature",
+      "https://www.structuremag.org/article/dynamic-loading-solutions-in-taipei-101/"
+    ],
+    "publication_record": null
+  },
+  "blocking_reason": "No licensed photorealistic shot for building and no Rasalgethi generated speech, so no release authorization"
 }
