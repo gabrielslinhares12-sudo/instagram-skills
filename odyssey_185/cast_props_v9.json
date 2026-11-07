@@ -1,0 +1,220 @@
+{
+  "schema": "odyssey-185-character-and-prop-registry-v9",
+  "units": "meters",
+  "all_geometry_shared_world_space": true,
+  "characters": [
+    {
+      "id": "Odysseus",
+      "height": 1.79,
+      "master_face_id": "odysseus_face_master_v1",
+      "variants": [
+        "warrior",
+        "traveler",
+        "beggar",
+        "revealed"
+      ],
+      "face_constant": true,
+      "features": "angular jaw, pronounced nose, dark-brown eyes, black wavy hair, full beard, unique scar above knee",
+      "rig": "hips spine shoulders elbows wrists knuckles knees ankles facial blendshapes",
+      "palette": [
+        "worn crimson",
+        "ash linen",
+        "bronze"
+      ],
+      "identity_rule": "never create a new face for a wardrobe variant"
+    },
+    {
+      "id": "Penelope",
+      "height": 1.67,
+      "master_face_id": "penelope_face_master_v1",
+      "features": "mature face, dark braids, expressive eyes, long light linen, steadfast gaze",
+      "palette": [
+        "sand",
+        "oyster white"
+      ]
+    },
+    {
+      "id": "Telemachus",
+      "height": 1.77,
+      "master_face_id": "telemachus_face_master_v1",
+      "features": "young adult, resembles but is not identical to father, short beard",
+      "palette": [
+        "slate blue",
+        "natural linen"
+      ]
+    },
+    {
+      "id": "Polyphemus",
+      "height": 5.5,
+      "eyes": 1,
+      "master_face_id": "polyphemus_face_master_v1",
+      "features": "one anatomical central forehead eye, thick arms, broad torso, rough skin",
+      "gait": "slow weighted footfalls; hips and knees bend under mass"
+    },
+    {
+      "id": "Circe",
+      "height": 1.72,
+      "master_face_id": "circe_face_master_v1",
+      "features": "long dark hair, copper-green dress, cold composed gestures"
+    },
+    {
+      "id": "Calypso",
+      "height": 1.71,
+      "master_face_id": "calypso_face_master_v1",
+      "features": "serene confident face, long hair, pale linen"
+    },
+    {
+      "id": "Athena",
+      "height": 1.83,
+      "master_face_id": "athena_face_master_v1",
+      "features": "gray-eyed deity, historically influenced bronze armor, spear"
+    },
+    {
+      "id": "Eumaeus",
+      "height": 1.68,
+      "master_face_id": "eumaeus_face_master_v1",
+      "features": "older swineherd, rough hands, sun-worn skin and rustic wool"
+    },
+    {
+      "id": "Eurycleia",
+      "height": 1.58,
+      "master_face_id": "eurycleia_face_master_v1",
+      "features": "elderly nurse, gray hair, delicate posture, old linen"
+    },
+    {
+      "id": "Antinous",
+      "height": 1.86,
+      "master_face_id": "antinous_face_master_v1",
+      "features": "powerful build, clean shaved, dark crimson court tunic",
+      "behavior": "aggressive arrogant"
+    },
+    {
+      "id": "Eurymachus",
+      "height": 1.79,
+      "master_face_id": "eurymachus_face_master_v1",
+      "features": "narrow face, trimmed beard, teal/ochre robe",
+      "behavior": "restrained manipulative"
+    },
+    {
+      "id": "Laertes",
+      "height": 1.69,
+      "master_face_id": "laertes_face_master_v1",
+      "features": "very old man, weathered hands, gray beard, stooped but alert"
+    },
+    {
+      "id": "Nausicaa",
+      "height": 1.64,
+      "master_face_id": "nausicaa_face_master_v1",
+      "features": "young Phaeacian princess, unique face, earth-tone tunic"
+    },
+    {
+      "id": "Argos",
+      "species": "canine",
+      "master_face_id": "argos_master_v1",
+      "features": "old brown-and-white dog, lean body, slow head and tail, identifiable white muzzle"
+    },
+    {
+      "id": "Tiresias",
+      "master_face_id": "tiresias_master_v1",
+      "features": "elderly blind seer, pale spirit silhouette"
+    },
+    {
+      "id": "Anticleia",
+      "master_face_id": "anticleia_master_v1",
+      "features": "Odysseus' mother's recognizable adult face, translucent spirit body"
+    },
+    {
+      "id": "Aeolus",
+      "master_face_id": "aeolus_master_v1",
+      "features": "older king of the winds, rugged noble robes"
+    },
+    {
+      "id": "Hermes",
+      "master_face_id": "hermes_master_v1",
+      "features": "young messenger deity with subtle bronze-age travel insignia"
+    },
+    {
+      "id": "Alcinous",
+      "master_face_id": "alcinous_master_v1",
+      "features": "mature Phaeacian king, distinct from Antinous and Eurymachus"
+    }
+  ],
+  "props": [
+    {
+      "id": "TROJAN_HORSE",
+      "dimensions": {
+        "height": 9.5,
+        "length": 8.6,
+        "width": 3.8
+      },
+      "legs": 4,
+      "head": true,
+      "neck": true,
+      "internal_space_for_armed_men": true
+    },
+    {
+      "id": "TROY_GATE",
+      "dimensions": {
+        "opening_height": 10.5,
+        "opening_width": 5.5
+      },
+      "constraint": "horse passes the same opening shown in the establishing shot"
+    },
+    {
+      "id": "CAVE_PORTAL",
+      "dimensions": {
+        "opening_height": 6.7,
+        "opening_width": 7.1
+      },
+      "constraint": "Polyphemus of height 5.5 passes without collision"
+    },
+    {
+      "id": "CAVE_BOULDER",
+      "dimensions": {
+        "diameter_height": 8.1,
+        "diameter_width": 8.2
+      },
+      "constraint": "boulder rolls/slides into place and fully occludes portal; weight shift and hands touching"
+    },
+    {
+      "id": "SHIP",
+      "dimensions": {
+        "length": 18,
+        "width": 4.3
+      },
+      "constraint": "single galley hull identity and correct deck, mast, oars, tiller"
+    },
+    {
+      "id": "BOW",
+      "dimensions": {
+        "height": 1.52
+      },
+      "constraint": "the same exact mesh and string for intro and contest"
+    },
+    {
+      "id": "AXE_LINE",
+      "count": 12,
+      "constraint": "axes fixed in floor, circular eyeholes in one straight line; arrow physically crosses each"
+    },
+    {
+      "id": "BED_TREE",
+      "constraint": "bed frame grows around rooted living olive trunk; immovable"
+    },
+    {
+      "id": "SCYLLA",
+      "head_count": 6,
+      "constraint": "each head assigned a different sailor; no repeat of attack action"
+    },
+    {
+      "id": "CHARIBDIS",
+      "constraint": "full 3D volumetric water vortex with ship maintaining coherent lateral geography"
+    }
+  ],
+  "workflow": {
+    "registry_is_contract_not_actual_models": true,
+    "animators_must_keep_same_ids": true,
+    "assets_licensing": "CC0 or explicit compatible commercial license; verify source",
+    "historical_reference": "late Bronze Age Mycenaean; no Roman or fantasy gear",
+    "publish_allowed": false
+  }
+}
