@@ -46,7 +46,7 @@ jobs:
       - name: Install free Blender on GitHub hosted CPU
         run: |
           sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg xvfb libgl1-mesa-dri
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender ffmpeg xvfb libgl1-mesa-dri python3-numpy
           blender --version | head -n 2
       - name: Render source-skinned cyclops physically blocking cave entrance
         timeout-minutes: 40
