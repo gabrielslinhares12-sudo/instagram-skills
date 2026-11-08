@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.7.0",
+  "schema_version": "2.8.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V2_7_REFERENCE_PRESERVING_PUPPET_QC_PASS_120_FRAMES_540P30; NATIVE_4K_ART_AND_FULL_STORY_VOICE_ABSENT",
+  "production_status": "V2_8_NARRATION_GUARDED_FREE_TIER_PREPARED_BUT_NO_AUDIO; CHARACTER_ART_SCENES_AND_FULL_FILM_UNAPPROVED",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -668,5 +668,27 @@
     "original_4k_source": false,
     "real_professional_keyframe_animation": false,
     "reason_not_approved": "Reference is low resolution, hand/finger articulation stylized motion field only, scenic and character cleanup incomplete. No native 4K rig, no Rasalgethi, no full film."
+  },
+  "voice_free_tier_production_attempt": {
+    "status": "SOURCE_AND_GITHUB_ACTION_GUARDED_NO_AUDIO_VERIFIED",
+    "checked_date": "2026-11-08",
+    "preferred_voice": "Rasalgethi",
+    "model": "gemini-3.8-flash-tts",
+    "method": "Google Gemini API FREE TIER only; never billable",
+    "script": "voice/generate_faker_rasalgethi_free.py",
+    "narration": "voice/narracao_faker_v28.txt",
+    "private_workflow": ".github/workflows/tue-cineframe-faker-free-voice.yml",
+    "guard_conditions": [
+      "TUE_GEMINI_FREE_TIER_ONLY=true",
+      "TUE_APPROVED_FREE_TIER_TTS=true",
+      "dedicated GEMINI_FREE_TIER_API_KEY present",
+      "TUE_ALLOW_BILLABLE_CALLS!=true"
+    ],
+    "local_preflight": "PASSED_EXPECTED_BLOCKED_EXIT_2_WITHOUT_KEYS",
+    "workflow_run_id": null,
+    "artifact_id": null,
+    "wav_file_id": null,
+    "narration_verified": false,
+    "warning": "Source and action have been committed on experimental branch; no evidence TTS ran. Do not claim audio was generated or full film finished."
   }
 }
