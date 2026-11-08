@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.4.1",
+  "schema_version": "2.5.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "SCENE_INTEGRATION_SOURCE_SAVED_NATIVE_4K60_QC_TIMED_OUT; VISUAL_AND_AUDIO_NOT_APPROVED",
+  "production_status": "V2_5_NATIVE_4K60_COMPOSITOR_ONE_SECOND_TECH_PASS; VISUAL_ART_AND_VOICE_NOT_APPROVED",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -524,5 +524,47 @@
       "strict_atomic_rename_added": true,
       "passed": false
     }
+  },
+  "native_compositor_proof": {
+    "version": "2.5.0",
+    "scope": "S02_1_SECOND_60FPS_TECHNICAL_QC_ONLY",
+    "drive_source_zip_id": "17Sw2fOj6k9ulpxtaOXlq3UH4oXrQf-tM",
+    "source_zip_sha256": "3c197ad1cce8102d24e6d526d2409f7199d043b4470e964bd30781d543afb352",
+    "technical_mp4_sha256": "353fa99d5d0929eadebecf851154748f0bb42107627a1308fb859ea0c15fd2be",
+    "tool": "ffmpeg+ffprobe+Pillow+CairoSVG",
+    "native_background_dimensions": [
+      2160,
+      3840
+    ],
+    "native_foreground_dimensions": [
+      2160,
+      3840
+    ],
+    "vector_actor_crop_dimensions": [
+      1200,
+      2280
+    ],
+    "source_raster_upscaled": false,
+    "video_dimensions": [
+      2160,
+      3840
+    ],
+    "fps": 60,
+    "duration_seconds": 1,
+    "requested_frames": 60,
+    "actual_frames": 60,
+    "distinct_actor_frames": 60,
+    "technical_pass": true,
+    "measured_seconds": {
+      "static_layers": 0.939,
+      "animated_frames": 10.35,
+      "ffmpeg_encode": 5.586,
+      "total": 17.212
+    },
+    "validated_full_film": false,
+    "artistic_pass": false,
+    "voice_included": false,
+    "asset_distribution": "source_zip_only_no_mp4_distributed",
+    "note": "Fixes previous 41/60 timeout. This is a CPU-native pipeline proof, not a 112s film or proof of cinematic-quality actor art."
   }
 }
