@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.4.0",
+  "schema_version": "2.4.1",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "SH02_TRAINING_SCENE_ACTOR_COMPOSITED_QC_ONLY; VISUAL_ART_NOT_APPROVED; VOICE_ABSENT",
+  "production_status": "SCENE_INTEGRATION_SOURCE_SAVED_NATIVE_4K60_QC_TIMED_OUT; VISUAL_AND_AUDIO_NOT_APPROVED",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -482,8 +482,8 @@
   },
   "internal_scene_integration": {
     "scene_id": "S02",
-    "drive_asset_id": "1Mu-DYOh1m0A-t7GnDxbDbj693lNqBXlA",
-    "source_zip_sha256": "61037f79092d1c2cc0cf1ae935db472e5b3230fcdcc54960ff3212477a5454a6",
+    "drive_asset_id": "167V8hB6Zz_n9FKzA61gO5v-wGG_uZ7xe",
+    "source_zip_sha256": "503ddd73170f2c097ab5e3bc081a1e918e0fc1c46d071e280b9650df662111bc",
     "stage_design": "SET_A_TREINO_2013.svg",
     "actor_design": "FAKER_V3_SIT_PLAY_UNRIGGED.svg",
     "layers": [
@@ -512,6 +512,17 @@
     },
     "full_episode_complete": false,
     "art_visual_approved": false,
-    "note": "This validates that stage and actor can be composited with connected spatial relationships, not that final acting or scene art meet quality."
+    "note": "This validates that stage and actor can be composited with connected spatial relationships, not that final acting or scene art meet quality.",
+    "native_render_pipeline_qc": {
+      "expected_frames": 60,
+      "rendered_before_timeout": 41,
+      "result": "FAILED",
+      "partial_deleted": true,
+      "actual_seconds": 0.683333,
+      "source_encoder": "h264 CPU x264",
+      "nvidia_gpu_exposed": false,
+      "strict_atomic_rename_added": true,
+      "passed": false
+    }
   }
 }
