@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.3.0",
+  "schema_version": "2.4.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V2_3_LAYERED_FULLBODY_AND_INTERNAL_MOTION_QC_COMPLETED; VISUAL_AND_AUDIO_QC_STILL_FAILED",
+  "production_status": "SH02_TRAINING_SCENE_ACTOR_COMPOSITED_QC_ONLY; VISUAL_ART_NOT_APPROVED; VOICE_ABSENT",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -443,7 +443,8 @@
     "accurate_metadata_4k60": false,
     "original_non_upscaled_assets": false,
     "rights_and_sources_checked": false,
-    "editorial_approved": false
+    "editorial_approved": false,
+    "actor_and_prop_contact_qc": false
   },
   "delivery": {
     "drive_folder_id": "1nBTh0Jbx4_qhxm2ttFIH3IsKVLN_h49G",
@@ -478,5 +479,39 @@
     "rendered_in_final_art": false,
     "visual_movement_qc_approved": false,
     "note": "6,720 kinematic samples are NOT 6,720 final rendered frames, nor a finished video."
+  },
+  "internal_scene_integration": {
+    "scene_id": "S02",
+    "drive_asset_id": "1Mu-DYOh1m0A-t7GnDxbDbj693lNqBXlA",
+    "source_zip_sha256": "61037f79092d1c2cc0cf1ae935db472e5b3230fcdcc54960ff3212477a5454a6",
+    "stage_design": "SET_A_TREINO_2013.svg",
+    "actor_design": "FAKER_V3_SIT_PLAY_UNRIGGED.svg",
+    "layers": [
+      "FAR_ARCHITECTURE",
+      "MID_FLOOR_SHELVES",
+      "DESK_PROPS_DEPTH_ANCHORS",
+      "CHAIR_PREMIUM_BEHIND_ACTOR",
+      "DEVICE_INTERACTION_SURFACE",
+      "FAKER_FULL_BODY_ACTOR_IN_SCENE",
+      "NEAR_DESK_OCCLUSION",
+      "LIGHTING_FOREGROUND"
+    ],
+    "spatial_character_props_tentative": true,
+    "output_svg_native": [
+      2160,
+      3840
+    ],
+    "qc_video": {
+      "seconds": 3,
+      "fps": 30,
+      "width": 540,
+      "height": 960,
+      "different_frames": 90,
+      "approved": false,
+      "not_for_delivery": true
+    },
+    "full_episode_complete": false,
+    "art_visual_approved": false,
+    "note": "This validates that stage and actor can be composited with connected spatial relationships, not that final acting or scene art meet quality."
   }
 }
