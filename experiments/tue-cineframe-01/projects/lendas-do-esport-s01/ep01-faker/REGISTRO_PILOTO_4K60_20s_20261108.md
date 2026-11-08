@@ -1,3 +1,11 @@
+# ATENÇÃO — V1 REPROVADA ARTISTICAMENTE (08/11/2026)
+
+**Não entregar, não reutilizar, não publicar, não usar como referência visual.** O teste V1 de 20 segundos foi explicitamente rejeitado: personagem não preservava o rosto/cabelo/óculos/contornos da ficha canônica, cenários genéricos, gestos simplificados e áudio Rasalgethi inexistente. Mesmo tendo metadados 2160×3840/60fps, **qualidade técnica não equivale à aprovação artística**.
+
+O MP4, código e áudio V1 foram movidos para `REPROVADOS — NÃO EXIBIR OU REUTILIZAR (V1 SIMPLIFICADA)` no Drive. A ficha ilustrada original continua aprovada e preservada. Os novos contratos são `V2_ROTEIRO_FINAL_PARA_ANIMACAO.md`, `V2_BIBLIA_VISUAL_SCENARIOS_E_RIG.md`, `V2_SHOT_MANIFEST_BLOCKED.json` e `V2_RELEASE_GATE.py`. O V2 **não possui render aprovado**.
+
+---
+
 # EP01 FAKER — registro verificável de produção 2D / 4K60
 
 **Data:** 08/11/2026
