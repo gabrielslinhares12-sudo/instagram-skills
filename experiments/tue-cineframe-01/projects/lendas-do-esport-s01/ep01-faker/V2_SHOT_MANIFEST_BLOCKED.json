@@ -670,7 +670,7 @@
     "reason_not_approved": "Reference is low resolution, hand/finger articulation stylized motion field only, scenic and character cleanup incomplete. No native 4K rig, no Rasalgethi, no full film."
   },
   "voice_free_tier_production_attempt": {
-    "status": "SOURCE_AND_GITHUB_ACTION_GUARDED_NO_AUDIO_VERIFIED",
+    "status": "MANUAL_ONLY_SOURCE_READY_NO_VOICE_PRODUCED_OR_VERIFIED",
     "checked_date": "2026-11-08",
     "preferred_voice": "Rasalgethi",
     "model": "gemini-3.8-flash-tts",
@@ -689,6 +689,9 @@
     "artifact_id": null,
     "wav_file_id": null,
     "narration_verified": false,
-    "warning": "Source and action have been committed on experimental branch; no evidence TTS ran. Do not claim audio was generated or full film finished."
+    "warning": "Source and action have been committed on experimental branch; no evidence TTS ran. Do not claim audio was generated or full film finished.",
+    "automatic_trigger_enabled": false,
+    "manual_free_tier_confirmation_required": true,
+    "note": "The guarded no-billing voice workflow is manual-only. No WAV or completion evidence. Do not claim execution, publication, or a video."
   }
 }
