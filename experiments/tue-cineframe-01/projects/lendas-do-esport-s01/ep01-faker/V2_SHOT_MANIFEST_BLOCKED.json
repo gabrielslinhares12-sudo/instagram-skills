@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.6.0",
+  "schema_version": "2.7.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V2_6_EXACT_IDENTITY_REF_GUIDES_7_READY; SH02_BLOCKING_STILL_ART_REJECTED; NO_VOICE_OR_FULL_FILM",
+  "production_status": "V2_7_REFERENCE_PRESERVING_PUPPET_QC_PASS_120_FRAMES_540P30; NATIVE_4K_ART_AND_FULL_STORY_VOICE_ABSENT",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -634,5 +634,39 @@
       "complete scene still lacks cinematographic art",
       "Rasalgethi voice absent"
     ]
+  },
+  "internal_concept_motion_v27": {
+    "source": "original approved design crop 415x320, NOT final art",
+    "drive_source_package_id": "1E1On1RxizmcBPLUEu1oChM_dYl_UKZoK",
+    "zip_bytes": 1555824,
+    "zip_sha256": "02570efa755a5811295bfb506c02210b42e05cd134e20b672d8dbbae42a421bc",
+    "scene": "S02 2013 training set",
+    "source_resolution": [
+      415,
+      320
+    ],
+    "internal_clip": {
+      "duration_seconds": 4,
+      "frames": 120,
+      "fps": 30,
+      "width": 540,
+      "height": 960,
+      "all_frames_unique": true,
+      "all_frames_read": true,
+      "distributed_to_user": false,
+      "uploaded_to_drive": false
+    },
+    "motion_region_pixel_metrics": {
+      "head": 15.1123,
+      "left_hand_mouse": 7.9766,
+      "right_hand_keyboard": 11.9395,
+      "background": 0.04373
+    },
+    "local_actor_motion_confirmed": true,
+    "original_likeness_preserved_by_using_source_pixels": true,
+    "art_quality_approved": false,
+    "original_4k_source": false,
+    "real_professional_keyframe_animation": false,
+    "reason_not_approved": "Reference is low resolution, hand/finger articulation stylized motion field only, scenic and character cleanup incomplete. No native 4K rig, no Rasalgethi, no full film."
   }
 }
