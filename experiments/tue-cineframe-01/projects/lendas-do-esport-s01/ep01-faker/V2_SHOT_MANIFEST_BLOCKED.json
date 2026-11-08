@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.8.0",
+  "schema_version": "2.9.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V2_8_NARRATION_GUARDED_FREE_TIER_PREPARED_BUT_NO_AUDIO; CHARACTER_ART_SCENES_AND_FULL_FILM_UNAPPROVED",
+  "production_status": "V2_9_FULL_DURATION_112S_EDITORIAL_STORY_CUT_EXISTS_DRIVE; 720P30_ONLY; ORIGINAL_RASALGETHI_NOT_PRESENT; FULL_4K60_RELEASE_BLOCKED",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -693,5 +693,33 @@
     "automatic_trigger_enabled": false,
     "manual_free_tier_confirmation_required": true,
     "note": "The guarded no-billing voice workflow is manual-only. No WAV or completion evidence. Do not claim execution, publication, or a video."
+  },
+  "internal_review_cut_v29": {
+    "drive_video_id": "18WWPtyldoOepKf8_7Rz1UM2MmOFTXo0e",
+    "drive_video_url": "https://drive.google.com/file/d/18WWPtyldoOepKf8_7Rz1UM2MmOFTXo0e/view",
+    "google_drive_readback_verified": true,
+    "bytes": 42368943,
+    "sha256": "d8be44d2187bbdea362ec18ad06bbb0ff8f53834396e570e7365160053751326",
+    "duration_seconds": 112,
+    "video_resolution": [
+      720,
+      1280
+    ],
+    "fps": 30,
+    "frame_count": 3360,
+    "editorial_scenes": 14,
+    "original_ambient_audio": true,
+    "voice_rasalgethi": false,
+    "other_tts_substituted": false,
+    "scene_2d_method": "Original approved character reference cutouts moving over original drawn vector environments, mixed with timeline/scoreboard graphics and 28 timed textual caption panels.",
+    "release_status": "WORKING_REVIEW_CUT_ONLY_NOT_FINAL_4K60",
+    "published": false,
+    "scheduled": false,
+    "limitations": [
+      "reference art resolution too low to qualify native 4K",
+      "body acting based on single illustrated poses",
+      "Rasalgethi narration absent",
+      "needs final 4K60 and fully jointed character animation"
+    ]
   }
 }
