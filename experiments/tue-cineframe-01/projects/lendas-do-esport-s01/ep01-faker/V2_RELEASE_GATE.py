@@ -106,8 +106,21 @@ def validate(m, movie=None):
     if delivery.get("instagram_publish") is not False:
         problems.append("publicação automatizada deve permanecer proibida")
     if movie:
-        _, errors = probe_video(movie)
+        measured, errors = probe_video(movie)
         problems.extend(errors)
+        expected = (m.get("output") or {}).get("target_duration_seconds")
+        if not isinstance(expected, list) or len(expected) != 2:
+            problems.append("limites de duração do filme ausentes")
+        elif measured:
+            lo, hi = expected
+            if not (lo <= measured["duration"] <= hi):
+                problems.append(
+                    f"MP4 incompleto ou duração fora da janela editorial: "
+                    f"{measured['duration']:.2f}s, esperado {lo}-{hi}s"
+                )
+        # Um teste de 1 segundo 4K60 NUNCA é um filme completo para aprovação.
+        elif not errors:
+            problems.append("duração do MP4 não pôde ser medida")
     else:
         problems.append("MP4 final não informado")
     return problems
