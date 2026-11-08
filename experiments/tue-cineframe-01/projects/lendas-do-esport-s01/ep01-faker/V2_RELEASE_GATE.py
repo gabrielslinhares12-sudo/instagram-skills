@@ -73,6 +73,26 @@ def validate(m, movie=None):
     art = m.get("art_assets") or {}
     if not art.get("rig_layer_pack") or not art.get("layer_pack_approved"):
         problems.append("rig completo, fiel à ficha, ainda não aprovado")
+    identity = art.get("identity_sheet_reference_kit") or {}
+    if identity.get("source_sheet_sha256") != "8b0e7d1b4ae5bfb431ef98fad9c5b7a3105fee37345e36ea4727d2b7f269c4dc":
+        problems.append("ficha canônica original não conferida por hash")
+    if identity.get("native_4k_art") is not False or identity.get("allowed_for_final_render") is not False:
+        problems.append("recortes de referência não podem ser empregados como arte final 4K")
+    views = art.get("native_final_character_views") or {}
+    for view in ("front", "three_quarter", "profile", "seated_gaming", "celebration"):
+        native = views.get(view)
+        if not isinstance(native, dict):
+            problems.append(f"arte final da vista {view} ausente")
+            continue
+        if native.get("source_type") != "INDEPENDENTLY_REDRAWN_NATIVE_ART":
+            problems.append(f"{view}: recorte/upscale não é arte nativa independente")
+        if native.get("native_width", 0) < 800 or native.get("native_height", 0) < 1000:
+            problems.append(f"{view}: desenho fonte insuficiente para close em 4K")
+        if not native.get("layered_art_file") or native.get("manual_reference_match_approved") is not True:
+            problems.append(f"{view}: precisa do desenho editável e QC de semelhança")
+    s02 = m.get("internal_scene_integration_v26") or {}
+    if s02.get("artistic_qc_approved") is not True:
+        problems.append("S02 V2.6 ainda não tem atuação/cenário aprovados")
     if not art.get("source_licenses_verified"):
         problems.append("direitos dos assets não verificados")
     for k, v in (art.get("character_views") or {}).items():
