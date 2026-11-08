@@ -1,0 +1,50 @@
+name: 'TUE Cineframe Faker V2.8 — Rasalgethi free-tier only (private draft)'
+on:
+  push:
+    branches:
+      - experimental/tue-cineframe-01
+    paths:
+      - '.github/workflows/tue-cineframe-faker-free-voice.yml'
+      - 'experiments/tue-cineframe-01/projects/lendas-do-esport-s01/ep01-faker/voice/**'
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: faker-v28-free-tier-original-voice
+  cancel-in-progress: false
+jobs:
+  original-rasalgethi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      TUE_GEMINI_FREE_TIER_ONLY: ${{ vars.TUE_GEMINI_FREE_TIER_ONLY || '' }}
+      TUE_APPROVED_FREE_TIER_TTS: ${{ vars.TUE_APPROVED_FREE_TIER_TTS || '' }}
+      GEMINI_FREE_TIER_API_KEY: ${{ secrets.GEMINI_FREE_TIER_API_KEY }}
+      TUE_ALLOW_BILLABLE_CALLS: 'false'
+    steps:
+      - name: Checkout private experimental branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Confirm separate free-tier key and no-billing gate
+        shell: bash
+        run: |
+          if [[ "$TUE_GEMINI_FREE_TIER_ONLY" != 'true' || "$TUE_APPROVED_FREE_TIER_TTS" != 'true' || -z "$GEMINI_FREE_TIER_API_KEY" ]]; then
+            echo 'VOICE_BLOCKED: no confirmed dedicated free-tier access. Zero paid requests.'
+            exit 1
+          fi
+          echo 'VOICE_FREE_TIER_GATE_OK: one request only, no billable usage accepted'
+      - name: Install official TTS SDK
+        run: python3 -m pip install --disable-pip-version-check 'google-genai>=2.25,<4'
+      - name: Create Rasalgethi Portuguese narration, no replacement
+        run: |
+          cd experiments/tue-cineframe-01/projects/lendas-do-esport-s01/ep01-faker/voice
+          python3 generate_faker_rasalgethi_free.py
+      - name: Upload raw WAV only for editorial review
+        uses: actions/upload-artifact@v4
+        with:
+          name: faker-v28-rasalgethi-private-source
+          path: experiments/tue-cineframe-01/projects/lendas-do-esport-s01/ep01-faker/voice/output/faker-v28-rasalgethi.wav
+          retention-days: 7
+          if-no-files-found: error
+# No publishing, no paying, no approval bypass.
