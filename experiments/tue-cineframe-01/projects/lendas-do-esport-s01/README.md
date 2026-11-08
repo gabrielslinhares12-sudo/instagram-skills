@@ -21,3 +21,12 @@ Cada episódio contém roteiro completo de narração, contexto histórico, dire
 
 ## Nota de produção
 As ações de storyboard são simulações originais, não reconstituições fiéis de partidas reais nem cópia de cenas televisivas. Uma equipe com integrantes genéricos de mesma função pode ser usada se os direitos ao retrato específico não estiverem claros. Nunca apresentar ator dramatizado como filmagem documental autêntica.
+
+## Bloqueio artístico específico — EP01 Faker (08/11/2026)
+
+O piloto V1 de 20s foi REPROVADO (feições diferentes da ficha, cenários simplistas e atuação insuficiente). Seu MP4/rig/som ficaram isolados no Drive `REPROVADOS`, fora da produção ativa. A **única referência de personagem válida** é a ficha 2D aprovada: https://drive.google.com/file/d/163C38f5RBR1mtf7r8z9FBYuQfrJubQnF/view .
+
+Roteiro ativo V2: `ep01-faker/V2_ROTEIRO_FINAL_PARA_ANIMACAO.md`; cenários e rig: `ep01-faker/V2_BIBLIA_VISUAL_SCENARIOS_E_RIG.md`; 14 tomadas e bloqueios: `ep01-faker/V2_SHOT_MANIFEST_BLOCKED.json`; gate fechado: `ep01-faker/V2_RELEASE_GATE.py`.
+
+**Não exibir outro vídeo até a atuação 2D, a identidade facial, os cenários cinematográficos, a narração Rasalgethi, a qualidade 4K60 real e o QC editorial serem aprovados.** Não converter proposta de arte ou roteiro em status de entrega concluída.
+
