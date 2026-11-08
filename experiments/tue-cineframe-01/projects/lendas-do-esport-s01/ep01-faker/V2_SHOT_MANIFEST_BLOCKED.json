@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.5.0",
+  "schema_version": "2.6.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V2_5_NATIVE_4K60_COMPOSITOR_ONE_SECOND_TECH_PASS; VISUAL_ART_AND_VOICE_NOT_APPROVED",
+  "production_status": "V2_6_EXACT_IDENTITY_REF_GUIDES_7_READY; SH02_BLOCKING_STILL_ART_REJECTED; NO_VOICE_OR_FULL_FILM",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -187,6 +187,36 @@
       "fullbody_final_approved": false,
       "animation_final_approved": false,
       "limitation": "Silhouette, seated hands/keyboard and trophy grip require artistic refinement; three-quarter and side head drawings not yet produced."
+    },
+    "identity_sheet_reference_kit": {
+      "asset_id": "1pAc9QHvef65LWMrvV6vfLveGa925ZZfV",
+      "zip_sha256": "d3c8ba2b2e2b4650a468c4f1e9e7b89f3361d08aa325fccbdf74e616127f4570",
+      "zip_size_bytes": 360293,
+      "source_sheet_sha256": "8b0e7d1b4ae5bfb431ef98fad9c5b7a3105fee37345e36ea4727d2b7f269c4dc",
+      "views": [
+        "front",
+        "three_quarter",
+        "profile",
+        "focused",
+        "calm",
+        "determined",
+        "smile"
+      ],
+      "native_source_pixel_width_range": [
+        113,
+        165
+      ],
+      "crop_reference_qa_passed": true,
+      "native_4k_art": false,
+      "allowed_for_final_render": false,
+      "status": "IDENTITY_LOCK_REFERENCES_ONLY; REMASTER_ART_REQUIRED"
+    },
+    "native_final_character_views": {
+      "front": null,
+      "three_quarter": null,
+      "profile": null,
+      "seated_gaming": null,
+      "celebration": null
     }
   },
   "shots": [
@@ -566,5 +596,43 @@
     "voice_included": false,
     "asset_distribution": "source_zip_only_no_mp4_distributed",
     "note": "Fixes previous 41/60 timeout. This is a CPU-native pipeline proof, not a 112s film or proof of cinematic-quality actor art."
+  },
+  "internal_scene_integration_v26": {
+    "version": "V2.6",
+    "set_id": "SET_A_TREINO_2013",
+    "shot_id": "S02",
+    "drive_source_zip_id": "1CgKI_xA7m8anrgEh4LXj14uYxuC2z6bG",
+    "zip_sha256": "f05802e898c4067d36849c945686ebb36858af59e6cf09f094a596eb61ec358c",
+    "scene_source": "editable 2.5D SVG",
+    "static_vector_canvas": [
+      2160,
+      3840
+    ],
+    "original_3q_reference_used_for_internal_qc_only": true,
+    "correction_attempts": [
+      "hip-seat alignment",
+      "right-side monitor positioning",
+      "front face replaced with 3/4 identity guide only"
+    ],
+    "internal_movie": {
+      "frames": 90,
+      "fps": 30,
+      "resolution": [
+        540,
+        960
+      ],
+      "seconds": 3,
+      "distinct_frames": 90,
+      "delivered": false
+    },
+    "full_episode_rendered": false,
+    "artistic_qc_approved": false,
+    "rejection_reasons": [
+      "reference 3/4 head is low pixel source, not 4K master",
+      "body still has mannequin-like geometry",
+      "hands and peripherals need full drawn contact animation",
+      "complete scene still lacks cinematographic art",
+      "Rasalgethi voice absent"
+    ]
   }
 }
