@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V2_SCENE_BLOCKING_PREPARED_NOT_FINAL; CHAR_NATIVE_LAYERS_AND_RASALGETHI_ABSENT",
+  "production_status": "V2_1_KINEMATIC_DIRECTION_QC_PASS; VISUAL_ART_AND_RASALGETHI_NOT_READY",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -120,6 +120,29 @@
       "drive_file_id": "1ows-o69oTtXSYo2xJbjQxUtdPbIdXYmV",
       "crop_count": 16,
       "status": "REFERENCE_ONLY_CANNOT_BE_UPSCALED_AS_FINAL"
+    },
+    "reference_atlas": {
+      "source": "APPROVED_FAKER_2D_CONCEPT",
+      "extracted_views": 16,
+      "original_pixel_resolution_insufficient_for_4k_closeups": true,
+      "native_redraw_required": true,
+      "status": "SOURCE_GUIDE_ONLY"
+    },
+    "stage_2025_scoreboard_studies": {
+      "editable_svg_count": 3,
+      "states": [
+        "1-2",
+        "2-2",
+        "3-2"
+      ],
+      "art_approved": false,
+      "purpose": "physical scoreboard stage blocking only"
+    },
+    "failed_automatic_vectorization": {
+      "status": "REJECTED_DO_NOT_USE",
+      "approximate_ssim": 0.609,
+      "issue": "changed glasses/eye/hair line art; character likeness insufficient",
+      "decision": "must redraw at native output resolution from approved concept"
     }
   },
   "shots": [
@@ -390,5 +413,26 @@
     "shot_count": 14,
     "total_key_poses": 56,
     "status": "DIRECTION_ONLY_NOT_RENDERED"
+  },
+  "motion_director": {
+    "drive_asset_id": "1rixuNGgDLFSVGNLkV7HkVsF-t-QIj7U6",
+    "asset_type": "ZIP_INTERNAL_REFERENCE_AND_CURVES_NOT_VIDEO",
+    "sha256": "d2fce067cba5063c1552a38d49604c611ddaebe6a3394bf887783b0ab4af5424",
+    "script": "rig_motion_director.py",
+    "sample_frames": 6720,
+    "nominal_fps": 60,
+    "planned_shots": 14,
+    "technical_curves_qc_passed": true,
+    "technical_checks": [
+      "no_unreachable_arm_targets",
+      "planted_feet_locked_during_stance",
+      "trophy_two_hand_grip",
+      "strategy_token_physical_hand_contact",
+      "continuous_interpolation",
+      "world_score_1-2_2-2_3-2"
+    ],
+    "rendered_in_final_art": false,
+    "visual_movement_qc_approved": false,
+    "note": "6,720 kinematic samples are NOT 6,720 final rendered frames, nor a finished video."
   }
 }
