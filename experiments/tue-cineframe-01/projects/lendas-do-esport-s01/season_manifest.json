@@ -43,14 +43,20 @@
       "country": "Coreia do Sul",
       "title": "Faker: o rei que se recusou a cair",
       "slug_folder": "ep01-faker",
-      "script_file": "ep01-faker/roteiro_direcao.md",
+      "script_file": "ep01-faker/V2_ROTEIRO_FINAL_PARA_ANIMACAO.md",
       "sources": [
         "https://lolesports.com/en-US/news/lol-esports-welcomes-faker-to-hall-of-legends",
         "https://en.yna.co.kr/view/AEN20251109003200320"
       ],
-      "status": "roteiro_preparado_render_pendente",
-      "duration_estimate_seconds": 78,
-      "word_count": 175
+      "status": "V1_ART_REJECTED_V2_BLOCKED_WAITING_HIGH_FIDELITY_RIG_SCENES_RASALGETHI",
+      "duration_estimate_seconds": 112,
+      "word_count": 262,
+      "production_bible": "ep01-faker/V2_BIBLIA_VISUAL_SCENARIOS_E_RIG.md",
+      "shots_manifest": "ep01-faker/V2_SHOT_MANIFEST_BLOCKED.json",
+      "release_gate": "ep01-faker/V2_RELEASE_GATE.py",
+      "original_character_sheet_id": "163C38f5RBR1mtf7r8z9FBYuQfrJubQnF",
+      "rejected_folder_id": "1rjFZslg1k_leiU2tlI4nnxX7fHIyLWeL",
+      "new_art_folder_id": "1ZcO0TNjW8Cf18BKRXHfqY8qJc_6SoAgE"
     },
     {
       "id": "EP02",
