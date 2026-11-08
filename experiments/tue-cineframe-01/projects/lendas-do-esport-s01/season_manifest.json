@@ -1,0 +1,208 @@
+{
+  "id": "LENDAS-DO-ESPORT-S01",
+  "standard": "TUE-CINEFRAME-01",
+  "branch": "experimental/tue-cineframe-01",
+  "created": "2026-11-08",
+  "status": "preproduction_no_render_no_narration",
+  "locale": "pt-BR",
+  "voice": {
+    "name": "Rasalgethi",
+    "source": "Google AI Studio site; audio original needed per episode",
+    "api_paid": false
+  },
+  "master": {
+    "width": 2160,
+    "height": 3840,
+    "fps": 60,
+    "aspect_ratio": "9:16",
+    "native_quality_required": true,
+    "note": "Render de piloto em qualidade original 4K60, nunca apresentar upscale como 4K nativo."
+  },
+  "delivery": {
+    "drive_folder_id": "1fmH-a7gMImltMsXVl_75naDNKPL6xo_r",
+    "verify_file_before_link": true,
+    "send_view_link_to_chat": true,
+    "publish": false
+  },
+  "editing": {
+    "duration_target_seconds": [
+      70,
+      100
+    ],
+    "subtitles": "inferiores até 2 linhas",
+    "storytelling": "preparacao-acao-consequencia",
+    "motion": "rigs 2D com atuação de mão, cabeça, tronco, pernas e objetos; imagens paradas com zoom proibidas"
+  },
+  "episode_selection": "curadoria multi-jogo por recordes, domínio, longevidade e influência; sequência não constitui ranking absoluto de desempenho",
+  "episodes": [
+    {
+      "id": "EP01",
+      "slug": "faker",
+      "player": "Lee “Faker” Sang-hyeok",
+      "game": "League of Legends",
+      "country": "Coreia do Sul",
+      "title": "Faker: o rei que se recusou a cair",
+      "slug_folder": "ep01-faker",
+      "script_file": "ep01-faker/roteiro_direcao.md",
+      "sources": [
+        "https://lolesports.com/en-US/news/lol-esports-welcomes-faker-to-hall-of-legends",
+        "https://en.yna.co.kr/view/AEN20251109003200320"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 78,
+      "word_count": 175
+    },
+    {
+      "id": "EP02",
+      "slug": "zywoo",
+      "player": "Mathieu “ZywOo” Herbaut",
+      "game": "Counter-Strike",
+      "country": "França",
+      "title": "ZywOo: o talento que virou recorde",
+      "slug_folder": "ep02-zywoo",
+      "script_file": "ep02-zywoo/roteiro_direcao.md",
+      "sources": [
+        "https://www.hltv.org/news/43610/top-20-players-of-2025-zywoo-1",
+        "https://www.hltv.org/player/11893/zywoo"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 78,
+      "word_count": 175
+    },
+    {
+      "id": "EP03",
+      "slug": "s1mple",
+      "player": "Oleksandr “s1mple” Kostyliev",
+      "game": "Counter-Strike",
+      "country": "Ucrânia",
+      "title": "s1mple: a genialidade sob pressão",
+      "slug_folder": "ep03-s1mple",
+      "script_file": "ep03-s1mple/roteiro_direcao.md",
+      "sources": [
+        "https://www.hltv.org/player/7998/s1mple",
+        "https://www.hltv.org/news/35380/top-20-players-of-2022-s1mple-1",
+        "https://www.hltv.org/news/35311/hltv-no-1-players-through-the-years"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 77,
+      "word_count": 174
+    },
+    {
+      "id": "EP04",
+      "slug": "notail",
+      "player": "Johan “N0tail” Sundstein",
+      "game": "Dota 2",
+      "country": "Dinamarca",
+      "title": "N0tail: a equipe que venceu duas vezes o impossível",
+      "slug_folder": "ep04-notail",
+      "script_file": "ep04-notail/roteiro_direcao.md",
+      "sources": [
+        "https://ogs.gg/team/og-dota2/",
+        "https://dotesports.com/dota-2/guides/dota-2-team-records"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 79,
+      "word_count": 178
+    },
+    {
+      "id": "EP05",
+      "slug": "aspas",
+      "player": "Erick “aspas” Santos",
+      "game": "Valorant",
+      "country": "Brasil",
+      "title": "aspas: o brasileiro que dominou a mira",
+      "slug_folder": "ep05-aspas",
+      "script_file": "ep05-aspas/roteiro_direcao.md",
+      "sources": [
+        "https://ge.globo.com/esports/valorant/ao-vivo/valorant-champions-2022-siga-final-entre-loud-e-optic-em-tempo-real.ghtml",
+        "https://www.thespike.gg/br/valorant/news/aspas-mibr-valorant-champions-2025/6585"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 75,
+      "word_count": 168
+    },
+    {
+      "id": "EP06",
+      "slug": "bugha",
+      "player": "Kyle “Bugha” Giersdorf",
+      "game": "Fortnite",
+      "country": "Estados Unidos",
+      "title": "Bugha: três milhões de dólares num domingo",
+      "slug_folder": "ep06-bugha",
+      "script_file": "ep06-bugha/roteiro_direcao.md",
+      "sources": [
+        "https://www.fortnite.com/news/the-fortnite-world-cup-a-record-setting-tournament?lang=pt-BR",
+        "https://www.guinnessworldrecords.com/world-records/585503-largest-payout-for-a-single-player-in-an-e-sports-tournament"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 72,
+      "word_count": 161
+    },
+    {
+      "id": "EP07",
+      "slug": "sonicfox",
+      "player": "Dominique “SonicFox” McLean",
+      "game": "Jogos de luta",
+      "country": "Estados Unidos",
+      "title": "SonicFox: campeão em oito mundos",
+      "slug_folder": "ep07-sonicfox",
+      "script_file": "ep07-sonicfox/roteiro_direcao.md",
+      "sources": [
+        "https://liquipedia.net/fighters/SonicFox",
+        "https://esportsawards.com/previous-winners/esports-awards-2025/"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 72,
+      "word_count": 162
+    },
+    {
+      "id": "EP08",
+      "slug": "serral",
+      "player": "Joona “Serral” Sotala",
+      "game": "StarCraft II",
+      "country": "Finlândia",
+      "title": "Serral: quem quebrou uma hegemonia",
+      "slug_folder": "ep08-serral",
+      "script_file": "ep08-serral/roteiro_direcao.md",
+      "sources": [
+        "https://news.blizzard.com/en-gb/article/22647917/starcraft-ii-celebrates-its-first-european-champion",
+        "https://investor.activision.com/news-releases/news-release-details/legendary-game-universes-and-esports-superstars-take-center-1"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 70,
+      "word_count": 157
+    },
+    {
+      "id": "EP09",
+      "slug": "fallen",
+      "player": "Gabriel “FalleN” Toledo",
+      "game": "Counter-Strike",
+      "country": "Brasil",
+      "title": "FalleN: o professor que levou o Brasil ao topo",
+      "slug_folder": "ep09-fallen",
+      "script_file": "ep09-fallen/roteiro_direcao.md",
+      "sources": [
+        "https://www.hltv.org/news/22446/top-20-players-of-2017-fallen-6"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 71,
+      "word_count": 160
+    },
+    {
+      "id": "EP10",
+      "slug": "daigo",
+      "player": "Daigo Umehara",
+      "game": "Street Fighter",
+      "country": "Japão",
+      "title": "Daigo: o segundo em que ninguém podia errar",
+      "slug_folder": "ep10-daigo",
+      "script_file": "ep10-daigo/roteiro_direcao.md",
+      "sources": [
+        "https://www.youtube.com/watch?v=JzS96auqau0"
+      ],
+      "status": "roteiro_preparado_render_pendente",
+      "duration_estimate_seconds": 67,
+      "word_count": 150
+    }
+  ]
+}
