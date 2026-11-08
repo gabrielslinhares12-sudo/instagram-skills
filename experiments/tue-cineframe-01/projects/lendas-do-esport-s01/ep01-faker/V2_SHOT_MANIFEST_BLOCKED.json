@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.1.0",
+  "schema_version": "2.2.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V2_1_KINEMATIC_DIRECTION_QC_PASS; VISUAL_ART_AND_RASALGETHI_NOT_READY",
+  "production_status": "V2_2_NATIVE_VECTOR_FACE_14_LAYERS_CANDIDATE; BODY_RIG_SCENES_AND_VOICE_NOT_APPROVED",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -143,6 +143,26 @@
       "approximate_ssim": 0.609,
       "issue": "changed glasses/eye/hair line art; character likeness insufficient",
       "decision": "must redraw at native output resolution from approved concept"
+    },
+    "manual_face_vector_candidate": {
+      "drive_asset_id": "1V4pyQodx87eaBS9atmpbQvDL3hZYOt2r",
+      "archive_sha256": "1270e4f4ffc6c4f7708a492b00774e05f479b156c4c36a1efa53935c2e7df8b4",
+      "canvas_native_vector": [
+        2736,
+        3328
+      ],
+      "svg_editable_layers": 14,
+      "face_animation_qa": {
+        "seconds": 3,
+        "sample_fps": 30,
+        "frame_count": 90,
+        "role": "INTERNAL_REJECTABLE_TEST_NOT_VIDEO_DELIVERABLE"
+      },
+      "qc_approved": false,
+      "style_identity_same_as_concept_verified": false,
+      "whole_body_drawn": false,
+      "full_episode_rendered": false,
+      "note": "Manual vector face is art candidate only; character final needs 3/4, side, standing/sitting/celebration native resolution and full artistic review."
     }
   },
   "shots": [
