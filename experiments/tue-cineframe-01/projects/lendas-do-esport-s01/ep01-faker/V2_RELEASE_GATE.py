@@ -61,6 +61,15 @@ def validate(m, movie=None):
         problems.append("contrato de exportação 4K60 incorreto")
     if output.get("upscale_as_native") is not False:
         problems.append("falsa qualidade nativa não está proibida")
+    motion = m.get("motion_director") or {}
+    if motion.get("sample_frames", 0) < 6720 or motion.get("planned_shots") != 14:
+        problems.append("dados de movimento 14 tomadas/60fps ausentes")
+    if motion.get("technical_curves_qc_passed") is not True:
+        problems.append("QA de trajetórias de movimento reprovado")
+    if motion.get("rendered_in_final_art") is not True:
+        problems.append("curvas ainda não aplicadas à arte final aprovada")
+    if motion.get("visual_movement_qc_approved") is not True:
+        problems.append("atuação animada real não validada visualmente")
     art = m.get("art_assets") or {}
     if not art.get("rig_layer_pack") or not art.get("layer_pack_approved"):
         problems.append("rig completo, fiel à ficha, ainda não aprovado")
