@@ -2,7 +2,7 @@
   "schema_version": "2.0.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "BLOCKED_AWAITING_APPROVED_ART_AND_RASALGETHI",
+  "production_status": "V2_SCENE_BLOCKING_PREPARED_NOT_FINAL; CHAR_NATIVE_LAYERS_AND_RASALGETHI_ABSENT",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -109,7 +109,18 @@
       "SET_G": null
     },
     "source_licenses_verified": false,
-    "layer_pack_approved": false
+    "layer_pack_approved": false,
+    "scene_blocking_assets": {
+      "drive_file_id": "1c2lefvEA5b8snfSjj2zwFIxafF6b-8MF",
+      "scene_count": 9,
+      "source": "editable_native_svg",
+      "status": "BLOCKING_ONLY_ART_QC_FAILED_NOT_APPROVED"
+    },
+    "character_reference_qa": {
+      "drive_file_id": "1ows-o69oTtXSYo2xJbjQxUtdPbIdXYmV",
+      "crop_count": 16,
+      "status": "REFERENCE_ONLY_CANNOT_BE_UPSCALED_AS_FINAL"
+    }
   },
   "shots": [
     {
@@ -373,5 +384,11 @@
     "readback_verified": false,
     "share_chat_link_only_after_qc": true,
     "instagram_publish": false
+  },
+  "directorial_keyposes": {
+    "drive_file_id": "1QFgGFuBfp8bqRYDLI2S8djfoonLaMtWj",
+    "shot_count": 14,
+    "total_key_poses": 56,
+    "status": "DIRECTION_ONLY_NOT_RENDERED"
   }
 }
