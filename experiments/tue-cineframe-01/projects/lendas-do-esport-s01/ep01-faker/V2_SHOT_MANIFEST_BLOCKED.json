@@ -1,8 +1,8 @@
 {
-  "schema_version": "3.5.0",
+  "schema_version": "3.5.1",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V3_5_CONTEXTUAL_2D_RECONSTRUCTION_112S_720P30_DELIVERED; BROADCAST_ORIGINAL_VOICE_AND_4K60_UNAVAILABLE",
+  "production_status": "V3_5_1_CONTEXTUAL_CC_ARCHIVE_AND_ART_REVIEW_FILM_DELIVERED_112S_720P30; RASALGETHI_BROADCAST_VIDEO_4K60_ART_APPROVAL_PENDING",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -859,5 +859,27 @@
     "full_character_body_rig_approved": false,
     "qc_video_integrity_pass": true,
     "approved_for_publication": false
+  },
+  "review_movie_v351": {
+    "drive_video_id": "1W6oZJUSjmxFniErqR1w6jQq8ZpheXfMX",
+    "drive_source_and_qc_zip_id": "17W159jyXF6pcvdmEUrCVLt-mRlc_EiQo",
+    "video_bytes": 16052904,
+    "sha256": "c7705b5d19c04a2843f604d72b2e46db695097efd31b684c59d7e685934663d9",
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "frames": 3360,
+    "duration_seconds": 112,
+    "actual_historical_cc_photos_used": 6,
+    "archival_moving_broadcast_clips": 0,
+    "rasalgethi_audio": false,
+    "illustrative_reconstructions": true,
+    "gameplay_motion": "original annotated 2D tactical maps",
+    "github_workflow_run": 42573255647,
+    "technical_export_passed": true,
+    "video_verified_on_drive": true,
+    "social_published": false,
+    "editorial_approved": false,
+    "original_4k60": false
   }
 }
