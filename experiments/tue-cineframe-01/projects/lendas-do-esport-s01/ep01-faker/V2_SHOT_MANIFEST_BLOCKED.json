@@ -1,8 +1,8 @@
 {
-  "schema_version": "3.7.0",
+  "schema_version": "3.9.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V3_7_REELS_REDESIGNED_TUE_MESTRE_EDITORIAL_PRIVATELY_DELIVERED_112S_1080_DERIVED_30FPS; NO_RASALGETHI_OR_ART_APPROVAL",
+  "production_status": "V3_9_NEW_RIFT_TERRAIN_PLUS_GAME_CHAMPION_ICONS_AND_INTRO_EXPORTED_112S_QC_PASS_REVIEW_ONLY",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -917,5 +917,47 @@
     "instagram_published": false,
     "content_approved": false,
     "artistic_review": "REVIEW_PENDING_ASK_USER_TO_WATCH"
+  },
+  "new_real_rift_review_v39": {
+    "video_id": "1nL8lupxKpV9AWSmRlzJRGkW-TyffxYRi",
+    "sources_zip_id": "1qFQBt2jQ24sNKMf40ABdtZ8XFejhqEZy",
+    "cover_file_id": "1uQeo0WXz9fEUgMKOKEzd-YZR_ir2znLL",
+    "google_drive_readback_verified": true,
+    "video_sha256": "54379d83e82b0753acda6660bec828e1c937cf3168be20f291067629dfd1c488",
+    "duration_seconds": 112,
+    "video_frames": 3360,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "replaced_spans_seconds": [
+      [
+        0,
+        8
+      ],
+      [
+        16,
+        24
+      ],
+      [
+        40,
+        48
+      ],
+      [
+        96,
+        104
+      ]
+    ],
+    "original_audio_hash_equal": true,
+    "game_map_background": "Summoner Rift high resolution 2400x1708 from xrenjie/lol-notifier, checked against official Riot DataDragon map11",
+    "champions": "10 recognizable Riot Data Dragon 16.18.1 champion icon portraits, illustrative only, never evidence of historical draft",
+    "genuine_broadcast_footage_added": false,
+    "real_tournament_gameplay_added": false,
+    "game_play_simulation_identified": true,
+    "technical_qc_passed": true,
+    "editorial_qc_approved": false,
+    "actual_original_rasalgethi_narration": false,
+    "actual_4k60": false,
+    "posted": false,
+    "scheduled": false
   }
 }
