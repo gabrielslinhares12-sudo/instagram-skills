@@ -1,0 +1,79 @@
+name: "FAKER V35 - CC licensed esports archival documentary QC (PRIVATE)"
+on:
+  push:
+    branches:
+      - experimental/tue-cineframe-01
+    paths:
+      - '.github/workflows/faker-v35-archive-motion.yml'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: faker-v35-one-private-render
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PYTHONUNBUFFERED: '1'
+      MEDIA_ROOT: 'experiments/tue-cineframe-01/projects/lendas-do-esport-s01/ep01-faker/v35'
+    steps:
+      - name: Checkout archived experimental sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install no-cost editorial renderer
+        run: |
+          python3 -m pip install --disable-pip-version-check Pillow requests numpy
+          ffmpeg -version | head -1
+      - name: Render complete film with verified CC images, one genuine archive clip and independent 2D motion
+        id: build
+        continue-on-error: true
+        run: |
+          python3 "$MEDIA_ROOT/render_faker_v35.py" 2>&1 | tee "$MEDIA_ROOT/v35_render.log"
+          test ${PIPESTATUS[0]} -eq 0
+      - name: Publish artifact privately on GitHub Actions, not social networks
+        if: steps.build.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: EP01_FAKER_V35_FILME_CC_DE_ARQUIVO_REVISAO
+          path: |
+            experiments/tue-cineframe-01/projects/lendas-do-esport-s01/ep01-faker/v35/output/EP01_FAKER_V35_112s_CONTEXTUAL_ARQUIVO_CC_REVISAO.mp4
+            experiments/tue-cineframe-01/projects/lendas-do-esport-s01/ep01-faker/v35/output/QC_AND_SOURCES.json
+            experiments/tue-cineframe-01/projects/lendas-do-esport-s01/ep01-faker/v35/output/CREDITOS_E_LIMITACOES.md
+          compression-level: 1
+          retention-days: 7
+          if-no-files-found: error
+      - name: Make deterministic run receipt for connector readback
+        if: always()
+        env:
+          BUILD_RESULT: ${{ steps.build.outcome }}
+          GH_RUN_ID: ${{ github.run_id }}
+          GH_RUN_ATTEMPT: ${{ github.run_attempt }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path(os.environ["MEDIA_ROOT"])
+          out=p/"output"/"EP01_FAKER_V35_112s_CONTEXTUAL_ARQUIVO_CC_REVISAO.mp4"
+          state={"run_id":int(os.environ["GH_RUN_ID"]),"attempt":int(os.environ["GH_RUN_ATTEMPT"]),
+                 "commit":os.environ["GITHUB_SHA"],"build_step":os.environ["BUILD_RESULT"],
+                 "artifact_name":"EP01_FAKER_V35_FILME_CC_DE_ARQUIVO_REVISAO",
+                 "video_exists":out.exists(),"video_bytes":out.stat().st_size if out.exists() else 0,
+                 "published":False,"narration_rasalgethi":False,
+                 "run_url":f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GH_RUN_ID']}"}
+          if (p/"output"/"QC_AND_SOURCES.json").exists():
+             q=json.loads((p/"output"/"QC_AND_SOURCES.json").read_text())
+             state.update({"validated_frames":q.get("frames"),"sha256":q.get("sha256"),"genuine_archival_video_used":q.get("historical_real_video_used"),
+                           "verified_archive_assets":sum(q.get("asset_successes",{}).values())})
+          (p/"V35_RUN_RECEIPT.json").write_text(json.dumps(state,indent=2)+"\n")
+          print(json.dumps(state,indent=2))
+          PY
+          git config user.name "tue-cineframe-bot"
+          git config user.email "tue-cineframe-bot@users.noreply.github.com"
+          git add "$MEDIA_ROOT/V35_RUN_RECEIPT.json"
+          git commit -m "faker V35: store private render receipt and QC result" || true
+          git push origin HEAD:experimental/tue-cineframe-01
+      - name: Preserve failure as failure
+        if: steps.build.outcome != 'success'
+        run: exit 1
+# DO NOT publish or schedule. Source licenses verified by asset download; no paid services.
