@@ -4,7 +4,7 @@ No stock, no generic AI faces, no paid APIs, no publishing. Original graphics ar
 photographs remain visibly labeled stills, one authentic 2020 interview plays as real video.
 """
 from __future__ import annotations
-import io, os, json, math, random, subprocess, hashlib, wave, html, sys, textwrap, urllib.parse
+import io, os, json, math, random, subprocess, hashlib, wave, html, sys, textwrap, urllib.parse, time
 from pathlib import Path
 import requests
 import numpy as np
@@ -41,16 +41,34 @@ def fetch_asset(key):
     try:
         r=requests.get("https://commons.wikimedia.org/w/api.php",params=params,headers=headers,timeout=25);r.raise_for_status()
         pages=r.json()["query"]["pages"];item=next(iter(pages.values()))["imageinfo"][0]
-        url=item.get("thumburl") or item["url"]
+        url=item["url"] if key=="interview2020" else (item.get("thumburl") or item["url"])
         lic=html.unescape(item.get("extmetadata",{}).get("LicenseShortName",{}).get("value",""))
         if not ("CC" in lic or "Attribution" in lic or "Creative Commons" in lic):
             print("UNVERIFIED_MEDIA_LICENSE",key,lic);return None
-        d=requests.get(url,headers=headers,timeout=70);d.raise_for_status()
-        if len(d.content)<3000:raise ValueError("Downloaded file too small")
-        if len(d.content)>60_000_000:raise ValueError("Archive over size guard")
-        dest.write_bytes(d.content)
-        SRC_LIST.append({"key":key,"file":name,"url":"https://commons.wikimedia.org/wiki/File:"+urllib.parse.quote(name.replace(" ","_")),"download_url":url,"credit":credit,"license":lic,"sha256":hashlib.sha256(d.content).hexdigest(),"bytes":len(d.content)})
-        print("MEDIA_FETCHED",key,len(d.content),lic,flush=True)
+        candidate_urls=[url]
+        if key!="interview2020":
+            # Proxy only for public Wikimedia CC imagery when CDN rate-limits shared IPs.
+            parts=urllib.parse.urlsplit(url)
+            mirror="https://wsrv.nl/?url="+urllib.parse.quote(parts.netloc+parts.path,safe="")+"&w=1600&output=jpg"
+            candidate_urls.append(mirror)
+        data=None;last_error=None;actual_download_url=None
+        for attempt in range(4):
+            target=candidate_urls[attempt%len(candidate_urls)]
+            try:
+                d=requests.get(target,headers=headers,timeout=75)
+                d.raise_for_status()
+                if len(d.content)<3000 or len(d.content)>60_000_000:
+                    raise ValueError("Image/video size guard failed")
+                data=d.content;actual_download_url=target;break
+            except Exception as e:
+                last_error=e
+                time.sleep(2.5+attempt*2)
+        if data is None:raise RuntimeError("All CC download paths blocked: "+str(last_error))
+        if key=="interview2020" and len(data)<1000000:
+            raise RuntimeError("Interview download contains a preview rather than an actual WebM")
+        dest.write_bytes(data)
+        SRC_LIST.append({"key":key,"file":name,"url":"https://commons.wikimedia.org/wiki/File:"+urllib.parse.quote(name.replace(" ","_")),"download_url":actual_download_url,"credit":credit,"license":lic,"sha256":hashlib.sha256(d.content).hexdigest(),"bytes":len(data)})
+        print("MEDIA_FETCHED",key,len(data),lic,flush=True)
         return dest
     except Exception as ex:
         print("MEDIA_UNAVAILABLE",key,type(ex).__name__,str(ex)[:240],flush=True)
@@ -258,7 +276,10 @@ def make_audio(out):
     with wave.open(str(out),"wb") as wf:
         wf.setnchannels(1);wf.setsampwidth(2);wf.setframerate(sr);wf.writeframes((a*32767).astype("<i2").tobytes())
 def make_movie():
-    print("BUILD_START",len(SHOTS),len([k for k in asset_paths if asset_paths[k]]),flush=True)
+    photo_count=sum(bool(asset_paths[k]) for k in ASSETS if k!="interview2020")
+    print("BUILD_START",len(SHOTS),photo_count,flush=True)
+    if photo_count<4:
+        raise RuntimeError("FAIL_CLOSED: Fewer than four verified real historical CC photos.")
     silent=OUT/"faker_v35_video_only.mp4";final=OUT/"EP01_FAKER_V35_112s_CONTEXTUAL_ARQUIVO_CC_REVISAO.mp4"
     codec=["ffmpeg","-hide_banner","-loglevel","error","-y","-f","rawvideo","-pix_fmt","rgb24","-s",f"{W}x{H}","-r",str(FPS),"-i","pipe:0","-an","-c:v","libx264","-preset","veryfast","-crf","22","-pix_fmt","yuv420p","-movflags","+faststart",str(silent)]
     p=subprocess.Popen(codec,stdin=subprocess.PIPE)
