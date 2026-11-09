@@ -23,6 +23,8 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - name: Install no-cost editorial renderer
         run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg
           python3 -m pip install --disable-pip-version-check Pillow requests numpy
           ffmpeg -version | head -1
       - name: Render complete film with verified CC images, one genuine archive clip and independent 2D motion
