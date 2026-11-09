@@ -1,0 +1,38 @@
+name: Faker V39 Riot champion icons for original tactical animation
+on:
+  push:
+    branches: [experimental/tue-cineframe-01]
+    paths: ['.github/workflows/faker-v39-champion-icons.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download verified Riot DataDragon character icons (illustrative only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p champion-icons
+          for c in Ahri Azir Orianna Ryze LeeSin Thresh Jinx Gnar Vi Caitlyn; do
+            curl -fLsS --retry 3 --max-time 30 "https://ddragon.leagueoflegends.com/cdn/16.18.1/img/champion/${c}.png" -o "champion-icons/${c}.png" || true
+          done
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          import subprocess,sys
+          for p in Path('champion-icons').glob('*.png'):
+             try:
+                i=Image.open(p); i.verify(); print(p.name, i.size,flush=True)
+             except Exception: p.unlink(missing_ok=True)
+          n=len(list(Path('champion-icons').glob('*.png')))
+          print('ICON_COUNT',n)
+          assert n>=8
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FAKER_V39_RIOT_CHAMPION_ICONS
+          path: champion-icons/
+          retention-days: 7
+          if-no-files-found: error
