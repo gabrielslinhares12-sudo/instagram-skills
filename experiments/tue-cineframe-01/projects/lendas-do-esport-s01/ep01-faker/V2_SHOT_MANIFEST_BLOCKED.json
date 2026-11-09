@@ -1,8 +1,8 @@
 {
-  "schema_version": "3.1.0",
+  "schema_version": "3.2.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V3_1_HISTORIC_MATCH_ROSTERS_GAME_PROGRESS_112S_RENDERED_QC; HISTORICAL_LOGOS_AND_52_FACES_ART_PENDING; RASALGETHI_ABSENT; RELEASE_BLOCKED",
+  "production_status": "V3_2_112S_CONTEXTUAL_MOTIONGRAPHICS_FINISHED_AND_VERIFIED_720P30; TRUE_LOGOS_NOT_EMBEDDED; VOICE_ART_4K60_GATES_BLOCK",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -802,5 +802,39 @@
     "quality": "REVIEW_ONLY; STILL ANIMATED INFOGRAPHIC NOT CINEMATIC CAST FILM",
     "published": false,
     "scheduled": false
+  },
+  "contextual_video_v32": {
+    "drive_file_id": "1YV0gGYdYjE879gR8xuyLZYZZvxywkjyX",
+    "drive_source_zip_id": "1WBy3OLtso3_86_inkpCLKK5LZQl3MSu1",
+    "sha256": "f365241fb0fea91d7357ff4efcb571afdb130168d133cbdcfbf304c53c2c1535",
+    "bytes": 30578551,
+    "duration_seconds": 112,
+    "frames": 3360,
+    "resolution": [
+      720,
+      1280
+    ],
+    "fps": 30,
+    "scenes": 14,
+    "completed": true,
+    "google_drive_readback_verified": true,
+    "actor_animation": "Illustrated concept cards + independent moving 2D motion graphics, NOT full keyframe character acting",
+    "team_rosters_verified": true,
+    "source_urls": [
+      "https://lol.fandom.com/wiki/2015_Season_World_Championship/Scoreboards/Bracket_Stage",
+      "https://lol.fandom.com/wiki/2023_Season_World_Championship/Main_Event/Scoreboards/Semifinals_and_Finals",
+      "https://lol.fandom.com/wiki/2024_Season_World_Championship/Main_Event/Scoreboards/Semifinals_and_Finals",
+      "https://lol.fandom.com/wiki/2025_Season_World_Championship/Main_Event/Scoreboards/Semifinals_and_Finals"
+    ],
+    "concept_art_rosters": [
+      "DRX_2022",
+      "WBG_2023",
+      "BLG_2024",
+      "T1_2025"
+    ],
+    "actual_team_logo_png_embedded": false,
+    "original_rasalgethi_voice": false,
+    "published": false,
+    "official_quality_approved": false
   }
 }
