@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.9.0",
+  "schema_version": "3.0.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V2_9_FULL_DURATION_112S_EDITORIAL_STORY_CUT_EXISTS_DRIVE; 720P30_ONLY; ORIGINAL_RASALGETHI_NOT_PRESENT; FULL_4K60_RELEASE_BLOCKED",
+  "production_status": "V3_0_CONTEXTUAL_REVIEW_CUT_DELIVERED_112S_720P30_WITH_EXPLANATORY_GRAPHICS; VOICE_AND_4K60_ART_NOT_APPROVED",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -721,5 +721,39 @@
       "Rasalgethi narration absent",
       "needs final 4K60 and fully jointed character animation"
     ]
+  },
+  "editorial_context_v30": {
+    "source_version": "V2.9",
+    "drive_video_id": "1ybbk8UOBR0JBk_c-0qwXpW3nuaZsTjSO",
+    "drive_source_archive_id": "1mVdKccx6_3c-r2gWwMoh8yjKnx7EP31K",
+    "sha256": "f9dfd1a32ff42ea29b2431f38e0b969b5062bb4da290815d4a3b93521574fcb6",
+    "mp4_bytes": 4211968,
+    "video_fps": 30,
+    "dimensions": [
+      720,
+      1280
+    ],
+    "duration_seconds": 112,
+    "video_frames": 3360,
+    "actual_scenes": 14,
+    "contextual_caption_segments": 28,
+    "dynamic_visuals": [
+      "five-versus-five map movements",
+      "lanes and Nexus",
+      "central lane role",
+      "game-by-game series results",
+      "team positions and collective action",
+      "championship timeline",
+      "2017 and 2022 losses",
+      "2025 final deciding game"
+    ],
+    "ambient_sound_original": true,
+    "original_rasalgethi_narration": false,
+    "video_visual_qc_checked": true,
+    "user_preview_available": true,
+    "native_4k60": false,
+    "cinematic_actor_art_approved": false,
+    "social_publishing": false,
+    "status": "REVIEW_ONLY_NOT_FINAL"
   }
 }
