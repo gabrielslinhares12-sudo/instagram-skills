@@ -1,0 +1,38 @@
+name: Faker V38 source Riot minimap for editorial animation
+on:
+  push:
+    branches: [experimental/tue-cineframe-01]
+    paths: ['.github/workflows/faker-v38-riot-map-asset.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Fetch official Riot Data Dragon Summoner Rift map
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python -m pip install Pillow
+          for version in 16.18.1 6.8.1; do
+            if curl -fsSL --retry 3 --max-time 40 "https://ddragon.leagueoflegends.com/cdn/$version/img/map/map11.png" -o summoners_rift_map11.png; then
+              break
+            fi
+          done
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          im=Image.open("summoners_rift_map11.png")
+          im.verify()
+          im=Image.open("summoners_rift_map11.png")
+          print("MAP_VALID",im.size,Path("summoners_rift_map11.png").stat().st_size)
+          assert min(im.size)>=400
+          PY
+      - name: Keep verified source private
+        uses: actions/upload-artifact@v4
+        with:
+          name: FAKER_V38_RIOT_MAP11_REFERENCE
+          path: summoners_rift_map11.png
+          retention-days: 7
+          if-no-files-found: error
