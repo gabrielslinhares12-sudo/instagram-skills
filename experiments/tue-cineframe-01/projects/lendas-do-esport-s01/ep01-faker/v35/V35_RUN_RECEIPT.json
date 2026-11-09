@@ -1,0 +1,12 @@
+{
+  "run_id": 42572884459,
+  "attempt": 1,
+  "commit": "8433cff4eca45588ef541cb40ce7f1480e298041",
+  "build_step": "failure",
+  "artifact_name": "EP01_FAKER_V35_FILME_CC_DE_ARQUIVO_REVISAO",
+  "video_exists": false,
+  "video_bytes": 0,
+  "published": false,
+  "narration_rasalgethi": false,
+  "run_url": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/42572884459"
+}
