@@ -1,12 +1,16 @@
 {
-  "run_id": 42572884459,
+  "run_id": 42573255647,
   "attempt": 1,
-  "commit": "8433cff4eca45588ef541cb40ce7f1480e298041",
-  "build_step": "failure",
+  "commit": "e931b2e8c003ecebeaa2aea6cd3446ed87801eb7",
+  "build_step": "success",
   "artifact_name": "EP01_FAKER_V35_FILME_CC_DE_ARQUIVO_REVISAO",
-  "video_exists": false,
-  "video_bytes": 0,
+  "video_exists": true,
+  "video_bytes": 3637921,
   "published": false,
   "narration_rasalgethi": false,
-  "run_url": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/42572884459"
+  "run_url": "https://github.com/gabrielslinhares12-sudo/instagram-skills/actions/runs/42573255647",
+  "validated_frames": 3360,
+  "sha256": "12efdb9d0245b4d239454b9f0e44fc7ac5201a4cd25c6aa7884e8eda794c0bbf",
+  "genuine_archival_video_used": false,
+  "verified_archive_assets": 6
 }
