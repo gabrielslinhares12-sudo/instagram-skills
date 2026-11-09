@@ -1,0 +1,42 @@
+name: Faker V39 HD Rift references editor-only
+on:
+  push:
+    branches: [experimental/tue-cineframe-01]
+    paths: ['.github/workflows/faker-v39-hd-rift-assets.yml']
+permissions:
+  contents: read
+jobs:
+  retrieve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Download historical high-resolution top-down Rift images from public repository sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install Pillow
+          mkdir map_refs
+          curl -fLsS --retry 2 --max-time 60 "https://raw.githubusercontent.com/Nelusa/lol-birthday-invite/main/public/summoners-rift.png" -o map_refs/rift_nelusa.png || true
+          curl -fLsS --retry 2 --max-time 60 "https://raw.githubusercontent.com/hwisangcho00/Penn.gg/master/client/src/images/summoners_rift.png" -o map_refs/rift_penn.png || true
+          curl -fLsS --retry 2 --max-time 60 "https://raw.githubusercontent.com/xrenjie/lol-notifier/master/lol-notifier/src/assets/Summoners_Rift.png" -o map_refs/rift_notifier.png || true
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          count=0
+          for p in Path('map_refs').glob('*.png'):
+              try:
+                  im=Image.open(p);im.verify();im=Image.open(p)
+                  print(p.name,im.size,im.mode,p.stat().st_size,flush=True)
+                  assert min(im.size)>=512
+                  count+=1
+              except Exception as ex:
+                  print('INVALID',p.name,str(ex))
+                  p.unlink(missing_ok=True)
+          assert count>=1
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FAKER_V39_HD_RIFT_SOURCE_REFERENCES
+          path: map_refs/
+          retention-days: 7
+          if-no-files-found: error
