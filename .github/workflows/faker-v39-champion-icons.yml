@@ -14,6 +14,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python -m pip install --disable-pip-version-check Pillow
           mkdir -p champion-icons
           for c in Ahri Azir Orianna Ryze LeeSin Thresh Jinx Gnar Vi Caitlyn; do
             curl -fLsS --retry 3 --max-time 30 "https://ddragon.leagueoflegends.com/cdn/16.18.1/img/champion/${c}.png" -o "champion-icons/${c}.png" || true
