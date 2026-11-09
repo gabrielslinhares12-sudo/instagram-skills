@@ -1,8 +1,8 @@
 {
-  "schema_version": "3.5.1",
+  "schema_version": "3.7.0",
   "project": "LENDAS-DO-ESPORT-S01-EP01-FAKER",
   "standard_id": "TUE-CINEFRAME-01",
-  "production_status": "V3_5_1_CONTEXTUAL_CC_ARCHIVE_AND_ART_REVIEW_FILM_DELIVERED_112S_720P30; RASALGETHI_BROADCAST_VIDEO_4K60_ART_APPROVAL_PENDING",
+  "production_status": "V3_7_REELS_REDESIGNED_TUE_MESTRE_EDITORIAL_PRIVATELY_DELIVERED_112S_1080_DERIVED_30FPS; NO_RASALGETHI_OR_ART_APPROVAL",
   "render_purpose": "FINAL_QUALITY_ONLY",
   "release_policy": "NO_PREVIEW_UNTIL_QUALITY_PASS",
   "references": {
@@ -881,5 +881,41 @@
     "social_published": false,
     "editorial_approved": false,
     "original_4k60": false
+  },
+  "instagram_reels_redesign_v37": {
+    "drive_video_id": "1oYqcW2esxHE9K0DLkePbMItRmsyrcp_D",
+    "drive_editable_logo_and_qc_archive_id": "1_jNnHzW11o3V5QAnTZ9kbjgvGSqeGQac",
+    "drive_cover_id": "1NBB5pUgRzGDLFzvBc2jD94e7QqizlrFh",
+    "sha256": "40945d30dcb0bee0a5dc0f47ff6af666855a964d787d160df1e48089b55c9829",
+    "mp4_bytes": 16463235,
+    "duration_seconds": 112,
+    "native_visual_source_dimensions": [
+      720,
+      1280
+    ],
+    "exported_dimensions": [
+      1080,
+      1920
+    ],
+    "upscale_is_native_4k": false,
+    "fps": 30,
+    "complete_frames": 3360,
+    "original_ambient_audio_preserved": true,
+    "actual_rasalgethi_narration_present": false,
+    "source_story_14_events_unmodified": true,
+    "editorial_caption_beats": 28,
+    "official_tue_mestre_palette": {
+      "paper": "#F4EDE1",
+      "yellow": "#FFD600",
+      "ink": "#111111",
+      "red": "#D50E15"
+    },
+    "logo_source": "Previous Lendas do Esport concept artwork, alpha-restored; brand kit locked for next reels",
+    "video_original_game_broadcast_clips_inserted": false,
+    "animation": "Original animated tactical map elements + restrained new typography and cut transitions; archival photos are not pseudo-video",
+    "google_drive_readback_verified": true,
+    "instagram_published": false,
+    "content_approved": false,
+    "artistic_review": "REVIEW_PENDING_ASK_USER_TO_WATCH"
   }
 }
