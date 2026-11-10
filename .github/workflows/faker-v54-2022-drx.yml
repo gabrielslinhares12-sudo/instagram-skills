@@ -1,0 +1,45 @@
+name: "FAKER V5.4 — 2022 T1 vs DRX official Riot 1080p60"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-2022-drx.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  clips:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - name: Install yt-dlp and bundled free FFmpeg
+        run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Extract distinct on-camera segments from the REAL Riot 2022 Worlds final
+        run: |
+          mkdir -p match_2022
+          cat >/tmp/extract.py <<'PY'
+          import subprocess,concurrent.futures,json,pathlib
+          from imageio_ffmpeg import get_ffmpeg_exe
+          ff=get_ffmpeg_exe(); out=pathlib.Path('match_2022')
+          url='https://www.twitch.tv/videos/1644634801'
+          positions=['00:30:00','01:10:00','02:50:00','04:00:00','05:35:00','06:27:00','07:03:00','07:30:00']
+          def cut(a):
+            i,s=a;t=list(map(int,s.split(':')));e=t[0]*3600+t[1]*60+t[2]+8
+            end=f'{e//3600:02d}:{(e//60)%60:02d}:{e%60:02d}'
+            filename=out/f'2022_{i:02d}.mp4';record={'segment':i,'start':s,'end':end,'source_url':url,'year':2022,'event':'T1 versus DRX Worlds 2022 final (Korean official Riot broadcast)','rights':'Private editorial QC pending Riot content policy'}
+            cmd=['yt-dlp','--ffmpeg-location',ff,'--no-progress','--no-playlist','--socket-timeout','12','--retries','0','--fragment-retries','0','--download-sections',f'*{s}-{end}','--force-keyframes-at-cuts','-f','best[height>=1080]','--merge-output-format','mp4','-o',str(out/f'2022_{i:02d}.%(ext)s'),url]
+            try:
+              p=subprocess.run(cmd,capture_output=True,text=True,timeout=145)
+              if p.returncode!=0 or not filename.exists():raise RuntimeError((p.stdout+p.stderr)[-450:])
+              record.update({'status':'RECOVERED_1080p','bytes':filename.stat().st_size,'filename':filename.name})
+            except Exception as ex: record.update({'status':'FAILED','error':str(ex)[:450]})
+            print(i,record['status'],record.get('bytes'),flush=True);return record
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex:rr=list(ex.map(cut,enumerate(positions)))
+          (out/'MANIFEST.json').write_text(json.dumps(rr,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/extract.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-2022-drx-1080p60
+          path: match_2022/
+          retention-days: 4
+          compression-level: 0
