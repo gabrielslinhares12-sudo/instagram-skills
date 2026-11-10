@@ -1,0 +1,46 @@
+name: "FAKER V5.4 — genuine 2013–2022 archive quality gate"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-older-officials.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - run: python -m pip install -q -U yt-dlp
+      - name: Check historical Faker documentary and 2022 Riot final at source resolution
+        run: |
+          mkdir -p report
+          cat >/tmp/older.py <<'PY'
+          import pathlib,json,concurrent.futures,subprocess
+          sources=[
+           ('worlds2022_t1_drx','https://www.twitch.tv/videos/1644541745','2022 original finals'),
+           ('legends2015_ep1_faker','https://www.dailymotion.com/video/x381vwq','2015 Riot documentary Faker real home and interviews'),
+           ('legends2015_ep4_faker','https://www.dailymotion.com/video/x382cji','2015 Riot documentary Faker real team'),
+           ('faker2022_esports_stories','https://www.dailymotion.com/video/x8fkexd','2022 documentary contains historical gameplay; verify rights'),
+           ('faker2024_hall_trailer','https://www.dailymotion.com/video/x90m176','2024 Hall of Legends archive and childhood'),
+           ('faker2024_official_full','https://www.youtube.com/watch?v=xdfVomq3lAc','2024 Riot full documentary')
+          ]
+          def probe(item):
+            name,url,desc=item;row={'name':name,'url':url,'desc':desc,'rights':'not cleared for public reuse'}
+            try:
+              p=subprocess.run(['yt-dlp','-J','--skip-download','--no-playlist','--socket-timeout','12','--retries','0',url],capture_output=True,text=True,timeout=55)
+              if p.returncode!=0:raise RuntimeError((p.stdout+p.stderr)[-500:])
+              j=json.loads(p.stdout)
+              ff=[f for f in j.get('formats',[]) if f.get('vcodec') not in ('none',None) and f.get('height')]
+              row.update({'status':'EXTRACTABLE','title':j.get('title'),'duration':j.get('duration'),'source_max_height':max([f['height'] for f in ff],default=None),'available_heights':sorted(set(f['height'] for f in ff))})
+            except Exception as e:row.update({'status':'FAILED','error':str(e)[:500]})
+            print(name,row['status'],row.get('source_max_height'),flush=True);return row
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as x:r=list(x.map(probe,sources))
+          pathlib.Path('report/legacy-source-resolutions.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/older.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-2013-2022-real-video-quality-report
+          path: report/
+          retention-days: 5
