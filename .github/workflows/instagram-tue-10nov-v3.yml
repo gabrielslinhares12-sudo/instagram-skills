@@ -1,0 +1,68 @@
+name: "TUE 10nov - carrosseis V3 originais (SEM PUBLICAR)"
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/render_fisica_10nov_v3.py"
+      - ".github/workflows/instagram-tue-10nov-v3.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tue-10nov-editorial-v3
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencia de renderizacao
+        run: python -m pip install --disable-pip-version-check "Pillow>=10,<13"
+      - name: Verificar sintaxe
+        run: python -m py_compile scripts/render_fisica_10nov_v3.py
+      - name: Gerar 12 artes - Lúmino PNG original e fotografias creditadas
+        run: python scripts/render_fisica_10nov_v3.py
+      - name: Verificar dimensoes, SHA e trava de publicacao
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          from PIL import Image
+          from pathlib import Path
+          m=json.loads(Path('content/staging/2026-11-10/v3/manifest.json').read_text())
+          assert m['approved'] is False and m['published'] is False and m['visual_reviewed'] is False
+          assert len(m['images'])==12 and len(m['sources'])>=7
+          for entry in m['images']:
+            p=Path(entry['path'])
+            with Image.open(p) as f:
+              assert f.format=='JPEG' and f.size==(1080,1350),str(p)
+            assert hashlib.sha256(p.read_bytes()).hexdigest()==entry['sha256']
+          print('12 IMAGENS ORIGINAIS VALIDADAS, SEM PUBLICAÇÃO')
+          PY
+      - name: Registrar versao V3 em staging sem marcar aprovada
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/staging/2026-11-10/v3/abs/ content/staging/2026-11-10/v3/cinto/ content/staging/2026-11-10/v3/PREVIA-ABS.jpg content/staging/2026-11-10/v3/PREVIA-CINTO.jpg content/staging/2026-11-10/v3/manifest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'assets: 12 slides V3 TUE-MESTRE-01 com mascote canonico'
+          git push
+      - name: Empacotar duas pastas e manifesto para o Drive
+        if: success()
+        run: |
+          cd content/staging/2026-11-10/v3
+          zip -q -r "$GITHUB_WORKSPACE/TUE-10NOV-FISICA-APLICADA-V3.zip" abs cinto PREVIA-ABS.jpg PREVIA-CINTO.jpg manifest.json
+      - name: Guardar pacote em artefato do GitHub
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TUE-10NOV-FISICA-APLICADA-V3
+          path: TUE-10NOV-FISICA-APLICADA-V3.zip
+          if-no-files-found: error
+          retention-days: 30
