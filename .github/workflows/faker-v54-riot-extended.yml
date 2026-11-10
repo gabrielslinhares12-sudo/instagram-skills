@@ -1,0 +1,65 @@
+name: "FAKER V5.4 — extended native 1080p60 genuine match library"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-riot-extended.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  clips:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - year: "2023"
+            url: "https://www.twitch.tv/videos/1981467393"
+            starts: "00:45:00,01:27:00,01:42:00,02:18:00,02:46:00,03:00:00,03:36:00,04:03:00,04:41:00,05:17:00"
+          - year: "2024"
+            url: "https://www.twitch.tv/videos/2291702312"
+            starts: "00:58:00,01:14:00,02:03:00,02:37:00,02:55:00,03:18:00,04:01:00,04:27:00,05:01:00,06:12:00"
+          - year: "2025"
+            url: "https://www.twitch.tv/videos/2613641505"
+            starts: "01:10:00,01:26:00,02:16:00,02:40:00,03:10:00,03:51:00,04:10:00,05:02:00,05:37:00,06:12:00"
+    steps:
+      - name: Install free FFmpeg and yt-dlp
+        run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Cut 10 distinct 8s source segments at 1080p60
+        env:
+          YEAR: ${{ matrix.year }}
+          VOD: ${{ matrix.url }}
+          TIMES: ${{ matrix.starts }}
+        run: |
+          mkdir -p clips
+          cat >/tmp/clips.py <<'PY'
+          import json,subprocess,concurrent.futures,pathlib,os
+          import imageio_ffmpeg
+          year=os.environ['YEAR'];times=os.environ['TIMES'].split(',');url=os.environ['VOD']
+          out=pathlib.Path('clips');ff=imageio_ffmpeg.get_ffmpeg_exe()
+          def one(x):
+            n,a=x
+            hh,mm,ss=(int(y) for y in a.split(':'));start=hh*3600+mm*60+ss;end=start+8
+            b=f'{end//3600:02d}:{(end//60)%60:02d}:{end%60:02d}'
+            tmp=out/(f'{year}_B_{n:02d}.%(ext)s')
+            row={'year':year,'id':n,'source_url':url,'source_time':a,'end_time':b,'publisher':'Riot Games','rights':'Private QA, publish rights not confirmed'}
+            cmd=['yt-dlp','--ffmpeg-location',ff,'--no-playlist','--no-progress','--socket-timeout','14','--retries','0','--fragment-retries','0','--download-sections',f'*{a}-{b}','--force-keyframes-at-cuts','-f','best[height>=1080]','--merge-output-format','mp4','-o',str(tmp),url]
+            try:
+              r=subprocess.run(cmd,text=True,capture_output=True,timeout=150)
+              f=out/(f'{year}_B_{n:02d}.mp4')
+              if r.returncode or not f.exists() or f.stat().st_size<100000:raise RuntimeError((r.stdout+r.stderr)[-400:])
+              row.update({'status':'TRUE_SOURCE_HD','bytes':f.stat().st_size,'filename':f.name})
+            except Exception as e:row.update({'status':'FAILED','error':str(e)[:420]})
+            print(year,n,row['status'],row.get('bytes'),flush=True)
+            return row
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:a=list(ex.map(one,enumerate(times)))
+          (out/'EXTRACT_MANIFEST.json').write_text(json.dumps(a,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/clips.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-extended-riot-${{ matrix.year }}-1080p60
+          path: clips/
+          retention-days: 4
+          compression-level: 0
