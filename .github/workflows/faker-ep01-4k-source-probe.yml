@@ -1,0 +1,45 @@
+name: "FAKER EP01 - Test multi-source official 4K access (private, no publish)"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-ep01-4k-source-probe.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  source-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - name: Install free extractor and JS runtime
+        run: |
+          python3 -m pip install -q -U 'yt-dlp[default]'
+          curl -fsSL https://deno.land/install.sh | sh >/dev/null
+          echo "$HOME/.deno/bin" >> "$GITHUB_PATH"
+      - name: Inspect 4K quality and availability (no footage duplication)
+        shell: bash
+        run: |
+          mkdir -p verification
+          set +e
+          for entry in \
+            'worlds2023_Sxw9Ln0WdIE' \
+            'worlds2025_ADaZLxI3uWg' \
+            'hall2024_xdfVomq3lAc' \
+            'worlds2025_AXp6hL8MuDE'; do
+              name="${entry%_*}"; vid="${entry##*_}"
+              timeout 100 yt-dlp --js-runtimes deno --no-playlist --skip-download --print '%(title)s | %(channel)s | %(duration)s | %(height)s | %(webpage_url)s' \
+                --format 'bv*[height>=2160]+ba/best[height>=2160]/best' \
+                "https://www.youtube.com/watch?v=$vid" >"verification/$name.txt" 2>&1
+              echo "$?" >"verification/$name.exit"
+              echo "=== $name ===";head -c 400 "verification/$name.txt";echo
+          done
+          python3 - <<'PY'
+          from pathlib import Path
+          for f in Path('verification').glob('*.exit'):
+            print(f.name, f.read_text().strip())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-ep01-v52-4k-source-probe
+          path: verification/
+          retention-days: 7
