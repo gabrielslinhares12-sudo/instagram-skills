@@ -1,0 +1,60 @@
+name: "FAKER EP01 — research diverse CC motion footage"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-motion-research.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Inventory CC motion originals in Wikimedia Commons
+        run: |
+          mkdir -p research
+          cat > /tmp/research.py <<'PY'
+          import urllib.request,urllib.parse,json,time,pathlib
+          base="https://commons.wikimedia.org/w/api.php"
+          ua={"User-Agent":"TUE-Documentary-CC-Research/1.0 (independent documentary research)"}
+          queries=[
+            'Faker filetype:video',
+            '"League of Legends" filetype:video',
+            'esports filetype:video',
+            '"e-sports" filetype:video',
+            '"Seoul" filetype:video',
+            'Korea gaming filetype:video',
+            'gaming tournament filetype:video',
+            'computer gaming filetype:video',
+            'game competition filetype:video',
+            '"SK Telecom T1" filetype:video',
+            'World Championship esports filetype:video',
+            '"Faker" video',
+          ]
+          ans=[]
+          for q in queries:
+            rec={"query":q,"results":[]}
+            try:
+              args={"action":"query","list":"search","srsearch":q,"srnamespace":6,"srlimit":100,"formatversion":2,"format":"json"}
+              api=base+"?"+urllib.parse.urlencode(args)
+              with urllib.request.urlopen(urllib.request.Request(api,headers=ua),timeout=35) as h: j=json.load(h)
+              titles=[x["title"] for x in j.get("query",{}).get("search",[])]
+              for k in range(0,len(titles),25):
+                a={"action":"query","prop":"imageinfo","iiprop":"size|extmetadata|url","titles":"|".join(titles[k:k+25]),"formatversion":2,"format":"json"}
+                with urllib.request.urlopen(urllib.request.Request(base+"?"+urllib.parse.urlencode(a),headers=ua),timeout=45) as h: d=json.load(h)
+                for p in d.get("query",{}).get("pages",[]):
+                  if "imageinfo" not in p:continue
+                  i=p["imageinfo"][0];lic=i.get("extmetadata",{}).get("LicenseShortName",{}).get("value")
+                  rec["results"].append({"title":p["title"],"mime":i.get("mime"),"size":i.get("size"),"url":i.get("url"),"license":lic,"width":i.get("width"),"height":i.get("height")})
+            except Exception as e:
+              rec["error"]=str(e)
+            ans.append(rec)
+            print(q,"items",len(rec["results"]),"error",rec.get("error"),flush=True)
+          pathlib.Path('research/commons_video_inventory.json').write_text(json.dumps(ans,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/research.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: faker-diverse-motion-inventory
+          path: research/
+          retention-days: 7
