@@ -1,0 +1,218 @@
+{
+  "preset_id": "TUE-MESTRE-01",
+  "date": "2026-11-10",
+  "target": "@temumaexplicacao",
+  "approved": false,
+  "visual_reviewed": false,
+  "published": false,
+  "mascot_source": "content/brand/lumino-original.png",
+  "mascot_sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+  "images": [
+    {
+      "path": "content/staging/2026-11-10/v3/abs/01.jpg",
+      "post": "abs",
+      "order": 1,
+      "sha256": "20a97a0dfa053e2aff2ffa9726e859c107e6eacc471bed500d96955657650b6f",
+      "source": "https://commons.wikimedia.org/wiki/File:Disc_brakes.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/abs/02.jpg",
+      "post": "abs",
+      "order": 2,
+      "sha256": "a91d97359aa2a52d1335983b3fffbb29402b829d000dd59d556d60d11fbd7d66",
+      "source": "https://commons.wikimedia.org/wiki/File:Ontheroad.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/abs/03.jpg",
+      "post": "abs",
+      "order": 3,
+      "sha256": "cb190092a69715ba1dec12da78591d1e7baf1ec19f2d817c9e5b87f17f320b38",
+      "source": "https://commons.wikimedia.org/wiki/File:ABS-Sensor.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/abs/04.jpg",
+      "post": "abs",
+      "order": 4,
+      "sha256": "2c77598188bdbb2f511d5c3a231384690810df7a11427df24d7fd1ba4fae0ffc",
+      "source": "https://commons.wikimedia.org/wiki/File:ABS_HCU_April_2018.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/abs/05.jpg",
+      "post": "abs",
+      "order": 5,
+      "sha256": "0755e9b22a10d3d17026c36e494ec51b7323dda2a1ab92142df19760c2411e7f",
+      "source": "https://commons.wikimedia.org/wiki/File:Car_brake_test.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/abs/06.jpg",
+      "post": "abs",
+      "order": 6,
+      "sha256": "3bc6ed285130500d1912ea3d7500429d848010582c57b1072581958a43f46cb3",
+      "source": "https://commons.wikimedia.org/wiki/File:Disc_brake_car.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/cinto/01.jpg",
+      "post": "cinto",
+      "order": 1,
+      "sha256": "12f8b9788d5d7b87c9be36b6b6bb72a121e7eeb9d1a0ba25526d311d1b91ed49",
+      "source": "https://commons.wikimedia.org/wiki/File:Crash-test-with-airbag-and-safty-belt.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/cinto/02.jpg",
+      "post": "cinto",
+      "order": 2,
+      "sha256": "0dfd6ff90d9630d910a8247326dcb493763bee4667e59a49f035b0e1f44c290c",
+      "source": "https://commons.wikimedia.org/wiki/File:Crash_test_dummy_with_three-point_seat_belt_(cropped).jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/cinto/03.jpg",
+      "post": "cinto",
+      "order": 3,
+      "sha256": "5388ccea91151b76a618606b5458462e4dce635b8c7f2015ee8448d0a00aac26",
+      "source": "https://commons.wikimedia.org/wiki/File:Hand_reaches_for_seatbelt_in_a_vehicle.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/cinto/04.jpg",
+      "post": "cinto",
+      "order": 4,
+      "sha256": "213cfa41f8e390afb88899278ae4de77dce779b2325ff0365fe3c262c1ffe89a",
+      "source": "https://commons.wikimedia.org/wiki/File:Seat_belt_testing.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/cinto/05.jpg",
+      "post": "cinto",
+      "order": 5,
+      "sha256": "6ddeaecaaaf3fe37c29a2eaba538e2d3302bf41029bed24ca3613639aaa82dab",
+      "source": "https://commons.wikimedia.org/wiki/File:Abandoned_car_interior_showing_a_deployed_airbag_and_a_worn_steering_wheel_in_a_forgotten_location.jpg"
+    },
+    {
+      "path": "content/staging/2026-11-10/v3/cinto/06.jpg",
+      "post": "cinto",
+      "order": 6,
+      "sha256": "57f280a900dd6a1ae235872416e3a3ece4181771cca734c513bcb292b6deb206",
+      "source": "https://commons.wikimedia.org/wiki/File:Car_seat_belt.jpg"
+    }
+  ],
+  "sources": [
+    {
+      "name": "Disc brakes.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Disc_brakes.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Envy fstop",
+      "dimensions": [
+        1920,
+        1280
+      ]
+    },
+    {
+      "name": "Ontheroad.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Ontheroad.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Prahlad balaji",
+      "dimensions": [
+        1920,
+        1440
+      ]
+    },
+    {
+      "name": "ABS-Sensor.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:ABS-Sensor.jpg",
+      "license": "CC BY-SA 2.5",
+      "author": "User:NSX-Racer",
+      "dimensions": [
+        1920,
+        1437
+      ]
+    },
+    {
+      "name": "ABS HCU April 2018.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:ABS_HCU_April_2018.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Samf4u",
+      "dimensions": [
+        1920,
+        1440
+      ]
+    },
+    {
+      "name": "Car brake test.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Car_brake_test.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "ProjectManhattan",
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "Disc brake car.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Disc_brake_car.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Irvin calicut at Malayalam Wikipedia",
+      "dimensions": [
+        1920,
+        1440
+      ]
+    },
+    {
+      "name": "Crash-test-with-airbag-and-safty-belt.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Crash-test-with-airbag-and-safty-belt.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Transport For NSW (https://www.transport.nsw.gov.au/)",
+      "dimensions": [
+        1088,
+        738
+      ]
+    },
+    {
+      "name": "Crash test dummy with three-point seat belt (cropped).jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Crash_test_dummy_with_three-point_seat_belt_(cropped).jpg",
+      "license": "CC BY 2.0",
+      "author": "ITU Pictures",
+      "dimensions": [
+        1920,
+        2717
+      ]
+    },
+    {
+      "name": "Hand reaches for seatbelt in a vehicle.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Hand_reaches_for_seatbelt_in_a_vehicle.jpg",
+      "license": "CC BY 2.0",
+      "author": "Shixart1985",
+      "dimensions": [
+        1920,
+        2876
+      ]
+    },
+    {
+      "name": "Seat belt testing.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Seat_belt_testing.jpg",
+      "license": "Public domain",
+      "author": "National Institute of Standards and Technology",
+      "dimensions": [
+        1920,
+        2372
+      ]
+    },
+    {
+      "name": "Abandoned car interior showing a deployed airbag and a worn steering wheel in a forgotten location.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Abandoned_car_interior_showing_a_deployed_airbag_and_a_worn_steering_wheel_in_a_forgotten_location.jpg",
+      "license": "CC BY 2.0",
+      "author": "Shixart1985",
+      "dimensions": [
+        1920,
+        1280
+      ]
+    },
+    {
+      "name": "Car seat belt.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Car_seat_belt.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Santeri Viinamäki",
+      "dimensions": [
+        1920,
+        2560
+      ]
+    }
+  ]
+}
