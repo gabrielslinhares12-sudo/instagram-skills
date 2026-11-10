@@ -1,0 +1,50 @@
+name: "FAKER V5.4 — 2017 loss facial reaction archival video quality"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-2017-reaction.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Install free video toolchain
+        run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Verify Faker's ACTUAL 2017 post-final reaction footage
+        run: |
+          mkdir -p reaction2017
+          cat >/tmp/reaction.py <<'PY'
+          import json,subprocess,pathlib,concurrent.futures
+          import imageio_ffmpeg
+          vids=[
+            ('faker_crying_2017_1','https://www.tokyvideo.com/es/video/faker-acaba-llorando-final-mundial-2017-lol'),
+            ('faker_crying_2017_2','https://www.tokyvideo.com/video/the-most-difficult-moment-for-faker-in-the-history-faker-crying')
+          ]
+          o=pathlib.Path('reaction2017');ff=imageio_ffmpeg.get_ffmpeg_exe()
+          def v(item):
+            name,url=item;r={'name':name,'source_page':url,'event':'Faker crying 2017 after SSG defeat','publish_rights':'Not verified'}
+            try:
+              p=subprocess.run(['yt-dlp','--no-playlist','--dump-single-json','--skip-download','--socket-timeout','10','--retries','0',url],capture_output=True,text=True,timeout=45)
+              if p.returncode:raise RuntimeError(p.stderr[-500:])
+              j=json.loads(p.stdout);formats=[x for x in j.get('formats',[]) if x.get('height') and x.get('vcodec') not in ('none',None)]
+              r['best_height']=max([x.get('height',0) for x in formats],default=0);r['duration']=j.get('duration');r['title']=j.get('title')
+              if r['best_height']<720:raise ValueError('Rejected source, resolution too low')
+              cmd=['yt-dlp','--ffmpeg-location',ff,'--no-progress','--no-playlist','--socket-timeout','14','--retries','0','--fragment-retries','0','--download-sections','*00:00:02-00:00:12','--force-keyframes-at-cuts','-f','best[height>=720]','--merge-output-format','mp4','-o',str(o/(name+'.%(ext)s')),url]
+              q=subprocess.run(cmd,capture_output=True,text=True,timeout=90)
+              f=o/(name+'.mp4')
+              if q.returncode or not f.exists():raise RuntimeError((q.stderr+q.stdout)[-400:])
+              r.update({'status':'VIDEO_DOWNLOADED_FOR_QC','bytes':f.stat().st_size,'filename':f.name})
+            except Exception as e:r.update({'status':'FAILED','error':str(e)[:400]})
+            print(name,r['status'],r.get('best_height'),flush=True);return r
+          with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:res=list(pool.map(v,vids))
+          (o/'2017_REACTION_MANIFEST.json').write_text(json.dumps(res,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/reaction.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-2017-real-reaction-video-qa
+          path: reaction2017/
+          retention-days: 5
