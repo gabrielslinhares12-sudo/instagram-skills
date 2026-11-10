@@ -507,6 +507,41 @@
         "https://www.nhtsa.gov/vehicle-safety"
       ],
       "approval_note": "Proprietário autorizou agendamento para 10h de 10/11/2026 America/Sao_Paulo e pediu retirar 'Física Aplicada'. Versão V6 exatamente sem o texto no topo, 5 JPEGs 4:5; modelo do carrossel mantido, sem logotipo fictício. Sem música, conforme preferência expressa anterior do canal."
+    },
+    {
+      "id": "tue-2026-11-10-15-cinto-airbag-v8",
+      "due_at": "2026-11-10T18:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "O carro para. Seu corpo não. — Cinto e airbag",
+      "caption": "🚘 O carro freia ou sofre uma colisão. Mas, pela inércia, seu corpo tende a continuar em movimento.\n\nO cinto de segurança aplica a força que desacelera o ocupante, distribuindo-a principalmente pelo tórax e pela pelve. Já o airbag oferece proteção complementar em determinadas colisões.\n\nA física explica: para a mesma mudança na quantidade de movimento, aumentar o tempo de desaceleração ajuda a reduzir a força média do impacto.\n\nCinto e airbag trabalham juntos, mas o airbag nunca substitui o cinto. Use-o sempre, inclusive no banco traseiro.\n\nVocê já sabia por que os dois sistemas se complementam?\n\n#TemUmaExplicacao #FisicaDoCotidiano #CintoDeSeguranca #Airbag #SegurancaViaria",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/3eac4a2f72e104c38d19e46ca329cc606d8ce1e6/content/media/instagram/2026-11-10/cinto-airbag-15h-v8/01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/3eac4a2f72e104c38d19e46ca329cc606d8ce1e6/content/media/instagram/2026-11-10/cinto-airbag-15h-v8/02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/3eac4a2f72e104c38d19e46ca329cc606d8ce1e6/content/media/instagram/2026-11-10/cinto-airbag-15h-v8/03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/3eac4a2f72e104c38d19e46ca329cc606d8ce1e6/content/media/instagram/2026-11-10/cinto-airbag-15h-v8/04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/3eac4a2f72e104c38d19e46ca329cc606d8ce1e6/content/media/instagram/2026-11-10/cinto-airbag-15h-v8/05.jpg"
+      ],
+      "media_sha256": [
+        "5e90ef9883a2dbe7ea6a1de5b994df18327931a9219d8648b323750fdb912401",
+        "b37f614854047842f3d5ad00c2ab9ae33b2e69a0ecc05a637b524110d853261f",
+        "20dc2fb66df1ec5688954f923f3e370502988ba029433add9a8b369b213ef141",
+        "a31a01db39a2ea94677ac8a6fd897daaf3c9d60762169349ac4c3e60598f55b1",
+        "20f09d18bfac7f3312853785e1f6894a8518672531b49fc039ae65a7704cba16"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "distribution_mode": "api_carousel_without_native_music",
+      "owner_authorized_without_music": true,
+      "sources": [
+        "https://www.nhtsa.gov/vehicle-safety/seat-belts",
+        "https://www.nhtsa.gov/vehicle-safety/air-bags",
+        "https://openstax.org/books/university-physics-volume-1/pages/9-2-impulse-and-collisions"
+      ],
+      "approval_note": "Solicitação explícita de produzir e agendar agora o segundo post de 10/11 para 15:00 BRT. V8: cinco JPEGs 4:5, sem logo fictício nem Física Aplicada, rodapé mínimo TUE-MESTRE-01, diagrama cintura/tórax corrigido, sem Lúmino desnecessário. Sem música conforme preferência editorial de postagens."
     }
   ]
 }
