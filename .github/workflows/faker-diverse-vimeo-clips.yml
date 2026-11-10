@@ -1,0 +1,68 @@
+name: "FAKER EP01 — licensed-source Vimeo video test (PRIVATE QC)"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-diverse-vimeo-clips.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  source-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 32
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - name: Install video research tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python3 -m pip install -q -U yt-dlp
+      - name: Fetch short mute sample cuts (private QA — permission pending)
+        run: |
+          mkdir -p source_samples
+          cat > /tmp/collect.py <<'PY'
+          import pathlib,subprocess,json,shutil
+          p=pathlib.Path('source_samples')
+          rows=[
+            ('2015_montage','https://vimeo.com/162847650',1,9,2015,'fan montage - third party'),
+            ('2016_worlds','https://vimeo.com/234417912',2,10,2016,'2016 Worlds creative portfolio'),
+            ('2017_faker_rift','https://vimeo.com/230558919',4,12,2017,'2017 Rift Rivals with Faker, BTS'),
+            ('2022_t1_zo_f_g_k','https://vimeo.com/814821434',0,8,2022,'T1 team 2023 campaign; verify shoot date'),
+            ('2023_worlds_open','https://vimeo.com/901727511',2,10,2023,'2023 Worlds opening film'),
+            ('2024_t1_blg_final','https://vimeo.com/1026961138',3,11,2024,'2024 Worlds finals film'),
+            ('2024_faker_hall','https://vimeo.com/991725145',3,11,2024,'2024 Faker Hall of Legends trailer'),
+            ('2024_t1_samsung','https://vimeo.com/1137994276',2,10,2024,'Samsung T1 Faker, year unverified'),
+            ('2024_faker_rl','https://vimeo.com/1035203265',2,10,2024,'Ralph Lauren x T1 Faker'),
+            ('2025_t1_omen','https://vimeo.com/1163158626',2,10,2025,'T1 ZOFGK campaign archival, no year inference'),
+            ('2026_t1_collection','https://vimeo.com/1186029758',2,10,2026,'T1 Faker 2026 branded collection'),
+            ('2017_msi_doc','https://vimeo.com/216265297',2,10,2017,'2017 MSI event in Brazil, verify Faker appears')
+          ]
+          out=[]
+          for name,url,a,b,yr,note in rows:
+            r={'name':name,'url':url,'year_context':yr,'note':note,'license':'RIGHTS REVIEW REQUIRED','can_publish':False}
+            try:
+              dest=str(p/name+'.%(ext)s')
+              cmd=['yt-dlp','--no-playlist','--no-progress','--socket-timeout','20','--retries','1','--fragment-retries','1','--download-sections',f'*00:00:{a:02d}-00:00:{b:02d}','--force-keyframes-at-cuts','-f','best[height<=720]/best','--merge-output-format','mp4','-o',dest,url]
+              z=subprocess.run(cmd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=125,text=True)
+              r['yt_dlp_exit']=z.returncode;r['extractor_log']=z.stdout[-600:]
+              candidates=[x for x in p.glob(name+'.*') if x.suffix in ('.mp4','.webm','.mov')]
+              if not candidates:raise RuntimeError('No video file, '+z.stdout[-250:])
+              src=candidates[0];tmp=p/(name+'_preview.mp4')
+              ff=['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(src),'-t','8','-vf','scale=960:-2:flags=bicubic,fps=24,format=yuv420p','-an','-c:v','libx264','-preset','ultrafast','-crf','29',str(tmp)]
+              k=subprocess.run(ff,timeout=100,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+              if k.returncode or not tmp.exists():raise RuntimeError('transcode '+str(k.stderr[-200:]))
+              src.unlink()
+              tmp.rename(p/(name+'.mp4'))
+              r['status']='SAMPLE_ONLY_NOT_LICENSED';r['bytes']=(p/(name+'.mp4')).stat().st_size
+            except Exception as e:r['status']='FAILED';r['error']=str(e)[:450]
+            print(name,r['status'],r.get('bytes',0),r.get('error',''),flush=True);out.append(r)
+          (p/'clip_source_audit.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/collect.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-vimeo-unique-motion-clip-research
+          path: source_samples/
+          retention-days: 3
+          compression-level: 0
