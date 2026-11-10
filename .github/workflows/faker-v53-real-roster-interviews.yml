@@ -1,0 +1,55 @@
+name: "FAKER V5.3 — CC licensed Ruler/Bdd/Clid 1080p interview archive"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v53-real-roster-interviews.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - name: Install encoder
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Download actual named esports players interview (CC BY 3.0) and make 1080p excerpts
+        shell: bash
+        run: |
+          mkdir -p archived
+          cat >/tmp/ingest.py <<'PY'
+          import pathlib,json,urllib.request,urllib.parse,hashlib,subprocess
+          root=pathlib.Path('archived')
+          title="젠지 '클리드'-'비디디'-'룰러' 인터뷰 TES 이길 수 있다.webm"
+          ua={'User-Agent':'TemUmaExplicacao-CCArchive/1.0 (Attribution and license compliance)'}
+          api='https://commons.wikimedia.org/w/api.php?'+urllib.parse.urlencode({'action':'query','titles':'File:'+title,'prop':'imageinfo','iiprop':'url|size|extmetadata','formatversion':'2','format':'json'})
+          with urllib.request.urlopen(urllib.request.Request(api,headers=ua),timeout=30) as r:j=json.load(r)
+          info=j['query']['pages'][0]['imageinfo'][0]
+          license=info.get('extmetadata',{}).get('LicenseShortName',{}).get('value')
+          if license!='CC BY 3.0' or info['width']<1920 or info['height']<1080: raise RuntimeError('Source not CC BY 3.0 full HD')
+          master=pathlib.Path('/tmp/gen_g_ruler_bdd_clid_2020.webm')
+          with urllib.request.urlopen(urllib.request.Request(info['url'],headers=ua),timeout=180) as src,open(master,'wb') as out:
+            while True:
+              chunk=src.read(1024*1024)
+              if not chunk: break
+              out.write(chunk)
+          sha=hashlib.sha256(master.read_bytes()).hexdigest()
+          sources=[]
+          for name,t in [('gen_g_2020_00m15s','00:00:15'),('gen_g_2020_01m30s','00:01:30'),('gen_g_2020_03m15s','00:03:15'),('gen_g_2020_05m30s','00:05:30')]:
+            f=root/(name+'.mp4')
+            cmd=['ffmpeg','-nostdin','-hide_banner','-loglevel','error','-ss',t,'-i',str(master),'-t','9','-an','-vf','fps=30,scale=1920:1080:flags=lanczos,format=yuv420p','-c:v','libx264','-crf','20','-preset','fast','-movflags','+faststart','-y',str(f)]
+            z=subprocess.run(cmd,capture_output=True,timeout=150)
+            if z.returncode!=0: raise RuntimeError(z.stderr[-500:].decode(errors='replace'))
+            sources.append({'name':f.name,'seconds':9,'inpoint':t,'resolution':'1920x1080','content':'2020 Gen.G interview with Clid, Bdd and Ruler; DO NOT mislabel as 2023 national squad','bytes':f.stat().st_size,'source_page':'https://commons.wikimedia.org/wiki/File:'+urllib.parse.quote(title.replace(' ','_')),'license':license,'original_sha256':sha,'commercial_reuse':'CC BY 3.0 attribution and adaptation notice required','status':'archive only until faces/scene QC'})
+          (root/'SOURCE_MANIFEST.json').write_text(json.dumps(sources,ensure_ascii=False,indent=2))
+          print('archived_original_bytes',master.stat().st_size,'clips',len(sources))
+          PY
+          python3 /tmp/ingest.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v53-licensed-ruler-bdd-clid-hd
+          path: archived/
+          retention-days: 7
+          compression-level: 0
