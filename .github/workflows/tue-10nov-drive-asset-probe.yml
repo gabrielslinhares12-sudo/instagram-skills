@@ -1,0 +1,42 @@
+name: "TUE 10nov - testar acesso aos assets privados (somente leitura)"
+on:
+  push:
+    paths: [".github/workflows/tue-10nov-drive-asset-probe.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Diagnosticar acesso seguro aos assets no Drive
+        env:
+          GDRIVE_OAUTH_CLIENT_ID: ${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}
+          GDRIVE_OAUTH_CLIENT_SECRET: ${{ secrets.GDRIVE_OAUTH_CLIENT_SECRET }}
+          GDRIVE_OAUTH_REFRESH_TOKEN: ${{ secrets.GDRIVE_OAUTH_REFRESH_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import os,urllib.request,urllib.parse,json
+          names=['GDRIVE_OAUTH_CLIENT_ID','GDRIVE_OAUTH_CLIENT_SECRET','GDRIVE_OAUTH_REFRESH_TOKEN']
+          available=all(os.getenv(n) for n in names)
+          print('OAUTH_CONFIGURED='+str(available))
+          if not available: raise SystemExit('OAUTH_SECRETS_NOT_CONFIGURED')
+          body=urllib.parse.urlencode(dict(client_id=os.environ[names[0]],client_secret=os.environ[names[1]],refresh_token=os.environ[names[2]],grant_type='refresh_token')).encode()
+          try:
+            req=urllib.request.Request('https://oauth2.googleapis.com/token',data=body,headers={'Content-Type':'application/x-www-form-urlencoded'})
+            with urllib.request.urlopen(req,timeout=30) as resp: tok=json.load(resp)['access_token']
+            fid='1QzR3-EomN3jq-jzv_tKu87zr17xUH_xN'
+            req=urllib.request.Request('https://www.googleapis.com/drive/v3/files/'+fid+'?fields=id,name,mimeType,size',headers={'Authorization':'Bearer '+tok})
+            with urllib.request.urlopen(req,timeout=30) as resp: obj=json.load(resp)
+            print('DRIVE_ASSET_ACCESS=OK')
+            print('FILE_NAME='+obj.get('name','?'))
+            print('FILE_SIZE='+str(obj.get('size','?')))
+          except Exception as exc:
+            print('DRIVE_ASSET_ACCESS=FAILED '+type(exc).__name__)
+            raise SystemExit(1)
+          PY
