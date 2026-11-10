@@ -1,0 +1,58 @@
+name: "FAKER EP01 — CC portrait recovery (PRIVATE)"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-ep01-portraits.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  photo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - filename: "Faker at 2015 Worlds.jpeg"
+            output: "2015-faker.jpg"
+          - filename: "T1 hold 2023 Summoners Cup.jpg"
+            output: "2023-t1-cup.jpg"
+          - filename: "Faker at Worlds 2024.jpg"
+            output: "2024-faker.jpg"
+          - filename: "Faker Hall of Legends Press Conference - 01.jpg"
+            output: "2024-hall.jpg"
+    steps:
+      - name: Get a single original from Wikimedia Commons with license proof
+        env:
+          SOURCE_FILE: ${{ matrix.filename }}
+          OUTPUT_FILE: ${{ matrix.output }}
+        run: |
+          mkdir -p pics
+          python3 - <<'PY'
+          import os,json,urllib.parse,urllib.request,hashlib,pathlib,time
+          t=os.environ['SOURCE_FILE'];out=os.environ['OUTPUT_FILE'];dest=pathlib.Path('pics/'+out)
+          hdr={'User-Agent':'TUE-Esports-Editorial/1.0 (private video production, source attribution)'}
+          api='https://commons.wikimedia.org/w/api.php?'+urllib.parse.urlencode({'action':'query','prop':'imageinfo','iiprop':'url|size|extmetadata','titles':'File:'+t,'format':'json','formatversion':'2'})
+          receipt={'file':t,'source_page':'https://commons.wikimedia.org/wiki/File:'+urllib.parse.quote(t.replace(' ','_'))}
+          try:
+            with urllib.request.urlopen(urllib.request.Request(api,headers=hdr),timeout=20) as r:j=json.load(r)
+            i=j['query']['pages'][0]['imageinfo'][0]
+            lic=i.get('extmetadata',{}).get('LicenseShortName',{}).get('value','')
+            receipt.update({'width':i['width'],'height':i['height'],'license':lic})
+            if i['width']>=i['height'] or 'CC' not in lic: raise ValueError('Not portrait or not CC')
+            with urllib.request.urlopen(urllib.request.Request(i['url'],headers=hdr),timeout=50) as r, open(dest,'wb') as f: 
+              while True:
+                chunk=r.read(1048576)
+                if not chunk:break
+                f.write(chunk)
+            receipt['sha256']=hashlib.sha256(dest.read_bytes()).hexdigest();receipt['status']='ok'
+          except Exception as e:
+            receipt['status']='fail';receipt['reason']=str(e)
+          pathlib.Path('pics/provenance-'+out+'.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2))
+          print(receipt)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: faker-portrait-${{ matrix.output }}
+          path: pics/
+          retention-days: 3
