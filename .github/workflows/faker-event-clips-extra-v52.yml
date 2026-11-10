@@ -1,0 +1,67 @@
+name: "FAKER EP01 — historic extra year match trials (PRIVATE QC)"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-event-clips-extra-v52.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  historical-motion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Install editorial extraction tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python3 -m pip install -q -U 'yt-dlp[default]'
+      - name: Private extract of short dated archival samples
+        shell: bash
+        run: |
+          mkdir -p historical_extra
+          cat > /tmp/historical.py <<'PY'
+          import subprocess,pathlib,json,concurrent.futures,time
+          out=pathlib.Path('historical_extra')
+          sources=[
+            ('2015_worlds_final_g2','x4w53sa','00:00:12','00:00:20',2015,'SKT vs KOO 2015 final game 2; verify clip content'),
+            ('2015_worlds_final_g3','x4w53sk','00:00:22','00:00:30',2015,'SKT vs KOO 2015 final game 3; verify clip content'),
+            ('2016_worlds_final_alt','x511x06','00:00:15','00:00:23',2016,'2016 SKT vs SSG Worlds finals game 1'),
+            ('2022_t1_faker_re_sign','x8fwyj8','00:00:05','00:00:13',2022,'2022 T1 Faker renewed contract; verify video'),
+            ('2023_t1_worlds_news','x8psd2w','00:00:07','00:00:15',2023,'2023 T1/Faker Worlds run news; verify'),
+            ('2026_faker_legacy','x9w73ms','00:00:07','00:00:15',2026,'2026 Faker legacy retrospective; not a 2026 actual match'),
+            ('2024_faker_blg_alt','x98htlu','00:00:35','00:00:43',2024,'2024 Worlds final game different timing'),
+            ('2013_faker_gameplay_alt','x2hlnj0','00:00:52','00:01:00',2013,'2013 Worlds Faker gameplay different moment'),
+            ('2017_faker_worlds_alt','x6wsifa','00:01:35','00:01:43',2017,'2017 Faker Worlds scenes different clip'),
+            ('2025_worlds_recap_v2','x9ti84w','00:00:04','00:00:12',2025,'2025 T1 KT Worlds quick intro'),
+          ]
+          def fetch(row):
+            name,vid,a,b,year,desc=row
+            rec={'name':name,'source':'https://www.dailymotion.com/video/'+vid,'years':year,'context':desc,'rights':'PRIVATE REVIEW; original source/publisher rights not verified','publish_blocked':True}
+            src=out/(name+'.%(ext)s')
+            try:
+              cmd=['yt-dlp','--no-progress','--no-playlist','--socket-timeout','18','--retries','0','--fragment-retries','0','--download-sections',f'*{a}-{b}','--force-keyframes-at-cuts','-f','best[height<=720]/best','--merge-output-format','mp4','-o',str(src),rec['source']]
+              p=subprocess.run(cmd,capture_output=True,text=True,timeout=95)
+              rec['exit_code']=p.returncode;rec['extractor_tail']=(p.stdout+' '+p.stderr)[-650:]
+              paths=[x for x in out.glob(name+'.*') if x.suffix in ('.mp4','.webm','.mov')]
+              if not paths:raise RuntimeError('No source video downloaded')
+              f=paths[0];ready=out/(name+'_clean.mp4')
+              c=['ffmpeg','-loglevel','error','-hide_banner','-y','-i',str(f),'-t','8','-vf','scale=960:-2:flags=bilinear,fps=24,format=yuv420p','-an','-c:v','libx264','-preset','ultrafast','-crf','27',str(ready)]
+              z=subprocess.run(c,capture_output=True,timeout=70)
+              if z.returncode or not ready.exists():raise RuntimeError('ffmpeg fail '+z.stderr[-200:].decode(errors='replace'))
+              f.unlink();ready.rename(out/(name+'.mp4'))
+              rec['status']='PRIVATE_SAMPLE';rec['bytes']=(out/(name+'.mp4')).stat().st_size
+            except Exception as e:
+              rec['status']='FAILED';rec['error']=str(e)
+            print(name,rec['status'],rec.get('bytes',0),rec.get('error',''),flush=True)
+            return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool: data=list(pool.map(fetch,sources))
+          (out/'PROVENANCE_QC.json').write_text(json.dumps(data,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/historical.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v52-extra-era-sources
+          path: historical_extra/
+          retention-days: 3
+          compression-level: 0
