@@ -1,0 +1,47 @@
+name: "FAKER EP01 — additional 2023/2024 event footage QA"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-events-final-sources.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  clips:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - name: Download licensed-status-pending event excerpts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python3 -m pip install -q -U yt-dlp
+          mkdir -p shots
+          cat >/tmp/shots.py <<'PY'
+          import concurrent.futures,pathlib,json,subprocess
+          names=[
+            ('2023_asian_games_reuters','x8ofvgu','00:01:18','00:01:27','2023 LoL Asia Games final; Reuters news; rights pending'),
+            ('2024_hall_trailer','x90m176','00:00:25','00:00:34','2024 Hall of Legends Faker official trailer; rights pending'),
+            ('2023_t1_worlds_footage','x8psd2w','00:01:15','00:01:24','2023 T1 Worlds victory recap; private editorial review')
+          ]
+          o=pathlib.Path('shots')
+          def get(r):
+            nm,vid,a,b,desc=r;z={'name':nm,'src':'https://www.dailymotion.com/video/'+vid,'desc':desc,'publish_allowed':False}
+            try:
+              c=['yt-dlp','--no-playlist','--no-progress','--socket-timeout','15','--retries','0','--fragment-retries','0','--download-sections',f'*{a}-{b}','--force-keyframes-at-cuts','-f','best[height<=720]/best','--merge-output-format','mp4','-o',str(o/(nm+'.%(ext)s')),z['src']]
+              p=subprocess.run(c,capture_output=True,text=True,timeout=70);f=[x for x in o.glob(nm+'.*') if x.suffix=='.mp4']
+              if not f:raise RuntimeError((p.stdout+' '+p.stderr)[-300:])
+              tmp=o/(nm+'_out.mp4');p=subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(f[0]),'-t','8','-vf','scale=960:-2,fps=24,format=yuv420p','-an','-c:v','libx264','-crf','28','-preset','ultrafast',str(tmp)],timeout=50,capture_output=True)
+              if p.returncode!=0 or not tmp.exists():raise RuntimeError('no frames')
+              f[0].unlink();tmp.rename(o/(nm+'.mp4'));z['status']='PRIVATE_SAMPLE';z['bytes']=(o/(nm+'.mp4')).stat().st_size
+            except Exception as e:z['status']='FAILED';z['error']=str(e)[:300]
+            print(nm,z['status'],flush=True);return z
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as x: a=list(x.map(get,names))
+          (o/'PROVENANCE.json').write_text(json.dumps(a,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/shots.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-2023-2024-extra-event-clips
+          path: shots/
+          retention-days: 3
