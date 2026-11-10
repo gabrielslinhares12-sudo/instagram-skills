@@ -1,0 +1,58 @@
+name: "FAKER V5.4 — 2022 DRX official English and 2026 BLG real footage"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-2022-2026-confirmed.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  footage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - year: "2022"
+            url: "https://www.twitch.tv/videos/1644541745"
+            positions: "00:40:00,02:45:00,04:30:00,06:30:00,08:30:00"
+          - year: "2026"
+            url: "https://kick.com/riotgames/videos/01a1b7c1-bdd0-778f-b698-11d34487a200"
+            positions: "00:25:00,00:50:00,01:30:00,02:00:00,02:15:00"
+    steps:
+      - name: Install FFmpeg from imageio and yt-dlp
+        run: python -m pip install -q -U 'yt-dlp[default]' imageio-ffmpeg
+      - name: Extract source video samples in native Full HD — publication requires rights verification
+        env:
+          YEAR: ${{ matrix.year }}
+          SOURCE_URL: ${{ matrix.url }}
+          SOURCE_TIMES: ${{ matrix.positions }}
+        run: |
+          mkdir -p original_motion
+          cat >/tmp/get.py <<'PY'
+          import json,subprocess,os,pathlib,concurrent.futures
+          from imageio_ffmpeg import get_ffmpeg_exe
+          out=pathlib.Path('original_motion');year=os.environ['YEAR'];src=os.environ['SOURCE_URL']
+          def get(row):
+            i,t=row;h,m,s=map(int,t.split(':'));to=h*3600+m*60+s+8;end=f'{to//3600:02d}:{to//60%60:02d}:{to%60:02d}'
+            filename=f'{year}_C_{i:02d}.mp4'
+            rec={'year':year,'start':t,'end':end,'source':src,'local':filename,'source_description':('Original Riot broadcast 2022 T1 DRX final' if year=='2022' else 'Original Riot broadcast 2026 T1 BLG semifinal'),'rights':'PRIVATE QC ONLY — check broadcaster policy and creator credit'}
+            cmd=['yt-dlp','--ffmpeg-location',get_ffmpeg_exe(),'--no-progress','--no-playlist','--socket-timeout','12','--retries','0','--fragment-retries','0','--download-sections',f'*{t}-{end}','--force-keyframes-at-cuts','-f','best[height>=1080]','--merge-output-format','mp4','-o',str(out/f'{year}_C_{i:02d}.%(ext)s'),src]
+            try:
+              p=subprocess.run(cmd,capture_output=True,text=True,timeout=130)
+              f=out/filename
+              if p.returncode or not f.exists() or f.stat().st_size<200000: raise RuntimeError((p.stdout+p.stderr)[-300:])
+              rec['status']='DOWNLOADED_1080';rec['bytes']=f.stat().st_size
+            except Exception as e:rec['status']='FAILED';rec['error']=str(e)[:400]
+            print(year,i,rec['status'],rec.get('bytes'),flush=True);return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:rr=list(pool.map(get,enumerate(os.environ['SOURCE_TIMES'].split(','))))
+          (out/'MANIFEST.json').write_text(json.dumps(rr,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/get.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-new-2022-2026-original-riot-${{ matrix.year }}
+          path: original_motion/
+          retention-days: 4
+          compression-level: 0
