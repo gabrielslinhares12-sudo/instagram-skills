@@ -252,6 +252,12 @@
       "instagram_user_id": "17841433004716815",
       "page_id": "1385407341325017",
       "published_at": "2026-11-10T13:34:05Z"
+    },
+    "tue-2026-11-10-15-cinto-airbag-v9-corrigido": {
+      "status": "claimed",
+      "fingerprint": "60aa94b70b4311e35da7bed8950f7ab8e8912a38309f24d6cfc17596bce014e0",
+      "due_at": "2026-11-10T18:00:00Z",
+      "claimed_at": "2026-11-10T18:53:38Z"
     }
   }
 }
