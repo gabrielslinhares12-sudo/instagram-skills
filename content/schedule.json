@@ -544,6 +544,41 @@
         "https://commons.wikimedia.org/wiki/File:Abandoned_car_interior_showing_a_deployed_airbag_and_a_worn_steering_wheel_in_a_forgotten_location.jpg"
       ],
       "approval_note": "Solicitação explícita de produzir e agendar agora o segundo post de 10/11 para 15:00 BRT. V8: cinco JPEGs 4:5, sem logo fictício nem Física Aplicada, rodapé mínimo TUE-MESTRE-01, diagrama cintura/tórax corrigido, sem Lúmino desnecessário. Sem música conforme preferência editorial de postagens.\nCANCELADO em 10/11/2026 por solicitação expressa do proprietário: Lúmino fora do padrão. PROIBIDO publicar até nova revisão e aprovação. Não reagendar automaticamente."
+    },
+    {
+      "id": "tue-2026-11-10-15-cinto-airbag-v9-corrigido",
+      "due_at": "2026-11-10T18:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "Por que cinto de segurança e airbag trabalham juntos?",
+      "caption": "🚗 O carro pode parar de repente, mas seu corpo tende a continuar em movimento. É a inércia.\n\nO cinto ajuda a desacelerar o ocupante e distribui as forças principalmente pelo tórax e pela pelve. O airbag complementa essa proteção em determinadas colisões.\n\nA física explica por quê: para a mesma mudança de quantidade de movimento, aumentar o tempo de desaceleração pode reduzir a força média do impacto.\n\nO airbag não substitui o cinto. Use o cinto corretamente, inclusive no banco traseiro.\n\nVocê já conhecia a física por trás dessas tecnologias?\n\n#TemUmaExplicacao #CintoDeSeguranca #Airbag #SegurancaNoTransito #FisicaDoCotidiano",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/2d8e4bb5e677acd2c629817f6802f7c849da96f4/content/media/instagram/2026-11-10/cinto-airbag-15h-v9/01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/2d8e4bb5e677acd2c629817f6802f7c849da96f4/content/media/instagram/2026-11-10/cinto-airbag-15h-v9/02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/2d8e4bb5e677acd2c629817f6802f7c849da96f4/content/media/instagram/2026-11-10/cinto-airbag-15h-v9/03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/2d8e4bb5e677acd2c629817f6802f7c849da96f4/content/media/instagram/2026-11-10/cinto-airbag-15h-v9/04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/2d8e4bb5e677acd2c629817f6802f7c849da96f4/content/media/instagram/2026-11-10/cinto-airbag-15h-v9/05.jpg"
+      ],
+      "media_sha256": [
+        "98090f312c750d4dcf1a29b81ee8559412b2a2032b84e80fa58a1c50d2e7687d",
+        "56bd315eae951cf6cea3a3f0ad3c2dce316a3893a6d1ca04155a2cdc9de728e0",
+        "afbed577e51d5c88da53605bee5eab4a4e4a96fb19502cfe89a0099cb466d902",
+        "4001fa127c7a8f4ec36c7f8263082bb2439a398402d38132d60f4d15c869006c",
+        "556256340777ec2a8b2500a6aff1a4be8940eb2ec71dc9ee5c5a6e3929c039c7"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "distribution_mode": "api_carousel_without_native_music",
+      "owner_authorized_without_music": true,
+      "sources": [
+        "https://www.nhtsa.gov/vehicle-safety/seat-belts",
+        "https://www.nhtsa.gov/vehicle-safety/air-bags",
+        "https://openstax.org/books/university-physics-volume-1/pages/9-2-impulse-and-collisions"
+      ],
+      "approval_note": "Usuário aprovou novo carrossel completo V9 na conversa e pediu expressamente: agende o post para as 15:00. Cinco imagens V9 diferentes das V8 canceladas, sem Lúmino gerado, 10nov2026 15h São Paulo. Não publicar V8. Sem música conforme contrato editorial existente."
     }
   ]
 }
