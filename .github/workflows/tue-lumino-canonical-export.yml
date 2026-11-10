@@ -1,0 +1,25 @@
+name: "TUE - exportar Lúmino original para composição"
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/tue-lumino-canonical-export.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Conferir integridade do PNG canônico
+        run: |
+          echo "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b  content/brand/lumino-original.png" | sha256sum --check
+      - name: Disponibilizar apenas o personagem original
+        uses: actions/upload-artifact@v4
+        with:
+          name: tue-lumino-canonico-verificado
+          path: content/brand/lumino-original.png
+          retention-days: 1
+          if-no-files-found: error
