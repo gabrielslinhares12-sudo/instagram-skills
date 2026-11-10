@@ -9,7 +9,7 @@
   "images": [
     {
       "path": "content/staging/2026-11-10/abs/01.jpg",
-      "sha256": "88887eaa0b211cd2b6c0c368e41de658743a7209caac9900bbd014ccee052467",
+      "sha256": "c4a5203a36e724d7b410f939d92662f5c8829bd2baab061bc8e4fe873ff4dc4c",
       "post_id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
       "order": 1
     },
@@ -33,25 +33,25 @@
     },
     {
       "path": "content/staging/2026-11-10/abs/05.jpg",
-      "sha256": "670fddc3d298ffa4597439222032bf8b812e2f10918f0974203e7e76871c018c",
+      "sha256": "0049f1b19b61e4ff1db1e52348384789078f9570bf0f3dfa3736e76b03cd7f56",
       "post_id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
       "order": 5
     },
     {
       "path": "content/staging/2026-11-10/abs/06.jpg",
-      "sha256": "37e58f281752b4351eba53c5e32f6f0ca6aa79f1052d77102f33bf29a1594c5f",
+      "sha256": "e1a46f6049c2abfbc6d5e3c89a541746d10cce3dd85f4b26a27fcf1f0c7ee861",
       "post_id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
       "order": 6
     },
     {
       "path": "content/staging/2026-11-10/cinto/01.jpg",
-      "sha256": "e1cdbad90753fc53d67c9b6300b667d0411435b9211678985673a55accc9e8eb",
+      "sha256": "d1102b139801a263265e464cf71e948a8d333e8ad1768ef71af03a0d693e33f5",
       "post_id": "tue-2026-11-10-15-cinto-impulso",
       "order": 1
     },
     {
       "path": "content/staging/2026-11-10/cinto/02.jpg",
-      "sha256": "6bdfa53607d0b009948fd635ece09b78a352e20413b0c2136026cd3f906b83cb",
+      "sha256": "ae665c9151e34f0915c376e6c10a323bed92eeceb00501ee5f4919894a97d619",
       "post_id": "tue-2026-11-10-15-cinto-impulso",
       "order": 2
     },
