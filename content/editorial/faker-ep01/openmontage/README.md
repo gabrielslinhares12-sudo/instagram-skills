@@ -41,3 +41,16 @@
 Importar os arquivos do Drive para um checkout autenticado do OpenMontage (fora desta branch), copiar o pacote V4.7 para `projects/tue-faker-ep01/`, rodar o preflight de ferramentas e o QC de fontes, selecionar as mídias reais e só então montar o corte fonte-principal, os gráficos, a mixagem e o master.
 
 NÃO publicar ou agendar antes da revisão visual e autorização do proprietário.
+
+
+## V5.2 — montagem documental variada (10/11/2026, revisão privada)
+
+- **MP4 disponível no Drive:** https://drive.google.com/file/d/1gpM57_LemHfcOypZ9OR8cLyPyuT1zCSV/view
+- **Relatório de QC, decupagem, fontes e direitos:** https://drive.google.com/file/d/1mM4N7aUaH5gRGdmoK2rgYxuWXadngQvI/view
+- **Fatos técnicos verificados:** 298,513s, 1080x1920, 30fps, H.264/AAC, 89.361.897 bytes, narração Rasalgethi original.
+- **Mudança visual:** 43 tomadas, sendo 35 de arquivos em vídeo e 8 estáticas, 243,2s associados a arquivos audiovisuais; a entrevista de Faker de 2020 foi utilizada apenas uma vez, ~10s; vídeo 9:16 em tela cheia, sem miniaturas centrais nem molduras.
+- **Fontes de apoio genéricas explicitamente separadas:** os jogadores e arenas de stock não representam Faker, T1 ou finais reais. Noticiários podem conter fotos e não equivalem a 243,2s de gameplay.
+- **Materiais de arquivo reais por período:** 2013, 2015, 2016, 2017, 2023, 2024. Restam lacunas do campeonato 2022, final 2025 e premiações/eventos 2026; algumas cenas do corte são apenas apoio documental, jamais identificadas como captação da partida.
+- **Rights gate:** clipes de partidas/noticiários/trailer não têm direito de republicação garantido; autores CC BY necessitam crédito. É apenas V5.2 de revisão, NÃO master 4K60 e NÃO aprovado para postagem.
+- **Montagem técnica efetiva:** FFmpeg local, reaproveitando diretrizes OpenMontage hybrid; não representa execução integral do motor OpenMontage.
+- **Publicação e agendamento:** nenhum, até autorização expressa após QC editorial.
