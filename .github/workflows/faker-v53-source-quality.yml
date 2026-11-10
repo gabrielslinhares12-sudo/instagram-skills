@@ -1,0 +1,63 @@
+name: "FAKER EP01 V5.3 — High-resolution source audit"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v53-source-quality.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Install probe tools
+        run: |
+          python3 -m pip install --disable-pip-version-check -q -U 'yt-dlp[default]'
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Inventory high resolution for actual events and player closeups
+        shell: bash
+        run: |
+          mkdir -p audit
+          cat >/tmp/probe.py <<'PY'
+          import json,pathlib,subprocess,concurrent.futures,urllib.parse
+          items=[
+          ('2013_faker_ahri','https://www.dailymotion.com/video/x2hlnj0','2013 Faker actual match'),
+          ('2015_worlds_g2','https://www.dailymotion.com/video/x3nlc9x','2015 Worlds final actual match'),
+          ('2016_worlds_final','https://www.dailymotion.com/video/x511wxt','2016 SKT SSG actual final'),
+          ('2017_worlds_faker','https://www.dailymotion.com/video/x6wsifa','2017 archival worlds'),
+          ('2023_korea_gold','https://www.dailymotion.com/video/x8ofjec','2023 Asian Games'),
+          ('2024_t1_blg','https://www.dailymotion.com/video/x98htlu','2024 T1 BLG actual final'),
+          ('2024_hall_trailer','https://www.dailymotion.com/video/x90m176','Faker Hall of Legends'),
+          ('2025_t1_kt','https://www.dailymotion.com/video/x9ti84w','2025 T1 KT Worlds'),
+          ('2024_naver_vod','https://game.naver.com/esports/League_of_Legends/videos/1043947','2024 T1 BLG native Korea broadcaster'),
+          ('2024_bilibili_4k','https://www.bilibili.com/video/BV1fiS6Y5Ex1/','2024 T1 BLG official 4K'),
+          ('2025_group_faces','https://www.youtube.com/watch?v=q1UAlk8lxMk','Riftbound 2025 title roster official 2026'),
+          ('2025_t1_keria_oner','https://www.youtube.com/watch?v=feSCdBwiSKA','T1 TV Keria Oner'),
+          ('2025_t1_doran','https://www.youtube.com/watch?v=Tofl--ku5-I','T1 TV Doran Keria'),
+          ('2024_faker_hall_official','https://www.youtube.com/watch?v=xdfVomq3lAc','official LoL Faker documentary'),
+          ('2025_t1_final_bang','https://www.youtube.com/watch?v=1_f5IxerXhw','Bang official T1 final aftermath'),
+          ]
+          def probe(row):
+            name,url,note=row
+            d={'id':name,'url':url,'note':note}
+            try:
+              z=subprocess.run(['yt-dlp','--no-playlist','--skip-download','--dump-single-json','--socket-timeout','12','--retries','0','--extractor-retries','0',url],capture_output=True,text=True,timeout=55)
+              d['exit_code']=z.returncode
+              if z.returncode!=0:raise RuntimeError(z.stderr[-450:])
+              j=json.loads(z.stdout);fs=j.get('formats',[])
+              eligible=[f for f in fs if f.get('vcodec') not in (None,'none') and f.get('width') and f.get('height')]
+              eligible.sort(key=lambda x:(x.get('height') or 0,x.get('tbr') or 0),reverse=True)
+              d.update({'title':j.get('title'),'duration':j.get('duration'),'channel':j.get('channel'),'best_formats':[{'width':f.get('width'),'height':f.get('height'),'fps':f.get('fps'),'tbr':f.get('tbr'),'format_id':f.get('format_id'),'ext':f.get('ext'),'vcodec':f.get('vcodec')} for f in eligible[:8]],'available_at_least_1080p':any(f.get('height',0)>=1080 for f in eligible),'status':'PROBED_META_ONLY'})
+            except Exception as e:d['status']='FAILED';d['error']=str(e)[:450]
+            print(name,d['status'],(d.get('best_formats') or [{}])[0].get('height'),flush=True)
+            return d
+          with concurrent.futures.ThreadPoolExecutor(max_workers=5) as ex: results=list(ex.map(probe,items))
+          pathlib.Path('audit/video_source_quality.json').write_text(json.dumps(results,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v53-original-resolution-audit
+          path: audit/
+          retention-days: 7
