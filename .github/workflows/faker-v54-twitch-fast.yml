@@ -1,0 +1,40 @@
+name: "FAKER V5.4 — fast Twitch VOD source gate"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-twitch-fast.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Install yt-dlp
+        run: python -m pip install -q -U yt-dlp
+      - name: Verify Riot archive source playable streams and resolutions
+        run: |
+          mkdir -p gate
+          cat > /tmp/gate.py <<'PY'
+          import subprocess,json,concurrent.futures,pathlib
+          urls={'2023_wbg':'https://www.twitch.tv/videos/1981467393','2024_blg':'https://www.twitch.tv/videos/2291702312','2025_kt':'https://www.twitch.tv/videos/2613641505'}
+          def check(x):
+            n,url=x
+            p=subprocess.run(['yt-dlp','-J','--no-playlist','--no-progress','--skip-download','--socket-timeout','8','--retries','0','--extractor-retries','0',url],capture_output=True,text=True,timeout=40)
+            rec={'event':n,'url':url,'exit':p.returncode}
+            if p.returncode==0:
+              j=json.loads(p.stdout);fs=[f for f in j.get('formats',[]) if f.get('vcodec') not in ('none',None) and f.get('height')]
+              fs.sort(key=lambda x:(x.get('height') or 0),reverse=True)
+              rec.update({'title':j.get('title'),'duration':j.get('duration'),'heights':sorted(set(f.get('height') for f in fs if f.get('height'))),'best_height':fs[0].get('height') if fs else None,'status':'PLAYABLE_METADATA'})
+            else:rec.update({'status':'FAIL','stderr':p.stderr[-500:]})
+            print(rec,flush=True);return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:r=list(pool.map(check,urls.items()))
+          pathlib.Path('gate/metadata.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/gate.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-fast-twitch-metadata
+          path: gate/
+          retention-days: 3
