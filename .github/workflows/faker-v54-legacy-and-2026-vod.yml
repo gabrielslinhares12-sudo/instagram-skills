@@ -1,0 +1,58 @@
+name: "FAKER V5.4 — 2026 Riot semifinal and older finals source quality test"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-legacy-and-2026-vod.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Install tools
+        run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Verify archived game VOD sources before cutting
+        run: |
+          mkdir -p checked
+          cat > /tmp/events.py <<'PY'
+          import pathlib,subprocess,concurrent.futures,json
+          import imageio_ffmpeg
+          root=pathlib.Path('checked')
+          sources=[
+          ('2015_SKT_KOO_riot_youtube','https://www.youtube.com/watch?v=xZxEWZuCaYY','2015','2015 Riot official SKT KOO game 1'),
+          ('2017_SSG_SKT_riot_youtube','https://www.youtube.com/watch?v=yTzV-XaBlYM','2017','2017 Riot official Samsung SKT final game 1'),
+          ('2016_SKT_SSG_riot_youtube','https://www.youtube.com/watch?v=MfJ9fP6tYgw','2016','2016 Riot SKT SSG original broadcast'),
+          ('2022_T1_DRX_bilibili','https://www.bilibili.com/video/BV1mt4y1e7wF/','2022','2022 T1 DRX attempt archive source'),
+          ('2026_T1_BLG_Kick_Riot','https://kick.com/riotgames/videos/01a1b7c1-bdd0-778f-b698-11d34487a200','2026','2026 Riot Games BLG T1 semifinal')
+          ]
+          def check(row):
+            name,url,year,desc=row
+            rec={'name':name,'url':url,'year':year,'event':desc,'rights':'Private QC only. Confirm Riot broadcast reuse terms.'}
+            try:
+              p=subprocess.run(['yt-dlp','--no-playlist','--skip-download','--dump-single-json','--socket-timeout','12','--retries','0','--extractor-retries','0',url],capture_output=True,text=True,timeout=50)
+              if p.returncode:raise RuntimeError(p.stderr[-500:])
+              j=json.loads(p.stdout)
+              fmts=[x for x in j.get('formats',[]) if x.get('vcodec') not in ('none',None) and x.get('height')]
+              rec.update({'title':j.get('title'),'best_height':max((f['height'] for f in fmts),default=0),'duration':j.get('duration'),'status':'SOURCE_METADATA_OK'})
+              if rec['best_height']>=720 and ('2015' in name or '2016' in name or '2017' in name or '2026' in name):
+                target=root/(name+'.%(ext)s')
+                t='00:08:00';e='00:08:08'
+                cmd=['yt-dlp','--ffmpeg-location',imageio_ffmpeg.get_ffmpeg_exe(),'--no-playlist','--no-progress','--socket-timeout','12','--retries','0','--fragment-retries','0','--download-sections',f'*{t}-{e}','--force-keyframes-at-cuts','-f','best[height>=720]/best','--merge-output-format','mp4','-o',str(target),url]
+                c=subprocess.run(cmd,capture_output=True,text=True,timeout=95)
+                f=root/(name+'.mp4')
+                if c.returncode or not f.exists():rec['sample_status']='FAILED';rec['sample_error']=(c.stdout+c.stderr)[-400:]
+                else:rec['sample_status']='OK';rec['sample_bytes']=f.stat().st_size
+            except Exception as e:rec.update({'status':'SOURCE_FAILED','error':str(e)[:400]})
+            print(name,rec['status'],rec.get('best_height'),rec.get('sample_status',''),flush=True);return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:r=list(ex.map(check,sources))
+          (root/'ORIGINAL_VOD_SOURCE_AUDIT.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/events.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-legacy-2026-source-audit
+          path: checked/
+          compression-level: 0
+          retention-days: 5
