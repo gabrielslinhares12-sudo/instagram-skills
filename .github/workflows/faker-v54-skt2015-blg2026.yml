@@ -1,0 +1,59 @@
+name: "FAKER V5.4 — 2015 SKT and 2026 BLG archival match clips"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-skt2015-blg2026.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: "2015"
+            url: "https://www.twitch.tv/riotgames/v/22190983"
+            starts: "01:00:00,03:00:00,05:10:00"
+            format: "best[height>=720]"
+          - name: "2026"
+            url: "https://kick.com/riotgames/videos/01a1b7c1-bdd0-778f-b698-11d34487a200"
+            starts: "00:40:00,02:15:00,03:35:00"
+            format: "best[height>=1080]"
+    steps:
+      - run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Download dated game broadcasts with actual source resolution
+        env:
+          Y: ${{ matrix.name }}
+          V: ${{ matrix.url }}
+          TIMES: ${{ matrix.starts }}
+          FORMAT: ${{ matrix.format }}
+        run: |
+          mkdir -p clips
+          cat >/tmp/c.py <<'PY'
+          import pathlib,subprocess,json,concurrent.futures,os,imageio_ffmpeg
+          O=pathlib.Path('clips');ff=imageio_ffmpeg.get_ffmpeg_exe();y=os.environ['Y'];url=os.environ['V'];times=os.environ['TIMES'].split(',')
+          def cut(x):
+            i,start=x;h,m,s=map(int,start.split(':'));v=h*3600+m*60+s+8;stop=f'{v//3600:02d}:{(v//60)%60:02d}:{v%60:02d}'
+            template=O/(f'{y}_{i:02d}.%(ext)s')
+            cmd=['yt-dlp','--ffmpeg-location',ff,'--no-playlist','--no-progress','--socket-timeout','12','--retries','0','--fragment-retries','0','--download-sections','*'+start+'-'+stop,'--force-keyframes-at-cuts','-f',os.environ['FORMAT'],'--merge-output-format','mp4','-o',str(template),url]
+            r={'year':y,'url':url,'clip_start':start,'actual_broadcast':True,'rights':'PRIVATE REVIEW; license pending'}
+            try:
+              p=subprocess.run(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=175,text=True)
+              matches=[f for f in O.glob(f'{y}_{i:02d}.*') if f.suffix in ('.mp4','.webm')]
+              if p.returncode or not matches:raise RuntimeError((p.stdout+p.stderr)[-650:])
+              f=matches[0];r.update({'status':'DOWNLOADED_HD','file':f.name,'bytes':f.stat().st_size})
+            except Exception as e:r.update({'status':'FAILED','reason':str(e)[:450]})
+            print(r,flush=True);return r
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:receipts=list(pool.map(cut,enumerate(times)))
+          (O/'MANIFEST.json').write_text(json.dumps(receipts,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/c.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-hd-actual-worlds-${{ matrix.name }}
+          path: clips/
+          retention-days: 4
+          compression-level: 0
