@@ -1,0 +1,39 @@
+{
+  "format": "vertical_photo_source_manifest_v46",
+  "assets": [
+    {
+      "name": "FAKER_2026_PORTRAIT_OPENING",
+      "type": "photo",
+      "original_width": 1280,
+      "original_height": 1563,
+      "source_verified": true,
+      "fit": "cover",
+      "scale_x": 1,
+      "scale_y": 1,
+      "url": "https://news.nateimg.co.kr/orgImg/fk/2026/04/07/52087_45949_1724.png"
+    },
+    {
+      "name": "FAKER_2025_PORTRAIT_ALTERNATIVE",
+      "type": "photo",
+      "original_width": 1080,
+      "original_height": 1350,
+      "source_verified": true,
+      "fit": "cover",
+      "scale_x": 1,
+      "scale_y": 1,
+      "url": "https://img-cdn.theqoo.net/jUkiPd.jpg"
+    },
+    {
+      "name": "T1_2023_WORLDS_REAL_PORTRAIT",
+      "type": "photo",
+      "original_width": 3000,
+      "original_height": 4000,
+      "source_verified": true,
+      "fit": "cover",
+      "scale_x": 1,
+      "scale_y": 1,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/T1_hold_2023_Summoners_Cup.jpg",
+      "credit": "Creative Silver CC BY 4.0"
+    }
+  ]
+}
