@@ -9,73 +9,73 @@
   "images": [
     {
       "path": "content/staging/2026-11-10/abs/01.jpg",
-      "sha256": "052e5c55d030619b88ba531633e2b277c04f4c84453f07a3055ae436155f5678",
+      "sha256": "88887eaa0b211cd2b6c0c368e41de658743a7209caac9900bbd014ccee052467",
       "post_id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
       "order": 1
     },
     {
       "path": "content/staging/2026-11-10/abs/02.jpg",
-      "sha256": "257b223af0c58dd19a947fca9c8457357183ef915259427881b8166ce290d664",
+      "sha256": "49f04874702629fbf372769400f63b70911670846eafe7e8a8931095feb31876",
       "post_id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
       "order": 2
     },
     {
       "path": "content/staging/2026-11-10/abs/03.jpg",
-      "sha256": "d2b49d715330aa119e8035c964d95538a20c6a87dfd236f79937b0c4862dc382",
+      "sha256": "6333402de159f9eb4af7ff6bfd4790db868192f0e50e09c794546c21c5cd66d4",
       "post_id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
       "order": 3
     },
     {
       "path": "content/staging/2026-11-10/abs/04.jpg",
-      "sha256": "142be40f2dc3ced8ddd154b0e0a4c20ed79dbd4f6fa6970a537d4c5cf402f981",
+      "sha256": "691762b840c479bd3f3159d1db6427ff1b79a95679c850233f304f624522907c",
       "post_id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
       "order": 4
     },
     {
       "path": "content/staging/2026-11-10/abs/05.jpg",
-      "sha256": "18b4a52bd4b7362cce0fd35368fdd47dd37591fa3e55ab65bec33af754d1a3dc",
+      "sha256": "670fddc3d298ffa4597439222032bf8b812e2f10918f0974203e7e76871c018c",
       "post_id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
       "order": 5
     },
     {
       "path": "content/staging/2026-11-10/abs/06.jpg",
-      "sha256": "a61cb733d74f204e0c47f5120eb91dd2463b9bf014fd4b49eee5917cbc971ea1",
+      "sha256": "37e58f281752b4351eba53c5e32f6f0ca6aa79f1052d77102f33bf29a1594c5f",
       "post_id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
       "order": 6
     },
     {
       "path": "content/staging/2026-11-10/cinto/01.jpg",
-      "sha256": "21033e5f10fabacd9481115592e0332bb7bba8c53c5022b5848f9c220afb7475",
+      "sha256": "e1cdbad90753fc53d67c9b6300b667d0411435b9211678985673a55accc9e8eb",
       "post_id": "tue-2026-11-10-15-cinto-impulso",
       "order": 1
     },
     {
       "path": "content/staging/2026-11-10/cinto/02.jpg",
-      "sha256": "5f12fa4dea1586738715a8e23d4ec694dfc84af55b78d37b02b22f95ce6fe370",
+      "sha256": "6bdfa53607d0b009948fd635ece09b78a352e20413b0c2136026cd3f906b83cb",
       "post_id": "tue-2026-11-10-15-cinto-impulso",
       "order": 2
     },
     {
       "path": "content/staging/2026-11-10/cinto/03.jpg",
-      "sha256": "1fd91d97560394c37eb0a4f30a7be5cd5efdbdc296e2dd1963d17be859613cca",
+      "sha256": "c9f65da762a035acbaa1cbe4993e6d547919a6f4e347e3e0655c901a094a5f0b",
       "post_id": "tue-2026-11-10-15-cinto-impulso",
       "order": 3
     },
     {
       "path": "content/staging/2026-11-10/cinto/04.jpg",
-      "sha256": "f059c8e426c13bb64aab24f97f90b9b3195a59127381d1e997652ed4e22fee13",
+      "sha256": "3eb3a4ffa6eafcfa2cec5487eb493afe422afb99dbdbcdf5b7a12d8cbabc74c9",
       "post_id": "tue-2026-11-10-15-cinto-impulso",
       "order": 4
     },
     {
       "path": "content/staging/2026-11-10/cinto/05.jpg",
-      "sha256": "8aaccde72972f99407e4ec183490f8bd6eeb4b6c3b46ff7c1e8405cc7c0d1f7f",
+      "sha256": "2a463f3245c36ae3102c20bdfad4326acb03b5a3ebb0a7e019d9791adffbcaa8",
       "post_id": "tue-2026-11-10-15-cinto-impulso",
       "order": 5
     },
     {
       "path": "content/staging/2026-11-10/cinto/06.jpg",
-      "sha256": "4add7127d0263cfb7bf1e47be4e9547ccc8e3d6a3d4d882bcbc6c34b38ff22e1",
+      "sha256": "e0c66136e4d686ed3ab4e0852ffd5e4d68af2f0a6250c9b742f158e5b69ebc3f",
       "post_id": "tue-2026-11-10-15-cinto-impulso",
       "order": 6
     }
