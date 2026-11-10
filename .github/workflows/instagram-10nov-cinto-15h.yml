@@ -3,8 +3,8 @@ on:
   push:
     branches: [main]
     paths: [".github/workflows/instagram-10nov-cinto-15h.yml"]
-  schedule:
-    - cron: "1,4,7,12,20,30,40 18 10 11 *"
+  # A publicação de 15h foi cancelada por solicitação do usuário.
+  # Sem gatilho de agendamento; este workflow não publica na abertura manual.
   workflow_dispatch:
 permissions:
   contents: write
