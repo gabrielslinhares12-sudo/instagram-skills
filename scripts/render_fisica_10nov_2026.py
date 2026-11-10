@@ -103,8 +103,12 @@ def road(d,y=1115):
     d.polygon([(0,y),(W,y-40),(W,H),(0,H)],fill=(120,115,106))
     d.line((0,y+95,W,y+50),fill=(237,226,194),width=15)
 def sign(d,x,y,label,col=RED):
-    d.rounded_rectangle((x,y,x+290,y+52),radius=8,fill=col)
-    text(d,x+15,y+10,label,26,(255,255,255),True)
+    # Largura variavel: nunca deixar labels escaparem da caixa vermelha.
+    font=ft(26,True,False)
+    label_width=d.textbbox((0,0),label,font=font)[2]
+    width=min(W-x-20,max(290,label_width+36))
+    d.rounded_rectangle((x,y,x+width,y+52),radius=8,fill=col)
+    text(d,x+15,y+10,label,26,(255,255,255),True,maxwidth=width-30)
 def draw_pressure(d):
     x0=110; y0=1070
     d.line((x0,y0,x0+800,y0),fill=INK,width=5)
@@ -183,8 +187,8 @@ def draw_scene(im,key):
         for i in range(4):
             arrow(d,(150,1170+i*20),(420,1170+i*20),RED,7)
         arrow(d,(508,745),(902,745),RED,17)
-        text(d,605,790,"O CORPO",45,INK,True)
-        text(d,605,839,"CONTINUA",45,RED,True)
+        text(d,610,634,"O CORPO",43,INK,True)
+        text(d,610,680,"CONTINUA",43,RED,True)
     elif key=="belt":
         passenger(d,100,690,1.33)
         d.ellipse((695,800,790,895),fill=YELLOW,outline=INK,width=5)
