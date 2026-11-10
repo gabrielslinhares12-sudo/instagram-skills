@@ -1,0 +1,89 @@
+name: "FAKER EP01 / OpenMontage hybrid preflight — NO PUBLISH"
+on:
+  push:
+    branches:
+      - experimental/faker-ep01-openmontage-v49
+    paths:
+      - ".github/workflows/faker-ep01-openmontage-v49.yml"
+      - "content/editorial/faker-ep01/openmontage/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout TUE production metadata
+        uses: actions/checkout@v4
+        with:
+          path: tue
+          persist-credentials: false
+
+      - name: Checkout CORRECT OpenMontage upstream, pinned version
+        uses: actions/checkout@v4
+        with:
+          repository: OpenMontageInc/OpenMontage
+          ref: fecb9a1e3cc23ef84de30b272059457a427f16f8
+          path: openmontage
+          persist-credentials: false
+
+      - name: Confirm upstream hybrid pipeline
+        run: |
+          test -f openmontage/AGENT_GUIDE.md
+          test -f openmontage/pipeline_defs/hybrid.yaml
+          test -f openmontage/skills/pipelines/hybrid/asset-director.md
+          test -f openmontage/skills/pipelines/hybrid/compose-director.md
+          git -C openmontage rev-parse HEAD
+          ffmpeg -version | head -n 1
+          ffprobe -version | head -n 1
+
+      - name: Validate 24-shot bridge and report source gate
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime,timezone
+          p=Path('tue/content/editorial/faker-ep01/openmontage/scene-plan-bridge.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          shots=d['shots']
+          assert d['pipeline']=='hybrid'
+          assert d['openmontage']['repository']=='OpenMontageInc/OpenMontage'
+          assert len(shots)==24
+          assert shots[0]['start_seconds']==0
+          assert abs(shots[-1]['end_seconds']-298.513)<0.01
+          for a,b in zip(shots,shots[1:]):
+              assert abs(a['end_seconds']-b['start_seconds'])<0.001,(a['id'],b['id'])
+          verified=[s for s in shots if s['asset_path'] and s['verified_source'] and s['license_verified']]
+          motion=sum(s['end_seconds']-s['start_seconds'] for s in verified if s['real_motion_verified'])
+          gate_pass=len(verified)==len(shots) and motion>=d['requested_target']['minimum_real_motion_ratio']*d['requested_target']['seconds']
+          report={
+            'time_utc':datetime.now(timezone.utc).isoformat(),
+            'project':d['project_id'],
+            'upstream':d['openmontage'],
+            'stage':'source_preflight',
+            'source_status':'ready_for_media_ingest' if gate_pass else 'BLOCKED_NOT_RENDERABLE',
+            'verified_shots':len(verified),'total_shots':len(shots),
+            'real_motion_seconds':round(motion,3),
+            'required_real_motion_seconds':round(d['requested_target']['minimum_real_motion_ratio']*d['requested_target']['seconds'],3),
+            'narration_original_in_drive':True,
+            'narration_available_on_runner':False,
+            'rendered':False,
+            'published':False,
+            'reason':'Media and voice exist in private Drive but are not mounted on the GitHub runner; never claim a rendered master or skip source/licensing QC'
+          }
+          Path('preflight_report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
+          print(json.dumps(report,indent=2,ensure_ascii=False))
+          PY
+
+      - name: Archive preflight evidence (never a published asset)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: faker-ep01-openmontage-v49-source-preflight
+          path: preflight_report.json
+          if-no-files-found: warn
+          retention-days: 14
