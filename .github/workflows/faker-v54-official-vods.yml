@@ -1,0 +1,69 @@
+name: "FAKER V5.4 — official Riot VOD 1080p ingress"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-official-vods.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+      - name: ffmpeg and yt-dlp
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q -U 'yt-dlp[default]'
+      - name: Probe Riot original VOD resolution and acquire genuine 8 second footage only at HD
+        run: |
+          mkdir -p original_riot
+          cat > /tmp/riot_probe.py <<'PY'
+          import json,pathlib,subprocess,concurrent.futures
+          out=pathlib.Path('original_riot')
+          sources=[
+           ('worlds_2023_t1_wbg','https://www.twitch.tv/videos/1981467393',2023,'WBG versus T1 World final'),
+           ('worlds_2024_t1_blg','https://www.twitch.tv/videos/2291702312',2024,'BLG versus T1 World final'),
+           ('worlds_2025_t1_kt','https://www.twitch.tv/videos/2613641505',2025,'KT versus T1 World final'),
+           ('worlds_2022_t1_jdg','https://www.twitch.tv/videos/1638046123',2022,'T1 versus JDG semi-final'),
+           ('worlds_2024_youtube','https://www.youtube.com/watch?v=jWjrdz-lLdU',2024,'Official Riot Worlds 2024 final'),
+           ('worlds_2025_bilibili','https://www.bilibili.com/video/BV1oskQBLEA6/',2025,'Official 2025 Worlds final 4K series')
+          ]
+          def probe(t):
+            name,url,year,desc=t;r={'name':name,'source_url':url,'year':year,'event':desc,'permission':'production clip only; publisher license verification required'}
+            try:
+              cmd=['yt-dlp','--no-playlist','--skip-download','--dump-single-json','--socket-timeout','14','--retries','0','--extractor-retries','0',url]
+              p=subprocess.run(cmd,capture_output=True,text=True,timeout=55)
+              if p.returncode: raise RuntimeError((p.stdout+p.stderr)[-700:])
+              d=json.loads(p.stdout);formats=[f for f in d.get('formats',[]) if f.get('vcodec') not in ('none',None) and f.get('height')]
+              formats.sort(key=lambda x:(x.get('height',0),x.get('tbr') or 0),reverse=True)
+              r['title']=d.get('title');r['duration']=d.get('duration')
+              r['best_height']=formats[0].get('height') if formats else None
+              r['best_width']=formats[0].get('width') if formats else None
+              r['best_fps']=formats[0].get('fps') if formats else None
+              r['format_count']=len(formats)
+              r['status']='EXTRACTOR_AVAILABLE'
+              if r['best_height'] is not None and r['best_height']>=1080 and name.startswith('worlds_20') and 'twitch' in url:
+                target=out/(name+'.%(ext)s')
+                c=['yt-dlp','--no-playlist','--no-progress','--socket-timeout','14','--retries','0','--fragment-retries','0','--download-sections','*01:01:30-01:01:38','--force-keyframes-at-cuts','-f','best[height>=1080]/bestvideo[height>=1080]+bestaudio','--merge-output-format','mp4','-o',str(target),url]
+                y=subprocess.run(c,capture_output=True,text=True,timeout=130)
+                matches=[x for x in out.glob(name+'.*') if x.suffix in ('.mp4','.webm')]
+                if y.returncode!=0 or not matches:r['download_status']='FAILED';r['download_error']=(y.stdout+y.stderr)[-600:]
+                else:
+                  r['download_status']='SUCCESS';r['file']=matches[0].name;r['bytes']=matches[0].stat().st_size
+                  q=subprocess.run(['ffprobe','-v','error','-show_entries','stream=width,height,r_frame_rate','-of','json',str(matches[0])],capture_output=True,text=True)
+                  if q.returncode==0:r['clip_probe']=json.loads(q.stdout)
+            except Exception as e:r['status']='UNAVAILABLE';r['error']=str(e)[:700]
+            print(name,r['status'],r.get('best_height'),r.get('download_status'),flush=True)
+            return r
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool: reports=list(pool.map(probe,sources))
+          (out/'SOURCE_QC_MANIFEST.json').write_text(json.dumps(reports,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/riot_probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-original-riot-vod-hd-tests
+          path: original_riot/
+          retention-days: 4
+          compression-level: 0
