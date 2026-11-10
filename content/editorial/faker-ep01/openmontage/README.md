@@ -54,3 +54,19 @@ NÃO publicar ou agendar antes da revisão visual e autorização do proprietár
 - **Rights gate:** clipes de partidas/noticiários/trailer não têm direito de republicação garantido; autores CC BY necessitam crédito. É apenas V5.2 de revisão, NÃO master 4K60 e NÃO aprovado para postagem.
 - **Montagem técnica efetiva:** FFmpeg local, reaproveitando diretrizes OpenMontage hybrid; não representa execução integral do motor OpenMontage.
 - **Publicação e agendamento:** nenhum, até autorização expressa após QC editorial.
+
+
+## V5.3 — QUADRO A QUADRO, BANCO HD E REGRAS OBRIGATÓRIAS (10/11/2026)
+
+**Atenção:** V5.3 é uma etapa de curadoria verificável, NÃO um novo MP4 e NÃO um master pronto.
+
+- [Planilha de 87 falas, 31 blocos, 35 fontes e QC técnico](https://docs.google.com/spreadsheets/d/1E12C9epxjJd-kj-lzra0UsQjmHH7UbnD/edit)
+- [ZIP com originais CC BY 3.0 Full HD e mapa de edição/checagens](https://drive.google.com/file/d/19j8FGohsFUmAruHycJVOxb4cUa4ws8Y0/view)
+- Os 87 blocos SRT passam a ser a referência primária de cada cena, não uma lista solta de vídeos. Cada palavra que nomeia jogadores exige rosto real correto e compatível com o período; quando é citado o elenco, apresentar vídeo do grupo junto.
+- **ZOFGK** = Zeus/Oner/Faker/Gumayusi/Keria (2022–24); **T1 2025** = Doran/Oner/Faker/Gumayusi/Keria; **seleção 2023** = Zeus/Kanavi/Faker/Chovy/Ruler/Keria. Nenhum desses elencos pode ser representado por entrevistas dos anos errados ou modelos genéricos.
+- **Auditoria da biblioteca prévia:** 43 arquivos foram inventariados: 36 vídeos reduzidos/reconvertidos em 720×1280 ou 960×540, 4 arquivos Full HD com somente duas entrevistas duplicadas, 3 arquivos inválidos. Muitos dos vídeos de partida do Dailymotion exibiam resolução original **288p** ou **384p**, mesmo antes de serem ampliados em um vídeo 960x540: REJEITAR. Render 4K não devolve detalhes.
+- **Novos ativos HD adquiridos:** 4 trechos distintos de 9s, fonte 1920×1080 original CC BY 3.0, entrevista de 2020 de Clid/Bdd/Ruler. Acervo compilado no ZIP também contém os originais licenciados de Faker, Keria e Bdd de 2020. São arquivos históricos com ano explícito; não usar para representar escalações atuais.
+- **Qualidade:** procurar master original 4K (3840×2160) para gameplay; fonte 1920×1080 no mínimo para entrevistas, ainda sujeito a revisão de legibilidade do crop vertical. Reprovar arquivos 720p e abaixo (e upscales derivados). Não alegar 4K nativo apenas por configurar encoder.
+- **Sem conteúdo enganoso:** não colocar personagens errados, times genéricos, estádio qualquer, imagem da final errada, entrevista antiga como celebração recente, vídeo que contém uma foto interna fingindo footage real, letras em caixas, miniaturas, 3D inventado, fotos com zoom.
+- **Licenças:** YouTube/T1/Riot/Weverse não são liberados para download/repost apenas por serem públicos. O inventário da planilha distingue 'referência encontrada' de 'arquivo aprovado com direitos'. CC BY 3.0 exige atribuição e indicação de adaptação.
+- **Bloqueio:** não renderizar um novo master e não publicar enquanto faltar confirmação *por tomada* de pessoa, evento/ano, arquivo original legível, enquadramento, origem e permissão de publicação.
