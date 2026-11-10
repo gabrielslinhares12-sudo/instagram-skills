@@ -29,12 +29,13 @@ def fit(draw,s,maxwidth,starting=88,minimum=36):
         if draw.textbbox((0,0),s,font=font,stroke_width=0)[2]<=maxwidth:return font
     return ft(minimum)
 def text(draw,x,y,s,size=35,color=INK,bold=False,anchor=None,maxwidth=None):
-    font=fit(draw,s,maxwidth,size) if maxwidth else ft(size,bold,not bold)
+    font=fit(draw,s,maxwidth,size,18) if maxwidth else ft(size,bold,not bold)
     draw.text((x,y),s,font=font,fill=color,anchor=anchor,stroke_width=0)
 def texture(im,seed,flavor):
     rnd=random.Random(seed)
-    d=ImageDraw.Draw(im,"RGBA")
-    for j in range(950):
+    layer=Image.new("RGBA",im.size,(0,0,0,0))
+    d=ImageDraw.Draw(layer)
+    for j in range(700):
         x=rnd.randrange(W);y=rnd.randrange(H);r=rnd.choice([1,1,1,2])
         d.ellipse((x-r,y-r,x+r,y+r),fill=(50,39,30,rnd.randrange(4,15)))
     for i in range(14):
@@ -42,7 +43,8 @@ def texture(im,seed,flavor):
         d.arc((-90,y,1160,y+230),start=195,end=345,fill=(40,45,40,10),width=2)
     for q in range(5):
         xx=rnd.randrange(50,1040); yy=rnd.randrange(650,1140)
-        d.line((xx,yy,xx+90,yy-14),fill=(213,14,21,18),width=4)
+        d.line((xx,yy,xx+90,yy-14),fill=(213,14,21,28),width=4)
+    im.alpha_composite(layer)
 def rough_band(draw,top,height,width=930,seed=1):
     r=random.Random(seed)
     left=42; pts=[(left,top+10)]
@@ -134,7 +136,7 @@ def draw_scene(im,key):
         road(d,1120);wheel(im,310,960,220,.25)
         arrow(d,(120,732),(397,796),RED,13)
         mascot(im,610,680,445)
-        sign(d,85,1173,"CONTROLE NA FRENAGEM")
+        sign(d,85,1173,"FREAR COM CONTROLE")
     elif key=="wheel-compare":
         wheel(im,290,922,175);wheel(im,780,922,175,0.2)
         d.line((95,1130,480,1130),fill=RED,width=10)
@@ -163,8 +165,8 @@ def draw_scene(im,key):
             arrow(d,(x,1142),(x+45,1108),YELLOW,10)
         d.line((520,916,940,781),fill=RED,width=12)
         d.polygon([(940,781),(888,774),(913,817)],fill=RED)
-        text(d,540,831,"FORÇA",41,RED,True)
-        text(d,540,873,"LATERAL",41,RED,True)
+        text(d,596,725,"FORÇA",41,RED,True)
+        text(d,596,771,"LATERAL",41,RED,True)
         sign(d,584,1037,"PNEU + PISTA")
     elif key=="takeaway":
         road(d,1116);car_body(d,70,856,1.02)
@@ -175,7 +177,7 @@ def draw_scene(im,key):
         passenger(d,125,730,1.15)
         mascot(im,610,820,425)
         arrow(d,(480,840),(648,860),RED,10)
-        sign(d,91,1170,"O SEGREDO É O TEMPO")
+        sign(d,91,1170,"INÉRCIA E IMPULSO")
     elif key=="inertia":
         car_body(d,55,780,1.28)
         for i in range(4):
@@ -203,12 +205,12 @@ def draw_scene(im,key):
         passenger(d,125,695,1.21,True)
         for q in range(3):
             d.arc((560+q*23,720+q*20,1000+q*10,1120+q*18),205,280,fill=RED,width=5)
-        text(d,676,1090,"CINTO + AIRBAG",41,INK,True)
+        text(d,632,1110,"CINTO + AIRBAG",35,INK,True)
     elif key=="takeaway-belt":
         passenger(d,85,703,1.10,True)
         mascot(im,685,800,325)
-        d.line((100,1190,970,1190),fill=YELLOW,width=22)
-        text(d,158,1160,"REDUÇÃO DE RISCO",41,RED,True)
+        d.line((100,1195,970,1195),fill=YELLOW,width=16)
+        text(d,158,1137,"REDUÇÃO DE RISCO",41,RED,True)
     else: raise ValueError(key)
 def page(post,index,slide):
     im=Image.new("RGBA",(W,H),(*PAPER,255));seed=sum(map(ord,post["id"]))+index
@@ -241,7 +243,9 @@ def page(post,index,slide):
         d.text((64,yy),s,font=ft(39,False,False),fill=INK)
         yy+=51
     draw_scene(im,slide["visual"])
+    # Rodape claro, sem sobrepor fundo asfaltado/ilustracoes.
     d=ImageDraw.Draw(im)
+    d.rectangle((0,1240,W,H),fill=PAPER)
     # Progressos dinamicos, sem numeracao e sem CTA falso na ultima
     n=len(post["slides"])
     if index<n-1:
