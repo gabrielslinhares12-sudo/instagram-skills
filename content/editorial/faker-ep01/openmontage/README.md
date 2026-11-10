@@ -70,3 +70,15 @@ NÃO publicar ou agendar antes da revisão visual e autorização do proprietár
 - **Sem conteúdo enganoso:** não colocar personagens errados, times genéricos, estádio qualquer, imagem da final errada, entrevista antiga como celebração recente, vídeo que contém uma foto interna fingindo footage real, letras em caixas, miniaturas, 3D inventado, fotos com zoom.
 - **Licenças:** YouTube/T1/Riot/Weverse não são liberados para download/repost apenas por serem públicos. O inventário da planilha distingue 'referência encontrada' de 'arquivo aprovado com direitos'. CC BY 3.0 exige atribuição e indicação de adaptação.
 - **Bloqueio:** não renderizar um novo master e não publicar enquanto faltar confirmação *por tomada* de pessoa, evento/ano, arquivo original legível, enquadramento, origem e permissão de publicação.
+
+
+## V5.3 — CORTE TÉCNICO CRONOLÓGICO GERADO / QC REPROVADO (10/11/2026)
+
+- [MP4 de revisão 4min58s, 1080x1920/30fps — **NÃO PUBLICAR**](https://drive.google.com/file/d/1Co7VKi--6_MF3j0Evy5xI7CnMFQPcdFa/view).
+- [Relatório editorial: 17 cartelas, 21 fotos e 5 takes de vídeo](https://drive.google.com/file/d/1M_Rb99cqHTnAb7RfO1vJuys6M15oBjvx/view).
+- Duração validada em FFprobe: 298,513 s, H.264 1080×1920 @ 30fps, AAC 48kHz mono; Rasalgethi original e 87 legendas SRT no tempo.
+- 43 tomadas por 31 blocos cronológicos. 5 tomadas em vídeo 34,4 s, fotografia estática 142,8 s, gráficos editoriais por lacuna de mídia 121,3 s. **Reprovado** por prevalência de conteúdo sem movimento e ausências de cenas exigidas.
+- Material de jogo Dailymotion em 288p/384p removido integralmente; não elevar upscales para substituir reais originais. Fotos de escalações 2024 (ZOFGK) e 2025 (Doran) são autenticamente datadas, mas **não substituem vídeo de grupo real**.
+- Extraíram-se quatro segmentos contextuais em 1080×1920 a partir de fontes Pexels em 4K/1440p de Seul e computadores, apenas para capítulos de infância. Estes não representam a infância real de Faker.
+- Regra permanente: não retornar este corte como *final*. A próxima montagem deve substituir as cartelas por VODs originais de alta resolução com jogadores corretos e cronometragem ligada ao SRT.
+- Publicação proibida até revisão de imagens, direitos, elenco, correspondência evento/data e aprovação do usuário.
