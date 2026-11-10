@@ -1,0 +1,83 @@
+name: "FAKER EP01 — royalty-free esports context footage (PRIVATE)"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-pexels-context-v52.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Install video tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python3 -m pip install -q requests
+      - name: Ingest short Pexels licensed documentary context shots
+        run: |
+          mkdir -p context_clips
+          cat > /tmp/context.py <<'PY'
+          import concurrent.futures,subprocess,urllib.request,urllib.error,json,pathlib
+          out=pathlib.Path('context_clips')
+          rows=[
+           ('gaming_keyboard_detail','8128422','uhd_2160_3840_25fps','Hands at keyboard; NOT Faker or League'),
+           ('esports_players_vertical','7914854','hd_1080_1920_30fps','Generic esports players, NOT T1'),
+           ('esports_team_win_vertical','7914806','hd_1080_1920_30fps','Generic reaction, NOT T1 celebration'),
+           ('esports_computer_desks','7914855','hd_1920_1080_30fps','Tournament desks, not official LoL'),
+           ('esports_players_tournament','7915034','hd_1920_1080_30fps','Generic tournament players'),
+           ('esports_team_reaction','7914864','hd_1920_1080_30fps','Generic esports teammates'),
+           ('gaming_pc_vertical','8128352','uhd_2160_3840_25fps','Generic gamers'),
+           ('female_gamer_monitor_vertical','8128341','uhd_2160_3840_25fps','Generic gamer'),
+           ('gaming_keyboard_macro_vertical','16214007','hd_1080_1920_24fps','Generic keyboard shot'),
+           ('gamer_keyboard_horizontal','7914928','hd_1920_1080_30fps','Generic gamer hands'),
+           ('esports_team_cheer','7914869','hd_1920_1080_30fps','Generic gamer group'),
+           ('esports_arena','9071410','hd_1920_1080_25fps','Generic tournament setup'),
+           ('gamer_night','7047795','uhd_3840_2160_25fps','Generic gamer at home'),
+           ('seoul_traffic','1860079','uhd_2880_1620_25fps','Real Seoul city traffic'),
+           ('seoul_night','5597701','uhd_3840_2160_30fps','Real Seoul cityscape')
+          ]
+          h={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/125.0 Safari/537.36'}
+          def fetch(x):
+            name,vid,size,meaning=x
+            rec={'name':name,'pexels_id':vid,'source_page':'https://www.pexels.com/video/'+vid+'/','content_meaning':meaning,'license':'Pexels free license; rights still require compliance'}
+            dl='https://www.pexels.com/download/video/'+vid+'/'
+            links=[]
+            try:
+              q=urllib.request.Request(dl,headers=h)
+              with urllib.request.urlopen(q,timeout=18) as r:
+                final=r.geturl()
+                links.append(final)
+            except Exception as e:rec['download_redirect_error']=str(e)[:180]
+            links.append(f'https://videos.pexels.com/video-files/{vid}/{vid}-{size}.mp4')
+            seen=set()
+            for u in links:
+              if u in seen:continue
+              seen.add(u)
+              if not u.startswith('https://videos.pexels.com/'):continue
+              temp=out/(name+'.mp4')
+              filt='scale=720:1280:force_original_aspect_ratio=increase:flags=bicubic,crop=720:1280,setsar=1,fps=24,format=yuv420p'
+              cmd=['ffmpeg','-hide_banner','-loglevel','error','-nostdin','-y','-user_agent',h['User-Agent'],'-ss','0','-i',u,'-t','6','-vf',filt,'-an','-c:v','libx264','-preset','ultrafast','-crf','27',str(temp)]
+              try:
+                z=subprocess.run(cmd,capture_output=True,timeout=70)
+                if z.returncode==0 and temp.exists() and temp.stat().st_size>10000:
+                  rec['status']='DOWNLOADED_LICENSED_CONTEXT';rec['bytes']=temp.stat().st_size;rec['origin_url']=u
+                  print(name,'OK',rec['bytes'],flush=True)
+                  return rec
+                rec['last_error']=z.stderr[-220:].decode(errors='replace')
+              except Exception as e:rec['last_error']=str(e)
+              temp.unlink(missing_ok=True)
+            rec['status']='FAILED';print(name,'FAILED',rec.get('last_error'),flush=True)
+            return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool: a=list(pool.map(fetch,rows))
+          (out/'SOURCE_AUDIT.json').write_text(json.dumps(a,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/context.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v52-context-video-clips
+          path: context_clips/
+          retention-days: 3
+          compression-level: 0
