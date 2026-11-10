@@ -2,7 +2,7 @@
 """Carrosséis TUE 10NOV: renderer editorial, fotos com crédito e Lúmino original.
 NÃO publica, agenda ou aprova. Tudo gerado em staging para inspeção.
 """
-import os,io,re,json,math,hashlib,random,urllib.parse,urllib.request
+import os,io,re,json,math,hashlib,random,time,urllib.parse,urllib.request,urllib.error
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont,ImageOps,ImageFilter
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'content/staging/2026-11-10/v3'
@@ -27,7 +27,14 @@ PAGES={
 ('O RESULTADO','PROTEÇÃO É|TRABALHO EM EQUIPE.','Cinto, airbag e estrutura deformável atuam juntos. O cinto é indispensável.','Car seat belt.jpg','last','USE O CINTO SEMPRE')]}
 def http(url):
  req=urllib.request.Request(url,headers={'User-Agent':'TUEEditorial/1.0 (automated science educational media; contact via github.com/gabrielslinhares12-sudo/instagram-skills)','Accept':'application/json,image/*,*/*'})
- with urllib.request.urlopen(req,timeout=60) as r:return r.read()
+ for attempt in range(7):
+  try:
+   with urllib.request.urlopen(req,timeout=60) as r:return r.read()
+  except urllib.error.HTTPError as exc:
+   if exc.code not in (429,502,503,504) or attempt==6:raise
+   delay=min(90, 9*(attempt+1))
+   print('IMAGE_SOURCE_RETRY_HTTP',exc.code,'attempt',attempt+1,'delay_seconds',delay,flush=True)
+   time.sleep(delay)
 def photo(name):
  ASSET.mkdir(parents=True,exist_ok=True)
  k=re.sub('[^a-z0-9]+','_',name.lower())
@@ -42,6 +49,7 @@ def photo(name):
  im.save(p,quality=92)
  meta={'name':name,'source':info['descriptionurl'],'license':re.sub('<[^>]+>','',info.get('extmetadata',{}).get('LicenseShortName',{}).get('value','')).strip(),'author':re.sub('<[^>]+>','',info.get('extmetadata',{}).get('Artist',{}).get('value',''))[:180], 'dimensions':list(im.size)}
  mp.write_text(json.dumps(meta,ensure_ascii=False))
+ time.sleep(3.0)
  return im,meta
 def font(f,size):return ImageFont.truetype(f,size)
 def fit(d,s,width,start=97,end=39,file=F_HEAVY):
