@@ -1,0 +1,38 @@
+name: "FAKER EP01 — ingest official documentary clips (PRIVATE PREVIEW)"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-ep01-footage-pilot.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - name: Install free tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q -U 'yt-dlp[default]'
+      - name: Download source clips to local private artifact
+        shell: bash
+        run: |
+          mkdir -p footage
+          set +e
+          yt-dlp --no-playlist --no-progress --socket-timeout 20 --retries 1 --fragment-retries 1 --download-sections '*00:00:30-00:00:52' --force-keyframes-at-cuts --format 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' --merge-output-format mp4 -o 'footage/worlds2023.%(ext)s' 'https://www.youtube.com/watch?v=g3NcF5Uv-w4' > footage/worlds2023.log 2>&1
+          echo $? > footage/worlds2023.exit
+          yt-dlp --no-playlist --no-progress --socket-timeout 20 --retries 1 --fragment-retries 1 --download-sections '*00:01:00-00:01:22' --force-keyframes-at-cuts --format 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' --merge-output-format mp4 -o 'footage/worlds2024.%(ext)s' 'https://www.youtube.com/watch?v=rZHrffKAc6k' > footage/worlds2024.log 2>&1
+          echo $? > footage/worlds2024.exit
+          for f in footage/*.mp4; do test -f "$f" || continue; ffprobe -v error -show_entries format=duration,size:stream=width,height -of compact "$f" >> footage/verified.txt; done
+          ls -lh footage
+          echo "FAN_CONTENT_PRIVATE_QC_ONLY" > footage/RIGHTS_REVIEW.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-official-footage-pilot
+          path: footage/
+          retention-days: 3
+          compression-level: 0
