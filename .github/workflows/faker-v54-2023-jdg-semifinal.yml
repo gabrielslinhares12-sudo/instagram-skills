@@ -1,0 +1,44 @@
+name: "FAKER V5.4 — real 2023 T1 versus JDG semifinal 1080p60"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-2023-jdg-semifinal.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  clips:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - name: Install free FFmpeg/yt-dlp
+        run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Source genuine semifinal footage
+        run: |
+          mkdir -p original_jdg
+          cat >/tmp/jdg.py <<'PY'
+          import subprocess,json,pathlib,concurrent.futures
+          import imageio_ffmpeg
+          url='https://www.twitch.tv/videos/1975322068';out=pathlib.Path('original_jdg');ff=imageio_ffmpeg.get_ffmpeg_exe()
+          times=['00:53:00','01:28:00','02:41:00','03:15:00','04:35:00']
+          def run(x):
+            i,a=x
+            h,m,s=map(int,a.split(':'));n=h*3600+m*60+s+8;b=f'{n//3600:02d}:{n//60%60:02d}:{n%60:02d}'
+            rec={'id':i,'inpoint':a,'outpoint':b,'source_url':url,'event':'2023 Riot Worlds semifinal JD Gaming versus T1','publish_rights':'Private QC only; broadcast copyright Riot Games'}
+            cmd=['yt-dlp','--ffmpeg-location',ff,'--no-progress','--socket-timeout','14','--retries','0','--fragment-retries','0','--download-sections',f'*{a}-{b}','--force-keyframes-at-cuts','-f','best[height>=1080]','--merge-output-format','mp4','-o',str(out/(f'2023_JDG_{i:02d}.%(ext)s')),url]
+            try:
+              p=subprocess.run(cmd,capture_output=True,text=True,timeout=135);f=out/(f'2023_JDG_{i:02d}.mp4')
+              if p.returncode or not f.exists() or f.stat().st_size<100000:raise RuntimeError((p.stderr+p.stdout)[-600:])
+              rec.update({'status':'GOOD','bytes':f.stat().st_size,'filename':f.name})
+            except Exception as e:rec.update({'status':'FAILED','error':str(e)[:500]})
+            print(i,rec['status'],rec.get('bytes'),flush=True);return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:records=list(ex.map(run,enumerate(times)))
+          (out/'SOURCE_AND_RIGHTS.json').write_text(json.dumps(records,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/jdg.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-2023-jdg-semifinal-real-1080p
+          path: original_jdg/
+          retention-days: 5
+          compression-level: 0
