@@ -1,0 +1,61 @@
+name: "FAKER V5.3 — named-player archive discovery"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v53-player-face-archive.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  named-players:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Search Creative Commons motion footage of actual named players
+        run: |
+          mkdir -p named_archive
+          cat > /tmp/names.py <<'PY'
+          import json,urllib.request,urllib.parse,pathlib,concurrent.futures,time,re
+          api='https://commons.wikimedia.org/w/api.php'
+          head={'User-Agent':'TemUmaExplicacao-CreativeCommons-CuratorialResearch/1.0 (video editor; contact editorial@temumaexplicacao.com)'}
+          queries={
+             'Faker':['페이커 filetype:video','이상혁 filetype:video','Faker esports filetype:video'],
+             'Zeus':['제우스 리그 filetype:video','최우제 filetype:video'],
+             'Oner':['오너 문현준 filetype:video','문현준 filetype:video'],
+             'Gumayusi':['구마유시 filetype:video','이민형 리그 filetype:video'],
+             'Keria':['케리아 filetype:video','류민석 filetype:video'],
+             'Doran':['도란 최현준 filetype:video','최현준 리그 filetype:video'],
+             'Deft':['데프트 filetype:video','김혁규 filetype:video'],
+             'Kanavi':['카나비 filetype:video','서진혁 filetype:video'],
+             'Chovy':['쵸비 filetype:video','정지훈 리그 filetype:video'],
+             'Ruler':['룰러 filetype:video','박재혁 리그 filetype:video'],
+             'Bdd':['비디디 filetype:video','곽보성 filetype:video'],
+             'T1group':['티원 인터뷰 filetype:video','T1 Faker filetype:video','SKT e스포츠 filetype:video']
+          }
+          def search(pair):
+            player,terms=pair;res=[]
+            for term in terms:
+              try:
+                q={'action':'query','list':'search','srsearch':term,'srnamespace':6,'srlimit':45,'format':'json','formatversion':'2'}
+                with urllib.request.urlopen(urllib.request.Request(api+'?'+urllib.parse.urlencode(q),headers=head),timeout=22) as o:j=json.load(o)
+                titles=[x['title'] for x in j.get('query',{}).get('search',[]) if re.search(r'\.(webm|ogv|mp4)$',x['title'],re.I)]
+                for k in range(0,len(titles),25):
+                  q={'action':'query','prop':'imageinfo','iiprop':'url|size|extmetadata','titles':'|'.join(titles[k:k+25]),'format':'json','formatversion':'2'}
+                  with urllib.request.urlopen(urllib.request.Request(api+'?'+urllib.parse.urlencode(q),headers=head),timeout=28) as o:y=json.load(o)
+                  for x in y.get('query',{}).get('pages',[]):
+                    if 'imageinfo' not in x:continue
+                    f=x['imageinfo'][0];l=f.get('extmetadata',{}).get('LicenseShortName',{}).get('value')
+                    item={'player':player,'query':term,'title':x['title'],'width':f.get('width'),'height':f.get('height'),'size':f.get('size'),'license':l,'url':f.get('url'),'page':'https://commons.wikimedia.org/wiki/'+urllib.parse.quote(x['title'].replace(' ','_'))}
+                    if not any(v['title']==item['title'] for v in res):res.append(item)
+              except Exception as e:res.append({'player':player,'query':term,'error':str(e)[:300]})
+            print(player,'candidate_videos',len([x for x in res if 'url' in x]),flush=True)
+            return {'player':player,'candidates':res}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex: a=list(ex.map(search,queries.items()))
+          pathlib.Path('named_archive/player_cc_video_inventory.json').write_text(json.dumps(a,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/names.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v53-real-player-faces-cc-sources
+          path: named_archive/
+          retention-days: 7
