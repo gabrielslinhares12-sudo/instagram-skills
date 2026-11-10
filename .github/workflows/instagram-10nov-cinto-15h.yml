@@ -3,8 +3,9 @@ on:
   push:
     branches: [main]
     paths: [".github/workflows/instagram-10nov-cinto-15h.yml"]
-  # A publicação de 15h foi cancelada por solicitação do usuário.
-  # Sem gatilho de agendamento; este workflow não publica na abertura manual.
+  # V9 corrigida e expressamente autorizada pelo proprietário para 15h BRT.
+  schedule:
+    - cron: "1,4,7,12,20,30,40 18 10 11 *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -39,7 +40,7 @@ jobs:
           python3 - <<'PY'
           import json,os,datetime
           from pathlib import Path
-          post_id="tue-2026-11-10-15-cinto-airbag-v8"
+          post_id="tue-2026-11-10-15-cinto-airbag-v9-corrigido"
           posts=json.loads(Path("content/schedule.json").read_text())["posts"]
           found=[p for p in posts if p.get("id")==post_id]
           assert len(found)==1
@@ -64,9 +65,9 @@ jobs:
           import json,hashlib,urllib.request
           from PIL import Image
           from pathlib import Path
-          post=next(p for p in json.loads(Path("content/schedule.json").read_text())["posts"] if p["id"]=="tue-2026-11-10-15-cinto-airbag-v8")
+          post=next(p for p in json.loads(Path("content/schedule.json").read_text())["posts"] if p["id"]=="tue-2026-11-10-15-cinto-airbag-v9-corrigido")
           for i,(url,sha) in enumerate(zip(post["media_urls"],post["media_sha256"]),1):
-              p=Path(f"content/media/instagram/2026-11-10/cinto-airbag-15h-v8/{i:02d}.jpg")
+              p=Path(f"content/media/instagram/2026-11-10/cinto-airbag-15h-v9/{i:02d}.jpg")
               assert hashlib.sha256(p.read_bytes()).hexdigest()==sha
               with Image.open(p) as im: assert im.size==(1080,1350) and im.format=="JPEG"
               with urllib.request.urlopen(urllib.request.Request(url,method="GET",headers={"User-Agent":"InstagramTUE/1.0"}),timeout=35) as r:
@@ -74,32 +75,32 @@ jobs:
               assert hashlib.sha256(data).hexdigest()==sha, "META_MEDIA_URL_NOT_PUBLIC_OR_HASH_MISMATCH"
           print("MEDIA_PUBLIC_HTTPS_5_SHA256_VERIFIED")
           PY
-      - name: Dry-run the full Instagram queue and assert ABS is visible
+      - name: Dry-run Instagram queue and assert corrected 15h carousel is visible
         run: |
-          python3 scripts/instagram_queue.py --dry-run > /tmp/ig-abs-plan.json
+          python3 scripts/instagram_queue.py --dry-run > /tmp/ig-cinto15-plan.json
           python3 - <<'PY'
           import json
-          x=json.load(open("/tmp/ig-abs-plan.json"))
-          p=next(p for p in x["items"] if p["id"]=="tue-2026-11-10-15-cinto-airbag-v8")
+          x=json.load(open("/tmp/ig-cinto15-plan.json"))
+          p=next(p for p in x["items"] if p["id"]=="tue-2026-11-10-15-cinto-airbag-v9-corrigido")
           assert p["status"] in ("future","due","published")
           print("QUEUE_CINTO_STATUS="+p["status"])
           PY
-      - name: Verify Meta account and token before 10h
+      - name: Verify Meta account and token for 15h
         run: python3 scripts/instagram_preflight.py
       - name: Configure durable claim before publishing
         if: steps.gate.outputs.publish == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Publish the 10h ABS carousel once, after exact due time
+      - name: Publish corrected 15h Cinto and Airbag carousel once
         if: steps.gate.outputs.publish == 'true'
         run: |
           set -o pipefail
-          python3 scripts/instagram_queue.py --execute | tee /tmp/tue-abs-result.json
+          python3 scripts/instagram_queue.py --execute | tee /tmp/tue-cinto15-result.json
           python3 - <<'PY'
           import json
-          j=json.load(open("/tmp/tue-abs-result.json"))
-          if j.get("status")=="published" and j.get("item_id")=="tue-2026-11-10-15-cinto-airbag-v8":
+          j=json.load(open("/tmp/tue-cinto15-result.json"))
+          if j.get("status")=="published" and j.get("item_id")=="tue-2026-11-10-15-cinto-airbag-v9-corrigido":
               print("CINTO_MEDIA_PUBLISHED="+j["media_id"])
           elif j.get("status")=="needs_review":
               raise SystemExit("CINTO_POST_OUTCOME_UNCONFIRMED_INSPECT_META_LEDGER_NO_AUTO_RETRY")
@@ -116,7 +117,7 @@ jobs:
           from facebook_poster import FacebookPoster,FacebookConfig
           from pathlib import Path
           state=json.loads(Path("content/publication-state.json").read_text())
-          p=state["items"].get("tue-2026-11-10-15-cinto-airbag-v8",{})
+          p=state["items"].get("tue-2026-11-10-15-cinto-airbag-v9-corrigido",{})
           assert p.get("status")=="published" and p.get("media_id"),"CINTO_NOT_CONFIRMED_PUBLISHED"
           poster=FacebookPoster(FacebookConfig.from_env())
           x=poster._request("GET",p["media_id"],params={"fields":"id,permalink,media_type"},timeout=40)
