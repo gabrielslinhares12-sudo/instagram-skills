@@ -1,0 +1,80 @@
+name: "FAKER V5.3 — source-authentic Commons CDN originals"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v53-wikimedia-cdn.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Download original Commons archival frames via content-addressed CDN paths
+        shell: bash
+        run: |
+          mkdir -p originals
+          cat >/tmp/direct.py <<'PY'
+          import urllib.request,urllib.parse,hashlib,pathlib,json,re,concurrent.futures,time
+          names=[
+            'T1 at Worlds 2024.jpg',
+            '2024 Worlds Final T1 postgame press conference.jpg',
+            'T1 vs BLG 2024 Worlds Finals.jpg',
+            'T1 win 2024 Worlds.jpg',
+            'T1 Worlds 2025 Media Day.jpg',
+            'Doran 2025.jpg',
+            'Faker 2025 Worlds Final Post-Game.jpg',
+            'Gumayusi 2025 Worlds Final MVP.jpg',
+            'Oner at Worlds 2025.jpg',
+            'T1 preparing for their first game against BLG at MSI 2025.jpg',
+            'Players at T1 2023 LoL World Champion V4 Ceremony.jpg',
+            'T1 players interview at 2023 LCK Awards - 01.jpg',
+            'T1 players interview at 2023 LCK Awards - 02.jpg',
+            'Zeus 2024 post-match interview.jpg',
+            'Zeus, 2023 worlds winning team interview.jpg',
+            'Faker at 2023 MSI (cropped).jpg',
+            'T1 hold 2023 Summoners Cup.jpg',
+            'Faker at 2015 Worlds with Summoners Cup.jpeg',
+            'Faker at 2015 Worlds.jpeg',
+            'Faker at Worlds 2024.jpg',
+            'Faker Hall of Legends Press Conference - 01.jpg',
+            'Faker Hall of Legends Press Conference - 03.jpg'
+          ]
+          out=pathlib.Path('originals')
+          def f(name):
+            normalized=name.replace(' ','_')
+            md=hashlib.md5(normalized.encode('utf-8')).hexdigest()
+            url='https://upload.wikimedia.org/wikipedia/commons/'+md[0]+'/'+md[:2]+'/'+urllib.parse.quote(normalized,safe='()')
+            safe=re.sub(r'[^A-Za-z0-9_.-]','_',name)
+            local=out/safe
+            row={'title':name,'source_url':url,'source_page':'https://commons.wikimedia.org/wiki/File:'+urllib.parse.quote(normalized),'local_file':safe,'rights':'Review Wikimedia page: most sources CC BY 3.0, attribution required; do not publish before verified'}
+            for trial in range(2):
+              try:
+                req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (TUE archival internal editorial QA)'})
+                with urllib.request.urlopen(req,timeout=24) as response,open(local,'wb') as dst:
+                  while True:
+                    b=response.read(1024*1024)
+                    if not b:break
+                    dst.write(b)
+                if local.stat().st_size<5000:raise ValueError('Invalid image or empty')
+                row['status']='SOURCE_ORIGINAL_DOWNLOADED';row['bytes']=local.stat().st_size
+                row['sha256']=hashlib.sha256(local.read_bytes()).hexdigest()
+                print('OK',name,row['bytes'],flush=True);break
+              except Exception as e:
+                row['status']='ERROR';row['reason']=str(e)[:200]
+                local.unlink(missing_ok=True)
+                if trial==0:time.sleep(2.0)
+            if row['status']!='SOURCE_ORIGINAL_DOWNLOADED':print('FAIL',name,row.get('reason'),flush=True)
+            return row
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:results=list(pool.map(f,names))
+          (out/'PROVENANCE_AND_RIGHTS_PENDING.json').write_text(json.dumps(results,ensure_ascii=False,indent=2))
+          print('TOTAL_OK',sum(x['status']=='SOURCE_ORIGINAL_DOWNLOADED' for x in results),flush=True)
+          PY
+          python3 /tmp/direct.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v53-time-matched-source-originals
+          path: originals/
+          retention-days: 7
+          compression-level: 0
