@@ -1,0 +1,45 @@
+name: "FAKER V5.4 — authentic 2022 Worlds final English Riot VOD"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-2022-original-English.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  clips:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Install video tools
+        run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Check real T1 versus DRX 2022 full official finals VOD
+        run: |
+          mkdir -p original_2022
+          cat >/tmp/eng2022.py <<'PY'
+          import subprocess,json,pathlib,concurrent.futures
+          import imageio_ffmpeg
+          url='https://www.twitch.tv/videos/1644541745';out=pathlib.Path('original_2022');ff=imageio_ffmpeg.get_ffmpeg_exe()
+          times=['00:30:00','01:35:00','03:30:00','05:00:00','07:17:00','08:30:00']
+          def cut(x):
+            n,a=x;hh,mm,ss=map(int,a.split(':'));end=hh*3600+mm*60+ss+8
+            b=f'{end//3600:02d}:{(end//60)%60:02d}:{end%60:02d}'
+            rec={'id':n,'start':a,'source_url':url,'year':2022,'event':'T1 versus DRX Worlds 2022 GRAND FINAL Riot English VOD','rights':'Private QC only'}
+            try:
+              cmd=['yt-dlp','--ffmpeg-location',ff,'--no-progress','--socket-timeout','14','--retries','0','--fragment-retries','0','--download-sections',f'*{a}-{b}','--force-keyframes-at-cuts','--format','best[height>=1080]/best[height>=720]','--merge-output-format','mp4','-o',str(out/(f'2022_{n:02d}.%(ext)s')),url]
+              p=subprocess.run(cmd,capture_output=True,text=True,timeout=110)
+              f=out/(f'2022_{n:02d}.mp4')
+              if p.returncode or not f.exists() or f.stat().st_size<100000:raise RuntimeError((p.stderr+p.stdout)[-550:])
+              rec.update({'status':'SOURCE_DOWNLOADED','bytes':f.stat().st_size,'filename':f.name})
+            except Exception as e:rec.update({'status':'FAILED','error':str(e)[:500]})
+            print(n,rec['status'],rec.get('bytes'),flush=True);return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:reports=list(ex.map(cut,enumerate(times)))
+          (out/'2022_ENGLISH_ORIGINAL_SOURCE.json').write_text(json.dumps(reports,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/eng2022.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-official-riot-2022-drx-t1-original
+          path: original_2022/
+          retention-days: 5
+          compression-level: 0
