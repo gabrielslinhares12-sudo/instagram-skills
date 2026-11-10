@@ -1,0 +1,115 @@
+{
+  "date": "2026-11-10",
+  "timezone": "America/Sao_Paulo",
+  "account": "temumaexplicacao",
+  "preset_id": "TUE-MESTRE-01",
+  "stage": "editorial_prepared",
+  "approved": false,
+  "visual_reviewed": false,
+  "owner_authorized": false,
+  "notes": "Temas independentes. Sem publicação até mídias finais revisadas e autorização prevista no contrato editorial.",
+  "posts": [
+    {
+      "id": "tue-2026-11-10-11-abs-fisica-da-frenagem",
+      "slot": "11:00",
+      "topic_id": "abs-anti-bloqueio-rodas",
+      "series": "carrossel-educativo",
+      "title": "Por que o freio ABS solta a roda para você conseguir parar?",
+      "caption": "O freio ABS faz uma coisa que parece contraditória: ele alivia a frenagem para evitar que a roda trave. 🚗\n\nSensores acompanham a rotação das rodas. Se uma ameaça travar, o sistema modula a pressão dos freios para preservar a capacidade de dirigir enquanto o carro desacelera.\n\nIsso não cria aderência extra: gelo, chuva, pneus e velocidade continuam fazendo diferença. Em cascalho ou neve solta, a distância de parada pode até aumentar.\n\nVocê já sentiu o pedal vibrar em uma freada forte?\n\n#FisicaAplicada #FreioABS #SegurancaNoTransito #TemUmaExplicacao",
+      "sources": [
+        "https://www.bosch-mobility.com/en/solutions/braking-systems/antilock-braking-system/",
+        "https://www.nhtsa.gov/interpretations/1210corrforweb",
+        "https://crashstats.nhtsa.dot.gov/Api/Public/Publication/808758"
+      ],
+      "slides": [
+        {
+          "eyebrow": "FÍSICA APLICADA",
+          "headline": "O FREIO QUE SOLTA\nPARA CONSEGUIR PARAR",
+          "description": "Por que o ABS impede as rodas de travar?",
+          "visual": "hero-abs"
+        },
+        {
+          "eyebrow": "O PROBLEMA",
+          "headline": "RODA TRAVADA.\nDIREÇÃO PERDIDA.",
+          "description": "Quando o pneu desliza, fica muito mais difícil controlar a trajetória do carro.",
+          "visual": "wheel-compare"
+        },
+        {
+          "eyebrow": "O SENSOR",
+          "headline": "O SISTEMA PERCEBE\nA RODA DESACELERAR",
+          "description": "Sensores de rotação enviam sinais à central do ABS.",
+          "visual": "sensor"
+        },
+        {
+          "eyebrow": "A CORREÇÃO",
+          "headline": "REDUZ. MANTÉM.\nREAPLICA.",
+          "description": "A central ajusta a pressão do freio e repete o ciclo enquanto necessário.",
+          "visual": "pressure"
+        },
+        {
+          "eyebrow": "A FÍSICA",
+          "headline": "FREAR TAMBÉM É\nPRESERVAR ADERÊNCIA",
+          "description": "O objetivo é desacelerar sem perder a capacidade de orientar as rodas.",
+          "visual": "friction"
+        },
+        {
+          "eyebrow": "A VERDADE",
+          "headline": "ABS NÃO FAZ\nMILAGRES.",
+          "description": "Ele ajuda a manter o controle, mas não elimina os limites de aderência. Mantenha distância.",
+          "visual": "takeaway"
+        }
+      ]
+    },
+    {
+      "id": "tue-2026-11-10-15-cinto-impulso",
+      "slot": "15:00",
+      "topic_id": "impulso-cinto-airbag",
+      "series": "raio-x-real",
+      "title": "Por que o cinto e o airbag precisam trabalhar juntos?",
+      "caption": "O carro pode parar de repente. Seu corpo, não. E essa diferença é pura física. ⚡\n\nPela inércia, o corpo tende a continuar em movimento. O cinto ajuda a desacelerá-lo junto com o veículo e distribui as forças sobre regiões mais resistentes. Zonas de deformação e airbags também ajudam a administrar a colisão.\n\nA ideia física é o impulso: para a mesma mudança de quantidade de movimento, aumentar o tempo de desaceleração reduz a força média.\n\nMas atenção: airbag não substitui cinto. Eles foram projetados para funcionar em conjunto.\n\nQual tecnologia do dia a dia você quer ver explicada depois?\n\n#FisicaAplicada #CintoDeSeguranca #Airbag #TemUmaExplicacao",
+      "sources": [
+        "https://openstax.org/books/university-physics-volume-1/pages/9-2-impulse-and-collisions",
+        "https://www.nhtsa.gov/vehicle-safety/seat-belts",
+        "https://www.iihs.org/research-areas/seat-belts"
+      ],
+      "slides": [
+        {
+          "eyebrow": "FÍSICA APLICADA",
+          "headline": "O CARRO PARA.\nSEU CORPO NÃO.",
+          "description": "O que cinto e airbag fazem com as forças de uma colisão?",
+          "visual": "hero-belt"
+        },
+        {
+          "eyebrow": "PRIMEIRA LEI DE NEWTON",
+          "headline": "A INÉRCIA NÃO\nPISA NO FREIO.",
+          "description": "Mesmo quando o carro desacelera, o corpo tende a manter o movimento.",
+          "visual": "inertia"
+        },
+        {
+          "eyebrow": "O CINTO",
+          "headline": "SEGURA NAS\nREGIÕES CERTAS.",
+          "description": "A faixa do ombro e a abdominal distribuem a força pelo tórax e pela pelve.",
+          "visual": "belt"
+        },
+        {
+          "eyebrow": "A EQUAÇÃO",
+          "headline": "MAIS TEMPO.\nMENOR FORÇA MÉDIA.",
+          "description": "Para a mesma mudança de movimento: força média × tempo = impulso.",
+          "visual": "impulse"
+        },
+        {
+          "eyebrow": "O AIRBAG",
+          "headline": "NÃO SUBSTITUI.\nTRABALHA JUNTO.",
+          "description": "O cinto posiciona o ocupante; o airbag acrescenta proteção na colisão.",
+          "visual": "airbag"
+        },
+        {
+          "eyebrow": "A CONCLUSÃO",
+          "headline": "A PROTEÇÃO\nÉ UM CONJUNTO.",
+          "description": "Cinto, airbag e estrutura deformável ajudam a reduzir as consequências do impacto.",
+          "visual": "takeaway-belt"
+        }
+      ]
+    }
+  ]
+}
