@@ -473,6 +473,40 @@
       "distribution_mode": "api_carousel_without_native_music",
       "owner_authorized_without_music": true,
       "approval_note": "Aprovadas exatamente as cinco artes finais em conversa de 07/11/2026; postar às 15h."
+    },
+    {
+      "id": "tue-2026-11-10-10-abs-sem-fisica-aplicada-v6",
+      "due_at": "2026-11-10T13:00:00Z",
+      "username": "temumaexplicacao",
+      "kind": "carousel",
+      "target_url": "https://www.instagram.com/temumaexplicacao/",
+      "title": "Por que o freio ABS solta as rodas?",
+      "caption": "🚗 O freio ABS faz algo que parece contraditório: ele alivia a pressão de frenagem para evitar que a roda trave.\n\nSensores monitoram a rotação das rodas. Quando uma ameaça travar, a central ajusta a pressão dos freios rapidamente, preservando a capacidade de dirigir enquanto o carro desacelera.\n\nO ABS não cria aderência extra e nem sempre encurta a distância de parada. Chuva, gelo, cascalho, pneus e velocidade continuam fazendo diferença.\n\nVocê já sentiu o pedal vibrar numa frenagem forte?\n\n#FreioABS #SegurancaNoTransito #FisicaDoCotidiano #TemUmaExplicacao",
+      "media_urls": [
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/e8f824528988a5dc1c35f239b00962ed8dda488d/content/media/instagram/2026-11-10/abs-10h-v6/01.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/e8f824528988a5dc1c35f239b00962ed8dda488d/content/media/instagram/2026-11-10/abs-10h-v6/02.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/e8f824528988a5dc1c35f239b00962ed8dda488d/content/media/instagram/2026-11-10/abs-10h-v6/03.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/e8f824528988a5dc1c35f239b00962ed8dda488d/content/media/instagram/2026-11-10/abs-10h-v6/04.jpg",
+        "https://raw.githubusercontent.com/gabrielslinhares12-sudo/instagram-skills/e8f824528988a5dc1c35f239b00962ed8dda488d/content/media/instagram/2026-11-10/abs-10h-v6/05.jpg"
+      ],
+      "media_sha256": [
+        "b97dfca9a571df937ad2c811ace9b1bc0d9e99871c72c689f9ff9b1bc1d43698",
+        "18961641efe8dbc3c6de7b72cba6d8a114f2768acd161198d35839dfcae36e10",
+        "4186d7038c2ea4690d8c7929e64b5e54a36ed928b11afe4ec5465918e84c0f18",
+        "682e99037ca4b895d706f41d17a3ae451e033894cf686fdc826ac62cf01eb3a7",
+        "4c43c648aeaa2860de5969de0feacf242ae2a2b5569b40c1a0213f65b621386d"
+      ],
+      "approved": true,
+      "ai_origin": "synthetic",
+      "content_style": "clearly_illustrated",
+      "ai_disclosure_review": "no_mandatory_self_disclosure_for_stylized_still",
+      "distribution_mode": "api_carousel_without_native_music",
+      "owner_authorized_without_music": true,
+      "sources": [
+        "https://www.bosch-mobility.com/en/solutions/braking-systems/antilock-braking-system/",
+        "https://www.nhtsa.gov/vehicle-safety"
+      ],
+      "approval_note": "Proprietário autorizou agendamento para 10h de 10/11/2026 America/Sao_Paulo e pediu retirar 'Física Aplicada'. Versão V6 exatamente sem o texto no topo, 5 JPEGs 4:5; modelo do carrossel mantido, sem logotipo fictício. Sem música, conforme preferência expressa anterior do canal."
     }
   ]
 }
