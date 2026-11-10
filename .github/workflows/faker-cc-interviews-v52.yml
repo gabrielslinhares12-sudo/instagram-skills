@@ -1,0 +1,54 @@
+name: "FAKER EP01 — CC motion interviews of Keria and Faker peers"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-cc-interviews-v52.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  cc-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - name: Get verified Wikimedia CC media originals
+        run: |
+          mkdir -p cc_sources
+          cat > /tmp/cc.py <<'PY'
+          import urllib.request,urllib.parse,json,pathlib,hashlib
+          titles=[
+            ("keria_2020.webm","'케리아' 류민석, 저는 유미를 엄청 싫어합니다.webm"),
+            ("bdd_2020.webm","젠지 '비디디' 곽보성 내가 생각하는 페이커-쵸비-쇼메이커는.webm")
+          ]
+          ua={"User-Agent":"TUE-esports-independent-documentary/1.0 (license auditing)"}
+          out=[]
+          for name,title in titles:
+            rec={"filename":name,"title":title,"source":"https://commons.wikimedia.org/wiki/File:"+urllib.parse.quote(title.replace(' ','_'))}
+            try:
+              args={'action':'query','prop':'imageinfo','iiprop':'url|size|extmetadata','titles':'File:'+title,'format':'json','formatversion':'2'}
+              api='https://commons.wikimedia.org/w/api.php?'+urllib.parse.urlencode(args)
+              with urllib.request.urlopen(urllib.request.Request(api,headers=ua),timeout=25) as r: x=json.load(r)
+              info=x['query']['pages'][0]['imageinfo'][0]
+              license=info.get('extmetadata',{}).get('LicenseShortName',{}).get('value','')
+              rec['license']=license; rec['size']=info.get('size')
+              if 'CC BY' not in license: raise RuntimeError('No accepted Creative Commons license')
+              with urllib.request.urlopen(urllib.request.Request(info['url'],headers=ua),timeout=100) as r,open('cc_sources/'+name,'wb') as f:
+                while True:
+                  b=r.read(1024*1024)
+                  if not b:break
+                  f.write(b)
+              rec['bytes']=pathlib.Path('cc_sources/'+name).stat().st_size
+              rec['sha256']=hashlib.sha256(pathlib.Path('cc_sources/'+name).read_bytes()).hexdigest()
+              rec['status']='verified_CC_original'
+              print(name,rec['bytes'],license)
+            except Exception as e:rec['status']='failed';rec['error']=str(e)
+            out.append(rec)
+          pathlib.Path('cc_sources/PROVENANCE.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/cc.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-cc-keria-bdd-interviews
+          path: cc_sources/
+          retention-days: 5
+          compression-level: 0
