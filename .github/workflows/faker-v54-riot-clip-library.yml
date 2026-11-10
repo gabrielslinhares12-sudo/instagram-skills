@@ -1,0 +1,63 @@
+name: "FAKER V5.4 — Riot 1080p60 genuine match clip library"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-riot-clip-library.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - year: "2023"
+            url: "https://www.twitch.tv/videos/1981467393"
+            starts: "00:30:00,01:05:00,02:00:00,04:25:00,05:55:00"
+          - year: "2024"
+            url: "https://www.twitch.tv/videos/2291702312"
+            starts: "00:30:00,01:40:00,03:40:00,05:31:00,06:49:00"
+          - year: "2025"
+            url: "https://www.twitch.tv/videos/2613641505"
+            starts: "00:40:00,01:50:00,04:40:00,06:45:00,07:52:00"
+    steps:
+      - name: Free static FFmpeg and yt-dlp
+        run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Cut real game/broadcast footage at native 1080p60 — no stock or graphics
+        env:
+          YEAR: ${{ matrix.year }}
+          VOD: ${{ matrix.url }}
+          TIMES: ${{ matrix.starts }}
+        run: |
+          mkdir -p video_clips
+          cat > /tmp/clipper.py <<'PY'
+          import subprocess,os,pathlib,json,concurrent.futures
+          import imageio_ffmpeg
+          out=pathlib.Path('video_clips');times=os.environ['TIMES'].split(',');url=os.environ['VOD'];year=os.environ['YEAR'];ff=imageio_ffmpeg.get_ffmpeg_exe()
+          def cut(arg):
+            i,s=arg;hour,minute,sec=map(int,s.split(':'));a=hour*3600+minute*60+sec;b=a+8
+            end=f'{b//3600:02d}:{(b//60)%60:02d}:{b%60:02d}'
+            target=out/(f'{year}_{i:02d}_%.(ext)s')
+            target=out/(f'{year}_{i:02d}.%(ext)s')
+            cmd=['yt-dlp','--ffmpeg-location',ff,'--no-progress','--no-playlist','--socket-timeout','12','--retries','0','--fragment-retries','0','--download-sections','*'+s+'-'+end,'--force-keyframes-at-cuts','-f','best[height>=1080]','--merge-output-format','mp4','-o',str(target),url]
+            record={'year':year,'segment':i,'from':s,'to':end,'source':url,'event':'Official Riot Games World Championship broadcast','rights':'PRIVATE EDITORIAL REVIEW; confirm Riot terms before posting'}
+            try:
+              r=subprocess.run(cmd,capture_output=True,text=True,timeout=190)
+              p=out/(f'{year}_{i:02d}.mp4')
+              if r.returncode or not p.exists() or p.stat().st_size<100000:raise RuntimeError((r.stderr+r.stdout)[-500:])
+              record.update({'status':'GOOD_HD_SOURCE','filename':p.name,'bytes':p.stat().st_size})
+            except Exception as e:record.update({'status':'FAILED','error':str(e)[:500]})
+            print(year,i,record['status'],record.get('bytes'),flush=True);return record
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool: manifest=list(pool.map(cut,enumerate(times)))
+          (out/'MANIFEST.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/clipper.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-official-riot-${{ matrix.year }}-native1080
+          path: video_clips/
+          retention-days: 5
+          compression-level: 0
