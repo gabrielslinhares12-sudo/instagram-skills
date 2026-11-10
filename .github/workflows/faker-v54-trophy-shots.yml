@@ -1,0 +1,57 @@
+name: "FAKER V5.4 — winner camera and trophy official streams"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-trophy-shots.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - year: "2023"
+            url: "https://www.twitch.tv/videos/1981467393"
+            starts: "05:32:00,05:40:00"
+          - year: "2024"
+            url: "https://www.twitch.tv/videos/2291702312"
+            starts: "06:24:00,06:35:00"
+          - year: "2025"
+            url: "https://www.twitch.tv/videos/2613641505"
+            starts: "07:12:00,07:22:00"
+    steps:
+      - run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Extract actual victory and roster cameras, not manufactured scorecards
+        env:
+          Y: ${{ matrix.year }}
+          V: ${{ matrix.url }}
+          TIMES: ${{ matrix.starts }}
+        run: |
+          mkdir -p winners
+          cat >/tmp/winners.py <<'PY'
+          import os,subprocess,pathlib,json,concurrent.futures,imageio_ffmpeg
+          y=os.environ['Y'];u=os.environ['V'];t=os.environ['TIMES'].split(',');ff=imageio_ffmpeg.get_ffmpeg_exe();out=pathlib.Path('winners')
+          def job(it):
+            i,s=it;h,m,k=map(int,s.split(':'));total=h*3600+m*60+k+8;stop=f'{total//3600:02d}:{(total//60)%60:02d}:{total%60:02d}'
+            q=['yt-dlp','--ffmpeg-location',ff,'--no-progress','--no-playlist','--socket-timeout','12','--retries','0','--fragment-retries','0','--download-sections','*'+s+'-'+stop,'--force-keyframes-at-cuts','-f','best[height>=1080]','--merge-output-format','mp4','-o',str(out/(f'{y}_win{i}.%(ext)s')),u]
+            res={'year':y,'start':s,'url':u,'private_only':True}
+            try:
+              z=subprocess.run(q,capture_output=True,text=True,timeout=130);p=out/(f'{y}_win{i}.mp4')
+              if z.returncode or not p.exists() or p.stat().st_size<100000:raise RuntimeError((z.stdout+z.stderr)[-350:])
+              res.update({'status':'OK','file':p.name,'size':p.stat().st_size})
+            except Exception as e:res.update({'status':'FAIL','error':str(e)[:350]})
+            print(res,flush=True);return res
+          with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:r=list(pool.map(job,enumerate(t)))
+          (out/'MANIFEST.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/winners.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-victory-reaction-${{ matrix.year }}
+          path: winners/
+          retention-days: 3
+          compression-level: 0
