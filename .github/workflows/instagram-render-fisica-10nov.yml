@@ -1,0 +1,48 @@
+name: "Render 10nov carrosseis - fisica aplicada (STAGING)"
+on:
+  push:
+    paths:
+      - "scripts/render_fisica_10nov_2026.py"
+      - "content/staging/2026-11-10/fisica-aplicada-brief.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install renderer
+        run: python -m pip install --disable-pip-version-check "Pillow>=10,<13"
+      - name: Render from ORIGINAL Lúmino and official editorial brief
+        run: python scripts/render_fisica_10nov_2026.py
+      - name: Technical validation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import json, hashlib
+          root=Path("content/staging/2026-11-10")
+          manifest=json.loads((root/"render-manifest.json").read_text())
+          assert len(manifest["images"])==12
+          for x in manifest["images"]:
+            p=Path(x["path"])
+            with Image.open(p) as im:
+              assert im.size==(1080,1350) and im.mode=="RGB" and im.format=="JPEG",p
+            assert hashlib.sha256(p.read_bytes()).hexdigest()==x["sha256"]
+          print("PASS: 12 JPEGs de 1080x1350, SHA256 validado. Revisao visual humana pendente.")
+          PY
+      - name: Keep staging output in repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/staging/2026-11-10
+          if git diff --cached --quiet; then echo "No file changes"; exit 0; fi
+          git commit -m "assets: render 12 JPEGs de fisica aplicada 10nov em staging"
+          git push
