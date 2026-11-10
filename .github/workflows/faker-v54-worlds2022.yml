@@ -1,0 +1,43 @@
+name: "FAKER V5.4 — original 2022 DRX T1 final HD library"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-worlds2022.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Take 5 actual different sections of 2022 DRX T1 final in 1080p
+        run: |
+          mkdir -p clips
+          cat >/tmp/c.py <<'PY'
+          import pathlib,subprocess,json,concurrent.futures,imageio_ffmpeg
+          F=imageio_ffmpeg.get_ffmpeg_exe();O=pathlib.Path('clips');u='https://www.twitch.tv/videos/1644541745'
+          starts=['01:35:00','03:10:00','05:00:00','07:40:00','08:50:00']
+          def cut(x):
+            n,start=x;h,m,s=map(int,start.split(':'));a=h*3600+m*60+s+8;end=f'{a//3600:02d}:{(a//60)%60:02d}:{a%60:02d}'
+            p=O/(f'worlds2022_{n:02}.%(ext)s')
+            c=['yt-dlp','--ffmpeg-location',F,'--no-playlist','--no-progress','--socket-timeout','12','--retries','0','--fragment-retries','0','--download-sections','*'+start+'-'+end,'--force-keyframes-at-cuts','-f','best[height>=1080]','--merge-output-format','mp4','-o',str(p),u]
+            rec={'source':u,'offset':start,'year':2022,'match':'T1 DRX final','copyright':'PRIVATE QC ONLY'}
+            try:
+              r=subprocess.run(c,capture_output=True,text=True,timeout=130)
+              match=O/(f'worlds2022_{n:02}.mp4')
+              if r.returncode or not match.exists() or match.stat().st_size<100000:raise RuntimeError((r.stdout+r.stderr)[-390:])
+              rec.update({'status':'VALID','filename':match.name,'bytes':match.stat().st_size})
+            except Exception as e:rec.update({'status':'FAILED','reason':str(e)[:390]})
+            print(rec,flush=True);return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as x:a=list(x.map(cut,enumerate(starts)))
+          (O/'MANIFEST.json').write_text(json.dumps(a,indent=2))
+          PY
+          python /tmp/c.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-riot-2022-world-final-hd
+          path: clips/
+          retention-days: 4
+          compression-level: 0
