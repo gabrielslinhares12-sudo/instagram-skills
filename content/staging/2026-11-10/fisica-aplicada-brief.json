@@ -3,7 +3,7 @@
   "timezone": "America/Sao_Paulo",
   "account": "temumaexplicacao",
   "preset_id": "TUE-MESTRE-01",
-  "stage": "editorial_prepared",
+  "stage": "visual_rework_required",
   "approved": false,
   "visual_reviewed": false,
   "owner_authorized": false,
@@ -111,5 +111,18 @@
         }
       ]
     }
-  ]
+  ],
+  "rejected_previews": [
+    {
+      "type": "ai_comic_sheet",
+      "reason": "Mascote desenhado novamente com rosto, olhos, estrutura de lanterna e casaco divergentes do Lúmino canônico. Prévia reprovada; proibida para publicação."
+    }
+  ],
+  "visual_lock": {
+    "canonical_mascot": "content/brand/lumino-original.png",
+    "sha256": "f905d801f013c2e253b8a17ae3bc1279b57022d1b805baa632f291a3b73e0c1b",
+    "rule": "Não gerar, redesenhar ou estilizar o Lúmino. Inserir como camada PNG original RGBA por composição, preservando proporções e cores.",
+    "reject_generated_mascots": true,
+    "publication_blocked_until_visual_qc": true
+  }
 }
