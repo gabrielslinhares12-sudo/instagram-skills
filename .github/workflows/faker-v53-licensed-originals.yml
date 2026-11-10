@@ -1,0 +1,113 @@
+name: "FAKER V5.3 — event-matched Creative Commons photo originals"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v53-licensed-originals.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  licensed-stills:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Collect verified year-matched historic original files
+        shell: bash
+        run: |
+          mkdir -p originals
+          cat > /tmp/faker_commons.py <<'PY'
+          import pathlib,urllib.request,urllib.parse,json,time,hashlib,re,concurrent.futures
+          out=pathlib.Path('originals')
+          api='https://commons.wikimedia.org/w/api.php'
+          header={'User-Agent':'TUE-Educational-Video-ArchivalResearch/1.0 (attribution license check, private production)'}
+          handpicked=[
+           'T1 at Worlds 2024.jpg',
+           '2024 Worlds Final T1 postgame press conference.jpg',
+           'T1 vs BLG 2024 Worlds Finals.jpg',
+           'T1 win 2024 Worlds.jpg',
+           'T1 Worlds 2025 Media Day.jpg',
+           'Doran 2025.jpg',
+           'Faker 2025 Worlds Final Post-Game.jpg',
+           'Gumayusi 2025 Worlds Final MVP.jpg',
+           'Oner at Worlds 2025.jpg',
+           'T1 preparing for their first game against BLG at MSI 2025.jpg',
+           'Players at T1 2023 LoL World Champion V4 Ceremony.jpg',
+           'T1 players interview at 2023 LCK Awards - 01.jpg',
+           'T1 players interview at 2023 LCK Awards - 02.jpg',
+           'Zeus 2024 post-match interview.jpg',
+           'Zeus, 2023 worlds winning team interview.jpg',
+           'Faker at 2023 MSI (cropped).jpg',
+           'T1 hold 2023 Summoners Cup.jpg',
+           'Faker at 2015 Worlds with Summoners Cup.jpeg',
+           'Faker at 2015 Worlds.jpeg',
+           'Faker at Worlds 2024.jpg',
+           'Faker Hall of Legends Press Conference - 01.jpg',
+           'Faker Hall of Legends Press Conference - 03.jpg'
+          ]
+          cats=[
+            '2025 League of Legends World Championship',
+            '2024 League of Legends World Championship',
+            'T1 (esports) players',
+            'Faker in 2025',
+            'Faker in 2024',
+            'Zeus (League of Legends player)',
+            'Keria (gamer)',
+            'Gumayusi',
+            'Doran (gamer)',
+            'League of Legends at the 2022 Asian Games',
+            'League of Legends at the 2026 Asian Games',
+            '2023 League of Legends World Championship',
+          ]
+          def get_json(d):
+            q=urllib.parse.urlencode(d)
+            with urllib.request.urlopen(urllib.request.Request(api+'?'+q,headers=header),timeout=25) as h:return json.load(h)
+          for cat in cats:
+            try:
+              j=get_json({'action':'query','list':'categorymembers','cmtitle':'Category:'+cat,'cmnamespace':6,'cmlimit':100,'format':'json'})
+              for x in j.get('query',{}).get('categorymembers',[]):handpicked.append(x['title'].removeprefix('File:'))
+            except Exception as e:print('category',cat,str(e)[:180],flush=True)
+          names=list(dict.fromkeys(handpicked))
+          candidates=[]
+          for pos in range(0,len(names),35):
+            try:
+              j=get_json({'action':'query','prop':'imageinfo','iiprop':'url|size|extmetadata','titles':'|'.join('File:'+x for x in names[pos:pos+35]),'formatversion':2,'format':'json'})
+              for p in j.get('query',{}).get('pages',[]):
+                if 'imageinfo' not in p:continue
+                i=p['imageinfo'][0];lic=i.get('extmetadata',{}).get('LicenseShortName',{}).get('value','')
+                name=p['title'].removeprefix('File:')
+                is_photo=name.lower().endswith(('.jpg','.jpeg','.png'))
+                approved_license=(lic or '').startswith(('CC BY','CC0','Public domain'))
+                if is_photo and approved_license and i.get('width',0)>=650 and i.get('height',0)>=650 and i.get('size',0)<15000000:
+                  candidates.append({'title':name,'url':i['url'],'width':i['width'],'height':i['height'],'license':lic,'bytes':i.get('size'),'source':'https://commons.wikimedia.org/wiki/File:'+urllib.parse.quote(name.replace(' ','_'))})
+            except Exception as e:print('metadata batch',pos,str(e)[:180],flush=True)
+          print('CANDIDATE_IMAGES',len(candidates),flush=True)
+          candidates.sort(key=lambda r:((r['title'] in handpicked[:22]),r['width']*r['height']),reverse=True)
+          candidates=candidates[:65]
+          def grab(item):
+            name=re.sub(r'[^a-zA-Z0-9_.-]','_',item['title'])
+            file=out/name
+            item['filename']=name
+            try:
+              with urllib.request.urlopen(urllib.request.Request(item['url'],headers=header),timeout=70) as h,open(file,'wb') as f:
+                while True:
+                  b=h.read(1024*1024)
+                  if not b:break
+                  f.write(b)
+              item['sha256']=hashlib.sha256(file.read_bytes()).hexdigest()
+              item['status']='LICENSED_ORIGINAL'
+              print('got',item['title'],file.stat().st_size,flush=True)
+            except Exception as e:
+              item['status']='FAILED';item['reason']=str(e)[:150]
+              file.unlink(missing_ok=True)
+            return item
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: receipts=list(pool.map(grab,candidates))
+          (out/'CREDITS_MANIFEST.json').write_text(json.dumps(receipts,ensure_ascii=False,indent=2))
+          print('COLLECTED',sum(x['status']=='LICENSED_ORIGINAL' for x in receipts),flush=True)
+          PY
+          python3 /tmp/faker_commons.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v53-2023-2025-licensed-originals
+          path: originals/
+          retention-days: 7
+          compression-level: 0
