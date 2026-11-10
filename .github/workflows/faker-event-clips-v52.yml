@@ -1,0 +1,67 @@
+name: "FAKER EP01 — authentic event source trials (PRIVATE QC)"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-event-clips-v52.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  historical-motion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Install editorial extraction tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python3 -m pip install -q -U 'yt-dlp[default]'
+      - name: Private extract of short dated archival samples
+        shell: bash
+        run: |
+          mkdir -p historical_clips
+          cat > /tmp/historical.py <<'PY'
+          import subprocess,pathlib,json,concurrent.futures,time
+          out=pathlib.Path('historical_clips')
+          sources=[
+            ('2013_lck_intro','x17b0fj','00:00:04','00:00:11',2013,'OGN official 2013 summer final intro SKT-KT, not Worlds'),
+            ('2013_faker_gameplay','x2hlnj0','00:00:25','00:00:33',2013,'Faker Ahri vs Lemondogs world championship 2013'),
+            ('2016_worlds_final','x511wxt','00:00:35','00:00:43',2016,'SKT versus Samsung 2016 worlds final game 1'),
+            ('2017_faker_worlds','x6wsifa','00:00:22','00:00:30',2017,'Faker Worlds 2017 highlight compilation; review origin and precise game'),
+            ('2023_asian_gold','x8ofjec','00:00:04','00:00:12',2023,'Asian Games LoL South Korea gold - The Manila Times photos/AP, 2023'),
+            ('2023_faker_recap','x8pujnc','00:01:02','00:01:10',2023,'GosuGamers Vietnam news recap 2023 T1 - rights pending'),
+            ('2024_worlds_news','x98l0o4','00:00:04','00:00:12',2024,'PTVPhilippines 2024 T1 title report'),
+            ('2024_worlds_game','x98htlu','00:00:09','00:00:17',2024,'Streamer Ibai reaction official 2024 Worlds game - streamer rights pending'),
+            ('2025_worlds_game','x9ti84w','00:00:45','00:00:53',2025,'2025 Worlds T1 KT finals highlight'),
+            ('2025_worlds_trophy','x9ti84w','00:54:10','00:54:18',2025,'2025 Worlds T1 KT trophy footage')
+          ]
+          def fetch(row):
+            name,vid,a,b,year,desc=row
+            rec={'name':name,'source':'https://www.dailymotion.com/video/'+vid,'years':year,'context':desc,'rights':'PRIVATE REVIEW; original source/publisher rights not verified','publish_blocked':True}
+            src=out/(name+'.%(ext)s')
+            try:
+              cmd=['yt-dlp','--no-progress','--no-playlist','--socket-timeout','18','--retries','0','--fragment-retries','0','--download-sections',f'*{a}-{b}','--force-keyframes-at-cuts','-f','best[height<=720]/best','--merge-output-format','mp4','-o',str(src),rec['source']]
+              p=subprocess.run(cmd,capture_output=True,text=True,timeout=95)
+              rec['exit_code']=p.returncode;rec['extractor_tail']=(p.stdout+' '+p.stderr)[-650:]
+              paths=[x for x in out.glob(name+'.*') if x.suffix in ('.mp4','.webm','.mov')]
+              if not paths:raise RuntimeError('No source video downloaded')
+              f=paths[0];ready=out/(name+'_clean.mp4')
+              c=['ffmpeg','-loglevel','error','-hide_banner','-y','-i',str(f),'-t','8','-vf','scale=960:-2:flags=bilinear,fps=24,format=yuv420p','-an','-c:v','libx264','-preset','ultrafast','-crf','27',str(ready)]
+              z=subprocess.run(c,capture_output=True,timeout=70)
+              if z.returncode or not ready.exists():raise RuntimeError('ffmpeg fail '+z.stderr[-200:].decode(errors='replace'))
+              f.unlink();ready.rename(out/(name+'.mp4'))
+              rec['status']='PRIVATE_SAMPLE';rec['bytes']=(out/(name+'.mp4')).stat().st_size
+            except Exception as e:
+              rec['status']='FAILED';rec['error']=str(e)
+            print(name,rec['status'],rec.get('bytes',0),rec.get('error',''),flush=True)
+            return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool: data=list(pool.map(fetch,sources))
+          (out/'PROVENANCE_QC.json').write_text(json.dumps(data,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/historical.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v52-year-verified-event-footage-probe
+          path: historical_clips/
+          retention-days: 3
+          compression-level: 0
