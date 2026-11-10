@@ -1,0 +1,45 @@
+name: "FAKER V5.4 — legacy and 2026 true-event media gate"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-legacy-2026-gate.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - run: python -m pip install -q -U yt-dlp
+      - name: Determine which old and current broadcasts actually exist in HD
+        run: |
+          mkdir -p output
+          cat >/tmp/probe.py <<'PY'
+          import json,pathlib,concurrent.futures,subprocess
+          links=[
+           ('2015_skt_ogn_semifinal','https://www.twitch.tv/riotgames/v/22190983'),
+           ('2016_t1_samsung_official','https://www.youtube.com/watch?v=0tMaoKw06t4'),
+           ('2026_blg_t1_riot_kick','https://kick.com/riotgames/videos/01a1b7c1-bdd0-778f-b698-11d34487a200'),
+           ('2026_riot_twitch_channel','https://www.twitch.tv/riotgames/videos?filter=archives'),
+           ('2015_riot_full_final','https://www.youtube.com/watch?v=3U5XE81Vh98')
+          ]
+          def get(x):
+            name,u=x;r={'name':name,'url':u}
+            try:
+              p=subprocess.run(['yt-dlp','-J','--no-playlist','--skip-download','--socket-timeout','10','--retries','0',u],capture_output=True,text=True,timeout=48)
+              if p.returncode:raise RuntimeError((p.stdout+p.stderr)[-480:])
+              j=json.loads(p.stdout)
+              fm=[f for f in j.get('formats',[]) if f.get('vcodec') not in ('none',None) and f.get('height')]
+              r.update({'status':'SOURCE_AVAILABLE','title':j.get('title'),'height_max':max([f['height'] for f in fm],default=None),'duration':j.get('duration')})
+            except Exception as e:r.update({'status':'NOT_AVAILABLE','error':str(e)[:480]})
+            print(name,r,flush=True);return r
+          with concurrent.futures.ThreadPoolExecutor(max_workers=5) as x: a=list(x.map(get,links))
+          pathlib.Path('output/archive_gate.json').write_text(json.dumps(a,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-legacy-and-2026-source-gate
+          path: output/
+          retention-days: 4
