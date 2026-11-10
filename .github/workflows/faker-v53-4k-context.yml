@@ -1,0 +1,48 @@
+name: "FAKER V5.3 — clean 4K context b-roll"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v53-4k-context.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - name: Download 4K sourced illustrative footage — no player misidentification
+        shell: bash
+        run: |
+          sudo apt-get update -qq; sudo apt-get install -y -qq ffmpeg
+          mkdir -p original_context
+          cat >/tmp/clean.py <<'PY'
+          import subprocess,pathlib,json,concurrent.futures
+          out=pathlib.Path('original_context')
+          videos=[
+           ('seoul_night_4k','https://videos.pexels.com/video-files/5597701/5597701-uhd_3840_2160_30fps.mp4','Seoul city skyline, contextual geography only'),
+           ('seoul_traffic_1440p','https://videos.pexels.com/video-files/1860079/1860079-uhd_2560_1440_25fps.mp4','Seoul street, contextual geography only'),
+           ('gaming_keyboard_4k','https://videos.pexels.com/video-files/8128422/8128422-uhd_2160_3840_25fps.mp4','Computer keyboard closeup, NOT Faker, 1996-2012 narrative prop'),
+           ('gaming_pc_4k','https://videos.pexels.com/video-files/8128352/8128352-uhd_2160_3840_25fps.mp4','Computer screen, generic illustrative device only')
+          ]
+          def get(row):
+            name,url,desc=row;dst=out/(name+'.mp4')
+            info={'name':name,'original_url':url,'source':'https://www.pexels.com/video/'+url.split('/')[4]+'/','context':desc,'license':'Pexels License (attribution not required but recommended)'}
+            filt='scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,setsar=1,fps=30,format=yuv420p'
+            cmd=['ffmpeg','-nostdin','-hide_banner','-loglevel','error','-y','-ss','00:00:02','-i',url,'-t','9','-vf',filt,'-an','-c:v','libx264','-preset','veryfast','-crf','19','-movflags','+faststart',str(dst)]
+            try:
+              p=subprocess.run(cmd,capture_output=True,timeout=160)
+              if p.returncode!=0 or not dst.exists() or dst.stat().st_size<20000:raise RuntimeError(p.stderr[-450:].decode(errors='replace'))
+              info['status']='FULLHD_FROM_4K_ORIGINAL';info['bytes']=dst.stat().st_size
+            except Exception as e:info['status']='FAILED';info['error']=str(e);dst.unlink(missing_ok=True)
+            print(name,info['status'],info.get('bytes',0),flush=True);return info
+          with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:results=list(pool.map(get,videos))
+          (out/'LICENSE_AND_SOURCE_MANIFEST.json').write_text(json.dumps(results,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/clean.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v53-native-4k-context
+          path: original_context/
+          retention-days: 5
+          compression-level: 0
