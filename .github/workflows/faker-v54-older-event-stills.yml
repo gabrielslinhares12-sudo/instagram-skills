@@ -1,0 +1,55 @@
+name: "FAKER V5.4 — archival real Worlds photos 2013-2017 (rare gaps)"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-older-event-stills.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - name: Obtain precisely dated licensed event photos (not pretend gameplay)
+        run: |
+          mkdir -p older_photo
+          cat >/tmp/get.py <<'PY'
+          import urllib.request,urllib.parse,hashlib,pathlib,json,concurrent.futures,re
+          files=[
+           ('2013_skt_finals.jpg','SKT at League of Legends Season 3 Finals.jpg'),
+           ('2013_team_at_worlds.jpg','SK Telecom T1 at LoL World Championship 2013.jpg'),
+           ('2013_awards.jpg','LoL players at 2013 Korea Esports Awards.jpg'),
+           ('2015_trophy_team.jpg','SK Telecom T1 stand around 2015 League of Legends World Champtionship trophy.jpg'),
+           ('2015_t1_vs_koo.jpg','KOO Tigers and SK Telecom at 2015 League of Legends World Championship (perspective).jpg'),
+           ('2016_worlds_arena.jpg','LOL2016WorldsFinalsArena.jpg'),
+           ('2017_worlds_final.jpg','League of Legends World Championship 2017 Finals.jpg')
+          ]
+          hdr={'User-Agent':'TUE-Editorial-Archive/1.0 (photograph rights attributed, private editorial study)'}
+          out=pathlib.Path('older_photo')
+          def get(r):
+            name,title=r;title=title.replace(' ','_');h=hashlib.md5(title.encode()).hexdigest()
+            url='https://upload.wikimedia.org/wikipedia/commons/'+h[0]+'/'+h[:2]+'/'+urllib.parse.quote(title,safe='()')
+            if name.startswith('2017'):
+              url='https://upload.wikimedia.org/wikipedia/commons/thumb/'+h[0]+'/'+h[:2]+'/'+urllib.parse.quote(title,safe='()')+'/1920px-'+urllib.parse.quote(title,safe='()')
+            rec={'filename':name,'original_title':title,'url':url,'source':'https://commons.wikimedia.org/wiki/File:'+urllib.parse.quote(title),'status':'WAIT_RIGHTS_PAGE'}
+            try:
+              with urllib.request.urlopen(urllib.request.Request(url,headers=hdr),timeout=50) as r,open(out/name,'wb') as f:
+                while True:
+                  data=r.read(1048576)
+                  if not data:break
+                  f.write(data)
+              if (out/name).stat().st_size<15000:raise RuntimeError('Image suspiciously small')
+              rec['bytes']=(out/name).stat().st_size;rec['sha256']=hashlib.sha256((out/name).read_bytes()).hexdigest();rec['status']='DOWNLOADED_LICENSE_REVIEW'
+            except Exception as e:rec['status']='ERROR';rec['error']=str(e)[:300]
+            print(name,rec['status'],rec.get('bytes'),flush=True);return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool: results=list(pool.map(get,files))
+          (out/'ARCHIVAL_SOURCES.json').write_text(json.dumps(results,indent=2,ensure_ascii=False))
+          PY
+          python /tmp/get.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-accurate-2013-2017-historic-stills
+          path: older_photo/
+          retention-days: 5
+          compression-level: 0
