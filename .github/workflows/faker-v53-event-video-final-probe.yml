@@ -1,0 +1,59 @@
+name: "FAKER V5.3 — high-quality player & event motion source candidates"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v53-event-video-final-probe.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - name: Check actual resolution before any sample extraction
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python3 -m pip install -q -U 'yt-dlp[default]'
+          mkdir -p event_videos
+          cat >/tmp/probe.py <<'PY'
+          import json,subprocess,pathlib,concurrent.futures
+          out=pathlib.Path('event_videos')
+          targets=[
+           ('2024_t1_team_celebration','https://www.reddit.com/r/leagueoflegends/comments/1gk872o/',2024,'All 5 T1 players react after Worlds 2024 game 5'),
+           ('2025_faker_smile_final','https://www.reddit.com/r/leagueoflegends/comments/1osgt3z/',2025,'Faker during T1 versus KT Worlds 2025'),
+           ('2024_worlds_blg_final_fight','https://www.reddit.com/r/leagueoflegends/comments/1gi3h40/',2024,'T1 BLG Worlds 2024 game-winning team fight'),
+           ('2017_faker_response','https://www.reddit.com/r/leagueoflegends/comments/7c2reo/',2017,'Faker 2017 reaction to Samsung loss'),
+           ('2022_faker_documentary','https://www.reddit.com/r/leagueoflegends/comments/y3hrw6/',2018,'OGN documentary on Faker 2017 loss'),
+           ('2025_t1_kt_plays','https://www.reddit.com/r/leagueoflegends/comments/1ox6m62/',2025,'T1 2025 KT Worlds final game highlights'),
+           ('2023_azir_jdg','https://www.reddit.com/r/leagueoflegends/comments/17w8wtd/',2023,'T1 JDG 2023 Azir vs Ruler clip context')
+          ]
+          def proc(row):
+           name,url,year,desc=row
+           rec={'name':name,'url':url,'event_year':year,'description':desc,'publish_allowed':False,'rights':'Rights of original uploader/broadcaster NOT verified'}
+           try:
+            z=subprocess.run(['yt-dlp','--no-playlist','--dump-single-json','--skip-download','--socket-timeout','12','--retries','0','--extractor-retries','0',url],capture_output=True,text=True,timeout=32)
+            if z.returncode:raise RuntimeError(z.stderr[-260:])
+            j=json.loads(z.stdout)
+            fs=[f for f in j.get('formats',[]) if f.get('vcodec') not in ('none',None) and f.get('width') and f.get('height')]
+            fs.sort(key=lambda f:(f.get('height',0),f.get('tbr') or 0),reverse=True)
+            rec['title']=j.get('title');rec['best_width']=fs[0]['width'] if fs else 0;rec['best_height']=fs[0]['height'] if fs else 0;rec['duration']=j.get('duration')
+            if not fs or fs[0]['height']<720:raise ValueError('Source resolution below 720p / not a video')
+            res=out/(name+'.%(ext)s')
+            z=subprocess.run(['yt-dlp','--no-progress','--no-playlist','--socket-timeout','12','--retries','0','--fragment-retries','0','--download-sections','*00:00:02-00:00:09','-f','bestvideo[height>=720]+bestaudio/best[height>=720]','--merge-output-format','mp4','-o',str(res),url],capture_output=True,text=True,timeout=120)
+            matches=list(out.glob(name+'.mp4'))
+            if z.returncode or not matches:raise RuntimeError((z.stderr+z.stdout)[-260:])
+            rec['status']='DOWNLOADED_SOURCE_QC_ONLY';rec['bytes']=matches[0].stat().st_size
+           except Exception as e:rec['status']='NOT_AVAILABLE';rec['error']=str(e)[:350]
+           print(name,rec['status'],rec.get('best_height'),flush=True)
+           return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:result=list(pool.map(proc,targets))
+          (out/'EVENT_VIDEO_QUALITY_AUDIT.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
+          PY
+          python3 /tmp/probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v53-player-event-video-candidates
+          path: event_videos/
+          retention-days: 5
+          compression-level: 0
