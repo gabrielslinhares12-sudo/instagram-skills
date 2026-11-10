@@ -1,0 +1,63 @@
+name: "FAKER V5.4 — curated genuine worlds game and reaction b-roll"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-extra-real-clips.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  clips:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - year: "2022"
+            url: "https://www.twitch.tv/videos/1644541745"
+            starts: "04:45:00,05:15:00,06:15:00,06:35:00,07:20:00"
+          - year: "2023"
+            url: "https://www.twitch.tv/videos/1981467393"
+            starts: "03:15:00,03:50:00,04:45:00,05:10:00,05:25:00"
+          - year: "2024"
+            url: "https://www.twitch.tv/videos/2291702312"
+            starts: "02:45:00,04:15:00,04:55:00,05:55:00,06:12:00"
+          - year: "2025"
+            url: "https://www.twitch.tv/videos/2613641505"
+            starts: "02:25:00,03:15:00,05:15:00,07:05:00,07:28:00"
+    steps:
+      - name: Install yt-dlp and embedded ffmpeg
+        run: python -m pip install -q -U yt-dlp imageio-ffmpeg
+      - name: Download real 1080p HD clips without video resizing, 2013-2026 chronology protected
+        env:
+          Y: ${{ matrix.year }}
+          V: ${{ matrix.url }}
+          TIMES: ${{ matrix.starts }}
+        shell: bash
+        run: |
+          mkdir -p clips
+          cat >/tmp/collect.py <<'PY'
+          import os,subprocess,json,pathlib,concurrent.futures,imageio_ffmpeg
+          y=os.environ['Y'];u=os.environ['V'];t=os.environ['TIMES'].split(',');f=imageio_ffmpeg.get_ffmpeg_exe();out=pathlib.Path('clips')
+          def job(a):
+            i,s=a;h,m,k=map(int,s.split(':'));n=h*3600+m*60+k+7;stop=f'{n//3600:02d}:{(n//60)%60:02d}:{n%60:02d}';target=out/(y+'_new'+str(i)+'.%(ext)s')
+            p=['yt-dlp','--ffmpeg-location',f,'--no-playlist','--no-progress','--socket-timeout','12','--retries','0','--fragment-retries','0','--download-sections','*'+s+'-'+stop,'--force-keyframes-at-cuts','-f','best[height>=1080]','--merge-output-format','mp4','-o',str(target),u]
+            rec={'name':y+'_new'+str(i),'start':s,'end':stop,'source':u,'type':'real Riot official VOD','permission':'private preview, not cleared for public post'}
+            try:
+              r=subprocess.run(p,capture_output=True,text=True,timeout=125)
+              x=out/(y+'_new'+str(i)+'.mp4')
+              if r.returncode or not x.exists() or x.stat().st_size<100000:raise RuntimeError((r.stdout+r.stderr)[-360:])
+              rec.update({'status':'OK','filename':x.name,'size':x.stat().st_size})
+            except Exception as e:rec.update({'status':'FAILED','error':str(e)[:360]})
+            print(rec['name'],rec['status'],rec.get('size'),flush=True);return rec
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:r=list(pool.map(job,enumerate(t)))
+          (out/'MANIFEST.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
+          PY
+          python /tmp/collect.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-extra-actual-game-${{ matrix.year }}
+          path: clips/
+          retention-days: 3
+          compression-level: 0
