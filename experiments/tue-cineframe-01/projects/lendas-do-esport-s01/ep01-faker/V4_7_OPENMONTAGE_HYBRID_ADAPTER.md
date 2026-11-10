@@ -5,11 +5,11 @@
 ## Pacote executável da integração
 **[OpenMontage adapter + narração Rasalgethi 298.512875s + SRT + 24 cenas + ferramentas de preparação e QC](https://drive.google.com/file/d/1aIZLTAQCHgrt4ytHka6HJtPcjjqoznr5/view)**
 
-SHA-256 do ZIP: `4fef66bb68c0f19a492d49ad06e012d28cd2df23c32e0566909f12c31da743db`.
+SHA-256 do ZIP: `d1f357a089c9dda876dff1ca37122872d972054f949fa4db0d9cf36b78c69abd`.
 
 Arquivos: `PRODUCAO_OPENMONTAGE.md`, `FAKER_SCENE_PLAN.json`, `ASSETS_POR_CENA.csv`, `LEGENDAS_CORRIGIDAS.srt`, `NARRACAO_RASALGETHI_ORIGINAL_CORTE_4m58.wav`, `prepare_openmontage.py`, `qc_assets.py`, `QC_PRE_INSTALL.json`, `README.txt`.
 
-**Verificações realizadas:** FFprobe áudio PCM mono 24kHz 298.512875s; linha do tempo de 24 cenas contíguas, término 298.55s; SRT final em 4:58.101; preflight `qc_assets.py` retornou FAIL com 24 faltas de mídias verificadas, como deveria. Não há clipes reais baixados neste pacote.
+**Verificações realizadas:** FFprobe áudio PCM mono 24kHz 298.512875s; linha do tempo de 24 cenas contíguas, término 298.55s; SRT final em 4:58.101; preflight `qc_assets.py` retornou FAIL com 24 faltas de mídias e 1 falha de cobertura <80% de vídeo real, como deveria. O gate exige identificação do ano de cada cena e mídia real, não sintética. Não há clipes reais baixados neste pacote.
 
 ## Escolha técnica auditada
 - OpenMontage principal: https://github.com/OpenMontageInc/OpenMontage
