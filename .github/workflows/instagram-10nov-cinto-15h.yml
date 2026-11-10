@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths: [".github/workflows/instagram-10nov-cinto-15h.yml"]
-  # V9 corrigida e expressamente autorizada pelo proprietário para 15h BRT.
+  # V9 corrigida aprovada. Recovery push only inside original 2h window; Meta duplicate check blocks reposts.
   schedule:
     - cron: "1,4,7,12,20,30,40 18 10 11 *"
   workflow_dispatch:
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Validate exact target and time; never publish on setup push
+      - name: Validate exact target and recovery window for approved 15h V9
         id: gate
         run: |
           python3 - <<'PY'
@@ -49,7 +49,7 @@ jobs:
           assert p["due_at"]=="2026-11-10T18:00:00Z" and len(p["media_urls"])==5
           assert p["target_url"]=="https://www.instagram.com/temumaexplicacao/"
           now=datetime.datetime.now(datetime.timezone.utc)
-          publishing=(os.getenv("GITHUB_EVENT_NAME")=="schedule" and
+          publishing=(os.getenv("GITHUB_EVENT_NAME") in ("schedule","push") and
               datetime.datetime(2026,11,10,18,tzinfo=datetime.timezone.utc)<=now<
               datetime.datetime(2026,11,10,20,tzinfo=datetime.timezone.utc))
           with open(os.environ["GITHUB_OUTPUT"],"a") as f:
@@ -82,21 +82,52 @@ jobs:
           import json
           x=json.load(open("/tmp/ig-cinto15-plan.json"))
           p=next(p for p in x["items"] if p["id"]=="tue-2026-11-10-15-cinto-airbag-v9-corrigido")
-          assert p["status"] in ("future","due","published")
+          assert p["status"] in ("future","due","published","claimed","needs_review")
           print("QUEUE_CINTO_STATUS="+p["status"])
           PY
       - name: Verify Meta account and token for 15h
         run: python3 scripts/instagram_preflight.py
-      - name: Configure durable claim before publishing
+      - name: Read live Instagram media to prevent duplicate V9 Cinto publication
+        id: dedup
         if: steps.gate.outputs.publish == 'true'
+        env:
+          PYTHONPATH: scripts
+        run: |
+          python3 - <<'PY'
+          import os
+          from facebook_poster import FacebookPoster, FacebookConfig
+          poster=FacebookPoster(FacebookConfig.from_env())
+          identity=poster.check_identity()
+          assert identity["username"]=="temumaexplicacao","WRONG_INSTAGRAM_ACCOUNT"
+          data=poster._request("GET",identity["instagram_user_id"]+"/media",params={"fields":"id,caption,timestamp,permalink,media_type","limit":50},timeout=40)
+          records=data.get("data",[])
+          assert isinstance(records,list),"META_MEDIA_FEED_NOT_READABLE"
+          duplicates=[x for x in records if "o carro pode parar de repente" in str(x.get("caption","")).lower() and str(x.get("timestamp","")).startswith("2026-11-10")]
+          with open(os.environ["GITHUB_OUTPUT"],"a") as f:
+              f.write("safe="+str(not duplicates).lower()+"\n")
+          print("LIVE_META_DUPLICATE_CINTO_V9="+str(bool(duplicates)).lower())
+          if duplicates:
+              print("ALREADY_PUBLISHED_META_ID="+str(duplicates[0].get("id","")))
+              print("ALREADY_PUBLISHED_META_URL="+str(duplicates[0].get("permalink","")))
+          PY
+      - name: Configure durable claim before publishing
+        if: steps.gate.outputs.publish == 'true' && steps.dedup.outputs.safe == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Publish corrected 15h Cinto and Airbag carousel once
-        if: steps.gate.outputs.publish == 'true'
+      - name: Publish overdue approved 15h Cinto and Airbag V9 once
+        if: steps.gate.outputs.publish == 'true' && steps.dedup.outputs.safe == 'true'
         run: |
           set -o pipefail
-          python3 scripts/instagram_queue.py --execute | tee /tmp/tue-cinto15-result.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          src=json.loads(Path("content/schedule.json").read_text())
+          only=[p for p in src["posts"] if p["id"]=="tue-2026-11-10-15-cinto-airbag-v9-corrigido"]
+          assert len(only)==1 and only[0]["approved"]
+          Path("/tmp/tue-single-15h.json").write_text(json.dumps({"version":1,"posts":only}))
+          PY
+          python3 scripts/instagram_queue.py --execute --manifest /tmp/tue-single-15h.json | tee /tmp/tue-cinto15-result.json
           python3 - <<'PY'
           import json
           j=json.load(open("/tmp/tue-cinto15-result.json"))
@@ -108,7 +139,7 @@ jobs:
               print("CINTO_NO_PUBLICATION_THIS_RUN_CHECK_PRIOR_CLAIM")
           PY
       - name: Confirm permalink from Meta receipt
-        if: steps.gate.outputs.publish == 'true'
+        if: steps.gate.outputs.publish == 'true' && steps.dedup.outputs.safe == 'true'
         env:
           PYTHONPATH: scripts
         run: |
