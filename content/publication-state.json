@@ -241,6 +241,12 @@
       "instagram_user_id": "17841433004716815",
       "page_id": "1385407341325017",
       "published_at": "2026-11-07T18:40:45Z"
+    },
+    "tue-2026-11-10-10-abs-sem-fisica-aplicada-v6": {
+      "status": "claimed",
+      "fingerprint": "b319603f3ff4f370abba57c253a09179b98bad2b5fde1d8f989576d370b7938a",
+      "due_at": "2026-11-10T13:00:00Z",
+      "claimed_at": "2026-11-10T13:33:23Z"
     }
   }
 }
