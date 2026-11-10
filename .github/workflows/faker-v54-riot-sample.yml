@@ -1,0 +1,34 @@
+name: "FAKER V5.4 — real 1080p Riot video sample"
+on:
+  push:
+    branches: [experimental/faker-ep01-openmontage-v49]
+    paths: ['.github/workflows/faker-v54-riot-sample.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Install downloader and verify ffmpeg
+        run: |
+          python -m pip install -q -U yt-dlp
+          ffmpeg -version | head -1
+      - name: Extract 10s from official 2024 game broadcast at actual 1080p
+        run: |
+          mkdir -p source_hd
+          set +e
+          timeout 230 yt-dlp --no-playlist --no-progress --socket-timeout 12 --retries 0 --fragment-retries 0 --download-sections '*05:31:00-05:31:10' --force-keyframes-at-cuts -f 'best[height>=1080]' --merge-output-format mp4 -o 'source_hd/riot_2024_game5.%(ext)s' 'https://www.twitch.tv/videos/2291702312' >source_hd/download.log 2>&1
+          echo $? >source_hd/download.exit
+          for file in source_hd/*.mp4; do
+            [ -f "$file" ] || continue
+            ffprobe -v error -show_entries stream=width,height,r_frame_rate,duration -of json "$file" > source_hd/probe.json
+          done
+          ls -lah source_hd
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v54-actual-riot-1080p-excerpt
+          path: source_hd/
+          retention-days: 5
+          compression-level: 0
