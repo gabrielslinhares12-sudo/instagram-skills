@@ -1,0 +1,48 @@
+name: FAKER V69 - teste privado de corte Twitch 1080
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/faker-v69-twitch-ingest-probe.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Instalar yt-dlp e verificar FFmpeg
+        run: |
+          python3 -m pip -q install -U yt-dlp
+          ffmpeg -hide_banner -version | head -1
+      - name: Conferir Twitch 2022 a 2025
+        shell: bash
+        run: |
+          set +e
+          for id in 1644541745 1981467393 2291702312 2613641505; do
+            echo "SOURCE_ID=$id"
+            timeout 65s yt-dlp --skip-download --no-playlist --socket-timeout 12 --retries 1 --print "%(title)s|%(duration)s|%(id)s" "https://www.twitch.tv/videos/$id"
+            echo "STATUS=$?"
+          done
+          exit 0
+      - name: Testar recorte 2023 sem publicar
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          timeout 240s yt-dlp --no-playlist --socket-timeout 20 --retries 2 --download-sections "*05:17:00-05:17:09" --force-keyframes-at-cuts -f "best[height<=1080]/best" "https://www.twitch.tv/videos/1981467393" -o "out/ingest.%(ext)s"
+          find out -maxdepth 1 -type f -printf "%f %s bytes\n"
+          SRC="$(find out -type f -name 'ingest.*' | head -1)"
+          ffmpeg -hide_banner -loglevel error -y -i "$SRC" -map 0:v:0 -an -c:v libx264 -crf 24 -preset veryfast -pix_fmt yuv420p -movflags +faststart out/test_twitch_2023.mp4
+          ffprobe -v error -select_streams v:0 -show_entries stream=width,height,r_frame_rate -of compact out/test_twitch_2023.mp4
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: faker-v69-twitch-2023-qc
+          path: out/test_twitch_2023.mp4
+          retention-days: 1
+          if-no-files-found: error
