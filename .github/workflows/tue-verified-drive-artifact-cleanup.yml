@@ -1,0 +1,45 @@
+name: TUE - limpar artefatos somente apos SHA256 igual ao Drive
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tue-verified-drive-artifact-cleanup.yml'
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Apenas conferir sem excluir'
+        type: boolean
+        required: false
+        default: false
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: tue-verified-drive-artifact-cleanup
+  cancel-in-progress: false
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GDRIVE_OAUTH_CLIENT_ID: ${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}
+      GDRIVE_OAUTH_CLIENT_SECRET: ${{ secrets.GDRIVE_OAUTH_CLIENT_SECRET }}
+      GDRIVE_OAUTH_REFRESH_TOKEN: ${{ secrets.GDRIVE_OAUTH_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verificar sintaxe sem alterar publicações
+        run: python3 -m py_compile scripts/tue_verified_drive_artifact_cleanup.py
+      - name: Testar as protecoes sem rede ou exclusao
+        run: python3 -m unittest discover -s scripts -p 'test_tue_verified_drive_artifact_cleanup.py' -v
+      - name: Excluir SOMENTE ZIPs cujo SHA256 e bytes coincidirem com Drive
+        run: |
+          if [ "${{ inputs.dry_run || 'false' }}" = 'true' ]; then
+            python3 scripts/tue_verified_drive_artifact_cleanup.py
+          else
+            python3 scripts/tue_verified_drive_artifact_cleanup.py --execute
+          fi
