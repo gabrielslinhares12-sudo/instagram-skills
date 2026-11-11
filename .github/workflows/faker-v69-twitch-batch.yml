@@ -1,0 +1,83 @@
+name: FAKER V69 - triagem privada de tomadas Twitch sem publicacao
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/faker-v69-twitch-batch.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-candidates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 32
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Instalar capturador e FFmpeg
+        shell: bash
+        run: |
+          python3 -m pip install -q -U yt-dlp
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Amostrar tomadas de cerimônia e partidas no VOD original (QC)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p v69_candidates/raw v69_candidates/mp4
+          python3 - <<'PY'
+          import subprocess, pathlib, json, os
+          targets = [
+            (2023,"1981467393",["04:55:00","05:05:00","05:12:00","05:19:00","05:23:00"]),
+            (2024,"2291702312",["06:17:00","06:23:00","06:29:00","06:35:00","06:41:00","06:48:00","06:56:00"]),
+            (2025,"2613641505",["06:55:00","07:03:00","07:11:00","07:19:00","07:27:00","07:35:00","07:43:00"]),
+          ]
+          meta=[]
+          def seconds(t):
+              h,m,s=map(int,t.split(":"));return h*3600+m*60+s
+          for year,vid,times in targets:
+              for t in times:
+                  s=seconds(t);end=s+9
+                  et=f"{end//3600:02}:{(end%3600)//60:02}:{end%60:02}"
+                  name=f"Y{year}_{t.replace(':','')}"
+                  out=f"v69_candidates/raw/{name}.%(ext)s"
+                  args=['yt-dlp','--no-playlist','--socket-timeout','25','--retries','2',
+                         '--download-sections',f'*{t}-{et}','--force-keyframes-at-cuts',
+                         '-f','best[height<=1080]/best',
+                         f'https://www.twitch.tv/videos/{vid}','-o',out]
+                  p=subprocess.run(args,capture_output=True,text=True,timeout=200)
+                  found=list(pathlib.Path('v69_candidates/raw').glob(name+'.*'))
+                  if p.returncode!=0 or not found:
+                      meta.append(dict(year=year,start=t,end=et,status='FAILED',error=p.stderr[-320:]));print('FAILED',year,t,p.stderr[-220:],flush=True)
+                      continue
+                  src=str(found[0]);dest=f'v69_candidates/mp4/{name}.mp4'
+                  enc=subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',src,
+                       '-map','0:v:0','-an','-c:v','libx264','-preset','veryfast','-crf','25',
+                       '-maxrate','6500k','-bufsize','13000k','-pix_fmt','yuv420p','-movflags','+faststart',dest],capture_output=True,text=True,timeout=100)
+                  if enc.returncode!=0 or not pathlib.Path(dest).exists():
+                      meta.append(dict(year=year,start=t,end=et,status='ENCODE_FAILED',error=enc.stderr[-300:]));print('ENCODE_FAILED',year,t,flush=True)
+                      continue
+                  siz=os.path.getsize(dest)
+                  if siz>9500000:
+                      tempfile=dest+'.small.mp4'
+                      enc2=subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',dest,
+                       '-map','0:v:0','-an','-c:v','libx264','-preset','veryfast','-b:v','4000k',
+                       '-maxrate','4500k','-bufsize','9000k','-pix_fmt','yuv420p',tempfile],capture_output=True,text=True,timeout=100)
+                      if enc2.returncode==0 and os.path.getsize(tempfile)<=9500000:
+                          os.replace(tempfile,dest);siz=os.path.getsize(dest)
+                  meta.append(dict(year=year,start=t,end=et,url=f'https://www.twitch.tv/videos/{vid}',file=name+'.mp4',status='CANDIDATE',bytes=siz))
+                  print('CANDIDATE',name,siz,flush=True)
+                  pathlib.Path(src).unlink(missing_ok=True)
+          pathlib.Path('v69_candidates/sources.json').write_text(json.dumps(meta,indent=2),encoding='utf8')
+          PY
+          du -sh v69_candidates/mp4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v69-twitch-moment-candidates-private
+          path: |
+            v69_candidates/mp4/
+            v69_candidates/sources.json
+          retention-days: 1
+          if-no-files-found: warn
