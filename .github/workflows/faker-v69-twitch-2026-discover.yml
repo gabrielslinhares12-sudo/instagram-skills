@@ -16,4 +16,4 @@ jobs:
         shell: bash
         run: |
           python3 -m pip install -q -U yt-dlp
-          timeout 200s yt-dlp --flat-playlist --playlist-end 20 --no-playlist-cache --print '%(title)s | %(id)s | %(duration)s' 'https://www.twitch.tv/riotgames/videos?filter=archives&sort=time' || true
+          timeout 200s yt-dlp --flat-playlist --playlist-end 20 --print '%(title)s | %(id)s | %(duration)s' 'https://www.twitch.tv/riotgames/videos?filter=archives&sort=time' || true
