@@ -191,8 +191,15 @@ def delete_artifact(receipt: dict, gh_token: str) -> None:
     with urllib.request.urlopen(req, timeout=60) as r:
         if r.status != 204:
             raise RuntimeError("GitHub did not confirm artifact deletion")
-    if get_artifact(gh_token, receipt["artifact_id"]) is not None:
-        raise RuntimeError("Artifact still present after deletion")
+    # GitHub's read-after-delete can briefly return stale metadata.
+    # Treat 204 as accepted, then allow bounded consistency retries.
+    import time
+    for attempt in range(6):
+        if get_artifact(gh_token, receipt["artifact_id"]) is None:
+            return
+        if attempt < 5:
+            time.sleep(2)
+    raise RuntimeError("Artifact still present after verified delete and retries")
 
 
 def main() -> int:
