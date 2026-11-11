@@ -1,0 +1,68 @@
+name: FAKER V69 - buscar nexuses e premios no VOD original privado
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/faker-v69-find-nexus-mvp.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snippets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 27
+    steps:
+      - name: Preparar yt-dlp e FFmpeg
+        run: |
+          python3 -m pip install -q -U yt-dlp
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Investigar cortes curtos de finais sem publicar
+        shell: bash
+        run: |
+          mkdir -p v69_snippets && cd v69_snippets
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,os,subprocess
+          todo=[
+          (2023,'1981467393',['05:13:00','05:14:00','05:15:00']),
+          (2024,'2291702312',['06:24:00','06:25:00','06:26:00','06:57:00']),
+          (2025,'2613641505',['07:05:00','07:06:00','07:07:00','07:08:00','07:22:00','07:25:00'])]
+          md=[]
+          for y,id,times in todo:
+           for t in times:
+            h,m,s=map(int,t.split(':'));u=h*3600+m*60+s+9;end=f'{u//3600:02}:{u%3600//60:02}:{u%60:02}'
+            name=f'N{y}_{t.replace(":","")}'
+            cmd=['yt-dlp','--no-playlist','--socket-timeout','20','--retries','2',
+               '--download-sections',f'*{t}-{end}','--force-keyframes-at-cuts',
+               '-f','best[height<=1080]/best',
+               f'https://www.twitch.tv/videos/{id}','-o',name+'.%(ext)s']
+            try:
+             p=subprocess.run(cmd,timeout=180,capture_output=True,text=True)
+             sources=[x for x in Path('.').glob(name+'.*') if x.suffix != '.json']
+             if not sources or p.returncode: raise RuntimeError(p.stderr[-240:])
+             src=sources[0];final=Path(name+'_mute.mp4')
+             p=subprocess.run(['ffmpeg','-v','error','-y','-i',str(src),'-map','0:v:0','-an',
+                   '-c:v','libx264','-preset','veryfast','-crf','25','-maxrate','6500k',
+                   '-bufsize','13000k','-pix_fmt','yuv420p','-movflags','+faststart',str(final)],
+                   timeout=120,capture_output=True,text=True)
+             if p.returncode:raise RuntimeError(p.stderr[-160:])
+             if final.stat().st_size>9500000: raise RuntimeError('larger than 9.5 MB')
+             md.append({'year':y,'source_url':f'https://www.twitch.tv/videos/{id}',
+               'start':t,'end':end,'file':final.name,'bytes':final.stat().st_size,'status':'CANDIDATE'})
+             print('CANDIDATE',name,final.stat().st_size,flush=True)
+             src.unlink(missing_ok=True)
+            except Exception as e:
+             md.append({'year':y,'start':t,'status':'FAILED','error':str(e)[-120:]})
+             print('FAILED',y,t,repr(e)[-150:],flush=True)
+          Path('sources.json').write_text(json.dumps(md,indent=2),encoding='utf8')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v69-nexus-mvp-check-private
+          path: |
+            v69_snippets/*_mute.mp4
+            v69_snippets/sources.json
+          if-no-files-found: warn
+          retention-days: 1
