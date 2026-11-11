@@ -1,0 +1,66 @@
+name: FAKER V69 - final nexus frames 2023 2024 2025 2026 PRIVATE
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/faker-v69-final-nexus-microcuts.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  microcuts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - name: Prepare yt-dlp and FFmpeg
+        run: |
+          python3 -m pip -q install -U yt-dlp
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Find actual winning nexus and post-match camera
+        run: |
+          mkdir -p microcuts
+          python3 - <<'PY'
+          import subprocess,json,os
+          from pathlib import Path
+          sources={
+           '2023':('1981467393',['05:14:20','05:14:40','05:14:55']),
+           '2024':('2291702312',['06:25:15','06:25:35','06:25:55']),
+           '2025':('2613641505',['07:07:15','07:07:35','07:07:55']),
+           '2026':('2923478933',['04:46:00','04:46:30','04:47:00','04:47:30','04:48:00','04:48:30','04:49:00','04:49:30']),
+          }
+          rows=[]
+          for year,(vid,times) in sources.items():
+           for start in times:
+            hh,mm,ss=map(int,start.split(':'));t=hh*3600+mm*60+ss+8
+            end=f'{t//3600:02}:{(t%3600)//60:02}:{t%60:02}'
+            stem='S'+year+'_'+start.replace(':','')
+            try:
+             x=subprocess.run(['yt-dlp','--no-playlist','--socket-timeout','20','--retries','2',
+              '--download-sections',f'*{start}-{end}','--force-keyframes-at-cuts',
+              '-f','best[height<=1080]/best',f'https://www.twitch.tv/videos/{vid}',
+              '-o',f'microcuts/{stem}.%(ext)s'],capture_output=True,text=True,timeout=140)
+             found=list(Path('microcuts').glob(stem+'.*'))
+             if not found or x.returncode: raise RuntimeError(x.stderr[-130:])
+             src=found[0];dest=Path('microcuts')/(stem+'_silent.mp4')
+             p=subprocess.run(['ffmpeg','-v','error','-y','-i',str(src),'-map','0:v:0','-an',
+                '-c:v','libx264','-preset','veryfast','-crf','26','-maxrate','5200k','-bufsize','10400k','-pix_fmt','yuv420p',
+                '-movflags','+faststart',str(dest)],capture_output=True,text=True,timeout=80)
+             if p.returncode or not dest.exists() or dest.stat().st_size>9500000: raise RuntimeError('invalid media transcode/size')
+             src.unlink(missing_ok=True)
+             rows.append({'year':year,'source':f'https://www.twitch.tv/videos/{vid}','start':start,'end':end,'file':dest.name,'bytes':dest.stat().st_size,'status':'CANDIDATE'})
+             print('CUT_OK',stem,dest.stat().st_size,flush=True)
+            except Exception as e:
+             rows.append({'year':year,'start':start,'status':'FAILED','error':str(e)[:130]})
+             print('CUT_FAILED',stem,str(e)[-120:],flush=True)
+          Path('microcuts/sources.json').write_text(json.dumps(rows,indent=2),encoding='utf8')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v69-final-precision-private
+          path: |
+            microcuts/*_silent.mp4
+            microcuts/sources.json
+          retention-days: 1
+          if-no-files-found: warn
