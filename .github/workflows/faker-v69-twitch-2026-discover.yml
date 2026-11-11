@@ -1,0 +1,19 @@
+name: FAKER V69 - localizar Twitch 2026 oficial sem publicar
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/faker-v69-twitch-2026-discover.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  locate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Encontrar ID de VOD pela lista de transmissões Riot
+        shell: bash
+        run: |
+          python3 -m pip install -q -U yt-dlp
+          timeout 200s yt-dlp --flat-playlist --playlist-end 20 --no-playlist-cache --print '%(title)s | %(id)s | %(duration)s' 'https://www.twitch.tv/riotgames/videos?filter=archives&sort=time' || true
