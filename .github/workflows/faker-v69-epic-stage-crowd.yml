@@ -1,0 +1,59 @@
+name: FAKER V69 - opening stadium crowd trophy original broadcast QC
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/faker-v69-epic-stage-crowd.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  samples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Prepare
+        run: |
+          python3 -m pip install -q -U yt-dlp
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Capture candidate original Worlds stage scenes
+        shell: bash
+        run: |
+          mkdir -p opening
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,json
+          data={
+           2023:('1981467393',['00:40:00','05:18:10','05:20:00']),
+           2024:('2291702312',['00:35:00','06:30:10','06:33:00']),
+           2025:('2613641505',['00:35:00','07:12:00','07:15:00'])
+          }
+          result=[]
+          for year,(vid,times) in data.items():
+           for start in times:
+            h,m,s=map(int,start.split(':'));end_secs=h*3600+m*60+s+9;end=f'{end_secs//3600:02}:{end_secs%3600//60:02}:{end_secs%60:02}'
+            key=f'STAGE{year}_{start.replace(":","")}'
+            try:
+             p=subprocess.run(['yt-dlp','--no-playlist','--socket-timeout','20','--retries','2','--download-sections',f'*{start}-{end}','--force-keyframes-at-cuts','-f','best[height<=1080]/best',f'https://www.twitch.tv/videos/{vid}','-o',f'opening/{key}.%(ext)s'],capture_output=True,text=True,timeout=140)
+             found=list(Path('opening').glob(key+'.*'))
+             if p.returncode or not found:raise RuntimeError(p.stderr[-120:])
+             src=found[0];dest=Path('opening')/(key+'_silent.mp4')
+             p=subprocess.run(['ffmpeg','-v','error','-y','-i',str(src),'-map','0:v:0','-an','-c:v','libx264','-preset','veryfast','-crf','26','-maxrate','5500k','-bufsize','11000k','-pix_fmt','yuv420p',str(dest)],capture_output=True,text=True,timeout=80)
+             if p.returncode or not dest.exists() or dest.stat().st_size>9500000:raise RuntimeError('encode/file/size')
+             src.unlink(missing_ok=True)
+             result.append({'year':year,'url':f'https://www.twitch.tv/videos/{vid}','start':start,'end':end,'status':'CANDIDATE','file':dest.name,'bytes':dest.stat().st_size})
+             print('OK',key,flush=True)
+            except Exception as e:
+             result.append({'year':year,'start':start,'status':'FAILED','error':str(e)[:120]})
+          Path('opening/sources.json').write_text(json.dumps(result,indent=2),encoding='utf8')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v69-stage-crowd-epic-original-2023-25
+          path: |
+            opening/*_silent.mp4
+            opening/sources.json
+          if-no-files-found: warn
+          retention-days: 1
