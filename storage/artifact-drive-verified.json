@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "repository": "gabrielslinhares12-sudo/instagram-skills",
+  "policy": "Exact-byte ZIP mirror SHA256 check before Actions deletion. Other media untouched.",
+  "artifacts": [
+    {
+      "artifact_id": 13766758374,
+      "artifact_name": "faker-v54-official-riot-2022-drx-t1-original",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-riot-2022-english-1080.zip",
+      "size_bytes": 26978689,
+      "sha256": "c77a20960dedb8e4e7fd7bd66015e74d7bf218a4ca434ca744bb7fc29377d7b3"
+    },
+    {
+      "artifact_id": 13762140586,
+      "artifact_name": "faker-v54-official-riot-2023-native1080",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-riot-2023-native1080.zip",
+      "size_bytes": 17714302,
+      "sha256": "9368977491998b7e74721640a3c988c913a247df730f324d680909659cac5038"
+    },
+    {
+      "artifact_id": 13761625774,
+      "artifact_name": "faker-v54-official-riot-2024-native1080",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-riot-2024-native1080.zip",
+      "size_bytes": 21979562,
+      "sha256": "2b408b5cb5abc1e9279baa606fb0f52e17bd3d293b7780eb4a2ed95df4f40ac4"
+    },
+    {
+      "artifact_id": 13760476858,
+      "artifact_name": "faker-v54-official-riot-2025-native1080",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-riot-2025-native1080.zip",
+      "size_bytes": 18926361,
+      "sha256": "c2d80f71d2abbd044754f43e56ea9825a300825e2b45dfcc34de2bf285f135ad"
+    },
+    {
+      "artifact_id": 13767511517,
+      "artifact_name": "faker-v54-extended-riot-2023-1080p60",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-extended-2023.zip",
+      "size_bytes": 42823749,
+      "sha256": "4e5b28fc05dfdbcaefd9ccb9f4c8adea287d8741a45e1309b957ec64d404a6f7"
+    },
+    {
+      "artifact_id": 13766234421,
+      "artifact_name": "faker-v54-extended-riot-2024-1080p60",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-extended-2024.zip",
+      "size_bytes": 33200305,
+      "sha256": "c81d7fab060bf05051806ec1a265ae6c3d7312df811a751469d4fabef7d49df7"
+    },
+    {
+      "artifact_id": 13767361897,
+      "artifact_name": "faker-v54-extended-riot-2025-1080p60",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-extended-2025.zip",
+      "size_bytes": 42390652,
+      "sha256": "e521d3c29b2a9e165d143a3a308ec37ea644a74bcb56009ca6f8d2e419c6943e"
+    },
+    {
+      "artifact_id": 13767297700,
+      "artifact_name": "faker-v54-real-2026-blg-t1-1080p",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-real-2026-blg-t1-1080p.zip",
+      "size_bytes": 31474746,
+      "sha256": "ef910d7e84e1b7cb7f364bc30b0a5d7f4941d242d7f62d6fb8ecfa6686f46c8e"
+    }
+  ]
+}
