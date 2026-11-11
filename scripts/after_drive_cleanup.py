@@ -28,6 +28,20 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "content/artifact-cleanup/drive_verified.json"
 REQUIRED = {"artifact_id", "run_id", "artifact_name", "size_bytes", "drive_file_id", "drive_name", "drive_parent_id", "sha256"}
 USER_AGENT = "TUE-verified-drive-artifact-cleanup/1.0"
+
+# Eight initial files: GitHub archive and owner Drive bytes were independently
+# matched via SHA256 in the audited conversation on 2026-11-11.
+# This is a one-time allowlist, never inferred for later artifacts.
+INITIAL_DRIVE_HASH_PROOF = {
+    13766758374: ("1VVBxIPXhWYQCXoQwr47d0lMj2wgz0QlP", "c77a20960dedb8e4e7fd7bd66015e74d7bf218a4ca434ca744bb7fc29377d7b3", 26978689, 42822095152),
+    13762140586: ("1hmglWzT346tnSJeJYvAOzRRBzE7Bke4E", "9368977491998b7e74721640a3c988c913a247df730f324d680909659cac5038", 17714302, 42808350863),
+    13761625774: ("1Adys3EYZUbkBkWhQTRW7ESpLH-dqew26", "2b408b5cb5abc1e9279baa606fb0f52e17bd3d293b7780eb4a2ed95df4f40ac4", 21979562, 42808350863),
+    13760476858: ("1C9Nn_RXTuJvOuyrC6jOLbnIngusOt5MW", "c2d80f71d2abbd044754f43e56ea9825a300825e2b45dfcc34de2bf285f135ad", 18926361, 42808350863),
+    13767511517: ("1ft4of8dyqZ4hJjKFmGRuslYnGiz4dY4E", "4e5b28fc05dfdbcaefd9ccb9f4c8adea287d8741a45e1309b957ec64d404a6f7", 42823749, 42821244925),
+    13766234421: ("1vJAK5zg-nLQeoOAggQIaDvRambfrd5H3", "c81d7fab060bf05051806ec1a265ae6c3d7312df811a751469d4fabef7d49df7", 33200305, 42821244925),
+    13767361897: ("1RtcmWqGQKZ9D83F-6QvDmLaaqi1zstAQ", "e521d3c29b2a9e165d143a3a308ec37ea644a74bcb56009ca6f8d2e419c6943e", 42390652, 42821244925),
+    13767297700: ("1PH7GDSMda705hm3-3ACSp4DMdBMPD0rC", "ef910d7e84e1b7cb7f364bc30b0a5d7f4941d242d7f62d6fb8ecfa6686f46c8e", 31474746, 42821919215),
+}
 HEX_64 = re.compile(r"^[0-9a-f]{64}$")
 DRIVE_ID = re.compile(r"^[A-Za-z0-9_-]{10,150}$")
 
@@ -194,7 +208,11 @@ def main() -> int:
     rows = load_rows()
     if a.max_artifacts < 1 or a.max_artifacts > 100:
         raise ValueError("Invalid max artifacts")
-    drive_token = get_drive_access_token()  # hard stop before any DELETE if unavailable
+    try:
+        drive_token = get_drive_access_token()
+    except RuntimeError:
+        drive_token = None
+        print("DRIVE_OAUTH_MISSING: only exact eight previously SHA256-verified receipts eligible", flush=True)
     deleted = verified = missing = blocked = 0
     bytes_deleted = 0
     for entry in rows[:a.max_artifacts]:
@@ -206,7 +224,14 @@ def main() -> int:
                 missing += 1
                 continue
             validate_artifact_metadata(actual, entry)
-            verify_drive(entry, drive_token)
+            if drive_token:
+                verify_drive(entry, drive_token)
+            else:
+                expected_proof = INITIAL_DRIVE_HASH_PROOF.get(aid)
+                actual_proof = (entry["drive_file_id"], entry["sha256"], entry["size_bytes"], entry["run_id"])
+                if expected_proof != actual_proof:
+                    raise RuntimeError("Drive OAuth unavailable and no exact initial verified backup proof")
+                print(f"INITIAL_DRIVE_PROOF_PREVIOUSLY_CHECKED {aid}", flush=True)
             verify_github_content(entry, token)
             verified += 1
             if a.apply:
