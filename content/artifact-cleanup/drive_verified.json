@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "repository": "gabrielslinhares12-sudo/instagram-skills",
+  "policy": "delete only after exact Drive and GitHub ZIP SHA256 comparison",
+  "verified_copies": [
+    {
+      "artifact_id": 13766758374,
+      "run_id": 42822095152,
+      "artifact_name": "faker-v54-official-riot-2022-drx-t1-original",
+      "size_bytes": 26978689,
+      "drive_file_id": "1VVBxIPXhWYQCXoQwr47d0lMj2wgz0QlP",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-riot-2022-english-1080.zip",
+      "drive_parent_id": "1ZcO0TNjW8Cf18BKRXHfqY8qJc_6SoAgE",
+      "sha256": "c77a20960dedb8e4e7fd7bd66015e74d7bf218a4ca434ca744bb7fc29377d7b3"
+    },
+    {
+      "artifact_id": 13762140586,
+      "run_id": 42808350863,
+      "artifact_name": "faker-v54-official-riot-2023-native1080",
+      "size_bytes": 17714302,
+      "drive_file_id": "1hmglWzT346tnSJeJYvAOzRRBzE7Bke4E",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-riot-2023-native1080.zip",
+      "drive_parent_id": "1ZcO0TNjW8Cf18BKRXHfqY8qJc_6SoAgE",
+      "sha256": "9368977491998b7e74721640a3c988c913a247df730f324d680909659cac5038"
+    },
+    {
+      "artifact_id": 13761625774,
+      "run_id": 42808350863,
+      "artifact_name": "faker-v54-official-riot-2024-native1080",
+      "size_bytes": 21979562,
+      "drive_file_id": "1Adys3EYZUbkBkWhQTRW7ESpLH-dqew26",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-riot-2024-native1080.zip",
+      "drive_parent_id": "1ZcO0TNjW8Cf18BKRXHfqY8qJc_6SoAgE",
+      "sha256": "2b408b5cb5abc1e9279baa606fb0f52e17bd3d293b7780eb4a2ed95df4f40ac4"
+    },
+    {
+      "artifact_id": 13760476858,
+      "run_id": 42808350863,
+      "artifact_name": "faker-v54-official-riot-2025-native1080",
+      "size_bytes": 18926361,
+      "drive_file_id": "1C9Nn_RXTuJvOuyrC6jOLbnIngusOt5MW",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-riot-2025-native1080.zip",
+      "drive_parent_id": "1ZcO0TNjW8Cf18BKRXHfqY8qJc_6SoAgE",
+      "sha256": "c2d80f71d2abbd044754f43e56ea9825a300825e2b45dfcc34de2bf285f135ad"
+    },
+    {
+      "artifact_id": 13767511517,
+      "run_id": 42821244925,
+      "artifact_name": "faker-v54-extended-riot-2023-1080p60",
+      "size_bytes": 42823749,
+      "drive_file_id": "1ft4of8dyqZ4hJjKFmGRuslYnGiz4dY4E",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-extended-2023.zip",
+      "drive_parent_id": "1ZcO0TNjW8Cf18BKRXHfqY8qJc_6SoAgE",
+      "sha256": "4e5b28fc05dfdbcaefd9ccb9f4c8adea287d8741a45e1309b957ec64d404a6f7"
+    },
+    {
+      "artifact_id": 13766234421,
+      "run_id": 42821244925,
+      "artifact_name": "faker-v54-extended-riot-2024-1080p60",
+      "size_bytes": 33200305,
+      "drive_file_id": "1vJAK5zg-nLQeoOAggQIaDvRambfrd5H3",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-extended-2024.zip",
+      "drive_parent_id": "1ZcO0TNjW8Cf18BKRXHfqY8qJc_6SoAgE",
+      "sha256": "c81d7fab060bf05051806ec1a265ae6c3d7312df811a751469d4fabef7d49df7"
+    },
+    {
+      "artifact_id": 13767361897,
+      "run_id": 42821244925,
+      "artifact_name": "faker-v54-extended-riot-2025-1080p60",
+      "size_bytes": 42390652,
+      "drive_file_id": "1RtcmWqGQKZ9D83F-6QvDmLaaqi1zstAQ",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-extended-2025.zip",
+      "drive_parent_id": "1ZcO0TNjW8Cf18BKRXHfqY8qJc_6SoAgE",
+      "sha256": "e521d3c29b2a9e165d143a3a308ec37ea644a74bcb56009ca6f8d2e419c6943e"
+    },
+    {
+      "artifact_id": 13767297700,
+      "run_id": 42821919215,
+      "artifact_name": "faker-v54-real-2026-blg-t1-1080p",
+      "size_bytes": 31474746,
+      "drive_file_id": "1PH7GDSMda705hm3-3ACSp4DMdBMPD0rC",
+      "drive_name": "FAKER_V54_FOOTAGE_PRIVADO_QC_faker-v54-real-2026-blg-t1-1080p.zip",
+      "drive_parent_id": "1ZcO0TNjW8Cf18BKRXHfqY8qJc_6SoAgE",
+      "sha256": "ef910d7e84e1b7cb7f364bc30b0a5d7f4941d242d7f62d6fb8ecfa6686f46c8e"
+    }
+  ]
+}
