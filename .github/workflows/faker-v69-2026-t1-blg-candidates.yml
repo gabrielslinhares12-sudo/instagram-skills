@@ -1,0 +1,60 @@
+name: FAKER V69 - 2026 T1 BLG official VOD reconnaissance (PRIVATE)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/faker-v69-2026-t1-blg-candidates.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - name: Prepare video tools
+        shell: bash
+        run: |
+          python3 -m pip install -q -U yt-dlp
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Download independent shot windows without audio or publication
+        shell: bash
+        run: |
+          mkdir -p evidence
+          python3 - <<'PY'
+          import json, pathlib, subprocess
+          URL='https://www.twitch.tv/videos/2923478933'
+          times=['03:50:00','04:05:00','04:15:00','04:25:00','04:35:00','04:45:00','04:50:00','05:00:00','05:08:00']
+          out=[]
+          for t in times:
+            h,m,s=map(int,t.split(':')); secs=h*3600+m*60+s+8
+            end=f'{secs//3600:02}:{(secs%3600)//60:02}:{secs%60:02}'
+            key='T1BLG_'+t.replace(':','')
+            p=subprocess.run(['yt-dlp','--no-playlist','--download-sections',f'*{t}-{end}',
+              '--force-keyframes-at-cuts','-f','best[height<=1080]/best',URL,'-o',f'evidence/{key}.%(ext)s'],
+              text=True,capture_output=True,timeout=180)
+            matches=[x for x in pathlib.Path('evidence').glob(key+'.*') if x.suffix in ('.mp4','.ts','.mkv','.webm')]
+            if p.returncode or not matches:
+              out.append(dict(start=t,status='FAILED',error=p.stderr[-180:]));continue
+            src=matches[0]; final=pathlib.Path(f'evidence/{key}_silent.mp4')
+            q=subprocess.run(['ffmpeg','-v','error','-y','-i',str(src),'-map','0:v:0','-an',
+                   '-c:v','libx264','-preset','veryfast','-crf','26','-maxrate','5400k',
+                   '-bufsize','10800k','-pix_fmt','yuv420p','-movflags','+faststart',str(final)],
+                   text=True,capture_output=True,timeout=80)
+            if q.returncode or not final.exists():
+              out.append(dict(start=t,status='ERROR_ENCODE',error=q.stderr[-180:]));continue
+            out.append(dict(start=t,end=end,url=URL,status='CANDIDATE',file=final.name,bytes=final.stat().st_size))
+            src.unlink(missing_ok=True)
+            print('EXTRACTED',key,final.stat().st_size,flush=True)
+          pathlib.Path('evidence/sources.json').write_text(json.dumps(out,indent=2),encoding='utf8')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faker-v69-2026-t1-blg-private-qc
+          path: |
+            evidence/*_silent.mp4
+            evidence/sources.json
+          retention-days: 1
+          if-no-files-found: warn
